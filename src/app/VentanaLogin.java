@@ -6,6 +6,13 @@
 package app;
 
 import java.awt.Color;
+import Clases.ConectarBase;
+import Clases.Querys;
+import Clases.Sesion;
+import Objetos.Usuario;
+import cjb.ci.Mensaje;
+import java.sql.Connection;
+import java.util.ArrayList;
 
 /**
  *
@@ -20,6 +27,59 @@ public class VentanaLogin extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.getContentPane().setBackground(Color.white);
+    }
+
+    static Connection con = null;
+    Querys q;
+
+    void login() {
+        q = new Querys();
+        try {
+            ArrayList<Object> usuario = q.Seleccion(con, "*", "usuario", "usuario='" + txtusuario.getText() + "'", true);
+            if (usuario.isEmpty()) {
+                Mensaje.error(this, "El correo ingresado no existe\nCapture un correo valido");
+            }
+            
+
+        } catch (Exception e) {
+            System.out.println("Error: exception ->" + e);
+        }
+
+//        //Verifica el correo y contraseña
+//        if (columnaMap1.isEmpty()) {
+//            Mensaje.error(this, "El correo ingresado no existe\nCapture un correo valido");
+//            CtrlInterfaz.selecciona(jTFUsuario);
+//        } else {
+//            if (columnaMap1.get(11).equals(jPFContraseña.getText())) {
+//                System.out.println("Password correcto");
+//
+//                if (columnaMap1.get(9).equals("1")) {
+//                    Sesion.datosUsuario = columnaMap1;
+//                    new VtnAPrincipal().setVisible(true);
+//                    this.dispose();
+//                }
+//                if (columnaMap1.get(9).equals("2")) {
+//                    Sesion.datosUsuario = columnaMap1;
+//                    new VtnGPPrincipal().setVisible(true);
+//                    this.dispose();
+//                }
+//                if (columnaMap1.get(9).equals("3")) {
+//                    Sesion.datosUsuario = columnaMap1;
+//                    new VtnGSPrincipal().setVisible(true);
+//                    this.dispose();
+//                }
+//                if (columnaMap1.get(9).equals("4")) {
+//                    Sesion.datosUsuario = columnaMap1;
+//                    new VtnEPrincipal().setVisible(true);
+//                    this.dispose();
+//                }
+//            } else {
+//                Mensaje.error(this, "La contraseña ingresada es erronea\nCapture una contraseña valida");
+//                CtrlInterfaz.selecciona(jPFContraseña);
+//            }
+//        }
+
+        //Compara tipo de usuario
     }
 
     /**
@@ -37,7 +97,7 @@ public class VentanaLogin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtusuario = new javax.swing.JTextField();
         jPassContrasenaia = new javax.swing.JPasswordField();
         jBEntrar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -45,6 +105,11 @@ public class VentanaLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horarios UAPT");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/UAPT.jpeg"))); // NOI18N
 
@@ -63,10 +128,10 @@ public class VentanaLogin extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel4.setText("Usuario");
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 153));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtusuario.setBackground(new java.awt.Color(255, 255, 153));
+        txtusuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtusuarioActionPerformed(evt);
             }
         });
 
@@ -102,7 +167,7 @@ public class VentanaLogin extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel4)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+                                    .addComponent(txtusuario, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
                                     .addComponent(jPassContrasenaia))))
                         .addGap(300, 300, 300))
                     .addGroup(layout.createSequentialGroup()
@@ -144,7 +209,7 @@ public class VentanaLogin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addComponent(jLabel3)
                         .addGap(28, 28, 28)
@@ -161,14 +226,18 @@ public class VentanaLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtusuarioActionPerformed
 
     private void jBEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEntrarActionPerformed
-            this.setVisible(false);
-            new VentanaAdministrador().setVisible(true);
+        this.setVisible(false);
+        new VentanaAdministrador().setVisible(true);
     }//GEN-LAST:event_jBEntrarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        con = ConectarBase.conectaBD();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -212,6 +281,7 @@ public class VentanaLogin extends javax.swing.JFrame {
         });
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBEntrar;
     private javax.swing.JLabel jLTituloUAPT;
@@ -223,6 +293,6 @@ public class VentanaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPasswordField jPassContrasenaia;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtusuario;
     // End of variables declaration//GEN-END:variables
 }

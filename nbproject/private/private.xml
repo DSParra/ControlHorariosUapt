@@ -3,8 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/Proyecto%20horarios%20UAPT/src/app/VentanaMaterias.java</file>
+            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/Proyecto%20horarios%20UAPT/src/Objetos/periodoEscolar.java</file>
             <file>file:/C:/Users/DELL/Documents/NetBeansProjects/Proyecto%20horarios%20UAPT/src/app/VentanaLogin.java</file>
+            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/Proyecto%20horarios%20UAPT/src/Clases/Conexion.java</file>
+            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/Proyecto%20horarios%20UAPT/src/Clases/ConectarBase.java</file>
+            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/Proyecto%20horarios%20UAPT/src/Clases/Querys.java</file>
         </group>
     </open-files>
 </project-private>
