@@ -5,6 +5,11 @@
  */
 package Objetos;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author DELL
@@ -15,14 +20,21 @@ public class Usuario {
     private String contra;
     private String preguntaSeguridad;
     private String respuestaSeguridad;
+    private String rfc;
+    
+    PreparedStatement ps;
+    ResultSet rs;
 
-    public Usuario(int idUsuario, String usuario, String contra, String preguntaSeguridad, String respuestaSeguridad) {
+    public Usuario(int idUsuario, String usuario, String contra, String preguntaSeguridad, String respuestaSeguridad, String rfc) {
         this.idUsuario = idUsuario;
         this.usuario = usuario;
         this.contra = contra;
         this.preguntaSeguridad = preguntaSeguridad;
         this.respuestaSeguridad = respuestaSeguridad;
+        this.rfc = rfc;
     }
+
+    
 
     public Usuario() {
     }
@@ -96,6 +108,48 @@ public class Usuario {
     public void setRespuestaSeguridad(String respuestaSeguridad) {
         this.respuestaSeguridad = respuestaSeguridad;
     }
+//    public void inserta(Object obj, Connection con) {
+//       Usuarios emp =(Usuarios)obj;
+//        try{
+//            ps=con.prepareStatement("INSERT INTO usuarios(id_usuario,id_empleado,correo,password,tipo_usuario,fecha_alta) VALUES (?,?,?,?,?,?)");//por seguridad
+//            ps.setInt(1, emp.getId_usuario());
+//            ps.setInt(2, emp.getId_empleado());
+//            ps.setString(3,emp.getCorreo());
+//            ps.setString(4, emp.getPassword());
+//            ps.setString(5, emp.getTipo_usuario());
+//            ps.setDate(6, (java.sql.Date) emp.getFecha_alta());  // agregar un registro
+//            
+//            
+//            int res=ps.executeUpdate();
+//            
+//            if (res>0) {
+//                JOptionPane.showMessageDialog(null, "Se registro exitosamente");
+//            }else{
+//                JOptionPane.showMessageDialog(null, "ERROR");
+//            }            
+//        }catch(Exception e){
+//            System.out.println(e.toString());
+//        }        
+//    }
+//    
+//    
+
+//    
+//    
     
+
+    /**
+     * @return the rfc
+     */
+    public String getRfc() {
+        return rfc;
+    }
+
+    /**
+     * @param rfc the rfc to set
+     */
+    public void setRfc(String rfc) {
+        this.rfc = rfc;
+    }
     
 }

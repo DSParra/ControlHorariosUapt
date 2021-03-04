@@ -7,12 +7,18 @@ package app;
 
 import java.awt.Color;
 import Clases.ConectarBase;
+import Clases.ConsultasObjetos;
 import Clases.Querys;
 import Clases.Sesion;
 import Objetos.Usuario;
 import cjb.ci.Mensaje;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -29,57 +35,24 @@ public class VentanaLogin extends javax.swing.JFrame {
         this.getContentPane().setBackground(Color.white);
     }
 
-    static Connection con = null;
+    public static Connection con = null;
     Querys q;
 
-    void login() {
+    public boolean login() {
         q = new Querys();
-        try {
-            ArrayList<Object> usuario = q.Seleccion(con, "*", "usuario", "usuario='" + txtusuario.getText() + "'", true);
-            if (usuario.isEmpty()) {
-                Mensaje.error(this, "El correo ingresado no existe\nCapture un correo valido");
+        //try {
+            Usuario us = new Usuario();
+            us =(Usuario)ConsultasObjetos.consultaUnica("usuarios","usuario",txtusuario.getText(), con);
+            if (us  == null) {
+                return false;
+            }else{
+                if (us.getContra().equals(jPassContrasenaia.getText())) {
+                    return true;
+                }else{
+                    JOptionPane.showMessageDialog(null,"Contaseña incorrecta");
+                }                
             }
-            
-
-        } catch (Exception e) {
-            System.out.println("Error: exception ->" + e);
-        }
-
-//        //Verifica el correo y contraseña
-//        if (columnaMap1.isEmpty()) {
-//            Mensaje.error(this, "El correo ingresado no existe\nCapture un correo valido");
-//            CtrlInterfaz.selecciona(jTFUsuario);
-//        } else {
-//            if (columnaMap1.get(11).equals(jPFContraseña.getText())) {
-//                System.out.println("Password correcto");
-//
-//                if (columnaMap1.get(9).equals("1")) {
-//                    Sesion.datosUsuario = columnaMap1;
-//                    new VtnAPrincipal().setVisible(true);
-//                    this.dispose();
-//                }
-//                if (columnaMap1.get(9).equals("2")) {
-//                    Sesion.datosUsuario = columnaMap1;
-//                    new VtnGPPrincipal().setVisible(true);
-//                    this.dispose();
-//                }
-//                if (columnaMap1.get(9).equals("3")) {
-//                    Sesion.datosUsuario = columnaMap1;
-//                    new VtnGSPrincipal().setVisible(true);
-//                    this.dispose();
-//                }
-//                if (columnaMap1.get(9).equals("4")) {
-//                    Sesion.datosUsuario = columnaMap1;
-//                    new VtnEPrincipal().setVisible(true);
-//                    this.dispose();
-//                }
-//            } else {
-//                Mensaje.error(this, "La contraseña ingresada es erronea\nCapture una contraseña valida");
-//                CtrlInterfaz.selecciona(jPFContraseña);
-//            }
-//        }
-
-        //Compara tipo de usuario
+        return false;
     }
 
     /**
@@ -99,7 +72,7 @@ public class VentanaLogin extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtusuario = new javax.swing.JTextField();
         jPassContrasenaia = new javax.swing.JPasswordField();
-        jBEntrar = new javax.swing.JButton();
+        btnentrar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
@@ -137,13 +110,13 @@ public class VentanaLogin extends javax.swing.JFrame {
 
         jPassContrasenaia.setBackground(new java.awt.Color(255, 255, 153));
 
-        jBEntrar.setBackground(new java.awt.Color(102, 102, 0));
-        jBEntrar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jBEntrar.setForeground(new java.awt.Color(255, 255, 255));
-        jBEntrar.setText("Entrar");
-        jBEntrar.addActionListener(new java.awt.event.ActionListener() {
+        btnentrar.setBackground(new java.awt.Color(102, 102, 0));
+        btnentrar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnentrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnentrar.setText("Entrar");
+        btnentrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBEntrarActionPerformed(evt);
+                btnentrarActionPerformed(evt);
             }
         });
 
@@ -160,7 +133,7 @@ public class VentanaLogin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jBEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnentrar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addGap(92, 92, 92)
@@ -218,7 +191,7 @@ public class VentanaLogin extends javax.swing.JFrame {
                         .addGap(19, 19, 19)
                         .addComponent(jLabel6)))
                 .addGap(41, 41, 41)
-                .addComponent(jBEntrar)
+                .addComponent(btnentrar)
                 .addContainerGap(109, Short.MAX_VALUE))
         );
 
@@ -230,13 +203,18 @@ public class VentanaLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtusuarioActionPerformed
 
-    private void jBEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEntrarActionPerformed
-        this.setVisible(false);
-        new VentanaAdministrador().setVisible(true);
-    }//GEN-LAST:event_jBEntrarActionPerformed
+    private void btnentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnentrarActionPerformed
+
+        boolean log = login();
+        if (log) {
+            new VentanaAdministrador().setVisible(true);
+            this.setVisible(false);
+        }
+
+    }//GEN-LAST:event_btnentrarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        con = ConectarBase.conectaBD();
+            con = ConectarBase.conectado();       
     }//GEN-LAST:event_formWindowOpened
 
     /**
@@ -283,7 +261,7 @@ public class VentanaLogin extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBEntrar;
+    private javax.swing.JButton btnentrar;
     private javax.swing.JLabel jLTituloUAPT;
     private javax.swing.JLabel jLTituloUniversidad;
     private javax.swing.JLabel jLabel1;

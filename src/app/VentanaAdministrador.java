@@ -5,7 +5,12 @@
  */
 package app;
 
+import Clases.ConectarBase;
+import Clases.ConsultasObjetos;
+import Objetos.Profesor;
 import java.awt.Color;
+
+
 
 /**
  *
@@ -45,6 +50,11 @@ public class VentanaAdministrador extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horarios UAPT");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/UAPT.jpeg"))); // NOI18N
 
@@ -230,6 +240,12 @@ public class VentanaAdministrador extends javax.swing.JFrame {
         this.setVisible(false);
         new VentanaLicenciaturas().setVisible(true);
     }//GEN-LAST:event_jBLicenciaturasActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        Profesor profe = new Profesor();
+        profe = (Profesor) ConsultasObjetos.consultaUnica("profesores", "nombres", "jorge carlos", ConectarBase.conectado());
+        
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

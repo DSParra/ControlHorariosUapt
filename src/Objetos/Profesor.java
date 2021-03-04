@@ -5,11 +5,18 @@
  */
 package Objetos;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author DELL
  */
 public class Profesor {
+
     private String rfc;
     private String apellidoP;
     private String apellidoM;
@@ -17,9 +24,11 @@ public class Profesor {
     private String gradoAcademico;
     private String correo;
     private String telefono;
-    private int idUsuario;
 
-    public Profesor(String rfc, String apellidoP, String apellidoM, String nombres, String gradoAcademico, String correo, String telefono, int idUsuario) {
+    PreparedStatement ps;
+    ResultSet rs;
+
+    public Profesor(String rfc, String apellidoP, String apellidoM, String nombres, String gradoAcademico, String correo, String telefono) {
         this.rfc = rfc;
         this.apellidoP = apellidoP;
         this.apellidoM = apellidoM;
@@ -27,7 +36,6 @@ public class Profesor {
         this.gradoAcademico = gradoAcademico;
         this.correo = correo;
         this.telefono = telefono;
-        this.idUsuario = idUsuario;
     }
 
     public Profesor() {
@@ -131,18 +139,48 @@ public class Profesor {
         this.telefono = telefono;
     }
 
-    /**
-     * @return the idUsuario
-     */
-    public int getIdUsuario() {
-        return idUsuario;
-    }
 
-    /**
-     * @param idUsuario the idUsuario to set
-     */
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-    
+//    public void inserta(Object obj, Connection con) {
+//       Usuarios emp =(Usuarios)obj;
+//        try{
+//            ps=con.prepareStatement("INSERT INTO usuarios(id_usuario,id_empleado,correo,password,tipo_usuario,fecha_alta) VALUES (?,?,?,?,?,?)");//por seguridad
+//            ps.setInt(1, emp.getId_usuario());
+//            ps.setInt(2, emp.getId_empleado());
+//            ps.setString(3,emp.getCorreo());
+//            ps.setString(4, emp.getPassword());
+//            ps.setString(5, emp.getTipo_usuario());
+//            ps.setDate(6, (java.sql.Date) emp.getFecha_alta());  // agregar un registro
+//            
+//            
+//            int res=ps.executeUpdate();
+//            
+//            if (res>0) {
+//                JOptionPane.showMessageDialog(null, "Se registro exitosamente");
+//            }else{
+//                JOptionPane.showMessageDialog(null, "ERROR");
+//            }            
+//        }catch(Exception e){
+//            System.out.println(e.toString());
+//        }        
+//    }
+//    
+//    
+//    public void elimina(int id, Connection con) {
+//     try{
+//            //con = Conexiones.conectar();
+//            ps = con.prepareStatement("DELETE FROM usuarios WHERE id=?"); //Eliminar
+//            ps.setInt(1,id);
+//            int res=ps.executeUpdate();
+//            
+//            if (res>0) {
+//                JOptionPane.showMessageDialog(null, "Se elimino exitosamente");
+//            }else{
+//                JOptionPane.showMessageDialog(null, "ERROR");
+//            }                     
+//        }catch(Exception e){
+//            System.out.println(e.toString());
+//        }   
+//    }
+//    
+//    
 }

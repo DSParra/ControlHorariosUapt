@@ -99,7 +99,6 @@ public class Querys
         {
             return "No se pudo eliminar el registro..." + e.getMessage();
         }
-
     }
 
     /**
