@@ -30,7 +30,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
         this.setResizable(false);
         this.getContentPane().setBackground(Color.white);
     }
-    private Boolean edicion = false;
+    private Boolean edicion = true;
     private  DefaultTableModel modelo;
 
     /**
@@ -384,7 +384,11 @@ public class VentanaDocentes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnelminaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnelminaActionPerformed
-        // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar a " + txtnombres.getText()) == 0) {
+                Profesor p = new Profesor(txtrfc.getText(), txtapellidoP.getText(), txtapellidoM.getText(), txtnombres.getText(), txtgradoAcademico.getText(), txtcorreo.getText(), txttelefono.getText());
+                ConsultasObjetos.elimina("profesores", "rfc", txtrfc.getText(), 0, ConectarBase.conectado());
+                actualizaTabla();
+        }
     }//GEN-LAST:event_btnelminaActionPerformed
 
     private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
@@ -431,12 +435,12 @@ public class VentanaDocentes extends javax.swing.JFrame {
         if (edicion) {
             btnmodifica.setText("Aceptar");
             CtrlInterfaz.habilita(true, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
-            CtrlInterfaz.habilita(false, btnelmina, btnmodifica);
+            CtrlInterfaz.habilita(false, btnelmina, btnAgregar);
         } else {
-            if (JOptionPane.showConfirmDialog(this, "Seguro que desea agregar a " + txtnombres.getText()) == 0) {
+            if (JOptionPane.showConfirmDialog(this, "Seguro que desea Modificar a " + txtnombres.getText()) == 0) {
                 btnAgregar.setText("Modificar");
                 Profesor p = new Profesor(txtrfc.getText(), txtapellidoP.getText(), txtapellidoM.getText(), txtnombres.getText(), txtgradoAcademico.getText(), txtcorreo.getText(), txttelefono.getText());
-                ConsultasObjetos.inserta(p, ConectarBase.conectado(), "profesor");
+                ConsultasObjetos.Modifica(p, ConectarBase.conectado(), "profesores");
                 CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
                 CtrlInterfaz.habilita(true, btnelmina, btnmodifica);
                 actualizaTabla();

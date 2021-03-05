@@ -120,12 +120,12 @@ public class ConsultasObjetos {
                 ps = con.prepareStatement("SELECT * FROM " + tabla + " WHERE " + campo + " = ?"); //traer un dato
                 ps.setString(1, valor);
             }
-            
+
             ArrayList<Object> objetos = new ArrayList();
-            
+
             switch (tabla) {
                 case "usuarios":
-                    
+
                     rs = ps.executeQuery();
                     if (rs.next()) {
                         do {
@@ -167,22 +167,69 @@ public class ConsultasObjetos {
         }
         return null;
     }
-    
-//    public void elimina(int id, Connection con) {
-//     try{
-//            //con = Conexiones.conectar();
-//            ps = con.prepareStatement("DELETE FROM usuarios WHERE id=?"); //Eliminar
-//            ps.setInt(1,id);
-//            int res=ps.executeUpdate();
-//            
-//            if (res>0) {
-//                JOptionPane.showMessageDialog(null, "Se elimino exitosamente");
-//            }else{
-//                JOptionPane.showMessageDialog(null, "ERROR");
-//            }                     
-//        }catch(Exception e){
-//            System.out.println(e.toString());
-//        }   
-//    }
 
+    public static void elimina(String tabla, String campo, String id2, int id, Connection con) {
+        try {
+            if (id2 == null) {
+                ps = con.prepareStatement("DELETE FROM " + tabla + " WHERE " + campo + " = ?");
+                ps.setInt(1, id);
+            } else {
+                ps = con.prepareStatement("DELETE FROM " + tabla + " WHERE " + campo + " = ?");
+                ps.setString(1, id2);
+            }
+            int res = ps.executeUpdate();
+            if (res > 0) {
+                JOptionPane.showMessageDialog(null, "Se elimino exitosamente");
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR");
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }
+    
+    public static void Modifica(Object obj, Connection con,String tabla) {
+        try {
+            int res = -1;
+            switch (tabla) {
+                case "usuario":
+                    Usuario emp = (Usuario) obj;
+                    ps = con.prepareStatement("UPDATE "+tabla+" SET apellido_paterno=?,apellido_materno=?,nombres=?,grado_academico=?,correo=?,telefono=?  WHERE rfc =?");//por seguridad
+                    ps.setInt(1, emp.getIdUsuario());
+                    ps.setString(2, emp.getRfc());
+                    ps.setString(3, emp.getUsuario());
+                    ps.setString(4, emp.getPreguntaSeguridad());
+                    ps.setString(5, emp.getRespuestaSeguridad());
+                    
+                    res = ps.executeUpdate();
+                    if (res > 0) {
+                        JOptionPane.showMessageDialog(null, "Se Modifico exitosamente");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "ERROR");
+                    }
+                    break;
+                case "profesores":
+                    Profesor prof = (Profesor) obj;
+                    ps = con.prepareStatement("UPDATE "+tabla+" SET apellido_paterno=?,apellido_materno=?,nombres=?,grado_academico=?,correo=?,telefono=?  WHERE rfc =?");
+                    ps.setString(1, prof.getApellidoP());
+                    ps.setString(2, prof.getApellidoM());
+                    ps.setString(3, prof.getNombres());
+                    ps.setString(4, prof.getGradoAcademico());
+                    ps.setString(5, prof.getCorreo());
+                    ps.setString(6, prof.getTelefono());
+                    ps.setString(7, prof.getRfc());
+                    res = ps.executeUpdate();
+                    if (res > 0) {
+                        JOptionPane.showMessageDialog(null, "Se Modifico exitosamente");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "ERROR");
+                    }
+                    break;
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }
+    
+    
 }
