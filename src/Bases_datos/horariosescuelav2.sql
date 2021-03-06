@@ -108,10 +108,10 @@ CREATE TABLE `plan_estudios` (
 -- Estructura de tabla para la tabla `profesor`
 --
 
-CREATE TABLE `profesor` (
+CREATE TABLE `profesores` (
   `rfc` varchar(250) NOT NULL,
-  `apellidoP` varchar(250) NOT NULL,
-  `apellidoM` varchar(250) NOT NULL,
+  `apellido_paterno` varchar(250) NOT NULL,
+  `apellido_materno` varchar(250) NOT NULL,
   `nombres` varchar(250) NOT NULL,
   `grado_academico` varchar(250) NOT NULL,
   `correo` varchar(250) NOT NULL,
@@ -184,7 +184,7 @@ ALTER TABLE `plan_estudios`
 --
 -- Indices de la tabla `profesor`
 --
-ALTER TABLE `profesor`
+ALTER TABLE `profesores`
   ADD PRIMARY KEY (`rfc`),
   ADD KEY `id_usuario` (`id_usuario`);
 
@@ -257,7 +257,7 @@ ALTER TABLE `plan_estudios`
 --
 -- Filtros para la tabla `profesor`
 --
-ALTER TABLE `profesor`
+ALTER TABLE `profesores`
   ADD CONSTRAINT `profesor_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
 COMMIT;
 
