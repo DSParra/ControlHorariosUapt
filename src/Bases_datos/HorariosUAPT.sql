@@ -1,6 +1,6 @@
-DROP DATABASE HorariosUAPT;
-CREATE DATABASE HorariosUAPT;
-USE HorariosUAPT;
+DROP DATABASE horariosuapt;
+CREATE DATABASE horariosuapt;
+USE horariosuapt;
 
 CREATE TABLE profesores(
                     rfc VARCHAR(60) NOT NULL,
