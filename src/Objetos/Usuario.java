@@ -16,27 +16,70 @@ import javax.swing.JOptionPane;
  */
 public class Usuario {
     private int idUsuario;
+    private String rfc;
     private String usuario;
     private String contra;
     private String preguntaSeguridad;
     private String respuestaSeguridad;
-    private String rfc;
     
-    PreparedStatement ps;
-    ResultSet rs;
+    private PreparedStatement ps;
+    private ResultSet rs;
 
-    public Usuario(int idUsuario, String usuario, String contra, String preguntaSeguridad, String respuestaSeguridad, String rfc) {
+    public Usuario() {
+    }
+
+    public Usuario(int idUsuario, String rfc, String usuario, String contra, String preguntaSeguridad, String respuestaSeguridad) {
         this.idUsuario = idUsuario;
+        this.rfc = rfc;
         this.usuario = usuario;
         this.contra = contra;
         this.preguntaSeguridad = preguntaSeguridad;
         this.respuestaSeguridad = respuestaSeguridad;
-        this.rfc = rfc;
     }
 
     
+//    public void inserta(Object obj, Connection con) {
+//       Usuarios emp =(Usuarios)obj;
+//        try{
+//            ps=con.prepareStatement("INSERT INTO usuarios(id_usuario,id_empleado,correo,password,tipo_usuario,fecha_alta) VALUES (?,?,?,?,?,?)");//por seguridad
+//            ps.setInt(1, emp.getId_usuario());
+//            ps.setInt(2, emp.getId_empleado());
+//            ps.setString(3,emp.getCorreo());
+//            ps.setString(4, emp.getPassword());
+//            ps.setString(5, emp.getTipo_usuario());
+//            ps.setDate(6, (java.sql.Date) emp.getFecha_alta());  // agregar un registro
+//            
+//            
+//            int res=ps.executeUpdate();
+//            
+//            if (res>0) {
+//                JOptionPane.showMessageDialog(null, "Se registro exitosamente");
+//            }else{
+//                JOptionPane.showMessageDialog(null, "ERROR");
+//            }            
+//        }catch(Exception e){
+//            System.out.println(e.toString());
+//        }        
+//    }
+//    
+//    
 
-    public Usuario() {
+//    
+//    
+    
+
+    /**
+     * @return the rfc
+     */
+    public String getRfc() {
+        return rfc;
+    }
+
+    /**
+     * @param rfc the rfc to set
+     */
+    public void setRfc(String rfc) {
+        this.rfc = rfc;
     }
 
     /**
@@ -108,48 +151,33 @@ public class Usuario {
     public void setRespuestaSeguridad(String respuestaSeguridad) {
         this.respuestaSeguridad = respuestaSeguridad;
     }
-//    public void inserta(Object obj, Connection con) {
-//       Usuarios emp =(Usuarios)obj;
-//        try{
-//            ps=con.prepareStatement("INSERT INTO usuarios(id_usuario,id_empleado,correo,password,tipo_usuario,fecha_alta) VALUES (?,?,?,?,?,?)");//por seguridad
-//            ps.setInt(1, emp.getId_usuario());
-//            ps.setInt(2, emp.getId_empleado());
-//            ps.setString(3,emp.getCorreo());
-//            ps.setString(4, emp.getPassword());
-//            ps.setString(5, emp.getTipo_usuario());
-//            ps.setDate(6, (java.sql.Date) emp.getFecha_alta());  // agregar un registro
-//            
-//            
-//            int res=ps.executeUpdate();
-//            
-//            if (res>0) {
-//                JOptionPane.showMessageDialog(null, "Se registro exitosamente");
-//            }else{
-//                JOptionPane.showMessageDialog(null, "ERROR");
-//            }            
-//        }catch(Exception e){
-//            System.out.println(e.toString());
-//        }        
-//    }
-//    
-//    
-
-//    
-//    
-    
 
     /**
-     * @return the rfc
+     * @return the ps
      */
-    public String getRfc() {
-        return rfc;
+    public PreparedStatement getPs() {
+        return ps;
     }
 
     /**
-     * @param rfc the rfc to set
+     * @param ps the ps to set
      */
-    public void setRfc(String rfc) {
-        this.rfc = rfc;
+    public void setPs(PreparedStatement ps) {
+        this.ps = ps;
+    }
+
+    /**
+     * @return the rs
+     */
+    public ResultSet getRs() {
+        return rs;
+    }
+
+    /**
+     * @param rs the rs to set
+     */
+    public void setRs(ResultSet rs) {
+        this.rs = rs;
     }
     
 }
