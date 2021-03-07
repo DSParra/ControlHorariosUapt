@@ -468,7 +468,12 @@ public class VentanaUsuarios extends javax.swing.JFrame
     }//GEN-LAST:event_jBModificarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-        // TODO add your handling code here:
+        if (Mensaje.pregunta(this, "¿Desea eliminar a usuario "+ JTusuario.getText() + "?") == 0)
+        {
+            Usuario user = new Usuario(Integer.parseInt(jTIdUsuario.getText()), JCRFC.getSelectedItem().toString(), JTusuario.getText(), jPContrasenia.getText(), jTPregunta.getText(), jTRespuesta.getText());
+            ConsultasObjetos.elimina("usuarios", "id_usuario", jTIdUsuario.getText(), 0, conectado());
+            actualizarTabla();
+        }
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void edicion() {
