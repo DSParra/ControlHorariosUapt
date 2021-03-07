@@ -14,13 +14,16 @@ import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import cjb.ci.Mensaje;
+import cjb.ci.Validaciones;
+import static cjb.ci.Validaciones.enter;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
-public class VentanaDocentes extends javax.swing.JFrame {
+public class VentanaDocentes extends javax.swing.JFrame
+{
 
     /**
      * Creates new form VentanaPrinicipal
@@ -31,7 +34,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
         this.getContentPane().setBackground(Color.white);
     }
     private Boolean edicion = true;
-    private  DefaultTableModel modelo;
+    private DefaultTableModel modelo;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,6 +92,11 @@ public class VentanaDocentes extends javax.swing.JFrame {
         txtrfc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtrfcActionPerformed(evt);
+            }
+        });
+        txtrfc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtrfcKeyPressed(evt);
             }
         });
 
@@ -161,11 +169,21 @@ public class VentanaDocentes extends javax.swing.JFrame {
                 txtgradoAcademicoActionPerformed(evt);
             }
         });
+        txtgradoAcademico.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtgradoAcademicoKeyPressed(evt);
+            }
+        });
 
         txtapellidoP.setBackground(new java.awt.Color(255, 255, 153));
         txtapellidoP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtapellidoPActionPerformed(evt);
+            }
+        });
+        txtapellidoP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtapellidoPKeyPressed(evt);
             }
         });
 
@@ -178,11 +196,21 @@ public class VentanaDocentes extends javax.swing.JFrame {
                 txtapellidoMActionPerformed(evt);
             }
         });
+        txtapellidoM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtapellidoMKeyPressed(evt);
+            }
+        });
 
         txtnombres.setBackground(new java.awt.Color(255, 255, 153));
         txtnombres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtnombresActionPerformed(evt);
+            }
+        });
+        txtnombres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtnombresKeyPressed(evt);
             }
         });
 
@@ -195,6 +223,11 @@ public class VentanaDocentes extends javax.swing.JFrame {
                 txtcorreoActionPerformed(evt);
             }
         });
+        txtcorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtcorreoKeyPressed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel10.setText("Telefono");
@@ -203,6 +236,11 @@ public class VentanaDocentes extends javax.swing.JFrame {
         txttelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txttelefonoActionPerformed(evt);
+            }
+        });
+        txttelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txttelefonoKeyPressed(evt);
             }
         });
 
@@ -365,12 +403,17 @@ public class VentanaDocentes extends javax.swing.JFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
 
         edicion();
-        if (edicion) {
+        if (edicion)
+        {
             btnAgregar.setText("Aceptar");
             CtrlInterfaz.habilita(true, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
             CtrlInterfaz.habilita(false, btnelmina, btnmodifica);
-        } else {
-            if (JOptionPane.showConfirmDialog(this, "Seguro que desea agregar a " + txtnombres.getText()) == 0) {
+            CtrlInterfaz.selecciona(txtrfc);
+
+        } else
+        {
+            if (JOptionPane.showConfirmDialog(this, "Seguro que desea agregar a " + txtnombres.getText()) == 0)
+            {
                 btnAgregar.setText("Nuevo");
                 Profesor p = new Profesor(txtrfc.getText(), txtapellidoP.getText(), txtapellidoM.getText(), txtnombres.getText(), txtgradoAcademico.getText(), txtcorreo.getText(), txttelefono.getText());
                 ConsultasObjetos.inserta(p, ConectarBase.conectado(), "profesor");
@@ -384,10 +427,11 @@ public class VentanaDocentes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnelminaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnelminaActionPerformed
-        if (JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar a " + txtnombres.getText()) == 0) {
-                Profesor p = new Profesor(txtrfc.getText(), txtapellidoP.getText(), txtapellidoM.getText(), txtnombres.getText(), txtgradoAcademico.getText(), txtcorreo.getText(), txttelefono.getText());
-                ConsultasObjetos.elimina("profesores", "rfc", txtrfc.getText(), 0, ConectarBase.conectado());
-                actualizaTabla();
+        if (JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar a " + txtnombres.getText()) == 0)
+        {
+            Profesor p = new Profesor(txtrfc.getText(), txtapellidoP.getText(), txtapellidoM.getText(), txtnombres.getText(), txtgradoAcademico.getText(), txtcorreo.getText(), txttelefono.getText());
+            ConsultasObjetos.elimina("profesores", "rfc", txtrfc.getText(), 0, ConectarBase.conectado());
+            actualizaTabla();
         }
     }//GEN-LAST:event_btnelminaActionPerformed
 
@@ -432,12 +476,15 @@ public class VentanaDocentes extends javax.swing.JFrame {
 
     private void btnmodificaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificaActionPerformed
         edicion();
-        if (edicion) {
+        if (edicion)
+        {
             btnmodifica.setText("Aceptar");
             CtrlInterfaz.habilita(true, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
             CtrlInterfaz.habilita(false, btnelmina, btnAgregar);
-        } else {
-            if (JOptionPane.showConfirmDialog(this, "Seguro que desea Modificar a " + txtnombres.getText()) == 0) {
+        } else
+        {
+            if (JOptionPane.showConfirmDialog(this, "Seguro que desea Modificar a " + txtnombres.getText()) == 0)
+            {
                 btnAgregar.setText("Modificar");
                 Profesor p = new Profesor(txtrfc.getText(), txtapellidoP.getText(), txtapellidoM.getText(), txtnombres.getText(), txtgradoAcademico.getText(), txtcorreo.getText(), txttelefono.getText());
                 ConsultasObjetos.Modifica(p, ConectarBase.conectado(), "profesores");
@@ -461,16 +508,44 @@ public class VentanaDocentes extends javax.swing.JFrame {
     }//GEN-LAST:event_btncancelarActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        txtrfc.setText((String)modelo.getValueAt(jTable1.getSelectedRow(), 0));
-        txtapellidoP.setText((String)modelo.getValueAt(jTable1.getSelectedRow(), 1));
-        txtapellidoM.setText((String)modelo.getValueAt(jTable1.getSelectedRow(), 2));
-        txtnombres.setText((String)modelo.getValueAt(jTable1.getSelectedRow(), 3));
-        txtgradoAcademico.setText((String)modelo.getValueAt(jTable1.getSelectedRow(), 4));
-        txtcorreo.setText((String)modelo.getValueAt(jTable1.getSelectedRow(), 5));
-        txttelefono.setText((String)modelo.getValueAt(jTable1.getSelectedRow(), 6));
+        txtrfc.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 0));
+        txtapellidoP.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 1));
+        txtapellidoM.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 2));
+        txtnombres.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 3));
+        txtgradoAcademico.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 4));
+        txtcorreo.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 5));
+        txttelefono.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 6));
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void cancelar(){
+    private void txtrfcKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtrfcKeyPressed
+        enter(this, evt, txtapellidoP);
+    }//GEN-LAST:event_txtrfcKeyPressed
+
+    private void txtapellidoPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidoPKeyPressed
+        enter(this, evt, txtapellidoM);
+    }//GEN-LAST:event_txtapellidoPKeyPressed
+
+    private void txtapellidoMKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidoMKeyPressed
+        enter(this, evt, txtnombres);
+    }//GEN-LAST:event_txtapellidoMKeyPressed
+
+    private void txtnombresKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombresKeyPressed
+        enter(this, evt, txtgradoAcademico);
+    }//GEN-LAST:event_txtnombresKeyPressed
+
+    private void txtgradoAcademicoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtgradoAcademicoKeyPressed
+        enter(this, evt, txtcorreo);
+    }//GEN-LAST:event_txtgradoAcademicoKeyPressed
+
+    private void txtcorreoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcorreoKeyPressed
+        enter(this, evt, txttelefono);
+    }//GEN-LAST:event_txtcorreoKeyPressed
+
+    private void txttelefonoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefonoKeyPressed
+        enter(this, evt, btnAgregar);
+    }//GEN-LAST:event_txttelefonoKeyPressed
+
+    private void cancelar() {
         edicion();
         CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
         CtrlInterfaz.habilita(true, btnAgregar, btnmodifica, btnelmina);
@@ -479,25 +554,33 @@ public class VentanaDocentes extends javax.swing.JFrame {
     }
 
     private void edicion() {
-        if (edicion) {
+        if (edicion)
+        {
             edicion = false;
-        } else {
+        } else
+        {
             edicion = true;
         }
     }
 
     public void actualizaTabla() {
-         modelo = (DefaultTableModel) jTable1.getModel();
+        modelo = (DefaultTableModel) jTable1.getModel();
         ArrayList profes = new ArrayList();
         profes = ConsultasObjetos.consultaMuchos("profesores", null, null, ConectarBase.conectado());
-        if (profes.isEmpty()) {
+        if (profes.isEmpty())
+        {
             JOptionPane.showMessageDialog(this, "No se encuentran registros");
-        } else {
-            
+        } else
+        {
+
             modelo.setRowCount(0);
-            for (Object p : profes) {
+            for (Object p : profes)
+            {
                 Profesor profe = (Profesor) p;
-                modelo.addRow(new Object[]{profe.getRfc(), profe.getApellidoP(), profe.getApellidoM(), profe.getNombres(), profe.getGradoAcademico(), profe.getCorreo(), profe.getTelefono()});
+                modelo.addRow(new Object[]
+                {
+                    profe.getRfc(), profe.getApellidoP(), profe.getApellidoM(), profe.getNombres(), profe.getGradoAcademico(), profe.getCorreo(), profe.getTelefono()
+                });
                 System.out.println(((Profesor) p).getNombres());
             }
         }
@@ -512,20 +595,27 @@ public class VentanaDocentes extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(VentanaDocentes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(VentanaDocentes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(VentanaDocentes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(VentanaDocentes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -594,7 +684,8 @@ public class VentanaDocentes extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable()
+        {
             public void run() {
                 new VentanaDocentes().setVisible(true);
             }
