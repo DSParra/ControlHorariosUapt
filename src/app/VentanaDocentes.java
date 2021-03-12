@@ -22,8 +22,7 @@ import javax.swing.JOptionPane;
  *
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
-public class VentanaDocentes extends javax.swing.JFrame
-{
+public class VentanaDocentes extends javax.swing.JFrame {
 
     /**
      * Creates new form VentanaPrinicipal
@@ -403,23 +402,23 @@ public class VentanaDocentes extends javax.swing.JFrame
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
 
         edicion();
-        if (edicion)
-        {
+        if (edicion) {
             btnAgregar.setText("Aceptar");
+            CtrlInterfaz.limpia(txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
             CtrlInterfaz.habilita(true, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
             CtrlInterfaz.habilita(false, btnelmina, btnmodifica);
             CtrlInterfaz.selecciona(txtrfc);
 
-        } else
-        {
-            if (JOptionPane.showConfirmDialog(this, "Seguro que desea agregar a " + txtnombres.getText()) == 0)
-            {
+        } else {
+            if (JOptionPane.showConfirmDialog(this, "Seguro que desea agregar a " + txtnombres.getText()) == 0) {
                 btnAgregar.setText("Nuevo");
                 Profesor p = new Profesor(txtrfc.getText(), txtapellidoP.getText(), txtapellidoM.getText(), txtnombres.getText(), txtgradoAcademico.getText(), txtcorreo.getText(), txttelefono.getText());
                 ConsultasObjetos.inserta(p, ConectarBase.conectado(), "profesor");
                 CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
                 CtrlInterfaz.habilita(true, btnelmina, btnmodifica);
                 actualizaTabla();
+            }else{
+                edicion();
             }
         }
 
@@ -427,8 +426,7 @@ public class VentanaDocentes extends javax.swing.JFrame
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnelminaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnelminaActionPerformed
-        if (JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar a " + txtnombres.getText()) == 0)
-        {
+        if (JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar a " + txtnombres.getText()) == 0) {
             Profesor p = new Profesor(txtrfc.getText(), txtapellidoP.getText(), txtapellidoM.getText(), txtnombres.getText(), txtgradoAcademico.getText(), txtcorreo.getText(), txttelefono.getText());
             ConsultasObjetos.elimina("profesores", "rfc", txtrfc.getText(), 0, ConectarBase.conectado());
             actualizaTabla();
@@ -475,24 +473,28 @@ public class VentanaDocentes extends javax.swing.JFrame
     }//GEN-LAST:event_txttelefonoActionPerformed
 
     private void btnmodificaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificaActionPerformed
-        edicion();
-        if (edicion)
-        {
+        if (txtrfc.getText().compareTo("") == 0) {
+            JOptionPane.showMessageDialog(this, "Seleccione un registro para editar");
+        } else {
+            edicion();
+            if (edicion) {
             btnmodifica.setText("Aceptar");
             CtrlInterfaz.habilita(true, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
             CtrlInterfaz.habilita(false, btnelmina, btnAgregar);
-        } else
-        {
-            if (JOptionPane.showConfirmDialog(this, "Seguro que desea Modificar a " + txtnombres.getText()) == 0)
-            {
+        } else {
+            if (JOptionPane.showConfirmDialog(this, "Seguro que desea Modificar a " + txtnombres.getText()) == 0) {
                 btnAgregar.setText("Modificar");
                 Profesor p = new Profesor(txtrfc.getText(), txtapellidoP.getText(), txtapellidoM.getText(), txtnombres.getText(), txtgradoAcademico.getText(), txtcorreo.getText(), txttelefono.getText());
                 ConsultasObjetos.Modifica(p, ConectarBase.conectado(), "profesores");
                 CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
                 CtrlInterfaz.habilita(true, btnelmina, btnmodifica);
                 actualizaTabla();
+            }else{
+                edicion();
             }
         }
+        }
+        
     }//GEN-LAST:event_btnmodificaActionPerformed
 
     private void btnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar2ActionPerformed
@@ -547,6 +549,7 @@ public class VentanaDocentes extends javax.swing.JFrame
 
     private void cancelar() {
         edicion();
+        CtrlInterfaz.limpia(txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
         CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
         CtrlInterfaz.habilita(true, btnAgregar, btnmodifica, btnelmina);
         btnAgregar.setText("Nuevo");
@@ -554,11 +557,9 @@ public class VentanaDocentes extends javax.swing.JFrame
     }
 
     private void edicion() {
-        if (edicion)
-        {
+        if (edicion) {
             edicion = false;
-        } else
-        {
+        } else {
             edicion = true;
         }
     }
@@ -567,18 +568,14 @@ public class VentanaDocentes extends javax.swing.JFrame
         modelo = (DefaultTableModel) jTable1.getModel();
         ArrayList profes = new ArrayList();
         profes = ConsultasObjetos.consultaMuchos("profesores", null, null, ConectarBase.conectado());
-        if (profes.isEmpty())
-        {
+        if (profes.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No se encuentran registros");
-        } else
-        {
+        } else {
 
             modelo.setRowCount(0);
-            for (Object p : profes)
-            {
+            for (Object p : profes) {
                 Profesor profe = (Profesor) p;
-                modelo.addRow(new Object[]
-                {
+                modelo.addRow(new Object[]{
                     profe.getRfc(), profe.getApellidoP(), profe.getApellidoM(), profe.getNombres(), profe.getGradoAcademico(), profe.getCorreo(), profe.getTelefono()
                 });
                 System.out.println(((Profesor) p).getNombres());
@@ -595,27 +592,20 @@ public class VentanaDocentes extends javax.swing.JFrame
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try
-        {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-            {
-                if ("Nimbus".equals(info.getName()))
-                {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex)
-        {
+        } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(VentanaDocentes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex)
-        {
+        } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(VentanaDocentes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex)
-        {
+        } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(VentanaDocentes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex)
-        {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VentanaDocentes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -684,8 +674,7 @@ public class VentanaDocentes extends javax.swing.JFrame
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable()
-        {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VentanaDocentes().setVisible(true);
             }
