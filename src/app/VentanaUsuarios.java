@@ -446,7 +446,7 @@ public class VentanaUsuarios extends javax.swing.JFrame
     }//GEN-LAST:event_jTRespuestaKeyPressed
 
     private void TablaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaUsuariosMouseClicked
-        jTIdUsuario.setText((Integer.toString((int) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 0))));
+        jTIdUsuario.setText((String)modelo.getValueAt(TablaUsuarios.getSelectedRow(), 0));
         JTusuario.setText((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 2));
         jPContrasenia.setText((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 3));
         jTPregunta.setText((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 4));
