@@ -178,6 +178,11 @@ public class VentanaUsuarios extends javax.swing.JFrame
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel6.setText("Usuario");
 
+        JCRFC.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                JCRFCItemStateChanged(evt);
+            }
+        });
         JCRFC.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 JCRFCKeyPressed(evt);
@@ -375,14 +380,15 @@ public class VentanaUsuarios extends javax.swing.JFrame
             CtrlInterfaz.limpia(jTIdUsuario, JTusuario, jPContrasenia, jTPregunta, jTRespuesta);
             CtrlInterfaz.habilita(true, jTIdUsuario, JCRFC, JTusuario, jPContrasenia, jTPregunta, jTRespuesta, jBCancelar);
             habilita(false, jBModificar, jBEliminar);
+            actualizarTabla();
         } else
         {
             if (Mensaje.pregunta(this, "¿Segruo que quiere agregar al usuario " + JTusuario.getText() + " ?") == 0)
             {
                 jBAceptar.setText("Nuevo");
-                Usuario user = new Usuario(Integer.parseInt(jTIdUsuario.getText()), JCRFC.getSelectedItem().toString(), JTusuario.getText(),
-                        jPContrasenia.getText(), jTPregunta.getText(), jTRespuesta.getText());
+                Usuario user = new Usuario(jTIdUsuario.getText(), JCRFC.getSelectedItem().toString(), JTusuario.getText(), jPContrasenia.getText(), jTPregunta.getText(), jTRespuesta.getText());
                 ConsultasObjetos.inserta(user, conectado(), "usuarios");
+                CtrlInterfaz.habilita(false, jTIdUsuario, JCRFC, JTusuario, jPContrasenia, jTPregunta, jTRespuesta, jBCancelar);
                 CtrlInterfaz.limpia(jTIdUsuario, JTusuario, jPContrasenia, jTPregunta, jTRespuesta);
                 JCRFC.setSelectedItem(0);
                 actualizarTabla();
@@ -392,6 +398,7 @@ public class VentanaUsuarios extends javax.swing.JFrame
     }//GEN-LAST:event_jBAceptarActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
+        edicion();
         habilita(false, jTIdUsuario, JCRFC, JTusuario, jPContrasenia, jTPregunta, jTRespuesta, jBCancelar);
         habilita(true, jBModificar, jBEliminar, jBAceptar);
         jBAceptar.setText("Nuevo");
@@ -458,7 +465,7 @@ public class VentanaUsuarios extends javax.swing.JFrame
             if (Mensaje.pregunta(this, "¿Desea modifcar al usuario " + JTusuario.getText() + " ?") == 0)
             {
                 jBModificar.setText("Modifcar");
-                Usuario user = new Usuario(Integer.parseInt(jTIdUsuario.getText()), JCRFC.getSelectedItem().toString(), JTusuario.getText(), jPContrasenia.getText(), jTPregunta.getText(), jTRespuesta.getText());
+                Usuario user = new Usuario(jTIdUsuario.getText(), JCRFC.getSelectedItem().toString(), JTusuario.getText(), jPContrasenia.getText(), jTPregunta.getText(), jTRespuesta.getText());
                 ConsultasObjetos.Modifica(user, conectado(), "usuarios");
                 habilita(true, JCRFC, JTusuario, jPContrasenia, jTPregunta, jTRespuesta);
                 habilita(true, jBEliminar, jBModificar);
@@ -468,13 +475,18 @@ public class VentanaUsuarios extends javax.swing.JFrame
     }//GEN-LAST:event_jBModificarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-        if (Mensaje.pregunta(this, "¿Desea eliminar a usuario "+ JTusuario.getText() + "?") == 0)
+        if (Mensaje.pregunta(this, "¿Desea eliminar a usuario " + JTusuario.getText() + "?") == 0)
         {
-            Usuario user = new Usuario(Integer.parseInt(jTIdUsuario.getText()), JCRFC.getSelectedItem().toString(), JTusuario.getText(), jPContrasenia.getText(), jTPregunta.getText(), jTRespuesta.getText());
+            Usuario user = new Usuario(jTIdUsuario.getText(), JCRFC.getSelectedItem().toString(), JTusuario.getText(), jPContrasenia.getText(), jTPregunta.getText(), jTRespuesta.getText());
             ConsultasObjetos.elimina("usuarios", "id_usuario", jTIdUsuario.getText(), 0, conectado());
             actualizarTabla();
         }
     }//GEN-LAST:event_jBEliminarActionPerformed
+
+    private void JCRFCItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JCRFCItemStateChanged
+        jTIdUsuario.setText(" ");
+        jTIdUsuario.setText(JCRFC.getSelectedItem().toString());
+    }//GEN-LAST:event_JCRFCItemStateChanged
 
     private void edicion() {
         if (edicion)
