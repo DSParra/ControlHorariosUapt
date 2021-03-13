@@ -59,6 +59,10 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
         btnAgregar2 = new javax.swing.JButton();
         btnAgregar3 = new javax.swing.JButton();
         btncancelar = new javax.swing.JButton();
+        comboCordis = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        txtcodigolic = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horarios UAPT");
@@ -69,7 +73,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel2.setText("Profesores");
+        jLabel2.setText("Cordinadores");
 
         btnAgregar.setBackground(new java.awt.Color(102, 102, 0));
         btnAgregar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -186,72 +190,108 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
             }
         });
 
+        comboCordis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel7.setText("Cordinador");
+
+        txtcodigolic.setBackground(new java.awt.Color(255, 255, 153));
+        txtcodigolic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcodigolicActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel8.setText("Codigo Licenciatura");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addComponent(btnmodifica, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8)
+                                    .addComponent(txtnombre, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                                    .addComponent(txtcodigolic))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(comboCordis, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                                        .addComponent(btnmodifica, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(27, 27, 27)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 904, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAgregar2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAgregar3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jBCerrarSesion)))
+                .addGap(47, 47, 47))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(552, 552, 552))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnelmina)
                         .addGap(48, 48, 48)
                         .addComponent(btncancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(428, 428, 428)
                         .addComponent(jBRegresar)
-                        .addGap(62, 62, 62)
-                        .addComponent(jBCerrarSesion)
-                        .addGap(29, 29, 29))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtnombre, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                                .addGap(49, 49, 49)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 904, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnAgregar2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnAgregar3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(47, 47, 47))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(1009, Short.MAX_VALUE))))))
+                        .addGap(265, 265, 265))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(116, 116, 116)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnAgregar2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnAgregar3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtcodigolic, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(comboCordis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(128, 128, 128)
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(71, 71, 71)
+                        .addContainerGap()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnelmina, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnmodifica, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBRegresar)
                     .addComponent(jBCerrarSesion)
-                    .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                    .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnelmina, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnmodifica, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -263,18 +303,20 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
         edicion();
         if (edicion) {
             btnAgregar.setText("Aceptar");
-            CtrlInterfaz.limpia(txtapellidoM, txtapellidoP, txtnombre, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
-            CtrlInterfaz.habilita(true, txtapellidoM, txtapellidoP, txtnombre, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
-            CtrlInterfaz.habilita(false, btnelmina, btnmodifica);
-            CtrlInterfaz.selecciona(txtrfc);
-
+            CtrlInterfaz.limpia(txtnombre, txtcodigolic);
+            CtrlInterfaz.habilita(true, txtnombre, comboCordis, btncancelar, txtcodigolic);
+            CtrlInterfaz.selecciona(txtnombre);
+            llenaComboProfesores();
         } else {
             if (JOptionPane.showConfirmDialog(this, "Seguro que desea agregar a " + txtnombre.getText()) == 0) {
-                btnAgregar.setText("Nuevo");
-                Profesor p = new Profesor(txtrfc.getText(), txtapellidoP.getText(), txtapellidoM.getText(), txtnombre.getText(), txtgradoAcademico.getText(), txtcorreo.getText(), txttelefono.getText());
-                ConsultasObjetos.inserta(p, ConectarBase.conectado(), "profesor");
-                CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombre, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
+
+//                btnAgregar.setText("Nuevo");
+                Licenciatura lic = new Licenciatura(txtcodigolic.getText(), txtnombre.getText(), buscaProfesor(null, (String) comboCordis.getSelectedItem()));
+                System.out.println("Item"+" "+ (String) comboCordis.getSelectedItem());
+                ConsultasObjetos.inserta(lic, ConectarBase.conectado(), "licenciatura");
+                CtrlInterfaz.habilita(false, txtnombre, comboCordis, btncancelar);
                 CtrlInterfaz.habilita(true, btnelmina, btnmodifica);
+                llenaComboCordinadores();
                 actualizaTabla();
             } else {
                 edicion();
@@ -303,8 +345,9 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
     }//GEN-LAST:event_jBCerrarSesionActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        //cancelar();
+        cancelar();
         actualizaTabla();
+        llenaComboCordinadores();
     }//GEN-LAST:event_formWindowOpened
 
     private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
@@ -386,10 +429,14 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
         enter(this, evt, btnAgregar);
     }//GEN-LAST:event_txttelefonoKeyPressed
 
+    private void txtcodigolicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcodigolicActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcodigolicActionPerformed
+
     private void cancelar() {
         edicion();
-        CtrlInterfaz.limpia(txtapellidoM, txtapellidoP, txtnombre, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
-        CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombre, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
+        CtrlInterfaz.limpia(txtnombre);
+        CtrlInterfaz.habilita(false, txtnombre, comboCordis, btncancelar, txtcodigolic);
         CtrlInterfaz.habilita(true, btnAgregar, btnmodifica, btnelmina);
         btnAgregar.setText("Nuevo");
         btnmodifica.setText("Modificar");
@@ -416,24 +463,57 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
             for (Object p : licenciatura) {
                 Licenciatura lic = (Licenciatura) p;
                 modelo.addRow(new Object[]{
-                    lic.getIdLicenciatura(), lic.getLicenciatura(),buscaProfesor(lic.getRfcCordinador())
+                    lic.getIdLicenciatura(), lic.getLicenciatura(), buscaProfesor(lic.getRfcCordinador(), null)
                 });
 
             }
         }
     }
 
-    public String buscaProfesor(String rfc) {
-        for (Object p : profes) {
-            Profesor profe = (Profesor) p;
-            if (profe.getRfc().equals(rfc)) {
-                return profe.getNombres() + " " + profe.getApellidoP();
+    public String buscaProfesor(String rfc, String nombre) {
+        if (nombre != null) {
+            for (Object p : profes) {
+                Profesor profe = (Profesor) p;
+                if ((profe.getNombres() + " " + profe.getApellidoP()).equals(nombre)) {
+                    return profe.getRfc();
+                }
             }
-            return "no encontrado";
+        } else {
+            for (Object p : profes) {
+                Profesor profe = (Profesor) p;
+                if (profe.getRfc().equals(rfc)) {
+                    return profe.getNombres() + " " + profe.getApellidoP();
+                }
+                return null;
+            }
+
         }
-        /**
-         * @param args the command line arguments
-         */
+
+    
+
+    
+
+    
+
+    public void llenaComboCordinadores() {
+        comboCordis.removeAllItems();
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            comboCordis.addItem((String) jTable1.getValueAt(0, 2));
+            System.out.println((String) jTable1.getValueAt(0, 2));
+        }
+    }
+
+    public void llenaComboProfesores() {
+        comboCordis.removeAllItems();
+        for (int i = 0; i < profes.size(); i++) {
+            comboCordis.addItem(((Profesor) profes.get(i)).getNombres() + " " + ((Profesor) profes.get(i)).getApellidoP());
+
+        }
+    }
+
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -600,12 +680,16 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
     private javax.swing.JButton btncancelar;
     private javax.swing.JButton btnelmina;
     private javax.swing.JButton btnmodifica;
+    private javax.swing.JComboBox<String> comboCordis;
     private javax.swing.JButton jBCerrarSesion;
     private javax.swing.JButton jBRegresar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField txtcodigolic;
     private javax.swing.JTextField txtnombre;
     // End of variables declaration//GEN-END:variables
 }

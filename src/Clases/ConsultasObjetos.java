@@ -122,8 +122,8 @@ public class ConsultasObjetos {
                     }
                     break;
                 case "licenciatura":
-                    Licenciatura licen = new Licenciatura();
-                    ps = con.prepareStatement("INSERT INTO licenciatura(id_licenciatura,nombre,rfc_cordinador) VALUES (?,?,?)");
+                    Licenciatura licen =(Licenciatura)obj;
+                    ps = con.prepareStatement("INSERT INTO licenciatura(id_licenciatura,nombre,rfc_coordinador) VALUES (?,?,?)");
                     ps.setString(1, licen.getIdLicenciatura());
                     ps.setString(2, licen.getLicenciatura());
                     ps.setString(3, licen.getRfcCordinador());
@@ -136,6 +136,7 @@ public class ConsultasObjetos {
                     break;
             }
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al hacer la insercion");
             System.out.println(e.toString());
         }
     }

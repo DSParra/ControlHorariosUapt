@@ -571,7 +571,6 @@ public class VentanaDocentes extends javax.swing.JFrame {
         if (profes.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No se encuentran registros");
         } else {
-
             modelo.setRowCount(0);
             for (Object p : profes) {
                 Profesor profe = (Profesor) p;
