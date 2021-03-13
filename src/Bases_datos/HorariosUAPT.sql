@@ -15,7 +15,7 @@ CREATE TABLE profesores(
                     );
 
 CREATE TABLE usuarios(
-                    id_usuario INT(11),
+                    id_usuario VARCHAR(60),
                     rfc VARCHAR(60) NOT NULL,
                     usuario VARCHAR(60) NOT NULL,
                     contrasenia VARCHAR(60) NOT NULL,
