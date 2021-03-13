@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  * @author DELL
  */
 public class Usuario {
-    private int idUsuario;
+    private String idUsuario;
     private String rfc;
     private String usuario;
     private String contra;
@@ -25,17 +25,7 @@ public class Usuario {
     private PreparedStatement ps;
     private ResultSet rs;
 
-    public Usuario() {
-    }
-
-    public Usuario(int idUsuario, String rfc, String usuario, String contra, String preguntaSeguridad, String respuestaSeguridad) {
-        this.idUsuario = idUsuario;
-        this.rfc = rfc;
-        this.usuario = usuario;
-        this.contra = contra;
-        this.preguntaSeguridad = preguntaSeguridad;
-        this.respuestaSeguridad = respuestaSeguridad;
-    }
+    
 
     
 //    public void inserta(Object obj, Connection con) {
@@ -66,7 +56,32 @@ public class Usuario {
 
 //    
 //    
-    
+
+    public Usuario() {
+    }
+
+    public Usuario(String idUsuario, String rfc, String usuario, String contra, String preguntaSeguridad, String respuestaSeguridad) {
+        this.idUsuario = idUsuario;
+        this.rfc = rfc;
+        this.usuario = usuario;
+        this.contra = contra;
+        this.preguntaSeguridad = preguntaSeguridad;
+        this.respuestaSeguridad = respuestaSeguridad;
+    }
+
+    /**
+     * @return the idUsuario
+     */
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    /**
+     * @param idUsuario the idUsuario to set
+     */
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
     /**
      * @return the rfc
@@ -80,20 +95,6 @@ public class Usuario {
      */
     public void setRfc(String rfc) {
         this.rfc = rfc;
-    }
-
-    /**
-     * @return the idUsuario
-     */
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    /**
-     * @param idUsuario the idUsuario to set
-     */
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
     }
 
     /**
@@ -179,5 +180,6 @@ public class Usuario {
     public void setRs(ResultSet rs) {
         this.rs = rs;
     }
+    
     
 }

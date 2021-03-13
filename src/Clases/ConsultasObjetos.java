@@ -39,7 +39,7 @@ public class ConsultasObjetos {
                     rs = ps.executeQuery();
                     if (rs.next()) {
                         usuario = new Usuario();
-                        usuario.setIdUsuario(rs.getInt("id_usuario"));
+                        usuario.setIdUsuario(rs.getString("id_usuario"));
                         usuario.setUsuario(rs.getString("usuario"));
                         usuario.setContra(rs.getString("contrasenia"));
                         usuario.setPreguntaSeguridad(rs.getString("pregunta_seguridad"));
@@ -87,15 +87,17 @@ public class ConsultasObjetos {
     public static void inserta(Object obj, Connection con, String tabla) {
         try {
             int res = -1;
-            switch (tabla) {
-                case "usuario":
+            switch (tabla)
+            {
+                case "usuarios":
                     Usuario emp = (Usuario) obj;
-                    ps = con.prepareStatement("INSERT INTO usuarios(id_usuario,rfc,usuario,pregunta_seguridad,respuesta_seguridad,) VALUES (?,?,?,?,?)");//por seguridad
-                    ps.setInt(1, emp.getIdUsuario());
+                    ps = con.prepareStatement("INSERT INTO usuarios(id_usuario,rfc,usuario, contrasenia,pregunta_seguridad,respuesta_seguridad) VALUES (?,?,?,?,?,?)");//por seguridad
+                    ps.setString(1, emp.getIdUsuario());
                     ps.setString(2, emp.getRfc());
                     ps.setString(3, emp.getUsuario());
-                    ps.setString(4, emp.getPreguntaSeguridad());
-                    ps.setString(5, emp.getRespuestaSeguridad());
+                    ps.setString(4, emp.getContra());
+                    ps.setString(5, emp.getPreguntaSeguridad());
+                    ps.setString(6, emp.getRespuestaSeguridad());
                     //ps.setDate(6, (java.sql.Date) emp.getFecha_alta());  // agregar un registro
                     res = ps.executeUpdate();
                     if (res > 0) {
@@ -160,12 +162,12 @@ public class ConsultasObjetos {
                         do {
                             Usuario usuario = new Usuario();
                             System.out.println(usuario.getUsuario());
-                            usuario.setIdUsuario(rs.getInt("id_usuario"));
+                            usuario.setIdUsuario(rs.getString("id_usuario"));
+                            usuario.setRfc(rs.getString("rfc"));
                             usuario.setUsuario(rs.getString("usuario"));
                             usuario.setContra(rs.getString("contrasenia"));
                             usuario.setPreguntaSeguridad(rs.getString("pregunta_seguridad"));
                             usuario.setRespuestaSeguridad(rs.getString("respuesta_seguridad"));
-                            usuario.setRfc(rs.getString("rfc"));
                             objetos.add(usuario);
                         } while (rs.next());
                     } else {
@@ -224,7 +226,8 @@ public class ConsultasObjetos {
             int res = ps.executeUpdate();
             if (res > 0) {
                 JOptionPane.showMessageDialog(null, "Se elimino exitosamente");
-            } else {
+            } else
+             {
                 JOptionPane.showMessageDialog(null, "ERROR");
             }
         } catch (Exception e) {
@@ -235,16 +238,19 @@ public class ConsultasObjetos {
     public static void Modifica(Object obj, Connection con, String tabla) {
         try {
             int res = -1;
-            switch (tabla) {
-                case "usuario":
+            switch (tabla)
+            {
+                case "usuarios":
                     Usuario emp = (Usuario) obj;
-                    ps = con.prepareStatement("UPDATE " + tabla + " SET apellido_paterno=?,apellido_materno=?,nombres=?,grado_academico=?,correo=?,telefono=?  WHERE rfc =?");//por seguridad
-                    ps.setInt(1, emp.getIdUsuario());
-                    ps.setString(2, emp.getRfc());
-                    ps.setString(3, emp.getUsuario());
+                    ps = con.prepareStatement("UPDATE " + tabla + " SET  rfc=?,usuario=?,contrasenia=?,pregunta_seguridad=?,respuesta_seguridad=? WHERE id_usuario =?");//por seguridad
+                    
+                    ps.setString(1, emp.getRfc());
+                    ps.setString(2, emp.getUsuario());
+                    ps.setString(3, emp.getContra());
                     ps.setString(4, emp.getPreguntaSeguridad());
                     ps.setString(5, emp.getRespuestaSeguridad());
-
+                    ps.setString(6, emp.getIdUsuario());
+                    
                     res = ps.executeUpdate();
                     if (res > 0) {
                         JOptionPane.showMessageDialog(null, "Se Modifico exitosamente");
@@ -297,8 +303,11 @@ public class ConsultasObjetos {
 
             ps = con.prepareStatement(consulta);
             rs = ps.executeQuery();
-
-            while (rs.next()) {
+            
+            lista.add("Seleccione una opcion");
+            
+            while (rs.next())
+            {                
                 lista.add(rs.getString(campo));
             }
         } catch (Exception e) {
