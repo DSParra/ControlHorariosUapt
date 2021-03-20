@@ -50,7 +50,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         btnelmina = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaLicenciatura = new javax.swing.JTable();
         jBRegresar = new javax.swing.JButton();
         jBCerrarSesion = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
@@ -95,7 +95,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaLicenciatura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -111,12 +111,12 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablaLicenciatura.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                tablaLicenciaturaMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaLicenciatura);
 
         jBRegresar.setBackground(new java.awt.Color(102, 102, 0));
         jBRegresar.setForeground(new java.awt.Color(255, 255, 255));
@@ -299,7 +299,6 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-
         edicion();
         if (edicion) {
             btnAgregar.setText("Aceptar");
@@ -308,28 +307,22 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
             CtrlInterfaz.selecciona(txtnombre);
             llenaComboProfesores();
         } else {
-            if (JOptionPane.showConfirmDialog(this, "Seguro que desea agregar a " + txtnombre.getText()) == 0) {
+            System.out.println("Rfc Retornado" + buscaProfesor(null, (String) comboCordis.getSelectedItem()));
+            Licenciatura lic = new Licenciatura(txtcodigolic.getText(), txtnombre.getText(), buscaProfesor(null, (String) comboCordis.getSelectedItem()));
+            System.out.println("Item" + " " + (String) comboCordis.getSelectedItem());
+            ConsultasObjetos.inserta(lic, ConectarBase.conectado(), "licenciatura");
+            CtrlInterfaz.habilita(false, txtnombre, comboCordis, txtcodigolic, btncancelar);
+            CtrlInterfaz.habilita(true, btnelmina, btnmodifica);
+            llenaComboCordinadores();
+            actualizaTabla();
+            edicion();
 
-//                btnAgregar.setText("Nuevo");
-                Licenciatura lic = new Licenciatura(txtcodigolic.getText(), txtnombre.getText(), buscaProfesor(null, (String) comboCordis.getSelectedItem()));
-                System.out.println("Item"+" "+ (String) comboCordis.getSelectedItem());
-                ConsultasObjetos.inserta(lic, ConectarBase.conectado(), "licenciatura");
-                CtrlInterfaz.habilita(false, txtnombre, comboCordis, btncancelar);
-                CtrlInterfaz.habilita(true, btnelmina, btnmodifica);
-                llenaComboCordinadores();
-                actualizaTabla();
-            } else {
-                edicion();
-            }
         }
-
-
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnelminaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnelminaActionPerformed
         if (JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar a " + txtnombre.getText()) == 0) {
-            Profesor p = new Profesor(txtrfc.getText(), txtapellidoP.getText(), txtapellidoM.getText(), txtnombre.getText(), txtgradoAcademico.getText(), txtcorreo.getText(), txttelefono.getText());
-            ConsultasObjetos.elimina("profesores", "rfc", txtrfc.getText(), 0, ConectarBase.conectado());
+            ConsultasObjetos.elimina("licenciatura", "id_licenciatura", txtcodigolic.getText(), 0, ConectarBase.conectado());
             actualizaTabla();
         }
     }//GEN-LAST:event_btnelminaActionPerformed
@@ -355,25 +348,22 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
     }//GEN-LAST:event_txtnombreActionPerformed
 
     private void btnmodificaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificaActionPerformed
-        if (txtrfc.getText().compareTo("") == 0) {
+        if (txtcodigolic.getText().compareTo("") == 0) {
             JOptionPane.showMessageDialog(this, "Seleccione un registro para editar");
         } else {
             edicion();
             if (edicion) {
                 btnmodifica.setText("Aceptar");
-                CtrlInterfaz.habilita(true, txtapellidoM, txtapellidoP, txtnombre, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
+                CtrlInterfaz.habilita(true, txtnombre, comboCordis, btncancelar, txtcodigolic);
                 CtrlInterfaz.habilita(false, btnelmina, btnAgregar);
             } else {
-                if (JOptionPane.showConfirmDialog(this, "Seguro que desea Modificar a " + txtnombre.getText()) == 0) {
                     btnAgregar.setText("Modificar");
-                    Profesor p = new Profesor(txtrfc.getText(), txtapellidoP.getText(), txtapellidoM.getText(), txtnombre.getText(), txtgradoAcademico.getText(), txtcorreo.getText(), txttelefono.getText());
-                    ConsultasObjetos.Modifica(p, ConectarBase.conectado(), "profesores");
-                    CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombre, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
+                    Licenciatura lic = new Licenciatura(txtcodigolic.getText(),txtnombre.getText(),buscaProfesor(null,(String)comboCordis.getSelectedItem()));
+                    ConsultasObjetos.Modifica(lic, ConectarBase.conectado(), "licenciatura",(String)tablaLicenciatura.getValueAt(tablaLicenciatura.getSelectedRow(),0));
+                    CtrlInterfaz.habilita(false, txtnombre, comboCordis, btncancelar, txtcodigolic);
                     CtrlInterfaz.habilita(true, btnelmina, btnmodifica);
                     actualizaTabla();
-                } else {
                     edicion();
-                }
             }
         }
 
@@ -391,15 +381,12 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
         cancelar();
     }//GEN-LAST:event_btncancelarActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        txtrfc.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 0));
-        txtapellidoP.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 1));
-        txtapellidoM.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 2));
-        txtnombre.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 3));
-        txtgradoAcademico.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 4));
-        txtcorreo.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 5));
-        txttelefono.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 6));
-    }//GEN-LAST:event_jTable1MouseClicked
+    private void tablaLicenciaturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaLicenciaturaMouseClicked
+        txtcodigolic.setText((String) modelo.getValueAt(tablaLicenciatura.getSelectedRow(), 0));
+        txtnombre.setText((String) modelo.getValueAt(tablaLicenciatura.getSelectedRow(), 1));
+        comboCordis.setSelectedIndex(buscarcombo((String) modelo.getValueAt(tablaLicenciatura.getSelectedRow(), 2)));
+        System.out.println("retornando " + buscarcombo((String) modelo.getValueAt(tablaLicenciatura.getSelectedRow(), 2)));
+    }//GEN-LAST:event_tablaLicenciaturaMouseClicked
 
     private void txtrfcKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtrfcKeyPressed
         enter(this, evt, txtapellidoP);
@@ -436,7 +423,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
     private void cancelar() {
         edicion();
         CtrlInterfaz.limpia(txtnombre);
-        CtrlInterfaz.habilita(false, txtnombre, comboCordis, btncancelar, txtcodigolic);
+        CtrlInterfaz.habilita(false, txtnombre, btncancelar, txtcodigolic,comboCordis);
         CtrlInterfaz.habilita(true, btnAgregar, btnmodifica, btnelmina);
         btnAgregar.setText("Nuevo");
         btnmodifica.setText("Modificar");
@@ -452,8 +439,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
 
     public void actualizaTabla() {
         profes = ConsultasObjetos.consultaMuchos("profesores", null, null, ConectarBase.conectado());
-        modelo = (DefaultTableModel) jTable1.getModel();
-
+        modelo = (DefaultTableModel) tablaLicenciatura.getModel();
         ArrayList<Object> licenciatura = new ArrayList();
         licenciatura = ConsultasObjetos.consultaMuchos("licenciatura", null, null, ConectarBase.conectado());
         if (licenciatura.isEmpty()) {
@@ -484,22 +470,16 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
                 if (profe.getRfc().equals(rfc)) {
                     return profe.getNombres() + " " + profe.getApellidoP();
                 }
-                return null;
             }
-
         }
-
-    
-
-    
-
-    
+        return null;
+    }
 
     public void llenaComboCordinadores() {
         comboCordis.removeAllItems();
         for (int i = 0; i < modelo.getRowCount(); i++) {
-            comboCordis.addItem((String) jTable1.getValueAt(0, 2));
-            System.out.println((String) jTable1.getValueAt(0, 2));
+            comboCordis.addItem((String) tablaLicenciatura.getValueAt(i, 2));
+            System.out.println((String) tablaLicenciatura.getValueAt(i, 2));
         }
     }
 
@@ -507,8 +487,16 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
         comboCordis.removeAllItems();
         for (int i = 0; i < profes.size(); i++) {
             comboCordis.addItem(((Profesor) profes.get(i)).getNombres() + " " + ((Profesor) profes.get(i)).getApellidoP());
-
         }
+    }
+
+    public int buscarcombo(String texto) {
+        for (int i = 0; i < comboCordis.getItemCount(); i++) {
+            if (texto.equals(comboCordis.getItemAt(i))) {
+                return i;
+            }
+        }
+        return 0;
     }
 
     /**
@@ -688,7 +676,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaLicenciatura;
     private javax.swing.JTextField txtcodigolic;
     private javax.swing.JTextField txtnombre;
     // End of variables declaration//GEN-END:variables

@@ -15,6 +15,7 @@ import cjb.ci.Mensaje;
 import static cjb.ci.Validaciones.enter;
 import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -466,7 +467,7 @@ public class VentanaUsuarios extends javax.swing.JFrame
             {
                 jBModificar.setText("Modifcar");
                 Usuario user = new Usuario(jTIdUsuario.getText(), JCRFC.getSelectedItem().toString(), JTusuario.getText(), jPContrasenia.getText(), jTPregunta.getText(), jTRespuesta.getText());
-                ConsultasObjetos.Modifica(user, conectado(), "usuarios");
+                ConsultasObjetos.Modifica(user, conectado(), "usuarios",(String)TablaUsuarios.getValueAt(TablaUsuarios.getSelectedRow(),0));
                 habilita(true, JCRFC, JTusuario, jPContrasenia, jTPregunta, jTRespuesta);
                 habilita(true, jBEliminar, jBModificar);
                 actualizarTabla();

@@ -8,6 +8,7 @@ package Clases;
 import Objetos.Licenciatura;
 import Objetos.Profesor;
 import Objetos.Usuario;
+import com.sun.xml.internal.bind.v2.model.core.ID;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -235,7 +236,7 @@ public class ConsultasObjetos {
         }
     }
 
-    public static void Modifica(Object obj, Connection con, String tabla) {
+    public static void Modifica(Object obj, Connection con, String tabla,String id) {
         try {
             int res = -1;
             switch (tabla)
@@ -267,7 +268,7 @@ public class ConsultasObjetos {
                     ps.setString(4, prof.getGradoAcademico());
                     ps.setString(5, prof.getCorreo());
                     ps.setString(6, prof.getTelefono());
-                    ps.setString(7, prof.getRfc());
+                    ps.setString(7, id);
                     res = ps.executeUpdate();
                     if (res > 0) {
                         JOptionPane.showMessageDialog(null, "Se Modifico exitosamente");
@@ -277,11 +278,12 @@ public class ConsultasObjetos {
                     break;
                 case "licenciatura":
                     Licenciatura lic = (Licenciatura)obj;
-                    ps = con.prepareStatement("UPDATE " + tabla + " SET id:licenciatura=?,nombre=?,rfc_coordinador=? WHERE rfc =?");
+                    ps = con.prepareStatement("UPDATE " + tabla + " SET id_licenciatura=?,nombre=?,rfc_coordinador=? WHERE id_licenciatura=?");
+                    //System.out.println("Update" + tabla + "id_licenciatura ="+ lic.getIdLicenciatura() "nombre = "+ lic.getRfcCordinador() + "where id_licenciatura = "+id.);
                     ps.setString(1, lic.getIdLicenciatura());
                     ps.setString(2, lic.getLicenciatura());
                     ps.setString(3, lic.getRfcCordinador());
-                    ps.setString(4, lic.getRfcCordinador());
+                    ps.setString(4, id);
                     res = ps.executeUpdate();
                     if (res > 0) {
                         JOptionPane.showMessageDialog(null, "Se Modifico exitosamente");

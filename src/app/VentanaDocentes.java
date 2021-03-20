@@ -485,7 +485,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
             if (JOptionPane.showConfirmDialog(this, "Seguro que desea Modificar a " + txtnombres.getText()) == 0) {
                 btnAgregar.setText("Modificar");
                 Profesor p = new Profesor(txtrfc.getText(), txtapellidoP.getText(), txtapellidoM.getText(), txtnombres.getText(), txtgradoAcademico.getText(), txtcorreo.getText(), txttelefono.getText());
-                ConsultasObjetos.Modifica(p, ConectarBase.conectado(), "profesores");
+                ConsultasObjetos.Modifica(p, ConectarBase.conectado(), "profesores",(String)jTable1.getValueAt(jTable1.getSelectedRow(),0));
                 CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
                 CtrlInterfaz.habilita(true, btnelmina, btnmodifica);
                 actualizaTabla();
