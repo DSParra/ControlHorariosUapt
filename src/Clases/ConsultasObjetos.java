@@ -8,6 +8,8 @@ package Clases;
 import Objetos.Licenciatura;
 import Objetos.Profesor;
 import Objetos.Usuario;
+import app.VentanaLogin;
+import cjb.ci.Mensaje;
 import com.sun.xml.internal.bind.v2.model.core.ID;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,7 +27,55 @@ public class ConsultasObjetos {
     public static PreparedStatement ps;
     public static ResultSet rs;
     public static Statement sentencia;
-
+    public static int nivel = 0;
+    
+     public static int validaEntrar(String usuario, String contrasenia, Connection con)
+    {
+        String sql = "SELECT * FROM usuarios WHERE usuario='"+usuario+"'";
+        
+        try
+        {
+            Statement  st = con.createStatement();
+            ResultSet  rs = st.executeQuery(sql);
+            
+            int niv =0;
+            String pass = "", nombr_us="";
+            
+            if(rs.next())
+            {
+                nombr_us = rs.getString("usuario");
+                pass = rs.getString("Contrasenia");
+                niv = Integer.parseInt(rs.getString("nivel"));
+                
+                if(contrasenia.equals(pass))
+                {
+                    System.out.println("datos correctos");
+                    nivel = niv;
+                    if (nivel == 1)
+                    {
+                        return 1;
+                    }
+                    else if (nivel ==2)
+                    {
+                        return 2;
+                    }
+                }
+                else
+                {
+                    System.out.println("Contrasenia incorrecta");
+                    JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "nos se encontraron registros");
+            }
+        } catch (Exception e)
+        {
+        }
+        return 0;
+    }
+     
     public static Object consultaUnica(String tabla, String campo, String valor, Connection con) {
         try {
             if (campo == null) {
