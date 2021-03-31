@@ -21,6 +21,7 @@ CREATE TABLE usuarios(
                     contrasenia VARCHAR(60) NOT NULL,
                     pregunta_seguridad VARCHAR(250) NOT NULL,
                     respuesta_seguridad VARCHAR(250) NOT NULL,
+                    nivel INT(11) NOT NULL,
                     UNIQUE(rfc,usuario),
                     PRIMARY KEY (id_usuario),
                     FOREIGN KEY (rfc) REFERENCES profesores(rfc)
