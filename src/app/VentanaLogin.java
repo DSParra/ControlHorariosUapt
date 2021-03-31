@@ -12,6 +12,7 @@ import Clases.Querys;
 import Clases.Sesion;
 import Objetos.Usuario;
 import cjb.ci.Mensaje;
+import cjb.ci.Validaciones;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -107,8 +108,18 @@ public class VentanaLogin extends javax.swing.JFrame {
                 txtusuarioActionPerformed(evt);
             }
         });
+        txtusuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtusuarioKeyPressed(evt);
+            }
+        });
 
         jPassContrasenaia.setBackground(new java.awt.Color(255, 255, 153));
+        jPassContrasenaia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPassContrasenaiaKeyPressed(evt);
+            }
+        });
 
         btnentrar.setBackground(new java.awt.Color(102, 102, 0));
         btnentrar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -205,17 +216,31 @@ public class VentanaLogin extends javax.swing.JFrame {
 
     private void btnentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnentrarActionPerformed
 
-        boolean log = login();
-        if (log) {
-            new VentanaAdministrador().setVisible(true);
+        int val = ConsultasObjetos.validaEntrar(txtusuario.getText(), jPassContrasenaia.getText(), con);
+        
+        if (val == 1)
+        {
             this.setVisible(false);
+            new VentanaAdministrador().setVisible(true);
         }
-
+        else if(val == 2)
+        {
+            this.setVisible(false);
+            new VentanaCoordinadorCarrera().setVisible(true);
+        }
     }//GEN-LAST:event_btnentrarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
             con = ConectarBase.conectado();       
     }//GEN-LAST:event_formWindowOpened
+
+    private void txtusuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtusuarioKeyPressed
+        Validaciones.enter(this, evt, jPassContrasenaia);
+    }//GEN-LAST:event_txtusuarioKeyPressed
+
+    private void jPassContrasenaiaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPassContrasenaiaKeyPressed
+        Validaciones.enter(this, evt, btnentrar);
+    }//GEN-LAST:event_jPassContrasenaiaKeyPressed
 
     /**
      * @param args the command line arguments
@@ -259,7 +284,10 @@ public class VentanaLogin extends javax.swing.JFrame {
         });
     }
 
+    /*
+   */
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnentrar;
     private javax.swing.JLabel jLTituloUAPT;
