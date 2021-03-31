@@ -21,7 +21,7 @@ CREATE TABLE usuarios(
                     contrasenia VARCHAR(60) NOT NULL,
                     pregunta_seguridad VARCHAR(250) NOT NULL,
                     respuesta_seguridad VARCHAR(250) NOT NULL,
-                    nivel INT(11) NOT NULL,
+                    nivel INT(11) NOT NULL DEFAULT 2,
                     UNIQUE(rfc,usuario),
                     PRIMARY KEY (id_usuario),
                     FOREIGN KEY (rfc) REFERENCES profesores(rfc)
@@ -92,3 +92,9 @@ CREATE TABLE horarios(
                     FOREIGN KEY (id_periodo) REFERENCES periodo_escolar(id_periodo),
                     FOREIGN KEY (rfc) REFERENCES profesores(rfc)
                     );
+
+INSERT INTO profesores(rfc,apellido_paterno, apellido_materno, nombres, grado_academico, correo, telefono) 
+VALUES ("ADMIN001", "ADMIN", "ADMIN", "ADMIN", "ADMIN", "ADMIN@GMAIL.COM", 000);
+
+INSERT INTO usuarios(id_usuario,rfc, usuario, contrasenia, pregunta_seguridad, respuesta_seguridad, nivel)
+VALUES (0111, "ADMIN001", "ADMIN@GMAIL.COM", "ADMIN", "QUIEN ES EL ADMIN", "ADMINISTRADOR DE SISTEMA", 1);
