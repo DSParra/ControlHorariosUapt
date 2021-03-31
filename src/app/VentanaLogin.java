@@ -10,6 +10,7 @@ import Clases.ConectarBase;
 import Clases.ConsultasObjetos;
 import Clases.Querys;
 import Clases.Sesion;
+import Clases.Valida;
 import Objetos.Usuario;
 import cjb.ci.Mensaje;
 import cjb.ci.Validaciones;
@@ -19,6 +20,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 
 /**
@@ -94,6 +97,9 @@ public class VentanaLogin extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jPassContrasenaiaKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jPassContrasenaiaKeyReleased(evt);
+            }
         });
 
         btnentrar.setBackground(new java.awt.Color(102, 102, 0));
@@ -114,6 +120,9 @@ public class VentanaLogin extends javax.swing.JFrame {
         txtusuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtusuarioKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtusuarioKeyReleased(evt);
             }
         });
 
@@ -192,7 +201,7 @@ public class VentanaLogin extends javax.swing.JFrame {
         jLTituloUAPT.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLTituloUAPT.setForeground(new java.awt.Color(1, 1, 1));
         jLTituloUAPT.setText("Sistema de Control de Horarios");
-        getContentPane().add(jLTituloUAPT, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, -1, 20));
+        getContentPane().add(jLTituloUAPT, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, -1, 20));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/SCHR.png"))); // NOI18N
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, -1, -1));
@@ -200,7 +209,7 @@ public class VentanaLogin extends javax.swing.JFrame {
         jLTituloUAPT1.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLTituloUAPT1.setForeground(new java.awt.Color(1, 1, 1));
         jLTituloUAPT1.setText("Unidad Académica Profesional Tianguistenco");
-        getContentPane().add(jLTituloUAPT1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, 20));
+        getContentPane().add(jLTituloUAPT1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, 20));
 
         pack();
         setLocationRelativeTo(null);
@@ -212,6 +221,8 @@ public class VentanaLogin extends javax.swing.JFrame {
 
     private void btnentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnentrarActionPerformed
 
+         System.out.println(txtusuario.getText());
+         System.out.println(jPassContrasenaia.getText());
         int val = ConsultasObjetos.validaEntrar(txtusuario.getText(), jPassContrasenaia.getText(), con);
         
         if (val == 1)
@@ -237,6 +248,16 @@ public class VentanaLogin extends javax.swing.JFrame {
     private void jPassContrasenaiaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPassContrasenaiaKeyPressed
         Validaciones.enter(this, evt, btnentrar);
     }//GEN-LAST:event_jPassContrasenaiaKeyPressed
+
+    private void txtusuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtusuarioKeyReleased
+        Valida.convertirAMayusculas(txtusuario);
+        //convertirAMayusculas(txtusuario);
+    }//GEN-LAST:event_txtusuarioKeyReleased
+
+    private void jPassContrasenaiaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPassContrasenaiaKeyReleased
+        Valida.convertirAMayusculasP(jPassContrasenaia);
+    }//GEN-LAST:event_jPassContrasenaiaKeyReleased
+
 
     /**
      * @param args the command line arguments
@@ -299,4 +320,15 @@ public class VentanaLogin extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPassContrasenaia;
     private javax.swing.JTextField txtusuario;
     // End of variables declaration//GEN-END:variables
+
+    /*private void convertirAMayusculas(JTextField caja) {
+        String cadena = (caja.getText()).toUpperCase();
+        caja.setText(cadena);
+    }
+
+    private void convertirAMayusculasP(JPasswordField contra) {
+        String cadena = (contra.getText()).toUpperCase();
+        contra.setText(cadena);
+    }
+    */
 }
