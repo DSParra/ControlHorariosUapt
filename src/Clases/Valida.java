@@ -5,6 +5,7 @@
  */
 package Clases;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -24,4 +25,12 @@ public class Valida
         String cadena = (contra.getText()).toUpperCase();
         contra.setText(cadena);
     }
+    
+    public static void validaLongitud(JTextField caja, int limite, KeyEvent evt) {
+        if (caja.getText().length() == limite)
+        {
+            evt.consume();
+        }
+    }
+    
 }
