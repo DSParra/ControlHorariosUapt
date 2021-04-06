@@ -221,8 +221,6 @@ public class VentanaLogin extends javax.swing.JFrame {
 
     private void btnentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnentrarActionPerformed
 
-         System.out.println(txtusuario.getText());
-         System.out.println(jPassContrasenaia.getText());
         int val = ConsultasObjetos.validaEntrar(txtusuario.getText(), jPassContrasenaia.getText(), con);
         
         if (val == 1)
