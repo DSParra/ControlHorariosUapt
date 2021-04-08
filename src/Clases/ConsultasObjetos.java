@@ -8,9 +8,6 @@ package Clases;
 import Objetos.Licenciatura;
 import Objetos.Profesor;
 import Objetos.Usuario;
-import app.VentanaLogin;
-import cjb.ci.Mensaje;
-import com.sun.xml.internal.bind.v2.model.core.ID;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -68,7 +65,7 @@ public class ConsultasObjetos {
             }
             else
             {
-                JOptionPane.showMessageDialog(null, "nos se encontraron registros");
+                JOptionPane.showMessageDialog(null, "Usuario no encontrado");
             }
         } catch (Exception e)
         {
@@ -219,6 +216,7 @@ public class ConsultasObjetos {
                             usuario.setContra(rs.getString("contrasenia"));
                             usuario.setPreguntaSeguridad(rs.getString("pregunta_seguridad"));
                             usuario.setRespuestaSeguridad(rs.getString("respuesta_seguridad"));
+                            //usuario.setRespuestaSeguridad(rs.getString("nivel"));
                             objetos.add(usuario);
                         } while (rs.next());
                     } else {
