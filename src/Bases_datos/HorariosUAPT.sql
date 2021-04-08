@@ -46,7 +46,7 @@ CREATE TABLE plan_estudios(
                     );
 
 CREATE TABLE periodo_escolar(
-                    id_periodo INT(11),
+                    id_periodo INT(11) AUTO_INCREMENT,
                     periodo VARCHAR(60) NOT NULL,
                     PRIMARY KEY (id_periodo),
                     UNIQUE(periodo)
