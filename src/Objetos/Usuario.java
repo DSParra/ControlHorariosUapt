@@ -21,6 +21,7 @@ public class Usuario {
     private String contra;
     private String preguntaSeguridad;
     private String respuestaSeguridad;
+    private int nivel;
     
     private PreparedStatement ps;
     private ResultSet rs;
@@ -60,14 +61,17 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String idUsuario, String rfc, String usuario, String contra, String preguntaSeguridad, String respuestaSeguridad) {
+    public Usuario(String idUsuario, String rfc, String usuario, String contra, String preguntaSeguridad, String respuestaSeguridad, int nivel) {
         this.idUsuario = idUsuario;
         this.rfc = rfc;
         this.usuario = usuario;
         this.contra = contra;
         this.preguntaSeguridad = preguntaSeguridad;
         this.respuestaSeguridad = respuestaSeguridad;
+        this.nivel = nivel;
     }
+
+   
 
     /**
      * @return the idUsuario
@@ -165,20 +169,6 @@ public class Usuario {
      */
     public void setPs(PreparedStatement ps) {
         this.ps = ps;
-    }
-
-    /**
-     * @return the rs
-     */
-    public ResultSet getRs() {
-        return rs;
-    }
-
-    /**
-     * @param rs the rs to set
-     */
-    public void setRs(ResultSet rs) {
-        this.rs = rs;
     }
     
     

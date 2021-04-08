@@ -7,9 +7,12 @@ package app;
 
 import Clases.ConectarBase;
 import Clases.ConsultasObjetos;
+import Clases.Valida;
 import Objetos.Profesor;
 import Objetos.Usuario;
+import cjb.ci.CtrlInterfaz;
 import cjb.ci.Mensaje;
+import cjb.ci.Validaciones;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JFrame;
@@ -71,8 +74,6 @@ public class VentanaCordinadores extends javax.swing.JFrame
         jBModificar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaUsuarios = new javax.swing.JTable();
-        btnAgregar3 = new javax.swing.JButton();
-        btnAgregar2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -114,7 +115,7 @@ public class VentanaCordinadores extends javax.swing.JFrame
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel6.setText("RFC");
+        jLabel6.setText("Coordinador");
 
         txtContrasenia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,6 +188,12 @@ public class VentanaCordinadores extends javax.swing.JFrame
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(254, 254, 254));
         jLabel10.setText("PREGUNTA DE SEGURIDAD");
+
+        ComboRFC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ComboRFCKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -273,7 +280,7 @@ public class VentanaCordinadores extends javax.swing.JFrame
         jBEliminar.setBackground(new java.awt.Color(102, 102, 0));
         jBEliminar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jBEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        jBEliminar.setText("Cancelar");
+        jBEliminar.setText("Eliminar");
         jBEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEliminarActionPerformed(evt);
@@ -294,7 +301,7 @@ public class VentanaCordinadores extends javax.swing.JFrame
         jBModificar.setBackground(new java.awt.Color(102, 102, 0));
         jBModificar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jBModificar.setForeground(new java.awt.Color(255, 255, 255));
-        jBModificar.setText("Aceptar");
+        jBModificar.setText("Modificar");
         jBModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBModificarActionPerformed(evt);
@@ -315,22 +322,12 @@ public class VentanaCordinadores extends javax.swing.JFrame
                 "ID", "RFC", "Usuario", "Contrasenia", "Pregunta", "Respuesta"
             }
         ));
-        jScrollPane1.setViewportView(TablaUsuarios);
-
-        btnAgregar3.setBackground(new java.awt.Color(102, 102, 0));
-        btnAgregar3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnAgregar3.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregar3.setText("Exportar");
-        btnAgregar3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregar3ActionPerformed(evt);
+        TablaUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaUsuariosMouseClicked(evt);
             }
         });
-
-        btnAgregar2.setBackground(new java.awt.Color(102, 102, 0));
-        btnAgregar2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnAgregar2.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregar2.setText("Importar");
+        jScrollPane1.setViewportView(TablaUsuarios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -365,13 +362,10 @@ public class VentanaCordinadores extends javax.swing.JFrame
                                 .addComponent(jBEliminar)
                                 .addGap(18, 18, 18)
                                 .addComponent(jBCancelar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 602, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 610, Short.MAX_VALUE)
                                 .addComponent(jBRegresar)))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBCerrarSesion)
-                            .addComponent(btnAgregar2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAgregar3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jBCerrarSesion)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -386,14 +380,9 @@ public class VentanaCordinadores extends javax.swing.JFrame
                         .addComponent(jLabel2))
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAgregar2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAgregar3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -413,11 +402,31 @@ public class VentanaCordinadores extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAceptarActionPerformed
+        edicion();
+        if (edicion)
+        {
+            jBAceptar.setText("Aceptar");
+            CtrlInterfaz.limpia(txtID, txtUsuario, txtContrasenia, txtPregunta, txtRespuesta);
+            CtrlInterfaz.habilita(true, txtID, txtUsuario, txtContrasenia, txtPregunta, txtRespuesta);
+            CtrlInterfaz.selecciona(txtID);
+            llenaComboProfesores();
+        } else
+        {
+            System.out.println("RFC retornado" + buscaProfesor(null, (String) ComboRFC.getSelectedItem()));
+            Usuario us = new Usuario(txtID.getText(), buscaProfesor(null, (String) ComboRFC.getSelectedItem()), txtUsuario.getText(), txtContrasenia.getText(), txtPregunta.getText(), txtRespuesta.getText(), 2);
+            System.out.println("item " + (String) ComboRFC.getSelectedItem());
+            ConsultasObjetos.inserta(us, ConectarBase.conectado(), "usuarios");
+            CtrlInterfaz.habilita(false, txtID, ComboRFC, txtUsuario, txtContrasenia, txtPregunta, txtRespuesta);
+            CtrlInterfaz.habilita(true, jBEliminar, jBModificar);
+            llenaComboProfesores();
+            actualizaTabla();
+            edicion();
+        }
 
     }//GEN-LAST:event_jBAceptarActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-
+        cancelar();
     }//GEN-LAST:event_jBCancelarActionPerformed
 
     private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
@@ -426,7 +435,11 @@ public class VentanaCordinadores extends javax.swing.JFrame
     }//GEN-LAST:event_jBRegresarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-
+        if (Mensaje.pregunta(this, "¿Seguro que quieres eliminar al usuario " + txtUsuario.getText() + "?") == 0)
+        {
+            ConsultasObjetos.elimina("usuarios", "id_usuario", txtID.getText(), 0, ConectarBase.conectado());
+            actualizaTabla();
+        }
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jBCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarSesionActionPerformed
@@ -435,21 +448,39 @@ public class VentanaCordinadores extends javax.swing.JFrame
     }//GEN-LAST:event_jBCerrarSesionActionPerformed
 
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
-
+        if (txtID.getText().compareTo(" ") == 0)
+        {
+            Mensaje.error(this, "Seleccione un registo a modificar");
+        } else
+        {
+            edicion();
+            if (edicion)
+            {
+                jBModificar.setText("Aceptar");
+                CtrlInterfaz.habilita(true, txtID, txtUsuario, txtContrasenia, txtPregunta, txtRespuesta, jBCancelar);
+                CtrlInterfaz.habilita(false, jBEliminar, jBAceptar);
+            } else
+            {
+                jBModificar.setText("Modificar");
+                Usuario us = new Usuario(txtID.getText(), buscaProfesor(null, (String) ComboRFC.getSelectedItem()), txtUsuario.getText(), txtContrasenia.getText(), txtPregunta.getText(), txtRespuesta.getText(), 2);
+                CtrlInterfaz.habilita(false, txtID, txtUsuario, txtContrasenia, txtPregunta, txtRespuesta);
+                CtrlInterfaz.habilita(true, jBEliminar, jBModificar);
+                actualizaTabla();
+                edicion();
+            }
+        }
     }//GEN-LAST:event_jBModificarActionPerformed
-
-    private void btnAgregar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregar3ActionPerformed
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDActionPerformed
 
     private void txtIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyPressed
+        Validaciones.enter(this, evt, ComboRFC);
     }//GEN-LAST:event_txtIDKeyPressed
 
     private void txtIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyReleased
+        Valida.convertirAMayusculas(txtID);
     }//GEN-LAST:event_txtIDKeyReleased
 
     private void txtContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseniaActionPerformed
@@ -457,11 +488,11 @@ public class VentanaCordinadores extends javax.swing.JFrame
     }//GEN-LAST:event_txtContraseniaActionPerformed
 
     private void txtContraseniaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseniaKeyPressed
-        // TODO add your handling code here:
+        Validaciones.enter(this, evt, txtPregunta);
     }//GEN-LAST:event_txtContraseniaKeyPressed
 
     private void txtContraseniaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseniaKeyReleased
-        // TODO add your handling code here:
+        Valida.convertirAMayusculas(txtContrasenia);
     }//GEN-LAST:event_txtContraseniaKeyReleased
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
@@ -469,11 +500,11 @@ public class VentanaCordinadores extends javax.swing.JFrame
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
     private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
-        // TODO add your handling code here:
+        Validaciones.enter(this, evt, txtContrasenia);
     }//GEN-LAST:event_txtUsuarioKeyPressed
 
     private void txtUsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyReleased
-        // TODO add your handling code here:
+        Valida.convertirAMayusculas(txtUsuario);
     }//GEN-LAST:event_txtUsuarioKeyReleased
 
     private void txtRespuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRespuestaActionPerformed
@@ -485,7 +516,7 @@ public class VentanaCordinadores extends javax.swing.JFrame
     }//GEN-LAST:event_txtRespuestaKeyPressed
 
     private void txtRespuestaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRespuestaKeyReleased
-        // TODO add your handling code here:
+        Valida.convertirAMayusculas(txtRespuesta);
     }//GEN-LAST:event_txtRespuestaKeyReleased
 
     private void txtPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPreguntaActionPerformed
@@ -493,17 +524,31 @@ public class VentanaCordinadores extends javax.swing.JFrame
     }//GEN-LAST:event_txtPreguntaActionPerformed
 
     private void txtPreguntaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPreguntaKeyPressed
-        // TODO add your handling code here:
+        Validaciones.enter(this, evt, txtRespuesta);
     }//GEN-LAST:event_txtPreguntaKeyPressed
 
     private void txtPreguntaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPreguntaKeyReleased
-        // TODO add your handling code here:
+        Valida.convertirAMayusculas(txtPregunta);
     }//GEN-LAST:event_txtPreguntaKeyReleased
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        cancelar();
         actualizaTabla();
         llenaComboProfesores();
     }//GEN-LAST:event_formWindowOpened
+
+    private void ComboRFCKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ComboRFCKeyPressed
+        Validaciones.enter(this, evt, txtUsuario);
+    }//GEN-LAST:event_ComboRFCKeyPressed
+
+    private void TablaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaUsuariosMouseClicked
+        txtID.setText((String)modelo.getValueAt(TablaUsuarios.getSelectedRow(), 0));
+        ComboRFC.setSelectedItem(buscarcombo((String)modelo.getValueAt(TablaUsuarios.getSelectedRow(), 1)));
+        txtUsuario.setText((String)modelo.getValueAt(TablaUsuarios.getSelectedRow(), 2));
+        txtContrasenia.setText((String)modelo.getValueAt(TablaUsuarios.getSelectedRow(), 3));
+        txtPregunta.setText((String)modelo.getValueAt(TablaUsuarios.getSelectedRow(), 4));
+        txtRespuesta.setText((String)modelo.getValueAt(TablaUsuarios.getSelectedRow(), 5));
+    }//GEN-LAST:event_TablaUsuariosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -551,8 +596,6 @@ public class VentanaCordinadores extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComboRFC;
     private javax.swing.JTable TablaUsuarios;
-    private javax.swing.JButton btnAgregar2;
-    private javax.swing.JButton btnAgregar3;
     private javax.swing.JButton jBAceptar;
     private javax.swing.JButton jBCancelar;
     private javax.swing.JButton jBCerrarSesion;
@@ -602,11 +645,62 @@ public class VentanaCordinadores extends javax.swing.JFrame
 
     public void llenaComboProfesores() {
         ComboRFC.removeAllItems();
-        for (int i = 0; i < profes.size();  i++)
+        for (int i = 0; i < profes.size(); i++)
         {
-            ComboRFC.addItem(((Profesor)profes.get(i)).getGradoAcademico()  + " "+((Profesor)profes.get(i)).getNombres() + " " + ((Profesor)profes.get(i)).getApellidoP() + " "+ ((Profesor)profes.get(i)).getApellidoM());
+            ComboRFC.addItem(((Profesor) profes.get(i)).getNombres() + " " + ((Profesor) profes.get(i)).getApellidoP());
         }
     }
+
+    private void edicion() {
+        if (edicion)
+        {
+            edicion = false;
+        } else
+        {
+            edicion = true;
+        }
+    }
+
+    public String buscaProfesor(String rfc, String nombre) {
+        if (nombre != null)
+        {
+            for (Object p : profes)
+            {
+                Profesor profe = (Profesor) p;
+                if ((profe.getNombres() + " " + profe.getApellidoP()).equals(nombre))
+                {
+                    return profe.getRfc();
+                }
+            }
+        } else
+        {
+            for (Object p : profes)
+            {
+                Profesor profe = (Profesor) p;
+                if (profe.getRfc().equals(rfc))
+                {
+                    return profe.getNombres() + " " + profe.getApellidoP();
+                }
+            }
+        }
+        return null;
+    }
     
-    
+    public int buscarcombo(String texto) {
+        for (int i = 0; i < ComboRFC.getItemCount(); i++) {
+            if (texto.equals(ComboRFC.getItemAt(i))) {
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    private void cancelar() {
+        edicion();
+        CtrlInterfaz.limpia(txtID);
+        CtrlInterfaz.habilita(false, txtID,  ComboRFC, txtUsuario,txtContrasenia, txtPregunta, txtPregunta, txtRespuesta, jBCancelar);
+        CtrlInterfaz.habilita(true, jBAceptar, jBModificar, jBEliminar);
+        jBAceptar.setText("Nuevo");
+        jBModificar.setText("Modificar");
+    }
 }
