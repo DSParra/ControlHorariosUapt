@@ -407,7 +407,7 @@ public class VentanaCordinadores extends javax.swing.JFrame
         {
             jBAceptar.setText("Aceptar");
             CtrlInterfaz.limpia(txtID, txtUsuario, txtContrasenia, txtPregunta, txtRespuesta);
-            CtrlInterfaz.habilita(true, txtID, txtUsuario, txtContrasenia, txtPregunta, txtRespuesta);
+            CtrlInterfaz.habilita(true, txtID, ComboRFC,txtUsuario, txtContrasenia, txtPregunta, txtRespuesta, jBCancelar);
             CtrlInterfaz.selecciona(txtID);
             llenaComboProfesores();
         } else
@@ -457,13 +457,14 @@ public class VentanaCordinadores extends javax.swing.JFrame
             if (edicion)
             {
                 jBModificar.setText("Aceptar");
-                CtrlInterfaz.habilita(true, txtID, txtUsuario, txtContrasenia, txtPregunta, txtRespuesta, jBCancelar);
+                CtrlInterfaz.habilita(true, txtID, txtUsuario, ComboRFC,txtContrasenia, txtPregunta, txtRespuesta, jBCancelar);
                 CtrlInterfaz.habilita(false, jBEliminar, jBAceptar);
             } else
             {
                 jBModificar.setText("Modificar");
                 Usuario us = new Usuario(txtID.getText(), buscaProfesor(null, (String) ComboRFC.getSelectedItem()), txtUsuario.getText(), txtContrasenia.getText(), txtPregunta.getText(), txtRespuesta.getText(), 2);
-                CtrlInterfaz.habilita(false, txtID, txtUsuario, txtContrasenia, txtPregunta, txtRespuesta);
+                ConsultasObjetos.Modifica(us, ConectarBase.conectado(), "usuarios", txtID.getText());
+                CtrlInterfaz.habilita(false, txtID, ComboRFC,txtUsuario, txtContrasenia, txtPregunta, txtRespuesta);
                 CtrlInterfaz.habilita(true, jBEliminar, jBModificar);
                 actualizaTabla();
                 edicion();
