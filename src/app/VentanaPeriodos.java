@@ -7,9 +7,11 @@ package app;
 
 import Clases.ConectarBase;
 import Clases.ConsultasObjetos;
+import Clases.Valida;
 import Objetos.periodoEscolar;
 import cjb.ci.CtrlInterfaz;
 import cjb.ci.Mensaje;
+import cjb.ci.Validaciones;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -92,6 +94,17 @@ public class VentanaPeriodos extends javax.swing.JFrame
                 jTIdPeriodoActionPerformed(evt);
             }
         });
+        jTIdPeriodo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTIdPeriodoKeyTyped(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTIdPeriodoKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTIdPeriodoKeyReleased(evt);
+            }
+        });
 
         jBAceptar.setBackground(new java.awt.Color(102, 102, 0));
         jBAceptar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -161,6 +174,11 @@ public class VentanaPeriodos extends javax.swing.JFrame
                 jTNombrePeriodoActionPerformed(evt);
             }
         });
+        jTNombrePeriodo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTNombrePeriodoKeyReleased(evt);
+            }
+        });
 
         jBModificar.setBackground(new java.awt.Color(102, 102, 0));
         jBModificar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -201,7 +219,7 @@ public class VentanaPeriodos extends javax.swing.JFrame
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLTituloUniversidad)
                                     .addComponent(jLTituloUAPT))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 416, Short.MAX_VALUE)))
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,7 +267,7 @@ public class VentanaPeriodos extends javax.swing.JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jBRegresar)
                             .addComponent(jBCerrarSesion))
@@ -272,7 +290,6 @@ public class VentanaPeriodos extends javax.swing.JFrame
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTIdPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTIdPeriodoActionPerformed
@@ -361,6 +378,22 @@ public class VentanaPeriodos extends javax.swing.JFrame
         jTIdPeriodo.setText(modelo.getValueAt(TablaPeriodos.getSelectedRow(), 0).toString());
         jTNombrePeriodo.setText(modelo.getValueAt(TablaPeriodos.getSelectedRow(), 1).toString());
     }//GEN-LAST:event_TablaPeriodosMouseClicked
+
+    private void jTIdPeriodoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTIdPeriodoKeyTyped
+        Validaciones.validaEntero(evt);
+    }//GEN-LAST:event_jTIdPeriodoKeyTyped
+
+    private void jTIdPeriodoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTIdPeriodoKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTIdPeriodoKeyReleased
+
+    private void jTIdPeriodoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTIdPeriodoKeyPressed
+        Validaciones.enter(this, evt, jTNombrePeriodo);
+    }//GEN-LAST:event_jTIdPeriodoKeyPressed
+
+    private void jTNombrePeriodoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTNombrePeriodoKeyReleased
+        Valida.convertirAMayusculas(jTNombrePeriodo);
+    }//GEN-LAST:event_jTNombrePeriodoKeyReleased
 
     /**
      * @param args the command line arguments
