@@ -61,14 +61,13 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String idUsuario, String rfc, String usuario, String contra, String preguntaSeguridad, String respuestaSeguridad, int nivel) {
+    public Usuario(String idUsuario, String rfc, String usuario, String contra, String preguntaSeguridad, String respuestaSeguridad) {
         this.idUsuario = idUsuario;
         this.rfc = rfc;
         this.usuario = usuario;
         this.contra = contra;
         this.preguntaSeguridad = preguntaSeguridad;
         this.respuestaSeguridad = respuestaSeguridad;
-        this.nivel = nivel;
     }
 
    
