@@ -53,21 +53,20 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
         tablaLicenciatura = new javax.swing.JTable();
         jBRegresar = new javax.swing.JButton();
         jBCerrarSesion = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        txtnombre = new javax.swing.JTextField();
         btnmodifica = new javax.swing.JButton();
-        btnAgregar2 = new javax.swing.JButton();
-        btnAgregar3 = new javax.swing.JButton();
         btncancelar = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        txtcodigolic = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        jLTituloUAPT = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLTituloUniversidad = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         JCCordinador = new javax.swing.JComboBox<>();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtnombre = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtcodigolic = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        btnAgregar3 = new javax.swing.JButton();
+        btnAgregar2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horarios UAPT");
@@ -76,11 +75,9 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel2.setText("Gestión Licenciaturas");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, 440, 84));
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel2.setText("GESTION LICENCIATURAS");
 
         btnAgregar.setBackground(new java.awt.Color(102, 102, 0));
         btnAgregar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -91,7 +88,6 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
                 btnAgregarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 605, 106, 36));
 
         btnelmina.setBackground(new java.awt.Color(102, 102, 0));
         btnelmina.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -102,8 +98,9 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
                 btnelminaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnelmina, new org.netbeans.lib.awtextra.AbsoluteConstraints(389, 605, -1, 36));
 
+        tablaLicenciatura.setBackground(new java.awt.Color(25, 83, 0));
+        tablaLicenciatura.setForeground(new java.awt.Color(254, 254, 254));
         tablaLicenciatura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -127,8 +124,6 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaLicenciatura);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 118, 870, 428));
-
         jBRegresar.setBackground(new java.awt.Color(102, 102, 0));
         jBRegresar.setForeground(new java.awt.Color(255, 255, 255));
         jBRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/flecha(2).png"))); // NOI18N
@@ -139,31 +134,17 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
                 jBRegresarActionPerformed(evt);
             }
         });
-        getContentPane().add(jBRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1023, 600, -1, -1));
 
         jBCerrarSesion.setBackground(new java.awt.Color(102, 102, 0));
         jBCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
         jBCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/flecha(3).png"))); // NOI18N
-        jBCerrarSesion.setText("Cerrar Sesión");
+        jBCerrarSesion.setText("Salir");
         jBCerrarSesion.setToolTipText("");
         jBCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCerrarSesionActionPerformed(evt);
             }
         });
-        getContentPane().add(jBCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1215, 600, -1, -1));
-
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel6.setText("Nombre");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 244, -1, -1));
-
-        txtnombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnombreActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 281, 211, 31));
 
         btnmodifica.setBackground(new java.awt.Color(102, 102, 0));
         btnmodifica.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -174,29 +155,6 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
                 btnmodificaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnmodifica, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 605, 106, 36));
-
-        btnAgregar2.setBackground(new java.awt.Color(102, 102, 0));
-        btnAgregar2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnAgregar2.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregar2.setText("Importar");
-        btnAgregar2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregar2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnAgregar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 120, 106, 36));
-
-        btnAgregar3.setBackground(new java.awt.Color(102, 102, 0));
-        btnAgregar3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnAgregar3.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregar3.setText("Exportar");
-        btnAgregar3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregar3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnAgregar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 180, 106, 36));
 
         btncancelar.setBackground(new java.awt.Color(102, 102, 0));
         btncancelar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -207,65 +165,171 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
                 btncancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(512, 605, -1, 36));
+
+        jLTituloUAPT.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLTituloUAPT.setText("UNIDAD ACADEMICA PROFESIONAL TIANGUISTENCO");
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/UAEMex.jpg"))); // NOI18N
+
+        jLTituloUniversidad.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLTituloUniversidad.setText("UNIVERSIDAD AUTONOMA DEL ESTADO DE MEXICO");
+
+        jPanel1.setBackground(new java.awt.Color(25, 83, 0));
+
+        JCCordinador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel7.setText("Cordinador");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 345, 200, -1));
+        jLabel7.setText("COORDINADOR");
+
+        txtnombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnombreActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel6.setText("NOMBRE");
+        jLabel6.setToolTipText("");
 
         txtcodigolic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtcodigolicActionPerformed(evt);
             }
         });
-        getContentPane().add(txtcodigolic, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 195, 211, 31));
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel8.setText("Codigo Licenciatura");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 158, -1, -1));
-
-        jPanel1.setBackground(new java.awt.Color(25, 83, 0));
+        jLabel8.setText("ID ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(JCCordinador, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel8)
+                    .addComponent(txtcodigolic)
+                    .addComponent(jLabel6)
+                    .addComponent(txtnombre)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JCCordinador, 0, 211, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(260, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtcodigolic, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
                 .addComponent(JCCordinador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(252, 252, 252))
+                .addGap(133, 133, 133))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 122, 290, 540));
+        btnAgregar3.setBackground(new java.awt.Color(102, 102, 0));
+        btnAgregar3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnAgregar3.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar3.setText("Exportar");
+        btnAgregar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregar3ActionPerformed(evt);
+            }
+        });
 
-        jLabel9.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel9.setText("Codigo Licenciatura");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 158, -1, -1));
+        btnAgregar2.setBackground(new java.awt.Color(102, 102, 0));
+        btnAgregar2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnAgregar2.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar2.setText("Importar");
+        btnAgregar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregar2ActionPerformed(evt);
+            }
+        });
 
-        jLabel10.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel10.setText("Codigo Licenciatura");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 158, -1, -1));
-
-        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel1.setText("Por favor llene los campos para agregar ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel3.setText("o modificar una licenciatura");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, -1, -1));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(150, 150, 150)
+                                .addComponent(jLTituloUniversidad))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(150, 150, 150)
+                                .addComponent(jLTituloUAPT))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 870, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnmodifica, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnelmina, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jBRegresar)))))
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(306, 306, 306)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregar3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregar2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(48, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLTituloUniversidad)
+                        .addGap(13, 13, 13)
+                        .addComponent(jLTituloUAPT))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBRegresar)
+                            .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnelmina, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnmodifica, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBCerrarSesion)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAgregar2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAgregar3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(86, Short.MAX_VALUE))
+        );
 
         pack();
         setLocationRelativeTo(null);
@@ -277,7 +341,8 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
             btnAgregar.setText("Aceptar");
             CtrlInterfaz.limpia(txtnombre, txtcodigolic);
             CtrlInterfaz.habilita(true, txtnombre, JCCordinador, btncancelar, txtcodigolic);
-            CtrlInterfaz.selecciona(txtnombre);
+            CtrlInterfaz.habilita(false, btnmodifica, btnelmina);
+            CtrlInterfaz.selecciona(txtcodigolic);
             llenaComboProfesores();
         } else {
             System.out.println("Rfc Retornado" + buscaProfesor(null, (String) JCCordinador.getSelectedItem()));
@@ -316,10 +381,6 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
         llenaComboCordinadores();
     }//GEN-LAST:event_formWindowOpened
 
-    private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtnombreActionPerformed
-
     private void btnmodificaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificaActionPerformed
         if (txtcodigolic.getText().compareTo("") == 0) {
             JOptionPane.showMessageDialog(this, "Seleccione un registro para editar");
@@ -341,14 +402,6 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnmodificaActionPerformed
-
-    private void btnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregar2ActionPerformed
-
-    private void btnAgregar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregar3ActionPerformed
 
     private void btncancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelarActionPerformed
         cancelar();
@@ -392,6 +445,18 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
     private void txtcodigolicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcodigolicActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcodigolicActionPerformed
+
+    private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnombreActionPerformed
+
+    private void btnAgregar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregar3ActionPerformed
+
+    private void btnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregar2ActionPerformed
 
     private void cancelar() {
         edicion();
@@ -644,14 +709,13 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
     private javax.swing.JButton btnmodifica;
     private javax.swing.JButton jBCerrarSesion;
     private javax.swing.JButton jBRegresar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLTituloUAPT;
+    private javax.swing.JLabel jLTituloUniversidad;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaLicenciatura;

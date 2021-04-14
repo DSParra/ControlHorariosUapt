@@ -242,9 +242,10 @@ public class VentanaAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jBLicenciaturasActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        /*
         Profesor profe = new Profesor();
         profe = (Profesor) ConsultasObjetos.consultaUnica("profesores", "nombres", "jorge carlos", ConectarBase.conectado());
-        
+        */
     }//GEN-LAST:event_formWindowOpened
 
     /**
