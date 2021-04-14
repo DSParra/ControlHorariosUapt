@@ -100,13 +100,15 @@
                           <Component id="jPanel1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jBRegresar" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="btncancelar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                          <Component id="btnelmina" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                          <Component id="btnmodifica" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                          <Component id="btnAgregar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                          <Component id="jBCerrarSesion" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="btncancelar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                              <Component id="btnelmina" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                              <Component id="btnmodifica" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                              <Component id="btnAgregar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                              <Component id="jBCerrarSesion" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -381,6 +383,9 @@
         <Component class="javax.swing.JTextField" name="txtnombre">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtnombreActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtnombreKeyTyped"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtnombreKeyPressed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtnombreKeyReleased"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
@@ -398,6 +403,8 @@
         <Component class="javax.swing.JTextField" name="txtcodigolic">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtcodigolicActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtcodigolicKeyTyped"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtcodigolicKeyPressed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">

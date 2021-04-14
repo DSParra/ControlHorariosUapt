@@ -8,6 +8,7 @@ package app;
 import Clases.ConectarBase;
 import Clases.Conexion;
 import Clases.ConsultasObjetos;
+import Clases.Valida;
 import Objetos.Licenciatura;
 import Objetos.Profesor;
 import cjb.ci.CtrlInterfaz;
@@ -187,6 +188,17 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
                 txtnombreActionPerformed(evt);
             }
         });
+        txtnombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnombreKeyTyped(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtnombreKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtnombreKeyReleased(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(254, 254, 254));
@@ -196,6 +208,14 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
         txtcodigolic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtcodigolicActionPerformed(evt);
+            }
+        });
+        txtcodigolic.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtcodigolicKeyTyped(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtcodigolicKeyPressed(evt);
             }
         });
 
@@ -317,13 +337,14 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jBRegresar)
-                            .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnelmina, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnmodifica, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBCerrarSesion)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnelmina, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnmodifica, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jBCerrarSesion))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAgregar2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -457,6 +478,26 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
     private void btnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregar2ActionPerformed
+
+    private void txtnombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyReleased
+        Valida.convertirAMayusculas(txtnombre);
+    }//GEN-LAST:event_txtnombreKeyReleased
+
+    private void txtnombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyPressed
+        enter(this, evt, JCCordinador);
+    }//GEN-LAST:event_txtnombreKeyPressed
+
+    private void txtnombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyTyped
+        Validaciones.validaAlfabeticos(evt);
+    }//GEN-LAST:event_txtnombreKeyTyped
+
+    private void txtcodigolicKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcodigolicKeyPressed
+        enter(this, evt, txtnombre);
+    }//GEN-LAST:event_txtcodigolicKeyPressed
+
+    private void txtcodigolicKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcodigolicKeyTyped
+        Validaciones.validaEntero(evt);
+    }//GEN-LAST:event_txtcodigolicKeyTyped
 
     private void cancelar() {
         edicion();

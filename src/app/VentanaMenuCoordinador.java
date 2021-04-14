@@ -11,12 +11,12 @@ import java.awt.Color;
  *
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
-public class VentanaCoordinadorCarrera extends javax.swing.JFrame {
+public class VentanaMenuCoordinador extends javax.swing.JFrame {
 
     /**
      * Creates new form VentanaPrinicipal
      */
-    public VentanaCoordinadorCarrera() {
+    public VentanaMenuCoordinador() {
         initComponents();
         this.setResizable(false);
         this.getContentPane().setBackground(Color.white);
@@ -40,7 +40,6 @@ public class VentanaCoordinadorCarrera extends javax.swing.JFrame {
         jBHorarios = new javax.swing.JButton();
         jBDocentes = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jBGrupos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horarios UAPT");
@@ -103,17 +102,6 @@ public class VentanaCoordinadorCarrera extends javax.swing.JFrame {
             }
         });
 
-        jBGrupos.setBackground(new java.awt.Color(102, 102, 0));
-        jBGrupos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jBGrupos.setForeground(new java.awt.Color(255, 255, 255));
-        jBGrupos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/grupo.png"))); // NOI18N
-        jBGrupos.setText("Grupos");
-        jBGrupos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBGruposActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,7 +111,7 @@ public class VentanaCoordinadorCarrera extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLTituloUAPT)
                             .addComponent(jLTituloUniversidad))
@@ -132,19 +120,14 @@ public class VentanaCoordinadorCarrera extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(500, 810, Short.MAX_VALUE)
-                                .addComponent(jButton1))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(249, 249, 249)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jBMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jBDocentes))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jBGrupos, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
-                                    .addComponent(jBHorarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(135, 135, 135)))
+                            .addComponent(jButton1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jBMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(49, 49, 49)
+                                .addComponent(jBDocentes)
+                                .addGap(50, 50, 50)
+                                .addComponent(jBHorarios, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(21, 21, 21)))
                         .addGap(107, 107, 107))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(127, 127, 127)
@@ -154,32 +137,29 @@ public class VentanaCoordinadorCarrera extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jLTituloUniversidad)
+                                .addGap(28, 28, 28)
+                                .addComponent(jLTituloUAPT))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel1))
                         .addGap(18, 18, 18)
-                        .addComponent(jLTituloUniversidad)
-                        .addGap(28, 28, 28)
-                        .addComponent(jLTituloUAPT))
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(278, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jBMaterias)
-                            .addComponent(jBGrupos))
-                        .addGap(48, 48, 48)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBHorarios)
-                            .addComponent(jBDocentes))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 400, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(28, 28, 28))))
+                            .addComponent(jBDocentes)
+                            .addComponent(jBHorarios))
+                        .addGap(149, 149, 149)))
+                .addComponent(jButton1)
+                .addGap(28, 28, 28))
         );
 
         pack();
@@ -198,18 +178,13 @@ public class VentanaCoordinadorCarrera extends javax.swing.JFrame {
 
     private void jBDocentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDocentesActionPerformed
         this.setVisible(false);
-        new VentanaDocentes().setVisible(true);
+        new VentanaDocentesCordinador().setVisible(true);
     }//GEN-LAST:event_jBDocentesActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
         new VentanaLogin().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jBGruposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGruposActionPerformed
-        this.setVisible(false);
-        new VentanaGrupos().setVisible(true);
-    }//GEN-LAST:event_jBGruposActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,14 +203,18 @@ public class VentanaCoordinadorCarrera extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaCoordinadorCarrera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaMenuCoordinador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaCoordinadorCarrera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaMenuCoordinador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaCoordinadorCarrera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaMenuCoordinador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaCoordinadorCarrera.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaMenuCoordinador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -244,14 +223,13 @@ public class VentanaCoordinadorCarrera extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaCoordinadorCarrera().setVisible(true);
+                new VentanaMenuCoordinador().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBDocentes;
-    private javax.swing.JButton jBGrupos;
     private javax.swing.JButton jBHorarios;
     private javax.swing.JButton jBMaterias;
     private javax.swing.JButton jButton1;
