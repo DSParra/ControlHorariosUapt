@@ -223,7 +223,7 @@ public class VentanaAdministrador extends javax.swing.JFrame {
 
     private void jBUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBUsuariosActionPerformed
         this.setVisible(false);
-        new VentanaUsuarios().setVisible(true);
+        new VentanaCordinadores().setVisible(true);
     }//GEN-LAST:event_jBUsuariosActionPerformed
 
     private void jBDocentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDocentesActionPerformed
@@ -238,7 +238,7 @@ public class VentanaAdministrador extends javax.swing.JFrame {
 
     private void jBLicenciaturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLicenciaturasActionPerformed
         this.setVisible(false);
-        new VentanaLicenciaturas().setVisible(true);
+        new VentanaLicenciatura().setVisible(true);
     }//GEN-LAST:event_jBLicenciaturasActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
