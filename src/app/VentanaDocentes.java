@@ -9,6 +9,7 @@ import Clases.ConectarBase;
 import Clases.Conexion;
 import Clases.ConsultasObjetos;
 import Clases.Valida;
+import Controlador.ControladorProfesores;
 import Objetos.Profesor;
 import cjb.ci.CtrlInterfaz;
 import java.awt.Color;
@@ -86,27 +87,9 @@ public class VentanaDocentes extends javax.swing.JFrame {
             }
         });
 
-<<<<<<< Updated upstream
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(1, 1, 1));
         jLabel2.setText("GESTION DOCENTES");
-=======
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel2.setText("Profesores");
-
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jLabel3.setText("Apellido Paterno");
-
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jLabel4.setText("Rfc");
-
-        txtrfc.setBackground(new java.awt.Color(255, 255, 153));
-        txtrfc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtrfcActionPerformed(evt);
-            }
-        });
->>>>>>> Stashed changes
 
         btnAgregar.setBackground(new java.awt.Color(102, 102, 0));
         btnAgregar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -196,7 +179,6 @@ public class VentanaDocentes extends javax.swing.JFrame {
                 btnAgregar3ActionPerformed(evt);
             }
         });
-<<<<<<< Updated upstream
 
         btncancelar.setBackground(new java.awt.Color(102, 102, 0));
         btncancelar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -210,36 +192,46 @@ public class VentanaDocentes extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(25, 83, 0));
         jPanel1.setPreferredSize(new java.awt.Dimension(320, 485));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        txttelefono.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txttelefonoFocusLost(evt);
+            }
+        });
         txttelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txttelefonoActionPerformed(evt);
             }
         });
         txttelefono.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txttelefonoKeyTyped(evt);
-            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txttelefonoKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txttelefonoKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txttelefonoKeyTyped(evt);
+            }
         });
-=======
->>>>>>> Stashed changes
+        jPanel1.add(txttelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 437, 217, 31));
 
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(254, 254, 254));
         jLabel10.setText("TELEFONO");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 410, -1, -1));
 
+        txtcorreo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtcorreoFocusLost(evt);
+            }
+        });
         txtcorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtcorreoActionPerformed(evt);
             }
         });
-<<<<<<< Updated upstream
         txtcorreo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtcorreoKeyPressed(evt);
@@ -248,95 +240,130 @@ public class VentanaDocentes extends javax.swing.JFrame {
                 txtcorreoKeyReleased(evt);
             }
         });
-=======
->>>>>>> Stashed changes
+        jPanel1.add(txtcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 368, 217, 31));
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(254, 254, 254));
         jLabel9.setText("CORREO");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 341, -1, -1));
 
+        txtgradoAcademico.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtgradoAcademicoFocusLost(evt);
+            }
+        });
         txtgradoAcademico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtgradoAcademicoActionPerformed(evt);
             }
         });
-<<<<<<< Updated upstream
         txtgradoAcademico.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtgradoAcademicoKeyTyped(evt);
-            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtgradoAcademicoKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtgradoAcademicoKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtgradoAcademicoKeyTyped(evt);
+            }
         });
-=======
->>>>>>> Stashed changes
+        jPanel1.add(txtgradoAcademico, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 299, 217, 31));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(254, 254, 254));
         jLabel7.setText("GRADO ACADEMICO");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 272, -1, -1));
 
+        txtnombres.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtnombresFocusLost(evt);
+            }
+        });
         txtnombres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtnombresActionPerformed(evt);
             }
         });
+        txtnombres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtnombresKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtnombresKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnombresKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtnombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 230, 217, 31));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(254, 254, 254));
         jLabel6.setText("NOMBRE(S)");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 203, -1, -1));
 
+        txtapellidoM.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtapellidoMFocusLost(evt);
+            }
+        });
         txtapellidoM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtapellidoMActionPerformed(evt);
             }
         });
-<<<<<<< Updated upstream
         txtapellidoM.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtapellidoMKeyTyped(evt);
-            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtapellidoMKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtapellidoMKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtapellidoMKeyTyped(evt);
+            }
         });
-=======
->>>>>>> Stashed changes
+        jPanel1.add(txtapellidoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 166, 217, -1));
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(254, 254, 254));
         jLabel8.setText("APELLIDO MATERNO");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 139, -1, -1));
 
+        txtapellidoP.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtapellidoPFocusLost(evt);
+            }
+        });
         txtapellidoP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtapellidoPActionPerformed(evt);
             }
         });
-<<<<<<< Updated upstream
         txtapellidoP.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtapellidoPKeyTyped(evt);
-            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtapellidoPKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtapellidoPKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtapellidoPKeyTyped(evt);
+            }
         });
-=======
->>>>>>> Stashed changes
+        jPanel1.add(txtapellidoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 102, 217, -1));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(254, 254, 254));
         jLabel3.setText("APELLIDO PATERNO");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 75, -1, -1));
 
+        txtrfc.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtrfcFocusLost(evt);
+            }
+        });
         txtrfc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtrfcActionPerformed(evt);
@@ -350,67 +377,12 @@ public class VentanaDocentes extends javax.swing.JFrame {
                 txtrfcKeyReleased(evt);
             }
         });
+        jPanel1.add(txtrfc, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 38, 145, -1));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(254, 254, 254));
         jLabel4.setText("RFC");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(txtrfc, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtapellidoP, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtapellidoM, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtnombres, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtgradoAcademico, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(txtcorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10)
-                    .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtrfc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtapellidoP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtapellidoM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtnombres, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtgradoAcademico, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtcorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
-        );
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 11, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/UAEMex.jpg"))); // NOI18N
 
@@ -522,12 +494,9 @@ public class VentanaDocentes extends javax.swing.JFrame {
                 CtrlInterfaz.habilita(true, btnelmina, btnmodifica);
                 actualizaTabla();
                 edicion();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
             }
-            
-
-            
 
         }
 
@@ -536,8 +505,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
 
     private void btnelminaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnelminaActionPerformed
         if (JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar a " + txtnombres.getText()) == 0) {
-            Profesor p = new Profesor(txtrfc.getText(), txtapellidoP.getText(), txtapellidoM.getText(), txtnombres.getText(), txtgradoAcademico.getText(), txtcorreo.getText(), txttelefono.getText());
-            ConsultasObjetos.elimina("profesores", "rfc", txtrfc.getText(), 0, ConectarBase.conectado());
+            ControladorProfesores.eliminaProfesor(txtrfc.getText());
             actualizaTabla();
         }
     }//GEN-LAST:event_btnelminaActionPerformed
@@ -585,23 +553,22 @@ public class VentanaDocentes extends javax.swing.JFrame {
         if (txtrfc.getText().compareTo("") == 0) {
             JOptionPane.showMessageDialog(this, "Seleccione un registro para editar");
         } else {
-            
+
             if (!edicion) {
                 edicion();
                 btnmodifica.setText("Aceptar");
                 CtrlInterfaz.habilita(true, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
                 CtrlInterfaz.habilita(false, btnelmina, btnAgregar);
             } else {
-                    Profesor p = new Profesor(txtrfc.getText(), txtapellidoP.getText(), txtapellidoM.getText(), txtnombres.getText(), txtgradoAcademico.getText(), txtcorreo.getText(), txttelefono.getText());
-                    //ConsultasObjetos.Modifica(p, ConectarBase.conectado(), "profesores", (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
-                    CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
-                    CtrlInterfaz.habilita(true, btnelmina, btnAgregar);
-                    CtrlInterfaz.limpia(txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
-                    edicion();
-                    actualizaTabla();
-                    btnmodifica.setText("Modificar");
-                    
-                
+                Profesor p = new Profesor(txtrfc.getText(), txtapellidoP.getText(), txtapellidoM.getText(), txtnombres.getText(), txtgradoAcademico.getText(), txtcorreo.getText(), txttelefono.getText());
+                //ConsultasObjetos.Modifica(p, ConectarBase.conectado(), "profesores", (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+                CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
+                CtrlInterfaz.habilita(true, btnelmina, btnAgregar);
+                CtrlInterfaz.limpia(txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
+                edicion();
+                actualizaTabla();
+                btnmodifica.setText("Modificar");
+
             }
         }
 
@@ -658,31 +625,31 @@ public class VentanaDocentes extends javax.swing.JFrame {
     }//GEN-LAST:event_txttelefonoKeyPressed
 
     private void txtrfcKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtrfcKeyReleased
-        Valida.convertirAMayusculas(txtrfc);
+     //   Valida.convertirAMayusculas(txtrfc);
     }//GEN-LAST:event_txtrfcKeyReleased
 
     private void txtapellidoPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidoPKeyReleased
-        Valida.convertirAMayusculas(txtapellidoP);
+        
     }//GEN-LAST:event_txtapellidoPKeyReleased
 
     private void txtapellidoMKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidoMKeyReleased
-        Valida.convertirAMayusculas(txtapellidoM);
+        
     }//GEN-LAST:event_txtapellidoMKeyReleased
 
     private void txtnombresKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombresKeyReleased
-        Valida.convertirAMayusculas(txtnombres);
+        
     }//GEN-LAST:event_txtnombresKeyReleased
 
     private void txtgradoAcademicoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtgradoAcademicoKeyReleased
-        Valida.convertirAMayusculas(txtgradoAcademico);
+        
     }//GEN-LAST:event_txtgradoAcademicoKeyReleased
 
     private void txtcorreoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcorreoKeyReleased
-        Valida.convertirAMayusculas(txtcorreo);
+        
     }//GEN-LAST:event_txtcorreoKeyReleased
 
     private void txttelefonoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefonoKeyReleased
-        Valida.convertirAMayusculas(txttelefono);
+        
     }//GEN-LAST:event_txttelefonoKeyReleased
 
     private void txttelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefonoKeyTyped
@@ -705,6 +672,35 @@ public class VentanaDocentes extends javax.swing.JFrame {
     private void txtgradoAcademicoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtgradoAcademicoKeyTyped
         Validaciones.validaAlfabeticos(evt);
     }//GEN-LAST:event_txtgradoAcademicoKeyTyped
+
+    private void txtrfcFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtrfcFocusLost
+    Valida.convertirAMayusculas(txtrfc);
+// TODO add your handling code here:
+    }//GEN-LAST:event_txtrfcFocusLost
+
+    private void txtapellidoPFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtapellidoPFocusLost
+        Valida.convertirAMayusculas(txtapellidoP);
+    }//GEN-LAST:event_txtapellidoPFocusLost
+
+    private void txtapellidoMFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtapellidoMFocusLost
+        Valida.convertirAMayusculas(txtapellidoM);
+    }//GEN-LAST:event_txtapellidoMFocusLost
+
+    private void txtnombresFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtnombresFocusLost
+        Valida.convertirAMayusculas(txtnombres);
+    }//GEN-LAST:event_txtnombresFocusLost
+
+    private void txtgradoAcademicoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtgradoAcademicoFocusLost
+        Valida.convertirAMayusculas(txtgradoAcademico);
+    }//GEN-LAST:event_txtgradoAcademicoFocusLost
+
+    private void txtcorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtcorreoFocusLost
+        //Valida.convertirAMayusculas(txtcorreo);
+    }//GEN-LAST:event_txtcorreoFocusLost
+
+    private void txttelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txttelefonoFocusLost
+        Valida.convertirAMayusculas(txttelefono);
+    }//GEN-LAST:event_txttelefonoFocusLost
 
     private void cancelar() {
         edicion();

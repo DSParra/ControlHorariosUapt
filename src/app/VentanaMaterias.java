@@ -5,6 +5,7 @@
  */
 package app;
 
+import Clases.Valida;
 import java.awt.Color;
 
 /**
@@ -76,6 +77,11 @@ public class VentanaMaterias extends javax.swing.JFrame {
         jLabel4.setText("Matricula");
 
         jTextField1.setBackground(new java.awt.Color(255, 255, 153));
+        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField1FocusLost(evt);
+            }
+        });
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -156,6 +162,11 @@ public class VentanaMaterias extends javax.swing.JFrame {
         jLabel10.setText("Creditos");
 
         jTNombreLicenciatura.setBackground(new java.awt.Color(255, 255, 153));
+        jTNombreLicenciatura.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTNombreLicenciaturaFocusLost(evt);
+            }
+        });
 
         jTHrTeoricas.setBackground(new java.awt.Color(255, 255, 153));
         jTHrTeoricas.addActionListener(new java.awt.event.ActionListener() {
@@ -163,10 +174,25 @@ public class VentanaMaterias extends javax.swing.JFrame {
                 jTHrTeoricasActionPerformed(evt);
             }
         });
+        jTHrTeoricas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTHrTeoricasKeyTyped(evt);
+            }
+        });
 
         jTHrPracticas.setBackground(new java.awt.Color(255, 255, 153));
+        jTHrPracticas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTHrPracticasKeyTyped(evt);
+            }
+        });
 
         jTCreditos.setBackground(new java.awt.Color(255, 255, 153));
+        jTCreditos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTCreditosKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -216,7 +242,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
                                     .addComponent(jTHrPracticas, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTHrTeoricas, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 742, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(38, 38, 38))
         );
@@ -307,6 +333,26 @@ public class VentanaMaterias extends javax.swing.JFrame {
     private void jTHrTeoricasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTHrTeoricasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTHrTeoricasActionPerformed
+
+    private void jTNombreLicenciaturaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTNombreLicenciaturaFocusLost
+        Valida.convertirAMayusculas(jTNombreLicenciatura);
+    }//GEN-LAST:event_jTNombreLicenciaturaFocusLost
+
+    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
+        Valida.convertirAMayusculas(jTextField1);
+    }//GEN-LAST:event_jTextField1FocusLost
+
+    private void jTHrTeoricasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTHrTeoricasKeyTyped
+        cjb.ci.Validaciones.validaEntero(evt);
+    }//GEN-LAST:event_jTHrTeoricasKeyTyped
+
+    private void jTHrPracticasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTHrPracticasKeyTyped
+        cjb.ci.Validaciones.validaEntero(evt);
+    }//GEN-LAST:event_jTHrPracticasKeyTyped
+
+    private void jTCreditosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCreditosKeyTyped
+        cjb.ci.Validaciones.validaEntero(evt);
+    }//GEN-LAST:event_jTCreditosKeyTyped
 
     /**
      * @param args the command line arguments

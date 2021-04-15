@@ -119,6 +119,11 @@ public class VentanaCordinadores extends javax.swing.JFrame
         jLabel6.setForeground(new java.awt.Color(254, 254, 254));
         jLabel6.setText("Coordinador");
 
+        txtContrasenia.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtContraseniaFocusLost(evt);
+            }
+        });
         txtContrasenia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtContraseniaActionPerformed(evt);
@@ -137,6 +142,11 @@ public class VentanaCordinadores extends javax.swing.JFrame
         jLabel7.setForeground(new java.awt.Color(254, 254, 254));
         jLabel7.setText("CONTRASEÑA");
 
+        txtUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtUsuarioFocusLost(evt);
+            }
+        });
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsuarioActionPerformed(evt);
@@ -173,6 +183,11 @@ public class VentanaCordinadores extends javax.swing.JFrame
         jLabel9.setForeground(new java.awt.Color(254, 254, 254));
         jLabel9.setText("RESPUESTA DE SEGURIDAD");
 
+        txtPregunta.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPreguntaFocusLost(evt);
+            }
+        });
         txtPregunta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPreguntaActionPerformed(evt);
@@ -524,7 +539,7 @@ public class VentanaCordinadores extends javax.swing.JFrame
     }//GEN-LAST:event_txtContraseniaKeyPressed
 
     private void txtContraseniaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseniaKeyReleased
-        Valida.convertirAMayusculas(txtContrasenia);
+        
     }//GEN-LAST:event_txtContraseniaKeyReleased
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
@@ -536,7 +551,7 @@ public class VentanaCordinadores extends javax.swing.JFrame
     }//GEN-LAST:event_txtUsuarioKeyPressed
 
     private void txtUsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyReleased
-        Valida.convertirAMayusculas(txtUsuario);
+        
     }//GEN-LAST:event_txtUsuarioKeyReleased
 
     private void txtRespuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRespuestaActionPerformed
@@ -560,7 +575,7 @@ public class VentanaCordinadores extends javax.swing.JFrame
     }//GEN-LAST:event_txtPreguntaKeyPressed
 
     private void txtPreguntaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPreguntaKeyReleased
-        Valida.convertirAMayusculas(txtPregunta);
+        
     }//GEN-LAST:event_txtPreguntaKeyReleased
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -589,6 +604,18 @@ public class VentanaCordinadores extends javax.swing.JFrame
     private void btnAgregar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregar3ActionPerformed
+
+    private void txtUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusLost
+        Valida.convertirAMayusculas(txtUsuario);
+    }//GEN-LAST:event_txtUsuarioFocusLost
+
+    private void txtContraseniaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraseniaFocusLost
+        //Valida.convertirAMayusculas(txtContrasenia);
+    }//GEN-LAST:event_txtContraseniaFocusLost
+
+    private void txtPreguntaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPreguntaFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPreguntaFocusLost
 
     /**
      * @param args the command line arguments

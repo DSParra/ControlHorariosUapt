@@ -183,20 +183,25 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(254, 254, 254));
         jLabel7.setText("COORDINADOR");
 
+        txtnombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtnombreFocusLost(evt);
+            }
+        });
         txtnombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtnombreActionPerformed(evt);
             }
         });
         txtnombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtnombreKeyTyped(evt);
-            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtnombreKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtnombreKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnombreKeyTyped(evt);
             }
         });
 
@@ -480,7 +485,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregar2ActionPerformed
 
     private void txtnombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyReleased
-        Valida.convertirAMayusculas(txtnombre);
+        
     }//GEN-LAST:event_txtnombreKeyReleased
 
     private void txtnombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyPressed
@@ -498,6 +503,10 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
     private void txtcodigolicKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcodigolicKeyTyped
         Validaciones.validaEntero(evt);
     }//GEN-LAST:event_txtcodigolicKeyTyped
+
+    private void txtnombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtnombreFocusLost
+        Valida.convertirAMayusculas(txtnombre);
+    }//GEN-LAST:event_txtnombreFocusLost
 
     private void cancelar() {
         edicion();

@@ -77,7 +77,7 @@
                                   <Component id="jTCreditos" min="-2" pref="94" max="-2" attributes="0"/>
                                   <Component id="jTHrTeoricas" min="-2" pref="92" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="122" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="jScrollPane1" min="-2" pref="742" max="-2" attributes="0"/>
@@ -213,6 +213,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextField1FocusLost"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
       </Events>
     </Component>
@@ -368,6 +369,9 @@
           <Color blue="99" green="ff" red="ff" type="rgb"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTNombreLicenciaturaFocusLost"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTHrTeoricas">
       <Properties>
@@ -377,6 +381,7 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTHrTeoricasActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTHrTeoricasKeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTHrPracticas">
@@ -385,6 +390,9 @@
           <Color blue="99" green="ff" red="ff" type="rgb"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTHrPracticasKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTCreditos">
       <Properties>
@@ -392,6 +400,9 @@
           <Color blue="99" green="ff" red="ff" type="rgb"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTCreditosKeyTyped"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

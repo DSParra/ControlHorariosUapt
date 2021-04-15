@@ -275,7 +275,7 @@ public class ConsultasObjetos {
         return null;
     }
 
-    public static void elimina(String tabla, String campo, String id2, int id, Connection con) {
+    public static boolean elimina(String tabla, String campo, String id2, int id, Connection con) {
         try {
             if (id2 == null) {
                 ps = con.prepareStatement("DELETE FROM " + tabla + " WHERE " + campo + " = ?");
@@ -285,14 +285,11 @@ public class ConsultasObjetos {
                 ps.setString(1, id2);
             }
             int res = ps.executeUpdate();
-            if (res > 0) {
-                JOptionPane.showMessageDialog(null, "Se elimino exitosamente");
-            } else {
-                JOptionPane.showMessageDialog(null, "ERROR");
-            }
+            return (res > 0) ? true : false;
         } catch (Exception e) {
             System.out.println(e.toString());
         }
+        return false;
     }
 
     public static boolean Modifica(Object obj, Connection con, String tabla, String id) {

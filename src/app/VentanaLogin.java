@@ -187,7 +187,7 @@ public class VentanaLogin extends javax.swing.JFrame {
         else if(val == 2)
         {
             this.setVisible(false);
-            new VentanaCoordinadorCarrera().setVisible(true);
+            new VentanaMenuCoordinador().setVisible(true);
         }
     }//GEN-LAST:event_btnentrarActionPerformed
 
@@ -204,12 +204,12 @@ public class VentanaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jPassContrasenaiaKeyPressed
 
     private void txtusuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtusuarioKeyReleased
-        Valida.convertirAMayusculas(txtusuario);
+        //Valida.convertirAMayusculas(txtusuario);
         //convertirAMayusculas(txtusuario);
     }//GEN-LAST:event_txtusuarioKeyReleased
 
     private void jPassContrasenaiaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPassContrasenaiaKeyReleased
-        Valida.convertirAMayusculasP(jPassContrasenaia);
+        //Valida.convertirAMayusculasP(jPassContrasenaia);
     }//GEN-LAST:event_jPassContrasenaiaKeyReleased
 
 

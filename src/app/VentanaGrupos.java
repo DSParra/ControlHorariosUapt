@@ -5,6 +5,7 @@
  */
 package app;
 
+import Clases.Valida;
 import java.awt.Color;
 
 /**
@@ -139,6 +140,11 @@ public class VentanaGrupos extends javax.swing.JFrame {
         jLabel6.setText("Licenciatura");
 
         jTNombreGrupo.setBackground(new java.awt.Color(255, 255, 153));
+        jTNombreGrupo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTNombreGrupoFocusLost(evt);
+            }
+        });
         jTNombreGrupo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTNombreGrupoActionPerformed(evt);
@@ -171,7 +177,7 @@ public class VentanaGrupos extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLTituloUniversidad)
                                             .addComponent(jLTituloUAPT))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -261,6 +267,10 @@ public class VentanaGrupos extends javax.swing.JFrame {
     private void jTNombreGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTNombreGrupoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTNombreGrupoActionPerformed
+
+    private void jTNombreGrupoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTNombreGrupoFocusLost
+        Valida.convertirAMayusculas(jTNombreGrupo);
+    }//GEN-LAST:event_jTNombreGrupoFocusLost
 
     /**
      * @param args the command line arguments
