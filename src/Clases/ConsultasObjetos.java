@@ -182,7 +182,7 @@ public class ConsultasObjetos {
 //                //JOptionPane.showMessageDialog(null, "ERROR");
 //            }
         } catch (Exception e) {
-            System.out.println("ConsultaObjetos: error al hacer la insercion");
+            System.out.println("ConsultaObjetos: error al hacer la insercion"+e);
             //JOptionPane.showMessageDialog(null, "Error al hacer la insercion");
             System.out.println(e.toString());
             return false;
@@ -380,5 +380,70 @@ public class ConsultasObjetos {
             System.out.println(ex.toString());
         }
         return id;
+    }
+    public static void insertaMuchos(ArrayList<Object> obj, Connection con, String tabla) {
+        try {
+            int res = -1;
+            switch (tabla) {
+//                case "usuarios":
+//                    Usuario emp = (Usuario) obj;
+//                    ps = con.prepareStatement("INSERT INTO usuarios(id_usuario,rfc,usuario, contrasenia,pregunta_seguridad,respuesta_seguridad) VALUES (?,?,?,?,?,?)");//por seguridad
+//                    ps.setString(1, emp.getIdUsuario());
+//                    ps.setString(2, emp.getRfc());
+//                    ps.setString(3, emp.getUsuario());
+//                    ps.setString(4, emp.getContra());
+//                    ps.setString(5, emp.getPreguntaSeguridad());
+//                    ps.setStvring(6, emp.getRespuestaSeguridad());
+//                    //ps.setDate(6, (java.sql.Date) emp.getFecha_alta());  // agregar un registro
+//                    res = ps.executeUpdate();
+//                    if (res > 0) {
+//                        JOptionPane.showMessageDialog(null, "Se registro exitosamente");
+//                    } else {
+//                        JOptionPane.showMessageDialog(null, "ERROR");
+//                    }
+//                    break;
+                case "profesores":
+                    String consulta = "INSERT INTO `profesores` (`rfc`, `apellido_paterno`, `apellido_materno`, `nombres`, `grado_academico`, `correo`, `telefono`) VALUES ";
+                    String valores = "";
+                    System.out.println("tamaño" + obj.size());
+                    for (int i = 0; i < obj.size(); i++) {
+                        valores = " (";
+                        valores += "\'" + ((Profesor) obj.get(i)).getRfc() + "\',";
+                        valores += "\'" + ((Profesor) obj.get(i)).getApellidoP() + "\',";
+                        valores += "\'" + ((Profesor) obj.get(i)).getApellidoM() + "\',";
+                        valores += "\'" + ((Profesor) obj.get(i)).getNombres() + "\',";
+                        valores += "\'" + ((Profesor) obj.get(i)).getGradoAcademico() + "\',";
+                        valores += "\'" + ((Profesor) obj.get(i)).getCorreo() + "\',";
+                        valores += "\'" + ((Profesor) obj.get(i)).getTelefono() + "\'" ;
+                        valores += (i == obj.size()-1)?  ")" : "),";
+                        consulta += valores;
+                    }
+                    ps = con.prepareStatement(consulta);
+                    res = ps.executeUpdate();
+                    if (res > 0) {
+                        JOptionPane.showMessageDialog(null, "Se registro exitosamente");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "ERROR");
+                    }
+//                    break;
+
+//                case "licenciatura":
+//                    Licenciatura licen =(Licenciatura)obj;
+//                    ps = con.prepareStatement("INSERT INTO licenciatura(id_licenciatura,nombre,rfc_coordinador) VALUES (?,?,?)");
+//                    ps.setString(1, licen.getIdLicenciatura());
+//                    ps.setString(2, licen.getLicenciatura());
+//                    ps.setString(3, licen.getRfcCordinador());
+//                    res = ps.executeUpdate();
+//                    if (res > 0) {
+//                        JOptionPane.showMessageDialog(null, "Se registro exitosamente");
+//                    } else {
+//                        JOptionPane.showMessageDialog(null, "ERROR");
+//                    }
+//                    break;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al hacer la insercion");
+            System.out.println(e.toString());
+        }
     }
 }

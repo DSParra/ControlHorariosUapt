@@ -505,8 +505,13 @@ public class VentanaDocentes extends javax.swing.JFrame {
 
     private void btnelminaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnelminaActionPerformed
         if (JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar a " + txtnombres.getText()) == 0) {
-            ControladorProfesores.eliminaProfesor(txtrfc.getText());
-            actualizaTabla();
+            String mensaje = ControladorProfesores.eliminaProfesor(txtrfc.getText());
+            if (mensaje.equals("operacion exitosa")) {
+                actualizaTabla();
+            }else{
+                JOptionPane.showMessageDialog(rootPane, mensaje);
+            }
+            
         }
     }//GEN-LAST:event_btnelminaActionPerformed
 
@@ -562,12 +567,17 @@ public class VentanaDocentes extends javax.swing.JFrame {
             } else {
                 Profesor p = new Profesor(txtrfc.getText(), txtapellidoP.getText(), txtapellidoM.getText(), txtnombres.getText(), txtgradoAcademico.getText(), txtcorreo.getText(), txttelefono.getText());
                 //ConsultasObjetos.Modifica(p, ConectarBase.conectado(), "profesores", (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
-                CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
-                CtrlInterfaz.habilita(true, btnelmina, btnAgregar);
-                CtrlInterfaz.limpia(txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
-                edicion();
-                actualizaTabla();
-                btnmodifica.setText("Modificar");
+                String mensaje = ControladorProfesores.modificaProfesor(p, (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+                if (mensaje.equals("operacion exitosa")) {
+                    CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
+                    CtrlInterfaz.habilita(true, btnelmina, btnAgregar);
+                    CtrlInterfaz.limpia(txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
+                    edicion();
+                    actualizaTabla();
+                    btnmodifica.setText("Modificar");
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, mensaje);
+                }
 
             }
         }
@@ -625,31 +635,31 @@ public class VentanaDocentes extends javax.swing.JFrame {
     }//GEN-LAST:event_txttelefonoKeyPressed
 
     private void txtrfcKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtrfcKeyReleased
-     //   Valida.convertirAMayusculas(txtrfc);
+        //   Valida.convertirAMayusculas(txtrfc);
     }//GEN-LAST:event_txtrfcKeyReleased
 
     private void txtapellidoPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidoPKeyReleased
-        
+
     }//GEN-LAST:event_txtapellidoPKeyReleased
 
     private void txtapellidoMKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidoMKeyReleased
-        
+
     }//GEN-LAST:event_txtapellidoMKeyReleased
 
     private void txtnombresKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombresKeyReleased
-        
+
     }//GEN-LAST:event_txtnombresKeyReleased
 
     private void txtgradoAcademicoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtgradoAcademicoKeyReleased
-        
+
     }//GEN-LAST:event_txtgradoAcademicoKeyReleased
 
     private void txtcorreoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcorreoKeyReleased
-        
+
     }//GEN-LAST:event_txtcorreoKeyReleased
 
     private void txttelefonoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefonoKeyReleased
-        
+
     }//GEN-LAST:event_txttelefonoKeyReleased
 
     private void txttelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefonoKeyTyped
@@ -674,7 +684,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
     }//GEN-LAST:event_txtgradoAcademicoKeyTyped
 
     private void txtrfcFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtrfcFocusLost
-    Valida.convertirAMayusculas(txtrfc);
+        Valida.convertirAMayusculas(txtrfc);
 // TODO add your handling code here:
     }//GEN-LAST:event_txtrfcFocusLost
 
