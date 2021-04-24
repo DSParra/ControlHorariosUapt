@@ -6,6 +6,7 @@
 package Clases;
 
 import Objetos.Licenciatura;
+import Objetos.PlanEstudios;
 import Objetos.Profesor;
 import Objetos.Usuario;
 import Objetos.periodoEscolar;
@@ -171,6 +172,14 @@ public class ConsultasObjetos {
                     ps.setString(2, periodo.getPeriodo());
                     res = ps.executeUpdate();
                     break;
+                case "plan_estudios":
+                    PlanEstudios plan = (PlanEstudios) obj;
+                    ps = con.prepareStatement("INSERT INTO plan_estudios(id_plan_estudios, plan_estudios, id_licenciatura) VALUES (?,?,?)");
+                    ps.setInt(1, plan.getIdPlan());
+                    ps.setString(2, plan.getPlanEstudios());
+                    ps.setString(3, plan.getClaveCarrera());
+                    res = ps.executeUpdate();
+                    break;
             }
             return (res > 0) ? true : false;
 
@@ -268,6 +277,21 @@ public class ConsultasObjetos {
                         JOptionPane.showMessageDialog(null, "No se encontraron periodos");
                     }
                     return objetos;
+                case "plan_estudios":
+                    rs = ps.executeQuery();
+                    if (rs.next())
+                    {
+                        do
+                        {                            
+                            System.out.println("Entre a planes");
+                            PlanEstudios plan = new PlanEstudios();
+                            plan.setIdPlan(rs.getInt("id_plan_estudios"));
+                            plan.setPlanEstudios(rs.getString("plan_estudios"));
+                            plan.setClaveCarrera(rs.getString("id_licenciatura"));
+                            objetos.add(plan);
+                        } while (rs.next());
+                    }
+                    return objetos;
             }
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -335,6 +359,15 @@ public class ConsultasObjetos {
                     //System.out.println("Update" + tabla + "id_licenciatura ="+ lic.getIdLicenciatura() "nombre = "+ lic.getRfcCordinador() + "where id_licenciatura = "+id.);
                     ps.setInt(1, periodo.getId_periodo());
                     ps.setString(2, periodo.getPeriodo());
+                    ps.setInt(3, Integer.parseInt(id));
+                    res = ps.executeUpdate();
+                    break;
+                case "plan_estudios":
+                    PlanEstudios plan = (PlanEstudios) obj;
+                    ps = con.prepareStatement("UPDATE "+ tabla + " SET plan_estudios =?, id_licenciatura=? WHERE id_plan_estudios=?");
+                    //ps.setInt(1, plan.getIdPlan());
+                    ps.setString(1, plan.getPlanEstudios());
+                    ps.setString(2, plan.getClaveCarrera());
                     ps.setInt(3, Integer.parseInt(id));
                     res = ps.executeUpdate();
                     break;
