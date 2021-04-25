@@ -377,10 +377,10 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
             ConsultasObjetos.inserta(lic, ConectarBase.conectado(), "licenciatura");
             CtrlInterfaz.habilita(false, txtnombre, JCCordinador, txtcodigolic, btncancelar);
             CtrlInterfaz.habilita(true, btnelmina, btnmodifica);
-            llenaComboCordinadores();
+            //llenaComboCordinadores();
             actualizaTabla();
             edicion();
-
+            btncancelarActionPerformed(null);
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -424,6 +424,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
                     CtrlInterfaz.habilita(true, btnelmina, btnmodifica);
                     actualizaTabla();
                     edicion();
+                    btncancelarActionPerformed(null);
             }
         }
 
@@ -563,6 +564,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
         return null;
     }
 
+    
     public void llenaComboCordinadores() {
         JCCordinador.removeAllItems();
         for (int i = 0; i < modelo.getRowCount(); i++) {

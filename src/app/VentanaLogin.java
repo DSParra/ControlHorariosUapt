@@ -177,14 +177,15 @@ public class VentanaLogin extends javax.swing.JFrame {
 
     private void btnentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnentrarActionPerformed
 
-        int val = ConsultasObjetos.validaEntrar(txtusuario.getText(), jPassContrasenaia.getText(), con);
-        
-        if (val == 1)
+
+        String val = ConsultasObjetos.validaEntrar(txtusuario.getText(), jPassContrasenaia.getText(), con);
+
+        if (val.equals("usuario"))
         {
             this.setVisible(false);
             new VentanaAdministrador().setVisible(true);
         }
-        else if(val == 2)
+        else if(val.equals("profesor"))
         {
             this.setVisible(false);
             new VentanaMenuCoordinador().setVisible(true);

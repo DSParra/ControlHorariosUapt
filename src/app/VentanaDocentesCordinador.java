@@ -35,7 +35,6 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
         this.setResizable(false);
         this.getContentPane().setBackground(Color.white
         );
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
     private Boolean edicion = true;
     private DefaultTableModel modelo;
@@ -51,12 +50,10 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
 
         jLabel2 = new javax.swing.JLabel();
         btnAgregar = new javax.swing.JButton();
-        btnelmina = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jBRegresar = new javax.swing.JButton();
         jBCerrarSesion = new javax.swing.JButton();
-        btnmodifica = new javax.swing.JButton();
         btnAgregar2 = new javax.swing.JButton();
         btnAgregar3 = new javax.swing.JButton();
         btncancelar = new javax.swing.JButton();
@@ -101,16 +98,6 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
             }
         });
 
-        btnelmina.setBackground(new java.awt.Color(102, 102, 0));
-        btnelmina.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnelmina.setForeground(new java.awt.Color(255, 255, 255));
-        btnelmina.setText("Eliminar");
-        btnelmina.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnelminaActionPerformed(evt);
-            }
-        });
-
         jTable1.setBackground(new java.awt.Color(25, 83, 0));
         jTable1.setForeground(new java.awt.Color(254, 254, 254));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -147,16 +134,6 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
         jBCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCerrarSesionActionPerformed(evt);
-            }
-        });
-
-        btnmodifica.setBackground(new java.awt.Color(102, 102, 0));
-        btnmodifica.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnmodifica.setForeground(new java.awt.Color(255, 255, 255));
-        btnmodifica.setText("Modificar");
-        btnmodifica.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnmodificaActionPerformed(evt);
             }
         });
 
@@ -413,11 +390,7 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnmodifica, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnelmina, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btncancelar)
+                        .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBRegresar)))
                 .addGap(18, 18, 18)
@@ -463,13 +436,9 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnmodifica, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnelmina, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
@@ -488,7 +457,6 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
             btnAgregar.setText("Aceptar");
             CtrlInterfaz.limpia(txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
             CtrlInterfaz.habilita(true, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
-            CtrlInterfaz.habilita(false, btnelmina, btnmodifica);
             CtrlInterfaz.selecciona(txtrfc);
 
         } else
@@ -499,7 +467,6 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
                 Profesor p = new Profesor(txtrfc.getText(), txtapellidoP.getText(), txtapellidoM.getText(), txtnombres.getText(), txtgradoAcademico.getText(), txtcorreo.getText(), txttelefono.getText());
                 ConsultasObjetos.inserta(p, ConectarBase.conectado(), "profesor");
                 CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
-                CtrlInterfaz.habilita(true, btnelmina, btnmodifica);
                 actualizaTabla();
             } else
             {
@@ -509,15 +476,6 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
 
 
     }//GEN-LAST:event_btnAgregarActionPerformed
-
-    private void btnelminaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnelminaActionPerformed
-        if (JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar a " + txtnombres.getText()) == 0)
-        {
-            Profesor p = new Profesor(txtrfc.getText(), txtapellidoP.getText(), txtapellidoM.getText(), txtnombres.getText(), txtgradoAcademico.getText(), txtcorreo.getText(), txttelefono.getText());
-            ConsultasObjetos.elimina("profesores", "rfc", txtrfc.getText(), 0, ConectarBase.conectado());
-            actualizaTabla();
-        }
-    }//GEN-LAST:event_btnelminaActionPerformed
 
     private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
         this.setVisible(false);
@@ -557,37 +515,6 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
     private void txttelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttelefonoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txttelefonoActionPerformed
-
-    private void btnmodificaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificaActionPerformed
-        if (txtrfc.getText().compareTo("") == 0)
-        {
-            JOptionPane.showMessageDialog(this, "Seleccione un registro para editar");
-        } else
-        {
-            edicion();
-            if (edicion)
-            {
-                btnmodifica.setText("Aceptar");
-                CtrlInterfaz.habilita(true, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
-                CtrlInterfaz.habilita(false, btnelmina, btnAgregar);
-            } else
-            {
-                if (JOptionPane.showConfirmDialog(this, "Seguro que desea Modificar a " + txtnombres.getText()) == 0)
-                {
-                    btnAgregar.setText("Modificar");
-                    Profesor p = new Profesor(txtrfc.getText(), txtapellidoP.getText(), txtapellidoM.getText(), txtnombres.getText(), txtgradoAcademico.getText(), txtcorreo.getText(), txttelefono.getText());
-                    ConsultasObjetos.Modifica(p, ConectarBase.conectado(), "profesores", (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
-                    CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
-                    CtrlInterfaz.habilita(true, btnelmina, btnmodifica);
-                    actualizaTabla();
-                } else
-                {
-                    edicion();
-                }
-            }
-        }
-
-    }//GEN-LAST:event_btnmodificaActionPerformed
 
     private void btnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar2ActionPerformed
         // TODO add your handling code here:
@@ -692,9 +619,8 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
         edicion();
         CtrlInterfaz.limpia(txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
         CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
-        CtrlInterfaz.habilita(true, btnAgregar, btnmodifica, btnelmina);
+        CtrlInterfaz.habilita(true, btnAgregar);
         btnAgregar.setText("Nuevo");
-        btnmodifica.setText("Modificar");
     }
 
     private void edicion() {
@@ -710,7 +636,7 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
     public void actualizaTabla() {
         modelo = (DefaultTableModel) jTable1.getModel();
         ArrayList profes = new ArrayList();
-        profes = ConsultasObjetos.consultaMuchos("profesores", null, null, ConectarBase.conectado());
+        profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", ConectarBase.conectado());
         if (profes.isEmpty())
         {
             JOptionPane.showMessageDialog(this, "No se encuentran registros");
@@ -904,8 +830,6 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
     private javax.swing.JButton btnAgregar2;
     private javax.swing.JButton btnAgregar3;
     private javax.swing.JButton btncancelar;
-    private javax.swing.JButton btnelmina;
-    private javax.swing.JButton btnmodifica;
     private javax.swing.JButton jBCerrarSesion;
     private javax.swing.JButton jBRegresar;
     private javax.swing.JLabel jLTituloUAPT;

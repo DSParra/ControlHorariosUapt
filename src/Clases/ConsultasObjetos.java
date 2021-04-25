@@ -203,7 +203,7 @@ public class ConsultasObjetos {
             if (campo == null) {
                 ps = con.prepareStatement("SELECT * FROM " + tabla); //traer un dato
             } else {
-                ps = con.prepareStatement("SELECT * FROM " + tabla + " WHERE " + campo + " =?" + valor); //traer un dato
+                ps = con.prepareStatement("SELECT * FROM " + tabla + " WHERE " + campo + "=?"); //traer un dato
                 ps.setString(1, valor);
             }
 

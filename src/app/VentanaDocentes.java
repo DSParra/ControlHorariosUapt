@@ -35,7 +35,6 @@ public class VentanaDocentes extends javax.swing.JFrame {
         this.setResizable(false);
         this.getContentPane().setBackground(Color.white
         );
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
     private Boolean edicion = true;
     private DefaultTableModel modelo;
@@ -732,7 +731,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
     public void actualizaTabla() {
         modelo = (DefaultTableModel) jTable1.getModel();
         ArrayList profes = new ArrayList();
-        profes = ConsultasObjetos.consultaMuchos("profesores", null, null, ConectarBase.conectado());
+        profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", ConectarBase.conectado());
         if (profes.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No se encuentran registros");
         } else {
