@@ -8,6 +8,7 @@ package app;
 import Clases.ConectarBase;
 import Clases.ConsultasObjetos;
 import Clases.Valida;
+import Controlador.ControladorCoordnadores;
 import Objetos.Profesor;
 import Objetos.Usuario;
 import cjb.ci.CtrlInterfaz;
@@ -16,6 +17,7 @@ import cjb.ci.Validaciones;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -32,7 +34,6 @@ public class VentanaCordinadores extends javax.swing.JFrame
         initComponents();
         this.getContentPane().setBackground(Color.white);
         this.setResizable(false);
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     private Boolean edicion = true;
@@ -447,9 +448,9 @@ public class VentanaCordinadores extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAceptarActionPerformed
-        edicion();
-        if (edicion)
+        if (!edicion)
         {
+            edicion();
             jBAceptar.setText("Aceptar");
             CtrlInterfaz.limpia(txtID, txtUsuario, txtContrasenia, txtPregunta, txtRespuesta);
             CtrlInterfaz.habilita(true, txtID, ComboRFC, txtUsuario, txtContrasenia, txtPregunta, txtRespuesta, jBCancelar);
@@ -461,15 +462,21 @@ public class VentanaCordinadores extends javax.swing.JFrame
             System.out.println("RFC retornado" + buscaProfesor(null, (String) ComboRFC.getSelectedItem()));
             Usuario us = new Usuario(txtID.getText(), buscaProfesor(null, (String) ComboRFC.getSelectedItem()), txtUsuario.getText(), txtContrasenia.getText(), txtPregunta.getText(), txtRespuesta.getText());
             System.out.println("item " + (String) ComboRFC.getSelectedItem());
-            ConsultasObjetos.inserta(us, ConectarBase.conectado(), "usuarios");
-            CtrlInterfaz.habilita(false, txtID, ComboRFC, txtUsuario, txtContrasenia, txtPregunta, txtRespuesta);
-            CtrlInterfaz.habilita(true, jBEliminar, jBModificar);
-            llenaComboProfesores();
-            actualizaTabla();
-            edicion();
-            jBCancelarActionPerformed(null);
+            String mensaje = Controlador.ControladorCoordnadores.insertarCoordinador(us);
+            if (mensaje.equals("operacion exitosa"))
+            {
+                jBAceptar.setText("Nuevo");
+                CtrlInterfaz.habilita(false, txtID, ComboRFC, txtUsuario, txtContrasenia, txtPregunta, txtRespuesta);
+                CtrlInterfaz.habilita(true, jBEliminar, jBModificar);
+                llenaComboProfesores();
+                actualizaTabla();
+                edicion();
+                jBCancelarActionPerformed(null);
+            } else
+            {
+                JOptionPane.showMessageDialog(rootPane, mensaje);
+            }
         }
-
     }//GEN-LAST:event_jBAceptarActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
@@ -484,8 +491,15 @@ public class VentanaCordinadores extends javax.swing.JFrame
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
         if (Mensaje.pregunta(this, "¿Seguro que quieres eliminar al usuario " + txtUsuario.getText() + "?") == 0)
         {
-            ConsultasObjetos.elimina("usuarios", "id_usuario", txtID.getText(), 0, ConectarBase.conectado());
-            actualizaTabla();
+            String mensaje = ControladorCoordnadores.eliminaUsuario(txtID.getText());
+            if (mensaje.equals("operacion exitosa"))
+            {
+                actualizaTabla();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(rootPane, mensaje);
+            }
         }
     }//GEN-LAST:event_jBEliminarActionPerformed
 
@@ -500,22 +514,30 @@ public class VentanaCordinadores extends javax.swing.JFrame
             Mensaje.error(this, "Seleccione un registo a modificar");
         } else
         {
-            edicion();
-            if (edicion)
+            if (!edicion)
             {
+                edicion();
                 jBModificar.setText("Aceptar");
                 CtrlInterfaz.habilita(true, txtID, txtUsuario, ComboRFC, txtContrasenia, txtPregunta, txtRespuesta, jBCancelar);
                 CtrlInterfaz.habilita(false, jBEliminar, jBAceptar);
             } else
             {
-                jBModificar.setText("Modificar");
                 Usuario us = new Usuario(txtID.getText(), buscaProfesor(null, (String) ComboRFC.getSelectedItem()), txtUsuario.getText(), txtContrasenia.getText(), txtPregunta.getText(), txtRespuesta.getText());
                 ConsultasObjetos.Modifica(us, ConectarBase.conectado(), "usuarios", txtID.getText());
-                CtrlInterfaz.habilita(false, txtID, ComboRFC, txtUsuario, txtContrasenia, txtPregunta, txtRespuesta);
-                CtrlInterfaz.habilita(true, jBEliminar, jBModificar);
-                actualizaTabla();
-                edicion();
-                jBCancelarActionPerformed(null);
+                String mensaje = ControladorCoordnadores.modifcaCoordinador(us, (String) TablaUsuarios.getValueAt(TablaUsuarios.getSelectedRow(), 1));
+                if (mensaje.equals("operacion exitosa"))
+                {
+                    jBModificar.setText("Modificar");
+                    CtrlInterfaz.habilita(false, txtID, ComboRFC, txtUsuario, txtContrasenia, txtPregunta, txtRespuesta);
+                    CtrlInterfaz.habilita(true, jBEliminar, jBModificar);
+                    actualizaTabla();
+                    edicion();
+                    jBCancelarActionPerformed(null);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(rootPane, mensaje);
+                }
             }
         }
     }//GEN-LAST:event_jBModificarActionPerformed
@@ -592,12 +614,12 @@ public class VentanaCordinadores extends javax.swing.JFrame
 
     private void TablaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaUsuariosMouseClicked
         txtID.setText((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 0));
-        ComboRFC.setSelectedIndex(buscarcombo((String)modelo.getValueAt(TablaUsuarios.getSelectedRow(), 1)));
+        ComboRFC.setSelectedIndex(buscarcombo((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 1)));
         txtUsuario.setText((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 2));
         txtContrasenia.setText((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 3));
         txtPregunta.setText((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 4));
         txtRespuesta.setText((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 5));
-        System.out.println("Recuperado "+ buscarcombo((String)modelo.getValueAt(TablaUsuarios.getSelectedRow(), 1)));
+        System.out.println("Recuperado " + buscarcombo((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 1)));
     }//GEN-LAST:event_TablaUsuariosMouseClicked
 
     private void btnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar2ActionPerformed
@@ -696,7 +718,7 @@ public class VentanaCordinadores extends javax.swing.JFrame
         profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", ConectarBase.conectado());
         modelo = (DefaultTableModel) TablaUsuarios.getModel();
         ArrayList<Object> user = new ArrayList<>();
-        user = ConsultasObjetos.consultaMuchos("usuarios", "nivel" , "profesor", ConectarBase.conectado());
+        user = ConsultasObjetos.consultaMuchos("usuarios", "nivel", "profesor", ConectarBase.conectado());
         if (user.isEmpty())
         {
             Mensaje.error(this, "NO SE ENCUENTRAN COORDINADORES REGISTRADOS");
@@ -722,11 +744,12 @@ public class VentanaCordinadores extends javax.swing.JFrame
         }
     }
 
-     public void llenaComboCordinadores() {
+    public void llenaComboCordinadores() {
         ComboRFC.removeAllItems();
-        for (int i = 0; i < modelo.getRowCount(); i++) {
-            ComboRFC.addItem(buscaProfesor((String)TablaUsuarios.getValueAt(i, 1), null));
-            System.out.println(buscaProfesor((String)TablaUsuarios.getValueAt(i, 1), null));
+        for (int i = 0; i < modelo.getRowCount(); i++)
+        {
+            ComboRFC.addItem(buscaProfesor((String) TablaUsuarios.getValueAt(i, 1), null));
+            System.out.println(buscaProfesor((String) TablaUsuarios.getValueAt(i, 1), null));
         }
     }
 
