@@ -114,7 +114,7 @@ public class ConsultasObjetos {
                     if (rs.next()) {
                         licen = new Licenciatura();
                         licen.setIdLicenciatura(rs.getString("id_licenciatura"));
-                        licen.setLicenciatura(rs.getString("licenciatura"));
+                        licen.setLicenciatura(rs.getString("nombre"));
                         licen.setRfcCordinador(rs.getString("rfc_coordinador"));
                     } else {
                         System.out.println("No se encontro el usuario");

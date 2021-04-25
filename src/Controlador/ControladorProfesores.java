@@ -96,7 +96,7 @@ public class ControladorProfesores {
         } else if (profe.getCorreo() == null || profe.getCorreo().equals("")) {
             mensaje += "Correo vaicio";
         } else if (profe.getTelefono() == null || profe.getTelefono().equals("")) {
-            mensaje += "Grado Academico vacio";
+            mensaje += "Telefono vacio";
         }
         return mensaje;
     }
