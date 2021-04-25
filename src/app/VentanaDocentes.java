@@ -369,6 +369,9 @@ public class VentanaDocentes extends javax.swing.JFrame {
             }
         });
         txtrfc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtrfcKeyTyped(evt);
+            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtrfcKeyPressed(evt);
             }
@@ -376,7 +379,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
                 txtrfcKeyReleased(evt);
             }
         });
-        jPanel1.add(txtrfc, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 38, 145, -1));
+        jPanel1.add(txtrfc, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 38, 220, -1));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(254, 254, 254));
@@ -710,6 +713,14 @@ public class VentanaDocentes extends javax.swing.JFrame {
     private void txttelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txttelefonoFocusLost
         Valida.convertirAMayusculas(txttelefono);
     }//GEN-LAST:event_txttelefonoFocusLost
+
+    private void txtrfcKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtrfcKeyTyped
+        Validaciones.validaAlfanumerico(evt);
+        if (txtrfc.getText().length() == 13)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtrfcKeyTyped
 
     private void cancelar() {
         edicion();

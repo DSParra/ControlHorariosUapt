@@ -29,30 +29,30 @@ public class ConsultasObjetos {
     public static PreparedStatement ps;
     public static ResultSet rs;
     public static Statement sentencia;
-    public static int nivel = 0;
+    public static String nivel = "";
 
-    public static int validaEntrar(String usuario, String contrasenia, Connection con) {
+    public static String validaEntrar(String usuario, String contrasenia, Connection con) {
         String sql = "SELECT * FROM usuarios WHERE usuario='" + usuario + "'";
 
         try {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
-            int niv = 0;
+            String niv = "";
             String pass = "", nombr_us = "";
 
             if (rs.next()) {
                 nombr_us = rs.getString("usuario");
                 pass = rs.getString("Contrasenia");
-                niv = Integer.parseInt(rs.getString("nivel"));
+                niv = rs.getString("nivel");
 
                 if (contrasenia.equals(pass)) {
                     System.out.println("datos correctos");
                     nivel = niv;
-                    if (nivel == 1) {
-                        return 1;
-                    } else if (nivel == 2) {
-                        return 2;
+                    if (nivel.equals("usuario")) {
+                        return "usuario";
+                    } else if (nivel.equals("profesor")) {
+                        return "profesor";
                     }
                 } else {
                     System.out.println("Contrasenia incorrecta");
@@ -63,7 +63,7 @@ public class ConsultasObjetos {
             }
         } catch (Exception e) {
         }
-        return 0;
+        return "";
     }
 
     public static Object consultaUnica(String tabla, String campo, String valor, Connection con) {

@@ -9,6 +9,7 @@ import Clases.ConectarBase;
 import Clases.Conexion;
 import Clases.ConsultasObjetos;
 import Clases.Valida;
+import Controlador.ControladorProfesores;
 import Objetos.Profesor;
 import cjb.ci.CtrlInterfaz;
 import java.awt.Color;
@@ -299,6 +300,9 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
             }
         });
         txtrfc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtrfcKeyTyped(evt);
+            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtrfcKeyPressed(evt);
             }
@@ -317,21 +321,21 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4)
-                    .addComponent(txtrfc, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(txtapellidoP, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtapellidoP, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
                     .addComponent(jLabel8)
-                    .addComponent(txtapellidoM, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtapellidoM, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
                     .addComponent(jLabel6)
-                    .addComponent(txtnombres, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtnombres, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
                     .addComponent(jLabel7)
-                    .addComponent(txtgradoAcademico, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtgradoAcademico, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
                     .addComponent(jLabel9)
-                    .addComponent(txtcorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtcorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
                     .addComponent(jLabel10)
-                    .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txttelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                    .addComponent(txtrfc))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -451,9 +455,9 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
 
-        edicion();
-        if (edicion)
+        if (!edicion)
         {
+            edicion();
             btnAgregar.setText("Aceptar");
             CtrlInterfaz.limpia(txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
             CtrlInterfaz.habilita(true, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
@@ -461,16 +465,18 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
 
         } else
         {
-            if (JOptionPane.showConfirmDialog(this, "Seguro que desea agregar a " + txtnombres.getText()) == 0)
+            Profesor p = new Profesor(txtrfc.getText(), txtapellidoP.getText(), txtapellidoM.getText(), txtnombres.getText(), txtgradoAcademico.getText(), txtcorreo.getText(), txttelefono.getText());
+            String mensaje = ControladorProfesores.InsertaProfesor(p);
+            if (mensaje.equals("operacion exitosa"))
             {
                 btnAgregar.setText("Nuevo");
-                Profesor p = new Profesor(txtrfc.getText(), txtapellidoP.getText(), txtapellidoM.getText(), txtnombres.getText(), txtgradoAcademico.getText(), txtcorreo.getText(), txttelefono.getText());
-                ConsultasObjetos.inserta(p, ConectarBase.conectado(), "profesor");
+                CtrlInterfaz.limpia(txtrfc, txtapellidoP, txtapellidoM, txtnombres, txtgradoAcademico, txtgradoAcademico, txttelefono);
                 CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
                 actualizaTabla();
+                edicion();
             } else
             {
-                edicion();
+                JOptionPane.showMessageDialog(rootPane, mensaje);
             }
         }
 
@@ -614,6 +620,14 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
     private void txtgradoAcademicoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtgradoAcademicoKeyTyped
         Validaciones.validaAlfabeticos(evt);
     }//GEN-LAST:event_txtgradoAcademicoKeyTyped
+
+    private void txtrfcKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtrfcKeyTyped
+        Validaciones.validaAlfanumerico(evt);
+        if (txtrfc.getText().length() == 13)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtrfcKeyTyped
 
     private void cancelar() {
         edicion();
