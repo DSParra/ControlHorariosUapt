@@ -10,14 +10,14 @@ package Objetos;
  * @author DELL
  */
 public class periodoEscolar {
-    private int id_periodo;
+    private String id_periodo;
     private String periodo;
 
     public periodoEscolar() {
     }
 
     
-    public periodoEscolar(int id_periodo, String periodo) {
+    public periodoEscolar(String id_periodo, String periodo) {
         this.id_periodo = id_periodo;
         this.periodo = periodo;
     }
@@ -25,14 +25,14 @@ public class periodoEscolar {
     /**
      * @return the id_periodo
      */
-    public int getId_periodo() {
+    public String getId_periodo() {
         return id_periodo;
     }
 
     /**
      * @param id_periodo the id_periodo to set
      */
-    public void setId_periodo(int id_periodo) {
+    public void setId_periodo(String id_periodo) {
         this.id_periodo = id_periodo;
     }
 

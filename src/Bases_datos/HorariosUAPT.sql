@@ -38,7 +38,7 @@ CREATE TABLE licenciatura(
                     );
 
 CREATE TABLE plan_estudios(
-                    id_plan_estudios INT(11),
+                    id_plan_estudios VARCHAR(60) NOT NULL,
                     plan_estudios VARCHAR(60) NOT NULL,
                     id_licenciatura VARCHAR(60) NOT NULL,
                     PRIMARY KEY (id_plan_estudios),
@@ -47,14 +47,14 @@ CREATE TABLE plan_estudios(
                     );
 
 CREATE TABLE periodo_escolar(
-                    id_periodo INT(11) AUTO_INCREMENT,
+                    id_periodo VARCHAR(11) NOT NULL,
                     periodo VARCHAR(60) NOT NULL,
                     PRIMARY KEY (id_periodo),
                     UNIQUE(periodo)
                     );
 
 CREATE TABLE grupo(
-                    id_grupo INT(11), 
+                    id_grupo VARCHAR(11), 
                     nombre_grupo VARCHAR(60) NOT NULL,
                     id_licenciatura VARCHAR(60) NOT NULL,
                     PRIMARY KEY (id_grupo),
@@ -71,7 +71,7 @@ CREATE TABLE materia(
                     nucleo VARCHAR(60) NOT NULL,
                     tipo VARCHAR(60) NOT NULL,
                     id_licenciatura VARCHAR(60) NOT NULL,
-                    id_plan_estudios INT(11),
+                    id_plan_estudios VARCHAR(60) NOT NULL,
                     PRIMARY KEY (clave_materia),
                     FOREIGN KEY (id_licenciatura) REFERENCES licenciatura(id_licenciatura),
                     FOREIGN KEY (id_plan_estudios) REFERENCES plan_estudios(id_plan_estudios),
@@ -81,8 +81,8 @@ CREATE TABLE materia(
 CREATE TABLE horarios(
                     id_horario VARCHAR(60) NOT NULL,
                     clave_materia VARCHAR(60) NOT NULL,
-                    id_grupo INT(11),
-                    id_periodo INT(11),
+                    id_grupo VARCHAR(11) NOT NULL,
+                    id_periodo VARCHAR(11) NOT NULL,
                     rfc VARCHAR(60) NOT NULL,
                     dia VARCHAR(60) NOT NULL,
                     hr_entrada time,

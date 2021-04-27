@@ -14,6 +14,7 @@ import cjb.ci.Mensaje;
 import cjb.ci.Validaciones;
 import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -336,9 +337,9 @@ public class VentanaPeriodos extends javax.swing.JFrame
     }//GEN-LAST:event_jTIdPeriodoActionPerformed
 
     private void jBAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAceptarActionPerformed
-        edicion();
-        if (edicion)
+        if (!edicion)
         {
+            edicion();
             jBAceptar.setText("Aceptar");
             CtrlInterfaz.limpia(jTIdPeriodo, jTNombrePeriodo);
             CtrlInterfaz.habilita(true, jTIdPeriodo, jTNombrePeriodo, jBCancelar);
@@ -346,18 +347,27 @@ public class VentanaPeriodos extends javax.swing.JFrame
             CtrlInterfaz.selecciona(jTIdPeriodo);
         } else
         {
-            jBAceptar.setText("Nuevo");
 //            int valor = (Integer.parseInt(jTIdPeriodo.getText()));
-            periodoEscolar per = new periodoEscolar((Integer.parseInt(jTIdPeriodo.getText())), jTNombrePeriodo.getText());
-            ConsultasObjetos.inserta(per, ConectarBase.conectado(), "periodo_escolar");
-            CtrlInterfaz.habilita(false, jTIdPeriodo, jTNombrePeriodo, jBCancelar);
-            CtrlInterfaz.habilita(true, jBModificar, jBEliminar);
-            actualizarTabla();
+            periodoEscolar per = new periodoEscolar(jTIdPeriodo.getText(), jTNombrePeriodo.getText());
+            String mensaje = Controlador.ControladorPeriodos.insertaPeriodo(per);
+            if (mensaje.equals("operacion exitosa"))
+            {
+                jBAceptar.setText("Nuevo");
+                ConsultasObjetos.inserta(per, ConectarBase.conectado(), "periodo_escolar");
+                CtrlInterfaz.habilita(false, jTIdPeriodo, jTNombrePeriodo, jBCancelar);
+                CtrlInterfaz.habilita(true, jBModificar, jBEliminar);
+                actualizarTabla();
+                edicion();
+                jBCancelarActionPerformed(null);
+            } else
+            {
+                JOptionPane.showMessageDialog(rootPane, mensaje);
+            }
         }
     }//GEN-LAST:event_jBAceptarActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-       cancelar();
+        cancelar();
     }//GEN-LAST:event_jBCancelarActionPerformed
 
     private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
@@ -385,31 +395,45 @@ public class VentanaPeriodos extends javax.swing.JFrame
             Mensaje.error(this, "NO HA SELECCIONADO NINGUN REGISTRO");
         } else
         {
-            edicion();
-            if (edicion)
+            if (!edicion)
             {
+                edicion();
                 jBModificar.setText("Aceptar");
                 CtrlInterfaz.habilita(true, jTNombrePeriodo, jBModificar);
                 CtrlInterfaz.habilita(false, jBEliminar, jBAceptar, jTIdPeriodo);
-
             } else
             {
-                jBModificar.setText("Modificar");
-                periodoEscolar perio = new periodoEscolar((Integer.parseInt(jTIdPeriodo.getText())), jTNombrePeriodo.getText());
-                ConsultasObjetos.Modifica(perio, ConectarBase.conectado(), "periodo_escolar", jTIdPeriodo.getText());
-                CtrlInterfaz.habilita(false, jTIdPeriodo,jBAceptar);
-                CtrlInterfaz.habilita(true, jBEliminar, jBAceptar, jTNombrePeriodo);
-                actualizarTabla();
+                periodoEscolar perio = new periodoEscolar(jTIdPeriodo.getText(), jTNombrePeriodo.getText());
+                String mensaje = Controlador.ControladorPeriodos.modificaPeriodo(perio, (String) TablaPeriodos.getValueAt(TablaPeriodos.getSelectedRow(), 0));
+                if (mensaje.equals("operacion exitosa"))
+                {
+                    jBModificar.setText("Modificar");
+                    CtrlInterfaz.habilita(false, jTIdPeriodo, jBAceptar);
+                    CtrlInterfaz.habilita(true, jBEliminar, jBAceptar, jTNombrePeriodo);
+                    actualizarTabla();
+                    edicion();
+                    jBCancelarActionPerformed(null);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(rootPane, mensaje);
+                }
             }
         }
     }//GEN-LAST:event_jBModificarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-        if (Mensaje.pregunta(this, "¿En realidad quiere eliminar el periodo "+ jTNombrePeriodo.getText()+"?")==0)
+        if (Mensaje.pregunta(this, "¿En realidad quiere eliminar el periodo " + jTNombrePeriodo.getText() + "?") == 0)
         {
-            periodoEscolar pe = new periodoEscolar((Integer.parseInt(jTIdPeriodo.getText())),jTNombrePeriodo.getText());
-            ConsultasObjetos.elimina("periodo_escolar", "id_periodo", jTIdPeriodo.getText(), 0, ConectarBase.conectado());
-            actualizarTabla();
+            String mensaje = Controlador.ControladorPeriodos.eliminarPeriodo(jTIdPeriodo.getText());
+            if (mensaje.equals("operacion exitosa"))
+            {
+                actualizarTabla();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(rootPane, mensaje);
+            }
         }
     }//GEN-LAST:event_jBEliminarActionPerformed
 
@@ -573,7 +597,7 @@ public class VentanaPeriodos extends javax.swing.JFrame
     private void cancelar() {
         edicion();
         CtrlInterfaz.limpia(jTIdPeriodo, jTNombrePeriodo);
-        CtrlInterfaz.habilita(false , jTIdPeriodo, jTNombrePeriodo, jBCancelar);
+        CtrlInterfaz.habilita(false, jTIdPeriodo, jTNombrePeriodo, jBCancelar);
         CtrlInterfaz.habilita(true, jBAceptar, jBEliminar, jBModificar);
         jBAceptar.setText("Nuevo");
         jBModificar.setText("Modificar");

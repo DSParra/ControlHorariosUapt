@@ -10,10 +10,10 @@ package Objetos;
  * @author DELL
  */
 public class Grupo {
-   private int idGrupo;
+   private String idGrupo;
    private String nombreGrupo;
 
-    public Grupo(int idGrupo, String nombreGrupo) {
+    public Grupo(String idGrupo, String nombreGrupo) {
         this.idGrupo = idGrupo;
         this.nombreGrupo = nombreGrupo;
     }
@@ -24,14 +24,14 @@ public class Grupo {
     /**
      * @return the idGrupo
      */
-    public int getIdGrupo() {
+    public String getIdGrupo() {
         return idGrupo;
     }
 
     /**
      * @param idGrupo the idGrupo to set
      */
-    public void setIdGrupo(int idGrupo) {
+    public void setIdGrupo(String idGrupo) {
         this.idGrupo = idGrupo;
     }
 

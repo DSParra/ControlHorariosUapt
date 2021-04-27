@@ -43,7 +43,7 @@ public class ControladorCoordnadores
                 if (registro)
                 {
                     System.out.println("Operación exitosa del controlador");
-                    return "operacio exitosa";
+                    return "operacion exitosa";
                 }
                 else
                 {

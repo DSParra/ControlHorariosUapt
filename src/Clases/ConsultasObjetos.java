@@ -6,6 +6,7 @@
 package Clases;
 
 import Objetos.Licenciatura;
+import Objetos.Materia;
 import Objetos.PlanEstudios;
 import Objetos.Profesor;
 import Objetos.Usuario;
@@ -121,6 +122,35 @@ public class ConsultasObjetos {
                         //JOptionPane.showMessageDialog(null, "No se encontro la Licenciatura");
                     }
                     return licen;
+                case "plan_estudios":
+                    PlanEstudios plan = null;
+                    rs = ps.executeQuery();
+                    if (rs.next())
+                    {
+                        plan =new PlanEstudios();
+                        plan.setIdPlan(rs.getString("id_plan_estudios"));
+                        plan.setPlanEstudios(rs.getString("plan_estudios"));
+                        plan.setClaveCarrera(rs.getString("id_licenciatura"));
+                    }
+                    else
+                    {
+                        System.out.println("No se encontro el plan de estudios");
+                    }
+                    return plan;
+                case "periodo_escolar":
+                    periodoEscolar periodo = null;
+                    rs = ps.executeQuery();
+                    if (rs.next())
+                    {
+                        periodo = new periodoEscolar();
+                        periodo.setId_periodo(rs.getString("id_periodo"));
+                        periodo.setPeriodo(rs.getString("periodo"));
+                    }
+                    else
+                    {
+                        System.out.println("No se encontro el periodo");
+                    }
+                    return periodo;
             }
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -168,14 +198,14 @@ public class ConsultasObjetos {
                 case "periodo_escolar":
                     periodoEscolar periodo = (periodoEscolar) obj;
                     ps = con.prepareStatement("INSERT INTO periodo_escolar(id_periodo, periodo) VALUES (?,?)");
-                    ps.setInt(1, periodo.getId_periodo());
+                    ps.setString(1, periodo.getId_periodo());
                     ps.setString(2, periodo.getPeriodo());
                     res = ps.executeUpdate();
                     break;
                 case "plan_estudios":
                     PlanEstudios plan = (PlanEstudios) obj;
                     ps = con.prepareStatement("INSERT INTO plan_estudios(id_plan_estudios, plan_estudios, id_licenciatura) VALUES (?,?,?)");
-                    ps.setInt(1, plan.getIdPlan());
+                    ps.setString(1, plan.getIdPlan());
                     ps.setString(2, plan.getPlanEstudios());
                     ps.setString(3, plan.getClaveCarrera());
                     res = ps.executeUpdate();
@@ -269,7 +299,7 @@ public class ConsultasObjetos {
                         do {
                             System.out.println("Entre a periodos");
                             periodoEscolar perio = new periodoEscolar();
-                            perio.setId_periodo(((Integer.parseInt(rs.getString("id_periodo")))));
+                            perio.setId_periodo(rs.getString("id_periodo"));
                             perio.setPeriodo(rs.getString("periodo"));
                             objetos.add(perio);
                         } while (rs.next());
@@ -285,13 +315,33 @@ public class ConsultasObjetos {
                         {                            
                             System.out.println("Entre a planes");
                             PlanEstudios plan = new PlanEstudios();
-                            plan.setIdPlan(rs.getInt("id_plan_estudios"));
+                            plan.setIdPlan(rs.getString("id_plan_estudios"));
                             plan.setPlanEstudios(rs.getString("plan_estudios"));
                             plan.setClaveCarrera(rs.getString("id_licenciatura"));
                             objetos.add(plan);
                         } while (rs.next());
                     }
                     return objetos;
+                case "materia":
+                rs = ps.executeQuery();
+                    if (rs.next())
+                    {
+                        do
+                        {                            
+                            System.out.println("Entre a materias");
+                            Materia mat = new Materia();
+                            mat.setClaveMateria(rs.getString("clave_materia"));
+                            mat.setUnidadAprendizaje(rs.getString("unidad_aprendizaje"));
+                            mat.setHoras(rs.getInt("horas"));
+                            mat.setCreditos(rs.getInt("creditos"));
+                            mat.setNumeroPeriodo(rs.getInt("numero_periodo"));
+                            mat.setNucleo(rs.getString("nucleo"));
+                            mat.setTipo(rs.getString("tipo"));
+                            mat.setClaveCarrera(rs.getString("id_licenciatura"));
+                            mat.setPlanEstudios(rs.getInt("id_plan_estudios"));
+                            objetos.add(mat);
+                        } while (rs.next());
+                    }
             }
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -355,11 +405,10 @@ public class ConsultasObjetos {
                     break;
                 case "periodo_escolar":
                     periodoEscolar periodo = (periodoEscolar) obj;
-                    ps = con.prepareStatement("UPDATE " + tabla + " SET id_periodo =? ,periodo=? WHERE id_periodo=?");
+                    ps = con.prepareStatement("UPDATE " + tabla + " SET periodo=? WHERE id_periodo=?");
                     //System.out.println("Update" + tabla + "id_licenciatura ="+ lic.getIdLicenciatura() "nombre = "+ lic.getRfcCordinador() + "where id_licenciatura = "+id.);
-                    ps.setInt(1, periodo.getId_periodo());
-                    ps.setString(2, periodo.getPeriodo());
-                    ps.setInt(3, Integer.parseInt(id));
+                    ps.setString(1, periodo.getPeriodo());
+                    ps.setInt(2, Integer.parseInt(id));
                     res = ps.executeUpdate();
                     break;
                 case "plan_estudios":
@@ -368,7 +417,7 @@ public class ConsultasObjetos {
                     //ps.setInt(1, plan.getIdPlan());
                     ps.setString(1, plan.getPlanEstudios());
                     ps.setString(2, plan.getClaveCarrera());
-                    ps.setInt(3, Integer.parseInt(id));
+                    ps.setString(3, id);
                     res = ps.executeUpdate();
                     break;
             }

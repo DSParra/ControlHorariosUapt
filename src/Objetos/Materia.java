@@ -12,8 +12,7 @@ package Objetos;
 public class Materia {
    private String claveMateria; 
    private String unidadAprendizaje; 
-   private int horasPracticas; 
-   private int horasTeoricas; 
+   private int horas;
    private int creditos; 
    private int numeroPeriodo; 
    private String nucleo; 
@@ -21,20 +20,19 @@ public class Materia {
    private String claveCarrera; 
    private int planEstudios;
 
-    public Materia(String claveMateria, String unidadAprendizaje, int horasPracticas, int horasTeoricas, int creditos, int numeroPeriodo, String nucleo, String tipo, String claveCarrera, int planEstudios) {
+    public Materia() {
+    }
+
+    public Materia(String claveMateria, String unidadAprendizaje, int horas, int creditos, int numeroPeriodo, String nucleo, String tipo, String claveCarrera, int planEstudios) {
         this.claveMateria = claveMateria;
         this.unidadAprendizaje = unidadAprendizaje;
-        this.horasPracticas = horasPracticas;
-        this.horasTeoricas = horasTeoricas;
+        this.horas = horas;
         this.creditos = creditos;
         this.numeroPeriodo = numeroPeriodo;
         this.nucleo = nucleo;
         this.tipo = tipo;
         this.claveCarrera = claveCarrera;
         this.planEstudios = planEstudios;
-    }
-
-    public Materia() {
     }
 
     /**
@@ -66,31 +64,17 @@ public class Materia {
     }
 
     /**
-     * @return the horasPracticas
+     * @return the horas
      */
-    public int getHorasPracticas() {
-        return horasPracticas;
+    public int getHoras() {
+        return horas;
     }
 
     /**
-     * @param horasPracticas the horasPracticas to set
+     * @param horas the horas to set
      */
-    public void setHorasPracticas(int horasPracticas) {
-        this.horasPracticas = horasPracticas;
-    }
-
-    /**
-     * @return the horasTeoricas
-     */
-    public int getHorasTeoricas() {
-        return horasTeoricas;
-    }
-
-    /**
-     * @param horasTeoricas the horasTeoricas to set
-     */
-    public void setHorasTeoricas(int horasTeoricas) {
-        this.horasTeoricas = horasTeoricas;
+    public void setHoras(int horas) {
+        this.horas = horas;
     }
 
     /**
@@ -176,9 +160,6 @@ public class Materia {
     public void setPlanEstudios(int planEstudios) {
         this.planEstudios = planEstudios;
     }
-    
-    
-   
-   
+
    
 }

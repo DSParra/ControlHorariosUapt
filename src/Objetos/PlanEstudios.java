@@ -10,11 +10,11 @@ package Objetos;
  * @author DELL
  */
 public class PlanEstudios {
-    private int idPlan;
+    private String idPlan;
     private String planEstudios;
     private String claveCarrera;
 
-    public PlanEstudios(int idPlan, String planEstudios, String claveCarrera) {
+    public PlanEstudios(String idPlan, String planEstudios, String claveCarrera) {
         this.idPlan = idPlan;
         this.planEstudios = planEstudios;
         this.claveCarrera = claveCarrera;
@@ -26,14 +26,14 @@ public class PlanEstudios {
     /**
      * @return the idPlan
      */
-    public int getIdPlan() {
+    public String getIdPlan() {
         return idPlan;
     }
 
     /**
      * @param idPlan the idPlan to set
      */
-    public void setIdPlan(int idPlan) {
+    public void setIdPlan(String idPlan) {
         this.idPlan = idPlan;
     }
 

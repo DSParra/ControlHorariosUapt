@@ -16,6 +16,7 @@ import cjb.ci.Mensaje;
 import cjb.ci.Validaciones;
 import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VentanaPlanEstudios extends javax.swing.JFrame
 {
-
+    
     int id = 0;
     private Boolean edicion = true;
     private DefaultTableModel modelo;
@@ -349,9 +350,9 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
     }//GEN-LAST:event_jTIdPlanActionPerformed
 
     private void jBAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAceptarActionPerformed
-        edicion();
-        if (edicion)
+        if (!edicion)
         {
+            edicion();
             jBAceptar.setText("Aceptar");
             CtrlInterfaz.limpia(jTIdPlan, jTPlan);
             CtrlInterfaz.habilita(true, jTIdPlan, jTPlan, jBCancelar);
@@ -359,14 +360,20 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
             CtrlInterfaz.selecciona(jTIdPlan);
         } else
         {
-            jBAceptar.setText("Nuevo");
-//            int valor = (Integer.parseInt(jTIdPeriodo.getText()));
-            PlanEstudios plan = new PlanEstudios(Integer.parseInt(jTIdPlan.getText()), jTPlan.getText(), buscaLic(null, jCLicenciatura.getSelectedItem().toString()));
-            ConsultasObjetos.inserta(plan, ConectarBase.conectado(), "plan_estudios");
-            CtrlInterfaz.habilita(false, jTIdPlan, jTPlan, jBCancelar);
-            CtrlInterfaz.habilita(true, jBModificar, jBEliminar);
-            actualizarTabla();
-            jBCancelarActionPerformed(null);
+            PlanEstudios plan = new PlanEstudios(jTIdPlan.getText(), jTPlan.getText(), buscaLic(null, jCLicenciatura.getSelectedItem().toString()));
+            String mensaje = Controlador.ControladorPlanes.insertarPlan(plan);
+            if (mensaje.equals("operacion exitosa"))
+            {
+                jBAceptar.setText("Nuevo");
+                CtrlInterfaz.habilita(false, jTIdPlan, jTPlan, jBCancelar);
+                CtrlInterfaz.habilita(true, jBModificar, jBEliminar);
+                actualizarTabla();
+                edicion();
+                jBCancelarActionPerformed(null);
+            } else
+            {
+                JOptionPane.showMessageDialog(rootPane, mensaje);
+            }
         }
     }//GEN-LAST:event_jBAceptarActionPerformed
 
@@ -400,21 +407,29 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
             Mensaje.error(this, "NO HA SELECCIONADO NINGUN REGISTRO");
         } else
         {
-            edicion();
-            if (edicion)
+            if (!edicion)
             {
+                edicion();
                 jBModificar.setText("Aceptar");
                 CtrlInterfaz.habilita(true, jTPlan, jBModificar);
                 CtrlInterfaz.habilita(false, jBEliminar, jBAceptar, jTIdPlan);
-
+                
             } else
             {
-                jBModificar.setText("Modificar");
-                PlanEstudios plan = new PlanEstudios((Integer.parseInt(jTIdPlan.getText())), jTPlan.getText(), buscaLic(null, jCLicenciatura.getSelectedItem().toString()));
-                ConsultasObjetos.Modifica(plan, ConectarBase.conectado(), "plan_estudios", jTIdPlan.getText());
-                CtrlInterfaz.habilita(false, jTIdPlan, jBAceptar);
-                CtrlInterfaz.habilita(true, jBEliminar, jBAceptar, jTPlan);
-                actualizarTabla();
+                PlanEstudios plan = new PlanEstudios(jTIdPlan.getText(), jTPlan.getText(), buscaLic(null, jCLicenciatura.getSelectedItem().toString()));
+                String mensaje = Controlador.ControladorPlanes.modificarPlan(plan, (String) TablaPeriodos.getValueAt(TablaPeriodos.getSelectedRow(), 0));
+                if (mensaje.equals("operacion exitosa"))
+                {
+                    jBModificar.setText("Modificar");
+                    CtrlInterfaz.habilita(false, jTIdPlan, jBAceptar);
+                    CtrlInterfaz.habilita(true, jBEliminar, jBAceptar, jTPlan);
+                    actualizarTabla();
+                    edicion();
+                    jBCancelarActionPerformed(null);
+                } else
+                {
+                    JOptionPane.showMessageDialog(rootPane, mensaje);
+                }
             }
         }
     }//GEN-LAST:event_jBModificarActionPerformed
@@ -422,9 +437,14 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
         if (Mensaje.pregunta(this, "¿En realidad quiere eliminar el periodo " + jTPlan.getText() + "?") == 0)
         {
-            PlanEstudios plan = new PlanEstudios((Integer.parseInt(jTIdPlan.getText())), jTPlan.getText(), buscaLic(null, jCLicenciatura.getSelectedItem().toString()));
-            ConsultasObjetos.elimina("plan_estudios", "id_plan_estudios", null, (Integer.parseInt(jTIdPlan.getText())),  ConectarBase.conectado());
-            actualizarTabla();
+            String mensaje = Controlador.ControladorPlanes.eliminarPlan(jTIdPlan.getText());
+            if (mensaje.endsWith("operacion exitosa"))
+            {
+                actualizarTabla();
+            } else
+            {
+                JOptionPane.showMessageDialog(rootPane, mensaje);
+            }
         }
     }//GEN-LAST:event_jBEliminarActionPerformed
 
@@ -609,7 +629,7 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
             }
         }
     }
-
+    
     private void edicion() {
         if (edicion)
         {
@@ -619,7 +639,7 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
             edicion = true;
         }
     }
-
+    
     private void cancelar() {
         edicion();
         CtrlInterfaz.limpia(jTIdPlan, jTPlan);
@@ -628,7 +648,7 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
         jBAceptar.setText("Nuevo");
         jBModificar.setText("Modificar");
     }
-
+    
     public String buscaLic(String id, String licenciatura) {
         if (licenciatura != null)
         {
@@ -640,10 +660,9 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
                     return lic.getIdLicenciatura();
                 }
             }
-        }
-        else
+        } else
         {
-            for(Object l: lics)
+            for (Object l : lics)
             {
                 Licenciatura lic = (Licenciatura) l;
                 if (lic.getIdLicenciatura().equals(id))
@@ -655,12 +674,11 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
         return null;
     }
     
-    public void llenaComboLic()
-    {
+    public void llenaComboLic() {
         jCLicenciatura.removeAllItems();
         for (int i = 0; i < lics.size(); i++)
         {
-            jCLicenciatura.addItem(((Licenciatura)lics.get(i)).getLicenciatura());
+            jCLicenciatura.addItem(((Licenciatura) lics.get(i)).getLicenciatura());
         }
     }
 }
