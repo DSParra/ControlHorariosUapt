@@ -119,14 +119,6 @@ public class ControladorCoordnadores
         {
             mensaje += "Contraseña vacía, llene el campo Contraseña";
         }
-        else if (us.getPreguntaSeguridad()== null || us.getPreguntaSeguridad().equals(""))
-        {
-            mensaje += "Pregunta vacía, llene el campo Pregunta";
-        }
-        else if (us.getRespuestaSeguridad()== null || us.getRespuestaSeguridad().equals(""))
-        {
-            mensaje += "Respuesta vacía, llene el campo Respuesta";
-        }
         return mensaje;
     }
     

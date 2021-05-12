@@ -66,17 +66,13 @@ public class ControladorLicenciatura
             Object idLicenciatura, licenciatura, rfcCoordinador;
             idLicenciatura = ConsultasObjetos.consultaUnica("licenciatura", "id_licenciatura", lic.getIdLicenciatura(), ConectarBase.conectado());
             licenciatura = ConsultasObjetos.consultaUnica("licenciatura", "nombre", lic.getLicenciatura(), ConectarBase.conectado());
-            rfcCoordinador = ConsultasObjetos.consultaUnica("licenciatura", "rfc_coordinador", lic.getRfcCordinador(), ConectarBase.conectado());
             if (idLicenciatura != null)
             {
                 return "ID de licenciatura repetido, ingrese uno diferente";
             } else if (licenciatura != null)
             {
                 return "Nombre de licenciatura ya ingresado, ingrese uno diferente";
-            } else if (rfcCoordinador != null)
-            {
-                return "Este coordinador ya fue asignado a una licenciatura, intente con otro coordinador";
-            } else
+            }  else
             {
                 Boolean registro = ConsultasObjetos.inserta(lic, ConectarBase.conectado(), "licenciatura");
                 if (registro)
@@ -100,10 +96,7 @@ public class ControladorLicenciatura
         } else if (lic.getLicenciatura() == null || lic.getLicenciatura().equals(""))
         {
             mensaje += "Nombre de licenciatura vacio, por favor inserte un nombre";
-        } else if (lic.getRfcCordinador() == null || lic.getRfcCordinador().equals(""))
-        {
-            mensaje += "Coordinador no asignado";
-        }
+        } 
         return mensaje;
     }
 
@@ -135,11 +128,6 @@ public class ControladorLicenciatura
                     else if (l.getLicenciatura().equals(((Licenciatura)bdlics.get(i)).getLicenciatura()))
                     {
                         return "Nombre de " + l.getLicenciatura() + " repetido";
-                    }
-                    else if (l.getRfcCordinador().equals(((Licenciatura)bdlics.get(i)).getRfcCordinador()))
-                    {
-                        return "Cordinador de " + l.getLicenciatura() +" repetido";
-                        
                     }
                 }
             }

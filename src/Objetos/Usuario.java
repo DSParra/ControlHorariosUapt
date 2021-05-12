@@ -19,8 +19,7 @@ public class Usuario {
     private String rfc;
     private String usuario;
     private String contra;
-    private String preguntaSeguridad;
-    private String respuestaSeguridad;
+    private String licenciatura;
     private int nivel;
     
     private PreparedStatement ps;
@@ -61,13 +60,12 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String idUsuario, String rfc, String usuario, String contra, String preguntaSeguridad, String respuestaSeguridad) {
+    public Usuario(String idUsuario, String rfc, String usuario, String contra, String licenciatura) {
         this.idUsuario = idUsuario;
         this.rfc = rfc;
         this.usuario = usuario;
         this.contra = contra;
-        this.preguntaSeguridad = preguntaSeguridad;
-        this.respuestaSeguridad = respuestaSeguridad;
+        this.licenciatura = licenciatura;
     }
 
    
@@ -131,30 +129,18 @@ public class Usuario {
     /**
      * @return the preguntaSeguridad
      */
-    public String getPreguntaSeguridad() {
-        return preguntaSeguridad;
+    public String getLicenciatura() {
+        return licenciatura;
     }
 
     /**
      * @param preguntaSeguridad the preguntaSeguridad to set
      */
-    public void setPreguntaSeguridad(String preguntaSeguridad) {
-        this.preguntaSeguridad = preguntaSeguridad;
+    public void setLicenciatura(String licenciatura) {
+        this.licenciatura = licenciatura;
     }
 
-    /**
-     * @return the respuestaSeguridad
-     */
-    public String getRespuestaSeguridad() {
-        return respuestaSeguridad;
-    }
 
-    /**
-     * @param respuestaSeguridad the respuestaSeguridad to set
-     */
-    public void setRespuestaSeguridad(String respuestaSeguridad) {
-        this.respuestaSeguridad = respuestaSeguridad;
-    }
 
     /**
      * @return the ps

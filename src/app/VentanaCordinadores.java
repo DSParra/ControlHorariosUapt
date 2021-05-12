@@ -9,6 +9,7 @@ import Clases.ConectarBase;
 import Clases.ConsultasObjetos;
 import Clases.Valida;
 import Controlador.ControladorCoordnadores;
+import Objetos.Licenciatura;
 import Objetos.Profesor;
 import Objetos.Usuario;
 import cjb.ci.CtrlInterfaz;
@@ -40,6 +41,7 @@ public class VentanaCordinadores extends javax.swing.JFrame
     private DefaultTableModel modelo;
     private ArrayList<Object> usuarios = new ArrayList<>();
     private ArrayList<Object> profes = new ArrayList<>();
+    private ArrayList<Object> lics = new ArrayList<>();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,11 +64,9 @@ public class VentanaCordinadores extends javax.swing.JFrame
         jLabel7 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        txtRespuesta = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        txtPregunta = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         ComboRFC = new javax.swing.JComboBox<>();
+        JCLicenciatura = new javax.swing.JComboBox<>();
         jBAceptar = new javax.swing.JButton();
         jBCancelar = new javax.swing.JButton();
         jBRegresar = new javax.swing.JButton();
@@ -166,50 +166,19 @@ public class VentanaCordinadores extends javax.swing.JFrame
         jLabel8.setForeground(new java.awt.Color(254, 254, 254));
         jLabel8.setText("USUARIO");
 
-        txtRespuesta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRespuestaActionPerformed(evt);
-            }
-        });
-        txtRespuesta.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtRespuestaKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtRespuestaKeyReleased(evt);
-            }
-        });
-
-        jLabel9.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel9.setText("RESPUESTA DE SEGURIDAD");
-
-        txtPregunta.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtPreguntaFocusLost(evt);
-            }
-        });
-        txtPregunta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPreguntaActionPerformed(evt);
-            }
-        });
-        txtPregunta.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtPreguntaKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtPreguntaKeyReleased(evt);
-            }
-        });
-
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel10.setText("PREGUNTA DE SEGURIDAD");
+        jLabel10.setText("LICENCIATURA");
 
         ComboRFC.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 ComboRFCKeyPressed(evt);
+            }
+        });
+
+        JCLicenciatura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JCLicenciaturaKeyPressed(evt);
             }
         });
 
@@ -224,14 +193,12 @@ public class VentanaCordinadores extends javax.swing.JFrame
                     .addComponent(jLabel6)
                     .addComponent(jLabel8)
                     .addComponent(jLabel7)
-                    .addComponent(txtPregunta)
                     .addComponent(jLabel10)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ComboRFC, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ComboRFC, 0, 238, Short.MAX_VALUE)
                     .addComponent(txtUsuario)
                     .addComponent(txtContrasenia)
-                    .addComponent(txtRespuesta)
-                    .addComponent(txtID))
+                    .addComponent(txtID)
+                    .addComponent(JCLicenciatura, 0, 238, Short.MAX_VALUE))
                 .addGap(27, 27, 27))
         );
         jPanel1Layout.setVerticalGroup(
@@ -256,11 +223,7 @@ public class VentanaCordinadores extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtRespuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JCLicenciatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -330,15 +293,15 @@ public class VentanaCordinadores extends javax.swing.JFrame
         TablaUsuarios.setForeground(new java.awt.Color(254, 254, 254));
         TablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "RFC", "Usuario", "Contrasenia", "Pregunta", "Respuesta"
+                "ID", "RFC", "Usuario", "Contrasenia", "licenciatura"
             }
         ));
         TablaUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -452,21 +415,23 @@ public class VentanaCordinadores extends javax.swing.JFrame
         {
             edicion();
             jBAceptar.setText("Aceptar");
-            CtrlInterfaz.limpia(txtID, txtUsuario, txtContrasenia, txtPregunta, txtRespuesta);
-            CtrlInterfaz.habilita(true, txtID, ComboRFC, txtUsuario, txtContrasenia, txtPregunta, txtRespuesta, jBCancelar);
+            CtrlInterfaz.limpia(txtID, txtUsuario, txtContrasenia);
+            CtrlInterfaz.habilita(true, txtID, ComboRFC, txtUsuario, txtContrasenia, JCLicenciatura, jBCancelar);
             CtrlInterfaz.habilita(false, jBEliminar, jBModificar);
             CtrlInterfaz.selecciona(txtID);
             llenaComboProfesores();
         } else
         {
             System.out.println("RFC retornado" + buscaProfesor(null, (String) ComboRFC.getSelectedItem()));
-            Usuario us = new Usuario(txtID.getText(), buscaProfesor(null, (String) ComboRFC.getSelectedItem()), txtUsuario.getText(), txtContrasenia.getText(), txtPregunta.getText(), txtRespuesta.getText());
+            System.out.println("RFC retornado" + buscarLic(null, (String) JCLicenciatura.getSelectedItem()));
+            Usuario us = new Usuario(txtID.getText(), buscaProfesor(null, ComboRFC.getSelectedItem().toString()), txtUsuario.getText(), txtContrasenia.getText(), buscarLic(null, JCLicenciatura.getSelectedItem().toString()));
             System.out.println("item " + (String) ComboRFC.getSelectedItem());
+            System.out.println("item " + (String) JCLicenciatura.getSelectedItem());
             String mensaje = Controlador.ControladorCoordnadores.insertarCoordinador(us);
             if (mensaje.equals("operacion exitosa"))
             {
                 jBAceptar.setText("Nuevo");
-                CtrlInterfaz.habilita(false, txtID, ComboRFC, txtUsuario, txtContrasenia, txtPregunta, txtRespuesta);
+                CtrlInterfaz.habilita(false, txtID, ComboRFC, txtUsuario, txtContrasenia, JCLicenciatura);
                 CtrlInterfaz.habilita(true, jBEliminar, jBModificar);
                 llenaComboProfesores();
                 actualizaTabla();
@@ -495,8 +460,7 @@ public class VentanaCordinadores extends javax.swing.JFrame
             if (mensaje.equals("operacion exitosa"))
             {
                 actualizaTabla();
-            }
-            else
+            } else
             {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
             }
@@ -518,23 +482,22 @@ public class VentanaCordinadores extends javax.swing.JFrame
             {
                 edicion();
                 jBModificar.setText("Aceptar");
-                CtrlInterfaz.habilita(true, txtID, txtUsuario, ComboRFC, txtContrasenia, txtPregunta, txtRespuesta, jBCancelar);
+                CtrlInterfaz.habilita(true, txtID, txtUsuario, ComboRFC, txtContrasenia, JCLicenciatura, jBCancelar);
                 CtrlInterfaz.habilita(false, jBEliminar, jBAceptar);
             } else
             {
-                Usuario us = new Usuario(txtID.getText(), buscaProfesor(null, (String) ComboRFC.getSelectedItem()), txtUsuario.getText(), txtContrasenia.getText(), txtPregunta.getText(), txtRespuesta.getText());
+                Usuario us = new Usuario(txtID.getText(), buscaProfesor(null, (String) ComboRFC.getSelectedItem()), txtUsuario.getText(), txtContrasenia.getText(), buscarLic(null, JCLicenciatura.getSelectedItem().toString()));
                 ConsultasObjetos.Modifica(us, ConectarBase.conectado(), "usuarios", txtID.getText());
                 String mensaje = ControladorCoordnadores.modifcaCoordinador(us, (String) TablaUsuarios.getValueAt(TablaUsuarios.getSelectedRow(), 1));
                 if (mensaje.equals("operacion exitosa"))
                 {
                     jBModificar.setText("Modificar");
-                    CtrlInterfaz.habilita(false, txtID, ComboRFC, txtUsuario, txtContrasenia, txtPregunta, txtRespuesta);
+                    CtrlInterfaz.habilita(false, txtID, ComboRFC, txtUsuario, txtContrasenia, JCLicenciatura);
                     CtrlInterfaz.habilita(true, jBEliminar, jBModificar);
                     actualizaTabla();
                     edicion();
                     jBCancelarActionPerformed(null);
-                }
-                else
+                } else
                 {
                     JOptionPane.showMessageDialog(rootPane, mensaje);
                 }
@@ -559,7 +522,7 @@ public class VentanaCordinadores extends javax.swing.JFrame
     }//GEN-LAST:event_txtContraseniaActionPerformed
 
     private void txtContraseniaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseniaKeyPressed
-        Validaciones.enter(this, evt, txtPregunta);
+        Validaciones.enter(this, evt, JCLicenciatura);
     }//GEN-LAST:event_txtContraseniaKeyPressed
 
     private void txtContraseniaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseniaKeyReleased
@@ -578,34 +541,11 @@ public class VentanaCordinadores extends javax.swing.JFrame
 
     }//GEN-LAST:event_txtUsuarioKeyReleased
 
-    private void txtRespuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRespuestaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRespuestaActionPerformed
-
-    private void txtRespuestaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRespuestaKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRespuestaKeyPressed
-
-    private void txtRespuestaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRespuestaKeyReleased
-        Valida.convertirAMayusculas(txtRespuesta);
-    }//GEN-LAST:event_txtRespuestaKeyReleased
-
-    private void txtPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPreguntaActionPerformed
-
-    }//GEN-LAST:event_txtPreguntaActionPerformed
-
-    private void txtPreguntaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPreguntaKeyPressed
-        Validaciones.enter(this, evt, txtRespuesta);
-    }//GEN-LAST:event_txtPreguntaKeyPressed
-
-    private void txtPreguntaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPreguntaKeyReleased
-        Valida.convertirAMayusculas(txtPregunta);
-    }//GEN-LAST:event_txtPreguntaKeyReleased
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         cancelar();
         actualizaTabla();
         llenaComboCordinadores();
+        llenaComboLic();
     }//GEN-LAST:event_formWindowOpened
 
     private void ComboRFCKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ComboRFCKeyPressed
@@ -617,8 +557,7 @@ public class VentanaCordinadores extends javax.swing.JFrame
         ComboRFC.setSelectedIndex(buscarcombo((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 1)));
         txtUsuario.setText((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 2));
         txtContrasenia.setText((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 3));
-        txtPregunta.setText((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 4));
-        txtRespuesta.setText((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 5));
+        JCLicenciatura.setSelectedIndex(buscarCombo((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 4)));
         System.out.println("Recuperado " + buscarcombo((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 1)));
     }//GEN-LAST:event_TablaUsuariosMouseClicked
 
@@ -637,9 +576,9 @@ public class VentanaCordinadores extends javax.swing.JFrame
         //Valida.convertirAMayusculas(txtContrasenia);
     }//GEN-LAST:event_txtContraseniaFocusLost
 
-    private void txtPreguntaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPreguntaFocusLost
+    private void JCLicenciaturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JCLicenciaturaKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPreguntaFocusLost
+    }//GEN-LAST:event_JCLicenciaturaKeyPressed
 
     /**
      * @param args the command line arguments
@@ -686,6 +625,7 @@ public class VentanaCordinadores extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComboRFC;
+    private javax.swing.JComboBox<String> JCLicenciatura;
     private javax.swing.JTable TablaUsuarios;
     private javax.swing.JButton btnAgregar2;
     private javax.swing.JButton btnAgregar3;
@@ -704,17 +644,15 @@ public class VentanaCordinadores extends javax.swing.JFrame
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtContrasenia;
     private javax.swing.JTextField txtID;
-    private javax.swing.JTextField txtPregunta;
-    private javax.swing.JTextField txtRespuesta;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
     public void actualizaTabla() {
+        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, ConectarBase.conectado());
         profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", ConectarBase.conectado());
         modelo = (DefaultTableModel) TablaUsuarios.getModel();
         ArrayList<Object> user = new ArrayList<>();
@@ -730,7 +668,7 @@ public class VentanaCordinadores extends javax.swing.JFrame
                 Usuario us = (Usuario) u;
                 modelo.addRow(new Object[]
                 {
-                    us.getIdUsuario(), us.getRfc(), us.getUsuario(), us.getContra(), us.getPreguntaSeguridad(), us.getRespuestaSeguridad()
+                    us.getIdUsuario(), us.getRfc(), us.getUsuario(), us.getContra(), buscarLic(us.getLicenciatura(), null)
                 });
             }
         }
@@ -802,9 +740,54 @@ public class VentanaCordinadores extends javax.swing.JFrame
     private void cancelar() {
         edicion();
         CtrlInterfaz.limpia(txtID);
-        CtrlInterfaz.habilita(false, txtID, ComboRFC, txtUsuario, txtContrasenia, txtPregunta, txtPregunta, txtRespuesta, jBCancelar);
+        CtrlInterfaz.habilita(false, txtID, ComboRFC, txtUsuario, txtContrasenia, jBCancelar);
         CtrlInterfaz.habilita(true, jBAceptar, jBModificar, jBEliminar);
         jBAceptar.setText("Nuevo");
         jBModificar.setText("Modificar");
     }
+
+    public void llenaComboLic() {
+        JCLicenciatura.removeAllItems();
+        for (int i = 0; i < lics.size(); i++)
+        {
+            JCLicenciatura.addItem(((Licenciatura) lics.get(i)).getLicenciatura());
+        }
+    }
+
+    public String buscarLic(String id, String licenciatura) {
+       if (licenciatura != null)
+        {
+            for (Object l : lics)
+            {
+                Licenciatura lic = (Licenciatura) l;
+                if ((lic.getLicenciatura()).equals(licenciatura))
+                {
+                    return lic.getIdLicenciatura();
+                }
+            }
+        } else
+        {
+            for (Object l : lics)
+            {
+                Licenciatura lic = (Licenciatura) l;
+                if (lic.getIdLicenciatura().equals(id))
+                {
+                    return lic.getLicenciatura();
+                }
+            }
+        }
+        return null;
+    }
+
+    private int buscarCombo(String texto) {
+        for (int i = 0; i < JCLicenciatura.getItemCount(); i++)
+        {
+            if (texto.equals(JCLicenciatura.getItemAt((i))))
+            {
+                return i;
+            }
+        }
+        return 0;
+    }
+
 }

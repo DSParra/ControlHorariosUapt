@@ -12,12 +12,10 @@ package Objetos;
 public class Licenciatura {
     private String CodigoLicenciatura;
     private String licenciatura;
-    private String rfcCordinador;
 
-    public Licenciatura(String idLicenciatura, String licenciatura, String rfcCordinador) {
+    public Licenciatura(String idLicenciatura, String licenciatura) {
         this.CodigoLicenciatura = idLicenciatura;
         this.licenciatura = licenciatura;
-        this.rfcCordinador = rfcCordinador;
     }
 
     public Licenciatura() {
@@ -49,23 +47,6 @@ public class Licenciatura {
      */
     public void setLicenciatura(String licenciatura) {
         this.licenciatura = licenciatura;
-    }
-
-    /**
-     * @return the rfcCordinador
-     */
-    public String getRfcCordinador() {
-        return rfcCordinador;
-    }
-
-    /**
-     * @param rfcCordinador the rfcCordinador to set
-     */
-    public void setRfcCordinador(String rfcCordinador) {
-        this.rfcCordinador = rfcCordinador;
-    }
-    
-    
-    
+    }    
     
 }

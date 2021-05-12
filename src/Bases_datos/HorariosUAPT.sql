@@ -15,26 +15,24 @@ CREATE TABLE profesores(
                     UNIQUE(correo)
                     );
 
+CREATE TABLE licenciatura(
+                    id_licenciatura VARCHAR(30) NOT NULL,
+                    nombre VARCHAR(60) NOT NULL, 
+                    PRIMARY KEY (id_licenciatura),
+                    UNIQUE(nombre)
+                    );
+
 CREATE TABLE usuarios(
                     id_usuario VARCHAR(60),
                     rfc VARCHAR(60) NOT NULL,
                     usuario VARCHAR(60) NOT NULL,
                     contrasenia VARCHAR(60) NOT NULL,
-                    pregunta_seguridad VARCHAR(250) NOT NULL,
-                    respuesta_seguridad VARCHAR(250) NOT NULL,
+                    id_licenciatura VARCHAR(30),
                     nivel VARCHAR(60) NOT NULL DEFAULT "profesor",
                     UNIQUE(rfc,usuario),
                     PRIMARY KEY (id_usuario),
-                    FOREIGN KEY (rfc) REFERENCES profesores(rfc)
-                    );
-
-CREATE TABLE licenciatura(
-                    id_licenciatura VARCHAR(30) NOT NULL,
-                    nombre VARCHAR(60) NOT NULL,
-                    rfc_coordinador varchar(60) NOT NULL, 
-                    PRIMARY KEY (id_licenciatura),
-                    FOREIGN KEY (rfc_coordinador) REFERENCES profesores(rfc),
-                    UNIQUE(nombre)
+                    FOREIGN KEY (rfc) REFERENCES profesores(rfc),
+                    FOREIGN KEY (id_licenciatura) REFERENCES licenciatura(id_licenciatura)
                     );
 
 CREATE TABLE plan_estudios(
@@ -97,5 +95,5 @@ CREATE TABLE horarios(
 INSERT INTO profesores(rfc,apellido_paterno, apellido_materno, nombres, grado_academico, correo, telefono, nivel) 
 VALUES ("ADMIN001", "ADMIN", "ADMIN", "ADMIN", "ADMIN", "admin@gmail.com", 000, "usuario");
 
-INSERT INTO usuarios(id_usuario,rfc, usuario, contrasenia, pregunta_seguridad, respuesta_seguridad, nivel)
-VALUES (0111, "ADMIN001", "admin@gmail.com", "admin", "QUIEN ES EL ADMIN", "ADMINISTRADOR DE SISTEMA", "usuario");
+INSERT INTO usuarios(id_usuario,rfc, usuario, contrasenia, nivel)
+VALUES (0111, "ADMIN001", "admin@gmail.com", "admin", "usuario");

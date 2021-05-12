@@ -61,8 +61,6 @@ public class VentanaLicenciatura extends javax.swing.JFrame
         jLabel5 = new javax.swing.JLabel();
         jLTituloUniversidad = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        JCCordinador = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
         txtnombre = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtcodigolic = new javax.swing.JTextField();
@@ -178,12 +176,6 @@ public class VentanaLicenciatura extends javax.swing.JFrame
 
         jPanel1.setBackground(new java.awt.Color(25, 83, 0));
 
-        JCCordinador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel7.setText("COORDINADOR");
-
         txtnombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtnombreFocusLost(evt);
@@ -237,17 +229,15 @@ public class VentanaLicenciatura extends javax.swing.JFrame
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel8)
-                    .addComponent(txtcodigolic)
+                    .addComponent(txtcodigolic, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
                     .addComponent(jLabel6)
-                    .addComponent(txtnombre)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JCCordinador, 0, 211, Short.MAX_VALUE))
+                    .addComponent(txtnombre))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(57, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtcodigolic, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -255,11 +245,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel7)
-                .addGap(18, 18, 18)
-                .addComponent(JCCordinador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(133, 133, 133))
+                .addGap(219, 219, 219))
         );
 
         btnAgregar3.setBackground(new java.awt.Color(102, 102, 0));
@@ -368,21 +354,19 @@ public class VentanaLicenciatura extends javax.swing.JFrame
             edicion();
             btnAgregar.setText("Aceptar");
             CtrlInterfaz.limpia(txtnombre, txtcodigolic);
-            CtrlInterfaz.habilita(true, txtnombre, JCCordinador, btncancelar, txtcodigolic);
+            CtrlInterfaz.habilita(true, txtnombre, btncancelar, txtcodigolic);
             CtrlInterfaz.habilita(false, btnmodifica, btnelmina);
             CtrlInterfaz.selecciona(txtcodigolic);
-            llenaComboProfesores();
+            //llenaComboProfesores();
         } else
         {
-            System.out.println("Rfc Retornado" + buscaProfesor(null, (String) JCCordinador.getSelectedItem()));
-            Licenciatura lic = new Licenciatura(txtcodigolic.getText(), txtnombre.getText(), buscaProfesor(null, (String) JCCordinador.getSelectedItem()));
-            System.out.println("Item" + " " + (String) JCCordinador.getSelectedItem());
+            Licenciatura lic = new Licenciatura(txtcodigolic.getText(), txtnombre.getText());
             String mensaje = Controlador.ControladorLicenciatura.insertaLicenciatura(lic);
             if (mensaje.equals("operacion exitosa"))
             {
                 btnAgregar.setText("Nuevo");
                 CtrlInterfaz.limpia(txtcodigolic, txtnombre);
-                CtrlInterfaz.habilita(false, txtnombre, JCCordinador, txtcodigolic, btncancelar);
+                CtrlInterfaz.habilita(false, txtnombre, txtcodigolic, btncancelar);
                 CtrlInterfaz.habilita(true, btnelmina, btnmodifica);
                 //llenaComboCordinadores();
                 actualizaTabla();
@@ -422,7 +406,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         cancelar();
         actualizaTabla();
-        llenaComboCordinadores();
+//        llenaComboCordinadores();
     }//GEN-LAST:event_formWindowOpened
 
     private void btnmodificaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificaActionPerformed
@@ -435,21 +419,20 @@ public class VentanaLicenciatura extends javax.swing.JFrame
             {
                 edicion();
                 btnmodifica.setText("Aceptar");
-                CtrlInterfaz.habilita(true, txtnombre, JCCordinador, btncancelar, txtcodigolic);
+                CtrlInterfaz.habilita(true, txtnombre, btncancelar, txtcodigolic);
                 CtrlInterfaz.habilita(false, btnelmina, btnAgregar);
             } else
             {
-                Licenciatura lic = new Licenciatura(txtcodigolic.getText(), txtnombre.getText(), buscaProfesor(null, (String) JCCordinador.getSelectedItem()));
+                Licenciatura lic = new Licenciatura(txtcodigolic.getText(), txtnombre.getText());
                 String mensaje = Controlador.ControladorLicenciatura.modificaLicenciatura(lic, (String) tablaLicenciatura.getValueAt(tablaLicenciatura.getSelectedRow(), 0));
                 if (mensaje.equals("operacion exitosa"))
                 {
                     btnAgregar.setText("Modificar");
                     CtrlInterfaz.limpia(txtcodigolic, txtnombre);
-                    CtrlInterfaz.habilita(false, txtnombre, JCCordinador, btncancelar, txtcodigolic);
+                    CtrlInterfaz.habilita(false, txtnombre, btncancelar, txtcodigolic);
                     CtrlInterfaz.habilita(true, btnelmina, btnmodifica);
                     actualizaTabla();
                     edicion();
-                    btncancelarActionPerformed(null);
                 }
                 else
                 {
@@ -467,8 +450,6 @@ public class VentanaLicenciatura extends javax.swing.JFrame
     private void tablaLicenciaturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaLicenciaturaMouseClicked
         txtcodigolic.setText((String) modelo.getValueAt(tablaLicenciatura.getSelectedRow(), 0));
         txtnombre.setText((String) modelo.getValueAt(tablaLicenciatura.getSelectedRow(), 1));
-        JCCordinador.setSelectedIndex(buscarcombo((String) modelo.getValueAt(tablaLicenciatura.getSelectedRow(), 2)));
-        System.out.println("retornando " + buscarcombo((String) modelo.getValueAt(tablaLicenciatura.getSelectedRow(), 2)));
     }//GEN-LAST:event_tablaLicenciaturaMouseClicked
 
     private void txtrfcKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtrfcKeyPressed
@@ -484,7 +465,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame
     }//GEN-LAST:event_txtapellidoMKeyPressed
 
     private void txtnombresKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombresKeyPressed
-        enter(this, evt, JCCordinador);
+       
     }//GEN-LAST:event_txtnombresKeyPressed
 
     private void txtgradoAcademicoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtgradoAcademicoKeyPressed
@@ -520,7 +501,6 @@ public class VentanaLicenciatura extends javax.swing.JFrame
     }//GEN-LAST:event_txtnombreKeyReleased
 
     private void txtnombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyPressed
-        enter(this, evt, JCCordinador);
     }//GEN-LAST:event_txtnombreKeyPressed
 
     private void txtnombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyTyped
@@ -542,7 +522,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame
     private void cancelar() {
         edicion();
         CtrlInterfaz.limpia(txtnombre);
-        CtrlInterfaz.habilita(false, txtnombre, btncancelar, txtcodigolic, JCCordinador);
+        CtrlInterfaz.habilita(false, txtnombre, btncancelar, txtcodigolic);
         CtrlInterfaz.habilita(true, btnAgregar, btnmodifica, btnelmina);
         btnAgregar.setText("Nuevo");
         btnmodifica.setText("Modificar");
@@ -574,7 +554,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame
                 Licenciatura lic = (Licenciatura) p;
                 modelo.addRow(new Object[]
                 {
-                    lic.getIdLicenciatura(), lic.getLicenciatura(), buscaProfesor(lic.getRfcCordinador(), null)
+                    lic.getIdLicenciatura(), lic.getLicenciatura()
                 });
 
             }
@@ -606,7 +586,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame
         return null;
     }
 
-    public void llenaComboCordinadores() {
+/*    public void llenaComboCordinadores() {
         JCCordinador.removeAllItems();
         for (int i = 0; i < modelo.getRowCount(); i++)
         {
@@ -633,7 +613,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame
         }
         return 0;
     }
-
+*/
     /**
      * @param args the command line arguments
      */
@@ -805,7 +785,6 @@ public class VentanaLicenciatura extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> JCCordinador;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnAgregar2;
     private javax.swing.JButton btnAgregar3;
@@ -819,7 +798,6 @@ public class VentanaLicenciatura extends javax.swing.JFrame
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

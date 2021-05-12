@@ -84,8 +84,7 @@ public class ConsultasObjetos {
                         usuario.setIdUsuario(rs.getString("id_usuario"));
                         usuario.setUsuario(rs.getString("usuario"));
                         usuario.setContra(rs.getString("contrasenia"));
-                        usuario.setPreguntaSeguridad(rs.getString("pregunta_seguridad"));
-                        usuario.setRespuestaSeguridad(rs.getString("respuesta_seguridad"));
+                        usuario.setLicenciatura(rs.getString("id_licenciatura"));
                         usuario.setRfc(rs.getString("rfc"));
                     } else {
                         System.out.println("No se encontro el usuario");
@@ -116,7 +115,6 @@ public class ConsultasObjetos {
                         licen = new Licenciatura();
                         licen.setIdLicenciatura(rs.getString("id_licenciatura"));
                         licen.setLicenciatura(rs.getString("nombre"));
-                        licen.setRfcCordinador(rs.getString("rfc_coordinador"));
                     } else {
                         System.out.println("No se encontro el usuario");
                         //JOptionPane.showMessageDialog(null, "No se encontro la Licenciatura");
@@ -164,13 +162,12 @@ public class ConsultasObjetos {
             switch (tabla) {
                 case "usuarios":
                     Usuario emp = (Usuario) obj;
-                    ps = con.prepareStatement("INSERT INTO usuarios(id_usuario,rfc,usuario, contrasenia,pregunta_seguridad,respuesta_seguridad) VALUES (?,?,?,?,?,?)");//por seguridad
+                    ps = con.prepareStatement("INSERT INTO usuarios(id_usuario,rfc,usuario, contrasenia,id_licenciatura) VALUES (?,?,?,?,?)");//por seguridad
                     ps.setString(1, emp.getIdUsuario());
                     ps.setString(2, emp.getRfc());
                     ps.setString(3, emp.getUsuario());
                     ps.setString(4, emp.getContra());
-                    ps.setString(5, emp.getPreguntaSeguridad());
-                    ps.setString(6, emp.getRespuestaSeguridad());
+                    ps.setString(5, emp.getLicenciatura());
                     //ps.setDate(6, (java.sql.Date) emp.getFecha_alta());  // agregar un registro
                     res = ps.executeUpdate();
 
@@ -189,10 +186,9 @@ public class ConsultasObjetos {
                     break;
                 case "licenciatura":
                     Licenciatura licen = (Licenciatura) obj;
-                    ps = con.prepareStatement("INSERT INTO licenciatura(id_licenciatura,nombre,rfc_coordinador) VALUES (?,?,?)");
+                    ps = con.prepareStatement("INSERT INTO licenciatura(id_licenciatura,nombre) VALUES (?,?)");
                     ps.setString(1, licen.getIdLicenciatura());
                     ps.setString(2, licen.getLicenciatura());
-                    ps.setString(3, licen.getRfcCordinador());
                     res = ps.executeUpdate();
                     break;
                 case "periodo_escolar":
@@ -251,9 +247,7 @@ public class ConsultasObjetos {
                             usuario.setRfc(rs.getString("rfc"));
                             usuario.setUsuario(rs.getString("usuario"));
                             usuario.setContra(rs.getString("contrasenia"));
-                            usuario.setPreguntaSeguridad(rs.getString("pregunta_seguridad"));
-                            usuario.setRespuestaSeguridad(rs.getString("respuesta_seguridad"));
-                            //usuario.setRespuestaSeguridad(rs.getString("nivel"));
+                            usuario.setLicenciatura(rs.getString("id_licenciatura"));
                             objetos.add(usuario);
                         } while (rs.next());
                     } else {
@@ -286,7 +280,6 @@ public class ConsultasObjetos {
                             Licenciatura licen = new Licenciatura();
                             licen.setIdLicenciatura(rs.getString("id_licenciatura"));
                             licen.setLicenciatura(rs.getString("nombre"));
-                            licen.setRfcCordinador(rs.getString("rfc_coordinador"));
                             objetos.add(licen);
                         } while (rs.next());
                     } else {
@@ -361,7 +354,7 @@ public class ConsultasObjetos {
             int res = ps.executeUpdate();
             return (res > 0) ? true : false;
         } catch (Exception e) {
-            System.out.println(e.toString());
+            System.out.println("Aqui imprime "+e.toString());
         }
         return false;
     }
@@ -372,13 +365,12 @@ public class ConsultasObjetos {
             switch (tabla) {
                 case "usuarios":
                     Usuario emp = (Usuario) obj;
-                    ps = con.prepareStatement("UPDATE " + tabla + " SET  rfc=?,usuario=?,contrasenia=?,pregunta_seguridad=?,respuesta_seguridad=? WHERE id_usuario =?");//por seguridad
+                    ps = con.prepareStatement("UPDATE " + tabla + " SET  rfc=?,usuario=?,contrasenia=?, id_licenciatura=? WHERE id_usuario =?");//por seguridad
                     ps.setString(1, emp.getRfc());
                     ps.setString(2, emp.getUsuario());
                     ps.setString(3, emp.getContra());
-                    ps.setString(4, emp.getPreguntaSeguridad());
-                    ps.setString(5, emp.getRespuestaSeguridad());
-                    ps.setString(6, emp.getIdUsuario());
+                    ps.setString(4, emp.getLicenciatura());
+                    ps.setString(5, emp.getIdUsuario());
                     res = ps.executeUpdate();
                     break;
                 case "profesores":
@@ -395,12 +387,11 @@ public class ConsultasObjetos {
                     break;
                 case "licenciatura":
                     Licenciatura lic = (Licenciatura) obj;
-                    ps = con.prepareStatement("UPDATE " + tabla + " SET id_licenciatura=?,nombre=?,rfc_coordinador=? WHERE id_licenciatura=?");
+                    ps = con.prepareStatement("UPDATE " + tabla + " SET id_licenciatura=?,nombre=? WHERE id_licenciatura=?");
                     //System.out.println("Update" + tabla + "id_licenciatura ="+ lic.getIdLicenciatura() "nombre = "+ lic.getRfcCordinador() + "where id_licenciatura = "+id.);
                     ps.setString(1, lic.getIdLicenciatura());
                     ps.setString(2, lic.getLicenciatura());
-                    ps.setString(3, lic.getRfcCordinador());
-                    ps.setString(4, id);
+                    ps.setString(3, id);
                     res = ps.executeUpdate();
                     break;
                 case "periodo_escolar":
