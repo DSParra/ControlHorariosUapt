@@ -18,12 +18,12 @@ public class Materia {
    private String nucleo; 
    private String tipo; 
    private String claveCarrera; 
-   private int planEstudios;
+   private String planEstudios;
 
     public Materia() {
     }
 
-    public Materia(String claveMateria, String unidadAprendizaje, int horas, int creditos, int numeroPeriodo, String nucleo, String tipo, String claveCarrera, int planEstudios) {
+    public Materia(String claveMateria, String unidadAprendizaje, int horas, int creditos, int numeroPeriodo, String nucleo, String tipo, String claveCarrera, String planEstudios) {
         this.claveMateria = claveMateria;
         this.unidadAprendizaje = unidadAprendizaje;
         this.horas = horas;
@@ -150,14 +150,14 @@ public class Materia {
     /**
      * @return the planEstudios
      */
-    public int getPlanEstudios() {
+    public String getPlanEstudios() {
         return planEstudios;
     }
 
     /**
      * @param planEstudios the planEstudios to set
      */
-    public void setPlanEstudios(int planEstudios) {
+    public void setPlanEstudios(String planEstudios) {
         this.planEstudios = planEstudios;
     }
 

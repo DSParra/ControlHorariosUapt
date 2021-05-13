@@ -149,6 +149,27 @@ public class ConsultasObjetos {
                         System.out.println("No se encontro el periodo");
                     }
                     return periodo;
+                case "materia":
+                    Materia materia = null;
+                    rs = ps.executeQuery();
+                    if (rs.next())
+                    {
+                        materia = new Materia();
+                        materia.setClaveMateria(rs.getString("clave_materia"));
+                        materia.setUnidadAprendizaje(rs.getString("unidad_aprendizaje"));
+                        materia.setHoras(rs.getInt("horas"));
+                        materia.setCreditos(rs.getInt("creditos"));
+                        materia.setNumeroPeriodo(rs.getInt("numero_periodo"));
+                        materia.setNucleo(rs.getString("nucleo"));
+                        materia.setTipo(rs.getString("tipo"));
+                        materia.setClaveCarrera(rs.getString("id_licenciatura"));
+                        materia.setPlanEstudios(rs.getString("id_plan_estudios"));
+                    }
+                    else
+                    {
+                        System.out.println("No se encontro la materia");
+                    }
+                    return materia;
             }
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -204,6 +225,20 @@ public class ConsultasObjetos {
                     ps.setString(1, plan.getIdPlan());
                     ps.setString(2, plan.getPlanEstudios());
                     ps.setString(3, plan.getClaveCarrera());
+                    res = ps.executeUpdate();
+                    break;
+                case "materia":
+                    Materia mat = (Materia)obj;
+                    ps =con.prepareStatement("INSERT INTO materia(clave_materia, unidad_aprendizaje, horas, creditos, numero_periodo, nucleo, tipo, id_licenciatura, id_plan_estudios) VALUES (?,?,?,?,?,?,?,?,?)");
+                    ps.setString(1, mat.getClaveMateria());
+                    ps.setString(2, mat.getUnidadAprendizaje());
+                    ps.setInt(3, mat.getHoras());
+                    ps.setInt(4, mat.getCreditos());
+                    ps.setInt(5, mat.getNumeroPeriodo());
+                    ps.setString(6, mat.getNucleo());
+                    ps.setString(7, mat.getTipo());
+                    ps.setString(8, mat.getClaveCarrera());
+                    ps.setString(9, mat.getPlanEstudios());
                     res = ps.executeUpdate();
                     break;
             }
@@ -331,10 +366,11 @@ public class ConsultasObjetos {
                             mat.setNucleo(rs.getString("nucleo"));
                             mat.setTipo(rs.getString("tipo"));
                             mat.setClaveCarrera(rs.getString("id_licenciatura"));
-                            mat.setPlanEstudios(rs.getInt("id_plan_estudios"));
+                            mat.setPlanEstudios(rs.getString("id_plan_estudios"));
                             objetos.add(mat);
                         } while (rs.next());
                     }
+                    return objetos;
             }
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -409,6 +445,20 @@ public class ConsultasObjetos {
                     ps.setString(1, plan.getPlanEstudios());
                     ps.setString(2, plan.getClaveCarrera());
                     ps.setString(3, id);
+                    res = ps.executeUpdate();
+                    break;
+                case "materia":
+                    Materia mat = (Materia)obj;
+                    ps = con.prepareStatement("UPDATE "+ tabla + " SET unidad_aprendizaje =?, horas =?, creditos =?, numero_periodo =?, nucleo =?, tipo =?, id_licenciatura =?, id_plan_estudios =? WHERE clave_materia=?");
+                    ps.setString(1, mat.getUnidadAprendizaje());
+                    ps.setInt(2, mat.getHoras());
+                    ps.setInt(3, mat.getCreditos());
+                    ps.setInt(4, mat.getNumeroPeriodo());
+                    ps.setString(5, mat.getNucleo());
+                    ps.setString(6, mat.getTipo());
+                    ps.setString(7, mat.getClaveCarrera());
+                    ps.setString(8, mat.getPlanEstudios());
+                    ps.setString(9, id);
                     res = ps.executeUpdate();
                     break;
             }
