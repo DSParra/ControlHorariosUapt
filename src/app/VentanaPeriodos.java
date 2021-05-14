@@ -343,7 +343,7 @@ public class VentanaPeriodos extends javax.swing.JFrame
             jBAceptar.setText("Aceptar");
             CtrlInterfaz.limpia(jTIdPeriodo, jTNombrePeriodo);
             CtrlInterfaz.habilita(true, jTIdPeriodo, jTNombrePeriodo, jBCancelar);
-            CtrlInterfaz.habilita(false, jBModificar, jBEliminar);
+            CtrlInterfaz.habilita(false, jBModificar, jBEliminar, btnAgregar2, btnAgregar3);
             CtrlInterfaz.selecciona(jTIdPeriodo);
         } else
         {
@@ -355,10 +355,10 @@ public class VentanaPeriodos extends javax.swing.JFrame
                 jBAceptar.setText("Nuevo");
                 ConsultasObjetos.inserta(per, ConectarBase.conectado(), "periodo_escolar");
                 CtrlInterfaz.habilita(false, jTIdPeriodo, jTNombrePeriodo, jBCancelar);
-                CtrlInterfaz.habilita(true, jBModificar, jBEliminar);
+                CtrlInterfaz.habilita(true, jBModificar, jBEliminar, btnAgregar2, btnAgregar3);
+                CtrlInterfaz.limpia(jTIdPeriodo, jTNombrePeriodo);
                 actualizarTabla();
                 edicion();
-                jBCancelarActionPerformed(null);
             } else
             {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
@@ -399,8 +399,9 @@ public class VentanaPeriodos extends javax.swing.JFrame
             {
                 edicion();
                 jBModificar.setText("Aceptar");
-                CtrlInterfaz.habilita(true, jTNombrePeriodo, jBModificar);
-                CtrlInterfaz.habilita(false, jBEliminar, jBAceptar, jTIdPeriodo);
+                CtrlInterfaz.habilita(true, jTNombrePeriodo, jBCancelar);
+                CtrlInterfaz.habilita(false, jBEliminar, jBAceptar, jTIdPeriodo, btnAgregar2, btnAgregar3);
+                CtrlInterfaz.selecciona(jTNombrePeriodo);
             } else
             {
                 periodoEscolar perio = new periodoEscolar(jTIdPeriodo.getText(), jTNombrePeriodo.getText());
@@ -408,11 +409,11 @@ public class VentanaPeriodos extends javax.swing.JFrame
                 if (mensaje.equals("operacion exitosa"))
                 {
                     jBModificar.setText("Modificar");
-                    CtrlInterfaz.habilita(false, jTIdPeriodo, jBAceptar);
-                    CtrlInterfaz.habilita(true, jBEliminar, jBAceptar, jTNombrePeriodo);
+                    CtrlInterfaz.habilita(false, jTIdPeriodo, jTNombrePeriodo, jBCancelar);
+                    CtrlInterfaz.habilita(true, jBEliminar, jBAceptar, btnAgregar2, btnAgregar3);
+                    CtrlInterfaz.limpia(jTIdPeriodo, jTNombrePeriodo);
                     actualizarTabla();
                     edicion();
-                    jBCancelarActionPerformed(null);
                 }
                 else
                 {
@@ -598,7 +599,7 @@ public class VentanaPeriodos extends javax.swing.JFrame
         edicion();
         CtrlInterfaz.limpia(jTIdPeriodo, jTNombrePeriodo);
         CtrlInterfaz.habilita(false, jTIdPeriodo, jTNombrePeriodo, jBCancelar);
-        CtrlInterfaz.habilita(true, jBAceptar, jBEliminar, jBModificar);
+        CtrlInterfaz.habilita(true, jBAceptar, jBEliminar, jBModificar, btnAgregar2, btnAgregar3);
         jBAceptar.setText("Nuevo");
         jBModificar.setText("Modificar");
     }

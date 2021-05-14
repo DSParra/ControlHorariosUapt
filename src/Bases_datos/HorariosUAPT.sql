@@ -72,8 +72,7 @@ CREATE TABLE materia(
                     id_plan_estudios VARCHAR(60) NOT NULL,
                     PRIMARY KEY (clave_materia),
                     FOREIGN KEY (id_licenciatura) REFERENCES licenciatura(id_licenciatura),
-                    FOREIGN KEY (id_plan_estudios) REFERENCES plan_estudios(id_plan_estudios),
-                    UNIQUE(unidad_aprendizaje)
+                    FOREIGN KEY (id_plan_estudios) REFERENCES plan_estudios(id_plan_estudios)
                     );
 
 CREATE TABLE horarios(

@@ -44,8 +44,8 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                                      <Component id="jScrollPane1" min="-2" pref="870" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane1" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Component id="btnAgregar" min="-2" pref="106" max="-2" attributes="0"/>
@@ -55,7 +55,7 @@
                                       <Component id="btnelmina" min="-2" pref="105" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="btncancelar" min="-2" pref="105" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="577" max="-2" attributes="0"/>
                                       <Component id="jBRegresar" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -72,8 +72,8 @@
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jBCerrarSesion" min="-2" pref="106" max="-2" attributes="0"/>
-                  <Component id="btnAgregar3" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
-                  <Component id="btnAgregar2" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
+                  <Component id="btnExportar" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
+                  <Component id="btnImportar" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="48" max="32767" attributes="0"/>
           </Group>
@@ -112,9 +112,9 @@
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="btnAgregar2" min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="btnImportar" min="-2" pref="36" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnAgregar3" min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="btnExportar" min="-2" pref="36" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="86" max="32767" attributes="0"/>
@@ -323,11 +323,11 @@
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtcodigolic" pref="211" max="32767" attributes="0"/>
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtnombre" max="32767" attributes="0"/>
+                      <Component id="txtcodigolic" alignment="0" pref="279" max="32767" attributes="0"/>
+                      <Component id="txtnombre" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="34" max="32767" attributes="0"/>
+                  <EmptySpace pref="23" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -389,7 +389,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btnAgregar3">
+    <Component class="javax.swing.JButton" name="btnExportar">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="66" red="66" type="rgb"/>
@@ -403,10 +403,10 @@
         <Property name="text" type="java.lang.String" value="Exportar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregar3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExportarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnAgregar2">
+    <Component class="javax.swing.JButton" name="btnImportar">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="66" red="66" type="rgb"/>
@@ -420,7 +420,7 @@
         <Property name="text" type="java.lang.String" value="Importar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregar2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnImportarActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

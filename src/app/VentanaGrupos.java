@@ -5,14 +5,30 @@
  */
 package app;
 
+import Clases.ConectarBase;
+import Clases.ConsultasObjetos;
 import Clases.Valida;
+import Objetos.Grupo;
+import Objetos.Licenciatura;
+import Objetos.PlanEstudios;
+import cjb.ci.CtrlInterfaz;
+import cjb.ci.Mensaje;
 import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
-public class VentanaGrupos extends javax.swing.JFrame {
+public class VentanaGrupos extends javax.swing.JFrame
+{
+
+    int id = 0;
+    private Boolean edicion = true;
+    private DefaultTableModel modelo;
+    private ArrayList<Object> lics = new ArrayList<>();
 
     /**
      * Creates new form VentanaPrinicipal
@@ -32,74 +48,107 @@ public class VentanaGrupos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLTituloUniversidad = new javax.swing.JLabel();
-        jLTituloUAPT = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jTNombreGrupo = new javax.swing.JTextField();
         jTIdGrupo = new javax.swing.JTextField();
-        jBAceptar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jCLicenciatura = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        jBCancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaGrupos = new javax.swing.JTable();
         jBRegresar = new javax.swing.JButton();
         jBCerrarSesion = new javax.swing.JButton();
-        jCLicenciatura = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
-        jTNombreGrupo = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLTituloUAPT = new javax.swing.JLabel();
+        jLTituloUniversidad = new javax.swing.JLabel();
+        btnImportar = new javax.swing.JButton();
+        btnExportar = new javax.swing.JButton();
+        jBEliminar = new javax.swing.JButton();
+        jBAceptar = new javax.swing.JButton();
+        jBCancelar = new javax.swing.JButton();
+        jBModificar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horarios UAPT");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/UAPT.jpeg"))); // NOI18N
-
-        jLTituloUniversidad.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
-        jLTituloUniversidad.setText("Universidad Autónoma del Estado de México");
-
-        jLTituloUAPT.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
-        jLTituloUAPT.setText("Unidad Académica Profesional Tianguistenco");
-
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel2.setText("Gestión de grupos");
+        jPanel1.setBackground(new java.awt.Color(25, 83, 0));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(254, 254, 254));
         jLabel3.setText("Nombre");
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(254, 254, 254));
         jLabel4.setText("Id grupo");
 
-        jTIdGrupo.setBackground(new java.awt.Color(255, 255, 153));
+        jTNombreGrupo.setBackground(new java.awt.Color(254, 254, 254));
+        jTNombreGrupo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTNombreGrupoFocusLost(evt);
+            }
+        });
+        jTNombreGrupo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTNombreGrupoActionPerformed(evt);
+            }
+        });
+
+        jTIdGrupo.setBackground(new java.awt.Color(254, 254, 254));
         jTIdGrupo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTIdGrupoActionPerformed(evt);
             }
         });
 
-        jBAceptar.setBackground(new java.awt.Color(102, 102, 0));
-        jBAceptar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jBAceptar.setForeground(new java.awt.Color(255, 255, 255));
-        jBAceptar.setText("Aceptar");
-        jBAceptar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAceptarActionPerformed(evt);
-            }
-        });
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel6.setText("Licenciatura");
+
+        jCLicenciatura.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ingenieria en software", "Ingenieria en plasticos", "Ingenieria en producción industrial" }));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel4)
+                    .addComponent(jTIdGrupo)
+                    .addComponent(jLabel3)
+                    .addComponent(jTNombreGrupo)
+                    .addComponent(jCLicenciatura, 0, 297, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addComponent(jTIdGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(jTNombreGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addComponent(jCLicenciatura, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/UAEMex.jpg"))); // NOI18N
 
-        jBCancelar.setBackground(new java.awt.Color(102, 102, 0));
-        jBCancelar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jBCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        jBCancelar.setText("Cancelar");
-        jBCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBCancelarActionPerformed(evt);
-            }
-        });
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaGrupos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -109,8 +158,21 @@ public class VentanaGrupos extends javax.swing.JFrame {
             new String [] {
                 "ID Grupo", "Nombre ", "Licenciatura"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TablaGrupos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaGruposMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(TablaGrupos);
 
         jBRegresar.setBackground(new java.awt.Color(102, 102, 0));
         jBRegresar.setForeground(new java.awt.Color(255, 255, 255));
@@ -126,7 +188,7 @@ public class VentanaGrupos extends javax.swing.JFrame {
         jBCerrarSesion.setBackground(new java.awt.Color(102, 102, 0));
         jBCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
         jBCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/flecha(3).png"))); // NOI18N
-        jBCerrarSesion.setText("Cerrar Sesión");
+        jBCerrarSesion.setText("Salir");
         jBCerrarSesion.setToolTipText("");
         jBCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,20 +196,72 @@ public class VentanaGrupos extends javax.swing.JFrame {
             }
         });
 
-        jCLicenciatura.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ingenieria en software", "Ingenieria en plasticos", "Ingenieria en producción industrial" }));
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel7.setText("GESTION GRUPOS");
 
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jLabel6.setText("Licenciatura");
+        jLTituloUAPT.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLTituloUAPT.setText("UNIDAD ACADEMICA PROFESIONAL TIANGUISTENCO");
 
-        jTNombreGrupo.setBackground(new java.awt.Color(255, 255, 153));
-        jTNombreGrupo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTNombreGrupoFocusLost(evt);
+        jLTituloUniversidad.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLTituloUniversidad.setText("UNIVERSIDAD AUTONOMA DEL ESTADO DE MEXICO");
+
+        btnImportar.setBackground(new java.awt.Color(102, 102, 0));
+        btnImportar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnImportar.setForeground(new java.awt.Color(255, 255, 255));
+        btnImportar.setText("Importar");
+        btnImportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImportarActionPerformed(evt);
             }
         });
-        jTNombreGrupo.addActionListener(new java.awt.event.ActionListener() {
+
+        btnExportar.setBackground(new java.awt.Color(102, 102, 0));
+        btnExportar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnExportar.setForeground(new java.awt.Color(255, 255, 255));
+        btnExportar.setText("Exportar");
+        btnExportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTNombreGrupoActionPerformed(evt);
+                btnExportarActionPerformed(evt);
+            }
+        });
+
+        jBEliminar.setBackground(new java.awt.Color(102, 102, 0));
+        jBEliminar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jBEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        jBEliminar.setText("Eliminar");
+        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEliminarActionPerformed(evt);
+            }
+        });
+
+        jBAceptar.setBackground(new java.awt.Color(102, 102, 0));
+        jBAceptar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jBAceptar.setForeground(new java.awt.Color(255, 255, 255));
+        jBAceptar.setText("Aceptar");
+        jBAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAceptarActionPerformed(evt);
+            }
+        });
+
+        jBCancelar.setBackground(new java.awt.Color(102, 102, 0));
+        jBCancelar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jBCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        jBCancelar.setText("Cancelar");
+        jBCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCancelarActionPerformed(evt);
+            }
+        });
+
+        jBModificar.setBackground(new java.awt.Color(102, 102, 0));
+        jBModificar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jBModificar.setForeground(new java.awt.Color(255, 255, 255));
+        jBModificar.setText("Modificar");
+        jBModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBModificarActionPerformed(evt);
             }
         });
 
@@ -155,104 +269,79 @@ public class VentanaGrupos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLTituloUniversidad)
+                            .addComponent(jLTituloUAPT))
+                        .addGap(364, 805, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(455, 455, 455)
+                        .addComponent(jLabel7)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBRegresar)
+                        .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jBCerrarSesion))
+                        .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBRegresar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel2)
-                                        .addGap(241, 241, 241))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(82, 82, 82)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLTituloUniversidad)
-                                            .addComponent(jLTituloUAPT))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jTIdGrupo)
-                                    .addComponent(jLabel4)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jBCancelar))
-                                    .addComponent(jLabel6)
-                                    .addComponent(jTNombreGrupo)
-                                    .addComponent(jCLicenciatura, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 707, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(38, 38, 38))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
+                        .addComponent(jScrollPane1)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnExportar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnImportar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBCerrarSesion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(64, 64, 64))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
                         .addComponent(jLTituloUniversidad)
                         .addGap(18, 18, 18)
                         .addComponent(jLTituloUAPT)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2))
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabel7))
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel5))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTIdGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTNombreGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(jCLicenciatura)
-                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE))
+                        .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBRegresar)
-                    .addComponent(jBCerrarSesion))
-                .addGap(25, 25, 25))
+                            .addComponent(jBRegresar)
+                            .addComponent(jBCerrarSesion)
+                            .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnImportar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 63, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTIdGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTIdGrupoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTIdGrupoActionPerformed
-
-    private void jBAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAceptarActionPerformed
-            
-    }//GEN-LAST:event_jBAceptarActionPerformed
-
-    private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBCancelarActionPerformed
 
     private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
         this.setVisible(false);
@@ -272,6 +361,107 @@ public class VentanaGrupos extends javax.swing.JFrame {
         Valida.convertirAMayusculas(jTNombreGrupo);
     }//GEN-LAST:event_jTNombreGrupoFocusLost
 
+    private void jTIdGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTIdGrupoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTIdGrupoActionPerformed
+
+    private void btnImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnImportarActionPerformed
+
+    private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExportarActionPerformed
+
+    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+        if (Mensaje.pregunta(this, "¿En realidad quiere eliminar el periodo " + jTIdGrupo.getText() + "?") == 0)
+        {
+            String mensaje = Controlador.ControladorGrupos.eliminarGrupo(jTIdGrupo.getText());
+            if (mensaje.equals("operacion exitosa"))
+            {
+                actualizarTabla();
+            } else
+            {
+                JOptionPane.showMessageDialog(rootPane, mensaje);
+            }
+        }
+    }//GEN-LAST:event_jBEliminarActionPerformed
+
+    private void jBAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAceptarActionPerformed
+        if (!edicion)
+        {
+            edicion();
+            jBAceptar.setText("Aceptar");
+            CtrlInterfaz.limpia(jTIdGrupo, jTNombreGrupo);
+            CtrlInterfaz.habilita(true, jTIdGrupo, jTNombreGrupo, jCLicenciatura, jBCancelar);
+            CtrlInterfaz.habilita(false, jBModificar, jBEliminar, btnImportar, btnExportar);
+            CtrlInterfaz.selecciona(jTIdGrupo);
+        } else
+        {
+            Grupo grup = new Grupo(jTIdGrupo.getText(), jTNombreGrupo.getText(), buscarLic(null, jCLicenciatura.getSelectedItem().toString()));
+            String mensaje = Controlador.ControladorGrupos.insertaGrupo(grup);
+            if (mensaje.equals("operacion exitosa"))
+            {
+                jBAceptar.setText("Nuevo");
+                CtrlInterfaz.habilita(false, jTIdGrupo, jTNombreGrupo, jCLicenciatura, jBCancelar);
+                CtrlInterfaz.habilita(true, jBModificar, jBEliminar, btnExportar, btnImportar);
+                actualizarTabla();
+                edicion();
+            } else
+            {
+                JOptionPane.showMessageDialog(rootPane, mensaje);
+            }
+        }
+    }//GEN-LAST:event_jBAceptarActionPerformed
+
+    private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
+        cancelar();
+    }//GEN-LAST:event_jBCancelarActionPerformed
+
+    private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
+        if (jTIdGrupo.getText().compareTo("") == 0)
+        {
+            Mensaje.error(this, "NO HA SELECCIONADO NINGUN REGISTRO");
+        } else
+        {
+            if (!edicion)
+            {
+                edicion();
+                jBModificar.setText("Aceptar");
+                CtrlInterfaz.habilita(true, jTNombreGrupo, jBModificar, jCLicenciatura, jBCancelar);
+                CtrlInterfaz.habilita(false, jBEliminar, jBAceptar, jTIdGrupo, btnExportar, btnImportar);
+                CtrlInterfaz.selecciona(jTNombreGrupo);
+            } else
+            {
+                Grupo grup = new Grupo(jTIdGrupo.getText(), jTNombreGrupo.getText(), buscarLic(null, jCLicenciatura.getSelectedItem().toString()));
+                String mensaje = Controlador.ControladorGrupos.modificaGrupo(grup, (String) TablaGrupos.getValueAt(TablaGrupos.getSelectedRow(), 0));
+                if (mensaje.equals("operacion exitosa"))
+                {
+                    jBModificar.setText("Modificar");
+                    CtrlInterfaz.habilita(false, jTIdGrupo, jTNombreGrupo, jBAceptar, jCLicenciatura, jBCancelar);
+                    CtrlInterfaz.habilita(true, jBEliminar, jBAceptar, btnImportar, btnExportar);
+                    actualizarTabla();
+                    edicion();
+                } else
+                {
+                    JOptionPane.showMessageDialog(rootPane, mensaje);
+                }
+            }
+        }
+    }//GEN-LAST:event_jBModificarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        cancelar();
+        actualizarTabla();
+        llenaComboLic();
+    }//GEN-LAST:event_formWindowOpened
+
+    private void TablaGruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaGruposMouseClicked
+        jTIdGrupo.setText((String)modelo.getValueAt(TablaGrupos.getSelectedRow(), 0));
+        jTNombreGrupo.setText((String)modelo.getValueAt(TablaGrupos.getSelectedRow(), 1));
+        jCLicenciatura.setSelectedIndex(buscarCombo((String)modelo.getValueAt(TablaGrupos.getSelectedRow(), 2)));
+    }//GEN-LAST:event_TablaGruposMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -281,20 +471,27 @@ public class VentanaGrupos extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(VentanaGrupos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(VentanaGrupos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(VentanaGrupos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(VentanaGrupos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -363,7 +560,8 @@ public class VentanaGrupos extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable()
+        {
             public void run() {
                 new VentanaGrupos().setVisible(true);
             }
@@ -371,22 +569,112 @@ public class VentanaGrupos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TablaGrupos;
+    private javax.swing.JButton btnExportar;
+    private javax.swing.JButton btnImportar;
     private javax.swing.JButton jBAceptar;
     private javax.swing.JButton jBCancelar;
     private javax.swing.JButton jBCerrarSesion;
+    private javax.swing.JButton jBEliminar;
+    private javax.swing.JButton jBModificar;
     private javax.swing.JButton jBRegresar;
     private javax.swing.JComboBox<String> jCLicenciatura;
     private javax.swing.JLabel jLTituloUAPT;
     private javax.swing.JLabel jLTituloUniversidad;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTIdGrupo;
     private javax.swing.JTextField jTNombreGrupo;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void actualizarTabla() {
+        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, ConectarBase.conectado());
+        modelo = (DefaultTableModel) TablaGrupos.getModel();
+        ArrayList grupos = new ArrayList();
+        grupos = ConsultasObjetos.consultaMuchos("grupo", null, null, ConectarBase.conectado());
+        if (grupos.isEmpty())
+        {
+            Mensaje.error(this, "No hay grupos registrados");
+        } else
+        {
+            modelo.setRowCount(0);
+            for (Object g : grupos)
+            {
+                Grupo grupo = (Grupo) g;
+                modelo.addRow(new Object[]
+                {
+                    grupo.getIdGrupo(), grupo.getNombreGrupo(), buscarLic(grupo.getId_licenciatura(), null)
+                });
+                System.out.println(((Grupo) g).getIdGrupo());
+            }
+        }
+    }
+
+    private void edicion() {
+        if (edicion)
+        {
+            edicion = false;
+        } else
+        {
+            edicion = true;
+        }
+    }
+
+    public  String buscarLic(String id, String licenciatura) {
+        if (licenciatura != null)
+        {
+            for (Object l : lics)
+            {
+                Licenciatura lic = (Licenciatura) l;
+                if ((lic.getLicenciatura()).equals(licenciatura))
+                {
+                    return lic.getIdLicenciatura();
+                }
+            }
+        } else
+        {
+            for (Object l : lics)
+            {
+                Licenciatura lic = (Licenciatura) l;
+                if (lic.getIdLicenciatura().equals(id))
+                {
+                    return lic.getLicenciatura();
+                }
+            }
+        }
+        return null;
+    }
+
+    private void cancelar() {
+        edicion();
+        CtrlInterfaz.limpia(jTIdGrupo, jTNombreGrupo);
+        CtrlInterfaz.habilita(false, jTIdGrupo, jTNombreGrupo, jCLicenciatura,jBCancelar);
+        CtrlInterfaz.habilita(true, jBAceptar, jBEliminar, jBModificar, btnExportar, btnImportar);
+        jBAceptar.setText("Nuevo");
+        jBModificar.setText("Modificar");
+    }
+
+    private void llenaComboLic() {
+        jCLicenciatura.removeAllItems();
+        for (int i = 0; i < lics.size(); i++)
+        {
+            jCLicenciatura.addItem(((Licenciatura) lics.get(i)).getLicenciatura());
+        }
+    }
+
+    private int buscarCombo(String texto) {
+        for (int i = 0; i < jCLicenciatura.getItemCount(); i++)
+        {
+            if (texto.equals(jCLicenciatura.getItemAt(i)))
+            {
+                return i;
+            }
+        }
+        return 0;
+    }
 }

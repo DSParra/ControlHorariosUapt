@@ -66,8 +66,8 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
         jLabel4 = new javax.swing.JLabel();
         jCLicenciatura = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        btnAgregar2 = new javax.swing.JButton();
-        btnAgregar3 = new javax.swing.JButton();
+        btnImportar = new javax.swing.JButton();
+        btnExportar = new javax.swing.JButton();
         jLTituloUniversidad = new javax.swing.JLabel();
         jLTituloUAPT = new javax.swing.JLabel();
 
@@ -116,7 +116,15 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
             new String [] {
                 "ID ", "Plan ", "Licenciatura"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         TablaPeriodos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TablaPeriodosMouseClicked(evt);
@@ -204,6 +212,8 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
         jLabel4.setForeground(new java.awt.Color(254, 254, 254));
         jLabel4.setText("ID ");
 
+        jCLicenciatura.setEnabled(false);
+
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(254, 254, 254));
         jLabel6.setText("LICENCIATURA");
@@ -216,12 +226,12 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel6)
-                    .addComponent(jTPlan, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
                     .addComponent(jLabel4)
-                    .addComponent(jTIdPlan, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
                     .addComponent(jLabel3)
-                    .addComponent(jCLicenciatura, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                    .addComponent(jCLicenciatura, 0, 295, Short.MAX_VALUE)
+                    .addComponent(jTPlan)
+                    .addComponent(jTIdPlan))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,28 +246,28 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
                 .addComponent(jTPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(jCLicenciatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCLicenciatura, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(146, Short.MAX_VALUE))
         );
 
-        btnAgregar2.setBackground(new java.awt.Color(102, 102, 0));
-        btnAgregar2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnAgregar2.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregar2.setText("Importar");
-        btnAgregar2.addActionListener(new java.awt.event.ActionListener() {
+        btnImportar.setBackground(new java.awt.Color(102, 102, 0));
+        btnImportar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnImportar.setForeground(new java.awt.Color(255, 255, 255));
+        btnImportar.setText("Importar");
+        btnImportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregar2ActionPerformed(evt);
+                btnImportarActionPerformed(evt);
             }
         });
 
-        btnAgregar3.setBackground(new java.awt.Color(102, 102, 0));
-        btnAgregar3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnAgregar3.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregar3.setText("Exportar");
-        btnAgregar3.addActionListener(new java.awt.event.ActionListener() {
+        btnExportar.setBackground(new java.awt.Color(102, 102, 0));
+        btnExportar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnExportar.setForeground(new java.awt.Color(255, 255, 255));
+        btnExportar.setText("Exportar");
+        btnExportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregar3ActionPerformed(evt);
+                btnExportarActionPerformed(evt);
             }
         });
 
@@ -273,29 +283,28 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jBRegresar)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 829, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnAgregar3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnAgregar2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jBCancelar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(47, 47, 47))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBRegresar))
+                    .addComponent(jScrollPane1))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBCerrarSesion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnExportar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnImportar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(51, 51, 51))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,39 +316,40 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
                     .addGroup(layout.createSequentialGroup()
                         .addGap(415, 415, 415)
                         .addComponent(jLabel2)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 407, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLTituloUniversidad)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLTituloUAPT)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2)))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnAgregar2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnAgregar3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel5)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(jLTituloUniversidad)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLTituloUAPT)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2)))
+                        .addComponent(btnImportar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(61, 61, 61)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBRegresar)
-                    .addComponent(jBCerrarSesion))
-                .addContainerGap(63, Short.MAX_VALUE))
+                        .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBRegresar)
+                        .addComponent(jBCerrarSesion))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         pack();
@@ -355,8 +365,8 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
             edicion();
             jBAceptar.setText("Aceptar");
             CtrlInterfaz.limpia(jTIdPlan, jTPlan);
-            CtrlInterfaz.habilita(true, jTIdPlan, jTPlan, jBCancelar);
-            CtrlInterfaz.habilita(false, jBModificar, jBEliminar);
+            CtrlInterfaz.habilita(true, jTIdPlan, jTPlan, jCLicenciatura,jBCancelar);
+            CtrlInterfaz.habilita(false, jBModificar, jBEliminar, btnImportar, btnExportar);
             CtrlInterfaz.selecciona(jTIdPlan);
         } else
         {
@@ -365,11 +375,10 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
             if (mensaje.equals("operacion exitosa"))
             {
                 jBAceptar.setText("Nuevo");
-                CtrlInterfaz.habilita(false, jTIdPlan, jTPlan, jBCancelar);
-                CtrlInterfaz.habilita(true, jBModificar, jBEliminar);
+                CtrlInterfaz.habilita(false, jTIdPlan, jTPlan, jCLicenciatura,jBCancelar);
+                CtrlInterfaz.habilita(true, jBModificar, jBEliminar, btnExportar, btnImportar);
                 actualizarTabla();
                 edicion();
-                jBCancelarActionPerformed(null);
             } else
             {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
@@ -411,9 +420,9 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
             {
                 edicion();
                 jBModificar.setText("Aceptar");
-                CtrlInterfaz.habilita(true, jTPlan, jBModificar);
-                CtrlInterfaz.habilita(false, jBEliminar, jBAceptar, jTIdPlan);
-                
+                CtrlInterfaz.habilita(true, jTPlan, jBModificar, jCLicenciatura, jBCancelar);
+                CtrlInterfaz.habilita(false, jBEliminar, jBAceptar, jTIdPlan, btnExportar, btnImportar);
+                CtrlInterfaz.selecciona(jTPlan);
             } else
             {
                 PlanEstudios plan = new PlanEstudios(jTIdPlan.getText(), jTPlan.getText(), buscaLic(null, jCLicenciatura.getSelectedItem().toString()));
@@ -421,11 +430,10 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
                 if (mensaje.equals("operacion exitosa"))
                 {
                     jBModificar.setText("Modificar");
-                    CtrlInterfaz.habilita(false, jTIdPlan, jBAceptar);
-                    CtrlInterfaz.habilita(true, jBEliminar, jBAceptar, jTPlan);
+                    CtrlInterfaz.habilita(false, jTIdPlan, jBAceptar, jCLicenciatura, jBCancelar);
+                    CtrlInterfaz.habilita(true, jBEliminar, jBAceptar, jTPlan, btnImportar, btnExportar);
                     actualizarTabla();
                     edicion();
-                    jBCancelarActionPerformed(null);
                 } else
                 {
                     JOptionPane.showMessageDialog(rootPane, mensaje);
@@ -451,6 +459,7 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
     private void TablaPeriodosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaPeriodosMouseClicked
         jTIdPlan.setText(modelo.getValueAt(TablaPeriodos.getSelectedRow(), 0).toString());
         jTPlan.setText(modelo.getValueAt(TablaPeriodos.getSelectedRow(), 1).toString());
+        jCLicenciatura.setSelectedIndex(buscarCombo((String)modelo.getValueAt(TablaPeriodos.getSelectedRow(), 2)));
     }//GEN-LAST:event_TablaPeriodosMouseClicked
 
     private void jTIdPlanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTIdPlanKeyTyped
@@ -469,13 +478,13 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
         Valida.convertirAMayusculas(jTPlan);
     }//GEN-LAST:event_jTPlanKeyReleased
 
-    private void btnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar2ActionPerformed
+    private void btnImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregar2ActionPerformed
+    }//GEN-LAST:event_btnImportarActionPerformed
 
-    private void btnAgregar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar3ActionPerformed
+    private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregar3ActionPerformed
+    }//GEN-LAST:event_btnExportarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -585,8 +594,8 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaPeriodos;
-    private javax.swing.JButton btnAgregar2;
-    private javax.swing.JButton btnAgregar3;
+    private javax.swing.JButton btnExportar;
+    private javax.swing.JButton btnImportar;
     private javax.swing.JButton jBAceptar;
     private javax.swing.JButton jBCancelar;
     private javax.swing.JButton jBCerrarSesion;
@@ -643,8 +652,8 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
     private void cancelar() {
         edicion();
         CtrlInterfaz.limpia(jTIdPlan, jTPlan);
-        CtrlInterfaz.habilita(false, jTIdPlan, jTPlan, jBCancelar);
-        CtrlInterfaz.habilita(true, jBAceptar, jBEliminar, jBModificar);
+        CtrlInterfaz.habilita(false, jTIdPlan, jTPlan, jCLicenciatura,jBCancelar);
+        CtrlInterfaz.habilita(true, jBAceptar, jBEliminar, jBModificar, btnExportar, btnImportar);
         jBAceptar.setText("Nuevo");
         jBModificar.setText("Modificar");
     }
@@ -680,5 +689,16 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
         {
             jCLicenciatura.addItem(((Licenciatura) lics.get(i)).getLicenciatura());
         }
+    }
+
+    public  int buscarCombo(String texto) {
+        for (int i = 0; i < jCLicenciatura.getItemCount(); i++)
+        {
+            if (texto.equals(jCLicenciatura.getItemAt(i)))
+            {
+                return i;
+            }
+        }
+        return 0;
     }
 }

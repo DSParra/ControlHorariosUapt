@@ -7,6 +7,7 @@ package Controlador;
 
 import Clases.ConectarBase;
 import Clases.ConsultasObjetos;
+import Objetos.Grupo;
 import Objetos.PlanEstudios;
 import java.util.ArrayList;
 

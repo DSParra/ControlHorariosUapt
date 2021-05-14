@@ -38,7 +38,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
     }
     private Boolean edicion = true;
     private DefaultTableModel modelo;
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,12 +52,12 @@ public class VentanaDocentes extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         btnelmina = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaDocentes = new javax.swing.JTable();
         jBRegresar = new javax.swing.JButton();
         jBCerrarSesion = new javax.swing.JButton();
         btnmodifica = new javax.swing.JButton();
-        btnAgregar2 = new javax.swing.JButton();
-        btnAgregar3 = new javax.swing.JButton();
+        btnImportar = new javax.swing.JButton();
+        btnExportar = new javax.swing.JButton();
         btncancelar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         txttelefono = new javax.swing.JTextField();
@@ -110,22 +110,30 @@ public class VentanaDocentes extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setBackground(new java.awt.Color(25, 83, 0));
-        jTable1.setForeground(new java.awt.Color(254, 254, 254));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaDocentes.setBackground(new java.awt.Color(25, 83, 0));
+        TablaDocentes.setForeground(new java.awt.Color(254, 254, 254));
+        TablaDocentes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
                 "rfc", "Apellido Paterno", "Apellido Materno", "Nombres", "Grado Academico", "Correo", "Telefono"
             }
-        ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        TablaDocentes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaDocentesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(TablaDocentes);
 
         jBRegresar.setBackground(new java.awt.Color(102, 102, 0));
         jBRegresar.setForeground(new java.awt.Color(255, 255, 255));
@@ -159,23 +167,23 @@ public class VentanaDocentes extends javax.swing.JFrame {
             }
         });
 
-        btnAgregar2.setBackground(new java.awt.Color(102, 102, 0));
-        btnAgregar2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnAgregar2.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregar2.setText("Importar");
-        btnAgregar2.addActionListener(new java.awt.event.ActionListener() {
+        btnImportar.setBackground(new java.awt.Color(102, 102, 0));
+        btnImportar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnImportar.setForeground(new java.awt.Color(255, 255, 255));
+        btnImportar.setText("Importar");
+        btnImportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregar2ActionPerformed(evt);
+                btnImportarActionPerformed(evt);
             }
         });
 
-        btnAgregar3.setBackground(new java.awt.Color(102, 102, 0));
-        btnAgregar3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnAgregar3.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregar3.setText("Exportar");
-        btnAgregar3.addActionListener(new java.awt.event.ActionListener() {
+        btnExportar.setBackground(new java.awt.Color(102, 102, 0));
+        btnExportar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnExportar.setForeground(new java.awt.Color(255, 255, 255));
+        btnExportar.setText("Exportar");
+        btnExportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregar3ActionPerformed(evt);
+                btnExportarActionPerformed(evt);
             }
         });
 
@@ -407,8 +415,8 @@ public class VentanaDocentes extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 874, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnAgregar2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAgregar3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnImportar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnExportar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -449,9 +457,9 @@ public class VentanaDocentes extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAgregar2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnImportar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnAgregar3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jScrollPane1)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)))
@@ -482,7 +490,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
             btnAgregar.setText("Aceptar");
             CtrlInterfaz.limpia(txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
             CtrlInterfaz.habilita(true, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
-            CtrlInterfaz.habilita(false, btnelmina, btnmodifica);
+            CtrlInterfaz.habilita(false, btnelmina, btnmodifica, btnImportar, btnExportar);
             CtrlInterfaz.selecciona(txtrfc);
 
         } else {
@@ -492,8 +500,8 @@ public class VentanaDocentes extends javax.swing.JFrame {
             if (mensaje.equals("operacion exitosa")) {
                 btnAgregar.setText("Nuevo");
                 CtrlInterfaz.limpia(txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
-                CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
-                CtrlInterfaz.habilita(true, btnelmina, btnmodifica);
+                CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
+                CtrlInterfaz.habilita(true, btnelmina, btnmodifica,btnImportar, btnExportar);
                 actualizaTabla();
                 edicion();
             } else {
@@ -564,15 +572,16 @@ public class VentanaDocentes extends javax.swing.JFrame {
             if (!edicion) {
                 edicion();
                 btnmodifica.setText("Aceptar");
-                CtrlInterfaz.habilita(true, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
-                CtrlInterfaz.habilita(false, btnelmina, btnAgregar);
+                CtrlInterfaz.habilita(true, txtapellidoM, txtapellidoP, txtnombres, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
+                CtrlInterfaz.habilita(false, btnelmina, btnAgregar, btnImportar, btnExportar);
+                CtrlInterfaz.selecciona(txtapellidoP);
             } else {
                 Profesor p = new Profesor(txtrfc.getText(), txtapellidoP.getText(), txtapellidoM.getText(), txtnombres.getText(), txtgradoAcademico.getText(), txtcorreo.getText(), txttelefono.getText());
                 //ConsultasObjetos.Modifica(p, ConectarBase.conectado(), "profesores", (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
-                String mensaje = ControladorProfesores.modificaProfesor(p, (String) jTable1.getValueAt(jTable1.getSelectedRow(), 0));
+                String mensaje = ControladorProfesores.modificaProfesor(p, (String) TablaDocentes.getValueAt(TablaDocentes.getSelectedRow(), 0));
                 if (mensaje.equals("operacion exitosa")) {
-                    CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
-                    CtrlInterfaz.habilita(true, btnelmina, btnAgregar);
+                    CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
+                    CtrlInterfaz.habilita(true, btnelmina, btnAgregar, btnImportar, btnExportar);
                     CtrlInterfaz.limpia(txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
                     edicion();
                     actualizaTabla();
@@ -586,27 +595,27 @@ public class VentanaDocentes extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnmodificaActionPerformed
 
-    private void btnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar2ActionPerformed
+    private void btnImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregar2ActionPerformed
+    }//GEN-LAST:event_btnImportarActionPerformed
 
-    private void btnAgregar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar3ActionPerformed
+    private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregar3ActionPerformed
+    }//GEN-LAST:event_btnExportarActionPerformed
 
     private void btncancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelarActionPerformed
         cancelar();
     }//GEN-LAST:event_btncancelarActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        txtrfc.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 0));
-        txtapellidoP.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 1));
-        txtapellidoM.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 2));
-        txtnombres.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 3));
-        txtgradoAcademico.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 4));
-        txtcorreo.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 5));
-        txttelefono.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 6));
-    }//GEN-LAST:event_jTable1MouseClicked
+    private void TablaDocentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaDocentesMouseClicked
+        txtrfc.setText((String) modelo.getValueAt(TablaDocentes.getSelectedRow(), 0));
+        txtapellidoP.setText((String) modelo.getValueAt(TablaDocentes.getSelectedRow(), 1));
+        txtapellidoM.setText((String) modelo.getValueAt(TablaDocentes.getSelectedRow(), 2));
+        txtnombres.setText((String) modelo.getValueAt(TablaDocentes.getSelectedRow(), 3));
+        txtgradoAcademico.setText((String) modelo.getValueAt(TablaDocentes.getSelectedRow(), 4));
+        txtcorreo.setText((String) modelo.getValueAt(TablaDocentes.getSelectedRow(), 5));
+        txttelefono.setText((String) modelo.getValueAt(TablaDocentes.getSelectedRow(), 6));
+    }//GEN-LAST:event_TablaDocentesMouseClicked
 
     private void txtrfcKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtrfcKeyPressed
         enter(this, evt, txtapellidoP);
@@ -726,7 +735,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
         edicion();
         CtrlInterfaz.limpia(txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
         CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
-        CtrlInterfaz.habilita(true, btnAgregar, btnmodifica, btnelmina);
+        CtrlInterfaz.habilita(true, btnAgregar, btnmodifica, btnelmina, btnImportar, btnExportar);
         btnAgregar.setText("Nuevo");
         btnmodifica.setText("Modificar");
     }
@@ -740,7 +749,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
     }
 
     public void actualizaTabla() {
-        modelo = (DefaultTableModel) jTable1.getModel();
+        modelo = (DefaultTableModel) TablaDocentes.getModel();
         ArrayList profes = new ArrayList();
         profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", ConectarBase.conectado());
         if (profes.isEmpty()) {
@@ -856,9 +865,10 @@ public class VentanaDocentes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TablaDocentes;
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnAgregar2;
-    private javax.swing.JButton btnAgregar3;
+    private javax.swing.JButton btnExportar;
+    private javax.swing.JButton btnImportar;
     private javax.swing.JButton btncancelar;
     private javax.swing.JButton btnelmina;
     private javax.swing.JButton btnmodifica;
@@ -877,7 +887,6 @@ public class VentanaDocentes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtapellidoM;
     private javax.swing.JTextField txtapellidoP;
     private javax.swing.JTextField txtcorreo;

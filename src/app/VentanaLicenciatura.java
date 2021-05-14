@@ -26,6 +26,7 @@ import javax.swing.JOptionPane;
  */
 public class VentanaLicenciatura extends javax.swing.JFrame
 {
+    
 
     /**
      * Creates new form VentanaPrinicipal
@@ -65,8 +66,8 @@ public class VentanaLicenciatura extends javax.swing.JFrame
         jLabel6 = new javax.swing.JLabel();
         txtcodigolic = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        btnAgregar3 = new javax.swing.JButton();
-        btnAgregar2 = new javax.swing.JButton();
+        btnExportar = new javax.swing.JButton();
+        btnImportar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horarios UAPT");
@@ -229,10 +230,10 @@ public class VentanaLicenciatura extends javax.swing.JFrame
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel8)
-                    .addComponent(txtcodigolic, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
                     .addComponent(jLabel6)
+                    .addComponent(txtcodigolic, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
                     .addComponent(txtnombre))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,23 +249,23 @@ public class VentanaLicenciatura extends javax.swing.JFrame
                 .addGap(219, 219, 219))
         );
 
-        btnAgregar3.setBackground(new java.awt.Color(102, 102, 0));
-        btnAgregar3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnAgregar3.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregar3.setText("Exportar");
-        btnAgregar3.addActionListener(new java.awt.event.ActionListener() {
+        btnExportar.setBackground(new java.awt.Color(102, 102, 0));
+        btnExportar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnExportar.setForeground(new java.awt.Color(255, 255, 255));
+        btnExportar.setText("Exportar");
+        btnExportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregar3ActionPerformed(evt);
+                btnExportarActionPerformed(evt);
             }
         });
 
-        btnAgregar2.setBackground(new java.awt.Color(102, 102, 0));
-        btnAgregar2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnAgregar2.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregar2.setText("Importar");
-        btnAgregar2.addActionListener(new java.awt.event.ActionListener() {
+        btnImportar.setBackground(new java.awt.Color(102, 102, 0));
+        btnImportar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnImportar.setForeground(new java.awt.Color(255, 255, 255));
+        btnImportar.setText("Importar");
+        btnImportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregar2ActionPerformed(evt);
+                btnImportarActionPerformed(evt);
             }
         });
 
@@ -288,7 +289,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 870, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jScrollPane1))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -297,7 +298,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame
                                         .addComponent(btnelmina, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(577, 577, 577)
                                         .addComponent(jBRegresar)))))
                         .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
@@ -307,8 +308,8 @@ public class VentanaLicenciatura extends javax.swing.JFrame
                         .addGap(306, 306, 306)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregar3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregar2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnImportar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -338,9 +339,9 @@ public class VentanaLicenciatura extends javax.swing.JFrame
                                 .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jBCerrarSesion))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAgregar2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnImportar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnAgregar3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(86, Short.MAX_VALUE))
         );
 
@@ -355,7 +356,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame
             btnAgregar.setText("Aceptar");
             CtrlInterfaz.limpia(txtnombre, txtcodigolic);
             CtrlInterfaz.habilita(true, txtnombre, btncancelar, txtcodigolic);
-            CtrlInterfaz.habilita(false, btnmodifica, btnelmina);
+            CtrlInterfaz.habilita(false, btnmodifica, btnelmina,btnImportar, btnExportar);
             CtrlInterfaz.selecciona(txtcodigolic);
             //llenaComboProfesores();
         } else
@@ -371,7 +372,6 @@ public class VentanaLicenciatura extends javax.swing.JFrame
                 //llenaComboCordinadores();
                 actualizaTabla();
                 edicion();
-                btncancelarActionPerformed(null);
             } else
             {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
@@ -419,18 +419,19 @@ public class VentanaLicenciatura extends javax.swing.JFrame
             {
                 edicion();
                 btnmodifica.setText("Aceptar");
-                CtrlInterfaz.habilita(true, txtnombre, btncancelar, txtcodigolic);
-                CtrlInterfaz.habilita(false, btnelmina, btnAgregar);
+                CtrlInterfaz.habilita(true, txtnombre, btncancelar);
+                CtrlInterfaz.habilita(false, btnelmina, btnAgregar, btnImportar, btnExportar);
+                CtrlInterfaz.selecciona(txtnombre);
             } else
             {
                 Licenciatura lic = new Licenciatura(txtcodigolic.getText(), txtnombre.getText());
                 String mensaje = Controlador.ControladorLicenciatura.modificaLicenciatura(lic, (String) tablaLicenciatura.getValueAt(tablaLicenciatura.getSelectedRow(), 0));
                 if (mensaje.equals("operacion exitosa"))
                 {
-                    btnAgregar.setText("Modificar");
+                    btnmodifica.setText("Modificar");
                     CtrlInterfaz.limpia(txtcodigolic, txtnombre);
                     CtrlInterfaz.habilita(false, txtnombre, btncancelar, txtcodigolic);
-                    CtrlInterfaz.habilita(true, btnelmina, btnmodifica);
+                    CtrlInterfaz.habilita(true, btnelmina, btnmodifica, btnAgregar);
                     actualizaTabla();
                     edicion();
                 }
@@ -488,13 +489,13 @@ public class VentanaLicenciatura extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnombreActionPerformed
 
-    private void btnAgregar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar3ActionPerformed
+    private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregar3ActionPerformed
+    }//GEN-LAST:event_btnExportarActionPerformed
 
-    private void btnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar2ActionPerformed
+    private void btnImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregar2ActionPerformed
+    }//GEN-LAST:event_btnImportarActionPerformed
 
     private void txtnombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyReleased
 
@@ -521,9 +522,9 @@ public class VentanaLicenciatura extends javax.swing.JFrame
 
     private void cancelar() {
         edicion();
-        CtrlInterfaz.limpia(txtnombre);
+        CtrlInterfaz.limpia(txtnombre, txtcodigolic);
         CtrlInterfaz.habilita(false, txtnombre, btncancelar, txtcodigolic);
-        CtrlInterfaz.habilita(true, btnAgregar, btnmodifica, btnelmina);
+        CtrlInterfaz.habilita(true, btnAgregar, btnmodifica, btnelmina, btnImportar, btnExportar);
         btnAgregar.setText("Nuevo");
         btnmodifica.setText("Modificar");
     }
@@ -786,8 +787,8 @@ public class VentanaLicenciatura extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnAgregar2;
-    private javax.swing.JButton btnAgregar3;
+    private javax.swing.JButton btnExportar;
+    private javax.swing.JButton btnImportar;
     private javax.swing.JButton btncancelar;
     private javax.swing.JButton btnelmina;
     private javax.swing.JButton btnmodifica;

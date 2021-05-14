@@ -67,12 +67,12 @@ public class VentanaCordinadores extends javax.swing.JFrame
         jLabel10 = new javax.swing.JLabel();
         ComboRFC = new javax.swing.JComboBox<>();
         JCLicenciatura = new javax.swing.JComboBox<>();
-        jBAceptar = new javax.swing.JButton();
-        jBCancelar = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         jBRegresar = new javax.swing.JButton();
-        jBEliminar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         jBCerrarSesion = new javax.swing.JButton();
-        jBModificar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaUsuarios = new javax.swing.JTable();
         btnAgregar2 = new javax.swing.JButton();
@@ -102,12 +102,20 @@ public class VentanaCordinadores extends javax.swing.JFrame
         jLabel4.setForeground(new java.awt.Color(254, 254, 254));
         jLabel4.setText("ID");
 
+        txtID.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtIDFocusLost(evt);
+            }
+        });
         txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIDActionPerformed(evt);
             }
         });
         txtID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIDKeyTyped(evt);
+            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtIDKeyPressed(evt);
             }
@@ -176,6 +184,7 @@ public class VentanaCordinadores extends javax.swing.JFrame
             }
         });
 
+        JCLicenciatura.setEnabled(false);
         JCLicenciatura.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 JCLicenciaturaKeyPressed(evt);
@@ -227,23 +236,23 @@ public class VentanaCordinadores extends javax.swing.JFrame
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jBAceptar.setBackground(new java.awt.Color(102, 102, 0));
-        jBAceptar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jBAceptar.setForeground(new java.awt.Color(255, 255, 255));
-        jBAceptar.setText("Aceptar");
-        jBAceptar.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregar.setBackground(new java.awt.Color(102, 102, 0));
+        btnAgregar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar.setText("Aceptar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAceptarActionPerformed(evt);
+                btnAgregarActionPerformed(evt);
             }
         });
 
-        jBCancelar.setBackground(new java.awt.Color(102, 102, 0));
-        jBCancelar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jBCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        jBCancelar.setText("Cancelar");
-        jBCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setBackground(new java.awt.Color(102, 102, 0));
+        btnCancelar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBCancelarActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
@@ -258,34 +267,35 @@ public class VentanaCordinadores extends javax.swing.JFrame
             }
         });
 
-        jBEliminar.setBackground(new java.awt.Color(102, 102, 0));
-        jBEliminar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jBEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        jBEliminar.setText("Eliminar");
-        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setBackground(new java.awt.Color(102, 102, 0));
+        btnEliminar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBEliminarActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
 
         jBCerrarSesion.setBackground(new java.awt.Color(102, 102, 0));
         jBCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
         jBCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/flecha(3).png"))); // NOI18N
-        jBCerrarSesion.setText("Cerrar Sesión");
+        jBCerrarSesion.setText("Salir");
         jBCerrarSesion.setToolTipText("");
+        jBCerrarSesion.setActionCommand("Salir");
         jBCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCerrarSesionActionPerformed(evt);
             }
         });
 
-        jBModificar.setBackground(new java.awt.Color(102, 102, 0));
-        jBModificar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jBModificar.setForeground(new java.awt.Color(255, 255, 255));
-        jBModificar.setText("Modificar");
-        jBModificar.addActionListener(new java.awt.event.ActionListener() {
+        btnModificar.setBackground(new java.awt.Color(102, 102, 0));
+        btnModificar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnModificar.setForeground(new java.awt.Color(255, 255, 255));
+        btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBModificarActionPerformed(evt);
+                btnModificarActionPerformed(evt);
             }
         });
 
@@ -344,21 +354,21 @@ public class VentanaCordinadores extends javax.swing.JFrame
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 831, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBRegresar)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAgregar3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregar2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnAgregar3, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                    .addComponent(btnAgregar2, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                    .addComponent(jBCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -393,10 +403,10 @@ public class VentanaCordinadores extends javax.swing.JFrame
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                 .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -410,50 +420,44 @@ public class VentanaCordinadores extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAceptarActionPerformed
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         if (!edicion)
         {
             edicion();
-            jBAceptar.setText("Aceptar");
+            btnAgregar.setText("Aceptar");
             CtrlInterfaz.limpia(txtID, txtUsuario, txtContrasenia);
-            CtrlInterfaz.habilita(true, txtID, ComboRFC, txtUsuario, txtContrasenia, JCLicenciatura, jBCancelar);
-            CtrlInterfaz.habilita(false, jBEliminar, jBModificar);
+            CtrlInterfaz.habilita(true, txtID, ComboRFC, txtUsuario, txtContrasenia, JCLicenciatura, btnCancelar);
+            CtrlInterfaz.habilita(false, btnEliminar, btnModificar, btnAgregar2, btnAgregar3);
             CtrlInterfaz.selecciona(txtID);
-            llenaComboProfesores();
         } else
         {
-            System.out.println("RFC retornado" + buscaProfesor(null, (String) ComboRFC.getSelectedItem()));
-            System.out.println("RFC retornado" + buscarLic(null, (String) JCLicenciatura.getSelectedItem()));
             Usuario us = new Usuario(txtID.getText(), buscaProfesor(null, ComboRFC.getSelectedItem().toString()), txtUsuario.getText(), txtContrasenia.getText(), buscarLic(null, JCLicenciatura.getSelectedItem().toString()));
-            System.out.println("item " + (String) ComboRFC.getSelectedItem());
-            System.out.println("item " + (String) JCLicenciatura.getSelectedItem());
             String mensaje = Controlador.ControladorCoordnadores.insertarCoordinador(us);
             if (mensaje.equals("operacion exitosa"))
             {
-                jBAceptar.setText("Nuevo");
-                CtrlInterfaz.habilita(false, txtID, ComboRFC, txtUsuario, txtContrasenia, JCLicenciatura);
-                CtrlInterfaz.habilita(true, jBEliminar, jBModificar);
-                llenaComboProfesores();
+                btnAgregar.setText("Nuevo");
+                CtrlInterfaz.habilita(false, txtID, ComboRFC, txtUsuario, txtContrasenia, JCLicenciatura, btnCancelar);
+                CtrlInterfaz.habilita(true, btnEliminar, btnModificar, btnAgregar2, btnAgregar3);
+                CtrlInterfaz.limpia(txtID, txtContrasenia, txtID, txtUsuario);
                 actualizaTabla();
                 edicion();
-                jBCancelarActionPerformed(null);
             } else
             {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
             }
         }
-    }//GEN-LAST:event_jBAceptarActionPerformed
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
-    private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         cancelar();
-    }//GEN-LAST:event_jBCancelarActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
         this.setVisible(false);
         new VentanaAdministrador().setVisible(true);
     }//GEN-LAST:event_jBRegresarActionPerformed
 
-    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         if (Mensaje.pregunta(this, "¿Seguro que quieres eliminar al usuario " + txtUsuario.getText() + "?") == 0)
         {
             String mensaje = ControladorCoordnadores.eliminaUsuario(txtID.getText());
@@ -465,15 +469,15 @@ public class VentanaCordinadores extends javax.swing.JFrame
                 JOptionPane.showMessageDialog(rootPane, mensaje);
             }
         }
-    }//GEN-LAST:event_jBEliminarActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void jBCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarSesionActionPerformed
         this.setVisible(false);
         new VentanaLogin().setVisible(true);
     }//GEN-LAST:event_jBCerrarSesionActionPerformed
 
-    private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
-        if (txtID.getText().compareTo(" ") == 0)
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        if (txtID.getText().compareTo("") == 0)
         {
             Mensaje.error(this, "Seleccione un registo a modificar");
         } else
@@ -481,9 +485,9 @@ public class VentanaCordinadores extends javax.swing.JFrame
             if (!edicion)
             {
                 edicion();
-                jBModificar.setText("Aceptar");
-                CtrlInterfaz.habilita(true, txtID, txtUsuario, ComboRFC, txtContrasenia, JCLicenciatura, jBCancelar);
-                CtrlInterfaz.habilita(false, jBEliminar, jBAceptar);
+                btnModificar.setText("Aceptar");
+                CtrlInterfaz.habilita(true, txtUsuario, ComboRFC, txtContrasenia, JCLicenciatura, btnCancelar);
+                CtrlInterfaz.habilita(false, btnEliminar, btnAgregar, btnAgregar2, btnAgregar3);
             } else
             {
                 Usuario us = new Usuario(txtID.getText(), buscaProfesor(null, (String) ComboRFC.getSelectedItem()), txtUsuario.getText(), txtContrasenia.getText(), buscarLic(null, JCLicenciatura.getSelectedItem().toString()));
@@ -491,19 +495,19 @@ public class VentanaCordinadores extends javax.swing.JFrame
                 String mensaje = ControladorCoordnadores.modifcaCoordinador(us, (String) TablaUsuarios.getValueAt(TablaUsuarios.getSelectedRow(), 1));
                 if (mensaje.equals("operacion exitosa"))
                 {
-                    jBModificar.setText("Modificar");
-                    CtrlInterfaz.habilita(false, txtID, ComboRFC, txtUsuario, txtContrasenia, JCLicenciatura);
-                    CtrlInterfaz.habilita(true, jBEliminar, jBModificar);
+                    btnModificar.setText("Modificar");
+                    CtrlInterfaz.habilita(false, txtID, ComboRFC, txtUsuario, txtContrasenia, JCLicenciatura, btnCancelar);
+                    CtrlInterfaz.habilita(true, btnEliminar, btnAgregar, btnAgregar2, btnAgregar3);
+                    CtrlInterfaz.limpia(txtID, txtContrasenia, txtID, txtUsuario);
                     actualizaTabla();
                     edicion();
-                    jBCancelarActionPerformed(null);
                 } else
                 {
                     JOptionPane.showMessageDialog(rootPane, mensaje);
                 }
             }
         }
-    }//GEN-LAST:event_jBModificarActionPerformed
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
         // TODO add your handling code here:
@@ -514,7 +518,7 @@ public class VentanaCordinadores extends javax.swing.JFrame
     }//GEN-LAST:event_txtIDKeyPressed
 
     private void txtIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyReleased
-        Valida.convertirAMayusculas(txtID);
+
     }//GEN-LAST:event_txtIDKeyReleased
 
     private void txtContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseniaActionPerformed
@@ -544,8 +548,8 @@ public class VentanaCordinadores extends javax.swing.JFrame
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         cancelar();
         actualizaTabla();
-        llenaComboCordinadores();
         llenaComboLic();
+        llenaComboProfesores();
     }//GEN-LAST:event_formWindowOpened
 
     private void ComboRFCKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ComboRFCKeyPressed
@@ -554,11 +558,10 @@ public class VentanaCordinadores extends javax.swing.JFrame
 
     private void TablaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaUsuariosMouseClicked
         txtID.setText((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 0));
-        ComboRFC.setSelectedIndex(buscarcombo((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 1)));
+        ComboRFC.setSelectedIndex(buscarCombo(((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 1))));
         txtUsuario.setText((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 2));
         txtContrasenia.setText((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 3));
-        JCLicenciatura.setSelectedIndex(buscarCombo((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 4)));
-        System.out.println("Recuperado " + buscarcombo((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 1)));
+        JCLicenciatura.setSelectedIndex(buscarComboLic((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 4)));
     }//GEN-LAST:event_TablaUsuariosMouseClicked
 
     private void btnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar2ActionPerformed
@@ -579,6 +582,14 @@ public class VentanaCordinadores extends javax.swing.JFrame
     private void JCLicenciaturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JCLicenciaturaKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_JCLicenciaturaKeyPressed
+
+    private void txtIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyTyped
+        Valida.validaLongitud(txtID, 5, evt);
+    }//GEN-LAST:event_txtIDKeyTyped
+
+    private void txtIDFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIDFocusLost
+        Valida.convertirAMayusculas(txtID);
+    }//GEN-LAST:event_txtIDFocusLost
 
     /**
      * @param args the command line arguments
@@ -627,13 +638,13 @@ public class VentanaCordinadores extends javax.swing.JFrame
     private javax.swing.JComboBox<String> ComboRFC;
     private javax.swing.JComboBox<String> JCLicenciatura;
     private javax.swing.JTable TablaUsuarios;
+    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnAgregar2;
     private javax.swing.JButton btnAgregar3;
-    private javax.swing.JButton jBAceptar;
-    private javax.swing.JButton jBCancelar;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnModificar;
     private javax.swing.JButton jBCerrarSesion;
-    private javax.swing.JButton jBEliminar;
-    private javax.swing.JButton jBModificar;
     private javax.swing.JButton jBRegresar;
     private javax.swing.JLabel jLTituloUAPT;
     private javax.swing.JLabel jLTituloUniversidad;
@@ -668,7 +679,7 @@ public class VentanaCordinadores extends javax.swing.JFrame
                 Usuario us = (Usuario) u;
                 modelo.addRow(new Object[]
                 {
-                    us.getIdUsuario(), us.getRfc(), us.getUsuario(), us.getContra(), buscarLic(us.getLicenciatura(), null)
+                    us.getIdUsuario(), buscaProfesor(us.getRfc(), null), us.getUsuario(), us.getContra(), buscarLic(us.getLicenciatura(), null)
                 });
             }
         }
@@ -679,15 +690,6 @@ public class VentanaCordinadores extends javax.swing.JFrame
         for (int i = 0; i < profes.size(); i++)
         {
             ComboRFC.addItem(((Profesor) profes.get(i)).getNombres() + " " + ((Profesor) profes.get(i)).getApellidoP());
-        }
-    }
-
-    public void llenaComboCordinadores() {
-        ComboRFC.removeAllItems();
-        for (int i = 0; i < modelo.getRowCount(); i++)
-        {
-            ComboRFC.addItem(buscaProfesor((String) TablaUsuarios.getValueAt(i, 1), null));
-            System.out.println(buscaProfesor((String) TablaUsuarios.getValueAt(i, 1), null));
         }
     }
 
@@ -726,7 +728,7 @@ public class VentanaCordinadores extends javax.swing.JFrame
         return null;
     }
 
-    public int buscarcombo(String texto) {
+    public int buscarCombo(String texto) {
         for (int i = 0; i < ComboRFC.getItemCount(); i++)
         {
             if (texto.equals(ComboRFC.getItemAt(i)))
@@ -739,15 +741,16 @@ public class VentanaCordinadores extends javax.swing.JFrame
 
     private void cancelar() {
         edicion();
-        CtrlInterfaz.limpia(txtID);
-        CtrlInterfaz.habilita(false, txtID, ComboRFC, txtUsuario, txtContrasenia, jBCancelar);
-        CtrlInterfaz.habilita(true, jBAceptar, jBModificar, jBEliminar);
-        jBAceptar.setText("Nuevo");
-        jBModificar.setText("Modificar");
+        CtrlInterfaz.limpia(txtID, txtUsuario, txtContrasenia);
+        CtrlInterfaz.habilita(false, txtID, ComboRFC, txtUsuario, txtContrasenia, JCLicenciatura, btnCancelar);
+        CtrlInterfaz.habilita(true, btnAgregar, btnModificar, btnEliminar, btnAgregar2, btnAgregar3);
+        btnAgregar.setText("Nuevo");
+        btnModificar.setText("Modificar");
     }
 
     public void llenaComboLic() {
         JCLicenciatura.removeAllItems();
+        System.out.println("Ya entre");
         for (int i = 0; i < lics.size(); i++)
         {
             JCLicenciatura.addItem(((Licenciatura) lics.get(i)).getLicenciatura());
@@ -755,7 +758,7 @@ public class VentanaCordinadores extends javax.swing.JFrame
     }
 
     public String buscarLic(String id, String licenciatura) {
-       if (licenciatura != null)
+        if (licenciatura != null)
         {
             for (Object l : lics)
             {
@@ -779,7 +782,7 @@ public class VentanaCordinadores extends javax.swing.JFrame
         return null;
     }
 
-    private int buscarCombo(String texto) {
+    private int buscarComboLic(String texto) {
         for (int i = 0; i < JCLicenciatura.getItemCount(); i++)
         {
             if (texto.equals(JCLicenciatura.getItemAt((i))))

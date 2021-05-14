@@ -543,9 +543,8 @@ public class VentanaMaterias extends javax.swing.JFrame
             {
                 edicion();
                 jBModificar.setText("Aceptar");
-                CtrlInterfaz.habilita(true, jTClave, jCLicenciatura, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
-                CtrlInterfaz.habilita(false, jBAceptar, jBEliminar);
-                CtrlInterfaz.selecciona(jTClave);
+                CtrlInterfaz.habilita(true, jCLicenciatura, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
+                CtrlInterfaz.habilita(false, jBAceptar, jBEliminar, btnAgregar4, btnAgregar5);
 
             } else
             {
@@ -555,10 +554,10 @@ public class VentanaMaterias extends javax.swing.JFrame
                 {
                     jBModificar.setText("Modificar");
                     CtrlInterfaz.habilita(false, jTClave, jCLicenciatura, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
-                    CtrlInterfaz.habilita(true, jBModificar, jBEliminar);
+                    CtrlInterfaz.habilita(true, jBAceptar, jBEliminar, btnAgregar4, btnAgregar5);
+                    CtrlInterfaz.limpia(jTClave, jTCreditos, jTHoras, jTNombre);
                     actualizarTabla();
                     edicion();
-                    jBCancelarActionPerformed(null);
                 } else
                 {
                     JOptionPane.showMessageDialog(rootPane, mensaje);
@@ -589,7 +588,7 @@ public class VentanaMaterias extends javax.swing.JFrame
             llenaComboLic();
             CtrlInterfaz.limpia(jTClave, jTNombre, jTHoras, jTCreditos);
             CtrlInterfaz.habilita(true, jTClave, jCLicenciatura, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
-            CtrlInterfaz.habilita(false, jBModificar, jBEliminar);
+            CtrlInterfaz.habilita(false, jBModificar, jBEliminar, btnAgregar4, btnAgregar5);
             CtrlInterfaz.selecciona(jTClave);
         } else
         {;
@@ -599,10 +598,10 @@ public class VentanaMaterias extends javax.swing.JFrame
             {
                 jBAceptar.setText("Nuevo");
                 CtrlInterfaz.habilita(false, jTClave, jCLicenciatura, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
-                CtrlInterfaz.habilita(true, jBModificar, jBEliminar);
+                CtrlInterfaz.habilita(true, jBModificar, jBEliminar, btnAgregar4, btnAgregar5);
+                CtrlInterfaz.limpia(jTClave, jTCreditos, jTHoras, jTNombre);
                 actualizarTabla();
                 edicion();
-                jBCancelarActionPerformed(null);
             } else
             {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
@@ -684,9 +683,7 @@ public class VentanaMaterias extends javax.swing.JFrame
 
     private void TablaMAteriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMAteriasMouseClicked
         jTClave.setText((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 0));
-        jCLicenciatura.setSelectedIndex(buscarCombo((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 1)));
-        jCPlan.setSelectedIndex(buscarComboPlan((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 2)));
-        //jCPlan.setSelectedIndex(buscarCombo((String)modelo.getValueAt(TablaMAterias.getSelectedRow(), 2), jCPlan));
+        jCLicenciatura.setSelectedIndex(buscarCombo((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 1)));jCPlan.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 2), jCPlan)));
         jTNombre.setText((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 3));
         jTHoras.setText((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 4).toString());
         jTCreditos.setText((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 5).toString());
@@ -823,9 +820,8 @@ public class VentanaMaterias extends javax.swing.JFrame
                 Materia mat = (Materia) m;
                 modelo.addRow(new Object[]
                 {
-                    mat.getClaveMateria(), buscaLic(mat.getClaveCarrera(), null), mat.getPlanEstudios(), mat.getUnidadAprendizaje(), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
+                    mat.getClaveMateria(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getUnidadAprendizaje(), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
                 });
-                System.out.println(((Materia) m).getClaveMateria());
             }
         }
     }
@@ -852,7 +848,7 @@ public class VentanaMaterias extends javax.swing.JFrame
         edicion();
         CtrlInterfaz.limpia(jTClave, jTNombre, jTHoras, jTCreditos);
         CtrlInterfaz.habilita(false, jTClave, jCLicenciatura, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
-        CtrlInterfaz.habilita(true, jBModificar, jBEliminar);
+        CtrlInterfaz.habilita(true, jBModificar, jBAceptar,jBEliminar, btnAgregar4, btnAgregar5);
         jBAceptar.setText("Nuevo");
         jBModificar.setText("Modificar");
     }
