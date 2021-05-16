@@ -5,13 +5,26 @@
  */
 package app;
 
+import Clases.ConectarBase;
+import Clases.ConsultasObjetos;
+import Objetos.Licenciatura;
+import static app.VentanaMateriasCoordinador.licen;
 import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
-public class VentanaHorarios extends javax.swing.JFrame {
+public class VentanaHorarios extends javax.swing.JFrame
+{
+
+    int id = 0;
+    private Boolean edicion = true;
+    private DefaultTableModel modelo;
+    private ArrayList<Object> lics = new ArrayList<>();
+    public static String licenciatura;
 
     /**
      * Creates new form VentanaPrinicipal
@@ -47,26 +60,31 @@ public class VentanaHorarios extends javax.swing.JFrame {
         jCLicenciatura2 = new javax.swing.JComboBox<>();
         jTContrasenia = new javax.swing.JTextField();
         jCLicenciatura1 = new javax.swing.JComboBox<>();
-        jCLicenciatura3 = new javax.swing.JComboBox<>();
         jCLicenciatura5 = new javax.swing.JComboBox<>();
         jCLicenciatura = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTIdUsuario = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jTLicenciatura = new javax.swing.JTextField();
         jBRegresar = new javax.swing.JButton();
         jBCerrarSesion = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLTituloUniversidad = new javax.swing.JLabel();
         jLTituloUAPT = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         btnAgregar4 = new javax.swing.JButton();
         btnAgregar5 = new javax.swing.JButton();
         jBAceptar1 = new javax.swing.JButton();
         jBAceptar2 = new javax.swing.JButton();
+        LabelHr = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horarios UAPT");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jBAceptar.setBackground(new java.awt.Color(102, 102, 0));
         jBAceptar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -147,8 +165,6 @@ public class VentanaHorarios extends javax.swing.JFrame {
 
         jCLicenciatura1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2021A", "2021B" }));
 
-        jCLicenciatura3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ingenieria en software", "Ingenieria en plasticos", "Ingenieria en producción industrial" }));
-
         jCLicenciatura5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" }));
 
         jCLicenciatura.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Algebra", "Computacion", "Inlges", "Calculo Diferencial E Integral" }));
@@ -172,6 +188,18 @@ public class VentanaHorarios extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(254, 254, 254));
         jLabel3.setText("Licenciatura");
 
+        jTLicenciatura.setEnabled(false);
+        jTLicenciatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTLicenciaturaActionPerformed(evt);
+            }
+        });
+        jTLicenciatura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTLicenciaturaKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -192,8 +220,8 @@ public class VentanaHorarios extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTLicenciatura, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTIdUsuario)
-                            .addComponent(jCLicenciatura3, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jCLicenciatura2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
@@ -220,7 +248,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCLicenciatura3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTLicenciatura, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -248,7 +276,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
                     .addComponent(jTCorrero, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
                     .addComponent(jTContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jBRegresar.setBackground(new java.awt.Color(102, 102, 0));
@@ -280,9 +308,6 @@ public class VentanaHorarios extends javax.swing.JFrame {
 
         jLTituloUAPT.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLTituloUAPT.setText("UNIDAD ACADEMICA PROFESIONAL TIANGUISTENCO");
-
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel2.setText("GESTION LICENCIATURAS");
 
         btnAgregar4.setBackground(new java.awt.Color(102, 102, 0));
         btnAgregar4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -324,6 +349,9 @@ public class VentanaHorarios extends javax.swing.JFrame {
             }
         });
 
+        LabelHr.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        LabelHr.setText("GESTION GRUPOS");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -331,18 +359,17 @@ public class VentanaHorarios extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 826, Short.MAX_VALUE)
+                        .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBAceptar1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jBAceptar2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 826, Short.MAX_VALUE)
-                        .addGap(18, 18, 18))
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -354,17 +381,16 @@ public class VentanaHorarios extends javax.swing.JFrame {
                     .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(150, 150, 150)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(296, 296, 296)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLTituloUniversidad)
-                            .addComponent(jLTituloUAPT))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLTituloUniversidad)
+                    .addComponent(jLTituloUAPT))
+                .addGap(0, 811, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(LabelHr)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -375,33 +401,26 @@ public class VentanaHorarios extends javax.swing.JFrame {
                         .addComponent(jLTituloUniversidad)
                         .addGap(13, 13, 13)
                         .addComponent(jLTituloUAPT)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15))
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnAgregar5)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnAgregar4)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBRegresar)
-                            .addComponent(jBCerrarSesion))
-                        .addGap(25, 25, 25))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBAceptar1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBAceptar2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(LabelHr))
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAgregar5)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAgregar4))
+                    .addComponent(jScrollPane1)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBRegresar)
+                    .addComponent(jBCerrarSesion)
+                    .addComponent(jBAceptar1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBAceptar2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25))
         );
 
         pack();
@@ -412,7 +431,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jTIdUsuarioActionPerformed
 
     private void jBAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAceptarActionPerformed
-            
+
     }//GEN-LAST:event_jBAceptarActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
@@ -449,6 +468,19 @@ public class VentanaHorarios extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBAceptar2ActionPerformed
 
+    private void jTLicenciaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTLicenciaturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTLicenciaturaActionPerformed
+
+    private void jTLicenciaturaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTLicenciaturaKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTLicenciaturaKeyReleased
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, ConectarBase.conectado());
+        LabelHr.setText("GESTION HORARIOS " + buscaLic(licen, null));
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -458,20 +490,27 @@ public class VentanaHorarios extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(VentanaHorarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(VentanaHorarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(VentanaHorarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(VentanaHorarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -604,7 +643,8 @@ public class VentanaHorarios extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable()
+        {
             public void run() {
                 new VentanaHorarios().setVisible(true);
             }
@@ -612,6 +652,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LabelHr;
     private javax.swing.JButton btnAgregar4;
     private javax.swing.JButton btnAgregar5;
     private javax.swing.JButton jBAceptar;
@@ -623,7 +664,6 @@ public class VentanaHorarios extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jCLicenciatura;
     private javax.swing.JComboBox<String> jCLicenciatura1;
     private javax.swing.JComboBox<String> jCLicenciatura2;
-    private javax.swing.JComboBox<String> jCLicenciatura3;
     private javax.swing.JComboBox<String> jCLicenciatura4;
     private javax.swing.JComboBox<String> jCLicenciatura5;
     private javax.swing.JLabel jLTituloUAPT;
@@ -632,7 +672,6 @@ public class VentanaHorarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -644,6 +683,31 @@ public class VentanaHorarios extends javax.swing.JFrame {
     private javax.swing.JTextField jTContrasenia;
     private javax.swing.JTextField jTCorrero;
     private javax.swing.JTextField jTIdUsuario;
+    private javax.swing.JTextField jTLicenciatura;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+      public String buscaLic(String id, String licenciatura) {
+        if (licenciatura != null)
+        {
+            for (Object l : lics)
+            {
+                Licenciatura lic = (Licenciatura) l;
+                if ((lic.getLicenciatura()).equals(licenciatura))
+                {
+                    return lic.getIdLicenciatura();
+                }
+            }
+        } else
+        {
+            for (Object l : lics)
+            {
+                Licenciatura lic = (Licenciatura) l;
+                if (lic.getIdLicenciatura().equals(id))
+                {
+                    return lic.getLicenciatura();
+                }
+            }
+        }
+        return null;
+    }
 }

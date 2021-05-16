@@ -16,6 +16,7 @@ import cjb.ci.Mensaje;
 import cjb.ci.Validaciones;
 import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,9 +30,10 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame
     int id = 0;
     private Boolean edicion = true;
     private DefaultTableModel modelo;
-    private ArrayList<Object> lics = new ArrayList<>();
     private ArrayList<Object> plans = new ArrayList<>();
-    
+    private ArrayList<Object> lics = new ArrayList<>();
+    public static String licen;
+
     /**
      * Creates new form VentanaPrinicipal
      */
@@ -53,7 +55,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame
 
         jLTituloUniversidad = new javax.swing.JLabel();
         jLTituloUAPT = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        LabelMateris = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaMAterias = new javax.swing.JTable();
@@ -66,9 +68,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame
         jPanel1 = new javax.swing.JPanel();
         jTHoras = new javax.swing.JTextField();
         jTCreditos = new javax.swing.JTextField();
-        jTPeriodo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jCLicenciatura = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -79,9 +79,11 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame
         jCPlan = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTTipo = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jCNucleo = new javax.swing.JComboBox<>();
+        jCSemestre = new javax.swing.JComboBox<>();
+        jCTipo = new javax.swing.JComboBox<>();
+        jTLicenciatura = new javax.swing.JTextField();
         btnAgregar4 = new javax.swing.JButton();
         btnAgregar5 = new javax.swing.JButton();
 
@@ -99,12 +101,13 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame
         jLTituloUAPT.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLTituloUAPT.setText("Unidad Académica Profesional Tianguistenco");
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel2.setText("Gestión materias");
+        LabelMateris.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        LabelMateris.setText("GESTION MATERIAS");
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/UAEMex.jpg"))); // NOI18N
 
         TablaMAterias.setBackground(new java.awt.Color(25, 83, 0));
+        TablaMAterias.setForeground(new java.awt.Color(254, 254, 254));
         TablaMAterias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
@@ -119,6 +122,11 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame
                 "Matricula", "Licenciatura", "Plan", "Nombre", "Horas", "Creditos", "Periodo", "Nucleo", "Tipo"
             }
         ));
+        TablaMAterias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaMAteriasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TablaMAterias);
 
         jBRegresar.setBackground(new java.awt.Color(102, 102, 0));
@@ -210,25 +218,9 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame
             }
         });
 
-        jTPeriodo.setBackground(new java.awt.Color(254, 254, 254));
-        jTPeriodo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTPeriodoKeyTyped(evt);
-            }
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTPeriodoKeyPressed(evt);
-            }
-        });
-
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(254, 254, 254));
         jLabel6.setText("Nombre");
-
-        jCLicenciatura.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jCLicenciaturaKeyPressed(evt);
-            }
-        });
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(254, 254, 254));
@@ -293,13 +285,6 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame
         jLabel11.setForeground(new java.awt.Color(254, 254, 254));
         jLabel11.setText("Nucleo");
 
-        jTTipo.setBackground(new java.awt.Color(254, 254, 254));
-        jTTipo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTTipoKeyTyped(evt);
-            }
-        });
-
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(254, 254, 254));
         jLabel12.setText("Tipo");
@@ -311,32 +296,58 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame
             }
         });
 
+        jCSemestre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        jCSemestre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jCSemestreKeyPressed(evt);
+            }
+        });
+
+        jCTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Obligatoria", "Optativa" }));
+        jCTipo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jCTipoKeyPressed(evt);
+            }
+        });
+
+        jTLicenciatura.setEnabled(false);
+        jTLicenciatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTLicenciaturaActionPerformed(evt);
+            }
+        });
+        jTLicenciatura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTLicenciaturaKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCNucleo, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jCTipo, 0, 220, Short.MAX_VALUE)
+                    .addComponent(jCSemestre, 0, 220, Short.MAX_VALUE)
+                    .addComponent(jCNucleo, 0, 220, Short.MAX_VALUE)
                     .addComponent(jLabel12)
                     .addComponent(jLabel11)
                     .addComponent(jLabel8)
-                    .addComponent(jCPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCPlan, 0, 220, Short.MAX_VALUE)
                     .addComponent(jLabel3)
-                    .addComponent(jCLicenciatura, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTHoras, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                     .addComponent(jLabel6)
-                    .addComponent(jTCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTCreditos, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel9)
-                    .addComponent(jTNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                     .addComponent(jLabel10)
-                    .addComponent(jTClave, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .addComponent(jTClave, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTLicenciatura))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -347,8 +358,8 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame
                 .addComponent(jTClave, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCLicenciatura, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(jTLicenciatura, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -368,7 +379,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jCSemestre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -376,8 +387,8 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(jCTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         btnAgregar4.setBackground(new java.awt.Color(102, 102, 0));
@@ -406,15 +417,11 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel5)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLTituloUniversidad)
-                            .addComponent(jLTituloUAPT)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(481, 481, 481)
-                        .addComponent(jLabel2)))
+                    .addComponent(jLTituloUniversidad)
+                    .addComponent(jLTituloUAPT)
+                    .addComponent(LabelMateris))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
@@ -422,7 +429,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 868, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 821, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -449,10 +456,10 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame
                         .addGap(20, 20, 20)
                         .addComponent(jLTituloUniversidad)
                         .addGap(8, 8, 8)
-                        .addComponent(jLTituloUAPT))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel5)))
+                        .addComponent(jLTituloUAPT)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(LabelMateris))
+                    .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -472,7 +479,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame
                             .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addContainerGap(20, Short.MAX_VALUE))))
+                        .addContainerGap(24, Short.MAX_VALUE))))
         );
 
         pack();
@@ -512,10 +519,6 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame
         cjb.ci.Validaciones.validaEntero(evt);
     }//GEN-LAST:event_jTCreditosKeyTyped
 
-    private void jTPeriodoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPeriodoKeyTyped
-        cjb.ci.Validaciones.validaEntero(evt);
-    }//GEN-LAST:event_jTPeriodoKeyTyped
-
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
         if (jTClave.getText().compareTo("") == 0)
         {
@@ -526,22 +529,21 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame
             {
                 edicion();
                 jBModificar.setText("Aceptar");
-                CtrlInterfaz.habilita(true, jTClave, jCLicenciatura, jCPlan, jTNombre, jTHoras, jTCreditos, jTPeriodo, jCNucleo, jTTipo, jBCancelar);
-                CtrlInterfaz.habilita(false, jBModificar, jBEliminar);
-                CtrlInterfaz.selecciona(jTClave);
+                CtrlInterfaz.habilita(true, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
+                CtrlInterfaz.habilita(false, jBAceptar, jBEliminar, btnAgregar4, btnAgregar5);
 
             } else
             {
-                Materia materia = new Materia(jTClave.getText(), jTNombre.getText(), Integer.parseInt(jTHoras.getText()), Integer.parseInt(jTCreditos.getText()),Integer.parseInt(jTPeriodo.getText()), jCNucleo.getSelectedItem().toString(), jTTipo.getText(), buscaLic(null, jCLicenciatura.getSelectedItem().toString()), buscaPlan(null, jCPlan.getSelectedItem().toString()));
-              String mensaje = Controlador.ControladorMaterias.modifcaMateria(materia, (String)TablaMAterias.getValueAt(TablaMAterias.getSelectedRow(), 1));
+                Materia materia = new Materia(jTClave.getText(), jTNombre.getText(), Integer.parseInt(jTHoras.getText()), Integer.parseInt(jTCreditos.getText()), Integer.parseInt(jCSemestre.getSelectedItem().toString()), jCNucleo.getSelectedItem().toString(), jCTipo.getSelectedItem().toString(), licen, buscaPlan(null, jCPlan.getSelectedItem().toString()));
+                String mensaje = Controlador.ControladorMaterias.modifcaMateria(materia, (String) TablaMAterias.getValueAt(TablaMAterias.getSelectedRow(), 0));
                 if (mensaje.equals("operacion exitosa"))
                 {
                     jBModificar.setText("Modificar");
-                    CtrlInterfaz.habilita(false, jTClave, jCLicenciatura, jCPlan, jTNombre, jTHoras, jTCreditos, jTPeriodo, jCNucleo, jTTipo, jBCancelar);
-                    CtrlInterfaz.habilita(true, jBModificar, jBEliminar);
+                    CtrlInterfaz.habilita(false, jTClave, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
+                    CtrlInterfaz.habilita(true, jBAceptar, jBEliminar, btnAgregar4, btnAgregar5);
+                    CtrlInterfaz.limpia(jTClave, jTCreditos, jTHoras, jTNombre);
                     actualizarTabla();
                     edicion();
-                    jBCancelarActionPerformed(null);
                 } else
                 {
                     JOptionPane.showMessageDialog(rootPane, mensaje);
@@ -569,22 +571,22 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame
         {
             edicion();
             jBAceptar.setText("Aceptar");
-            CtrlInterfaz.limpia(jTClave, jTNombre, jTHoras, jTCreditos, jTPeriodo, jTTipo);
-            CtrlInterfaz.habilita(true, jTClave, jCLicenciatura, jCPlan, jTNombre, jTHoras, jTCreditos, jTPeriodo, jCNucleo, jTTipo, jBCancelar);
-            CtrlInterfaz.habilita(false, jBModificar, jBEliminar);
+            CtrlInterfaz.limpia(jTClave, jTNombre, jTHoras, jTCreditos);
+            CtrlInterfaz.habilita(true, jTClave, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
+            CtrlInterfaz.habilita(false, jBModificar, jBEliminar, btnAgregar4, btnAgregar5);
             CtrlInterfaz.selecciona(jTClave);
         } else
-        {
-            Materia mat = new Materia(jTClave.getText(), jTNombre.getText(), Integer.parseInt(jTHoras.getText()), Integer.parseInt(jTCreditos.getText()), Integer.parseInt(jTPeriodo.getText()), jCNucleo.getSelectedItem().toString(), jTTipo.getText(), buscaLic(null, jCLicenciatura.getSelectedItem().toString()), buscaPlan(null, jCPlan.getSelectedItem().toString()));
+        {;
+            Materia mat = new Materia(jTClave.getText(), jTNombre.getText(), Integer.parseInt(jTHoras.getText()), Integer.parseInt(jTCreditos.getText()), Integer.parseInt(jCSemestre.getSelectedItem().toString()), jCNucleo.getSelectedItem().toString(), jCTipo.getSelectedItem().toString(), licen, buscaPlan(null, jCPlan.getSelectedItem().toString()));
             String mensaje = Controlador.ControladorMaterias.insertaMateria(mat);
             if (mensaje.equals("operacion exitosa"))
             {
                 jBAceptar.setText("Nuevo");
-                CtrlInterfaz.habilita(false, jTClave, jCLicenciatura, jCPlan, jTNombre, jTHoras, jTCreditos, jTPeriodo, jCNucleo, jTTipo, jBCancelar);
-                CtrlInterfaz.habilita(true, jBModificar, jBEliminar);
+                CtrlInterfaz.habilita(false, jTClave, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
+                CtrlInterfaz.habilita(true, jBModificar, jBEliminar, btnAgregar4, btnAgregar5);
+                CtrlInterfaz.limpia(jTClave, jTCreditos, jTHoras, jTNombre);
                 actualizarTabla();
                 edicion();
-                jBCancelarActionPerformed(null);
             } else
             {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
@@ -604,17 +606,9 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregar5ActionPerformed
 
-    private void jTTipoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTTipoKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTTipoKeyTyped
-
     private void jTClaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTClaveKeyPressed
-        Validaciones.enter(this, evt, jCLicenciatura);
-    }//GEN-LAST:event_jTClaveKeyPressed
-
-    private void jCLicenciaturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCLicenciaturaKeyPressed
         Validaciones.enter(this, evt, jCPlan);
-    }//GEN-LAST:event_jCLicenciaturaKeyPressed
+    }//GEN-LAST:event_jTClaveKeyPressed
 
     private void jCPlanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCPlanKeyPressed
         Validaciones.enter(this, evt, jTNombre);
@@ -629,23 +623,45 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame
     }//GEN-LAST:event_jTHorasKeyPressed
 
     private void jTCreditosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCreditosKeyPressed
-        Validaciones.enter(this, evt, jTPeriodo);
+        Validaciones.enter(this, evt, jCSemestre);
     }//GEN-LAST:event_jTCreditosKeyPressed
 
-    private void jTPeriodoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPeriodoKeyPressed
-        Validaciones.enter(this, evt, jCNucleo);
-    }//GEN-LAST:event_jTPeriodoKeyPressed
-
     private void jCNucleoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCNucleoKeyPressed
-        Validaciones.enter(this, evt, jTTipo);
+        Validaciones.enter(this, evt, jCTipo);
     }//GEN-LAST:event_jCNucleoKeyPressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        llenaComboLic();
-        llenaComboPlanes();
         cancelar();
         actualizarTabla();
+        llenaComboPlanes();
+        LabelMateris.setText("GESTION MATERIAS "+buscaLic(licen, null));
     }//GEN-LAST:event_formWindowOpened
+
+    private void jCSemestreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCSemestreKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCSemestreKeyPressed
+
+    private void jCTipoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCTipoKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCTipoKeyPressed
+
+    private void TablaMAteriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMAteriasMouseClicked
+        jTClave.setText((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 0));
+        jTNombre.setText((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 3));
+        jTHoras.setText((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 4).toString());
+        jTCreditos.setText((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 5).toString());
+        jCSemestre.setSelectedIndex(buscarCombo((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 6).toString(), jCSemestre));
+        jCNucleo.setSelectedIndex(buscarCombo((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 7), jCNucleo));
+        jCTipo.setSelectedIndex(buscarCombo((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 8), jCTipo));
+    }//GEN-LAST:event_TablaMAteriasMouseClicked
+
+    private void jTLicenciaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTLicenciaturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTLicenciaturaActionPerformed
+
+    private void jTLicenciaturaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTLicenciaturaKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTLicenciaturaKeyReleased
 
     /**
      * @param args the command line arguments
@@ -753,6 +769,95 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame
         });
     }
 
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LabelMateris;
+    private javax.swing.JTable TablaMAterias;
+    private javax.swing.JButton btnAgregar4;
+    private javax.swing.JButton btnAgregar5;
+    private javax.swing.JButton jBAceptar;
+    private javax.swing.JButton jBCancelar;
+    private javax.swing.JButton jBCerrarSesion;
+    private javax.swing.JButton jBEliminar;
+    private javax.swing.JButton jBModificar;
+    private javax.swing.JButton jBRegresar;
+    private javax.swing.JComboBox<String> jCNucleo;
+    private javax.swing.JComboBox<String> jCPlan;
+    private javax.swing.JComboBox<String> jCSemestre;
+    private javax.swing.JComboBox<String> jCTipo;
+    private javax.swing.JLabel jLTituloUAPT;
+    private javax.swing.JLabel jLTituloUniversidad;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTClave;
+    private javax.swing.JTextField jTCreditos;
+    private javax.swing.JTextField jTHoras;
+    private javax.swing.JTextField jTLicenciatura;
+    private javax.swing.JTextField jTNombre;
+    // End of variables declaration//GEN-END:variables
+
+    public void actualizarTabla() {
+        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, ConectarBase.conectado());
+        plans = ConsultasObjetos.consultaMuchos("plan_estudios", "id_licenciatura", licen, ConectarBase.conectado());
+        modelo = (DefaultTableModel) TablaMAterias.getModel();
+        ArrayList materias = new ArrayList();
+        materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", licen, ConectarBase.conectado());
+        if (materias.isEmpty())
+        {
+            Mensaje.error(this, "No hay materias registradas");
+        } else
+        {
+            modelo.setRowCount(0);
+            for (Object m : materias)
+            {
+                Materia mat = (Materia) m;
+                modelo.addRow(new Object[]
+                {
+                    mat.getClaveMateria(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getUnidadAprendizaje(), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
+                });
+            }
+        }
+    }
+
+    private void edicion() {
+        if (edicion)
+        {
+            edicion = false;
+        } else
+        {
+            edicion = true;
+        }
+    }
+
+
+
+    private void cancelar() {
+        edicion();
+        CtrlInterfaz.limpia(jTClave, jTNombre, jTHoras, jTCreditos);
+        CtrlInterfaz.habilita(false, jTClave, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
+        CtrlInterfaz.habilita(true, jBModificar, jBAceptar,jBEliminar, btnAgregar4, btnAgregar5);
+        jBAceptar.setText("Nuevo");
+        jBModificar.setText("Modificar");
+    }
+
+    public void llenaComboPlanes() {
+        jCPlan.removeAllItems();
+        for (int i = 0; i < plans.size(); i++)
+        {
+            jCPlan.addItem(((PlanEstudios) plans.get(i)).getPlanEstudios());
+        }
+    }
+
     public String buscaLic(String id, String licenciatura) {
         if (licenciatura != null)
         {
@@ -778,105 +883,51 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame
         return null;
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TablaMAterias;
-    private javax.swing.JButton btnAgregar4;
-    private javax.swing.JButton btnAgregar5;
-    private javax.swing.JButton jBAceptar;
-    private javax.swing.JButton jBCancelar;
-    private javax.swing.JButton jBCerrarSesion;
-    private javax.swing.JButton jBEliminar;
-    private javax.swing.JButton jBModificar;
-    private javax.swing.JButton jBRegresar;
-    private javax.swing.JComboBox<String> jCLicenciatura;
-    private javax.swing.JComboBox<String> jCNucleo;
-    private javax.swing.JComboBox<String> jCPlan;
-    private javax.swing.JLabel jLTituloUAPT;
-    private javax.swing.JLabel jLTituloUniversidad;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTClave;
-    private javax.swing.JTextField jTCreditos;
-    private javax.swing.JTextField jTHoras;
-    private javax.swing.JTextField jTNombre;
-    private javax.swing.JTextField jTPeriodo;
-    private javax.swing.JTextField jTTipo;
-    // End of variables declaration//GEN-END:variables
-
-    public void actualizarTabla() {
-        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, ConectarBase.conectado());
-        plans = ConsultasObjetos.consultaMuchos("plan_estudios", null, null, ConectarBase.conectado());
-        System.out.println("lics " + lics);
-        modelo = (DefaultTableModel) TablaMAterias.getModel();
-        ArrayList materias = new ArrayList();
-        materias = ConsultasObjetos.consultaMuchos("materia", null, null, ConectarBase.conectado());
-        if (materias.isEmpty())
+    private String buscaPlan(String id, String plan) {
+        if (plan != null)
         {
-            Mensaje.error(this, "No hay materias registradas");
+            for (Object p : plans)
+            {
+                PlanEstudios pla = (PlanEstudios) p;
+                if ((pla.getPlanEstudios().equals(plan)))
+                {
+                    return pla.getIdPlan();
+                }
+            }
         } else
         {
-            modelo.setRowCount(0);
-            for (Object m : materias)
+            for (Object p : plans)
             {
-                Materia mat = (Materia) m;
-                modelo.addRow(new Object[]
+                PlanEstudios pla = (PlanEstudios) p;
+                if (pla.getIdPlan().equals(id))
                 {
-                    mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null)
-                });
-                System.out.println(((Materia) m).getClaveMateria());
+                    return pla.getPlanEstudios();
+                }
             }
         }
+        return null;
     }
 
-    private void edicion() {
-        if (edicion)
+    private int buscarComboPlan(String text) {
+        for (int i = 0; i < jCPlan.getItemCount(); i++)
         {
-            edicion = false;
-        } else
-        {
-            edicion = true;
+            if (text.equals(jCPlan.getItemAt(i)))
+            {
+                return i;
+            }
         }
+        return 0;
     }
 
-    private void cancelar() {
-        edicion();
-        CtrlInterfaz.limpia(jTClave, jTNombre, jTHoras, jTCreditos, jTPeriodo, jTTipo);
-        CtrlInterfaz.habilita(false, jTClave, jCLicenciatura, jCPlan, jTNombre, jTHoras, jTCreditos, jTPeriodo, jCNucleo, jTTipo, jBCancelar);
-        CtrlInterfaz.habilita(true, jBModificar, jBEliminar);
-        jBAceptar.setText("Nuevo");
-        jBModificar.setText("Modificar");
-    }
-
-    public void llenaComboLic() {
-        jCLicenciatura.removeAllItems();
-        for (int i = 0; i < lics.size(); i++)
+    private int buscarCombo(String text, JComboBox<String> jCSemestre) {
+        for (int i = 0; i < jCSemestre.getItemCount(); i++)
         {
-            jCLicenciatura.addItem(((Licenciatura) lics.get(i)).getLicenciatura());
-            System.out.println("Lic encontrada " + ((Licenciatura) lics.get(i)).getLicenciatura());
+            if (text.equals(jCSemestre.getItemAt(i)))
+            {
+                return i;
+            }
         }
+        return 0;
     }
 
-    public void llenaComboPlanes()
-    {
-        jCPlan.removeAllItems();
-        for (int i = 0; i < plans.size(); i++)
-        {
-            jCPlan.addItem(((PlanEstudios)plans.get(i)).getPlanEstudios());
-        }
-    }
-    
-    private int buscaPlan(Object object, String toString) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

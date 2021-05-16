@@ -34,6 +34,31 @@ public class ConsultasObjetos
     public static Statement sentencia;
     public static String nivel = "";
 
+    public static String obtieneIDLic(String usuario, Connection con)
+    {
+        try
+        {
+            String sql = "SELECT * FROM usuarios WHERE usuario='"+ usuario + "'";
+            
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            
+            String id = "";
+            if (rs.next())
+            {
+                System.out.println("id_lic " + rs.getString("id_licenciatura"));
+                return rs.getString("id_licenciatura");
+            }
+            else 
+            {
+                System.out.println("no se encontro lic");
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(ConsultasObjetos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
     public static String validaEntrar(String usuario, String contrasenia, Connection con) {
         String sql = "SELECT * FROM usuarios WHERE usuario='" + usuario + "'";
 
