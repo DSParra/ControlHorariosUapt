@@ -32,7 +32,6 @@ public class Pruebas {
         profesores.add(new Profesor("atsndlka", "", "", "", "", "", ""));
         profesores.add(new Profesor("a,msdnq", "", "", "", "", "", ""));
         System.out.println(profesores.contains("xml"));
-        profesores.
 
         
 

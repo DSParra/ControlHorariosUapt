@@ -303,6 +303,7 @@ public class VistaExcel extends javax.swing.JFrame {
         if (!identificado) {
             txtconsulta.setText("No es encontro el tipo de excel");
         }
+        return null;
     }
     /**
      * @param args the command line arguments
