@@ -10,8 +10,16 @@ CREATE TABLE profesores(
                     grado_academico VARCHAR (60) NOT NULL,
                     correo VARCHAR (60) NOT NULL,
                     telefono VARCHAR (10) NOT NULL,
+                    nivel VARCHAR(60) NOT NULL DEFAULT "profesor",
                     PRIMARY KEY (rfc),
                     UNIQUE(correo)
+                    );
+
+CREATE TABLE licenciatura(
+                    id_licenciatura VARCHAR(30) NOT NULL,
+                    nombre VARCHAR(60) NOT NULL, 
+                    PRIMARY KEY (id_licenciatura),
+                    UNIQUE(nombre)
                     );
 
 CREATE TABLE usuarios(
@@ -19,25 +27,16 @@ CREATE TABLE usuarios(
                     rfc VARCHAR(60) NOT NULL,
                     usuario VARCHAR(60) NOT NULL,
                     contrasenia VARCHAR(60) NOT NULL,
-                    pregunta_seguridad VARCHAR(250) NOT NULL,
-                    respuesta_seguridad VARCHAR(250) NOT NULL,
-                    nivel INT(11) NOT NULL DEFAULT 2,
+                    id_licenciatura VARCHAR(30),
+                    nivel VARCHAR(60) NOT NULL DEFAULT "profesor",
                     UNIQUE(rfc,usuario),
                     PRIMARY KEY (id_usuario),
-                    FOREIGN KEY (rfc) REFERENCES profesores(rfc)
-                    );
-
-CREATE TABLE licenciatura(
-                    id_licenciatura VARCHAR(30) NOT NULL,
-                    nombre VARCHAR(60) NOT NULL,
-                    rfc_coordinador varchar(60) NOT NULL, 
-                    PRIMARY KEY (id_licenciatura),
-                    FOREIGN KEY (rfc_coordinador) REFERENCES profesores(rfc),
-                    UNIQUE(nombre)
+                    FOREIGN KEY (rfc) REFERENCES profesores(rfc),
+                    FOREIGN KEY (id_licenciatura) REFERENCES licenciatura(id_licenciatura)
                     );
 
 CREATE TABLE plan_estudios(
-                    id_plan_estudios INT(11),
+                    id_plan_estudios VARCHAR(60) NOT NULL,
                     plan_estudios VARCHAR(60) NOT NULL,
                     id_licenciatura VARCHAR(60) NOT NULL,
                     PRIMARY KEY (id_plan_estudios),
@@ -46,14 +45,14 @@ CREATE TABLE plan_estudios(
                     );
 
 CREATE TABLE periodo_escolar(
-                    id_periodo INT(11) AUTO_INCREMENT,
+                    id_periodo VARCHAR(11) NOT NULL,
                     periodo VARCHAR(60) NOT NULL,
                     PRIMARY KEY (id_periodo),
                     UNIQUE(periodo)
                     );
 
 CREATE TABLE grupo(
-                    id_grupo INT(11), 
+                    id_grupo VARCHAR(11), 
                     nombre_grupo VARCHAR(60) NOT NULL,
                     id_licenciatura VARCHAR(60) NOT NULL,
                     PRIMARY KEY (id_grupo),
@@ -70,18 +69,17 @@ CREATE TABLE materia(
                     nucleo VARCHAR(60) NOT NULL,
                     tipo VARCHAR(60) NOT NULL,
                     id_licenciatura VARCHAR(60) NOT NULL,
-                    id_plan_estudios INT(11),
+                    id_plan_estudios VARCHAR(60) NOT NULL,
                     PRIMARY KEY (clave_materia),
                     FOREIGN KEY (id_licenciatura) REFERENCES licenciatura(id_licenciatura),
-                    FOREIGN KEY (id_plan_estudios) REFERENCES plan_estudios(id_plan_estudios),
-                    UNIQUE(unidad_aprendizaje)
+                    FOREIGN KEY (id_plan_estudios) REFERENCES plan_estudios(id_plan_estudios)
                     );
 
 CREATE TABLE horarios(
                     id_horario VARCHAR(60) NOT NULL,
                     clave_materia VARCHAR(60) NOT NULL,
-                    id_grupo INT(11),
-                    id_periodo INT(11),
+                    id_grupo VARCHAR(11) NOT NULL,
+                    id_periodo VARCHAR(11) NOT NULL,
                     rfc VARCHAR(60) NOT NULL,
                     dia VARCHAR(60) NOT NULL,
                     hr_entrada time,
@@ -93,8 +91,8 @@ CREATE TABLE horarios(
                     FOREIGN KEY (rfc) REFERENCES profesores(rfc)
                     );
 
-INSERT INTO profesores(rfc,apellido_paterno, apellido_materno, nombres, grado_academico, correo, telefono) 
-VALUES ("ADMIN001", "ADMIN", "ADMIN", "ADMIN", "ADMIN", "ADMIN@GMAIL.COM", 000);
+INSERT INTO profesores(rfc,apellido_paterno, apellido_materno, nombres, grado_academico, correo, telefono, nivel) 
+VALUES ("ADMIN001", "ADMIN", "ADMIN", "ADMIN", "ADMIN", "admin@gmail.com", 000, "usuario");
 
-INSERT INTO usuarios(id_usuario,rfc, usuario, contrasenia, pregunta_seguridad, respuesta_seguridad, nivel)
-VALUES (0111, "ADMIN001", "ADMIN@GMAIL.COM", "ADMIN", "QUIEN ES EL ADMIN", "ADMINISTRADOR DE SISTEMA", 1);
+INSERT INTO usuarios(id_usuario,rfc, usuario, contrasenia, nivel)
+VALUES (0111, "ADMIN001", "admin@gmail.com", "admin", "usuario");

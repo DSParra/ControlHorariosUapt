@@ -128,8 +128,13 @@ public class ControladorProfesores {
         ConsultasObjetos.insertaMuchos(profesores, ConectarBase.conectado(), "profesores");
         return "Operacion exitosa";
     }
+    
+    
+    
+    public void evaluaProfesores(){
+        
+    }
 }
-
 
 
 
