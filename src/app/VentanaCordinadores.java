@@ -25,8 +25,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author mvidalh
  */
-public class VentanaCordinadores extends javax.swing.JFrame
-{
+public class VentanaCordinadores extends javax.swing.JFrame {
 
     /**
      * Creates new form VentanaCordinadores
@@ -421,29 +420,30 @@ public class VentanaCordinadores extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        if (!edicion)
-        {
+        if (!edicion) {
             edicion();
             btnAgregar.setText("Aceptar");
             CtrlInterfaz.limpia(txtID, txtUsuario, txtContrasenia);
             CtrlInterfaz.habilita(true, txtID, ComboRFC, txtUsuario, txtContrasenia, JCLicenciatura, btnCancelar);
             CtrlInterfaz.habilita(false, btnEliminar, btnModificar, btnAgregar2, btnAgregar3);
             CtrlInterfaz.selecciona(txtID);
-        } else
-        {
-            Usuario us = new Usuario(txtID.getText(), buscaProfesor(null, ComboRFC.getSelectedItem().toString()), txtUsuario.getText(), txtContrasenia.getText(), buscarLic(null, JCLicenciatura.getSelectedItem().toString()));
-            String mensaje = Controlador.ControladorCoordnadores.insertarCoordinador(us);
-            if (mensaje.equals("operacion exitosa"))
-            {
-                btnAgregar.setText("Nuevo");
-                CtrlInterfaz.habilita(false, txtID, ComboRFC, txtUsuario, txtContrasenia, JCLicenciatura, btnCancelar);
-                CtrlInterfaz.habilita(true, btnEliminar, btnModificar, btnAgregar2, btnAgregar3);
-                CtrlInterfaz.limpia(txtID, txtContrasenia, txtID, txtUsuario);
-                actualizaTabla();
-                edicion();
-            } else
-            {
-                JOptionPane.showMessageDialog(rootPane, mensaje);
+        } else {
+              
+            if (JCLicenciatura.getItemCount() == 0) {
+                Mensaje.error(this, "Licenciatura no seleccionada, agregar o seleccionar licenciatura");
+            } else {
+                Usuario us = new Usuario(txtID.getText(), buscaProfesor(null, ComboRFC.getSelectedItem().toString()), txtUsuario.getText(), txtContrasenia.getText(), buscarLic(null, JCLicenciatura.getSelectedItem().toString()));
+                String mensaje = Controlador.ControladorCoordnadores.insertarCoordinador(us);
+                if (mensaje.equals("operacion exitosa")) {
+                    btnAgregar.setText("Nuevo");
+                    CtrlInterfaz.habilita(false, txtID, ComboRFC, txtUsuario, txtContrasenia, JCLicenciatura, btnCancelar);
+                    CtrlInterfaz.habilita(true, btnEliminar, btnModificar, btnAgregar2, btnAgregar3);
+                    CtrlInterfaz.limpia(txtID, txtContrasenia, txtID, txtUsuario);
+                    actualizaTabla();
+                    edicion();
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, mensaje);
+                }
             }
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -458,14 +458,11 @@ public class VentanaCordinadores extends javax.swing.JFrame
     }//GEN-LAST:event_jBRegresarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        if (Mensaje.pregunta(this, "¿Seguro que quieres eliminar al usuario " + txtUsuario.getText() + "?") == 0)
-        {
+        if (Mensaje.pregunta(this, "¿Seguro que quieres eliminar al usuario " + txtUsuario.getText() + "?") == 0) {
             String mensaje = ControladorCoordnadores.eliminaUsuario(txtID.getText());
-            if (mensaje.equals("operacion exitosa"))
-            {
+            if (mensaje.equals("operacion exitosa")) {
                 actualizaTabla();
-            } else
-            {
+            } else {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
             }
         }
@@ -477,32 +474,26 @@ public class VentanaCordinadores extends javax.swing.JFrame
     }//GEN-LAST:event_jBCerrarSesionActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        if (txtID.getText().compareTo("") == 0)
-        {
+        if (txtID.getText().compareTo("") == 0) {
             Mensaje.error(this, "Seleccione un registo a modificar");
-        } else
-        {
-            if (!edicion)
-            {
+        } else {
+            if (!edicion) {
                 edicion();
                 btnModificar.setText("Aceptar");
                 CtrlInterfaz.habilita(true, txtUsuario, ComboRFC, txtContrasenia, JCLicenciatura, btnCancelar);
                 CtrlInterfaz.habilita(false, btnEliminar, btnAgregar, btnAgregar2, btnAgregar3);
-            } else
-            {
+            } else {
                 Usuario us = new Usuario(txtID.getText(), buscaProfesor(null, (String) ComboRFC.getSelectedItem()), txtUsuario.getText(), txtContrasenia.getText(), buscarLic(null, JCLicenciatura.getSelectedItem().toString()));
                 ConsultasObjetos.Modifica(us, ConectarBase.conectado(), "usuarios", txtID.getText());
                 String mensaje = ControladorCoordnadores.modifcaCoordinador(us, (String) TablaUsuarios.getValueAt(TablaUsuarios.getSelectedRow(), 1));
-                if (mensaje.equals("operacion exitosa"))
-                {
+                if (mensaje.equals("operacion exitosa")) {
                     btnModificar.setText("Modificar");
                     CtrlInterfaz.habilita(false, txtID, ComboRFC, txtUsuario, txtContrasenia, JCLicenciatura, btnCancelar);
                     CtrlInterfaz.habilita(true, btnEliminar, btnAgregar, btnAgregar2, btnAgregar3);
                     CtrlInterfaz.limpia(txtID, txtContrasenia, txtID, txtUsuario);
                     actualizaTabla();
                     edicion();
-                } else
-                {
+                } else {
                     JOptionPane.showMessageDialog(rootPane, mensaje);
                 }
             }
@@ -600,34 +591,26 @@ public class VentanaCordinadores extends javax.swing.JFrame
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try
-        {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-            {
-                if ("Nimbus".equals(info.getName()))
-                {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex)
-        {
+        } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(VentanaCordinadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex)
-        {
+        } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(VentanaCordinadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex)
-        {
+        } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(VentanaCordinadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex)
-        {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VentanaCordinadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable()
-        {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VentanaCordinadores().setVisible(true);
             }
@@ -668,17 +651,13 @@ public class VentanaCordinadores extends javax.swing.JFrame
         modelo = (DefaultTableModel) TablaUsuarios.getModel();
         ArrayList<Object> user = new ArrayList<>();
         user = ConsultasObjetos.consultaMuchos("usuarios", "nivel", "profesor", ConectarBase.conectado());
-        if (user.isEmpty())
-        {
+        if (user.isEmpty()) {
             Mensaje.error(this, "NO SE ENCUENTRAN COORDINADORES REGISTRADOS");
-        } else
-        {
+        } else {
             modelo.setRowCount(0);
-            for (Object u : user)
-            {
+            for (Object u : user) {
                 Usuario us = (Usuario) u;
-                modelo.addRow(new Object[]
-                {
+                modelo.addRow(new Object[]{
                     us.getIdUsuario(), buscaProfesor(us.getRfc(), null), us.getUsuario(), us.getContra(), buscarLic(us.getLicenciatura(), null)
                 });
             }
@@ -687,40 +666,31 @@ public class VentanaCordinadores extends javax.swing.JFrame
 
     public void llenaComboProfesores() {
         ComboRFC.removeAllItems();
-        for (int i = 0; i < profes.size(); i++)
-        {
+        for (int i = 0; i < profes.size(); i++) {
             ComboRFC.addItem(((Profesor) profes.get(i)).getNombres() + " " + ((Profesor) profes.get(i)).getApellidoP());
         }
     }
 
     private void edicion() {
-        if (edicion)
-        {
+        if (edicion) {
             edicion = false;
-        } else
-        {
+        } else {
             edicion = true;
         }
     }
 
     public String buscaProfesor(String rfc, String nombre) {
-        if (nombre != null)
-        {
-            for (Object p : profes)
-            {
+        if (nombre != null) {
+            for (Object p : profes) {
                 Profesor profe = (Profesor) p;
-                if ((profe.getNombres() + " " + profe.getApellidoP()).equals(nombre))
-                {
+                if ((profe.getNombres() + " " + profe.getApellidoP()).equals(nombre)) {
                     return profe.getRfc();
                 }
             }
-        } else
-        {
-            for (Object p : profes)
-            {
+        } else {
+            for (Object p : profes) {
                 Profesor profe = (Profesor) p;
-                if (profe.getRfc().equals(rfc))
-                {
+                if (profe.getRfc().equals(rfc)) {
                     return profe.getNombres() + " " + profe.getApellidoP();
                 }
             }
@@ -729,10 +699,8 @@ public class VentanaCordinadores extends javax.swing.JFrame
     }
 
     public int buscarCombo(String texto) {
-        for (int i = 0; i < ComboRFC.getItemCount(); i++)
-        {
-            if (texto.equals(ComboRFC.getItemAt(i)))
-            {
+        for (int i = 0; i < ComboRFC.getItemCount(); i++) {
+            if (texto.equals(ComboRFC.getItemAt(i))) {
                 return i;
             }
         }
@@ -751,30 +719,23 @@ public class VentanaCordinadores extends javax.swing.JFrame
     public void llenaComboLic() {
         JCLicenciatura.removeAllItems();
         System.out.println("Ya entre");
-        for (int i = 0; i < lics.size(); i++)
-        {
+        for (int i = 0; i < lics.size(); i++) {
             JCLicenciatura.addItem(((Licenciatura) lics.get(i)).getLicenciatura());
         }
     }
 
     public String buscarLic(String id, String licenciatura) {
-        if (licenciatura != null)
-        {
-            for (Object l : lics)
-            {
+        if (licenciatura != null) {
+            for (Object l : lics) {
                 Licenciatura lic = (Licenciatura) l;
-                if ((lic.getLicenciatura()).equals(licenciatura))
-                {
+                if ((lic.getLicenciatura()).equals(licenciatura)) {
                     return lic.getIdLicenciatura();
                 }
             }
-        } else
-        {
-            for (Object l : lics)
-            {
+        } else if (id != null){        
+            for (Object l : lics) {
                 Licenciatura lic = (Licenciatura) l;
-                if (lic.getIdLicenciatura().equals(id))
-                {
+                if (lic.getIdLicenciatura().equals(id)) {
                     return lic.getLicenciatura();
                 }
             }
@@ -783,10 +744,8 @@ public class VentanaCordinadores extends javax.swing.JFrame
     }
 
     private int buscarComboLic(String texto) {
-        for (int i = 0; i < JCLicenciatura.getItemCount(); i++)
-        {
-            if (texto.equals(JCLicenciatura.getItemAt((i))))
-            {
+        for (int i = 0; i < JCLicenciatura.getItemCount(); i++) {
+            if (texto.equals(JCLicenciatura.getItemAt((i)))) {
                 return i;
             }
         }

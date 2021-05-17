@@ -213,20 +213,20 @@ public class ConsultasObjetos
                     }
                     return materia;
                 case "grupo":
-                    Grupo gr = null;
+                    Grupo grupo = null;
                     rs = ps.executeQuery();
                     if (rs.next())
                     {
-                        gr = new Grupo();
-                        gr.setIdGrupo(rs.getString("id_grupo"));
-                        gr.setNombreGrupo(rs.getString("nombre_grupo"));
-                        gr.setId_licenciatura(rs.getString("id_licenciatura"));
+                        grupo = new Grupo();
+                        grupo.setIdGrupo(rs.getString("id_grupo"));
+                        grupo.setNombreGrupo(rs.getString("nombre_grupo"));
+                        grupo.setId_licenciatura(rs.getString("id_licenciatura"));
                     }
                     else
                     {
                         System.out.println("No se encontro el grupo");
                     }
-                    break;
+                    return grupo;
             }
         } catch (Exception e)
         {
@@ -362,7 +362,7 @@ public class ConsultasObjetos
                         } while (rs.next());
                     } else
                     {
-                        JOptionPane.showMessageDialog(null, "No se encontro el usuario");
+                        //JOptionPane.showMessageDialog(null, "No se encontro el usuario");
                     }
                     return objetos;
                 case "profesores":
@@ -383,7 +383,7 @@ public class ConsultasObjetos
                         } while (rs.next());
                     } else
                     {
-                        JOptionPane.showMessageDialog(null, "No se encontro el profesor");
+                        //JOptionPane.showMessageDialog(null, "No se encontro el profesor");
                     }
                     return objetos;
                 case "licenciatura":
@@ -400,7 +400,7 @@ public class ConsultasObjetos
                         } while (rs.next());
                     } else
                     {
-                        JOptionPane.showMessageDialog(null, "No se encontro la licenciatura");
+                        //JOptionPane.showMessageDialog(null, "No se encontro la licenciatura");
                     }
                     return objetos;
                 case "periodo_escolar":
@@ -417,7 +417,7 @@ public class ConsultasObjetos
                         } while (rs.next());
                     } else
                     {
-                        JOptionPane.showMessageDialog(null, "No se encontraron periodos");
+                        //JOptionPane.showMessageDialog(null, "No se encontraron periodos");
                     }
                     return objetos;
                 case "plan_estudios":
@@ -462,7 +462,7 @@ public class ConsultasObjetos
                     {
                         do
                         {
-                            System.out.println("Entre a grupos");
+                          //  System.out.println("Entre a grupos");
                             Grupo gr = new Grupo();
                             gr.setIdGrupo(rs.getString("id_grupo"));
                             gr.setNombreGrupo(rs.getString("nombre_grupo"));

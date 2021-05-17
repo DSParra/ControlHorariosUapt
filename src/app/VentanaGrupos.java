@@ -374,7 +374,7 @@ public class VentanaGrupos extends javax.swing.JFrame
     }//GEN-LAST:event_btnExportarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-        if (Mensaje.pregunta(this, "¿En realidad quiere eliminar el periodo " + jTIdGrupo.getText() + "?") == 0)
+        if (Mensaje.pregunta(this, "¿En realidad quiere eliminar el Grupo" + jTNombreGrupo.getText() + "?") == 0)
         {
             String mensaje = Controlador.ControladorGrupos.eliminarGrupo(jTIdGrupo.getText());
             if (mensaje.equals("operacion exitosa"))

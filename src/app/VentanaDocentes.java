@@ -753,7 +753,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
         ArrayList profes = new ArrayList();
         profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", ConectarBase.conectado());
         if (profes.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No se encuentran registros");
+            Mensaje.error(this, "No se encuentran registros");
         } else {
             modelo.setRowCount(0);
             for (Object p : profes) {

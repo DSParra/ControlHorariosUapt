@@ -118,6 +118,9 @@ public class ControladorCoordnadores
         else if (us.getContra() == null || us.getContra().equals(""))
         {
             mensaje += "Contraseña vacía, llene el campo Contraseña";
+        }else if (us.getLicenciatura()== null || us.getLicenciatura().equals(""))
+        {
+            mensaje += "Licenciatura vacía, Seleccione o agregue una licenciatura";
         }
         return mensaje;
     }

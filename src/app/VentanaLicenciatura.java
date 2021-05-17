@@ -546,7 +546,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame
         licenciatura = ConsultasObjetos.consultaMuchos("licenciatura", null, null, ConectarBase.conectado());
         if (licenciatura.isEmpty())
         {
-            JOptionPane.showMessageDialog(this, "No se encuentran registros");
+            Mensaje.error(this, "No se encuentran registros");
         } else
         {
             modelo.setRowCount(0);
