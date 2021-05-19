@@ -14,6 +14,7 @@ import Objetos.PlanEstudios;
 import static app.VentanaMateriasCoordinador.licen;
 import cjb.ci.CtrlInterfaz;
 import cjb.ci.Mensaje;
+import cjb.ci.Validaciones;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -55,8 +56,6 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame
         jLabel4 = new javax.swing.JLabel();
         jTNombreGrupo = new javax.swing.JTextField();
         jTIdGrupo = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTLicenciatura = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaGrupos = new javax.swing.JTable();
@@ -108,20 +107,9 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame
                 jTIdGrupoActionPerformed(evt);
             }
         });
-
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel6.setText("Licenciatura");
-
-        jTLicenciatura.setEnabled(false);
-        jTLicenciatura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTLicenciaturaActionPerformed(evt);
-            }
-        });
-        jTLicenciatura.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTLicenciaturaKeyReleased(evt);
+        jTIdGrupo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTIdGrupoKeyPressed(evt);
             }
         });
 
@@ -131,17 +119,12 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel4)
-                            .addComponent(jTIdGrupo, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
-                            .addComponent(jLabel3)
-                            .addComponent(jTNombreGrupo))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jTLicenciatura, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4)
+                    .addComponent(jTIdGrupo, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTNombreGrupo))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,15 +137,13 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jTNombreGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(jTLicenciatura, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/UAEMex.jpg"))); // NOI18N
 
+        TablaGrupos.setBackground(new java.awt.Color(25, 83, 0));
+        TablaGrupos.setForeground(new java.awt.Color(254, 254, 254));
         TablaGrupos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -414,6 +395,7 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame
             if (mensaje.equals("operacion exitosa"))
             {
                 jBAceptar.setText("Nuevo");
+                CtrlInterfaz.limpia(jTIdGrupo, jTNombreGrupo);
                 CtrlInterfaz.habilita(false, jTIdGrupo, jTNombreGrupo, jBCancelar);
                 CtrlInterfaz.habilita(true, jBModificar, jBEliminar, btnExportar, btnImportar);
                 actualizarTabla();
@@ -449,6 +431,7 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame
                 if (mensaje.equals("operacion exitosa"))
                 {
                     jBModificar.setText("Modificar");
+                    CtrlInterfaz.limpia(jTIdGrupo, jTNombreGrupo);
                     CtrlInterfaz.habilita(false, jTIdGrupo, jTNombreGrupo, jBAceptar, jBCancelar);
                     CtrlInterfaz.habilita(true, jBEliminar, jBAceptar, btnImportar, btnExportar);
                     actualizarTabla();
@@ -464,21 +447,17 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         cancelar();
         actualizarTabla();
-        LabelGrupos.setText("GESTION GRUPOS "+buscaLic(licen, null));
+        LabelGrupos.setText("GESTION GRUPOS " + buscaLic(licen, null));
     }//GEN-LAST:event_formWindowOpened
 
     private void TablaGruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaGruposMouseClicked
-        jTIdGrupo.setText((String)modelo.getValueAt(TablaGrupos.getSelectedRow(), 0));
-        jTNombreGrupo.setText((String)modelo.getValueAt(TablaGrupos.getSelectedRow(), 1));
+        jTIdGrupo.setText((String) modelo.getValueAt(TablaGrupos.getSelectedRow(), 0));
+        jTNombreGrupo.setText((String) modelo.getValueAt(TablaGrupos.getSelectedRow(), 1));
     }//GEN-LAST:event_TablaGruposMouseClicked
 
-    private void jTLicenciaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTLicenciaturaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTLicenciaturaActionPerformed
-
-    private void jTLicenciaturaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTLicenciaturaKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTLicenciaturaKeyReleased
+    private void jTIdGrupoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTIdGrupoKeyPressed
+        Validaciones.enter(this, evt, jTNombreGrupo);
+    }//GEN-LAST:event_jTIdGrupoKeyPressed
 
     /**
      * @param args the command line arguments
@@ -666,11 +645,9 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTIdGrupo;
-    private javax.swing.JTextField jTLicenciatura;
     private javax.swing.JTextField jTNombreGrupo;
     // End of variables declaration//GEN-END:variables
 
@@ -707,7 +684,7 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame
         }
     }
 
-    public  String buscaLic(String id, String licenciatura) {
+    public String buscaLic(String id, String licenciatura) {
         if (licenciatura != null)
         {
             for (Object l : lics)
@@ -735,11 +712,10 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame
     private void cancelar() {
         edicion();
         CtrlInterfaz.limpia(jTIdGrupo, jTNombreGrupo);
-        CtrlInterfaz.habilita(false, jTIdGrupo, jTNombreGrupo,jBCancelar);
+        CtrlInterfaz.habilita(false, jTIdGrupo, jTNombreGrupo, jBCancelar);
         CtrlInterfaz.habilita(true, jBAceptar, jBEliminar, jBModificar, btnExportar, btnImportar);
         jBAceptar.setText("Nuevo");
         jBModificar.setText("Modificar");
     }
-
 
 }

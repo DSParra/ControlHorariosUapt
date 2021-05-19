@@ -148,6 +148,8 @@ public class VentanaGrupos extends javax.swing.JFrame
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/UAEMex.jpg"))); // NOI18N
 
+        TablaGrupos.setBackground(new java.awt.Color(25, 83, 0));
+        TablaGrupos.setForeground(new java.awt.Color(254, 254, 254));
         TablaGrupos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},

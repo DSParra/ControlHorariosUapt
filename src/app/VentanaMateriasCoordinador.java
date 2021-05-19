@@ -121,7 +121,15 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame
             new String [] {
                 "Matricula", "Licenciatura", "Plan", "Nombre", "Horas", "Creditos", "Periodo", "Nucleo", "Tipo"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         TablaMAterias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TablaMAteriasMouseClicked(evt);

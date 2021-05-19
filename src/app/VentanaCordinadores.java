@@ -93,7 +93,7 @@ public class VentanaCordinadores extends javax.swing.JFrame {
         jLTituloUAPT.setText("UNIDAD ACADEMICA PROFESIONAL TIANGUISTENCO");
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel2.setText("GESTION DE COORDINADORES");
+        jLabel2.setText("GESTION COORDINADORES");
 
         jPanel1.setBackground(new java.awt.Color(25, 83, 0));
 
@@ -281,7 +281,6 @@ public class VentanaCordinadores extends javax.swing.JFrame {
         jBCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/flecha(3).png"))); // NOI18N
         jBCerrarSesion.setText("Salir");
         jBCerrarSesion.setToolTipText("");
-        jBCerrarSesion.setActionCommand("Salir");
         jBCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCerrarSesionActionPerformed(evt);
@@ -312,7 +311,15 @@ public class VentanaCordinadores extends javax.swing.JFrame {
             new String [] {
                 "ID", "RFC", "Usuario", "Contrasenia", "licenciatura"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         TablaUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TablaUsuariosMouseClicked(evt);

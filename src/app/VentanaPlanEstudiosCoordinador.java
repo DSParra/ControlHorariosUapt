@@ -66,8 +66,6 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame
         jLabel3 = new javax.swing.JLabel();
         jTIdPlan = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jTLicenciatura = new javax.swing.JTextField();
         btnImportar = new javax.swing.JButton();
         btnExportar = new javax.swing.JButton();
         jLTituloUniversidad = new javax.swing.JLabel();
@@ -178,6 +176,11 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame
 
         jPanel1.setBackground(new java.awt.Color(25, 83, 0));
 
+        jTPlan.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTPlanFocusLost(evt);
+            }
+        });
         jTPlan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTPlanActionPerformed(evt);
@@ -193,6 +196,11 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame
         jLabel3.setForeground(new java.awt.Color(254, 254, 254));
         jLabel3.setText("PLAN DE ESTUDIO");
 
+        jTIdPlan.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTIdPlanFocusLost(evt);
+            }
+        });
         jTIdPlan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTIdPlanActionPerformed(evt);
@@ -214,22 +222,6 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame
         jLabel4.setForeground(new java.awt.Color(254, 254, 254));
         jLabel4.setText("ID ");
 
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel6.setText("LICENCIATURA");
-
-        jTLicenciatura.setEnabled(false);
-        jTLicenciatura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTLicenciaturaActionPerformed(evt);
-            }
-        });
-        jTLicenciatura.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTLicenciaturaKeyReleased(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -237,12 +229,10 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel6)
                     .addComponent(jLabel4)
                     .addComponent(jLabel3)
                     .addComponent(jTPlan, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
-                    .addComponent(jTIdPlan)
-                    .addComponent(jTLicenciatura, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE))
+                    .addComponent(jTIdPlan))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -256,11 +246,7 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jTPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(jTLicenciatura, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(229, Short.MAX_VALUE))
         );
 
         btnImportar.setBackground(new java.awt.Color(102, 102, 0));
@@ -363,10 +349,6 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTIdPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTIdPlanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTIdPlanActionPerformed
-
     private void jBAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAceptarActionPerformed
         if (!edicion)
         {
@@ -383,6 +365,7 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame
             if (mensaje.equals("operacion exitosa"))
             {
                 jBAceptar.setText("Nuevo");
+                CtrlInterfaz.limpia(jTPlan, jTIdPlan);
                 CtrlInterfaz.habilita(false, jTIdPlan, jTPlan, jBCancelar);
                 CtrlInterfaz.habilita(true, jBModificar, jBEliminar, btnExportar, btnImportar);
                 actualizarTabla();
@@ -408,14 +391,10 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame
         new VentanaLogin().setVisible(true);
     }//GEN-LAST:event_jBCerrarSesionActionPerformed
 
-    private void jTPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPlanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlanActionPerformed
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        LabelPlanes.setText("GESTION PLANES " + buscaLic(licen, null));
         cancelar();
         actualizarTabla();
-        LabelPlanes.setText("GESTION PLANES " + buscaLic(licen, null));
     }//GEN-LAST:event_formWindowOpened
 
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
@@ -438,8 +417,9 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame
                 if (mensaje.equals("operacion exitosa"))
                 {
                     jBModificar.setText("Modificar");
-                    CtrlInterfaz.habilita(false, jTIdPlan, jBAceptar, jBCancelar);
-                    CtrlInterfaz.habilita(true, jBEliminar, jBAceptar, jTPlan, btnImportar, btnExportar);
+                    CtrlInterfaz.limpia(jTPlan, jTIdPlan);
+                    CtrlInterfaz.habilita(false, jTIdPlan, jTPlan, jBAceptar, jBCancelar);
+                    CtrlInterfaz.habilita(true, jBEliminar, jBAceptar, btnImportar, btnExportar);
                     actualizarTabla();
                     edicion();
                 } else
@@ -469,9 +449,13 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame
         jTPlan.setText(modelo.getValueAt(TablaPeriodos.getSelectedRow(), 1).toString());
     }//GEN-LAST:event_TablaPeriodosMouseClicked
 
-    private void jTIdPlanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTIdPlanKeyTyped
-        Validaciones.validaEntero(evt);
-    }//GEN-LAST:event_jTIdPlanKeyTyped
+    private void btnImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnImportarActionPerformed
+
+    private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExportarActionPerformed
 
     private void jTIdPlanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTIdPlanKeyReleased
         // TODO add your handling code here:
@@ -481,25 +465,30 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame
         Validaciones.enter(this, evt, jTPlan);
     }//GEN-LAST:event_jTIdPlanKeyPressed
 
+    private void jTIdPlanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTIdPlanKeyTyped
+    }//GEN-LAST:event_jTIdPlanKeyTyped
+
+    private void jTIdPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTIdPlanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTIdPlanActionPerformed
+
     private void jTPlanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPlanKeyReleased
-        Valida.convertirAMayusculas(jTPlan);
     }//GEN-LAST:event_jTPlanKeyReleased
 
-    private void btnImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarActionPerformed
+    private void jTPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPlanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnImportarActionPerformed
+    }//GEN-LAST:event_jTPlanActionPerformed
 
-    private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnExportarActionPerformed
+    private void jTPlanFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTPlanFocusLost
+        Valida.convertirAMayusculas(jTPlan);
+    }//GEN-LAST:event_jTPlanFocusLost
 
-    private void jTLicenciaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTLicenciaturaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTLicenciaturaActionPerformed
+    private void jTIdPlanFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTIdPlanFocusLost
+        Valida.convertirAMayusculas(jTIdPlan);
+    }//GEN-LAST:event_jTIdPlanFocusLost
 
-    private void jTLicenciaturaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTLicenciaturaKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTLicenciaturaKeyReleased
+    private void jTPlanKeyPressed(java.awt.event.KeyEvent evt) {
+    }
 
     /**
      * @param args the command line arguments
@@ -687,11 +676,9 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTIdPlan;
-    private javax.swing.JTextField jTLicenciatura;
     private javax.swing.JTextField jTPlan;
     // End of variables declaration//GEN-END:variables
 

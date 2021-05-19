@@ -95,14 +95,14 @@ public class VentanaMaterias extends javax.swing.JFrame
             }
         });
 
-        jLTituloUniversidad.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLTituloUniversidad.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLTituloUniversidad.setText("Universidad Autónoma del Estado de México");
 
-        jLTituloUAPT.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLTituloUAPT.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLTituloUAPT.setText("Unidad Académica Profesional Tianguistenco");
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel2.setText("Gestión materias");
+        jLabel2.setText("GESTION MATERIAS");
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/UAEMex.jpg"))); // NOI18N
 
@@ -121,7 +121,15 @@ public class VentanaMaterias extends javax.swing.JFrame
             new String [] {
                 "Matricula", "Licenciatura", "Plan", "Nombre", "Horas", "Creditos", "Periodo", "Nucleo", "Tipo"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         TablaMAterias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TablaMAteriasMouseClicked(evt);
@@ -429,12 +437,12 @@ public class VentanaMaterias extends javax.swing.JFrame
                 .addComponent(jLabel5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLTituloUniversidad)
-                            .addComponent(jLTituloUAPT)))
+                            .addComponent(jLTituloUAPT)
+                            .addComponent(jLTituloUniversidad)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(481, 481, 481)
+                        .addGap(426, 426, 426)
                         .addComponent(jLabel2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -467,9 +475,9 @@ public class VentanaMaterias extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                        .addGap(22, 22, 22)
                         .addComponent(jLTituloUniversidad)
-                        .addGap(8, 8, 8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLTituloUAPT))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel2)

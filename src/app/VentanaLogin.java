@@ -80,6 +80,7 @@ public class VentanaLogin extends javax.swing.JFrame {
         jLTituloUniversidad = new javax.swing.JLabel();
         jLTituloUAPT = new javax.swing.JLabel();
         jLTituloUAPT1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horarios UAPT");
@@ -166,6 +167,9 @@ public class VentanaLogin extends javax.swing.JFrame {
         jLTituloUAPT1.setForeground(new java.awt.Color(1, 1, 1));
         jLTituloUAPT1.setText("Unidad Académica Profesional Tianguistenco");
         getContentPane().add(jLTituloUAPT1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, 20));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/SCHR.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -268,6 +272,7 @@ public class VentanaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLTituloUAPT;
     private javax.swing.JLabel jLTituloUAPT1;
     private javax.swing.JLabel jLTituloUniversidad;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

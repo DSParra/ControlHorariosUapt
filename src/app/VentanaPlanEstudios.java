@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VentanaPlanEstudios extends javax.swing.JFrame
 {
-    
+
     int id = 0;
     private Boolean edicion = true;
     private DefaultTableModel modelo;
@@ -176,12 +176,20 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
 
         jPanel1.setBackground(new java.awt.Color(25, 83, 0));
 
+        jTPlan.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTPlanFocusLost(evt);
+            }
+        });
         jTPlan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTPlanActionPerformed(evt);
             }
         });
         jTPlan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTPlanKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTPlanKeyReleased(evt);
             }
@@ -191,6 +199,11 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
         jLabel3.setForeground(new java.awt.Color(254, 254, 254));
         jLabel3.setText("PLAN DE ESTUDIO");
 
+        jTIdPlan.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTIdPlanFocusLost(evt);
+            }
+        });
         jTIdPlan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTIdPlanActionPerformed(evt);
@@ -294,7 +307,7 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBCancelar)
+                        .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBRegresar))
                     .addComponent(jScrollPane1))
@@ -365,7 +378,7 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
             edicion();
             jBAceptar.setText("Aceptar");
             CtrlInterfaz.limpia(jTIdPlan, jTPlan);
-            CtrlInterfaz.habilita(true, jTIdPlan, jTPlan, jCLicenciatura,jBCancelar);
+            CtrlInterfaz.habilita(true, jTIdPlan, jTPlan, jCLicenciatura, jBCancelar);
             CtrlInterfaz.habilita(false, jBModificar, jBEliminar, btnImportar, btnExportar);
             CtrlInterfaz.selecciona(jTIdPlan);
         } else
@@ -375,7 +388,8 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
             if (mensaje.equals("operacion exitosa"))
             {
                 jBAceptar.setText("Nuevo");
-                CtrlInterfaz.habilita(false, jTIdPlan, jTPlan, jCLicenciatura,jBCancelar);
+                CtrlInterfaz.limpia(jTPlan, jTIdPlan);
+                CtrlInterfaz.habilita(false, jTIdPlan, jTPlan, jCLicenciatura, jBCancelar);
                 CtrlInterfaz.habilita(true, jBModificar, jBEliminar, btnExportar, btnImportar);
                 actualizarTabla();
                 edicion();
@@ -430,8 +444,9 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
                 if (mensaje.equals("operacion exitosa"))
                 {
                     jBModificar.setText("Modificar");
-                    CtrlInterfaz.habilita(false, jTIdPlan, jBAceptar, jCLicenciatura, jBCancelar);
-                    CtrlInterfaz.habilita(true, jBEliminar, jBAceptar, jTPlan, btnImportar, btnExportar);
+                    CtrlInterfaz.limpia(jTPlan, jTIdPlan);
+                    CtrlInterfaz.habilita(false, jTIdPlan, jTPlan, jBAceptar, jCLicenciatura, jBCancelar);
+                    CtrlInterfaz.habilita(true, jBEliminar, jBAceptar, btnImportar, btnExportar);
                     actualizarTabla();
                     edicion();
                 } else
@@ -449,6 +464,7 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
             if (mensaje.endsWith("operacion exitosa"))
             {
                 actualizarTabla();
+                CtrlInterfaz.limpia(jTPlan, jTIdPlan);
             } else
             {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
@@ -459,11 +475,11 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
     private void TablaPeriodosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaPeriodosMouseClicked
         jTIdPlan.setText(modelo.getValueAt(TablaPeriodos.getSelectedRow(), 0).toString());
         jTPlan.setText(modelo.getValueAt(TablaPeriodos.getSelectedRow(), 1).toString());
-        jCLicenciatura.setSelectedIndex(buscarCombo((String)modelo.getValueAt(TablaPeriodos.getSelectedRow(), 2)));
+        jCLicenciatura.setSelectedIndex(buscarCombo((String) modelo.getValueAt(TablaPeriodos.getSelectedRow(), 2)));
     }//GEN-LAST:event_TablaPeriodosMouseClicked
 
     private void jTIdPlanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTIdPlanKeyTyped
-        Validaciones.validaEntero(evt);
+
     }//GEN-LAST:event_jTIdPlanKeyTyped
 
     private void jTIdPlanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTIdPlanKeyReleased
@@ -475,7 +491,7 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
     }//GEN-LAST:event_jTIdPlanKeyPressed
 
     private void jTPlanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPlanKeyReleased
-        Valida.convertirAMayusculas(jTPlan);
+
     }//GEN-LAST:event_jTPlanKeyReleased
 
     private void btnImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarActionPerformed
@@ -485,6 +501,18 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnExportarActionPerformed
+
+    private void jTIdPlanFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTIdPlanFocusLost
+        Valida.convertirAMayusculas(jTIdPlan);
+    }//GEN-LAST:event_jTIdPlanFocusLost
+
+    private void jTPlanFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTPlanFocusLost
+        Valida.convertirAMayusculas(jTPlan);
+    }//GEN-LAST:event_jTPlanFocusLost
+
+    private void jTPlanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPlanKeyPressed
+        Validaciones.enter(this, evt, jCLicenciatura);
+    }//GEN-LAST:event_jTPlanKeyPressed
 
     /**
      * @param args the command line arguments
@@ -638,7 +666,7 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
             }
         }
     }
-    
+
     private void edicion() {
         if (edicion)
         {
@@ -648,16 +676,16 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
             edicion = true;
         }
     }
-    
+
     private void cancelar() {
         edicion();
         CtrlInterfaz.limpia(jTIdPlan, jTPlan);
-        CtrlInterfaz.habilita(false, jTIdPlan, jTPlan, jCLicenciatura,jBCancelar);
+        CtrlInterfaz.habilita(false, jTIdPlan, jTPlan, jCLicenciatura, jBCancelar);
         CtrlInterfaz.habilita(true, jBAceptar, jBEliminar, jBModificar, btnExportar, btnImportar);
         jBAceptar.setText("Nuevo");
         jBModificar.setText("Modificar");
     }
-    
+
     public String buscaLic(String id, String licenciatura) {
         if (licenciatura != null)
         {
@@ -682,7 +710,7 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
         }
         return null;
     }
-    
+
     public void llenaComboLic() {
         jCLicenciatura.removeAllItems();
         for (int i = 0; i < lics.size(); i++)
@@ -691,7 +719,7 @@ public class VentanaPlanEstudios extends javax.swing.JFrame
         }
     }
 
-    public  int buscarCombo(String texto) {
+    public int buscarCombo(String texto) {
         for (int i = 0; i < jCLicenciatura.getItemCount(); i++)
         {
             if (texto.equals(jCLicenciatura.getItemAt(i)))

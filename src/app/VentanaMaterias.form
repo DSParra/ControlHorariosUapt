@@ -31,14 +31,14 @@
               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLTituloUniversidad" min="-2" max="-2" attributes="0"/>
                           <Component id="jLTituloUAPT" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLTituloUniversidad" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="481" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="426" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -81,9 +81,9 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Component id="jLTituloUniversidad" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLTituloUAPT" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
@@ -124,7 +124,7 @@
     <Component class="javax.swing.JLabel" name="jLTituloUniversidad">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="18" style="1"/>
+          <Font name="Dialog" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Universidad Aut&#xf3;noma del Estado de M&#xe9;xico"/>
       </Properties>
@@ -132,7 +132,7 @@
     <Component class="javax.swing.JLabel" name="jLTituloUAPT">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="18" style="1"/>
+          <Font name="Dialog" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Unidad Acad&#xe9;mica Profesional Tianguistenco"/>
       </Properties>
@@ -142,7 +142,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="24" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Gesti&#xf3;n materias"/>
+        <Property name="text" type="java.lang.String" value="GESTION MATERIAS"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
@@ -169,15 +169,15 @@
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="9" rowCount="7">
-                <Column editable="true" title="Matricula" type="java.lang.Object"/>
-                <Column editable="true" title="Licenciatura" type="java.lang.Object"/>
-                <Column editable="true" title="Plan" type="java.lang.Object"/>
-                <Column editable="true" title="Nombre" type="java.lang.Object"/>
-                <Column editable="true" title="Horas" type="java.lang.Object"/>
-                <Column editable="true" title="Creditos" type="java.lang.Object"/>
-                <Column editable="true" title="Periodo" type="java.lang.Object"/>
-                <Column editable="true" title="Nucleo" type="java.lang.Object"/>
-                <Column editable="true" title="Tipo" type="java.lang.Object"/>
+                <Column editable="false" title="Matricula" type="java.lang.Object"/>
+                <Column editable="false" title="Licenciatura" type="java.lang.Object"/>
+                <Column editable="false" title="Plan" type="java.lang.Object"/>
+                <Column editable="false" title="Nombre" type="java.lang.Object"/>
+                <Column editable="false" title="Horas" type="java.lang.Object"/>
+                <Column editable="false" title="Creditos" type="java.lang.Object"/>
+                <Column editable="false" title="Periodo" type="java.lang.Object"/>
+                <Column editable="false" title="Nucleo" type="java.lang.Object"/>
+                <Column editable="false" title="Tipo" type="java.lang.Object"/>
               </Table>
             </Property>
           </Properties>
