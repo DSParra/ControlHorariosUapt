@@ -12,12 +12,9 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/NetbeansProjects/Proyecto%20horarios%20UAPT/src/app/Pruebas.java</file>
-            <file>file:/D:/NetbeansProjects/Proyecto%20horarios%20UAPT/src/app/VistaExcel.java</file>
-            <file>file:/D:/NetbeansProjects/Proyecto%20horarios%20UAPT/src/app/VentanaAdministrador.java</file>
-            <file>file:/D:/NetbeansProjects/Proyecto%20horarios%20UAPT/src/app/VentanaGestionExcels.java</file>
-            <file>file:/D:/NetbeansProjects/Proyecto%20horarios%20UAPT/src/Controlador/ControladorProfesores.java</file>
-            <file>file:/D:/NetbeansProjects/Proyecto%20horarios%20UAPT/src/app/VentanaMateriasCoordinador.java</file>
+            <file>file:/C:/Users/MoisesVidalHernandez/Documents/GitHub/ControlHorarios/src/app/VentanaDocentes.java</file>
+            <file>file:/C:/Users/MoisesVidalHernandez/Documents/GitHub/ControlHorarios/src/app/VentanaLogin.java</file>
+            <file>file:/C:/Users/MoisesVidalHernandez/Documents/GitHub/ControlHorarios/src/Bases_datos/HorariosUAPT.sql</file>
         </group>
     </open-files>
 </project-private>

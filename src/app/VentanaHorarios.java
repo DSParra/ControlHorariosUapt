@@ -8,7 +8,11 @@ package app;
 import Clases.ConectarBase;
 import Clases.ConsultasObjetos;
 import Objetos.Licenciatura;
+import Objetos.PeriodoHorarios;
+import Objetos.Usuario;
+import Objetos.periodoEscolar;
 import static app.VentanaMateriasCoordinador.licen;
+import cjb.ci.Mensaje;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -24,6 +28,8 @@ public class VentanaHorarios extends javax.swing.JFrame
     private Boolean edicion = true;
     private DefaultTableModel modelo;
     private ArrayList<Object> lics = new ArrayList<>();
+    private ArrayList<Object> periodos = new ArrayList<>();
+    private ArrayList<Object> profes = new ArrayList<>();
     public static String licenciatura;
 
     /**
@@ -47,21 +53,21 @@ public class VentanaHorarios extends javax.swing.JFrame
         jBAceptar = new javax.swing.JButton();
         jBCancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaHorarios = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jTCorrero = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jCLicenciatura4 = new javax.swing.JComboBox<>();
+        JCDocente = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jCLicenciatura2 = new javax.swing.JComboBox<>();
+        JCGrupo = new javax.swing.JComboBox<>();
         jTContrasenia = new javax.swing.JTextField();
-        jCLicenciatura1 = new javax.swing.JComboBox<>();
+        jCPeriodo = new javax.swing.JComboBox<>();
         jCLicenciatura5 = new javax.swing.JComboBox<>();
-        jCLicenciatura = new javax.swing.JComboBox<>();
+        JCMateria = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTIdUsuario = new javax.swing.JTextField();
@@ -106,9 +112,9 @@ public class VentanaHorarios extends javax.swing.JFrame
             }
         });
 
-        jTable1.setBackground(new java.awt.Color(25, 83, 0));
-        jTable1.setForeground(new java.awt.Color(254, 254, 254));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaHorarios.setBackground(new java.awt.Color(25, 83, 0));
+        TablaHorarios.setForeground(new java.awt.Color(254, 254, 254));
+        TablaHorarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -121,8 +127,8 @@ public class VentanaHorarios extends javax.swing.JFrame
                 "Matricula", "Nombre", "Apellido Paterno", "Apellido Materno", "Licencitura"
             }
         ));
-        jTable1.setEnabled(false);
-        jScrollPane1.setViewportView(jTable1);
+        TablaHorarios.setEnabled(false);
+        jScrollPane1.setViewportView(TablaHorarios);
 
         jPanel1.setBackground(new java.awt.Color(25, 83, 0));
 
@@ -141,7 +147,7 @@ public class VentanaHorarios extends javax.swing.JFrame
         jLabel7.setForeground(new java.awt.Color(254, 254, 254));
         jLabel7.setText("Grupo");
 
-        jCLicenciatura4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mauro Sanchez Sanchez", "Elsa Vidal Hernandez", "Estefania Hernandez Caballero" }));
+        JCDocente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mauro Sanchez Sanchez", "Elsa Vidal Hernandez", "Estefania Hernandez Caballero" }));
 
         jLabel13.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(254, 254, 254));
@@ -159,15 +165,15 @@ public class VentanaHorarios extends javax.swing.JFrame
         jLabel11.setForeground(new java.awt.Color(254, 254, 254));
         jLabel11.setText("Dia");
 
-        jCLicenciatura2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "S1", "S2", "S3", "S4", "S5" }));
+        JCGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "S1", "S2", "S3", "S4", "S5" }));
 
         jTContrasenia.setBackground(new java.awt.Color(254, 254, 254));
 
-        jCLicenciatura1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2021A", "2021B" }));
+        jCPeriodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2021A", "2021B" }));
 
         jCLicenciatura5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" }));
 
-        jCLicenciatura.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Algebra", "Computacion", "Inlges", "Calculo Diferencial E Integral" }));
+        JCMateria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Algebra", "Computacion", "Inlges", "Calculo Diferencial E Integral" }));
 
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(254, 254, 254));
@@ -211,7 +217,7 @@ public class VentanaHorarios extends javax.swing.JFrame
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(jCLicenciatura1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
                             .addComponent(jLabel3))
                         .addGap(206, 206, 206))
@@ -222,7 +228,7 @@ public class VentanaHorarios extends javax.swing.JFrame
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jTLicenciatura, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTIdUsuario)
-                            .addComponent(jCLicenciatura2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JCGrupo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jTCorrero, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -233,8 +239,8 @@ public class VentanaHorarios extends javax.swing.JFrame
                             .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCLicenciatura, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jCLicenciatura4, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JCMateria, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JCDocente, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jCLicenciatura5, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
@@ -252,19 +258,19 @@ public class VentanaHorarios extends javax.swing.JFrame
                 .addGap(8, 8, 8)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCLicenciatura1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jCPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCLicenciatura2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JCGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCLicenciatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JCMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCLicenciatura4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JCDocente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
@@ -276,7 +282,7 @@ public class VentanaHorarios extends javax.swing.JFrame
                     .addComponent(jTCorrero, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
                     .addComponent(jTContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jBRegresar.setBackground(new java.awt.Color(102, 102, 0));
@@ -350,7 +356,7 @@ public class VentanaHorarios extends javax.swing.JFrame
         });
 
         LabelHr.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
-        LabelHr.setText("GESTION GRUPOS");
+        LabelHr.setText("GESTION HORARIOS");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -362,8 +368,11 @@ public class VentanaHorarios extends javax.swing.JFrame
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(56, 56, 56)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 826, Short.MAX_VALUE)
-                        .addGap(18, 18, 18))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 824, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnAgregar4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAgregar5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBAceptar1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -374,18 +383,15 @@ public class VentanaHorarios extends javax.swing.JFrame
                         .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBRegresar)
-                        .addGap(26, 26, 26)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnAgregar4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregar5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(37, 37, 37))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(150, 150, 150)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLTituloUniversidad)
                     .addComponent(jLTituloUAPT))
-                .addGap(0, 811, Short.MAX_VALUE))
+                .addGap(0, 848, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
@@ -404,23 +410,26 @@ public class VentanaHorarios extends javax.swing.JFrame
                         .addGap(18, 18, 18)
                         .addComponent(LabelHr))
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAgregar5)
                         .addGap(18, 18, 18)
                         .addComponent(btnAgregar4))
-                    .addComponent(jScrollPane1)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBRegresar)
-                    .addComponent(jBCerrarSesion)
-                    .addComponent(jBAceptar1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBAceptar2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBAceptar1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBAceptar2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();
@@ -479,6 +488,9 @@ public class VentanaHorarios extends javax.swing.JFrame
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, ConectarBase.conectado());
         LabelHr.setText("GESTION HORARIOS " + buscaLic(licen, null));
+        jTLicenciatura.setText(buscaLic(licen, null));
+        cargaPeriodos();
+        actualizaTabla();
     }//GEN-LAST:event_formWindowOpened
 
     /**
@@ -652,7 +664,11 @@ public class VentanaHorarios extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> JCDocente;
+    private javax.swing.JComboBox<String> JCGrupo;
+    private javax.swing.JComboBox<String> JCMateria;
     private javax.swing.JLabel LabelHr;
+    private javax.swing.JTable TablaHorarios;
     private javax.swing.JButton btnAgregar4;
     private javax.swing.JButton btnAgregar5;
     private javax.swing.JButton jBAceptar;
@@ -661,11 +677,8 @@ public class VentanaHorarios extends javax.swing.JFrame
     private javax.swing.JButton jBCancelar;
     private javax.swing.JButton jBCerrarSesion;
     private javax.swing.JButton jBRegresar;
-    private javax.swing.JComboBox<String> jCLicenciatura;
-    private javax.swing.JComboBox<String> jCLicenciatura1;
-    private javax.swing.JComboBox<String> jCLicenciatura2;
-    private javax.swing.JComboBox<String> jCLicenciatura4;
     private javax.swing.JComboBox<String> jCLicenciatura5;
+    private javax.swing.JComboBox<String> jCPeriodo;
     private javax.swing.JLabel jLTituloUAPT;
     private javax.swing.JLabel jLTituloUniversidad;
     private javax.swing.JLabel jLabel10;
@@ -684,7 +697,6 @@ public class VentanaHorarios extends javax.swing.JFrame
     private javax.swing.JTextField jTCorrero;
     private javax.swing.JTextField jTIdUsuario;
     private javax.swing.JTextField jTLicenciatura;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
       public String buscaLic(String id, String licenciatura) {
         if (licenciatura != null)
@@ -709,5 +721,49 @@ public class VentanaHorarios extends javax.swing.JFrame
             }
         }
         return null;
+    }
+
+    private void cargaPeriodos() {
+        jCPeriodo.removeAllItems();
+        for (int i = 0; i < periodos.size(); i++)
+        {
+            jCPeriodo.addItem(((periodoEscolar)periodos.get(i)).getPeriodo());
+            System.out.println("Periodo encontrador " + ((periodoEscolar)periodos.get(i)).getPeriodo());
+        }
+    }
+
+    private void actualizaTabla() {
+        periodos = ConsultasObjetos.consultaMuchos("periodo_escolar", null, null, ConectarBase.conectado());
+        profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", ConectarBase.conectado());
+        modelo = (DefaultTableModel) TablaHorarios.getModel();
+        ArrayList<Object> hor = new ArrayList<>();
+        hor = ConsultasObjetos.consultaMuchos("horarios", null, null, ConectarBase.conectado());
+        if (hor.isEmpty()) {
+            Mensaje.error(this, "NO SE ENCUENTRAN HORARIOS REGISTRADOS");
+        } else {
+            modelo.setRowCount(0);
+            for (Object h : hor) {
+                PeriodoHorarios hr = (PeriodoHorarios) h;
+                modelo.addRow(new Object[]{
+                    hr.getIdHorario(), buscaMateria(hr.getClaveMateria()), buscaGrupo(hr.getIdGrupo(),null), buscaPeriodo(hr.getIdPeriodo(), null), buscaProfesor(hr.getRfc(), null), hr.getDia(), hr.getEntrada(), hr.getSalida()
+                });
+            }
+        }
+    }
+
+    private Object buscaMateria(String claveMateria) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private Object buscaGrupo(String idGrupo, Object object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private Object buscaPeriodo(String idPeriodo, Object object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private Object buscaProfesor(String rfc, Object object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -10,15 +10,21 @@ package Objetos;
  * @author DELL
  */
 public class PeriodoHorarios {
+    private String idHorario;
     private String claveMateria;
-    private int idGrupo;
-    private int idPeriodo;
+    private String idGrupo;
+    private String idPeriodo;
     private String rfc;
-    private int dia;
+    private String dia;
     private String entrada;
     private String salida;
 
-    public PeriodoHorarios(String claveMateria, int idGrupo, int idPeriodo, String rfc, int dia, String entrada, String salida) {
+
+    public PeriodoHorarios() {
+    }
+
+    public PeriodoHorarios(String idHorario, String claveMateria, String idGrupo, String idPeriodo, String rfc, String dia, String entrada, String salida) {
+        this.idHorario = idHorario;
         this.claveMateria = claveMateria;
         this.idGrupo = idGrupo;
         this.idPeriodo = idPeriodo;
@@ -28,9 +34,8 @@ public class PeriodoHorarios {
         this.salida = salida;
     }
 
-    public PeriodoHorarios() {
-    }
-
+    
+    
     /**
      * @return the claveMateria
      */
@@ -48,28 +53,28 @@ public class PeriodoHorarios {
     /**
      * @return the idGrupo
      */
-    public int getIdGrupo() {
+    public String getIdGrupo() {
         return idGrupo;
     }
 
     /**
      * @param idGrupo the idGrupo to set
      */
-    public void setIdGrupo(int idGrupo) {
+    public void setIdGrupo(String idGrupo) {
         this.idGrupo = idGrupo;
     }
 
     /**
      * @return the idPeriodo
      */
-    public int getIdPeriodo() {
+    public String getIdPeriodo() {
         return idPeriodo;
     }
 
     /**
      * @param idPeriodo the idPeriodo to set
      */
-    public void setIdPeriodo(int idPeriodo) {
+    public void setIdPeriodo(String idPeriodo) {
         this.idPeriodo = idPeriodo;
     }
 
@@ -90,14 +95,14 @@ public class PeriodoHorarios {
     /**
      * @return the dia
      */
-    public int getDia() {
+    public String getDia() {
         return dia;
     }
 
     /**
      * @param dia the dia to set
      */
-    public void setDia(int dia) {
+    public void setDia(String dia) {
         this.dia = dia;
     }
 
@@ -127,6 +132,20 @@ public class PeriodoHorarios {
      */
     public void setSalida(String salida) {
         this.salida = salida;
+    }
+
+    /**
+     * @return the idHorario
+     */
+    public String getIdHorario() {
+        return idHorario;
+    }
+
+    /**
+     * @param idHorario the idHorario to set
+     */
+    public void setIdHorario(String idHorario) {
+        this.idHorario = idHorario;
     }
     
     

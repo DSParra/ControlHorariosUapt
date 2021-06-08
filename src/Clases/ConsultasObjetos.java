@@ -8,6 +8,7 @@ package Clases;
 import Objetos.Grupo;
 import Objetos.Licenciatura;
 import Objetos.Materia;
+import Objetos.PeriodoHorarios;
 import Objetos.PlanEstudios;
 import Objetos.Profesor;
 import Objetos.Usuario;
@@ -227,6 +228,26 @@ public class ConsultasObjetos
                         System.out.println("No se encontro el grupo");
                     }
                     return grupo;
+                case "horarios":
+                    PeriodoHorarios horario = null;
+                    rs = ps.executeQuery();
+                    if (rs.next())
+                    {
+                        horario = new PeriodoHorarios();
+                        horario.setIdHorario(rs.getString("id_horario"));
+                        horario.setClaveMateria(rs.getString("clave_materia"));
+                        horario.setIdGrupo(rs.getString("id_grupo"));
+                        horario.setIdPeriodo(rs.getString("id_periodo"));
+                        horario.setRfc(rs.getString("rfc"));
+                        horario.setDia(rs.getString("dia"));
+                        horario.setEntrada(rs.getString("hr_entrada"));
+                        horario.setSalida(rs.getString("hr_salida"));
+                    }
+                    else
+                    {
+                        System.out.println("No se encontro el horario");
+                    }
+                    return horario;
             }
         } catch (Exception e)
         {
@@ -308,6 +329,19 @@ public class ConsultasObjetos
                     ps.setString(2, gr.getNombreGrupo());
                     ps.setString(3, gr.getId_licenciatura());
                     res = ps.executeUpdate();
+                    break;
+                case "horarios":
+                    PeriodoHorarios hr = (PeriodoHorarios)obj;
+                    ps = con.prepareStatement("INSERT INTO horarios(id_horarios, clave_materia, id_grupo, id_periodo, rfc, dia, hr_entrada, hr_salida) VALUES (?,?,?,?,?,?,?,?)");
+                    ps.setString(1, hr.getIdHorario());
+                    ps.setString(2, hr.getClaveMateria());
+                    ps.setString(3, hr.getIdGrupo());
+                    ps.setString(4, hr.getIdPeriodo());
+                    ps.setString(5, hr.getRfc());
+                    ps.setString(5, hr.getDia());
+                    ps.setString(7, hr.getEntrada());
+                    ps.setString(8, hr.getSalida());
+                    ps.executeUpdate();
                     break;
             }
             return (res > 0) ? true : false;
@@ -471,6 +505,24 @@ public class ConsultasObjetos
                         } while (rs.next());
                     }
                     return objetos;
+                case "horarios":
+                    rs = ps.executeQuery();
+                    if (rs.next())
+                    {
+                        do
+                        {                            
+                            PeriodoHorarios hr = new PeriodoHorarios();
+                            hr.setIdHorario(rs.getString("id_horario"));
+                            hr.setClaveMateria(rs.getString("clave_materia"));
+                            hr.setIdGrupo(rs.getString("id_grupo"));
+                            hr.setIdPeriodo(rs.getString("id_periodo"));
+                            hr.setRfc(rs.getString("rfc"));
+                            hr.setDia(rs.getString("dia"));
+                            hr.setEntrada(rs.getString("hr_entrada"));
+                            hr.setSalida(rs.getString("hr_salida"));
+                        } while (rs.next());
+                    }
+                    return objetos;
             }
         } catch (Exception e)
         {
@@ -574,6 +626,19 @@ public class ConsultasObjetos
                     ps.setString(1, gr.getNombreGrupo());
                     ps.setString(2, gr.getId_licenciatura());
                     ps.setString(3, id);
+                    res = ps.executeUpdate();
+                    break;
+                case "horarios":
+                    PeriodoHorarios hr = (PeriodoHorarios)obj;
+                    ps = con.prepareStatement("UPDATE " + tabla + " SET clave_materia = ?, id_grupo = ?, id_periodo = ?, rfc = ?, dia = ?, hr_entrada =?, hr_salida = ? WHERE id_horario=?");
+                    ps.setString(1, hr.getClaveMateria());
+                    ps.setString(2, hr.getIdGrupo());
+                    ps.setString(3, hr.getIdPeriodo());
+                    ps.setString(4, hr.getRfc());
+                    ps.setString(5, hr.getDia());
+                    ps.setString(6, hr.getEntrada());
+                    ps.setString(7, hr.getSalida());
+                    ps.setString(8, id);
                     res = ps.executeUpdate();
                     break;
             }

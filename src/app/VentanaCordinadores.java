@@ -725,7 +725,6 @@ public class VentanaCordinadores extends javax.swing.JFrame {
 
     public void llenaComboLic() {
         JCLicenciatura.removeAllItems();
-        System.out.println("Ya entre");
         for (int i = 0; i < lics.size(); i++) {
             JCLicenciatura.addItem(((Licenciatura) lics.get(i)).getLicenciatura());
         }
