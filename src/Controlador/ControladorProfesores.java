@@ -113,7 +113,7 @@ public class ControladorProfesores {
             }
         }
         if (mensaje == null) {
-            ArrayList bdProfes = ConsultasObjetos.consultaMuchos("profesor", null, null, ConectarBase.conectado());
+            ArrayList bdProfes = ConsultasObjetos.consultaMuchos("profesor", null, null, null, null, ConectarBase.conectado());
             for (Object profe : profesores) {
                 Profesor p = (Profesor) profe;
                 for (int i = 0; i < bdProfes.size(); i++) {

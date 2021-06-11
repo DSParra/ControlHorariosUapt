@@ -25,8 +25,7 @@ import javax.swing.JOptionPane;
  *
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
-public class VentanaDocentesCordinador extends javax.swing.JFrame
-{
+public class VentanaDocentesCordinador extends javax.swing.JFrame {
 
     /**
      * Creates new form VentanaPrinicipal
@@ -49,7 +48,6 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
         btnAgregar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -76,6 +74,11 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
         jLabel5 = new javax.swing.JLabel();
         jLTituloUniversidad = new javax.swing.JLabel();
         jLTituloUAPT = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jtIDBusqeuda = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        btnBusca = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horarios UAPT");
@@ -84,10 +87,6 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
                 formWindowOpened(evt);
             }
         });
-
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel2.setText("GESTION DOCENTES");
 
         btnAgregar.setBackground(new java.awt.Color(102, 102, 0));
         btnAgregar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -377,7 +376,7 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/UAEMex.jpg"))); // NOI18N
@@ -388,54 +387,118 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
         jLTituloUAPT.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLTituloUAPT.setText("UNIDAD ACADEMICA PROFESIONAL TIANGUISTENCO");
 
+        jLabel11.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel11.setText("GESTION DOCENTES");
+
+        jPanel2.setBackground(new java.awt.Color(25, 83, 0));
+
+        jtIDBusqeuda.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtIDBusqeudaFocusLost(evt);
+            }
+        });
+        jtIDBusqeuda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtIDBusqeudaKeyPressed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel12.setText("INSERTE RFC PARA BUSCAR");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jtIDBusqeuda, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtIDBusqeuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        btnBusca.setBackground(new java.awt.Color(102, 102, 0));
+        btnBusca.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnBusca.setForeground(new java.awt.Color(255, 255, 255));
+        btnBusca.setText("Buscar");
+        btnBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 874, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBRegresar)))
-                .addGap(18, 18, 18)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnAgregar2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregar3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBCerrarSesion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLTituloUniversidad)
-                            .addComponent(jLTituloUAPT)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLTituloUniversidad)
+                                .addGap(7, 7, 7))
+                            .addComponent(jLTituloUAPT)
+                            .addComponent(jLabel11))
+                        .addGap(329, 329, 329)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBusca, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(442, 442, 442)
-                        .addComponent(jLabel2)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jBRegresar)
+                                .addGap(18, 18, 18))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 874, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnAgregar2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAgregar3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBCerrarSesion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(35, 35, 35))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLTituloUniversidad)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLTituloUAPT)
-                        .addGap(2, 2, 2)
-                        .addComponent(jLabel2))
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnBusca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLTituloUniversidad)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLTituloUAPT)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel11))
+                            .addComponent(jLabel5))
+                        .addGap(20, 20, 20)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAgregar2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -479,7 +542,7 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
                 btnAgregar.setText("Nuevo");
                 CtrlInterfaz.limpia(txtrfc, txtapellidoP, txtapellidoM, txtnombres, txtgradoAcademico, txtgradoAcademico, txttelefono);
                 CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
-                actualizaTabla();
+                actualizaTabla(1);
                 edicion();
             } else
             {
@@ -510,7 +573,7 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         cancelar();
-        actualizaTabla();
+        actualizaTabla(1);
     }//GEN-LAST:event_formWindowOpened
 
     private void txtapellidoMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtapellidoMActionPerformed
@@ -636,6 +699,24 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
         }
     }//GEN-LAST:event_txtrfcKeyTyped
 
+    private void jtIDBusqeudaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtIDBusqeudaFocusLost
+        Valida.convertirAMayusculas(jtIDBusqeuda);
+    }//GEN-LAST:event_jtIDBusqeudaFocusLost
+
+    private void jtIDBusqeudaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDBusqeudaKeyPressed
+        enter(this, evt, btnBusca);
+    }//GEN-LAST:event_jtIDBusqeudaKeyPressed
+
+    private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
+        if (jtIDBusqeuda.getText().equals(""))
+        {
+            actualizaTabla(1);
+        } else
+        {
+            actualizaTabla(2);
+        }
+    }//GEN-LAST:event_btnBuscaActionPerformed
+
     private void cancelar() {
         edicion();
         CtrlInterfaz.limpia(txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
@@ -654,25 +735,49 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
         }
     }
 
-    public void actualizaTabla() {
+    public void actualizaTabla(int valor) {
         modelo = (DefaultTableModel) jTable1.getModel();
         ArrayList profes = new ArrayList();
-        profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", ConectarBase.conectado());
-        if (profes.isEmpty())
+         if (valor == 1)
         {
-            Mensaje.error(this, "No se encuentran registros");
-        } else
-        {
-            modelo.setRowCount(0);
-            for (Object p : profes)
+
+            profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, ConectarBase.conectado());
+            if (profes.isEmpty())
             {
-                Profesor profe = (Profesor) p;
-                modelo.addRow(new Object[]
+                Mensaje.error(this, "No se encuentran registros");
+            } else
+            {
+                modelo.setRowCount(0);
+                for (Object p : profes)
                 {
-                    profe.getRfc(), profe.getApellidoP(), profe.getApellidoM(), profe.getNombres(), profe.getGradoAcademico(), profe.getCorreo(), profe.getTelefono()
-                });
-                System.out.println(((Profesor) p).getNombres());
+                    Profesor profe = (Profesor) p;
+                    modelo.addRow(new Object[]
+                    {
+                        profe.getRfc(), profe.getApellidoP(), profe.getApellidoM(), profe.getNombres(), profe.getGradoAcademico(), profe.getCorreo(), profe.getTelefono()
+                    });
+                    System.out.println(((Profesor) p).getNombres());
+                }
             }
+        } else if (valor == 2)
+        {
+            profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", "rfc", jtIDBusqeuda.getText(), ConectarBase.conectado());
+            if (profes.isEmpty())
+            {
+                Mensaje.error(this, "No se encuentran registros");
+            } else
+            {
+                modelo.setRowCount(0);
+                for (Object p : profes)
+                {
+                    Profesor profe = (Profesor) p;
+                    modelo.addRow(new Object[]
+                    {
+                        profe.getRfc(), profe.getApellidoP(), profe.getApellidoM(), profe.getNombres(), profe.getGradoAcademico(), profe.getCorreo(), profe.getTelefono()
+                    });
+                    System.out.println(((Profesor) p).getNombres());
+                }
+            }
+            //jtIDBusqeuda.setText("");
         }
     }
 
@@ -838,8 +943,7 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable()
-        {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VentanaDocentesCordinador().setVisible(true);
             }
@@ -850,13 +954,15 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnAgregar2;
     private javax.swing.JButton btnAgregar3;
+    private javax.swing.JButton btnBusca;
     private javax.swing.JButton btncancelar;
     private javax.swing.JButton jBCerrarSesion;
     private javax.swing.JButton jBRegresar;
     private javax.swing.JLabel jLTituloUAPT;
     private javax.swing.JLabel jLTituloUniversidad;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -865,8 +971,10 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jtIDBusqeuda;
     private javax.swing.JTextField txtapellidoM;
     private javax.swing.JTextField txtapellidoP;
     private javax.swing.JTextField txtcorreo;

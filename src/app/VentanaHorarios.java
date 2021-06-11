@@ -21,8 +21,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
-public class VentanaHorarios extends javax.swing.JFrame
-{
+public class VentanaHorarios extends javax.swing.JFrame {
 
     int id = 0;
     private Boolean edicion = true;
@@ -75,14 +74,14 @@ public class VentanaHorarios extends javax.swing.JFrame
         jTLicenciatura = new javax.swing.JTextField();
         jBRegresar = new javax.swing.JButton();
         jBCerrarSesion = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLTituloUniversidad = new javax.swing.JLabel();
-        jLTituloUAPT = new javax.swing.JLabel();
         btnAgregar4 = new javax.swing.JButton();
         btnAgregar5 = new javax.swing.JButton();
         jBAceptar1 = new javax.swing.JButton();
         jBAceptar2 = new javax.swing.JButton();
-        LabelHr = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLTituloUAPT = new javax.swing.JLabel();
+        jLTituloUniversidad = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horarios UAPT");
@@ -307,14 +306,6 @@ public class VentanaHorarios extends javax.swing.JFrame
             }
         });
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/UAEMex.jpg"))); // NOI18N
-
-        jLTituloUniversidad.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLTituloUniversidad.setText("UNIVERSIDAD AUTONOMA DEL ESTADO DE MEXICO");
-
-        jLTituloUAPT.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLTituloUAPT.setText("UNIDAD ACADEMICA PROFESIONAL TIANGUISTENCO");
-
         btnAgregar4.setBackground(new java.awt.Color(102, 102, 0));
         btnAgregar4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnAgregar4.setForeground(new java.awt.Color(255, 255, 255));
@@ -355,8 +346,17 @@ public class VentanaHorarios extends javax.swing.JFrame
             }
         });
 
-        LabelHr.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
-        LabelHr.setText("GESTION HORARIOS");
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/UAEMex.jpg"))); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel2.setText("GESTION MATERIAS");
+
+        jLTituloUAPT.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLTituloUAPT.setText("UNIDAD ACADEMICA PROFESIONAL TIANGUISTENCO");
+
+        jLTituloUniversidad.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLTituloUniversidad.setText("UNIVERSIDAD AUTONOMA DEL ESTADO DE MEXICO");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -367,12 +367,13 @@ public class VentanaHorarios extends javax.swing.JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56)
+                        .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 824, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnAgregar4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAgregar5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnAgregar5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBAceptar1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -381,54 +382,52 @@ public class VentanaHorarios extends javax.swing.JFrame
                         .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 584, Short.MAX_VALUE)
                         .addComponent(jBRegresar)
                         .addGap(18, 18, 18)
                         .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(37, 37, 37))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLTituloUniversidad)
-                    .addComponent(jLTituloUAPT))
-                .addGap(0, 848, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(LabelHr)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLTituloUniversidad)
+                            .addComponent(jLabel2)
+                            .addComponent(jLTituloUAPT)))
+                    .addComponent(jLabel5))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLTituloUniversidad)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLTituloUAPT)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLTituloUniversidad)
-                        .addGap(13, 13, 13)
-                        .addComponent(jLTituloUAPT)
-                        .addGap(18, 18, 18)
-                        .addComponent(LabelHr))
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jBAceptar1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jBAceptar2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAgregar5)
                         .addGap(18, 18, 18)
-                        .addComponent(btnAgregar4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBAceptar1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBAceptar2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(btnAgregar4)))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
@@ -486,8 +485,8 @@ public class VentanaHorarios extends javax.swing.JFrame
     }//GEN-LAST:event_jTLicenciaturaKeyReleased
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, ConectarBase.conectado());
-        LabelHr.setText("GESTION HORARIOS " + buscaLic(licen, null));
+        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, ConectarBase.conectado());
+        jLabel2.setText("GESTION HORARIOS " + buscaLic(licen, null));
         jTLicenciatura.setText(buscaLic(licen, null));
         cargaPeriodos();
         actualizaTabla();
@@ -655,8 +654,7 @@ public class VentanaHorarios extends javax.swing.JFrame
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable()
-        {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VentanaHorarios().setVisible(true);
             }
@@ -667,7 +665,6 @@ public class VentanaHorarios extends javax.swing.JFrame
     private javax.swing.JComboBox<String> JCDocente;
     private javax.swing.JComboBox<String> JCGrupo;
     private javax.swing.JComboBox<String> JCMateria;
-    private javax.swing.JLabel LabelHr;
     private javax.swing.JTable TablaHorarios;
     private javax.swing.JButton btnAgregar4;
     private javax.swing.JButton btnAgregar5;
@@ -685,6 +682,7 @@ public class VentanaHorarios extends javax.swing.JFrame
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -727,25 +725,29 @@ public class VentanaHorarios extends javax.swing.JFrame
         jCPeriodo.removeAllItems();
         for (int i = 0; i < periodos.size(); i++)
         {
-            jCPeriodo.addItem(((periodoEscolar)periodos.get(i)).getPeriodo());
-            System.out.println("Periodo encontrador " + ((periodoEscolar)periodos.get(i)).getPeriodo());
+            jCPeriodo.addItem(((periodoEscolar) periodos.get(i)).getPeriodo());
+            System.out.println("Periodo encontrador " + ((periodoEscolar) periodos.get(i)).getPeriodo());
         }
     }
 
     private void actualizaTabla() {
-        periodos = ConsultasObjetos.consultaMuchos("periodo_escolar", null, null, ConectarBase.conectado());
-        profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", ConectarBase.conectado());
+        periodos = ConsultasObjetos.consultaMuchos("periodo_escolar", null, null, null, null, ConectarBase.conectado());
+        profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, ConectarBase.conectado());
         modelo = (DefaultTableModel) TablaHorarios.getModel();
         ArrayList<Object> hor = new ArrayList<>();
-        hor = ConsultasObjetos.consultaMuchos("horarios", null, null, ConectarBase.conectado());
-        if (hor.isEmpty()) {
+        hor = ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, ConectarBase.conectado());
+        if (hor.isEmpty())
+        {
             Mensaje.error(this, "NO SE ENCUENTRAN HORARIOS REGISTRADOS");
-        } else {
+        } else
+        {
             modelo.setRowCount(0);
-            for (Object h : hor) {
+            for (Object h : hor)
+            {
                 PeriodoHorarios hr = (PeriodoHorarios) h;
-                modelo.addRow(new Object[]{
-                    hr.getIdHorario(), buscaMateria(hr.getClaveMateria()), buscaGrupo(hr.getIdGrupo(),null), buscaPeriodo(hr.getIdPeriodo(), null), buscaProfesor(hr.getRfc(), null), hr.getDia(), hr.getEntrada(), hr.getSalida()
+                modelo.addRow(new Object[]
+                {
+                    hr.getIdHorario(), buscaMateria(hr.getClaveMateria()), buscaGrupo(hr.getIdGrupo(), null), buscaPeriodo(hr.getIdPeriodo(), null), buscaProfesor(hr.getRfc(), null), hr.getDia(), hr.getEntrada(), hr.getSalida()
                 });
             }
         }

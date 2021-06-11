@@ -142,7 +142,7 @@ public class ControladorCoordnadores
         }
         if (mensaje == null)
         {
-            ArrayList bdUsuarios = ConsultasObjetos.consultaMuchos("usuarios", null, null, ConectarBase.conectado());
+            ArrayList bdUsuarios = ConsultasObjetos.consultaMuchos("usuarios", null, null, null, null, ConectarBase.conectado());
             for (Object us: usuarios)
             {
                 Usuario u = (Usuario) us;

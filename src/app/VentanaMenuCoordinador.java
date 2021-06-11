@@ -15,12 +15,10 @@ import java.util.ArrayList;
  *
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
-public class VentanaMenuCoordinador extends javax.swing.JFrame
-{
+public class VentanaMenuCoordinador extends javax.swing.JFrame {
 
     public static String licenciatura;
     private ArrayList<Object> lics = new ArrayList<>();
-    
 
     /**
      * Creates new form VentanaPrinicipal
@@ -246,7 +244,8 @@ public class VentanaMenuCoordinador extends javax.swing.JFrame
     }//GEN-LAST:event_jBGruposActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, ConectarBase.conectado());
+        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, ConectarBase.conectado()
+        );
         LabelLic.setText(buscaLic(licenciatura, null));
     }//GEN-LAST:event_formWindowOpened
 
@@ -292,8 +291,7 @@ public class VentanaMenuCoordinador extends javax.swing.JFrame
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable()
-        {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VentanaMenuCoordinador().setVisible(true);
             }

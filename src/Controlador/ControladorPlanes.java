@@ -130,7 +130,7 @@ public class ControladorPlanes
         }
         if (mensaje == null)
         {
-            ArrayList bdPlanes = ConsultasObjetos.consultaMuchos("plan_estudios", null, null, ConectarBase.conectado());
+            ArrayList bdPlanes = ConsultasObjetos.consultaMuchos("plan_estudios", null, null, null, null, ConectarBase.conectado());
             for(Object pl: bdPlanes)
             {
                 PlanEstudios p  = (PlanEstudios)pl;

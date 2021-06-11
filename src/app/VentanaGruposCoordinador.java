@@ -15,6 +15,7 @@ import static app.VentanaMateriasCoordinador.licen;
 import cjb.ci.CtrlInterfaz;
 import cjb.ci.Mensaje;
 import cjb.ci.Validaciones;
+import static cjb.ci.Validaciones.enter;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -24,8 +25,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
-public class VentanaGruposCoordinador extends javax.swing.JFrame
-{
+public class VentanaGruposCoordinador extends javax.swing.JFrame {
 
     int id = 0;
     private Boolean edicion = true;
@@ -56,20 +56,24 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame
         jLabel4 = new javax.swing.JLabel();
         jTNombreGrupo = new javax.swing.JTextField();
         jTIdGrupo = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaGrupos = new javax.swing.JTable();
         jBRegresar = new javax.swing.JButton();
         jBCerrarSesion = new javax.swing.JButton();
-        LabelGrupos = new javax.swing.JLabel();
-        jLTituloUAPT = new javax.swing.JLabel();
-        jLTituloUniversidad = new javax.swing.JLabel();
         btnImportar = new javax.swing.JButton();
         btnExportar = new javax.swing.JButton();
         jBEliminar = new javax.swing.JButton();
         jBAceptar = new javax.swing.JButton();
         jBCancelar = new javax.swing.JButton();
         jBModificar = new javax.swing.JButton();
+        btnBusca = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jtIDBusqeuda = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLTituloUniversidad = new javax.swing.JLabel();
+        jLTituloUAPT = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horarios UAPT");
@@ -102,6 +106,11 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame
         });
 
         jTIdGrupo.setBackground(new java.awt.Color(254, 254, 254));
+        jTIdGrupo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTIdGrupoFocusLost(evt);
+            }
+        });
         jTIdGrupo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTIdGrupoActionPerformed(evt);
@@ -110,6 +119,9 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame
         jTIdGrupo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTIdGrupoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTIdGrupoKeyTyped(evt);
             }
         });
 
@@ -137,10 +149,8 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jTNombreGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(223, Short.MAX_VALUE))
         );
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/UAEMex.jpg"))); // NOI18N
 
         TablaGrupos.setBackground(new java.awt.Color(25, 83, 0));
         TablaGrupos.setForeground(new java.awt.Color(254, 254, 254));
@@ -152,7 +162,7 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame
                 {null, null, null}
             },
             new String [] {
-                "ID Grupo", "Nombre ", "Licenciatura"
+                "ID", "NOMBRE", "LICENCIATURA"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -191,15 +201,6 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame
                 jBCerrarSesionActionPerformed(evt);
             }
         });
-
-        LabelGrupos.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
-        LabelGrupos.setText("GESTION GRUPOS");
-
-        jLTituloUAPT.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLTituloUAPT.setText("UNIDAD ACADEMICA PROFESIONAL TIANGUISTENCO");
-
-        jLTituloUniversidad.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLTituloUniversidad.setText("UNIVERSIDAD AUTONOMA DEL ESTADO DE MEXICO");
 
         btnImportar.setBackground(new java.awt.Color(102, 102, 0));
         btnImportar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -261,75 +262,145 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame
             }
         });
 
+        btnBusca.setBackground(new java.awt.Color(102, 102, 0));
+        btnBusca.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnBusca.setForeground(new java.awt.Color(255, 255, 255));
+        btnBusca.setText("Buscar");
+        btnBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaActionPerformed(evt);
+            }
+        });
+
+        jPanel2.setBackground(new java.awt.Color(25, 83, 0));
+
+        jtIDBusqeuda.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtIDBusqeudaFocusLost(evt);
+            }
+        });
+        jtIDBusqeuda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtIDBusqeudaKeyPressed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel12.setText("INSERTE ID PARA BUSCAR");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jtIDBusqeuda, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtIDBusqeuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel11.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel11.setText("GESTION GRUPOS");
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/UAEMex.jpg"))); // NOI18N
+
+        jLTituloUniversidad.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLTituloUniversidad.setText("UNIVERSIDAD AUTONOMA DEL ESTADO DE MEXICO");
+
+        jLTituloUAPT.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLTituloUAPT.setText("UNIDAD ACADEMICA PROFESIONAL TIANGUISTENCO");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLTituloUniversidad)
-                    .addComponent(jLTituloUAPT)
-                    .addComponent(LabelGrupos))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 777, Short.MAX_VALUE)
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnExportar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnImportar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLTituloUniversidad)
+                            .addComponent(jLTituloUAPT)
+                            .addComponent(jLabel11))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 305, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnBusca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(129, 129, 129))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBRegresar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1)
+                                .addGap(23, 23, 23)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnExportar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnImportar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jBRegresar)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(64, 64, 64))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLTituloUniversidad)
-                        .addGap(12, 12, 12)
-                        .addComponent(jLTituloUAPT)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(LabelGrupos)
-                        .addGap(7, 7, 7))
-                    .addComponent(jLabel5))
+                        .addGap(44, 44, 44)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLTituloUniversidad)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLTituloUAPT)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel11))
+                        .addComponent(jLabel5)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnImportar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 485, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBRegresar)
-                            .addComponent(jBCerrarSesion))
-                        .addGap(40, 40, 40))))
+                        .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBRegresar)
+                    .addComponent(jBCerrarSesion))
+                .addGap(40, 40, 40))
         );
 
         pack();
@@ -372,7 +443,7 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame
             String mensaje = Controlador.ControladorGrupos.eliminarGrupo(jTIdGrupo.getText());
             if (mensaje.equals("operacion exitosa"))
             {
-                actualizarTabla();
+                actualizarTabla(1);
             } else
             {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
@@ -399,7 +470,7 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame
                 CtrlInterfaz.limpia(jTIdGrupo, jTNombreGrupo);
                 CtrlInterfaz.habilita(false, jTIdGrupo, jTNombreGrupo, jBCancelar);
                 CtrlInterfaz.habilita(true, jBModificar, jBEliminar, btnExportar, btnImportar);
-                actualizarTabla();
+                actualizarTabla(1);
                 edicion();
             } else
             {
@@ -435,7 +506,7 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame
                     CtrlInterfaz.limpia(jTIdGrupo, jTNombreGrupo);
                     CtrlInterfaz.habilita(false, jTIdGrupo, jTNombreGrupo, jBAceptar, jBCancelar);
                     CtrlInterfaz.habilita(true, jBEliminar, jBAceptar, btnImportar, btnExportar);
-                    actualizarTabla();
+                    actualizarTabla(1);
                     edicion();
                 } else
                 {
@@ -447,8 +518,7 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         cancelar();
-        actualizarTabla();
-        LabelGrupos.setText("GESTION GRUPOS " + buscaLic(licen, null));
+        actualizarTabla(1);
     }//GEN-LAST:event_formWindowOpened
 
     private void TablaGruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaGruposMouseClicked
@@ -459,6 +529,35 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame
     private void jTIdGrupoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTIdGrupoKeyPressed
         Validaciones.enter(this, evt, jTNombreGrupo);
     }//GEN-LAST:event_jTIdGrupoKeyPressed
+
+    private void jTIdGrupoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTIdGrupoKeyTyped
+        if (jTIdGrupo.getText().length() == 5)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTIdGrupoKeyTyped
+
+    private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
+        if (jtIDBusqeuda.getText().equals(""))
+        {
+            actualizarTabla(1);
+        } else
+        {
+            actualizarTabla(2);
+        }
+    }//GEN-LAST:event_btnBuscaActionPerformed
+
+    private void jtIDBusqeudaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtIDBusqeudaFocusLost
+        Valida.convertirAMayusculas(jtIDBusqeuda);
+    }//GEN-LAST:event_jtIDBusqeudaFocusLost
+
+    private void jtIDBusqeudaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDBusqeudaKeyPressed
+        enter(this, evt, btnBusca);
+    }//GEN-LAST:event_jtIDBusqeudaKeyPressed
+
+    private void jTIdGrupoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTIdGrupoFocusLost
+        Valida.convertirAMayusculas(jTIdGrupo);
+    }//GEN-LAST:event_jTIdGrupoFocusLost
 
     /**
      * @param args the command line arguments
@@ -622,8 +721,7 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable()
-        {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VentanaGruposCoordinador().setVisible(true);
             }
@@ -631,8 +729,8 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel LabelGrupos;
     private javax.swing.JTable TablaGrupos;
+    private javax.swing.JButton btnBusca;
     private javax.swing.JButton btnExportar;
     private javax.swing.JButton btnImportar;
     private javax.swing.JButton jBAceptar;
@@ -643,34 +741,61 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame
     private javax.swing.JButton jBRegresar;
     private javax.swing.JLabel jLTituloUAPT;
     private javax.swing.JLabel jLTituloUniversidad;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTIdGrupo;
     private javax.swing.JTextField jTNombreGrupo;
+    private javax.swing.JTextField jtIDBusqeuda;
     // End of variables declaration//GEN-END:variables
 
-    private void actualizarTabla() {
-        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, ConectarBase.conectado());
+    private void actualizarTabla(int valor) {
+        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, ConectarBase.conectado());
         modelo = (DefaultTableModel) TablaGrupos.getModel();
         ArrayList grupos = new ArrayList();
-        grupos = ConsultasObjetos.consultaMuchos("grupo", "id_licenciatura", licenciatura, ConectarBase.conectado());
-        if (grupos.isEmpty())
+        if (valor == 1)
         {
-            Mensaje.error(this, "No hay grupos registrados");
-        } else
-        {
-            modelo.setRowCount(0);
-            for (Object g : grupos)
+            System.out.println("licen "+licen);
+            grupos = ConsultasObjetos.consultaMuchos("grupo", "id_licenciatura", licen, null, null, ConectarBase.conectado());
+            if (grupos.isEmpty())
             {
-                Grupo grupo = (Grupo) g;
-                modelo.addRow(new Object[]
+                Mensaje.error(this, "No hay grupos registrados");
+            } else
+            {
+                modelo.setRowCount(0);
+                for (Object g : grupos)
                 {
-                    grupo.getIdGrupo(), grupo.getNombreGrupo(), buscaLic(grupo.getId_licenciatura(), null)
-                });
-                System.out.println(((Grupo) g).getIdGrupo());
+                    Grupo grupo = (Grupo) g;
+                    modelo.addRow(new Object[]
+                    {
+                        grupo.getIdGrupo(), grupo.getNombreGrupo(), buscaLic(grupo.getId_licenciatura(), null)
+                    });
+                    System.out.println(((Grupo) g).getIdGrupo());
+                }
+            }
+        } else if (valor == 2)
+        {
+            grupos = ConsultasObjetos.consultaMuchos("grupo", "id_grupo", jtIDBusqeuda.getText(), null, null, ConectarBase.conectado());
+            if (grupos.isEmpty())
+            {
+                Mensaje.error(this, "No hay grupos registrados");
+            } else
+            {
+                modelo.setRowCount(0);
+                for (Object g : grupos)
+                {
+                    Grupo grupo = (Grupo) g;
+                    modelo.addRow(new Object[]
+                    {
+                        grupo.getIdGrupo(), grupo.getNombreGrupo(), buscaLic(grupo.getId_licenciatura(), null)
+                    });
+                    System.out.println(((Grupo) g).getIdGrupo());
+                }
             }
         }
     }
