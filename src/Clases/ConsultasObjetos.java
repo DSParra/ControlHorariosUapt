@@ -362,16 +362,22 @@ public class ConsultasObjetos
         }
     }
 
-    public static ArrayList<Object> consultaMuchos(String tabla, String campo, String valor, Connection con) {
+    public static ArrayList<Object> consultaMuchos(String tabla, String campo, String valor, String campo2, String valor2, Connection con) {
         try
         {
             if (campo == null)
             {
                 ps = con.prepareStatement("SELECT * FROM " + tabla); //traer un dato
-            } else
+            } else if (campo != null && campo2 == null)
             {
                 ps = con.prepareStatement("SELECT * FROM " + tabla + " WHERE " + campo + "=?"); //traer un dato
                 ps.setString(1, valor);
+            }
+            else
+            {
+                ps = con.prepareStatement("SELECT * FROM " + tabla + " WHERE " + campo + "=? AND " + campo2 + "=?"); //traer un dato
+                ps.setString(1, valor);
+                ps.setString(2, valor2);
             }
 
             ArrayList<Object> objetos = new ArrayList();

@@ -24,9 +24,7 @@ import javax.swing.JOptionPane;
  *
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
-public class VentanaLicenciatura extends javax.swing.JFrame
-{
-    
+public class VentanaLicenciatura extends javax.swing.JFrame {
 
     /**
      * Creates new form VentanaPrinicipal
@@ -49,7 +47,6 @@ public class VentanaLicenciatura extends javax.swing.JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
         btnAgregar = new javax.swing.JButton();
         btnelmina = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -58,9 +55,6 @@ public class VentanaLicenciatura extends javax.swing.JFrame
         jBCerrarSesion = new javax.swing.JButton();
         btnmodifica = new javax.swing.JButton();
         btncancelar = new javax.swing.JButton();
-        jLTituloUAPT = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLTituloUniversidad = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         txtnombre = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -68,6 +62,14 @@ public class VentanaLicenciatura extends javax.swing.JFrame
         jLabel8 = new javax.swing.JLabel();
         btnExportar = new javax.swing.JButton();
         btnImportar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLTituloUAPT = new javax.swing.JLabel();
+        jLTituloUniversidad = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jtIDBusqeuda = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        btnBusca = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horarios UAPT");
@@ -76,9 +78,6 @@ public class VentanaLicenciatura extends javax.swing.JFrame
                 formWindowOpened(evt);
             }
         });
-
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel2.setText("GESTION LICENCIATURAS");
 
         btnAgregar.setBackground(new java.awt.Color(102, 102, 0));
         btnAgregar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -107,11 +106,11 @@ public class VentanaLicenciatura extends javax.swing.JFrame
 
             },
             new String [] {
-                "Codigo de Licenciatura", "Nombre de la licenciatura", "Cordinador"
+                "CODIGO ", "NOMBRE DE LA LICENCIATURA"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -166,14 +165,6 @@ public class VentanaLicenciatura extends javax.swing.JFrame
                 btncancelarActionPerformed(evt);
             }
         });
-
-        jLTituloUAPT.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLTituloUAPT.setText("UNIDAD ACADEMICA PROFESIONAL TIANGUISTENCO");
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/UAEMex.jpg"))); // NOI18N
-
-        jLTituloUniversidad.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLTituloUniversidad.setText("UNIVERSIDAD AUTONOMA DEL ESTADO DE MEXICO");
 
         jPanel1.setBackground(new java.awt.Color(25, 83, 0));
 
@@ -269,18 +260,85 @@ public class VentanaLicenciatura extends javax.swing.JFrame
             }
         });
 
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/UAEMex.jpg"))); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel2.setText("GESTION LICENCIATURAS");
+
+        jLTituloUAPT.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLTituloUAPT.setText("UNIDAD ACADEMICA PROFESIONAL TIANGUISTENCO");
+
+        jLTituloUniversidad.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLTituloUniversidad.setText("UNIVERSIDAD AUTONOMA DEL ESTADO DE MEXICO");
+
+        jPanel2.setBackground(new java.awt.Color(25, 83, 0));
+
+        jtIDBusqeuda.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtIDBusqeudaFocusLost(evt);
+            }
+        });
+        jtIDBusqeuda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtIDBusqeudaKeyPressed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel11.setText("INSERTE NOMBRE PARA BUSCAR");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtIDBusqeuda, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtIDBusqeuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        btnBusca.setBackground(new java.awt.Color(102, 102, 0));
+        btnBusca.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnBusca.setForeground(new java.awt.Color(255, 255, 255));
+        btnBusca.setText("Buscar");
+        btnBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLTituloUniversidad)
-                    .addComponent(jLTituloUAPT))
-                .addGap(18, 18, 18))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLTituloUniversidad)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLTituloUAPT)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,10 +359,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame
                                 .addGap(18, 18, 18)
                                 .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(306, 306, 306)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnImportar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -313,14 +368,19 @@ public class VentanaLicenciatura extends javax.swing.JFrame
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
                         .addComponent(jLTituloUniversidad)
-                        .addGap(13, 13, 13)
-                        .addComponent(jLTituloUAPT))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLTituloUAPT)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addContainerGap(6, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -357,7 +417,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame
             btnAgregar.setText("Aceptar");
             CtrlInterfaz.limpia(txtnombre, txtcodigolic);
             CtrlInterfaz.habilita(true, txtnombre, btncancelar, txtcodigolic);
-            CtrlInterfaz.habilita(false, btnmodifica, btnelmina,btnImportar, btnExportar);
+            CtrlInterfaz.habilita(false, btnmodifica, btnelmina, btnImportar, btnExportar);
             CtrlInterfaz.selecciona(txtcodigolic);
             //llenaComboProfesores();
         } else
@@ -371,7 +431,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame
                 CtrlInterfaz.habilita(false, txtnombre, txtcodigolic, btncancelar);
                 CtrlInterfaz.habilita(true, btnelmina, btnmodifica);
                 //llenaComboCordinadores();
-                actualizaTabla();
+                actualizaTabla(1);
                 edicion();
             } else
             {
@@ -386,7 +446,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame
             String mensaje = Controlador.ControladorLicenciatura.eliminaLicenciatura(txtcodigolic.getText());
             if (mensaje.equals("operacion exitosa"))
             {
-                actualizaTabla();
+                actualizaTabla(1);
             } else
             {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
@@ -406,7 +466,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         cancelar();
-        actualizaTabla();
+        actualizaTabla(1);
 //        llenaComboCordinadores();
     }//GEN-LAST:event_formWindowOpened
 
@@ -433,10 +493,9 @@ public class VentanaLicenciatura extends javax.swing.JFrame
                     CtrlInterfaz.limpia(txtcodigolic, txtnombre);
                     CtrlInterfaz.habilita(false, txtnombre, btncancelar, txtcodigolic);
                     CtrlInterfaz.habilita(true, btnelmina, btnmodifica, btnAgregar);
-                    actualizaTabla();
+                    actualizaTabla(1);
                     edicion();
-                }
-                else
+                } else
                 {
                     JOptionPane.showMessageDialog(rootPane, mensaje);
                 }
@@ -467,7 +526,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame
     }//GEN-LAST:event_txtapellidoMKeyPressed
 
     private void txtnombresKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombresKeyPressed
-       
+
     }//GEN-LAST:event_txtnombresKeyPressed
 
     private void txtgradoAcademicoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtgradoAcademicoKeyPressed
@@ -521,6 +580,24 @@ public class VentanaLicenciatura extends javax.swing.JFrame
         Valida.convertirAMayusculas(txtnombre);
     }//GEN-LAST:event_txtnombreFocusLost
 
+    private void jtIDBusqeudaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtIDBusqeudaFocusLost
+        Valida.convertirAMayusculas(jtIDBusqeuda);
+    }//GEN-LAST:event_jtIDBusqeudaFocusLost
+
+    private void jtIDBusqeudaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDBusqeudaKeyPressed
+        enter(this, evt, btnBusca);
+    }//GEN-LAST:event_jtIDBusqeudaKeyPressed
+
+    private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
+        if (jtIDBusqeuda.getText().equals(""))
+        {
+            actualizaTabla(1);
+        } else
+        {
+            actualizaTabla(2);
+        }
+    }//GEN-LAST:event_btnBuscaActionPerformed
+
     private void cancelar() {
         edicion();
         CtrlInterfaz.limpia(txtnombre, txtcodigolic);
@@ -540,25 +617,47 @@ public class VentanaLicenciatura extends javax.swing.JFrame
         }
     }
 
-    public void actualizaTabla() {
-        profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", ConectarBase.conectado());
+    public void actualizaTabla(int valor) {
+        profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, ConectarBase.conectado());
         modelo = (DefaultTableModel) tablaLicenciatura.getModel();
         ArrayList<Object> licenciatura = new ArrayList();
-        licenciatura = ConsultasObjetos.consultaMuchos("licenciatura", null, null, ConectarBase.conectado());
-        if (licenciatura.isEmpty())
-        {
-            Mensaje.error(this, "No se encuentran registros");
-        } else
-        {
-            modelo.setRowCount(0);
-            for (Object p : licenciatura)
-            {
-                Licenciatura lic = (Licenciatura) p;
-                modelo.addRow(new Object[]
-                {
-                    lic.getIdLicenciatura(), lic.getLicenciatura()
-                });
 
+        if (valor == 1)
+        {
+            licenciatura = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, ConectarBase.conectado());
+            if (licenciatura.isEmpty())
+            {
+                Mensaje.error(this, "No se encuentran registros");
+            } else
+            {
+                modelo.setRowCount(0);
+                for (Object p : licenciatura)
+                {
+                    Licenciatura lic = (Licenciatura) p;
+                    modelo.addRow(new Object[]
+                    {
+                        lic.getIdLicenciatura(), lic.getLicenciatura()
+                    });
+
+                }
+            }
+        } else if (valor == 2)
+        {
+            licenciatura = ConsultasObjetos.consultaMuchos("licenciatura", "nombre", jtIDBusqeuda.getText(), null, null, ConectarBase.conectado());
+            if (licenciatura.isEmpty())
+            {
+                Mensaje.error(this, "No se encuentran registros");
+            } else
+            {
+                modelo.setRowCount(0);
+                for (Object p : licenciatura)
+                {
+                    Licenciatura lic = (Licenciatura) p;
+                    modelo.addRow(new Object[]
+                    {
+                        lic.getIdLicenciatura(), lic.getLicenciatura()
+                    });
+                }
             }
         }
     }
@@ -588,7 +687,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame
         return null;
     }
 
-/*    public void llenaComboCordinadores() {
+    /*    public void llenaComboCordinadores() {
         JCCordinador.removeAllItems();
         for (int i = 0; i < modelo.getRowCount(); i++)
         {
@@ -615,7 +714,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame
         }
         return 0;
     }
-*/
+     */
     /**
      * @param args the command line arguments
      */
@@ -778,8 +877,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable()
-        {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new VentanaLicenciatura().setVisible(true);
             }
@@ -788,6 +886,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnBusca;
     private javax.swing.JButton btnExportar;
     private javax.swing.JButton btnImportar;
     private javax.swing.JButton btncancelar;
@@ -797,12 +896,15 @@ public class VentanaLicenciatura extends javax.swing.JFrame
     private javax.swing.JButton jBRegresar;
     private javax.swing.JLabel jLTituloUAPT;
     private javax.swing.JLabel jLTituloUniversidad;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jtIDBusqeuda;
     private javax.swing.JTable tablaLicenciatura;
     private javax.swing.JTextField txtcodigolic;
     private javax.swing.JTextField txtnombre;
