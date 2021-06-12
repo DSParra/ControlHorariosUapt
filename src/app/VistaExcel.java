@@ -8,6 +8,8 @@ package app;
 import Clases.ConectarBase;
 import Clases.Conexion;
 import Clases.ConsultasObjetos;
+import Objetos.Grupo;
+import Objetos.Materia;
 import Objetos.Profesor;
 import java.io.BufferedReader;
 import java.io.File;
@@ -35,7 +37,11 @@ public class VistaExcel extends javax.swing.JFrame {
     String cabecerasProfesor[] = {"rfc", "apellido paterno", "apellido materno", "nombre", "grado academico", "correo", "telefono"};
     String cabecerasMateria[] = {"clave de la materia", "unidad de aprendizaje", "horas", "creditos", "numero de periodo", "nucleo", "tipo", "licenciatura", "plan de estudios"};
     String cabecerasHorario[] = {"clave_materia", "unidad_aprendizaje", "rfc", "profesor", "grupo", "dia", "entrada", "salida"};
-
+    ArrayList<Profesor> profes;
+    ArrayList<Materia> materias;
+    ArrayList<Grupo> grupos;
+    
+    
     private File abrirArchivo() {
         String aux = "";
         String texto = "";

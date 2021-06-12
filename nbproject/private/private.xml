@@ -11,6 +11,7 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< Updated upstream
         <group>
             <file>file:/C:/Users/MoisesVidalHernandez/Documents/GitHub/ControlHorarios/src/app/VentanaPlanEstudios.java</file>
             <file>file:/C:/Users/MoisesVidalHernandez/Documents/GitHub/ControlHorarios/src/Clases/ConsultasObjetos.java</file>
@@ -18,5 +19,8 @@
             <file>file:/C:/Users/MoisesVidalHernandez/Documents/GitHub/ControlHorarios/src/app/VentanaCordinadores.java</file>
             <file>file:/C:/Users/MoisesVidalHernandez/Documents/GitHub/ControlHorarios/src/Clases/ConectarBase.java</file>
         </group>
+=======
+        <group/>
+>>>>>>> Stashed changes
     </open-files>
 </project-private>
