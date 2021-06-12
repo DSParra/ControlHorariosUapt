@@ -5,6 +5,7 @@
  */
 package app;
 
+import Clases.Archivo;
 import Clases.ConectarBase;
 import Clases.ConsultasObjetos;
 import Clases.Valida;
@@ -590,7 +591,12 @@ public class VentanaPlanEstudios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnImportarActionPerformed
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
-        // TODO add your handling code here:
+        String mensaje = Archivo.Exportar(TablaPeriodos,"periodos","filtro1");
+        if (mensaje.equals("Error en la Exportacion")) {
+            Mensaje.error(this, mensaje);
+        }else{
+            Mensaje.exito(this, mensaje);
+        }
     }//GEN-LAST:event_btnExportarActionPerformed
 
     private void jTIdPlanFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTIdPlanFocusLost

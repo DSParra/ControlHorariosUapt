@@ -5,6 +5,7 @@
  */
 package app;
 
+import Clases.Archivo;
 import Clases.ConectarBase;
 import Clases.Conexion;
 import Clases.ConsultasObjetos;
@@ -552,7 +553,12 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
     }//GEN-LAST:event_txtnombreActionPerformed
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
-        // TODO add your handling code here:
+        String mensaje = Archivo.Exportar(tablaLicenciatura,"licenciatura","filtro1");
+        if (mensaje.equals("Error en la Exportacion")) {
+            Mensaje.error(this, mensaje);
+        }else{
+            Mensaje.exito(this, mensaje);
+        }
     }//GEN-LAST:event_btnExportarActionPerformed
 
     private void btnImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarActionPerformed

@@ -5,6 +5,7 @@
  */
 package app;
 
+import Clases.Archivo;
 import Clases.ConectarBase;
 import Clases.ConsultasObjetos;
 import Clases.Valida;
@@ -720,7 +721,12 @@ public class VentanaMaterias extends javax.swing.JFrame {
     }//GEN-LAST:event_jBCancelarActionPerformed
 
     private void btnAgregar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar4ActionPerformed
-        // TODO add your handling code here:
+        String mensaje = Archivo.Exportar(TablaMAterias,"materias","filtro1");
+        if (mensaje.equals("Error en la Exportacion")) {
+            Mensaje.error(this, mensaje);
+        }else{
+            Mensaje.exito(this, mensaje);
+        }
     }//GEN-LAST:event_btnAgregar4ActionPerformed
 
     private void btnAgregar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar5ActionPerformed

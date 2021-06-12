@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app;
+package Clases;
 
+import cjb.ci.Mensaje;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -102,47 +103,73 @@ public class Archivo {
                     if (IndiceFila == 0) {
                         modelo.addColumn(celda.getStringCellValue());
                     } else if (celda != null) {
-                            if (celda.getCellType() == CellType.BLANK) {
-                                ListaColumna[IndiceColumna] = (int) Math.round(celda.getNumericCellValue());
+                        if (celda.getCellType() == CellType.BLANK) {
+                            ListaColumna[IndiceColumna] = (int) Math.round(celda.getNumericCellValue());
 //                                System.out.println("Int Agregando " + (int) Math.round(celda.getNumericCellValue()) +" /" +  numCelda);
-                            } else if (celda.getCellType() == CellType.STRING) {
-                                ListaColumna[IndiceColumna] = celda.getStringCellValue();
-                                //System.out.println("String agregando " + celda.getStringCellValue() + numCelda);
-                            } else if (celda.getCellType() == CellType.BOOLEAN) {
-                                ListaColumna[IndiceColumna] = celda.getBooleanCellValue();
+                        } else if (celda.getCellType() == CellType.STRING) {
+                            ListaColumna[IndiceColumna] = celda.getStringCellValue();
+                            //System.out.println("String agregando " + celda.getStringCellValue() + numCelda);
+                        } else if (celda.getCellType() == CellType.BOOLEAN) {
+                            ListaColumna[IndiceColumna] = celda.getBooleanCellValue();
 //                                System.out.println("Bolean agregando " + celda.getBooleanCellValue() + numCelda);
-                            } else {
-                                Date hora = new Date();
-                                hora = celda.getDateCellValue();
-                                String minutos = (hora.getMinutes() == 0)? "00" : String.valueOf(hora.getMinutes());
-                                System.out.println(hora.getMinutes());
-                                ListaColumna[IndiceColumna] = String.valueOf(hora.getHours()+":"+minutos);
+                        } else {
+                            Date hora = new Date();
+                            hora = celda.getDateCellValue();
+                            String minutos = (hora.getMinutes() == 0) ? "00" : String.valueOf(hora.getMinutes());
+                            System.out.println(hora.getMinutes());
+                            ListaColumna[IndiceColumna] = String.valueOf(hora.getHours() + ":" + minutos);
 //                                System.out.println("Index agregando Fecha" + hora.getTime() + numCelda);
-                            }
                         }
                     }
-                            
+                }
+
                 if (IndiceFila != 0) {
                     modelo.addRow(ListaColumna);
-                }        
-            mensaje = "Importacion Exitosa";
+                }
+                mensaje = "Importacion Exitosa";
             }
         } catch (Exception e) {
         }
         return mensaje;
     }
 
-    public String Exportar(File archivo, JTable tabla) {
+//    public static String Exportar(File archivo, JTable tabla) {
+//        String mensaje = "Error en la Exportacion";
+//        int NumeroFila = tabla.getRowCount();
+//        int NumeroColumna = tabla.getColumnCount();
+//        if (archivo.getName().endsWith("xls")) {
+//            book = new HSSFWorkbook();
+//        } else {
+//            book = new XSSFWorkbook();
+//        }
+//        Sheet hoja = book.createSheet("Hoja1");
+//
+//        try {
+//            for (int i = -1; i < NumeroFila; i++) {
+//                Row fila = hoja.createRow(i + 1);
+//                for (int j = 0; j < NumeroColumna; j++) {
+//                    Cell celda = fila.createCell(j);
+//                    if (i == -1) {
+//                        celda.setCellValue(String.valueOf(tabla.getColumnName(j)));
+//                    } else {
+//                        celda.setCellValue(String.valueOf(tabla.getValueAt(i, j)));
+//                    }
+//                    book.write(new FileOutputStream(archivo));
+//                }
+//            }
+//            mensaje = "Exportacion Exitosa";
+//        } catch (Exception e) {
+//        }
+//        return mensaje;
+//    }
+
+    public static String Exportar(JTable tabla,String tipo,String filtro) {
+        XSSFWorkbook archivo = new XSSFWorkbook();
+        XSSFSheet hoja = archivo.createSheet(tipo);
+
         String mensaje = "Error en la Exportacion";
         int NumeroFila = tabla.getRowCount();
         int NumeroColumna = tabla.getColumnCount();
-        if (archivo.getName().endsWith("xls")) {
-            book = new HSSFWorkbook();
-        } else {
-            book = new XSSFWorkbook();
-        }
-        Sheet hoja = book.createSheet("Hoja1");
-
         try {
             for (int i = -1; i < NumeroFila; i++) {
                 Row fila = hoja.createRow(i + 1);
@@ -153,10 +180,21 @@ public class Archivo {
                     } else {
                         celda.setCellValue(String.valueOf(tabla.getValueAt(i, j)));
                     }
-                    book.write(new FileOutputStream(archivo));
                 }
             }
-            mensaje = "Exportacion Exitosa";
+            JFileChooser destino = new JFileChooser();
+            destino.setCurrentDirectory(new File(""));
+            destino.setDialogTitle("Seleccione el destino de la carpeta");
+            destino.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            destino.setAcceptAllFileFilterUsed(false);
+
+            if (destino.showSaveDialog(null) == destino.APPROVE_OPTION) {
+                File carpeta = destino.getSelectedFile();   
+                try (FileOutputStream outputStream = new FileOutputStream(carpeta.getAbsolutePath()+"\\"+tipo+"-"+filtro+".xlsx")) {//archivo.write(new FileOutputStream(archivo));
+                    archivo.write(outputStream);
+                     mensaje = "Archivo guardado en"+carpeta.getAbsolutePath();
+                }
+            }
         } catch (Exception e) {
         }
         return mensaje;

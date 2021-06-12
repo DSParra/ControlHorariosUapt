@@ -5,6 +5,7 @@
  */
 package app;
 
+import Clases.Archivo;
 import Clases.ConectarBase;
 import Clases.ConsultasObjetos;
 import Clases.Valida;
@@ -537,7 +538,12 @@ public class VentanaPeriodos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregar2ActionPerformed
 
     private void btnAgregar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar3ActionPerformed
-        // TODO add your handling code here:
+        String mensaje = Archivo.Exportar(TablaPeriodos,"periodos","filtro1");
+        if (mensaje.equals("Error en la Exportacion")) {
+            Mensaje.error(this, mensaje);
+        }else{
+            Mensaje.exito(this, mensaje);
+        }
     }//GEN-LAST:event_btnAgregar3ActionPerformed
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed

@@ -109,13 +109,11 @@
                       <Component id="jBRegresar" min="-2" pref="36" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="jBAceptar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
-                          <Component id="jBCancelar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                          <Component id="jBEliminar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                          <Component id="jBModificar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jBCancelar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="jBEliminar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="jBModificar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="jBAceptar" min="-2" pref="36" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="26" max="32767" attributes="0"/>
           </Group>
