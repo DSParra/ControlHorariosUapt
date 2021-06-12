@@ -110,6 +110,11 @@ public class VentanaLogin extends javax.swing.JFrame {
                 btnentrarActionPerformed(evt);
             }
         });
+        btnentrar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnentrarKeyPressed(evt);
+            }
+        });
 
         txtusuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -244,7 +249,7 @@ public class VentanaLogin extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLTituloUAPT, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -296,6 +301,13 @@ public class VentanaLogin extends javax.swing.JFrame {
     private void jPassContrasenaiaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPassContrasenaiaKeyReleased
         //Valida.convertirAMayusculasP(jPassContrasenaia);
     }//GEN-LAST:event_jPassContrasenaiaKeyReleased
+
+    private void btnentrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnentrarKeyPressed
+        if (evt.getKeyChar() == '\n')
+        {
+            btnentrarActionPerformed(null);
+        }
+    }//GEN-LAST:event_btnentrarKeyPressed
 
 
     /**

@@ -35,6 +35,16 @@ public class VentanaCordinadores extends javax.swing.JFrame {
         initComponents();
         this.getContentPane().setBackground(Color.white);
         this.setResizable(false);
+        TablaUsuarios.getColumnModel().getColumn(0).setPreferredWidth(20);
+        TablaUsuarios.getColumnModel().getColumn(1).setPreferredWidth(100);
+        TablaUsuarios.getColumnModel().getColumn(2).setPreferredWidth(70);
+        TablaUsuarios.getColumnModel().getColumn(3).setPreferredWidth(50);
+        TablaUsuarios.getColumnModel().getColumn(4).setPreferredWidth(150);
+        TablaUsuarios.getColumnModel().getColumn(0).setResizable(false);
+        TablaUsuarios.getColumnModel().getColumn(1).setResizable(false);
+        TablaUsuarios.getColumnModel().getColumn(2).setResizable(false);
+        TablaUsuarios.getColumnModel().getColumn(3).setResizable(false);
+        TablaUsuarios.getColumnModel().getColumn(4).setResizable(false);
     }
 
     private Boolean edicion = true;
@@ -106,14 +116,14 @@ public class VentanaCordinadores extends javax.swing.JFrame {
             }
         });
         txtID.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtIDKeyTyped(evt);
-            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtIDKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtIDKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIDKeyTyped(evt);
             }
         });
 
@@ -226,7 +236,7 @@ public class VentanaCordinadores extends javax.swing.JFrame {
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JCLicenciatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnAgregar.setBackground(new java.awt.Color(102, 102, 0));
@@ -303,7 +313,7 @@ public class VentanaCordinadores extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "RFC", "Usuario", "Contrasenia", "licenciatura"
+                "ID", "COORDINADOR", "USUARIO", "CONTRASEÑA", "LICENCIATURA"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -472,9 +482,9 @@ public class VentanaCordinadores extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -660,6 +670,7 @@ public class VentanaCordinadores extends javax.swing.JFrame {
 
     private void txtIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyTyped
         Valida.validaLongitud(txtID, 5, evt);
+        Validaciones.validaAlfanumerico(evt);
     }//GEN-LAST:event_txtIDKeyTyped
 
     private void txtIDFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIDFocusLost
@@ -807,7 +818,7 @@ public class VentanaCordinadores extends javax.swing.JFrame {
         ComboRFC.removeAllItems();
         for (int i = 0; i < profes.size(); i++)
         {
-            ComboRFC.addItem(((Profesor) profes.get(i)).getNombres() + " " + ((Profesor) profes.get(i)).getApellidoP());
+            ComboRFC.addItem(((Profesor) profes.get(i)).getNombres() + " " + ((Profesor) profes.get(i)).getApellidoP() + " " + ((Profesor)profes.get(i)).getApellidoM());
         }
     }
 
@@ -827,7 +838,7 @@ public class VentanaCordinadores extends javax.swing.JFrame {
             for (Object p : profes)
             {
                 Profesor profe = (Profesor) p;
-                if ((profe.getNombres() + " " + profe.getApellidoP()).equals(nombre))
+                if ((profe.getNombres() + " " + profe.getApellidoP() + " " + profe.getApellidoM()).equals(nombre))
                 {
                     return profe.getRfc();
                 }
@@ -839,7 +850,7 @@ public class VentanaCordinadores extends javax.swing.JFrame {
                 Profesor profe = (Profesor) p;
                 if (profe.getRfc().equals(rfc))
                 {
-                    return profe.getNombres() + " " + profe.getApellidoP();
+                    return profe.getNombres() + " " + profe.getApellidoP() + " " +  profe.getApellidoM();
                 }
             }
         }

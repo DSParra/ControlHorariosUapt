@@ -16,7 +16,9 @@ import cjb.ci.Mensaje;
 import cjb.ci.Validaciones;
 import static cjb.ci.Validaciones.enter;
 import java.awt.Color;
+import java.awt.event.ItemEvent;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -41,7 +43,24 @@ public class VentanaMaterias extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.getContentPane().setBackground(Color.white);
-
+        TablaMAterias.getColumnModel().getColumn(0).setPreferredWidth(10);
+        TablaMAterias.getColumnModel().getColumn(1).setPreferredWidth(100);
+        TablaMAterias.getColumnModel().getColumn(2).setPreferredWidth(20);
+        TablaMAterias.getColumnModel().getColumn(3).setPreferredWidth(200);
+        TablaMAterias.getColumnModel().getColumn(4).setPreferredWidth(3);
+        TablaMAterias.getColumnModel().getColumn(5).setPreferredWidth(3);
+        TablaMAterias.getColumnModel().getColumn(6).setPreferredWidth(10);
+        TablaMAterias.getColumnModel().getColumn(7).setPreferredWidth(20);
+        TablaMAterias.getColumnModel().getColumn(8).setPreferredWidth(20);
+        TablaMAterias.getColumnModel().getColumn(0).setResizable(false);
+        TablaMAterias.getColumnModel().getColumn(1).setResizable(false);
+        TablaMAterias.getColumnModel().getColumn(2).setResizable(false);
+        TablaMAterias.getColumnModel().getColumn(3).setResizable(false);
+        TablaMAterias.getColumnModel().getColumn(4).setResizable(false);
+        TablaMAterias.getColumnModel().getColumn(5).setResizable(false);
+        TablaMAterias.getColumnModel().getColumn(6).setResizable(false);
+        TablaMAterias.getColumnModel().getColumn(7).setResizable(false);
+        TablaMAterias.getColumnModel().getColumn(8).setResizable(false);
     }
 
     /**
@@ -114,7 +133,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Matricula", "Licenciatura", "Plan", "Nombre", "Horas", "Creditos", "Periodo", "Nucleo", "Tipo"
+                "CLAVE", "LICENCIATURA", "PLAN", "NOMBRE", "HORAS", "CREDITOS", "PERIODOS", "NUCLEOS", "TIPO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -231,14 +250,14 @@ public class VentanaMaterias extends javax.swing.JFrame {
             }
         });
         jCLicenciatura.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jCLicenciaturaMousePressed(evt);
-            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jCLicenciaturaMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jCLicenciaturaMouseEntered(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jCLicenciaturaMousePressed(evt);
             }
         });
         jCLicenciatura.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -401,7 +420,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         btnAgregar4.setBackground(new java.awt.Color(102, 102, 0));
@@ -520,9 +539,8 @@ public class VentanaMaterias extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBRegresar)
                         .addGap(18, 18, 18)
-                        .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -536,8 +554,8 @@ public class VentanaMaterias extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(btnAgregar4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnAgregar5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(59, 59, 59))))
+                            .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(59, 59, 59))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -570,20 +588,18 @@ public class VentanaMaterias extends javax.swing.JFrame {
                         .addComponent(btnAgregar4)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 38, Short.MAX_VALUE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(26, Short.MAX_VALUE))))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33))))
         );
 
         pack();
@@ -743,7 +759,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
         cancelar();
         actualizarTabla(1);
         llenaComboLic();
-        llenaComboPlanes();
+        llenaComboPlanes(1);
     }//GEN-LAST:event_formWindowOpened
 
     private void jCSemestreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCSemestreKeyPressed
@@ -759,12 +775,16 @@ public class VentanaMaterias extends javax.swing.JFrame {
     }//GEN-LAST:event_jCLicenciaturaMouseClicked
 
     private void jCLicenciaturaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCLicenciaturaMouseEntered
-//        plans = ConsultasObjetos.consultaMuchos("plan_estudios", "id_licenciatura", buscaLic(null, jCLicenciatura.getSelectedItem().toString()), ConectarBase.conectado());
-//        llenaComboPlanes();
+
     }//GEN-LAST:event_jCLicenciaturaMouseEntered
 
     private void jCLicenciaturaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCLicenciaturaItemStateChanged
-
+        if (evt.getStateChange() == ItemEvent.SELECTED)
+        {
+            //Licenciatura lic = (Licenciatura) jCLicenciatura.getSelectedItem();
+            plans = ConsultasObjetos.consultaMuchos("plan_estudios", "id_licenciatura", buscaLic(null, jCLicenciatura.getSelectedItem().toString()), null, null, ConectarBase.conectado());
+            llenaComboPlanes(1);
+        }
     }//GEN-LAST:event_jCLicenciaturaItemStateChanged
 
     private void jCLicenciaturaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCLicenciaturaMousePressed
@@ -793,6 +813,12 @@ public class VentanaMaterias extends javax.swing.JFrame {
 
     private void jCLicenciaturaFiltroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCLicenciaturaFiltroItemStateChanged
         actualizarTabla(3);
+        if (evt.getStateChange() == ItemEvent.SELECTED)
+        {
+            //Licenciatura lic = (Licenciatura) jCLicenciatura.getSelectedItem();
+            plans = ConsultasObjetos.consultaMuchos("plan_estudios", "id_licenciatura", buscaLic(null, jCLicenciatura.getSelectedItem().toString()), null, null, ConectarBase.conectado());
+            llenaComboPlanes(2);
+        }
     }//GEN-LAST:event_jCLicenciaturaFiltroItemStateChanged
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
@@ -946,6 +972,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
             }
         } else if (valor == 2)
         {
+            System.out.println("buscando " + jtIDBusqeuda.getText());
             materias = ConsultasObjetos.consultaMuchos("materia", "clave_materia", jtIDBusqeuda.getText(), null, null, ConectarBase.conectado());
             if (materias.isEmpty())
             {
@@ -962,8 +989,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
                     });
                 }
             }
-        }
-        else if (valor == 3)
+        } else if (valor == 3)
         {
             materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()), null, null, ConectarBase.conectado());
             if (materias.isEmpty())
@@ -1012,12 +1038,14 @@ public class VentanaMaterias extends javax.swing.JFrame {
         jBModificar.setText("Modificar");
     }
 
-    public void llenaComboPlanes() {
+    public void llenaComboPlanes(int valor) {
+
         jCPlan.removeAllItems();
         for (int i = 0; i < plans.size(); i++)
         {
             jCPlan.addItem(((PlanEstudios) plans.get(i)).getPlanEstudios());
         }
+
     }
 
     public String buscaLic(String id, String licenciatura) {

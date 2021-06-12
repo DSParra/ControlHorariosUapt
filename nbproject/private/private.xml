@@ -12,11 +12,19 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/MoisesVidalHernandez/Documents/GitHub/ControlHorarios/src/app/VentanaPlanEstudios.java</file>
-            <file>file:/C:/Users/MoisesVidalHernandez/Documents/GitHub/ControlHorarios/src/Clases/ConsultasObjetos.java</file>
-            <file>file:/C:/Users/MoisesVidalHernandez/Documents/GitHub/ControlHorarios/src/app/VentanaLicenciatura.java</file>
+            <file>file:/C:/Users/MoisesVidalHernandez/Documents/GitHub/ControlHorarios/src/app/VentanaHorarios.java</file>
+            <file>file:/C:/Users/MoisesVidalHernandez/Documents/GitHub/ControlHorarios/src/app/VentanaMenuCoordinador.java</file>
+            <file>file:/C:/Users/MoisesVidalHernandez/Documents/GitHub/ControlHorarios/src/app/VentanaMateriasCoordinador.java</file>
+            <file>file:/C:/Users/MoisesVidalHernandez/Documents/GitHub/ControlHorarios/src/Controlador/ControladorCoordnadores.java</file>
+            <file>file:/C:/Users/MoisesVidalHernandez/Documents/GitHub/ControlHorarios/src/app/VentanaMaterias.java</file>
+            <file>file:/C:/Users/MoisesVidalHernandez/Documents/GitHub/ControlHorarios/src/app/VentanaDocentesCordinador.java</file>
+            <file>file:/C:/Users/MoisesVidalHernandez/Documents/GitHub/ControlHorarios/src/app/VentanaPeriodos.java</file>
+            <file>file:/C:/Users/MoisesVidalHernandez/Documents/GitHub/ControlHorarios/src/Controlador/ControladorProfesores.java</file>
+            <file>file:/C:/Users/MoisesVidalHernandez/Documents/GitHub/ControlHorarios/src/app/VentanaGrupos.java</file>
+            <file>file:/C:/Users/MoisesVidalHernandez/Documents/GitHub/ControlHorarios/src/Controlador/ControladorPlanes.java</file>
             <file>file:/C:/Users/MoisesVidalHernandez/Documents/GitHub/ControlHorarios/src/app/VentanaCordinadores.java</file>
-            <file>file:/C:/Users/MoisesVidalHernandez/Documents/GitHub/ControlHorarios/src/Clases/ConectarBase.java</file>
+            <file>file:/C:/Users/MoisesVidalHernandez/Documents/GitHub/ControlHorarios/src/Controlador/ControladorLicenciatura.java</file>
+            <file>file:/C:/Users/MoisesVidalHernandez/Documents/GitHub/ControlHorarios/src/app/VentanaPlanEstudiosCoordinador.java</file>
         </group>
     </open-files>
 </project-private>
