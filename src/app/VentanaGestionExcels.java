@@ -165,7 +165,7 @@ public class VentanaGestionExcels extends javax.swing.JFrame {
 
     private void btnhorarios123ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhorarios123ActionPerformed
         this.setVisible(false);
-        new VistaExcel().setVisible(true);
+        //new VistaExcel().setVisible(true);
     }//GEN-LAST:event_btnhorarios123ActionPerformed
 
     /**
