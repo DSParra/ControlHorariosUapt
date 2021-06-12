@@ -41,7 +41,24 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.getContentPane().setBackground(Color.white);
-
+        TablaMAterias.getColumnModel().getColumn(0).setPreferredWidth(10);
+        TablaMAterias.getColumnModel().getColumn(1).setPreferredWidth(100);
+        TablaMAterias.getColumnModel().getColumn(2).setPreferredWidth(20);
+        TablaMAterias.getColumnModel().getColumn(3).setPreferredWidth(200);
+        TablaMAterias.getColumnModel().getColumn(4).setPreferredWidth(3);
+        TablaMAterias.getColumnModel().getColumn(5).setPreferredWidth(3);
+        TablaMAterias.getColumnModel().getColumn(6).setPreferredWidth(10);
+        TablaMAterias.getColumnModel().getColumn(7).setPreferredWidth(20);
+        TablaMAterias.getColumnModel().getColumn(8).setPreferredWidth(20);
+        TablaMAterias.getColumnModel().getColumn(0).setResizable(false);
+        TablaMAterias.getColumnModel().getColumn(1).setResizable(false);
+        TablaMAterias.getColumnModel().getColumn(2).setResizable(false);
+        TablaMAterias.getColumnModel().getColumn(3).setResizable(false);
+        TablaMAterias.getColumnModel().getColumn(4).setResizable(false);
+        TablaMAterias.getColumnModel().getColumn(5).setResizable(false);
+        TablaMAterias.getColumnModel().getColumn(6).setResizable(false);
+        TablaMAterias.getColumnModel().getColumn(7).setResizable(false);
+        TablaMAterias.getColumnModel().getColumn(8).setResizable(false);
     }
 
     /**
@@ -331,24 +348,24 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jCTipo, 0, 220, Short.MAX_VALUE)
-                    .addComponent(jCSemestre, 0, 220, Short.MAX_VALUE)
-                    .addComponent(jCNucleo, 0, 220, Short.MAX_VALUE)
+                    .addComponent(jCSemestre, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jCNucleo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel12)
                     .addComponent(jLabel11)
                     .addComponent(jLabel8)
-                    .addComponent(jCPlan, 0, 220, Short.MAX_VALUE)
+                    .addComponent(jCPlan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3)
-                    .addComponent(jTHoras, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                    .addComponent(jTHoras)
                     .addComponent(jLabel6)
-                    .addComponent(jTCreditos, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                    .addComponent(jTCreditos)
                     .addComponent(jLabel7)
                     .addComponent(jLabel9)
-                    .addComponent(jTNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                    .addComponent(jTNombre)
                     .addComponent(jLabel10)
-                    .addComponent(jTClave, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                    .addComponent(jTClave)
                     .addComponent(jLabel4)
                     .addComponent(jTLicenciatura))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -485,7 +502,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLTituloUAPT)))
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 307, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(183, 183, 183))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -494,7 +511,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 821, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnAgregar4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -536,21 +553,18 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1)))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 38, Short.MAX_VALUE)
+                        .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 38, Short.MAX_VALUE)
-                            .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();

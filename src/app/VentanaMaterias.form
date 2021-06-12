@@ -30,7 +30,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Component id="jBAceptar" min="-2" pref="106" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jBModificar" min="-2" pref="106" max="-2" attributes="0"/>
@@ -42,9 +42,8 @@
                       <Component id="jBRegresar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Component id="jBCerrarSesion" min="-2" pref="113" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -64,9 +63,9 @@
                           </Group>
                           <Component id="btnBusca" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
@@ -107,25 +106,21 @@
                       <Component id="btnAgregar4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jScrollPane1" max="32767" attributes="0"/>
-                          <Component id="jPanel1" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="jBRegresar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                              <Component id="jBCerrarSesion" alignment="3" pref="38" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jBCancelar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                              <Component id="jBEliminar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                              <Component id="jBModificar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                              <Component id="jBAceptar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jPanel1" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="26" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jBCancelar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="jBEliminar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="jBModificar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="jBAceptar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="jBRegresar" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="jBCerrarSesion" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -150,15 +145,15 @@
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="9" rowCount="7">
-                <Column editable="false" title="Matricula" type="java.lang.Object"/>
-                <Column editable="false" title="Licenciatura" type="java.lang.Object"/>
-                <Column editable="false" title="Plan" type="java.lang.Object"/>
-                <Column editable="false" title="Nombre" type="java.lang.Object"/>
-                <Column editable="false" title="Horas" type="java.lang.Object"/>
-                <Column editable="false" title="Creditos" type="java.lang.Object"/>
-                <Column editable="false" title="Periodo" type="java.lang.Object"/>
-                <Column editable="false" title="Nucleo" type="java.lang.Object"/>
-                <Column editable="false" title="Tipo" type="java.lang.Object"/>
+                <Column editable="false" title="CLAVE" type="java.lang.Object"/>
+                <Column editable="false" title="LICENCIATURA" type="java.lang.Object"/>
+                <Column editable="false" title="PLAN" type="java.lang.Object"/>
+                <Column editable="false" title="NOMBRE" type="java.lang.Object"/>
+                <Column editable="false" title="HORAS" type="java.lang.Object"/>
+                <Column editable="false" title="CREDITOS" type="java.lang.Object"/>
+                <Column editable="false" title="PERIODOS" type="java.lang.Object"/>
+                <Column editable="false" title="NUCLEOS" type="java.lang.Object"/>
+                <Column editable="false" title="TIPO" type="java.lang.Object"/>
               </Table>
             </Property>
           </Properties>
@@ -347,7 +342,7 @@
                   <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jCTipo" min="-2" pref="22" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="31" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -395,9 +390,9 @@
           </Properties>
           <Events>
             <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jCLicenciaturaItemStateChanged"/>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jCLicenciaturaMousePressed"/>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jCLicenciaturaMouseClicked"/>
             <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jCLicenciaturaMouseEntered"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jCLicenciaturaMousePressed"/>
             <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jCLicenciaturaKeyPressed"/>
           </Events>
           <AuxValues>
