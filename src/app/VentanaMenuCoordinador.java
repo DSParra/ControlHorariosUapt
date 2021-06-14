@@ -59,7 +59,7 @@ public class VentanaMenuCoordinador extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel2.setText("Bienvenido al menú principal por favor presiona un boton, para gestionar culaquiera de los apartados");
+        jLabel2.setText("BIENVENIDO AL MENU PRINCIPAL, POR FAVOR PRESIONA UN BOTON DE ACUERDO AL SECTOR QUE QUIERAS GESTIONAR");
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/UAEMex.jpg"))); // NOI18N
 
@@ -67,7 +67,7 @@ public class VentanaMenuCoordinador extends javax.swing.JFrame {
         jBMaterias.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jBMaterias.setForeground(new java.awt.Color(255, 255, 255));
         jBMaterias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Materias.png"))); // NOI18N
-        jBMaterias.setText("Materias");
+        jBMaterias.setText("MATERIAS");
         jBMaterias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBMateriasActionPerformed(evt);
@@ -78,7 +78,7 @@ public class VentanaMenuCoordinador extends javax.swing.JFrame {
         jBHorarios.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jBHorarios.setForeground(new java.awt.Color(255, 255, 255));
         jBHorarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/horario.png"))); // NOI18N
-        jBHorarios.setText("Horarios");
+        jBHorarios.setText("HORARIOS");
         jBHorarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBHorariosActionPerformed(evt);
@@ -89,7 +89,7 @@ public class VentanaMenuCoordinador extends javax.swing.JFrame {
         jBDocentes.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jBDocentes.setForeground(new java.awt.Color(255, 255, 255));
         jBDocentes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/profesor.png"))); // NOI18N
-        jBDocentes.setText("Docentes");
+        jBDocentes.setText("DOCENTES");
         jBDocentes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBDocentesActionPerformed(evt);
@@ -100,7 +100,7 @@ public class VentanaMenuCoordinador extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/flecha(3).png"))); // NOI18N
-        jButton1.setText("Salir");
+        jButton1.setText("SALIR");
         jButton1.setToolTipText("");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,7 +112,7 @@ public class VentanaMenuCoordinador extends javax.swing.JFrame {
         jBPlanes.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jBPlanes.setForeground(new java.awt.Color(255, 255, 255));
         jBPlanes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/plan.png"))); // NOI18N
-        jBPlanes.setText("Planes de estudio");
+        jBPlanes.setText("PLANES DE ESTUDIO");
         jBPlanes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBPlanesActionPerformed(evt);
@@ -123,7 +123,7 @@ public class VentanaMenuCoordinador extends javax.swing.JFrame {
         jBGrupos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jBGrupos.setForeground(new java.awt.Color(255, 255, 255));
         jBGrupos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/grupo.png"))); // NOI18N
-        jBGrupos.setText("Grupos");
+        jBGrupos.setText("GRUPOS");
         jBGrupos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBGruposActionPerformed(evt);
@@ -144,9 +144,12 @@ public class VentanaMenuCoordinador extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLTituloUniversidad1)
+                    .addComponent(jLTituloUAPT1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(127, 127, 127)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jBDocentes, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -157,50 +160,40 @@ public class VentanaMenuCoordinador extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jBHorarios, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(108, 108, 108)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jBMaterias, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLTituloUniversidad1)
-                                    .addComponent(jLTituloUAPT1)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(322, 322, 322)
-                                .addComponent(LabelLic)))))
-                .addContainerGap(129, Short.MAX_VALUE))
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(LabelLic)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 861, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLTituloUAPT1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLTituloUniversidad1)
-                        .addGap(32, 32, 32)
-                        .addComponent(LabelLic)
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel2)
-                        .addGap(58, 58, 58)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jBDocentes)
-                                    .addComponent(jBPlanes)
-                                    .addComponent(jBMaterias))
-                                .addGap(49, 49, 49)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jBGrupos)
-                                    .addComponent(jBHorarios)))))
-                    .addComponent(jLabel5))
-                .addContainerGap(105, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(LabelLic)))
+                .addGap(29, 29, 29)
+                .addComponent(jLabel2)
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBDocentes)
+                            .addComponent(jBPlanes)
+                            .addComponent(jBMaterias))
+                        .addGap(49, 49, 49)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBGrupos)
+                            .addComponent(jBHorarios))))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
 
         pack();

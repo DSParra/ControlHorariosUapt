@@ -26,7 +26,6 @@ public class ControladorLicenciatura
             Object idLicenciatura = ConsultasObjetos.consultaUnica("licenciatura", "id_licenciatura", id_licenciatura, ConectarBase.conectado());
             if (idLicenciatura == null)
             {
-                System.out.println("iD " + idLicenciatura );
                 return "ID de licenciatura no encontrado";
             } else
             {
@@ -35,7 +34,7 @@ public class ControladorLicenciatura
                     return "operacion exitosa";
                 } else
                 {
-                    return "No se pudo eliminar la licenciatura";
+                    return "No se pudo eliminar la licenciatura, tal vez tenga registros que dependientes como materias, planes de estidio, etc.";
                 }
             }
         }
