@@ -451,7 +451,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(254, 254, 254));
         jLabel15.setText("SEMESTRE");
 
-        jcSesmtre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        jcSesmtre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
         jcSesmtre.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jcSesmtreItemStateChanged(evt);
@@ -635,7 +635,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                     CtrlInterfaz.habilita(false, jTClave, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
                     CtrlInterfaz.habilita(true, jBAceptar, jBEliminar, btnAgregar4, btnAgregar5);
                     CtrlInterfaz.limpia(jTClave, jTCreditos, jTHoras, jTNombre);
-                    actualizarTabla(1);
+                    jcSesmtre.setSelectedItem(0);
                     edicion();
                 } else
                 {
@@ -651,7 +651,8 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
             String mensaje = Controlador.ControladorMaterias.eliminaMateria(jTClave.getText());
             if (mensaje.endsWith("operacion exitosa"))
             {
-                actualizarTabla(1);
+                jcSesmtre.setSelectedItem(0);
+
             } else
             {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
@@ -678,7 +679,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                 CtrlInterfaz.habilita(false, jTClave, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
                 CtrlInterfaz.habilita(true, jBModificar, jBEliminar, btnAgregar4, btnAgregar5);
                 CtrlInterfaz.limpia(jTClave, jTCreditos, jTHoras, jTNombre);
-                actualizarTabla(1);
+                jcSesmtre.setSelectedItem(0);
                 edicion();
             } else
             {
@@ -747,6 +748,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
 
     private void TablaMAteriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMAteriasMouseClicked
         jTClave.setText((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 0));
+        jCPlan.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 2), jCPlan)));
         jTNombre.setText((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 3));
         jTHoras.setText((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 4).toString());
         jTCreditos.setText((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 5).toString());

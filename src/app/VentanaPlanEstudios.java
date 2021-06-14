@@ -482,7 +482,7 @@ public class VentanaPlanEstudios extends javax.swing.JFrame {
                 CtrlInterfaz.limpia(jTPlan, jTIdPlan);
                 CtrlInterfaz.habilita(false, jTIdPlan, jTPlan, jCLicenciatura, jBCancelar);
                 CtrlInterfaz.habilita(true, jBModificar, jBEliminar, btnExportar, btnImportar);
-                actualizarTabla(1);
+                jCLicenciaturaFiltro.setSelectedIndex(0);
                 edicion();
             } else
             {
@@ -538,7 +538,7 @@ public class VentanaPlanEstudios extends javax.swing.JFrame {
                     CtrlInterfaz.limpia(jTPlan, jTIdPlan);
                     CtrlInterfaz.habilita(false, jTIdPlan, jTPlan, jBAceptar, jCLicenciatura, jBCancelar);
                     CtrlInterfaz.habilita(true, jBEliminar, jBAceptar, btnImportar, btnExportar);
-                    actualizarTabla(1);
+                    jCLicenciaturaFiltro.setSelectedIndex(0);
                     edicion();
                 } else
                 {
@@ -554,7 +554,7 @@ public class VentanaPlanEstudios extends javax.swing.JFrame {
             String mensaje = Controlador.ControladorPlanes.eliminarPlan(jTIdPlan.getText());
             if (mensaje.endsWith("operacion exitosa"))
             {
-                actualizarTabla(1);
+                jCLicenciaturaFiltro.setSelectedIndex(0);
                 CtrlInterfaz.limpia(jTPlan, jTIdPlan);
             } else
             {
@@ -590,10 +590,12 @@ public class VentanaPlanEstudios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnImportarActionPerformed
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
-        String mensaje = Archivo.Exportar(TablaPeriodos,"periodos","filtro1");
-        if (mensaje.equals("Error en la Exportacion")) {
+        String mensaje = Archivo.Exportar(TablaPeriodos, "periodos", "filtro1");
+        if (mensaje.equals("Error en la Exportacion"))
+        {
             Mensaje.error(this, mensaje);
-        }else{
+        } else
+        {
             Mensaje.exito(this, mensaje);
         }
     }//GEN-LAST:event_btnExportarActionPerformed
@@ -811,22 +813,29 @@ public class VentanaPlanEstudios extends javax.swing.JFrame {
             }
         } else if (valor == 3)
         {
-            System.out.println("id lic " + buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()));
-            planes = ConsultasObjetos.consultaMuchos("plan_estudios", "id_licenciatura", buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()), null, null, ConectarBase.conectado());
-            if (planes.isEmpty())
+            if (jCLicenciaturaFiltro.getSelectedIndex() == 0)
             {
-                Mensaje.error(this, "No hay planes de estudio registrados");
+                actualizarTabla(1);
+
             } else
             {
-                modelo.setRowCount(0);
-                for (Object p : planes)
+                System.out.println("id lic " + buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()));
+                planes = ConsultasObjetos.consultaMuchos("plan_estudios", "id_licenciatura", buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()), null, null, ConectarBase.conectado());
+                if (planes.isEmpty())
                 {
-                    PlanEstudios plan = (PlanEstudios) p;
-                    modelo.addRow(new Object[]
+                    Mensaje.error(this, "No hay planes de estudio registrados");
+                } else
+                {
+                    modelo.setRowCount(0);
+                    for (Object p : planes)
                     {
-                        plan.getIdPlan(), plan.getPlanEstudios(), buscaLic(plan.getClaveCarrera(), null)
-                    });
-                    System.out.println(((PlanEstudios) p).getPlanEstudios());
+                        PlanEstudios plan = (PlanEstudios) p;
+                        modelo.addRow(new Object[]
+                        {
+                            plan.getIdPlan(), plan.getPlanEstudios(), buscaLic(plan.getClaveCarrera(), null)
+                        });
+                        System.out.println(((PlanEstudios) p).getPlanEstudios());
+                    }
                 }
             }
         }
@@ -878,6 +887,8 @@ public class VentanaPlanEstudios extends javax.swing.JFrame {
 
     public void llenaComboLic() {
         jCLicenciatura.removeAllItems();
+        jCLicenciaturaFiltro.removeAllItems();
+        jCLicenciaturaFiltro.addItem("TODAS");
         for (int i = 0; i < lics.size(); i++)
         {
             jCLicenciatura.addItem(((Licenciatura) lics.get(i)).getLicenciatura());

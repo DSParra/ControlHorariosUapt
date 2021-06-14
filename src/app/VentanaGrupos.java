@@ -442,13 +442,14 @@ public class VentanaGrupos extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBCerrarSesion)
-                    .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBCerrarSesion)
+                        .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 12, Short.MAX_VALUE))
         );
 
@@ -483,10 +484,12 @@ public class VentanaGrupos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnImportarActionPerformed
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
-        String mensaje = Archivo.Exportar(TablaGrupos,"grupos","filtro1");
-        if (mensaje.equals("Error en la Exportacion")) {
+        String mensaje = Archivo.Exportar(TablaGrupos, "grupos", "filtro1");
+        if (mensaje.equals("Error en la Exportacion"))
+        {
             Mensaje.error(this, mensaje);
-        }else{
+        } else
+        {
             Mensaje.exito(this, mensaje);
         }
     }//GEN-LAST:event_btnExportarActionPerformed
@@ -497,7 +500,7 @@ public class VentanaGrupos extends javax.swing.JFrame {
             String mensaje = Controlador.ControladorGrupos.eliminarGrupo(jTIdGrupo.getText());
             if (mensaje.equals("operacion exitosa"))
             {
-                actualizarTabla(1);
+                jCLicenciaturaFiltro.setSelectedIndex(0);
             } else
             {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
@@ -782,8 +785,7 @@ public class VentanaGrupos extends javax.swing.JFrame {
                     System.out.println(((Grupo) g).getIdGrupo());
                 }
             }
-        }
-        else if (valor == 2)
+        } else if (valor == 2)
         {
             grupos = ConsultasObjetos.consultaMuchos("grupo", "id_grupo", jtIDBusqeuda.getText(), null, null, ConectarBase.conectado());
             if (grupos.isEmpty())
@@ -802,24 +804,29 @@ public class VentanaGrupos extends javax.swing.JFrame {
                     System.out.println(((Grupo) g).getIdGrupo());
                 }
             }
-        }
-        else if (valor == 3)
+        } else if (valor == 3)
         {
-            grupos = ConsultasObjetos.consultaMuchos("grupo", "id_licenciatura", buscarLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()), null, null, ConectarBase.conectado());
-            if (grupos.isEmpty())
+            if (jCLicenciaturaFiltro.getSelectedIndex() == 0)
             {
-                Mensaje.error(this, "No hay grupos registrados");
+                actualizarTabla(1);
             } else
             {
-                modelo.setRowCount(0);
-                for (Object g : grupos)
+                grupos = ConsultasObjetos.consultaMuchos("grupo", "id_licenciatura", buscarLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()), null, null, ConectarBase.conectado());
+                if (grupos.isEmpty())
                 {
-                    Grupo grupo = (Grupo) g;
-                    modelo.addRow(new Object[]
+                    Mensaje.error(this, "No hay grupos registrados");
+                } else
+                {
+                    modelo.setRowCount(0);
+                    for (Object g : grupos)
                     {
-                        grupo.getIdGrupo(), grupo.getNombreGrupo(), buscarLic(grupo.getId_licenciatura(), null)
-                    });
-                    System.out.println(((Grupo) g).getIdGrupo());
+                        Grupo grupo = (Grupo) g;
+                        modelo.addRow(new Object[]
+                        {
+                            grupo.getIdGrupo(), grupo.getNombreGrupo(), buscarLic(grupo.getId_licenciatura(), null)
+                        });
+                        System.out.println(((Grupo) g).getIdGrupo());
+                    }
                 }
             }
         }
@@ -871,6 +878,8 @@ public class VentanaGrupos extends javax.swing.JFrame {
 
     private void llenaComboLic() {
         jCLicenciatura.removeAllItems();
+        jCLicenciaturaFiltro.removeAllItems();
+        jCLicenciaturaFiltro.addItem("TODAS");
         for (int i = 0; i < lics.size(); i++)
         {
             jCLicenciatura.addItem(((Licenciatura) lics.get(i)).getLicenciatura());
