@@ -501,6 +501,7 @@ public class VentanaGrupos extends javax.swing.JFrame {
             if (mensaje.equals("operacion exitosa"))
             {
                 jCLicenciaturaFiltro.setSelectedIndex(0);
+                actualizarTabla(1);
             } else
             {
                 JOptionPane.showMessageDialog(rootPane, mensaje);

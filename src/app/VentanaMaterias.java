@@ -718,7 +718,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
             CtrlInterfaz.habilita(false, jBModificar, jBEliminar, btnAgregar4, btnAgregar5);
             CtrlInterfaz.selecciona(jTClave);
         } else
-        {;
+        {
             Materia mat = new Materia(jTClave.getText(), jTNombre.getText(), Integer.parseInt(jTHoras.getText()), Integer.parseInt(jTCreditos.getText()), Integer.parseInt(jCSemestre.getSelectedItem().toString()), jCNucleo.getSelectedItem().toString(), jCTipo.getSelectedItem().toString(), buscaLic(null, jCLicenciatura.getSelectedItem().toString()), buscaPlan(null, jCPlan.getSelectedItem().toString()));
             String mensaje = Controlador.ControladorMaterias.insertaMateria(mat);
             if (mensaje.equals("operacion exitosa"))
