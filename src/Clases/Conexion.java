@@ -41,7 +41,7 @@ public class Conexion
             else if (manejador == 2)
             {
                 driver = "com.mysql.cj.jdbc.Driver";
-                url = "jdbc:mysql://" + host + "/" + instancia + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+                url = "jdbc:mysql://" + host + "/" + instancia + "?autoReconnect=true&useUnicode=yes";
                 error = "No se pudo cargar el driver Mysql";
             }
             try
