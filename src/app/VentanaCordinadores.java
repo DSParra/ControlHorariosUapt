@@ -82,8 +82,8 @@ public class VentanaCordinadores extends javax.swing.JFrame {
         btnModificar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaUsuarios = new javax.swing.JTable();
-        btnAgregar2 = new javax.swing.JButton();
-        btnAgregar3 = new javax.swing.JButton();
+        btnImportar = new javax.swing.JButton();
+        btnExportar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLTituloUniversidad = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -332,23 +332,23 @@ public class VentanaCordinadores extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TablaUsuarios);
 
-        btnAgregar2.setBackground(new java.awt.Color(102, 102, 0));
-        btnAgregar2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnAgregar2.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregar2.setText("Importar");
-        btnAgregar2.addActionListener(new java.awt.event.ActionListener() {
+        btnImportar.setBackground(new java.awt.Color(102, 102, 0));
+        btnImportar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnImportar.setForeground(new java.awt.Color(255, 255, 255));
+        btnImportar.setText("Importar");
+        btnImportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregar2ActionPerformed(evt);
+                btnImportarActionPerformed(evt);
             }
         });
 
-        btnAgregar3.setBackground(new java.awt.Color(102, 102, 0));
-        btnAgregar3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnAgregar3.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregar3.setText("Exportar");
-        btnAgregar3.addActionListener(new java.awt.event.ActionListener() {
+        btnExportar.setBackground(new java.awt.Color(102, 102, 0));
+        btnExportar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnExportar.setForeground(new java.awt.Color(255, 255, 255));
+        btnExportar.setText("Exportar");
+        btnExportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregar3ActionPerformed(evt);
+                btnExportarActionPerformed(evt);
             }
         });
 
@@ -450,8 +450,8 @@ public class VentanaCordinadores extends javax.swing.JFrame {
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 831, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnAgregar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnAgregar3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnImportar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnExportar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)))
                 .addContainerGap(31, Short.MAX_VALUE))
@@ -476,9 +476,9 @@ public class VentanaCordinadores extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
-                        .addComponent(btnAgregar2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnImportar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnAgregar3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -507,7 +507,7 @@ public class VentanaCordinadores extends javax.swing.JFrame {
             btnAgregar.setText("Aceptar");
             CtrlInterfaz.limpia(txtID, txtUsuario, txtContrasenia);
             CtrlInterfaz.habilita(true, txtID, ComboRFC, txtUsuario, txtContrasenia, JCLicenciatura, btnCancelar);
-            CtrlInterfaz.habilita(false, btnEliminar, btnModificar, btnAgregar2, btnAgregar3);
+            CtrlInterfaz.habilita(false, btnEliminar, btnModificar, btnImportar, btnExportar);
             CtrlInterfaz.selecciona(txtID);
         } else
         {
@@ -523,7 +523,7 @@ public class VentanaCordinadores extends javax.swing.JFrame {
                 {
                     btnAgregar.setText("Nuevo");
                     CtrlInterfaz.habilita(false, txtID, ComboRFC, txtUsuario, txtContrasenia, JCLicenciatura, btnCancelar);
-                    CtrlInterfaz.habilita(true, btnEliminar, btnModificar, btnAgregar2, btnAgregar3);
+                    CtrlInterfaz.habilita(true, btnEliminar, btnModificar, btnImportar, btnExportar);
                     CtrlInterfaz.limpia(txtID, txtContrasenia, txtID, txtUsuario);
                     actualizaTabla(1);
                     edicion();
@@ -574,7 +574,7 @@ public class VentanaCordinadores extends javax.swing.JFrame {
                 edicion();
                 btnModificar.setText("Aceptar");
                 CtrlInterfaz.habilita(true, txtUsuario, ComboRFC, txtContrasenia, JCLicenciatura, btnCancelar);
-                CtrlInterfaz.habilita(false, btnEliminar, btnAgregar, btnAgregar2, btnAgregar3);
+                CtrlInterfaz.habilita(false, btnEliminar, btnAgregar, btnImportar, btnExportar);
             } else
             {
                 Usuario us = new Usuario(txtID.getText(), buscaProfesor(null, (String) ComboRFC.getSelectedItem()), txtUsuario.getText(), txtContrasenia.getText(), buscarLic(null, JCLicenciatura.getSelectedItem().toString()));
@@ -584,7 +584,7 @@ public class VentanaCordinadores extends javax.swing.JFrame {
                 {
                     btnModificar.setText("Modificar");
                     CtrlInterfaz.habilita(false, txtID, ComboRFC, txtUsuario, txtContrasenia, JCLicenciatura, btnCancelar);
-                    CtrlInterfaz.habilita(true, btnEliminar, btnAgregar, btnAgregar2, btnAgregar3);
+                    CtrlInterfaz.habilita(true, btnEliminar, btnAgregar, btnImportar, btnExportar);
                     CtrlInterfaz.limpia(txtID, txtContrasenia, txtID, txtUsuario);
                     actualizaTabla(1);
                     edicion();
@@ -651,11 +651,11 @@ public class VentanaCordinadores extends javax.swing.JFrame {
         JCLicenciatura.setSelectedIndex(buscarComboLic((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 4)));
     }//GEN-LAST:event_TablaUsuariosMouseClicked
 
-    private void btnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar2ActionPerformed
+    private void btnImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregar2ActionPerformed
+    }//GEN-LAST:event_btnImportarActionPerformed
 
-    private void btnAgregar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar3ActionPerformed
+    private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
         String mensaje = Archivo.Exportar(TablaUsuarios, "Cordinadores", "filtro");
         if (mensaje.equals("Error en la Exportacion"))
         {
@@ -664,7 +664,7 @@ public class VentanaCordinadores extends javax.swing.JFrame {
         {
             Mensaje.exito(this, mensaje);
         }
-    }//GEN-LAST:event_btnAgregar3ActionPerformed
+    }//GEN-LAST:event_btnExportarActionPerformed
 
     private void txtUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusLost
     }//GEN-LAST:event_txtUsuarioFocusLost
@@ -751,11 +751,11 @@ public class VentanaCordinadores extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> JCLicenciatura;
     private javax.swing.JTable TablaUsuarios;
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnAgregar2;
-    private javax.swing.JButton btnAgregar3;
     private javax.swing.JButton btnBusca;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnExportar;
+    private javax.swing.JButton btnImportar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton jBCerrarSesion;
     private javax.swing.JButton jBRegresar;
@@ -881,7 +881,7 @@ public class VentanaCordinadores extends javax.swing.JFrame {
         edicion();
         CtrlInterfaz.limpia(txtID, txtUsuario, txtContrasenia);
         CtrlInterfaz.habilita(false, txtID, ComboRFC, txtUsuario, txtContrasenia, JCLicenciatura, btnCancelar);
-        CtrlInterfaz.habilita(true, btnAgregar, btnModificar, btnEliminar, btnAgregar2, btnAgregar3);
+        CtrlInterfaz.habilita(true, btnAgregar, btnModificar, btnEliminar, btnImportar, btnExportar);
         btnAgregar.setText("Nuevo");
         btnModificar.setText("Modificar");
     }

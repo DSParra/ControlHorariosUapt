@@ -10,7 +10,7 @@ package Objetos;
  * @author JParra
  */
 public class HorarioSalida {
-    private String clave_materia;
+    private String clave_horario;
     private String unidad_aprendizaje;
     private String nombre_grupo;
     private String periodo;
@@ -19,8 +19,8 @@ public class HorarioSalida {
     private String hr_entrada;
     private String hr_salida;
 
-    public HorarioSalida(String clave_materia, String unidad_aprendizaje, String nombre_grupo, String periodo, String profesor, String dia, String hr_entrada, String hr_salida) {
-        this.clave_materia = clave_materia;
+    public HorarioSalida(String clave_horario, String unidad_aprendizaje, String nombre_grupo, String periodo, String profesor, String dia, String hr_entrada, String hr_salida) {
+        this.clave_horario = clave_horario;
         this.unidad_aprendizaje = unidad_aprendizaje;
         this.nombre_grupo = nombre_grupo;
         this.periodo = periodo;
@@ -37,14 +37,14 @@ public class HorarioSalida {
      * @return the clave_materia
      */
     public String getClave_materia() {
-        return clave_materia;
+        return clave_horario;
     }
 
     /**
      * @param clave_materia the clave_materia to set
      */
-    public void setClave_materia(String clave_materia) {
-        this.clave_materia = clave_materia;
+    public void setClave_materia(String clave_horario) {
+        this.clave_horario = clave_horario;
     }
 
     /**
