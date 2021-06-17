@@ -9,6 +9,7 @@ import Clases.Archivo;
 import Clases.ConectarBase;
 import Clases.Conexion;
 import Clases.ConsultasObjetos;
+import Controlador.ControladorHorarios;
 import Objetos.Grupo;
 import Objetos.Licenciatura;
 import Objetos.Materia;
@@ -45,12 +46,14 @@ public class VistaExcel extends javax.swing.JFrame {
     String tipoExcel = "";
     String cabecerasProfesor[] = {"rfc", "apellido paterno", "apellido materno", "nombre", "grado academico", "correo", "telefono"};
     String cabecerasMateria[] = {"clave de la materia", "unidad de aprendizaje", "horas", "creditos", "numero de periodo", "nucleo", "tipo", "licenciatura", "plan de estudios"};
-    String cabecerasHorario[] = { "unidad_aprendizaje", "rfc", "profesor", "grupo", "periodo", "dia", "entrada", "salida"};
+    String cabecerasHorario[] = {"unidad_aprendizaje", "rfc", "profesor", "grupo", "periodo", "dia", "entrada", "salida"};
     ArrayList<Profesor> profes;
     ArrayList<Materia> materias;
     ArrayList<Grupo> grupos;
     ArrayList<Licenciatura> carreras;
     ArrayList<periodoEscolar> periodos;
+    ArrayList<PeriodoHorarios> horarios;
+    ArrayList<PeriodoHorarios> horariosBD; 
 
     private File abrirArchivo() {
         String aux = "";
@@ -263,7 +266,7 @@ public class VistaExcel extends javax.swing.JFrame {
         }
         tipoExcel = identifica();
         txtidentifica.setText(tipoExcel);
-        
+
     }//GEN-LAST:event_btnImportarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -280,7 +283,7 @@ public class VistaExcel extends javax.swing.JFrame {
         System.out.println("Busqueda " + busquedaBinariaRetNombre(2, "grupo"));
         //txtidentifica.setForeground(Color.red);
         txtidentifica.setEditable(false);
-        
+
     }//GEN-LAST:event_formWindowOpened
 
     public ArrayList<Object> extraeDatos() {
@@ -340,11 +343,21 @@ public class VistaExcel extends javax.swing.JFrame {
     }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-//        if (String.valueOf(jcTipo.getSelectedItem()).equals("Profesor")) {
+        
+
+//        ArrayList horarios = guardaExcel();
+//        ConsultasObjetos.insertaMuchos(horarios, ConectarBase.conectado(), "horarios");
+        //        if (String.valueOf(jcTipo.getSelectedItem()).equals("Profesor")) {
 //            
 //        }
 //            ArrayList<Object> profes= extraeDatos();
 //            System.out.println(Controlador.ControladorProfesores.insertaMuchos(profes));
+//txtconsulta.setText(ConsultasObjetos.retornaConsulta(profes, ConectarBase.conectado(), "profesores"));
+//ConsultasObjetos.insertaMuchos(profes, ConectarBase.conectado(), "profesores");
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    public ArrayList guardaExcel() {
 
         if (tipoExcel.equalsIgnoreCase("horario")) {
             System.out.println("Entrando a horario");
@@ -355,8 +368,8 @@ public class VistaExcel extends javax.swing.JFrame {
                 horario = new PeriodoHorarios();
                 horario.setClaveMateria(String.valueOf(busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(i, 0)), "materia")));
                 horario.setRfc(String.valueOf(String.valueOf(jTDatosExcel.getValueAt(i, 1))));
-                if (numdia(String.valueOf(jTDatosExcel.getValueAt(i, 5))) != 0) {
-                    horario.setDia(String.valueOf(numdia(String.valueOf(jTDatosExcel.getValueAt(i, 5)))));
+                if (ControladorHorarios.numdia(String.valueOf(jTDatosExcel.getValueAt(i, 5))) != 0) {
+                    horario.setDia(String.valueOf(ControladorHorarios.numdia(String.valueOf(jTDatosExcel.getValueAt(i, 5)))));
                 }
                 horario.setIdGrupo(String.valueOf(busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(i, 3)), "grupo")));
                 horario.setIdPeriodo(String.valueOf(busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(i, 4)), "periodo")));
@@ -365,44 +378,15 @@ public class VistaExcel extends javax.swing.JFrame {
                 horarios.add(horario);
                 muestraHorarios(horario);
             }
-            ConsultasObjetos.insertaMuchos(horarios, ConectarBase.conectado(),"horarios");
-            
-            
-            
-
+            return horarios;
         }
-
-//        for(Object obj : profes){
-//            Profesor p = (Profesor)obj;
-//            System.out.println(p.getNombres());
-//            
-//        }
-        //txtconsulta.setText(ConsultasObjetos.retornaConsulta(profes, ConectarBase.conectado(), "profesores"));
-        //ConsultasObjetos.insertaMuchos(profes, ConectarBase.conectado(), "profesores");
-
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    public int numdia(String dia) {
-        if (dia.equals("Lunes") || dia.equals("lunes") || dia.equals("lun") || dia.equals("LUNES")) {
-            return 1;
-        } else if (dia.equals("Martes") || dia.equals("martes") || dia.equals("mar") || dia.equals("MARTES")) {
-            return 2;
-        } else if (dia.equals("Miercoles") || dia.equals("miercoles") || dia.equals("mie") || dia.equals("MIERCOLES")) {
-            return 3;
-        } else if (dia.equals("Jueves") || dia.equals("jueves") || dia.equals("jue") || dia.equals("JUEVES")) {
-            return 4;
-        } else if (dia.equals("Viernes") || dia.equals("viernes") || dia.equals("vie") || dia.equals("VIERNES")) {
-            return 5;
-        } else if (dia.equals("Sabado") || dia.equals("sabado") || dia.equals("sab") || dia.equals("SABADO")) {
-            return 6;
-        }
-        return 0;
+        return null;
     }
 
-    public void importaBD() {        
-        materias = new ArrayList(ConsultasObjetos.consultaMuchos("materia", null, null,null, null, ConectarBase.conectado()));
-        profes = new ArrayList(ConsultasObjetos.consultaMuchos("profesores", null, null,null,null, ConectarBase.conectado()));
-        grupos = new ArrayList(ConsultasObjetos.consultaMuchos("grupo", null, null,null, null, ConectarBase.conectado()));
+    public void importaBD() {
+        materias = new ArrayList(ConsultasObjetos.consultaMuchos("materia", null, null, null, null, ConectarBase.conectado()));
+        profes = new ArrayList(ConsultasObjetos.consultaMuchos("profesores", null, null, null, null, ConectarBase.conectado()));
+        grupos = new ArrayList(ConsultasObjetos.consultaMuchos("grupo", null, null, null, null, ConectarBase.conectado()));
         carreras = new ArrayList(ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, ConectarBase.conectado()));
         periodos = new ArrayList(ConsultasObjetos.consultaMuchos("periodo_escolar", null, null, null, null, ConectarBase.conectado()));
     }
@@ -431,7 +415,7 @@ public class VistaExcel extends javax.swing.JFrame {
 
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
-        Archivo.Exportar(jTDatosExcel,"horario","prueba1");
+        Archivo.Exportar(jTDatosExcel, "horario", "prueba1");
     }//GEN-LAST:event_btnExportarActionPerformed
 
     private void btnPruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPruebaActionPerformed
@@ -441,17 +425,42 @@ public class VistaExcel extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPruebaActionPerformed
 
     private void btnidentificaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnidentificaActionPerformed
-        
+
     }//GEN-LAST:event_btnidentificaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
+        
+        if (tipoExcel.equalsIgnoreCase("horario")) {
+            
+            horarios = guardaExcel();
+            horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios","id_grupo",String.valueOf(busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(0, 3)),"grupo")) ,
+                                                    "id_periodo",String.valueOf(busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(0, 4)),"periodo")),ConectarBase.conectado()));
+            System.out.println("hasta aqui llego");
+        }
+        
+        comparaGrupos();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    
+    public void comparaGrupos(){
+        for (int i = 0; i < horarios.size(); i++) {
+            for (int j = 0; j < horarios.size(); j++) {
+                System.out.println("dia: "+horarios.get(i).getDia() + " ---->"+ "dia: "+horarios.get(j).getDia() );
+                if (horarios.get(i).getDia() == horarios.get(j).getDia()) {
+                    System.out.println("Mismo dia ");
+                    System.out.println(horarios.get(i).getClaveMateria()+ " "+ horarios.get(i).getRfc()+ " "+horarios.get(i).getIdPeriodo()  );
+                    System.out.println(horarios.get(j).getClaveMateria()+ " "+ horarios.get(j).getRfc()+ " "+horarios.get(j).getIdPeriodo()  );
+                    
+                }
+            }
+        }
+    }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if (jTDatosExcel.getSelectedRow() != -1) {
-            ((DefaultTableModel)jTDatosExcel.getModel()).removeRow(jTDatosExcel.getSelectedRow());
-        }else{
+            ((DefaultTableModel) jTDatosExcel.getModel()).removeRow(jTDatosExcel.getSelectedRow());
+        } else {
             Mensaje.error(this, "No se pudo eliminar la celda");
         }
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -563,7 +572,7 @@ public class VistaExcel extends javax.swing.JFrame {
                     }
                 }
                 break;
-                //esta por id
+            //esta por id
             case "licenciatura":
                 Licenciatura lic;
                 for (int i = 2; i < carreras.size(); i++) {
@@ -628,7 +637,7 @@ public class VistaExcel extends javax.swing.JFrame {
                 while (inf <= sup) {
                     centro = (sup + inf) / 2;
                     if (periodos.get(centro).getPeriodo().equalsIgnoreCase(dato)) {
-                        return Integer.valueOf(grupos.get(centro).getIdGrupo()) ;
+                        return Integer.valueOf(grupos.get(centro).getIdGrupo());
                     } else if (dato.compareToIgnoreCase(periodos.get(centro).getPeriodo()) < 0) {
                         sup = centro - 1;
                     } else {
@@ -641,7 +650,7 @@ public class VistaExcel extends javax.swing.JFrame {
                 while (inf <= sup) {
                     centro = (sup + inf) / 2;
                     if (materias.get(centro).getUnidadAprendizaje().equalsIgnoreCase(dato)) {
-                        return Integer.valueOf(materias.get(centro).getClaveMateria().replaceAll(" ","").trim().trim()) ;
+                        return Integer.valueOf(materias.get(centro).getClaveMateria().replaceAll(" ", "").trim().trim());
                     } else if (dato.compareToIgnoreCase(materias.get(centro).getUnidadAprendizaje()) < 0) {
                         sup = centro - 1;
                     } else {
@@ -673,7 +682,7 @@ public class VistaExcel extends javax.swing.JFrame {
                 sup = n - 1;
                 while (inf <= sup) {
                     centro = (sup + inf) / 2;
-                    if (Integer.valueOf(grupos.get(centro).getIdGrupo())  == dato) {
+                    if (Integer.valueOf(grupos.get(centro).getIdGrupo()) == dato) {
                         return grupos.get(centro).getNombreGrupo();
                     } else if (dato < Integer.valueOf(grupos.get(centro).getIdGrupo())) {
                         sup = centro - 1;

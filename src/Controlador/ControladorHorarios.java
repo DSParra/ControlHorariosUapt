@@ -19,48 +19,87 @@ import java.util.ArrayList;
 public class ControladorHorarios {
 
     
+   public static ArrayList ConsultaHorarios(){
+        ArrayList horarios = ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, ConectarBase.conectado());
+        
+       return horarios;
+   }
     
-    
-        public static String InsertaProfesor(Profesor profe) {
-        String mensaje = "Error en los datos: ";
-        if (profe.getRfc() == null || profe.getRfc().equals("")) {
-            return "Rfc Vacio";
-        } else if (profe.getNombres() == null || profe.getNombres().equals("")) {
-            return "Nombre vacio";
-        } else if (profe.getApellidoP() == null || profe.getApellidoP().equals("")) {
-            return "Apellido Paterno vacio";
-        } else if (profe.getApellidoM() == null || profe.getApellidoM().equals("")) {
-            return "Apellido Materno vacio";
-        } else if (profe.getGradoAcademico() == null || profe.getGradoAcademico().equals(mensaje)) {
-            return "Grado Academico vacio";
-        } else if (profe.getCorreo() == null || profe.getCorreo().equals(mensaje)) {
-            return "Correo vaicio";
-        } else if (profe.getTelefono() == null || profe.getTelefono().equals(mensaje)) {
-            return "Grado Academico vacio";
-        } else {
-            Object rfc, correo;
-            rfc = ConsultasObjetos.consultaUnica("profesores", "rfc", profe.getRfc(), ConectarBase.conectado());
-            correo = ConsultasObjetos.consultaUnica("profesores", "correo", profe.getCorreo(), ConectarBase.conectado());
-
-            if (rfc != null) {
-                return "Rfc repetido";
-            } else if (correo != null) {
-                return "correo repetido";
-            } else {
-
-                Boolean registro = ConsultasObjetos.inserta(profe, ConectarBase.conectado(), "profesores");
-                if (registro) {
-                    System.out.println("Controlador: operacion exitosa");
-                    return "operacion exitosa";
-                } else {
-                    mensaje += "no registrado";
-                }
-            }
-
+    public static int numdia(String dia) {
+        if (dia.equals("Lunes") || dia.equals("lunes") || dia.equals("lun") || dia.equals("LUNES")) {
+            return 1;
+        } else if (dia.equals("Martes") || dia.equals("martes") || dia.equals("mar") || dia.equals("MARTES")) {
+            return 2;
+        } else if (dia.equals("Miercoles") || dia.equals("miercoles") || dia.equals("mie") || dia.equals("MIERCOLES")) {
+            return 3;
+        } else if (dia.equals("Jueves") || dia.equals("jueves") || dia.equals("jue") || dia.equals("JUEVES")) {
+            return 4;
+        } else if (dia.equals("Viernes") || dia.equals("viernes") || dia.equals("vie") || dia.equals("VIERNES")) {
+            return 5;
+        } else if (dia.equals("Sabado") || dia.equals("sabado") || dia.equals("sab") || dia.equals("SABADO")) {
+            return 6;
         }
-
-        return mensaje;
+        return 0;
     }
+    
+    public static String numdia(int dia) {
+        if (dia == 1) {
+            return "LUNES";
+        } else if (dia == 2) {
+            return "MARTES";
+        } else if (dia == 3) {
+            return "MIERCOLES";
+        } else if (dia == 4) {
+            return "JUEVES";
+        } else if (dia == 5) {
+            return "VIERNES"; 
+        } else if (dia == 6) {
+            return "SABADO";
+        } 
+        return "No encontrado";
+    }
+    
+    
+//        public static String InsertaProfesor(Profesor profe) {
+//        String mensaje = "Error en los datos: ";
+//        if (profe.getRfc() == null || profe.getRfc().equals("")) {
+//            return "Rfc Vacio";
+//        } else if (profe.getNombres() == null || profe.getNombres().equals("")) {
+//            return "Nombre vacio";
+//        } else if (profe.getApellidoP() == null || profe.getApellidoP().equals("")) {
+//            return "Apellido Paterno vacio";
+//        } else if (profe.getApellidoM() == null || profe.getApellidoM().equals("")) {
+//            return "Apellido Materno vacio";
+//        } else if (profe.getGradoAcademico() == null || profe.getGradoAcademico().equals(mensaje)) {
+//            return "Grado Academico vacio";
+//        } else if (profe.getCorreo() == null || profe.getCorreo().equals(mensaje)) {
+//            return "Correo vaicio";
+//        } else if (profe.getTelefono() == null || profe.getTelefono().equals(mensaje)) {
+//            return "Grado Academico vacio";
+//        } else {
+//            Object rfc, correo;
+//            rfc = ConsultasObjetos.consultaUnica("profesores", "rfc", profe.getRfc(), ConectarBase.conectado());
+//            correo = ConsultasObjetos.consultaUnica("profesores", "correo", profe.getCorreo(), ConectarBase.conectado());
+//
+//            if (rfc != null) {
+//                return "Rfc repetido";
+//            } else if (correo != null) {
+//                return "correo repetido";
+//            } else {
+//
+//                Boolean registro = ConsultasObjetos.inserta(profe, ConectarBase.conectado(), "profesores");
+//                if (registro) {
+//                    System.out.println("Controlador: operacion exitosa");
+//                    return "operacion exitosa";
+//                } else {
+//                    mensaje += "no registrado";
+//                }
+//            }
+//
+//        }
+//
+//        return mensaje;
+//    }
 
 
         

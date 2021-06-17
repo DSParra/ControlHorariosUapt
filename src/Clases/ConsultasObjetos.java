@@ -6,6 +6,7 @@
 package Clases;
 
 import Objetos.Grupo;
+import Objetos.HorarioSalida;
 import Objetos.Licenciatura;
 import Objetos.Materia;
 import Objetos.PeriodoHorarios;
@@ -460,6 +461,7 @@ public class ConsultasObjetos {
                             hr.setDia(rs.getString("dia"));
                             hr.setEntrada(rs.getString("hr_entrada"));
                             hr.setSalida(rs.getString("hr_salida"));
+                            objetos.add(hr);
                         } while (rs.next());
                     }
                     return objetos;
@@ -705,5 +707,47 @@ public class ConsultasObjetos {
             JOptionPane.showMessageDialog(null, "Error al hacer la insercion");
             System.out.println(e.toString());
         }
+    }
+
+    public static ArrayList<Object> consultaHorarios(String campo, String valor, String campo2, String valor2, Connection con) {
+        String consulta = "SELECT materia.clave_materia,unidad_aprendizaje,nombre_grupo,periodo,concat(profesores.apellido_paterno,' ',profesores.nombres) as profesor,dia,hr_entrada,hr_salida "
+                + "FROM `horarios`"
+                + "INNER JOIN materia ON horarios.clave_materia = materia.clave_materia "
+                + "INNER JOIN grupo ON horarios.id_grupo = grupo.id_grupo "
+                + "INNER JOIN profesores ON horarios.rfc = profesores.rfc "
+                + "INNER JOIN periodo_escolar ON horarios.id_periodo = periodo_escolar.id_periodo";
+
+        try {
+            if (campo == null) {
+                ps = con.prepareStatement(consulta); //traer un dato
+            } else if (campo != null && campo2 == null) {
+                ps = con.prepareStatement(consulta + " WHERE " + campo + "=?"); //traer un dato
+                ps.setString(1, valor);
+            } else {
+                ps = con.prepareStatement(consulta + "WHERE " + campo + "=? AND " + campo2 + "=?"); //traer un dato
+                ps.setString(1, valor);
+                ps.setString(2, valor2);
+            }
+            ArrayList<Object> horarios = new ArrayList();
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                do {
+                    HorarioSalida hr = new HorarioSalida();
+                    hr.setClave_materia(rs.getString("clave_materia"));
+                    hr.setUnidad_aprendizaje(rs.getString("unidad_aprendizaje"));
+                    hr.setNombre_grupo(rs.getString("nombre_grupo"));
+                    hr.setPeriodo(rs.getString("periodo"));
+                    hr.setProfesor(rs.getString("profesor"));
+                    hr.setDia(rs.getString("dia"));
+                    hr.setHr_entrada(rs.getString("hr_entrada"));
+                    hr.setHr_salida(rs.getString("hr_salida"));
+                    horarios.add(hr);
+                } while (rs.next());
+                return horarios;
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return null;
     }
 }

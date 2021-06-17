@@ -7,8 +7,11 @@ package app;
 
 import Clases.ConectarBase;
 import Clases.ConsultasObjetos;
+import Controlador.ControladorHorarios;
+import Objetos.HorarioSalida;
 import Objetos.Licenciatura;
 import Objetos.PeriodoHorarios;
+import Objetos.Profesor;
 import Objetos.Usuario;
 import Objetos.periodoEscolar;
 import static app.VentanaMateriasCoordinador.licen;
@@ -26,9 +29,8 @@ public class VentanaHorarios extends javax.swing.JFrame {
     int id = 0;
     private Boolean edicion = true;
     private DefaultTableModel modelo;
-    private ArrayList<Object> lics = new ArrayList<>();
-    private ArrayList<Object> periodos = new ArrayList<>();
-    private ArrayList<Object> profes = new ArrayList<>();
+    private ArrayList<PeriodoHorarios> horarios = new ArrayList<>();
+    
     public static String licenciatura;
 
     /**
@@ -113,15 +115,15 @@ public class VentanaHorarios extends javax.swing.JFrame {
         TablaHorarios.setForeground(new java.awt.Color(254, 254, 254));
         TablaHorarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Matricula", "Nombre", "Apellido Paterno", "Apellido Materno", "Licencitura"
+                "Clave Materia", "Nombre Materia", "Grupo", "Periodo", "Profesor", "Dia", "Entrada", "Salida"
             }
         ));
         TablaHorarios.setEnabled(false);
@@ -449,13 +451,33 @@ public class VentanaHorarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jBAceptar2ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, ConectarBase.conectado());
-        jLabel2.setText("GESTION HORARIOS " + buscaLic(licen, null));
-        jLabel2.setText(buscaLic(licen, null));
-        cargaPeriodos();
+        horarios = new ArrayList(ConsultasObjetos.consultaHorarios(null,null, null, null, ConectarBase.conectado()));
+        System.out.println("conecta");
         actualizaTabla();
+        //cargaPeriodos();
     }//GEN-LAST:event_formWindowOpened
 
+    public void actualizaTabla(){
+        modelo = (DefaultTableModel) TablaHorarios.getModel();
+        
+            
+            if (horarios.isEmpty())
+            {
+                Mensaje.error(this, "No se encuentran registros");
+            } else
+            {
+                modelo.setRowCount(0);
+                for (Object p : horarios)
+                {
+                    HorarioSalida horario = (HorarioSalida) p;
+                    modelo.addRow(new Object[]
+                    {
+                        horario.getClave_materia(), horario.getUnidad_aprendizaje(), horario.getNombre_grupo(),horario.getPeriodo(), horario.getProfesor(), ControladorHorarios.numdia(Integer.valueOf(horario.getDia())),horario.getHr_entrada(), horario.getHr_salida() 
+                    });
+                }
+            }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -658,74 +680,65 @@ public class VentanaHorarios extends javax.swing.JFrame {
     private javax.swing.JTextField jTCorrero;
     private javax.swing.JTextField jTIdUsuario;
     // End of variables declaration//GEN-END:variables
-      public String buscaLic(String id, String licenciatura) {
-        if (licenciatura != null)
-        {
-            for (Object l : lics)
-            {
-                Licenciatura lic = (Licenciatura) l;
-                if ((lic.getLicenciatura()).equals(licenciatura))
-                {
-                    return lic.getIdLicenciatura();
-                }
-            }
-        } else
-        {
-            for (Object l : lics)
-            {
-                Licenciatura lic = (Licenciatura) l;
-                if (lic.getIdLicenciatura().equals(id))
-                {
-                    return lic.getLicenciatura();
-                }
-            }
-        }
-        return null;
-    }
+//      public String buscaLic(String id, String licenciatura) {
+//        if (licenciatura != null)
+//        {
+//            for (Object l : lics)
+//            {
+//                Licenciatura lic = (Licenciatura) l;
+//                if ((lic.getLicenciatura()).equals(licenciatura))
+//                {
+//                    return lic.getIdLicenciatura();
+//                }
+//            }
+//        } else
+//        {
+//            for (Object l : lics)
+//            {
+//                Licenciatura lic = (Licenciatura) l;
+//                if (lic.getIdLicenciatura().equals(id))
+//                {
+//                    return lic.getLicenciatura();
+//                }
+//            }
+//        }
+//        return null;
+//    }
 
-    private void cargaPeriodos() {
-        jCPeriodo.removeAllItems();
-        for (int i = 0; i < periodos.size(); i++)
-        {
-            jCPeriodo.addItem(((periodoEscolar) periodos.get(i)).getPeriodo());
-            System.out.println("Periodo encontrador " + ((periodoEscolar) periodos.get(i)).getPeriodo());
-        }
-    }
+//    private void actualizaTabla() {
+//        periodos = ConsultasObjetos.consultaMuchos("periodo_escolar", null, null, null, null, ConectarBase.conectado());
+//        profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, ConectarBase.conectado());
+//        modelo = (DefaultTableModel) TablaHorarios.getModel();
+//        ArrayList<Object> hor = new ArrayList<>();
+//        hor = ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, ConectarBase.conectado());
+//        if (hor.isEmpty())
+//        {
+//            Mensaje.error(this, "NO SE ENCUENTRAN HORARIOS REGISTRADOS");
+//        } else
+//        {
+//            modelo.setRowCount(0);
+//            for (Object h : hor)
+//            {
+//                PeriodoHorarios hr = (PeriodoHorarios) h;
+//                modelo.addRow(new Object[]
+//                {
+//                    hr.getIdHorario(), buscaMateria(hr.getClaveMateria()), buscaGrupo(hr.getIdGrupo(), null), buscaPeriodo(hr.getIdPeriodo(), null), buscaProfesor(hr.getRfc(), null), hr.getDia(), hr.getEntrada(), hr.getSalida()
+//                });
+//            }
+//        }
+//    }
 
-    private void actualizaTabla() {
-        periodos = ConsultasObjetos.consultaMuchos("periodo_escolar", null, null, null, null, ConectarBase.conectado());
-        profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, ConectarBase.conectado());
-        modelo = (DefaultTableModel) TablaHorarios.getModel();
-        ArrayList<Object> hor = new ArrayList<>();
-        hor = ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, ConectarBase.conectado());
-        if (hor.isEmpty())
-        {
-            Mensaje.error(this, "NO SE ENCUENTRAN HORARIOS REGISTRADOS");
-        } else
-        {
-            modelo.setRowCount(0);
-            for (Object h : hor)
-            {
-                PeriodoHorarios hr = (PeriodoHorarios) h;
-                modelo.addRow(new Object[]
-                {
-                    hr.getIdHorario(), buscaMateria(hr.getClaveMateria()), buscaGrupo(hr.getIdGrupo(), null), buscaPeriodo(hr.getIdPeriodo(), null), buscaProfesor(hr.getRfc(), null), hr.getDia(), hr.getEntrada(), hr.getSalida()
-                });
-            }
-        }
-    }
-
-    private Object buscaMateria(String claveMateria) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private Object buscaGrupo(String idGrupo, Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private Object buscaPeriodo(String idPeriodo, Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    private Object buscaMateria(String claveMateria) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    private Object buscaGrupo(String idGrupo, Object object) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    private Object buscaPeriodo(String idPeriodo, Object object) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 
     private Object buscaProfesor(String rfc, Object object) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
