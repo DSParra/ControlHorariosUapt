@@ -511,7 +511,7 @@ public class VentanaPeriodos extends javax.swing.JFrame {
     }//GEN-LAST:event_TablaPeriodosMouseClicked
 
     private void jTIdPeriodoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTIdPeriodoKeyTyped
-        Validaciones.validaEntero(evt);
+        Validaciones.validaAlfanumerico(evt);
     }//GEN-LAST:event_jTIdPeriodoKeyTyped
 
     private void jTIdPeriodoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTIdPeriodoKeyReleased

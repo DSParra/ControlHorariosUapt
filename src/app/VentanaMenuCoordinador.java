@@ -208,7 +208,7 @@ public class VentanaMenuCoordinador extends javax.swing.JFrame {
 
     private void jBHorariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBHorariosActionPerformed
         this.setVisible(false);
-        new VentanaHorarios().setVisible(true);
+        new VentanaHorariosCoordinador().setVisible(true);
     }//GEN-LAST:event_jBHorariosActionPerformed
 
     private void jBDocentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDocentesActionPerformed
