@@ -49,6 +49,22 @@ public class VentanaHorarios extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.getContentPane().setBackground(Color.white);
+        TablaHorarios.getColumnModel().getColumn(0).setPreferredWidth(10);
+        TablaHorarios.getColumnModel().getColumn(0).setResizable(false);
+        TablaHorarios.getColumnModel().getColumn(1).setPreferredWidth(120);
+        TablaHorarios.getColumnModel().getColumn(1).setResizable(false);
+        TablaHorarios.getColumnModel().getColumn(2).setPreferredWidth(10);
+        TablaHorarios.getColumnModel().getColumn(2).setResizable(false);
+        TablaHorarios.getColumnModel().getColumn(3).setPreferredWidth(10);
+        TablaHorarios.getColumnModel().getColumn(3).setResizable(false);
+        TablaHorarios.getColumnModel().getColumn(4).setPreferredWidth(100);
+        TablaHorarios.getColumnModel().getColumn(4).setResizable(false);
+        TablaHorarios.getColumnModel().getColumn(5).setPreferredWidth(20);
+        TablaHorarios.getColumnModel().getColumn(5).setResizable(false);
+        TablaHorarios.getColumnModel().getColumn(6).setPreferredWidth(10);
+        TablaHorarios.getColumnModel().getColumn(6).setResizable(false);
+        TablaHorarios.getColumnModel().getColumn(7).setPreferredWidth(10);
+        TablaHorarios.getColumnModel().getColumn(7).setResizable(false);
     }
 
     /**
@@ -522,8 +538,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
             CtrlInterfaz.habilita(true, jTSalida, jTEntrada, jTIdhorario, jBCancelar);
             CtrlInterfaz.habilita(false, jBeliminar, jBModificar, btnImportar, btnExportar);
             CtrlInterfaz.selecciona(jTIdhorario);
-        }
-        else
+        } else
         {
             //HorarioSalida hr = new HorarioSalida(jTIdhorario.getText(), buscaMateria(null, JCMateria.getSelectedItem().toString()), buscaGrupo(null, JCGrupo.getSelectedItem().toString()), buscaPeriodo(null, jCPeriodo.getSelectedItem().toString()), buscarProfesor(null, JCDocente.getSelectedItem().toString()), jCDia.getSelectedItem().toString(), jTEntrada.getText(),jTSalida.getText());
             //String mensaje = ControladorHorarios.insertaMuchos(hr);
@@ -595,7 +610,8 @@ public class VentanaHorarios extends javax.swing.JFrame {
         materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", licen, null, null, ConectarBase.conectado());
         profesores = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, ConectarBase.conectado());
         modelo = (DefaultTableModel) TablaHorarios.getModel();
-
+        ArrayList horarios = new ArrayList();
+        horarios = ConsultasObjetos.consultaHorarios(null, null, null, null, ConectarBase.conectado());
         if (horarios.isEmpty())
         {
             Mensaje.error(this, "No se encuentran registros");
@@ -607,7 +623,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
                 HorarioSalida horario = (HorarioSalida) p;
                 modelo.addRow(new Object[]
                 {
-                    horario.getClave_materia(), horario.getUnidad_aprendizaje(), horario.getNombre_grupo(), horario.getPeriodo(), horario.getProfesor(), ControladorHorarios.numdia(Integer.valueOf(horario.getDia())), horario.getHr_entrada(), horario.getHr_salida()
+                    horario.getClave_materia(),horario.getUnidad_aprendizaje(), horario.getNombre_grupo(), horario.getPeriodo(), horario.getProfesor(), horario.getDia(), horario.getHr_entrada(), horario.getHr_salida()
                 });
             }
         }
@@ -816,7 +832,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
     private javax.swing.JTextField jTIdhorario;
     private javax.swing.JTextField jTSalida;
     // End of variables declaration//GEN-END:variables
-      
+
     public String buscaLic(String id, String licenciatura) {
         if (licenciatura != null)
         {
@@ -886,10 +902,10 @@ public class VentanaHorarios extends javax.swing.JFrame {
         JCMateria.addItem("TODOS");
         for (int i = 0; i < profesores.size(); i++)
         {
-            JCDocente.addItem(((Profesor)profesores.get(i)).getNombres() + " " + ((Profesor)profesores.get(i)).getApellidoP() + " " +((Profesor)profesores.get(i)).getApellidoM());
+            JCDocente.addItem(((Profesor) profesores.get(i)).getNombres() + " " + ((Profesor) profesores.get(i)).getApellidoP() + " " + ((Profesor) profesores.get(i)).getApellidoM());
         }
     }
-    
+
     private void edicion() {
         if (edicion)
         {
