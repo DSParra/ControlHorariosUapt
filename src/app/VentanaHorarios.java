@@ -17,7 +17,6 @@ import Objetos.PeriodoHorarios;
 import Objetos.Profesor;
 import Objetos.Usuario;
 import Objetos.periodoEscolar;
-import static app.VentanaMateriasCoordinador.licen;
 import cjb.ci.CtrlInterfaz;
 import cjb.ci.Mensaje;
 import cjb.ci.Validaciones;
@@ -40,7 +39,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
     private ArrayList<Object> grupos = new ArrayList<>();
     private ArrayList<Object> materias = new ArrayList<>();
     private ArrayList<Object> profesores = new ArrayList<>();
-    public static String licenciatura;
+    VentanaLogin vtn = new VentanaLogin();
 
     /**
      * Creates new form VentanaPrinicipal
@@ -555,7 +554,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         //horarios = new ArrayList(ConsultasObjetos.consultaHorarios(null,null, null, null, ConectarBase.conectado()));
         System.out.println("conecta");
-        jLabel2.setText("GESTION HORARIOS " + buscaLic(licen, null));
+        jLabel2.setText("GESTION HORARIOS " + buscaLic(vtn.lic, null));
         actualizaTabla();
         cargaPeriodos();
         llenaGrupos();
@@ -606,8 +605,8 @@ public class VentanaHorarios extends javax.swing.JFrame {
     public void actualizaTabla() {
         lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, ConectarBase.conectado());
         periodos = ConsultasObjetos.consultaMuchos("periodo_escolar", null, null, null, null, ConectarBase.conectado());
-        grupos = ConsultasObjetos.consultaMuchos("grupo", "id_licenciatura", licen, null, null, ConectarBase.conectado());
-        materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", licen, null, null, ConectarBase.conectado());
+        grupos = ConsultasObjetos.consultaMuchos("grupo", "id_licenciatura", vtn.lic, null, null, ConectarBase.conectado());
+        materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", vtn.lic, null, null, ConectarBase.conectado());
         profesores = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, ConectarBase.conectado());
         modelo = (DefaultTableModel) TablaHorarios.getModel();
         ArrayList horarios = new ArrayList();
@@ -623,7 +622,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
                 HorarioSalida horario = (HorarioSalida) p;
                 modelo.addRow(new Object[]
                 {
-                    horario.getClave_materia(),horario.getUnidad_aprendizaje(), horario.getNombre_grupo(), horario.getPeriodo(), horario.getProfesor(), horario.getDia(), horario.getHr_entrada(), horario.getHr_salida()
+                    horario.getClave_materia(), horario.getUnidad_aprendizaje(), horario.getNombre_grupo(), horario.getPeriodo(), horario.getProfesor(), horario.getDia(), horario.getHr_entrada(), horario.getHr_salida()
                 });
             }
         }

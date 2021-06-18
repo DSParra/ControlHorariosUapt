@@ -19,7 +19,8 @@ public class VentanaMenuCoordinador extends javax.swing.JFrame {
 
     public static String licenciatura;
     private ArrayList<Object> lics = new ArrayList<>();
-
+    VentanaLogin vtn = new VentanaLogin();
+    
     /**
      * Creates new form VentanaPrinicipal
      */
@@ -202,13 +203,11 @@ public class VentanaMenuCoordinador extends javax.swing.JFrame {
 
     private void jBMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMateriasActionPerformed
         this.setVisible(false);
-        VentanaMateriasCoordinador.licen = licenciatura;
         new VentanaMateriasCoordinador().setVisible(true);
     }//GEN-LAST:event_jBMateriasActionPerformed
 
     private void jBHorariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBHorariosActionPerformed
         this.setVisible(false);
-        VentanaHorarios.licenciatura = licenciatura;
         new VentanaHorarios().setVisible(true);
     }//GEN-LAST:event_jBHorariosActionPerformed
 
@@ -224,13 +223,11 @@ public class VentanaMenuCoordinador extends javax.swing.JFrame {
 
     private void jBPlanesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPlanesActionPerformed
         this.setVisible(false);
-        VentanaPlanEstudiosCoordinador.licenciatura = licenciatura;
         new VentanaPlanEstudiosCoordinador().setVisible(true);
     }//GEN-LAST:event_jBPlanesActionPerformed
 
     private void jBGruposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGruposActionPerformed
         this.setVisible(false);
-        VentanaGruposCoordinador.licenciatura = licenciatura;
         new VentanaGruposCoordinador().setVisible(true);
     }//GEN-LAST:event_jBGruposActionPerformed
 

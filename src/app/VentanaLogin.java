@@ -40,6 +40,7 @@ public class VentanaLogin extends javax.swing.JFrame {
     }
 
     public static Connection con = null;
+    public static String lic;
     Querys q;
 
     public boolean login() {
@@ -265,7 +266,7 @@ public class VentanaLogin extends javax.swing.JFrame {
 
 
         String val = ConsultasObjetos.validaEntrar(txtusuario.getText(), jPassContrasenaia.getText(), con);
-        String lic = ConsultasObjetos.obtieneIDLic(txtusuario.getText(), ConectarBase.conectado());
+        lic = ConsultasObjetos.obtieneIDLic(txtusuario.getText(), ConectarBase.conectado());
         System.out.println("lic" + lic);
         VentanaMenuCoordinador.licenciatura = lic;
         

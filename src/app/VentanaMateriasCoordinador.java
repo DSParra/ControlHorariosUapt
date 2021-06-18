@@ -33,7 +33,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
     private DefaultTableModel modelo;
     private ArrayList<Object> plans = new ArrayList<>();
     private ArrayList<Object> lics = new ArrayList<>();
-    public static String licen;
+    VentanaLogin vtn = new VentanaLogin();
 
     /**
      * Creates new form VentanaPrinicipal
@@ -626,7 +626,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
 
             } else
             {
-                Materia materia = new Materia(jTClave.getText(), jTNombre.getText(), Integer.parseInt(jTHoras.getText()), Integer.parseInt(jTCreditos.getText()), Integer.parseInt(jCSemestre.getSelectedItem().toString()), jCNucleo.getSelectedItem().toString(), jCTipo.getSelectedItem().toString(), licen, buscaPlan(null, jCPlan.getSelectedItem().toString()));
+                Materia materia = new Materia(jTClave.getText(), jTNombre.getText(), Integer.parseInt(jTHoras.getText()), Integer.parseInt(jTCreditos.getText()), Integer.parseInt(jCSemestre.getSelectedItem().toString()), jCNucleo.getSelectedItem().toString(), jCTipo.getSelectedItem().toString(), vtn.lic, buscaPlan(null, jCPlan.getSelectedItem().toString()));
                 String mensaje = Controlador.ControladorMaterias.modifcaMateria(materia, (String) TablaMAterias.getValueAt(TablaMAterias.getSelectedRow(), 0));
                 if (mensaje.equals("operacion exitosa"))
                 {
@@ -634,6 +634,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                     CtrlInterfaz.habilita(false, jTClave, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
                     CtrlInterfaz.habilita(true, jBAceptar, jBEliminar, btnAgregar4, btnAgregar5);
                     CtrlInterfaz.limpia(jTClave, jTCreditos, jTHoras, jTNombre);
+                    actualizarTabla(1);
                     jcSesmtre.setSelectedItem(0);
                     edicion();
                 } else
@@ -650,8 +651,8 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
             String mensaje = Controlador.ControladorMaterias.eliminaMateria(jTClave.getText());
             if (mensaje.endsWith("operacion exitosa"))
             {
+                actualizarTabla(1);
                 jcSesmtre.setSelectedItem(0);
-
             } else
             {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
@@ -670,7 +671,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
             CtrlInterfaz.selecciona(jTClave);
         } else
         {;
-            Materia mat = new Materia(jTClave.getText(), jTNombre.getText(), Integer.parseInt(jTHoras.getText()), Integer.parseInt(jTCreditos.getText()), Integer.parseInt(jCSemestre.getSelectedItem().toString()), jCNucleo.getSelectedItem().toString(), jCTipo.getSelectedItem().toString(), licen, buscaPlan(null, jCPlan.getSelectedItem().toString()));
+            Materia mat = new Materia(jTClave.getText(), jTNombre.getText(), Integer.parseInt(jTHoras.getText()), Integer.parseInt(jTCreditos.getText()), Integer.parseInt(jCSemestre.getSelectedItem().toString()), jCNucleo.getSelectedItem().toString(), jCTipo.getSelectedItem().toString(), vtn.lic, buscaPlan(null, jCPlan.getSelectedItem().toString()));
             String mensaje = Controlador.ControladorMaterias.insertaMateria(mat);
             if (mensaje.equals("operacion exitosa"))
             {
@@ -678,6 +679,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                 CtrlInterfaz.habilita(false, jTClave, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
                 CtrlInterfaz.habilita(true, jBModificar, jBEliminar, btnAgregar4, btnAgregar5);
                 CtrlInterfaz.limpia(jTClave, jTCreditos, jTHoras, jTNombre);
+                actualizarTabla(1);
                 jcSesmtre.setSelectedItem(0);
                 edicion();
             } else
@@ -734,7 +736,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
         cancelar();
         actualizarTabla(1);
         llenaComboPlanes();
-        jLabel2.setText("GESTION MATERIAS " + buscaLic(licen, null));
+        jLabel2.setText("GESTION MATERIAS " + buscaLic(vtn.lic, null));
     }//GEN-LAST:event_formWindowOpened
 
     private void jCSemestreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCSemestreKeyPressed
@@ -930,13 +932,13 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
 
     public void actualizarTabla(int valor) {
         lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, ConectarBase.conectado());
-        plans = ConsultasObjetos.consultaMuchos("plan_estudios", "id_licenciatura", licen, null, null, ConectarBase.conectado());
+        plans = ConsultasObjetos.consultaMuchos("plan_estudios", "id_licenciatura", vtn.lic, null, null, ConectarBase.conectado());
         modelo = (DefaultTableModel) TablaMAterias.getModel();
         ArrayList materias = new ArrayList();
         switch (valor)
         {
             case 1:
-                materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", licen, null, null, ConectarBase.conectado());
+                materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", vtn.lic, null, null, ConectarBase.conectado());
                 if (materias.isEmpty())
                 {
                     Mensaje.error(this, "No hay materias registradas");
@@ -977,7 +979,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                     actualizarTabla(1);
                 } else
                 {
-                    materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", licen, "numero_periodo", jcSesmtre.getSelectedItem().toString(), ConectarBase.conectado());
+                    materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", vtn.lic, "numero_periodo", jcSesmtre.getSelectedItem().toString(), ConectarBase.conectado());
                     if (materias.isEmpty())
                     {
                         Mensaje.error(this, "No hay materias registradas con este semestre");

@@ -478,6 +478,7 @@ public class VentanaPlanEstudios extends javax.swing.JFrame {
                 CtrlInterfaz.limpia(jTPlan, jTIdPlan);
                 CtrlInterfaz.habilita(false, jTIdPlan, jTPlan, jCLicenciatura, jBCancelar);
                 CtrlInterfaz.habilita(true, jBModificar, jBEliminar, btnExportar, btnImportar);
+                actualizarTabla(1);
                 jCLicenciaturaFiltro.setSelectedIndex(0);
                 edicion();
             } else
@@ -534,6 +535,7 @@ public class VentanaPlanEstudios extends javax.swing.JFrame {
                     CtrlInterfaz.limpia(jTPlan, jTIdPlan);
                     CtrlInterfaz.habilita(false, jTIdPlan, jTPlan, jBAceptar, jCLicenciatura, jBCancelar);
                     CtrlInterfaz.habilita(true, jBEliminar, jBAceptar, btnImportar, btnExportar);
+                    actualizarTabla(1);
                     jCLicenciaturaFiltro.setSelectedIndex(0);
                     edicion();
                 } else
@@ -550,6 +552,7 @@ public class VentanaPlanEstudios extends javax.swing.JFrame {
             String mensaje = Controlador.ControladorPlanes.eliminarPlan(jTIdPlan.getText());
             if (mensaje.endsWith("operacion exitosa"))
             {
+                actualizarTabla(1);
                 jCLicenciaturaFiltro.setSelectedIndex(0);
                 CtrlInterfaz.limpia(jTPlan, jTIdPlan);
             } else

@@ -12,7 +12,6 @@ import Clases.Valida;
 import Objetos.Licenciatura;
 import Objetos.PlanEstudios;
 import Objetos.periodoEscolar;
-import static app.VentanaMateriasCoordinador.licen;
 import cjb.ci.CtrlInterfaz;
 import cjb.ci.Mensaje;
 import cjb.ci.Validaciones;
@@ -32,7 +31,7 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
     private Boolean edicion = true;
     private DefaultTableModel modelo;
     private ArrayList<Object> lics = new ArrayList<>();
-    public static String licenciatura;
+    VentanaLogin vtn = new VentanaLogin();
 
     /**
      * Creates new form VentanaPrinicipal
@@ -426,7 +425,7 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
             CtrlInterfaz.selecciona(jTIdPlan);
         } else
         {
-            PlanEstudios plan = new PlanEstudios(jTIdPlan.getText(), jTPlan.getText(), licenciatura);
+            PlanEstudios plan = new PlanEstudios(jTIdPlan.getText(), jTPlan.getText(), vtn.lic);
             String mensaje = Controlador.ControladorPlanes.insertarPlan(plan);
             if (mensaje.equals("operacion exitosa"))
             {
@@ -458,7 +457,7 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
     }//GEN-LAST:event_jBCerrarSesionActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        jLabel2.setText("GESTION PLANES " + buscaLic(licen, null));
+        jLabel2.setText("GESTION PLANES " + buscaLic(vtn.lic, null));
         cancelar();
         actualizarTabla(1);
     }//GEN-LAST:event_formWindowOpened
@@ -478,7 +477,7 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
                 CtrlInterfaz.selecciona(jTPlan);
             } else
             {
-                PlanEstudios plan = new PlanEstudios(jTIdPlan.getText(), jTPlan.getText(), licenciatura);
+                PlanEstudios plan = new PlanEstudios(jTIdPlan.getText(), jTPlan.getText(), vtn.lic);
                 String mensaje = Controlador.ControladorPlanes.modificarPlan(plan, (String) TablaPeriodos.getValueAt(TablaPeriodos.getSelectedRow(), 0));
                 if (mensaje.equals("operacion exitosa"))
                 {
@@ -780,7 +779,7 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
         ArrayList planes = new ArrayList();
         if (valor == 1)
         {
-            planes = ConsultasObjetos.consultaMuchos("plan_estudios", "id_licenciatura", licenciatura, null, null, ConectarBase.conectado());
+            planes = ConsultasObjetos.consultaMuchos("plan_estudios", "id_licenciatura", vtn.lic, null, null, ConectarBase.conectado());
             if (planes.isEmpty())
             {
                 Mensaje.error(this, "No hay planes de estudio registrados");

@@ -684,6 +684,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
                     CtrlInterfaz.habilita(false, jTClave, jCLicenciatura, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
                     CtrlInterfaz.habilita(true, jBAceptar, jBEliminar, btnAgregar4, btnAgregar5);
                     CtrlInterfaz.limpia(jTClave, jTCreditos, jTHoras, jTNombre);
+                    actualizarTabla(1);
                     jCLicenciaturaFiltro.setSelectedIndex(0);
                     edicion();
                 } else
@@ -700,6 +701,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
             String mensaje = Controlador.ControladorMaterias.eliminaMateria(jTClave.getText());
             if (mensaje.endsWith("operacion exitosa"))
             {
+                actualizarTabla(1);
                 jCLicenciaturaFiltro.setSelectedIndex(0);
             } else
             {
@@ -727,6 +729,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
                 CtrlInterfaz.habilita(false, jTClave, jCLicenciatura, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
                 CtrlInterfaz.habilita(true, jBModificar, jBEliminar, btnAgregar4, btnAgregar5);
                 CtrlInterfaz.limpia(jTClave, jTCreditos, jTHoras, jTNombre);
+                actualizarTabla(1);
                 jCLicenciaturaFiltro.setSelectedIndex(0);
                 edicion();
             } else

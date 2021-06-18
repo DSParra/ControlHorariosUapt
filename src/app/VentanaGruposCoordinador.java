@@ -12,7 +12,6 @@ import Clases.Valida;
 import Objetos.Grupo;
 import Objetos.Licenciatura;
 import Objetos.PlanEstudios;
-import static app.VentanaMateriasCoordinador.licen;
 import cjb.ci.CtrlInterfaz;
 import cjb.ci.Mensaje;
 import cjb.ci.Validaciones;
@@ -32,7 +31,7 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
     private Boolean edicion = true;
     private DefaultTableModel modelo;
     private ArrayList<Object> lics = new ArrayList<>();
-    public static String licenciatura;
+    VentanaLogin vtn = new VentanaLogin();
 
     /**
      * Creates new form VentanaPrinicipal
@@ -441,10 +440,12 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnImportarActionPerformed
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
-        String mensaje = Archivo.Exportar(TablaGrupos,"grupos","prueba1");
-        if (mensaje.equals("Error en la Exportacion")) {
+        String mensaje = Archivo.Exportar(TablaGrupos, "grupos", "prueba1");
+        if (mensaje.equals("Error en la Exportacion"))
+        {
             Mensaje.error(this, mensaje);
-        }else{
+        } else
+        {
             Mensaje.exito(this, mensaje);
         }
     }//GEN-LAST:event_btnExportarActionPerformed
@@ -474,7 +475,7 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
             CtrlInterfaz.selecciona(jTIdGrupo);
         } else
         {
-            Grupo grup = new Grupo(jTIdGrupo.getText(), jTNombreGrupo.getText(), licenciatura);
+            Grupo grup = new Grupo(jTIdGrupo.getText(), jTNombreGrupo.getText(), vtn.lic);
             String mensaje = Controlador.ControladorGrupos.insertaGrupo(grup);
             if (mensaje.equals("operacion exitosa"))
             {
@@ -510,7 +511,7 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
                 CtrlInterfaz.selecciona(jTNombreGrupo);
             } else
             {
-                Grupo grup = new Grupo(jTIdGrupo.getText(), jTNombreGrupo.getText(), licenciatura);
+                Grupo grup = new Grupo(jTIdGrupo.getText(), jTNombreGrupo.getText(), vtn.lic);
                 String mensaje = Controlador.ControladorGrupos.modificaGrupo(grup, (String) TablaGrupos.getValueAt(TablaGrupos.getSelectedRow(), 0));
                 if (mensaje.equals("operacion exitosa"))
                 {
@@ -772,8 +773,7 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
         ArrayList grupos = new ArrayList();
         if (valor == 1)
         {
-            System.out.println("licen "+licen);
-            grupos = ConsultasObjetos.consultaMuchos("grupo", "id_licenciatura", licen, null, null, ConectarBase.conectado());
+            grupos = ConsultasObjetos.consultaMuchos("grupo", "id_licenciatura", vtn.lic, null, null, ConectarBase.conectado());
             if (grupos.isEmpty())
             {
                 Mensaje.error(this, "No hay grupos registrados");
