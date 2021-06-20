@@ -704,7 +704,6 @@ public class VentanaHorarios extends javax.swing.JFrame {
     public void actualizaTabla(int valor) {
         lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, ConectarBase.conectado());
         periodos = ConsultasObjetos.consultaMuchos("periodo_escolar", null, null, null, null, ConectarBase.conectado());
-        grupos = ConsultasObjetos.consultaMuchos("grupo", "id_licenciatura", buscaLic(null, jCLicenciatura.getSelectedItem().toString()), null, null, ConectarBase.conectado());
         grupos1 = ConsultasObjetos.consultaMuchos("grupo", null, null, null, null, ConectarBase.conectado());
         materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", buscaLic(null, jCLicenciatura.getSelectedItem().toString()), null, null, ConectarBase.conectado());
         profesores = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, ConectarBase.conectado());
@@ -746,7 +745,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
                     });
                 }
             }
-        } else if (valor == 3)
+        }/* else if (valor == 3)
         {
             horarios = ConsultasObjetos.consultaHorarios("id_grupo", buscaGrupo(null, jCGrupofiltro.getSelectedItem().toString()), "id_periodo", buscaPeriodo(null, jCPeriodoFiltro.getSelectedItem().toString()), ConectarBase.conectado());
             if (horarios.isEmpty())
@@ -764,7 +763,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
                     });
                 }
             }
-        }
+        }*/
     }
 
     /**
@@ -1415,12 +1414,11 @@ public class VentanaHorarios extends javax.swing.JFrame {
         {
             JCGrupo.addItem(((Grupo) grupos.get(i)).getNombreGrupo());
         }
-
     }
 
     private void llenaGruposFiltro() {
         jCGrupofiltro.removeAllItems();
-        jCGrupofiltro.addItem("TODOS");
+        jCGrupofiltro.addItem("Todos");
         for (int i = 0; i < grupos1.size(); i++)
         {
             jCGrupofiltro.addItem(((Grupo) grupos1.get(i)).getNombreGrupo());
