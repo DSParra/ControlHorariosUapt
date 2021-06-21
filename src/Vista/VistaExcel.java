@@ -496,8 +496,8 @@ public class VistaExcel extends javax.swing.JFrame {
 
         for (int i = 0; i < horarios.size(); i++) {
             for (int j = 0; j < horariosBD.size(); j++) {
-                //System.out.println("i: "+i);
-                //System.out.println("j: "+j);
+                System.out.println("i: "+i);
+                System.out.println("j: "+j);
                 if (horarios.get(i).getRfc().equalsIgnoreCase(horariosBD.get(j).getRfc()) && horarios.get(i).getDia().equals(horariosBD.get(j).getDia())) {
 
                     entrada1 = Double.parseDouble(horarios.get(i).getEntrada().substring(0, 2) + "." + horarios.get(i).getEntrada().substring(3, 5));

@@ -447,6 +447,23 @@ public class ConsultasObjetos {
                     rs = ps.executeQuery();
                     if (rs.next()) {
                         do {
+                            PeriodoHorarios hr = new PeriodoHorarios();
+                            hr.setIdHorario(rs.getString("id_horario"));
+                            hr.setClaveMateria(rs.getString("clave_materia"));
+                            hr.setIdGrupo(rs.getString("id_grupo"));
+                            hr.setIdPeriodo(rs.getString("id_periodo"));
+                            hr.setRfc(rs.getString("rfc"));
+                            hr.setDia(rs.getString("dia"));
+                            hr.setEntrada(rs.getString("hr_entrada"));
+                            hr.setSalida(rs.getString("hr_salida"));
+                            objetos.add(hr);
+                        } while (rs.next());
+                    }
+                    return objetos;
+                case "horariosSalida":
+                    rs = ps.executeQuery();
+                    if (rs.next()) {
+                        do {
                             HorarioSalida hr = new HorarioSalida();
                             hr.setId_horario(rs.getString("id_horario"));
                             hr.setUnidad_aprendizaje(rs.getString("clave_materia"));
