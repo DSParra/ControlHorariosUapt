@@ -156,7 +156,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Clave Materia", "Nombre Materia", "Grupo", "Periodo", "Profesor", "Dia", "Entrada", "Salida"
+                "CLAVE", "MATERIA", "GRUPO", "PERIODO", "PROFESOR", "DIA", "ENTRADA", "SALIDA"
             }
         ));
         TablaHorarios.setEnabled(false);
@@ -729,10 +729,10 @@ public class VentanaHorarios extends javax.swing.JFrame {
                     modelo.setRowCount(0);
                     for (Object p : horarios)
                     {
-                        HorarioSalida horario = (HorarioSalida) p;
+                        PeriodoHorarios horario = (PeriodoHorarios) p;
                         modelo.addRow(new Object[]
                         {
-                            horario.getId_horario(), buscaMateria(horario.getUnidad_aprendizaje(), null), buscaGrupo(horario.getNombre_grupo(), null), buscaPeriodo(horario.getPeriodo(), null), buscaProfesor(horario.getProfesor(), null), horario.getDia(), horario.getHr_entrada(), horario.getHr_salida()
+                            horario.getIdHorario(), buscaMateria(horario.getClaveMateria(), null), buscaGrupo(horario.getIdGrupo(), null), buscaPeriodo(horario.getIdPeriodo(), null), buscaProfesor(horario.getRfc(), null), horario.getDia(), horario.getEntrada(), horario.getSalida()
                         });
                     }
                 }
@@ -752,10 +752,10 @@ public class VentanaHorarios extends javax.swing.JFrame {
                         modelo.setRowCount(0);
                         for (Object p : horarios)
                         {
-                            HorarioSalida horario = (HorarioSalida) p;
+                            PeriodoHorarios horario = (PeriodoHorarios) p;
                             modelo.addRow(new Object[]
                             {
-                                horario.getId_horario(), buscaMateria(horario.getUnidad_aprendizaje(), null), buscaGrupo(horario.getNombre_grupo(), null), buscaPeriodo(horario.getPeriodo(), null), buscaProfesor(horario.getProfesor(), null), horario.getDia(), horario.getHr_entrada(), horario.getHr_salida()
+                                horario.getIdHorario(), buscaMateria(horario.getClaveMateria(), null), buscaGrupo(horario.getIdGrupo(), null), buscaPeriodo(horario.getIdPeriodo(), null), buscaProfesor(horario.getRfc(), null), horario.getDia(), horario.getEntrada(), horario.getSalida()
                             });
                         }
                     }
@@ -776,10 +776,10 @@ public class VentanaHorarios extends javax.swing.JFrame {
                         modelo.setRowCount(0);
                         for (Object p : horarios)
                         {
-                            HorarioSalida horario = (HorarioSalida) p;
+                            PeriodoHorarios horario = (PeriodoHorarios) p;
                             modelo.addRow(new Object[]
                             {
-                                horario.getId_horario(), buscaMateria(horario.getUnidad_aprendizaje(), null), buscaGrupo(horario.getNombre_grupo(), null), buscaPeriodo(horario.getPeriodo(), null), buscaProfesor(horario.getProfesor(), null), horario.getDia(), horario.getHr_entrada(), horario.getHr_salida()
+                                horario.getIdHorario(), buscaMateria(horario.getClaveMateria(), null), buscaGrupo(horario.getIdGrupo(), null), buscaPeriodo(horario.getIdPeriodo(), null), buscaProfesor(horario.getRfc(), null), horario.getDia(), horario.getEntrada(), horario.getSalida()
                             });
                         }
                     }
