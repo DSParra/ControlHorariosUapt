@@ -10,7 +10,7 @@ package Objetos;
  * @author JParra
  */
 public class HorarioSalida {
-    private String clave_horario;
+    private String id_horario;
     private String unidad_aprendizaje;
     private String nombre_grupo;
     private String periodo;
@@ -19,8 +19,11 @@ public class HorarioSalida {
     private String hr_entrada;
     private String hr_salida;
 
-    public HorarioSalida(String clave_horario, String unidad_aprendizaje, String nombre_grupo, String periodo, String profesor, String dia, String hr_entrada, String hr_salida) {
-        this.clave_horario = clave_horario;
+    public HorarioSalida() {
+    }
+
+    public HorarioSalida(String id_horario, String unidad_aprendizaje, String nombre_grupo, String periodo, String profesor, String dia, String hr_entrada, String hr_salida) {
+        this.id_horario = id_horario;
         this.unidad_aprendizaje = unidad_aprendizaje;
         this.nombre_grupo = nombre_grupo;
         this.periodo = periodo;
@@ -30,21 +33,18 @@ public class HorarioSalida {
         this.hr_salida = hr_salida;
     }
 
-    public HorarioSalida() {
+    /**
+     * @return the id_horario
+     */
+    public String getId_horario() {
+        return id_horario;
     }
 
     /**
-     * @return the clave_materia
+     * @param id_horario the id_horario to set
      */
-    public String getClave_materia() {
-        return clave_horario;
-    }
-
-    /**
-     * @param clave_materia the clave_materia to set
-     */
-    public void setClave_materia(String clave_horario) {
-        this.clave_horario = clave_horario;
+    public void setId_horario(String id_horario) {
+        this.id_horario = id_horario;
     }
 
     /**
@@ -143,5 +143,7 @@ public class HorarioSalida {
      */
     public void setHr_salida(String hr_salida) {
         this.hr_salida = hr_salida;
-    }    
+    }
+
+   
 }

@@ -379,7 +379,6 @@ public class ConsultasObjetos {
                     rs = ps.executeQuery();
                     if (rs.next()) {
                         do {
-                            System.out.println("entro");
                             Licenciatura licen = new Licenciatura();
                             licen.setIdLicenciatura(rs.getString("id_licenciatura"));
                             licen.setLicenciatura(rs.getString("nombre"));
@@ -393,7 +392,6 @@ public class ConsultasObjetos {
                     rs = ps.executeQuery();
                     if (rs.next()) {
                         do {
-                            System.out.println("Entre a periodos");
                             periodoEscolar perio = new periodoEscolar();
                             perio.setId_periodo(rs.getString("id_periodo"));
                             perio.setPeriodo(rs.getString("periodo"));
@@ -407,7 +405,6 @@ public class ConsultasObjetos {
                     rs = ps.executeQuery();
                     if (rs.next()) {
                         do {
-                            System.out.println("Entre a planes");
                             PlanEstudios plan = new PlanEstudios();
                             plan.setIdPlan(rs.getString("id_plan_estudios"));
                             plan.setPlanEstudios(rs.getString("plan_estudios"));
@@ -420,7 +417,6 @@ public class ConsultasObjetos {
                     rs = ps.executeQuery();
                     if (rs.next()) {
                         do {
-                            System.out.println("Entre a materias");
                             Materia mat = new Materia();
                             mat.setClaveMateria(rs.getString("clave_materia"));
                             mat.setUnidadAprendizaje(rs.getString("unidad_aprendizaje"));
@@ -439,7 +435,6 @@ public class ConsultasObjetos {
                     rs = ps.executeQuery();
                     if (rs.next()) {
                         do {
-                            //  System.out.println("Entre a grupos");
                             Grupo gr = new Grupo();
                             gr.setIdGrupo(rs.getString("id_grupo"));
                             gr.setNombreGrupo(rs.getString("nombre_grupo"));
@@ -452,15 +447,15 @@ public class ConsultasObjetos {
                     rs = ps.executeQuery();
                     if (rs.next()) {
                         do {
-                            PeriodoHorarios hr = new PeriodoHorarios();
-                            hr.setIdHorario(rs.getString("id_horario"));
-                            hr.setClaveMateria(rs.getString("clave_materia"));
-                            hr.setIdGrupo(rs.getString("id_grupo"));
-                            hr.setIdPeriodo(rs.getString("id_periodo"));
-                            hr.setRfc(rs.getString("rfc"));
+                            HorarioSalida hr = new HorarioSalida();
+                            hr.setId_horario(rs.getString("id_horario"));
+                            hr.setUnidad_aprendizaje(rs.getString("clave_materia"));
+                            hr.setNombre_grupo(rs.getString("id_grupo"));
+                            hr.setPeriodo(rs.getString("id_periodo"));
+                            hr.setProfesor(rs.getString("rfc"));
                             hr.setDia(rs.getString("dia"));
-                            hr.setEntrada(rs.getString("hr_entrada"));
-                            hr.setSalida(rs.getString("hr_salida"));
+                            hr.setHr_entrada(rs.getString("hr_entrada"));
+                            hr.setHr_salida(rs.getString("hr_salida"));
                             objetos.add(hr);
                         } while (rs.next());
                     }
@@ -733,7 +728,7 @@ public class ConsultasObjetos {
             if (rs.next()) {
                 do {
                     HorarioSalida hr = new HorarioSalida();
-                    hr.setClave_materia(rs.getString("clave_materia"));
+                    hr.setId_horario(rs.getString("id_horario"));
                     hr.setUnidad_aprendizaje(rs.getString("unidad_aprendizaje"));
                     hr.setNombre_grupo(rs.getString("nombre_grupo"));
                     hr.setPeriodo(rs.getString("periodo"));
