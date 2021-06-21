@@ -47,7 +47,7 @@ public class VistaExcel extends javax.swing.JFrame {
     String tipoExcel = "";
     String cabecerasProfesor[] = {"rfc", "apellido paterno", "apellido materno", "nombre", "grado academico", "correo", "telefono"};
     String cabecerasMateria[] = {"clave de la materia", "unidad de aprendizaje", "horas", "creditos", "numero de periodo", "nucleo", "tipo", "licenciatura", "plan de estudios"};
-    String cabecerasHorario[] = {"unidad_aprendizaje", "rfc", "profesor", "grupo", "periodo", "dia", "entrada", "salida"};
+    String cabecerasHorario[] = {"clave", "unidad_aprendizaje", "rfc", "profesor", "grupo", "periodo", "dia", "entrada", "salida"};
     ArrayList<Profesor> profes;
     ArrayList<Materia> materias;
     ArrayList<Grupo> grupos;
@@ -110,15 +110,14 @@ public class VistaExcel extends javax.swing.JFrame {
         btnExportar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTDatosExcel = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        btnCarga = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        txtconsulta = new javax.swing.JTextArea();
-        btnPrueba = new javax.swing.JButton();
-        btnidentifica = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        txtlog = new javax.swing.JTextArea();
         txtidentifica = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jCheckExcel = new javax.swing.JCheckBox();
+        jCheckProfesores = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -159,49 +158,19 @@ public class VistaExcel extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTDatosExcel);
 
-        jButton2.setBackground(new java.awt.Color(102, 102, 0));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Cargar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnCarga.setBackground(new java.awt.Color(102, 102, 0));
+        btnCarga.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCarga.setForeground(new java.awt.Color(255, 255, 255));
+        btnCarga.setText("Cargar");
+        btnCarga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnCargaActionPerformed(evt);
             }
         });
 
-        txtconsulta.setColumns(20);
-        txtconsulta.setRows(5);
-        jScrollPane2.setViewportView(txtconsulta);
-
-        btnPrueba.setBackground(new java.awt.Color(102, 102, 0));
-        btnPrueba.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnPrueba.setForeground(new java.awt.Color(255, 255, 255));
-        btnPrueba.setText("Prueba");
-        btnPrueba.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPruebaActionPerformed(evt);
-            }
-        });
-
-        btnidentifica.setBackground(new java.awt.Color(102, 102, 0));
-        btnidentifica.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnidentifica.setForeground(new java.awt.Color(255, 255, 255));
-        btnidentifica.setText("Identifica");
-        btnidentifica.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnidentificaActionPerformed(evt);
-            }
-        });
-
-        jButton1.setBackground(new java.awt.Color(102, 102, 0));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        txtlog.setColumns(20);
+        txtlog.setRows(5);
+        jScrollPane2.setViewportView(txtlog);
 
         txtidentifica.setText("No identificado");
 
@@ -215,53 +184,56 @@ public class VistaExcel extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(102, 102, 0));
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("jButton1");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButton5.setBackground(new java.awt.Color(102, 102, 0));
+        jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("Ejectuar Pruebas");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButton5ActionPerformed(evt);
             }
         });
+
+        jCheckExcel.setText("Comparacion en excel");
+
+        jCheckProfesores.setText("Comparacion Profesores");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(txtidentifica, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(451, 451, 451))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(btnImportar, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtidentifica, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 960, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(74, 74, 74)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 960, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnImportar, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40)
-                                .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(52, 52, 52)
-                                .addComponent(btnPrueba, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(71, 71, 71)
-                                .addComponent(btnidentifica, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(36, 36, 36)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(39, 39, 39)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(79, 79, 79)))))
-                .addContainerGap())
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jCheckProfesores)
+                                    .addComponent(jCheckExcel))
+                                .addGap(0, 0, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,28 +241,30 @@ public class VistaExcel extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnidentifica, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton1)
-                                .addComponent(jButton4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtidentifica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnPrueba, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                            .addComponent(btnExportar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnExportar, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                             .addComponent(btnImportar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(27, 27, 27)
-                        .addComponent(jButton3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE))
-                .addContainerGap(66, Short.MAX_VALUE))
+                        .addComponent(jButton3)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCarga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtidentifica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCheckExcel))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 88, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jCheckProfesores)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         pack();
@@ -322,6 +296,8 @@ public class VistaExcel extends javax.swing.JFrame {
         System.out.println("Busqueda " + busquedaBinariaRetNombre(2, "grupo"));
         //txtidentifica.setForeground(Color.red);
         txtidentifica.setEditable(false);
+        btnCarga.setEnabled(false);
+        
 
     }//GEN-LAST:event_formWindowOpened
 
@@ -330,14 +306,14 @@ public class VistaExcel extends javax.swing.JFrame {
 
         for (int i = 0; i < jTDatosExcel.getRowCount(); i++) {
             Profesor profe = new Profesor();
-            profe.setRfc(String.valueOf(jTDatosExcel.getValueAt(i, 0)));
-            System.out.println(String.valueOf(jTDatosExcel.getValueAt(i, 0)));
-            profe.setNombres((String) jTDatosExcel.getValueAt(i, 3));
-            profe.setApellidoP((String) jTDatosExcel.getValueAt(i, 1));
-            profe.setApellidoM((String) jTDatosExcel.getValueAt(i, 2));
+            profe.setRfc(String.valueOf(jTDatosExcel.getValueAt(i, 1)));
+            System.out.println(String.valueOf(jTDatosExcel.getValueAt(i, 1)));
+            profe.setNombres((String) jTDatosExcel.getValueAt(i, 4));
+            profe.setApellidoP((String) jTDatosExcel.getValueAt(i, 2));
+            profe.setApellidoM((String) jTDatosExcel.getValueAt(i, 3));
             profe.setCorreo("no ingresado" + String.valueOf(numcorreo++));
-            profe.setTelefono((String) jTDatosExcel.getValueAt(i, 6));
-            profe.setGradoAcademico((String) jTDatosExcel.getValueAt(i, 2));
+            profe.setTelefono((String) jTDatosExcel.getValueAt(i, 7));
+            profe.setGradoAcademico((String) jTDatosExcel.getValueAt(i, 3));
             profesores.add(profe);
         }
         return profesores;
@@ -351,7 +327,7 @@ public class VistaExcel extends javax.swing.JFrame {
                     break;
                 }
             }
-            txtconsulta.setText("Es un profesor");
+            txtlog.setText("Es un profesor");
             identificado = true;
             return "profesor";
 
@@ -380,10 +356,10 @@ public class VistaExcel extends javax.swing.JFrame {
         }
         return null;
     }
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnCargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargaActionPerformed
 
-//        ArrayList horarios = guardaExcel();
-//        ConsultasObjetos.insertaMuchos(horarios, ConectarBase.conectado(), "horarios");
+        ArrayList horarios = guardaExcel();
+        ConsultasObjetos.insertaMuchos(horarios, ConectarBase.conectado(), "horarios");
         //        if (String.valueOf(jcTipo.getSelectedItem()).equals("Profesor")) {
 //            
 //        }
@@ -392,7 +368,7 @@ public class VistaExcel extends javax.swing.JFrame {
 //txtconsulta.setText(ConsultasObjetos.retornaConsulta(profes, ConectarBase.conectado(), "profesores"));
 //ConsultasObjetos.insertaMuchos(profes, ConectarBase.conectado(), "profesores");
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnCargaActionPerformed
 
     public ArrayList guardaExcel() {
 
@@ -403,15 +379,15 @@ public class VistaExcel extends javax.swing.JFrame {
 
             for (int i = 0; i < jTDatosExcel.getRowCount(); i++) {
                 horario = new PeriodoHorarios();
-                horario.setClaveMateria(String.valueOf(busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(i, 0)), "materia")));
-                horario.setRfc(String.valueOf(String.valueOf(jTDatosExcel.getValueAt(i, 1))));
-                if (ControladorHorarios.numdia(String.valueOf(jTDatosExcel.getValueAt(i, 5))) != 0) {
-                    horario.setDia(String.valueOf(ControladorHorarios.numdia(String.valueOf(jTDatosExcel.getValueAt(i, 5)))));
+                horario.setClaveMateria(String.valueOf(jTDatosExcel.getValueAt(i, 0)));
+                horario.setRfc(String.valueOf(String.valueOf(jTDatosExcel.getValueAt(i, 2))));
+                if (ControladorHorarios.numdia(String.valueOf(jTDatosExcel.getValueAt(i, 6))) != 0) {
+                    horario.setDia(String.valueOf(ControladorHorarios.numdia(String.valueOf(jTDatosExcel.getValueAt(i, 6)))));
                 }
-                horario.setIdGrupo(String.valueOf(busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(i, 3)), "grupo")));
-                horario.setIdPeriodo(String.valueOf(busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(i, 4)), "periodo")));
-                horario.setEntrada(String.valueOf(jTDatosExcel.getValueAt(i, 6)));
-                horario.setSalida(String.valueOf(jTDatosExcel.getValueAt(i, 7)));
+                horario.setIdGrupo(String.valueOf(busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(i, 4)), "grupo")));
+                horario.setIdPeriodo(String.valueOf(busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(i, 5)), "periodo")));
+                horario.setEntrada(String.valueOf(jTDatosExcel.getValueAt(i, 7)));
+                horario.setSalida(String.valueOf(jTDatosExcel.getValueAt(i, 8)));
                 horarios.add(horario);
                 muestraHorarios(horario);
             }
@@ -455,32 +431,8 @@ public class VistaExcel extends javax.swing.JFrame {
         Archivo.Exportar(jTDatosExcel, "horario", "prueba1");
     }//GEN-LAST:event_btnExportarActionPerformed
 
-    private void btnPruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPruebaActionPerformed
-        for (int i = 0; i < cabeceras.length; i++) {
-            System.out.println("Cabecera numero " + i + ": " + cabeceras[i]);
-        }
-    }//GEN-LAST:event_btnPruebaActionPerformed
-
-    private void btnidentificaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnidentificaActionPerformed
-
-    }//GEN-LAST:event_btnidentificaActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        if (tipoExcel.equalsIgnoreCase("horario")) {
-
-            horarios = guardaExcel();
-            horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", "id_grupo", String.valueOf(busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(0, 3)), "grupo")),
-                    "id_periodo", String.valueOf(busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(0, 4)), "periodo")), ConectarBase.conectado()));
-            System.out.println("hasta aqui llego");
-        }
-
-        comparaGrupos();
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    public void comparaGrupos() {
-        txtconsulta.setText("");
+    public boolean comparaGrupos() {
+        boolean prueba= true;
         double entrada1, salida1, entrada2, salida2;
         for (int i = 0; i < horarios.size(); i++) {
             for (int j = 0; j < horarios.size(); j++) {
@@ -495,15 +447,17 @@ public class VistaExcel extends javax.swing.JFrame {
                     entrada2 = Double.parseDouble(horarios.get(j).getEntrada().substring(0, 2) + "." + horarios.get(j).getEntrada().substring(3, 5));
                     salida2 = Double.parseDouble(horarios.get(j).getSalida().substring(0, 2) + "." + horarios.get(j).getSalida().substring(3, 5));
                     if (entrada2 >= entrada1 && entrada2 <= salida1) {
-                        txtconsulta.setText(txtconsulta.getText() + "Error Por grupos\n"
-                                + String.valueOf(jTDatosExcel.getValueAt(i, 0)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 5)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 7))
+                        prueba = false;
+                        txtlog.setText(txtlog.getText() + "Error Por grupos\n"
+                                + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 5)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 8))
                                 + " y "
-                                + String.valueOf(jTDatosExcel.getValueAt(j, 0)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 5)) + " " + String.valueOf(jTDatosExcel.getValueAt(j, 6)) + " " + String.valueOf(jTDatosExcel.getValueAt(j, 7)) + "\n\n");
+                                + String.valueOf(jTDatosExcel.getValueAt(j, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 5)) + " " + String.valueOf(jTDatosExcel.getValueAt(j, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(j, 8)) + "\n\n");
                         //System.out.println("horarios cruzados");
                     }
                 }
             }
         }
+        return prueba;
     }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if (jTDatosExcel.getSelectedRow() != -1) {
@@ -513,12 +467,29 @@ public class VistaExcel extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        evaluaProfesores();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        
+        
+        if (tipoExcel.equalsIgnoreCase("horario")) {
 
-    public void evaluaProfesores() {
-        txtconsulta.setText("");
+            horarios = guardaExcel();
+            horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", "id_grupo", String.valueOf(busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(0, 4)), "grupo")),
+                    "id_periodo", String.valueOf(busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(0, 5)), "periodo")), ConectarBase.conectado()));
+            System.out.println("hasta aqui llego");
+        }
+        jCheckExcel.setSelected(comparaGrupos());
+        jCheckProfesores.setSelected(evaluaProfesores());
+        
+        
+        if (jCheckExcel.isSelected() && jCheckProfesores.isSelected()) {
+            btnCarga.setEnabled(true);
+        }else{
+            btnCarga.setEnabled(false);
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    public boolean evaluaProfesores() {
+        boolean prueba = true;
         double entrada1, entrada2, salida1, salida2;
         horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, ConectarBase.conectado()));
         horarios = guardaExcel();
@@ -537,8 +508,9 @@ public class VistaExcel extends javax.swing.JFrame {
                     System.out.println("horario2 " + entrada2 + " " + salida2);
                     System.out.println("mismo dia ");
                     if (entrada2 >= entrada1 && entrada2 <= salida1) {
-                        txtconsulta.setText(txtconsulta.getText() + "Error Por Profesores\n"
-                                + String.valueOf(jTDatosExcel.getValueAt(i, 0)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 5)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 7))
+                        prueba= false;
+                        txtlog.setText(txtlog.getText() + "Error Por Profesores\n"
+                                + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 8))
                                 + " y "
                                 + busquedaBinariaRetNombre(horariosBD.get(j).getClaveMateria(), "materias") + "-> " + ControladorHorarios.numdia(Integer.valueOf(horariosBD.get(j).getDia())) + " " + horariosBD.get(j).getEntrada() + " " + horariosBD.get(j).getSalida() + "\n\n");
 
@@ -554,8 +526,7 @@ public class VistaExcel extends javax.swing.JFrame {
                 }
             }
         }
-
-        System.out.println("");
+        return prueba;
     }
 
     /**
@@ -594,19 +565,18 @@ public class VistaExcel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCarga;
     public javax.swing.JButton btnExportar;
     public javax.swing.JButton btnImportar;
-    private javax.swing.JButton btnPrueba;
-    private javax.swing.JButton btnidentifica;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JCheckBox jCheckExcel;
+    private javax.swing.JCheckBox jCheckProfesores;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTable jTDatosExcel;
-    private javax.swing.JTextArea txtconsulta;
     private javax.swing.JTextField txtidentifica;
+    private javax.swing.JTextArea txtlog;
     // End of variables declaration//GEN-END:variables
 
     public void ordenamientoBurbujaID(String tipo) {
@@ -797,8 +767,8 @@ public class VistaExcel extends javax.swing.JFrame {
         System.out.println("Entrada " + horario.getEntrada());
         System.out.println("Salida " + horario.getSalida());
     }
-    
-        public String busquedaBinariaRetNombre(String dato, String tipo) {
+
+    public String busquedaBinariaRetNombre(String dato, String tipo) {
         ordenamientoBurbujaID("materia");
         int n, inf = 0, sup, centro;
         switch (tipo) {

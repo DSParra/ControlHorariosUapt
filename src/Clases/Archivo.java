@@ -186,9 +186,14 @@ public class Archivo {
             JFileChooser destino = new JFileChooser();
             destino.setCurrentDirectory(new File(""));
             destino.setDialogTitle("Seleccione el destino de la carpeta");
-            destino.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            destino.setFileSelectionMode(JFileChooser.SAVE_DIALOG);
             destino.setAcceptAllFileFilterUsed(false);
-
+            System.out.println("directorios"+destino.getCurrentDirectory());
+            System.out.println("archivo seleccionado"+destino.getSelectedFile());
+            System.out.println("archivo seleccionado"+destino.getApproveButtonToolTipText());
+            
+            
+            
             if (destino.showSaveDialog(null) == destino.APPROVE_OPTION) {
                 File carpeta = destino.getSelectedFile();   
                 try (FileOutputStream outputStream = new FileOutputStream(carpeta.getAbsolutePath()+"\\"+tipo+"-"+filtro+".xlsx")) {//archivo.write(new FileOutputStream(archivo));
