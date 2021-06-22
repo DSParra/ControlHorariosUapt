@@ -473,22 +473,23 @@ public class VistaExcel extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
 
-        if (tipoExcel.equalsIgnoreCase("horario")) {
-
-            horarios = guardaExcel();
-            horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", "id_grupo", String.valueOf(busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(0, 4)), "grupo")),
-                    "id_periodo", String.valueOf(busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(0, 5)), "periodo")), null, ConectarBase.conectado()));
-            System.out.println("hasta aqui llego");
-        }
-        jCheckExcel.setSelected(comparaGrupos());
-        jCheckProfesores.setSelected(evaluaProfesores());
-        jCheckMateriasBD.setSelected(evaluaGruposBD());
-
-        if (jCheckExcel.isSelected() && jCheckProfesores.isSelected() && jCheckMateriasBD.isSelected()) {
-            btnCarga.setEnabled(true);
-        } else {
-            btnCarga.setEnabled(false);
-        }
+        evaluaLlaves();
+//        if (tipoExcel.equalsIgnoreCase("horario")) {
+//
+//            horarios = guardaExcel();
+//            horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", "id_grupo", String.valueOf(busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(0, 4)), "grupo")),
+//                    "id_periodo", String.valueOf(busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(0, 5)), "periodo")), null, ConectarBase.conectado()));
+//            System.out.println("hasta aqui llego");
+//        }
+//        jCheckExcel.setSelected(comparaGrupos());
+//        jCheckProfesores.setSelected(evaluaProfesores());
+//        jCheckMateriasBD.setSelected(evaluaGruposBD());
+//
+//        if (jCheckExcel.isSelected() && jCheckProfesores.isSelected() && jCheckMateriasBD.isSelected()) {
+//            btnCarga.setEnabled(true);
+//        } else {
+//            btnCarga.setEnabled(false);
+//        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     public boolean evaluaProfesores() {
@@ -570,7 +571,7 @@ public class VistaExcel extends javax.swing.JFrame {
         boolean prueba = true;
         double entrada1, entrada2, salida1, salida2;
         ordenamientoBurbujaID("materia");
-        horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, ConectarBase.conectado()));
+        horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null,null, ConectarBase.conectado()));
         horarios = guardaExcel();
         for (int i = 0; i < horarios.size(); i++) {
             System.out.println("registro "+ i);
@@ -675,7 +676,7 @@ public class VistaExcel extends javax.swing.JFrame {
                 Materia mat;
                 for (int i = 2; i < materias.size(); i++) {
                     for (int j = 0; j < materias.size() - i; j++) {
-                        if (materias.get(j).getClaveCarrera().compareToIgnoreCase(materias.get(j + 1).getClaveCarrera()) > 0) {
+                        if (materias.get(j).getClaveMateria().compareToIgnoreCase(materias.get(j + 1).getClaveMateria()) > 0) {
                             mat = materias.get(j);
                             materias.set(j, materias.get(j + 1));
                             materias.set(j + 1, mat);
