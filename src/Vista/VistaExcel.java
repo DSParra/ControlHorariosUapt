@@ -119,6 +119,7 @@ public class VistaExcel extends javax.swing.JFrame {
         jCheckExcel = new javax.swing.JCheckBox();
         jCheckProfesores = new javax.swing.JCheckBox();
         jCheckMateriasBD = new javax.swing.JCheckBox();
+        jCheckLllaves = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -201,6 +202,8 @@ public class VistaExcel extends javax.swing.JFrame {
 
         jCheckMateriasBD.setText("Comparacion Materias");
 
+        jCheckLllaves.setText("Datos Encontrados");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -228,9 +231,12 @@ public class VistaExcel extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jCheckProfesores)
-                            .addComponent(jCheckExcel)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jCheckExcel)
+                                .addGap(76, 76, 76)
+                                .addComponent(jCheckLllaves))
                             .addComponent(jCheckMateriasBD))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 216, Short.MAX_VALUE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
@@ -252,7 +258,8 @@ public class VistaExcel extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtidentifica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckExcel))))
+                            .addComponent(jCheckExcel)
+                            .addComponent(jCheckLllaves))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -434,7 +441,7 @@ public class VistaExcel extends javax.swing.JFrame {
         for (int i = 0; i < horarios.size(); i++) {
             for (int j = 0; j < horarios.size(); j++) {
                 //System.out.println("dia: "+horarios.get(i).getDia() + " ---->"+ "dia: "+horarios.get(j).getDia() );
-                if (horarios.get(i).getDia().equals(horarios.get(j).getDia()) && i != j && horarios.get(i).getIdGrupo().equals(horarios.get(j).getIdGrupo()) 
+                if (horarios.get(i).getDia().equals(horarios.get(j).getDia()) && i != j && horarios.get(i).getIdGrupo().equals(horarios.get(j).getIdGrupo())
                         && horarios.get(i).getClaveMateria().equals(horarios.get(j).getClaveMateria())) {
                     //System.out.println("Mismo dia ");
                     //System.out.println(horarios.get(i).getClaveMateria() + " " + horarios.get(i).getRfc() + " " + horarios.get(i).getIdPeriodo());
@@ -532,7 +539,7 @@ public class VistaExcel extends javax.swing.JFrame {
         horarios = guardaExcel();
         for (int i = 0; i < horarios.size(); i++) {
             for (int j = 0; j < horariosBD.size(); j++) {
-                if (horarios.get(i).getClaveMateria().equalsIgnoreCase(horariosBD.get(j).getClaveMateria()) && horarios.get(i).getDia().equalsIgnoreCase(horariosBD.get(j).getDia()) 
+                if (horarios.get(i).getClaveMateria().equalsIgnoreCase(horariosBD.get(j).getClaveMateria()) && horarios.get(i).getDia().equalsIgnoreCase(horariosBD.get(j).getDia())
                         && horarios.get(i).getIdGrupo().equals(horariosBD.get(j).getIdGrupo())) {
                     entrada1 = Double.parseDouble(horarios.get(i).getEntrada().substring(0, 2) + "." + horarios.get(i).getEntrada().substring(3, 5));
                     salida1 = Double.parseDouble(horarios.get(i).getSalida().substring(0, 2) + "." + horarios.get(i).getSalida().substring(3, 5));
@@ -555,6 +562,32 @@ public class VistaExcel extends javax.swing.JFrame {
 //                    System.out.println("ProfesorBD:" + horariosBD.get(j).getDia() + " " + horariosBD.get(j).getEntrada() + " " + horariosBD.get(j).getSalida());
                 }
             }
+        }
+        return prueba;
+    }
+
+    public boolean evaluaLlaves() {
+        boolean prueba = true;
+        double entrada1, entrada2, salida1, salida2;
+        ordenamientoBurbujaID("materia");
+        horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, ConectarBase.conectado()));
+        horarios = guardaExcel();
+        for (int i = 0; i < horarios.size(); i++) {
+            System.out.println("registro "+ i);
+            if (busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(i,4)), "grupo") == -1) {
+                System.out.println("Grupos no encotrados");
+            } 
+            if (busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(i,5)), "periodo") == -1) {
+                System.out.println("periodo no encontrado");
+            } 
+            if (busquedaBinariaBuscaID(String.valueOf(jTDatosExcel.getValueAt(i, 0)), "materia") == null) {
+                System.out.println("Materia no encontrado");
+            } 
+            if (busquedaBinariaBuscaID(String.valueOf(jTDatosExcel.getValueAt(i, 2)), "profesor") == null) {
+                System.out.println("profesor no encontrado");
+            }
+            
+
         }
         return prueba;
     }
@@ -601,6 +634,7 @@ public class VistaExcel extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JCheckBox jCheckExcel;
+    private javax.swing.JCheckBox jCheckLllaves;
     private javax.swing.JCheckBox jCheckMateriasBD;
     private javax.swing.JCheckBox jCheckProfesores;
     private javax.swing.JScrollPane jScrollPane1;
@@ -722,7 +756,7 @@ public class VistaExcel extends javax.swing.JFrame {
                     if (grupos.get(centro).getNombreGrupo().equalsIgnoreCase(dato)) {
                         return Integer.valueOf(grupos.get(centro).getIdGrupo());
                     } else if (dato.compareToIgnoreCase(grupos.get(centro).getNombreGrupo()) < 0) {
-    
+
                         sup = centro - 1;
                     } else {
                         inf = centro + 1;
@@ -759,6 +793,41 @@ public class VistaExcel extends javax.swing.JFrame {
                 break;
         }
         return -1;
+    }
+
+    public String busquedaBinariaBuscaID(String id, String tipo) {
+        int n, inf = 0, sup, centro;
+        switch (tipo) {
+            case "profesor":
+                n = profes.size();
+                sup = n - 1;
+                while (inf <= sup) {
+                    centro = (sup + inf) / 2;
+                    if (profes.get(centro).getRfc().equalsIgnoreCase(id)) {
+                        return profes.get(centro).getRfc();
+                    } else if (id.compareToIgnoreCase(profes.get(centro).getRfc()) < 0) {
+                        sup = centro - 1;
+                    } else {
+                        inf = centro + 1;
+                    }
+                }
+                break;
+            case "materia":
+                n = materias.size();
+                sup = n - 1;
+                while (inf <= sup) {
+                    centro = (sup + inf) / 2;
+                    if (materias.get(centro).getClaveMateria().equalsIgnoreCase(id)) {
+                        return materias.get(centro).getClaveMateria();
+                    } else if (id.compareToIgnoreCase(materias.get(centro).getClaveMateria()) < 0) {
+                        sup = centro - 1;
+                    } else {
+                        inf = centro + 1;
+                    }
+                }
+                break;
+        }
+        return null;
     }
 
     public String busquedaBinariaRetNombre(int dato, String tipo) {

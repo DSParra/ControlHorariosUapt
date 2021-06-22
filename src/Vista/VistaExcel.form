@@ -54,10 +54,14 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jCheckProfesores" min="-2" max="-2" attributes="0"/>
-                          <Component id="jCheckExcel" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jCheckExcel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+                              <Component id="jCheckLllaves" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <Component id="jCheckMateriasBD" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="216" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane2" pref="644" max="32767" attributes="0"/>
               </Group>
@@ -87,6 +91,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtidentifica" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jCheckExcel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCheckLllaves" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -287,6 +292,11 @@
     <Component class="javax.swing.JCheckBox" name="jCheckMateriasBD">
       <Properties>
         <Property name="text" type="java.lang.String" value="Comparacion Materias"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="jCheckLllaves">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Datos Encontrados"/>
       </Properties>
     </Component>
   </SubComponents>
