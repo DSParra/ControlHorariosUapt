@@ -109,7 +109,7 @@ public class ControladorHorarios {
             mensaje += "Rfc Vacio";
         } else if (horario.getClaveMateria()== null || horario.getClaveMateria().equals("")) {
             mensaje += "Clave Materiavacio";
-        } else if (Integer.valueOf(horario.getDia()) == 0 ) {
+        }/* else if (Integer.valueOf(horario.getDia()) == 0 ) {
             mensaje += "Dia incorrecto";
         } else if (horario.getEntrada()== null || horario.getEntrada().equals("")) {
             mensaje += "Hora entrada vacia ";
@@ -117,7 +117,7 @@ public class ControladorHorarios {
             mensaje += "grupo incorrecto";
         } else if (Integer.valueOf(horario.getIdPeriodo())== 0) {
             mensaje += "periodo incorrecto";
-        } else if (horario.getSalida() == null || horario.getSalida().equals("")) {
+        }*/ else if (horario.getSalida() == null || horario.getSalida().equals("")) {
             mensaje += "Hora salida vacia";
         }
         return mensaje;
@@ -149,6 +149,31 @@ public class ControladorHorarios {
         ConsultasObjetos.insertaMuchos(horarios, ConectarBase.conectado(), "horarios");
         return "Operacion exitosa";
     }
-    
-    
+
+    public static String insertaHorarioUnico(PeriodoHorarios horario) {
+        String mensaje = evaluaDatos(horario);
+        if (mensaje.equals(""))
+        {
+            Object id_horario;
+            id_horario = ConsultasObjetos.consultaUnica("horarios", null, null, ConectarBase.conectado());
+            if (id_horario != null)
+            {
+                return "ID de horario repetido inserte uno nuevo o diferente";
+            }
+            else 
+            {
+                Boolean registro = ConsultasObjetos.inserta(horario, ConectarBase.conectado(), "horarios");
+                if (registro)
+                {
+                    System.out.println("operacion exitosa en el controlador horarios");
+                    return "operacion exitosa";
+                }
+                else
+                {
+                    mensaje += "No se pudo registrar el horario";
+                }
+            }
+        }
+        return mensaje;
+    }
 }

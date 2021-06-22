@@ -42,6 +42,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
     private ArrayList<Object> materias = new ArrayList<>();
     private ArrayList<Object> profesores = new ArrayList<>();
     private ArrayList<Object> plans = new ArrayList<>();
+    private ArrayList<PeriodoHorarios> horariosBD = new ArrayList<>();
 
     /**
      * Creates new form VentanaPrinicipal
@@ -614,11 +615,32 @@ public class VentanaHorarios extends javax.swing.JFrame {
             CtrlInterfaz.selecciona(jTIdhorario);
         } else
         {
-            //HorarioSalida hr = new HorarioSalida(jTIdhorario.getText(), buscaMateria(null, JCMateria.getSelectedItem().toString()), buscaGrupo(null, JCGrupo.getSelectedItem().toString()), buscaPeriodo(null, jCPeriodo.getSelectedItem().toString()), buscarProfesor(null, JCDocente.getSelectedItem().toString()), jCDia.getSelectedItem().toString(), jTEntrada.getText(),jTSalida.getText());
-            //String mensaje = ControladorHorarios.insertaMuchos(hr);
-            CtrlInterfaz.limpia(jTIdhorario, jTEntrada, jTSalida);
-            actualizaTabla(1);
-            edicion();
+            PeriodoHorarios horario = new PeriodoHorarios(jTIdhorario.getText(), buscaMateria(null, JCMateria.getSelectedItem().toString()), buscaGrupo(null, JCGrupo.getSelectedItem().toString()), buscaPeriodo(null, jCPeriodo.getSelectedItem().toString()), buscaProfesor(null, JCDocente.getSelectedItem().toString()), jCDia.getSelectedItem().toString(), jTEntrada.getText(), jTSalida.getText());
+            String msj = comparaGrupos(horario);
+            String msj1;
+            if (!"exitoso".equals(msj))
+            {
+                Mensaje.error(this, msj);
+            } else
+            {
+                Mensaje.exito(this, msj);
+                msj1 = comparaDocenete(horario);
+                if (!"exitoso".equals(msj1))
+                {
+                    Mensaje.error(this, msj1);
+                } else
+                {
+                    Mensaje.exito(this, msj);
+                    String mensaje = ControladorHorarios.insertaHorarioUnico(horario);
+                    if (mensaje.equals("operacion exitosa"))
+                    {
+                        actualizaTabla(1);
+                        edicion();
+                    }
+                }
+            }
+            //CtrlInterfaz.limpia(jTIdhorario, jTEntrada, jTSalida);
+
         }
     }//GEN-LAST:event_jBAceptar1ActionPerformed
 
@@ -671,11 +693,11 @@ public class VentanaHorarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jTIdhorarioFocusLost
 
     private void jTEntradaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTEntradaKeyTyped
-        Validaciones.validaFlotantes(evt);
+
     }//GEN-LAST:event_jTEntradaKeyTyped
 
     private void jTSalidaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTSalidaKeyPressed
-        Validaciones.validaFlotantes(evt);
+
     }//GEN-LAST:event_jTSalidaKeyPressed
 
     private void jCLicenciaturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCLicenciaturaKeyPressed
@@ -1603,5 +1625,56 @@ public class VentanaHorarios extends javax.swing.JFrame {
             }
         }
         return null;
+    }
+
+    private String comparaGrupos(PeriodoHorarios hr) {
+        horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, ConectarBase.conectado()));
+        double entrada1, salida1, entrada2, salida2;
+        for (int i = 0; i < horariosBD.size(); i++)
+        {
+            System.out.println("entre a for grupo" + horariosBD.get(i).getIdHorario());
+            if (horariosBD.get(i).getIdGrupo().equals(hr.getIdGrupo()) && horariosBD.get(i).getDia().equals(hr.getDia()))
+            {
+                System.out.println("entre a primer condicion");
+                entrada1 = Double.parseDouble(horariosBD.get(i).getEntrada().substring(0, 2) + "." + horariosBD.get(i).getEntrada().substring(3, 5));
+                salida1 = Double.parseDouble(horariosBD.get(i).getSalida().substring(0, 2) + "." + horariosBD.get(i).getSalida().substring(3, 5));
+                entrada2 = Double.parseDouble(hr.getEntrada().substring(0, 2) + "." + hr.getEntrada().substring(3, 5));
+                salida2 = Double.parseDouble(hr.getSalida().substring(0, 2) + "." + hr.getSalida().substring(3, 5));
+                if (entrada2 >= entrada1 && entrada2 <= salida1)
+                {
+                    System.out.println("entre a segunda condicion");
+                    return "Error por cruze de grupos con " + horariosBD.get(i).getIdGrupo();
+                } 
+            } else
+            {
+                return "exitoso";
+            }
+        }
+        return "nulo grupo";
+    }
+
+    private String comparaDocenete(PeriodoHorarios hr) {
+        double entrada1, entrada2, salida1, salida2;
+        horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, ConectarBase.conectado()));
+        for (int i = 0; i < horariosBD.size(); i++)
+        {
+            System.out.println("entre a for docente " + horariosBD.get(i).getIdHorario());
+            if (horariosBD.get(i).getRfc().equals(hr.getRfc()) && horariosBD.get(i).getDia().equals(hr.getDia()))
+            {
+                System.out.println("entre en primer condicion ");
+                entrada1 = Double.parseDouble(horariosBD.get(i).getEntrada().substring(0, 2) + "." + horariosBD.get(i).getEntrada().substring(3, 5));
+                salida1 = Double.parseDouble(horariosBD.get(i).getSalida().substring(0, 2) + "." + horariosBD.get(i).getSalida().substring(3, 5));
+                entrada2 = Double.parseDouble(hr.getEntrada().substring(0, 2) + "." + hr.getEntrada().substring(3, 5));
+                salida2 = Double.parseDouble(hr.getSalida().substring(0, 2) + "." + hr.getSalida().substring(3, 5));
+                if (entrada2 >= entrada1 && entrada2 <= salida1)
+                {
+                    return "Error por cruze de asignaturas con profesor " + buscaProfesor(horariosBD.get(i).getRfc(), null);
+                }
+            } else
+            {
+                return "exitoso";
+            }
+        }
+        return "nulo docente";
     }
 }
