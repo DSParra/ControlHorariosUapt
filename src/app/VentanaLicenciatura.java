@@ -626,13 +626,13 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
     }
 
     public void actualizaTabla(int valor) {
-        profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, ConectarBase.conectado());
+        profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, "nombres", ConectarBase.conectado());
         modelo = (DefaultTableModel) tablaLicenciatura.getModel();
         ArrayList<Object> licenciatura = new ArrayList();
 
         if (valor == 1)
         {
-            licenciatura = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, ConectarBase.conectado());
+            licenciatura = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
             if (licenciatura.isEmpty())
             {
                 Mensaje.error(this, "No se encuentran registros");
@@ -651,7 +651,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
             }
         } else if (valor == 2)
         {
-            licenciatura = ConsultasObjetos.consultaMuchos("licenciatura", "nombre", jtIDBusqeuda.getText(), null, null, ConectarBase.conectado());
+            licenciatura = ConsultasObjetos.consultaMuchos("licenciatura", "nombre", jtIDBusqeuda.getText(), null, null, "nombre",ConectarBase.conectado());
             if (licenciatura.isEmpty())
             {
                 Mensaje.error(this, "No se encuentran registros");

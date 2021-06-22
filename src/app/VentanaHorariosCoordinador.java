@@ -605,11 +605,11 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
     }//GEN-LAST:event_jTSalidaKeyPressed
 
     public void actualizaTabla() {
-        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, ConectarBase.conectado());
-        periodos = ConsultasObjetos.consultaMuchos("periodo_escolar", null, null, null, null, ConectarBase.conectado());
-        grupos = ConsultasObjetos.consultaMuchos("grupo", "id_licenciatura", vtn.lic, null, null, ConectarBase.conectado());
-        materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", vtn.lic, null, null, ConectarBase.conectado());
-        profesores = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, ConectarBase.conectado());
+        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
+        periodos = ConsultasObjetos.consultaMuchos("periodo_escolar", null, null, null, null, "periodo", ConectarBase.conectado());
+        grupos = ConsultasObjetos.consultaMuchos("grupo", "id_licenciatura", vtn.lic, null, null, "grupos", ConectarBase.conectado());
+        materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", vtn.lic, null, null, "unidad_aprendizaje",ConectarBase.conectado());
+        profesores = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, "nombres",ConectarBase.conectado());
         modelo = (DefaultTableModel) TablaHorarios.getModel();
         ArrayList horarios = new ArrayList();
         horarios = ConsultasObjetos.consultaHorarios(null, null, null, null, ConectarBase.conectado());
@@ -624,7 +624,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                 HorarioSalida horario = (HorarioSalida) p;
                 modelo.addRow(new Object[]
                 {
-                    horario.getClave_materia(), horario.getUnidad_aprendizaje(), horario.getNombre_grupo(), horario.getPeriodo(), horario.getProfesor(), horario.getDia(), horario.getHr_entrada(), horario.getHr_salida()
+//                  horario.getClave_materia(), horario.getUnidad_aprendizaje(), horario.getNombre_grupo(), horario.getPeriodo(), horario.getProfesor(), horario.getDia(), horario.getHr_entrada(), horario.getHr_salida()
                 });
             }
         }

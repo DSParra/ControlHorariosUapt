@@ -232,7 +232,7 @@ public class VentanaMenuCoordinador extends javax.swing.JFrame {
     }//GEN-LAST:event_jBGruposActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, ConectarBase.conectado());
+        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
         LabelLic.setText(buscaLic(licenciatura, null));
     }//GEN-LAST:event_formWindowOpened
 

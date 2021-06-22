@@ -768,12 +768,12 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void actualizarTabla(int valor) {
-        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, ConectarBase.conectado());
+        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
         modelo = (DefaultTableModel) TablaGrupos.getModel();
         ArrayList grupos = new ArrayList();
         if (valor == 1)
         {
-            grupos = ConsultasObjetos.consultaMuchos("grupo", "id_licenciatura", vtn.lic, null, null, ConectarBase.conectado());
+            grupos = ConsultasObjetos.consultaMuchos("grupo", "id_licenciatura", vtn.lic, null, null, "nombre_grupo", ConectarBase.conectado());
             if (grupos.isEmpty())
             {
                 Mensaje.error(this, "No hay grupos registrados");
@@ -792,7 +792,7 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
             }
         } else if (valor == 2)
         {
-            grupos = ConsultasObjetos.consultaMuchos("grupo", "id_grupo", jtIDBusqeuda.getText(), null, null, ConectarBase.conectado());
+            grupos = ConsultasObjetos.consultaMuchos("grupo", "id_grupo", jtIDBusqeuda.getText(), null, null, "nombre_grupo", ConectarBase.conectado());
             if (grupos.isEmpty())
             {
                 Mensaje.error(this, "No hay grupos registrados");

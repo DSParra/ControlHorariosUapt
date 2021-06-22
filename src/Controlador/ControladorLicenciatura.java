@@ -114,7 +114,7 @@ public class ControladorLicenciatura
         }
         if (mensaje == null)
         {
-            ArrayList bdlics = ConsultasObjetos.consultaMuchos("licenciaturas", null, null, null, null, ConectarBase.conectado());
+            ArrayList bdlics = ConsultasObjetos.consultaMuchos("licenciaturas", null, null, null, null, "nombre", ConectarBase.conectado());
             for (Object lic : licenciaturas)
             {
                 Licenciatura l = (Licenciatura) lic;

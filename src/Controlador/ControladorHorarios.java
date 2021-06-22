@@ -20,7 +20,7 @@ public class ControladorHorarios {
 
     
    public static ArrayList ConsultaHorarios(){
-        ArrayList horarios = ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, ConectarBase.conectado());
+        ArrayList horarios = ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, "hr_entrada", ConectarBase.conectado());
         
        return horarios;
    }

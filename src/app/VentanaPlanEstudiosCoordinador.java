@@ -774,12 +774,12 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void actualizarTabla(int valor) {
-        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, ConectarBase.conectado());
+        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
         modelo = (DefaultTableModel) TablaPeriodos.getModel();
         ArrayList planes = new ArrayList();
         if (valor == 1)
         {
-            planes = ConsultasObjetos.consultaMuchos("plan_estudios", "id_licenciatura", vtn.lic, null, null, ConectarBase.conectado());
+            planes = ConsultasObjetos.consultaMuchos("plan_estudios", "id_licenciatura", vtn.lic, null, null, "plan_estudios", ConectarBase.conectado());
             if (planes.isEmpty())
             {
                 Mensaje.error(this, "No hay planes de estudio registrados");
@@ -798,7 +798,7 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
             }
         } else if (valor == 2)
         {
-            planes = ConsultasObjetos.consultaMuchos("plan_estudios", "id_plan_estudios", jtIDBusqeuda.getText(), null, null, ConectarBase.conectado());
+            planes = ConsultasObjetos.consultaMuchos("plan_estudios", "id_plan_estudios", jtIDBusqeuda.getText(), null, null, "plan_estudios", ConectarBase.conectado());
             if (planes.isEmpty())
             {
                 Mensaje.error(this, "No hay planes de estudio registrados");

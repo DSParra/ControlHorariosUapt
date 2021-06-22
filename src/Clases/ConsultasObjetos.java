@@ -323,15 +323,15 @@ public class ConsultasObjetos {
         }
     }
 
-    public static ArrayList<Object> consultaMuchos(String tabla, String campo, String valor, String campo2, String valor2, Connection con) {
+    public static ArrayList<Object> consultaMuchos(String tabla, String campo, String valor, String campo2, String valor2, String valorOrden, Connection con) {
         try {
             if (campo == null) {
-                ps = con.prepareStatement("SELECT * FROM " + tabla); //traer un dato
+                ps = con.prepareStatement("SELECT * FROM " + tabla + " ORDER BY "+ valorOrden + " ASC"); //traer un dato
             } else if (campo != null && campo2 == null) {
-                ps = con.prepareStatement("SELECT * FROM " + tabla + " WHERE " + campo + "=?"); //traer un dato
+                ps = con.prepareStatement("SELECT * FROM " + tabla + " WHERE " + campo + "=?" + " ORDER BY "+ valorOrden + " ASC"); //traer un dato
                 ps.setString(1, valor);
             } else {
-                ps = con.prepareStatement("SELECT * FROM " + tabla + " WHERE " + campo + "=? AND " + campo2 + "=?"); //traer un dato
+                ps = con.prepareStatement("SELECT * FROM " + tabla + " WHERE " + campo + "=? AND " + campo2 + "=?" + " ORDER BY "+ valorOrden + " ASC"); //traer un dato
                 ps.setString(1, valor);
                 ps.setString(2, valor2);
             }

@@ -779,13 +779,13 @@ public class VentanaCordinadores extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void actualizaTabla(int valor) {
-        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, ConectarBase.conectado());
-        profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, ConectarBase.conectado());
+        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
+        profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, "nombres", ConectarBase.conectado());
         modelo = (DefaultTableModel) TablaUsuarios.getModel();
         ArrayList<Object> user = new ArrayList<>();
         if (valor == 1)
         {
-            user = ConsultasObjetos.consultaMuchos("usuarios", "nivel", "profesor", null, null, ConectarBase.conectado());
+            user = ConsultasObjetos.consultaMuchos("usuarios", "nivel", "profesor", null, null, "rfc", ConectarBase.conectado());
             if (user.isEmpty())
             {
                 Mensaje.error(this, "NO SE ENCUENTRAN COORDINADORES REGISTRADOS");
@@ -803,7 +803,7 @@ public class VentanaCordinadores extends javax.swing.JFrame {
             }
         } else if (valor == 2)
         {
-            user = ConsultasObjetos.consultaMuchos("usuarios", "nivel", "profesor", "id_usuario", jtIDBusqeuda.getText(), ConectarBase.conectado());
+            user = ConsultasObjetos.consultaMuchos("usuarios", "nivel", "profesor", "id_usuario", jtIDBusqeuda.getText(), "rfc", ConectarBase.conectado());
             if (user.isEmpty())
             {
                 Mensaje.error(this, "NO SE ENCUENTRAN COORDINADORES REGISTRADOS");

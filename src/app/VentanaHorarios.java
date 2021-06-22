@@ -708,8 +708,8 @@ public class VentanaHorarios extends javax.swing.JFrame {
         if (evt.getStateChange() == ItemEvent.SELECTED)
         {
             //Licenciatura lic = (Licenciatura) jCLicenciatura.getSelectedItem();
-            grupos = ConsultasObjetos.consultaMuchos("grupo", "id_licenciatura", buscaLic(null, jCLicenciatura.getSelectedItem().toString()), null, null, ConectarBase.conectado());
-            materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", buscaLic(null, jCLicenciatura.getSelectedItem().toString()), null, null, ConectarBase.conectado());
+            grupos = ConsultasObjetos.consultaMuchos("grupo", "id_licenciatura", buscaLic(null, jCLicenciatura.getSelectedItem().toString()), null, null, "nombre_grupo" ,ConectarBase.conectado());
+            materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", buscaLic(null, jCLicenciatura.getSelectedItem().toString()), null, null, "unidad_aprendizaje", ConectarBase.conectado());
             llenaGrupos();
             llenaMaterias();
         }
@@ -731,18 +731,18 @@ public class VentanaHorarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jCPeriodoFiltroItemStateChanged
 
     public void actualizaTabla(int valor) {
-        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, ConectarBase.conectado());
-        periodos = ConsultasObjetos.consultaMuchos("periodo_escolar", null, null, null, null, ConectarBase.conectado());
-        grupos1 = ConsultasObjetos.consultaMuchos("grupo", null, null, null, null, ConectarBase.conectado());
-        grupos = ConsultasObjetos.consultaMuchos("grupo", null, null, null, null, ConectarBase.conectado());
-        materias = ConsultasObjetos.consultaMuchos("materia", null, null, null, null, ConectarBase.conectado());
-        profesores = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, ConectarBase.conectado());
+        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
+        periodos = ConsultasObjetos.consultaMuchos("periodo_escolar", null, null, null, null, "periodo",ConectarBase.conectado());
+        grupos1 = ConsultasObjetos.consultaMuchos("grupo", null, null, null, null, "nombre_grupo",ConectarBase.conectado());
+        grupos = ConsultasObjetos.consultaMuchos("grupo", null, null, null, null, "nombre_grupo",ConectarBase.conectado());
+        materias = ConsultasObjetos.consultaMuchos("materia", null, null, null, null, "unidad_aprendizaje",ConectarBase.conectado());
+        profesores = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, "nombres", ConectarBase.conectado());
         modelo = (DefaultTableModel) TablaHorarios.getModel();
         ArrayList horarios = new ArrayList();
         switch (valor)
         {
             case 1:
-                horarios = ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, ConectarBase.conectado());
+                horarios = ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, "hr_entrada", ConectarBase.conectado());
                 if (horarios.isEmpty())
                 {
                     Mensaje.error(this, "No se encuentran registros");
@@ -765,7 +765,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
                     actualizaTabla(1);
                 } else
                 {
-                    horarios = ConsultasObjetos.consultaMuchos("horarios", "id_grupo", buscaGrupoFiltro(null, jCGrupofiltro.getSelectedItem().toString()), null, null, ConectarBase.conectado());
+                    horarios = ConsultasObjetos.consultaMuchos("horarios", "id_grupo", buscaGrupoFiltro(null, jCGrupofiltro.getSelectedItem().toString()), null, null, "hr_entrada", ConectarBase.conectado());
                     if (horarios.isEmpty())
                     {
                         Mensaje.error(this, "No se encuentran registros");
@@ -789,7 +789,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
                     actualizaTabla(2);
                 } else
                 {
-                    horarios = ConsultasObjetos.consultaMuchos("horarios", "id_grupo", buscaGrupoFiltro(null, jCGrupofiltro.getSelectedItem().toString()), "id_periodo", jCPeriodoFiltro.getSelectedItem().toString(), ConectarBase.conectado());
+                    horarios = ConsultasObjetos.consultaMuchos("horarios", "id_grupo", buscaGrupoFiltro(null, jCGrupofiltro.getSelectedItem().toString()), "id_periodo", jCPeriodoFiltro.getSelectedItem().toString(), "hr_entrada", ConectarBase.conectado());
                     if (horarios.isEmpty())
                     {
                         Mensaje.error(this, "No se encuentran registros");
@@ -1628,14 +1628,15 @@ public class VentanaHorarios extends javax.swing.JFrame {
     }
 
     private String comparaGrupos(PeriodoHorarios hr) {
-        horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, ConectarBase.conectado()));
+        horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, "hr_entrada", ConectarBase.conectado()));
         double entrada1, salida1, entrada2, salida2;
         for (int i = 0; i < horariosBD.size(); i++)
         {
             System.out.println("entre a for grupo" + horariosBD.get(i).getIdHorario());
             if (horariosBD.get(i).getIdGrupo().equals(hr.getIdGrupo()) && horariosBD.get(i).getDia().equals(hr.getDia()))
             {
-                System.out.println("entre a primer condicion");
+                System.out.println("entre a primer condicion: grupo " +  horariosBD.get(i).getIdGrupo() + " Dia " +  horariosBD.get(i).getDia());
+                System.out.println("entre a primer condicion: grupo " +  hr.getIdGrupo() + " Dia " +  hr.getDia());
                 entrada1 = Double.parseDouble(horariosBD.get(i).getEntrada().substring(0, 2) + "." + horariosBD.get(i).getEntrada().substring(3, 5));
                 salida1 = Double.parseDouble(horariosBD.get(i).getSalida().substring(0, 2) + "." + horariosBD.get(i).getSalida().substring(3, 5));
                 entrada2 = Double.parseDouble(hr.getEntrada().substring(0, 2) + "." + hr.getEntrada().substring(3, 5));
@@ -1655,7 +1656,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
 
     private String comparaDocenete(PeriodoHorarios hr) {
         double entrada1, entrada2, salida1, salida2;
-        horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, ConectarBase.conectado()));
+        horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null,"hr_entrada" ,ConectarBase.conectado()));
         for (int i = 0; i < horariosBD.size(); i++)
         {
             System.out.println("entre a for docente " + horariosBD.get(i).getIdHorario());

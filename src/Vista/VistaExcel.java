@@ -394,11 +394,11 @@ public class VistaExcel extends javax.swing.JFrame {
     }
 
     public void importaBD() {
-        materias = new ArrayList(ConsultasObjetos.consultaMuchos("materia", null, null, null, null, ConectarBase.conectado()));
-        profes = new ArrayList(ConsultasObjetos.consultaMuchos("profesores", null, null, null, null, ConectarBase.conectado()));
-        grupos = new ArrayList(ConsultasObjetos.consultaMuchos("grupo", null, null, null, null, ConectarBase.conectado()));
-        carreras = new ArrayList(ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, ConectarBase.conectado()));
-        periodos = new ArrayList(ConsultasObjetos.consultaMuchos("periodo_escolar", null, null, null, null, ConectarBase.conectado()));
+        materias = new ArrayList(ConsultasObjetos.consultaMuchos("materia", null, null, null, null, null, ConectarBase.conectado()));
+        profes = new ArrayList(ConsultasObjetos.consultaMuchos("profesores", null, null, null, null, null, ConectarBase.conectado()));
+        grupos = new ArrayList(ConsultasObjetos.consultaMuchos("grupo", null, null, null, null, null, ConectarBase.conectado()));
+        carreras = new ArrayList(ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, null, ConectarBase.conectado()));
+        periodos = new ArrayList(ConsultasObjetos.consultaMuchos("periodo_escolar", null, null, null, null, null, ConectarBase.conectado()));
     }
 
     public void muestraBD() {
@@ -470,7 +470,7 @@ public class VistaExcel extends javax.swing.JFrame {
 
             horarios = guardaExcel();
             horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", "id_grupo", String.valueOf(busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(0, 4)), "grupo")),
-                    "id_periodo", String.valueOf(busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(0, 5)), "periodo")), ConectarBase.conectado()));
+                    "id_periodo", String.valueOf(busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(0, 5)), "periodo")), null, ConectarBase.conectado()));
             System.out.println("hasta aqui llego");
         }
         jCheckExcel.setSelected(comparaGrupos());
@@ -487,7 +487,7 @@ public class VistaExcel extends javax.swing.JFrame {
     public boolean evaluaProfesores() {
         boolean prueba = true;
         double entrada1, entrada2, salida1, salida2;
-        horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, ConectarBase.conectado()));
+        horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, null,ConectarBase.conectado()));
         horarios = guardaExcel();
 
         for (int i = 0; i < horarios.size(); i++) {
@@ -528,7 +528,7 @@ public class VistaExcel extends javax.swing.JFrame {
     public boolean evaluaGruposBD() {
         boolean prueba = true;
         double entrada1, entrada2, salida1, salida2;
-        horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, ConectarBase.conectado()));
+        horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, null, ConectarBase.conectado()));
         horarios = guardaExcel();
         for (int i = 0; i < horarios.size(); i++) {
             for (int j = 0; j < horariosBD.size(); j++) {

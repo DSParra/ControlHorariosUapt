@@ -813,7 +813,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
         if (evt.getStateChange() == ItemEvent.SELECTED)
         {
             //Licenciatura lic = (Licenciatura) jCLicenciatura.getSelectedItem();
-            plans = ConsultasObjetos.consultaMuchos("plan_estudios", "id_licenciatura", buscaLic(null, jCLicenciatura.getSelectedItem().toString()), null, null, ConectarBase.conectado());
+            plans = ConsultasObjetos.consultaMuchos("plan_estudios", "id_licenciatura", buscaLic(null, jCLicenciatura.getSelectedItem().toString()), null, null, "plan_estudios", ConectarBase.conectado());
             llenaComboPlanes();
         }
     }//GEN-LAST:event_jCLicenciaturaItemStateChanged
@@ -987,14 +987,14 @@ public class VentanaMaterias extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void actualizarTabla(int valor) {
-        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, ConectarBase.conectado());
-        plans = ConsultasObjetos.consultaMuchos("plan_estudios", null, null, null, null, ConectarBase.conectado());
+        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
+        plans = ConsultasObjetos.consultaMuchos("plan_estudios", null, null, null, null, "plan_estudios", ConectarBase.conectado());
         modelo = (DefaultTableModel) TablaMAterias.getModel();
         ArrayList materias = new ArrayList();
         switch (valor)
         {
             case 1:
-                materias = ConsultasObjetos.consultaMuchos("materia", null, null, null, null, ConectarBase.conectado());
+                materias = ConsultasObjetos.consultaMuchos("materia", null, null, null, null, "unidad_aprendizaje", ConectarBase.conectado());
                 if (materias.isEmpty())
                 {
                     Mensaje.error(this, "No hay materias registradas");
@@ -1012,7 +1012,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
                 }
                 break;
             case 2:
-                materias = ConsultasObjetos.consultaMuchos("materia", "clave_materia", jtIDBusqeuda.getText(), null, null, ConectarBase.conectado());
+                materias = ConsultasObjetos.consultaMuchos("materia", "clave_materia", jtIDBusqeuda.getText(), null, null, "unidad_aprendizaje", ConectarBase.conectado());
                 if (materias.isEmpty())
                 {
                     Mensaje.error(this, "No hay materias registradas con este ID");
@@ -1035,7 +1035,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
                     actualizarTabla(1);
                 } else
                 {
-                    materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()), null, null, ConectarBase.conectado());
+                    materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()), null, null, "unidad_aprendizaje",ConectarBase.conectado());
                     if (materias.isEmpty())
                     {
                         Mensaje.error(this, "No hay materias registradas");
@@ -1059,7 +1059,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
                     actualizarTabla(3);
                 } else
                 {
-                    materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()), "numero_periodo", jcSesmtre.getSelectedItem().toString(), ConectarBase.conectado());
+                    materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()), "numero_periodo", jcSesmtre.getSelectedItem().toString(), "unidad_aprendizaje", ConectarBase.conectado());
                     if (materias.isEmpty())
                     {
                         Mensaje.error(this, "No hay materias registradas con este semestre");

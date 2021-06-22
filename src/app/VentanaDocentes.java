@@ -898,7 +898,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
         if (valor == 1)
         {
 
-            profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, ConectarBase.conectado());
+            profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, "nombres",ConectarBase.conectado());
             if (profes.isEmpty())
             {
                 Mensaje.error(this, "No se encuentran registros");
@@ -917,7 +917,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
             }
         } else if (valor == 2)
         {
-            profes = ConsultasObjetos.consultaMuchos("profesores", "nombres", jtIDBusqeuda.getText(), null, null, ConectarBase.conectado());
+            profes = ConsultasObjetos.consultaMuchos("profesores", "nombres", jtIDBusqeuda.getText(), null, null, "nombres", ConectarBase.conectado());
             if (profes.isEmpty())
             {
                 Mensaje.error(this, "No se encuentran registros");

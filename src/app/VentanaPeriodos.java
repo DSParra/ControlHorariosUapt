@@ -662,7 +662,7 @@ public class VentanaPeriodos extends javax.swing.JFrame {
         if (valor == 1)
         {
 
-            periodos = ConsultasObjetos.consultaMuchos("periodo_escolar", null, null, null, null, ConectarBase.conectado());
+            periodos = ConsultasObjetos.consultaMuchos("periodo_escolar", null, null, null, null, "periodo", ConectarBase.conectado());
             if (periodos.isEmpty())
             {
                 Mensaje.error(this, "No hay periodos registrados");
@@ -681,7 +681,7 @@ public class VentanaPeriodos extends javax.swing.JFrame {
             }
         } else if (valor == 2)
         {
-            periodos = ConsultasObjetos.consultaMuchos("periodo_escolar", "id_periodo", jtIDBusqeuda.getText(), null, null, ConectarBase.conectado());
+            periodos = ConsultasObjetos.consultaMuchos("periodo_escolar", "id_periodo", jtIDBusqeuda.getText(), null, null, "periodo", ConectarBase.conectado());
             if (periodos.isEmpty())
             {
                 Mensaje.error(this, "No hay periodos registrados");
