@@ -18,48 +18,58 @@ import java.util.ArrayList;
  */
 public class ControladorHorarios {
 
-    
-   public static ArrayList ConsultaHorarios(){
+    public static ArrayList ConsultaHorarios() {
         ArrayList horarios = ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, "hr_entrada", ConectarBase.conectado());
-        
-       return horarios;
-   }
-    
+
+        return horarios;
+    }
+
     public static int numdia(String dia) {
-        if (dia.equals("Lunes") || dia.equals("lunes") || dia.equals("lun") || dia.equals("LUNES")) {
+        if (dia.equals("Lunes") || dia.equals("lunes") || dia.equals("lun") || dia.equals("LUNES"))
+        {
             return 1;
-        } else if (dia.equals("Martes") || dia.equals("martes") || dia.equals("mar") || dia.equals("MARTES")) {
+        } else if (dia.equals("Martes") || dia.equals("martes") || dia.equals("mar") || dia.equals("MARTES"))
+        {
             return 2;
-        } else if (dia.equals("Miercoles") || dia.equals("miercoles") || dia.equals("mie") || dia.equals("MIERCOLES")) {
+        } else if (dia.equals("Miercoles") || dia.equals("miercoles") || dia.equals("mie") || dia.equals("MIERCOLES"))
+        {
             return 3;
-        } else if (dia.equals("Jueves") || dia.equals("jueves") || dia.equals("jue") || dia.equals("JUEVES")) {
+        } else if (dia.equals("Jueves") || dia.equals("jueves") || dia.equals("jue") || dia.equals("JUEVES"))
+        {
             return 4;
-        } else if (dia.equals("Viernes") || dia.equals("viernes") || dia.equals("vie") || dia.equals("VIERNES")) {
+        } else if (dia.equals("Viernes") || dia.equals("viernes") || dia.equals("vie") || dia.equals("VIERNES"))
+        {
             return 5;
-        } else if (dia.equals("Sabado") || dia.equals("sabado") || dia.equals("sab") || dia.equals("SABADO")) {
+        } else if (dia.equals("Sabado") || dia.equals("sabado") || dia.equals("sab") || dia.equals("SABADO"))
+        {
             return 6;
         }
         return 0;
     }
-    
+
     public static String numdia(int dia) {
-        if (dia == 1) {
+        if (dia == 1)
+        {
             return "LUNES";
-        } else if (dia == 2) {
+        } else if (dia == 2)
+        {
             return "MARTES";
-        } else if (dia == 3) {
+        } else if (dia == 3)
+        {
             return "MIERCOLES";
-        } else if (dia == 4) {
+        } else if (dia == 4)
+        {
             return "JUEVES";
-        } else if (dia == 5) {
-            return "VIERNES"; 
-        } else if (dia == 6) {
+        } else if (dia == 5)
+        {
+            return "VIERNES";
+        } else if (dia == 6)
+        {
             return "SABADO";
-        } 
+        }
         return "No encontrado";
     }
-    
-    
+
 //        public static String InsertaProfesor(Profesor profe) {
 //        String mensaje = "Error en los datos: ";
 //        if (profe.getRfc() == null || profe.getRfc().equals("")) {
@@ -100,36 +110,43 @@ public class ControladorHorarios {
 //
 //        return mensaje;
 //    }
-
-
-        
-        public static String evaluaDatos(PeriodoHorarios horario) {
+    public static String evaluaDatos(PeriodoHorarios horario) {
         String mensaje = "";
-        if (horario.getRfc() == null || horario.getRfc().equals("")) {
+        if (horario.getIdHorario() == null || horario.getIdHorario().equals(""))
+        {
+            mensaje += "ID vacio";
+        } else if (horario.getIdPeriodo() == null || horario.getIdHorario().equals(""))
+        {
+            mensaje += "Periodo vacio o no asignado";
+        } else if (horario.getIdGrupo() == null || horario.getIdGrupo().equals(""))
+        {
+            mensaje += "Grupo vacio o sin asignar";
+        } else if (horario.getClaveMateria() == null || horario.getClaveMateria().equals(""))
+        {
+            mensaje += "Materia vacia o no asignada";
+        } else if (horario.getRfc() == null || horario.getRfc().equals(""))
+        {
             mensaje += "Rfc Vacio";
-        } else if (horario.getClaveMateria()== null || horario.getClaveMateria().equals("")) {
+        } else if (horario.getClaveMateria() == null || horario.getClaveMateria().equals(""))
+        {
             mensaje += "Clave Materiavacio";
-        }/* else if (Integer.valueOf(horario.getDia()) == 0 ) {
-            mensaje += "Dia incorrecto";
-        } else if (horario.getEntrada()== null || horario.getEntrada().equals("")) {
-            mensaje += "Hora entrada vacia ";
-        } else if (Integer.valueOf(horario.getIdGrupo())== 0) {
-            mensaje += "grupo incorrecto";
-        } else if (Integer.valueOf(horario.getIdPeriodo())== 0) {
-            mensaje += "periodo incorrecto";
-        }*/ else if (horario.getSalida() == null || horario.getSalida().equals("")) {
-            mensaje += "Hora salida vacia";
+        } else if (horario.getEntrada() == null || horario.getEntrada().equals(""))
+        {
+            mensaje += "Hora de entrada vacia";
+        } else if (horario.getSalida() == null || horario.getSalida().equals(""))
+        {
+            mensaje += "Hora de salida vacia";
         }
         return mensaje;
     }
-    
-        
-        
-        public static String insertaMuchos(ArrayList<Object> horarios) {
+
+    public static String insertaMuchos(ArrayList<Object> horarios) {
         String mensaje = null;
-        for (Object horario : horarios) {
+        for (Object horario : horarios)
+        {
             PeriodoHorarios p = (PeriodoHorarios) horario;
-            if (!evaluaDatos(p).equals("")) {
+            if (!evaluaDatos(p).equals(""))
+            {
                 return evaluaDatos(p);
             }
         }
@@ -155,25 +172,61 @@ public class ControladorHorarios {
         if (mensaje.equals(""))
         {
             Object id_horario;
-            id_horario = ConsultasObjetos.consultaUnica("horarios", null, null, ConectarBase.conectado());
+            id_horario = ConsultasObjetos.consultaUnica("horarios", "id_horario", horario.getIdHorario(), ConectarBase.conectado());
             if (id_horario != null)
             {
                 return "ID de horario repetido inserte uno nuevo o diferente";
-            }
-            else 
+            } else
             {
-                Boolean registro = ConsultasObjetos.inserta(horario, ConectarBase.conectado(), "horarios");
-                if (registro)
-                {
-                    System.out.println("operacion exitosa en el controlador horarios");
-                    return "operacion exitosa";
-                }
-                else
-                {
-                    mensaje += "No se pudo registrar el horario";
-                }
+                return "operacion exitosa";
             }
         }
         return mensaje;
     }
+
+    public static boolean insertaEnBaseUnicoHorario(PeriodoHorarios horario) {
+        boolean registro = ConsultasObjetos.inserta(horario, ConectarBase.conectado(), "horarios");
+        return registro;
+    }
+
+    public static String modificaHorarioUnico(PeriodoHorarios horario, String id) {
+        String mensaje = evaluaDatos(horario);
+        if (mensaje.equals(""))
+        {
+            return "operacion exitosa";
+        } else
+        {
+            return "Error al modificar la materia";
+        }
+    }
+
+    public static boolean modificaEnBaseUnicoHorario(PeriodoHorarios horario, String id) {
+        Boolean registro = ConsultasObjetos.Modifica(horario, ConectarBase.conectado(), "horarios", id);
+        ConsultasObjetos.Modifica(horario, ConectarBase.conectado(), "horarios", id);
+        return registro;
+    }
+
+    public static String eliminaHorario(String id_horario) {
+        if (id_horario == null || id_horario.equals(""))
+        {
+            return "No a seleccionado una materia a eliminiar";
+        } else
+        {
+            Object idHorario = ConsultasObjetos.consultaUnica("horarios", "id_horario", id_horario, ConectarBase.conectado());
+            if (idHorario == null)
+            {
+                return "Horario no encontrado";
+            } else
+            {
+                if (ConsultasObjetos.elimina("horarios", "id_horario", id_horario, 0, ConectarBase.conectado()))
+                {
+                    return "operacion exitosa";
+                } else
+                {
+                    return "No se pudo eliminar la materia";
+                }
+            }
+        }
+    }
+
 }
