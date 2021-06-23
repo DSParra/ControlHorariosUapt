@@ -818,9 +818,11 @@ public class VentanaHorarios extends javax.swing.JFrame {
 
     private void TablaHorariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaHorariosMouseClicked
         jTIdhorario.setText((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 0));
-        jCPeriodo.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 1), jCPeriodo)));
+        JCMateria.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 1), JCMateria)));
+        String GrupoACombo = retornameLic((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 2));
+        jCLicenciatura.setSelectedIndex((buscarCombo(buscaLic(GrupoACombo, null), jCLicenciatura)));
         JCGrupo.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 2), JCGrupo)));
-        JCMateria.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 3), JCMateria)));
+        jCPeriodo.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 3), jCPeriodo)));
         JCDocente.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 4), JCDocente)));
         jCDia.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 5), jCDia)));
         jTEntrada.setText((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 6));
@@ -1799,5 +1801,17 @@ public class VentanaHorarios extends javax.swing.JFrame {
             }
         }
         return 0;
+    }
+
+    private String retornameLic(String grupito) {
+        Grupo gp = new Grupo();
+        gp = (Grupo) ConsultasObjetos.consultaUnica("grupo", "nombre_grupo", grupito, ConectarBase.conectado());
+        if (gp != null)
+        {
+            return gp.getId_licenciatura();
+        } else
+        {
+            return "Sin datos";
+        }
     }
 }
