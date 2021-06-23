@@ -23,6 +23,8 @@ import cjb.ci.Validaciones;
 import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -34,7 +36,6 @@ public class VentanaHorarios extends javax.swing.JFrame {
     int id = 0;
     private Boolean edicion = true;
     private DefaultTableModel modelo;
-    private ArrayList<PeriodoHorarios> horarios = new ArrayList<>();
     private ArrayList<Object> lics = new ArrayList<>();
     private ArrayList<Object> periodos = new ArrayList<>();
     private ArrayList<Object> grupos = new ArrayList<>();
@@ -160,7 +161,11 @@ public class VentanaHorarios extends javax.swing.JFrame {
                 "CLAVE", "MATERIA", "GRUPO", "PERIODO", "PROFESOR", "DIA", "ENTRADA", "SALIDA"
             }
         ));
-        TablaHorarios.setEnabled(false);
+        TablaHorarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaHorariosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TablaHorarios);
 
         jPanel1.setBackground(new java.awt.Color(25, 83, 0));
@@ -575,11 +580,22 @@ public class VentanaHorarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jTIdhorarioActionPerformed
 
     private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
-
+        if (Mensaje.pregunta(this, "¿Seguro que desea eliminar este registro?") == 0)
+        {
+            String mensaje = Controlador.ControladorHorarios.eliminaHorario(jTIdhorario.getText());
+            if (mensaje.endsWith("operacion exitosa"))
+            {
+                actualizaTabla(1);
+                jCGrupofiltro.setSelectedIndex(0);
+            } else
+            {
+                JOptionPane.showMessageDialog(rootPane, mensaje);
+            }
+        }
     }//GEN-LAST:event_jBeliminarActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-        // TODO add your handling code here:
+        cancelar();
     }//GEN-LAST:event_jBCancelarActionPerformed
 
     private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
@@ -608,49 +624,119 @@ public class VentanaHorarios extends javax.swing.JFrame {
         if (!edicion)
         {
             edicion();
-            jBAceptar1.setText("ACEPTAR");
+            jBAceptar1.setText("Aceptar");
             CtrlInterfaz.limpia(jTEntrada, jTSalida, jTIdhorario);
-            CtrlInterfaz.habilita(true, jTSalida, jTEntrada, jTIdhorario, jBCancelar);
+            CtrlInterfaz.habilita(true, jTSalida, jTEntrada, jTIdhorario, jCPeriodo, jCLicenciatura, JCGrupo, JCMateria, JCDocente, jCDia, jBCancelar);
             CtrlInterfaz.habilita(false, jBeliminar, jBModificar, btnImportar, btnExportar);
             CtrlInterfaz.selecciona(jTIdhorario);
         } else
         {
             PeriodoHorarios horario = new PeriodoHorarios(jTIdhorario.getText(), buscaMateria(null, JCMateria.getSelectedItem().toString()), buscaGrupo(null, JCGrupo.getSelectedItem().toString()), buscaPeriodo(null, jCPeriodo.getSelectedItem().toString()), buscaProfesor(null, JCDocente.getSelectedItem().toString()), jCDia.getSelectedItem().toString(), jTEntrada.getText(), jTSalida.getText());
-            String msj = comparaGrupos(horario);
-            String msj1;
-            if (!"exitoso".equals(msj))
+            String mensaje = ControladorHorarios.insertaHorarioUnico(horario);
+            boolean var;
+            boolean var2, registro;
+            if (mensaje.equals("operacion exitosa"))
             {
-                Mensaje.error(this, msj);
-            } else
-            {
-                Mensaje.exito(this, msj);
-                msj1 = comparaDocenete(horario);
-                if (!"exitoso".equals(msj1))
+                var = comparaGrupos(horario);
+                var2 = comparaProfesores(horario);
+                if (var == false)
                 {
-                    Mensaje.error(this, msj1);
+                    Mensaje.error(this, "Corrija las horas de entrada y salida de la materia que quiere asignar en este grupo");
                 } else
                 {
-                    Mensaje.exito(this, msj);
-                    String mensaje = ControladorHorarios.insertaHorarioUnico(horario);
-                    if (mensaje.equals("operacion exitosa"))
+                    if (var2 == false)
                     {
-                        actualizaTabla(1);
-                        edicion();
+                        Mensaje.error(this, "Corrija el horario en el que el docente impartira la materia");
+                    } else
+                    {
+                        registro = ControladorHorarios.insertaEnBaseUnicoHorario(horario);
+                        if (registro == false)
+                        {
+                            Mensaje.exito(this, "Horario registrado correctamente");
+                            jBAceptar1.setText("Nuevo");
+                            CtrlInterfaz.limpia(jTEntrada, jTSalida, jTIdhorario);
+                            CtrlInterfaz.habilita(false, jTSalida, jTEntrada, jTIdhorario, jCPeriodo, jCLicenciatura, JCGrupo, JCMateria, JCDocente, jCDia, jBCancelar);
+                            CtrlInterfaz.habilita(true, jBAceptar1, jBeliminar, jBModificar, btnImportar, btnExportar);
+                            jCGrupofiltro.setSelectedIndex(0);
+                            actualizaTabla(1);
+                            edicion();
+                            CtrlInterfaz.limpia(jTIdhorario, jTEntrada, jTSalida);
+                        } else
+                        {
+                            Mensaje.error(this, "No se pudo registrar el horario");
+                        }
                     }
                 }
+            } else
+            {
+                JOptionPane.showMessageDialog(rootPane, mensaje);
             }
-            //CtrlInterfaz.limpia(jTIdhorario, jTEntrada, jTSalida);
 
         }
     }//GEN-LAST:event_jBAceptar1ActionPerformed
 
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
-        // TODO add your handling code here:
+        if (jTIdhorario.getText().compareTo("") == 0)
+        {
+            Mensaje.error(this, "No ha seleccionado nungun registro");
+        } else
+        {
+            if (!edicion)
+            {
+                edicion();
+                jBModificar.setText("Aceptar");
+                CtrlInterfaz.habilita(true, jTSalida, jTEntrada, jCPeriodo, jCLicenciatura, JCGrupo, JCMateria, JCDocente, jCDia, jBCancelar);
+                CtrlInterfaz.habilita(false, jBeliminar, jBAceptar1, btnImportar, btnExportar);
+
+            } else
+            {
+                PeriodoHorarios horario = new PeriodoHorarios(jTIdhorario.getText(), buscaMateria(null, JCMateria.getSelectedItem().toString()), buscaGrupo(null, JCGrupo.getSelectedItem().toString()), buscaPeriodo(null, jCPeriodo.getSelectedItem().toString()), buscaProfesor(null, JCDocente.getSelectedItem().toString()), jCDia.getSelectedItem().toString(), jTEntrada.getText(), jTSalida.getText());
+                String mensaje = ControladorHorarios.modificaHorarioUnico(horario, (String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 0));
+                boolean var;
+                boolean var2, registro;
+                if (mensaje.equals("operacion exitosa"))
+                {
+                    var = comparaGrupos(horario);
+                    var2 = comparaProfesores(horario);
+                    if (var == false)
+                    {
+                        Mensaje.error(this, "Corrija las horas de entrada y salida de la materia que quiere asignar en este grupo");
+                    } else
+                    {
+                        if (var2 == false)
+                        {
+                            Mensaje.error(this, "Corrija el horario en el que el docente impartira la materia");
+                        } else
+                        {
+                            registro = ControladorHorarios.modificaEnBaseUnicoHorario(horario, (String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 0));
+                            if (registro == true)
+                            {
+                                Mensaje.exito(this, "Horario modificado correctamente");
+                                jBModificar.setText("Modificar");
+                                CtrlInterfaz.limpia(jTEntrada, jTSalida, jTIdhorario);
+                                CtrlInterfaz.habilita(false, jTSalida, jTEntrada, jTIdhorario, jCPeriodo, jCLicenciatura, JCGrupo, JCMateria, JCDocente, jCDia, jBCancelar);
+                                CtrlInterfaz.habilita(true, jBAceptar1, jBeliminar, jBModificar, btnImportar, btnExportar);
+                                jCGrupofiltro.setSelectedIndex(0);
+                                actualizaTabla(1);
+                                edicion();
+                                CtrlInterfaz.limpia(jTIdhorario, jTEntrada, jTSalida);
+                            } else
+                            {
+                                Mensaje.error(this, "No se pudo registrar el horario");
+                            }
+                        }
+                    }
+                } else
+                {
+                    JOptionPane.showMessageDialog(rootPane, mensaje);
+                }
+            }
+        }
     }//GEN-LAST:event_jBModificarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        //horarios = new ArrayList(ConsultasObjetos.consultaHorarios(null,null, null, null, ConectarBase.conectado()));
         System.out.println("conecta");
+        cancelar();
         actualizaTabla(1);
         llenaGruposFiltro();
         cargaPeriodos();
@@ -708,7 +794,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
         if (evt.getStateChange() == ItemEvent.SELECTED)
         {
             //Licenciatura lic = (Licenciatura) jCLicenciatura.getSelectedItem();
-            grupos = ConsultasObjetos.consultaMuchos("grupo", "id_licenciatura", buscaLic(null, jCLicenciatura.getSelectedItem().toString()), null, null, "nombre_grupo" ,ConectarBase.conectado());
+            grupos = ConsultasObjetos.consultaMuchos("grupo", "id_licenciatura", buscaLic(null, jCLicenciatura.getSelectedItem().toString()), null, null, "nombre_grupo", ConectarBase.conectado());
             materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", buscaLic(null, jCLicenciatura.getSelectedItem().toString()), null, null, "unidad_aprendizaje", ConectarBase.conectado());
             llenaGrupos();
             llenaMaterias();
@@ -730,12 +816,23 @@ public class VentanaHorarios extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jCPeriodoFiltroItemStateChanged
 
+    private void TablaHorariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaHorariosMouseClicked
+        jTIdhorario.setText((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 0));
+        jCPeriodo.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 1), jCPeriodo)));
+        JCGrupo.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 2), JCGrupo)));
+        JCMateria.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 3), JCMateria)));
+        JCDocente.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 4), JCDocente)));
+        jCDia.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 5), jCDia)));
+        jTEntrada.setText((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 6));
+        jTSalida.setText((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 7));
+    }//GEN-LAST:event_TablaHorariosMouseClicked
+
     public void actualizaTabla(int valor) {
         lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
-        periodos = ConsultasObjetos.consultaMuchos("periodo_escolar", null, null, null, null, "periodo",ConectarBase.conectado());
-        grupos1 = ConsultasObjetos.consultaMuchos("grupo", null, null, null, null, "nombre_grupo",ConectarBase.conectado());
-        grupos = ConsultasObjetos.consultaMuchos("grupo", null, null, null, null, "nombre_grupo",ConectarBase.conectado());
-        materias = ConsultasObjetos.consultaMuchos("materia", null, null, null, null, "unidad_aprendizaje",ConectarBase.conectado());
+        periodos = ConsultasObjetos.consultaMuchos("periodo_escolar", null, null, null, null, "periodo", ConectarBase.conectado());
+        grupos1 = ConsultasObjetos.consultaMuchos("grupo", null, null, null, null, "nombre_grupo", ConectarBase.conectado());
+        grupos = ConsultasObjetos.consultaMuchos("grupo", null, null, null, null, "nombre_grupo", ConectarBase.conectado());
+        materias = ConsultasObjetos.consultaMuchos("materia", null, null, null, null, "unidad_aprendizaje", ConectarBase.conectado());
         profesores = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, "nombres", ConectarBase.conectado());
         modelo = (DefaultTableModel) TablaHorarios.getModel();
         ArrayList horarios = new ArrayList();
@@ -789,7 +886,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
                     actualizaTabla(2);
                 } else
                 {
-                    horarios = ConsultasObjetos.consultaMuchos("horarios", "id_grupo", buscaGrupoFiltro(null, jCGrupofiltro.getSelectedItem().toString()), "id_periodo", jCPeriodoFiltro.getSelectedItem().toString(), "hr_entrada", ConectarBase.conectado());
+                    horarios = ConsultasObjetos.consultaMuchos("horarios", "id_grupo", buscaGrupoFiltro(null, jCGrupofiltro.getSelectedItem().toString()), "id_periodo", buscaPeriodo(null, jCPeriodoFiltro.getSelectedItem().toString()), "hr_entrada", ConectarBase.conectado());
                     if (horarios.isEmpty())
                     {
                         Mensaje.error(this, "No se encuentran registros");
@@ -1431,14 +1528,6 @@ public class VentanaHorarios extends javax.swing.JFrame {
         return null;
     }
 
-//
-//    private Object buscaGrupo(String idGrupo, Object object) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-//
-//    private Object buscaPeriodo(String idPeriodo, Object object) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
     private String buscaProfesor(String rfc, String profesor) {
         if (profesor != null)
         {
@@ -1627,55 +1716,88 @@ public class VentanaHorarios extends javax.swing.JFrame {
         return null;
     }
 
-    private String comparaGrupos(PeriodoHorarios hr) {
-        horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, "hr_entrada", ConectarBase.conectado()));
-        double entrada1, salida1, entrada2, salida2;
+    private boolean comparaGrupos(PeriodoHorarios hr) {
+        boolean var = true;
+        double entradaHR, salidaHR, entradaBd, salidaBD;
+        System.out.println("grpo " + hr.getIdGrupo());
+        materias = ConsultasObjetos.consultaMuchos("materia", null, null, null, null, "unidad_aprendizaje", ConectarBase.conectado());
+        horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, null, ConectarBase.conectado()));
         for (int i = 0; i < horariosBD.size(); i++)
         {
-            System.out.println("entre a for grupo" + horariosBD.get(i).getIdHorario());
-            if (horariosBD.get(i).getIdGrupo().equals(hr.getIdGrupo()) && horariosBD.get(i).getDia().equals(hr.getDia()))
+            if (hr.getDia().equals(horariosBD.get(i).getDia()) && hr.getIdGrupo().equals(horariosBD.get(i).getIdGrupo()))
             {
-                System.out.println("entre a primer condicion: grupo " +  horariosBD.get(i).getIdGrupo() + " Dia " +  horariosBD.get(i).getDia());
-                System.out.println("entre a primer condicion: grupo " +  hr.getIdGrupo() + " Dia " +  hr.getDia());
-                entrada1 = Double.parseDouble(horariosBD.get(i).getEntrada().substring(0, 2) + "." + horariosBD.get(i).getEntrada().substring(3, 5));
-                salida1 = Double.parseDouble(horariosBD.get(i).getSalida().substring(0, 2) + "." + horariosBD.get(i).getSalida().substring(3, 5));
-                entrada2 = Double.parseDouble(hr.getEntrada().substring(0, 2) + "." + hr.getEntrada().substring(3, 5));
-                salida2 = Double.parseDouble(hr.getSalida().substring(0, 2) + "." + hr.getSalida().substring(3, 5));
-                if (entrada2 >= entrada1 && entrada2 <= salida1)
+                System.out.println("+ + + + + Es el mismo dia en " + i + " y elm mismo grupo en registro " + horariosBD.get(i).getIdHorario());
+                entradaHR = Double.parseDouble(hr.getEntrada().substring(0, 2) + "." + hr.getEntrada().substring(3, 5));
+                salidaHR = Double.parseDouble(hr.getSalida().substring(0, 2) + "." + hr.getSalida().substring(3, 5));
+                entradaBd = Double.parseDouble(horariosBD.get(i).getEntrada().substring(0, 2) + "." + horariosBD.get(i).getEntrada().substring(3, 5));
+                salidaBD = Double.parseDouble(horariosBD.get(i).getSalida().substring(0, 2) + "." + horariosBD.get(i).getSalida().substring(3, 5));
+
+                System.out.println(". . . . . entrada registro " + entradaHR + " Y salida " + salidaHR);
+                System.out.println(". . . . . entrada registro " + entradaBd + " Y salida " + salidaBD);
+                if (entradaHR >= entradaBd && entradaHR < salidaBD)
                 {
-                    System.out.println("entre a segunda condicion");
-                    return "Error por cruze de grupos con " + horariosBD.get(i).getIdGrupo();
-                } 
-            } else
-            {
-                return "exitoso";
+                    Mensaje.error(this, "Este grupo ya tiene la materia de " + buscaMateria(horariosBD.get(i).getClaveMateria(), null) + " De las " + entradaBd + "Hrs. a las " + salidaBD + "Hrs.");
+                    var = false;
+                }
             }
         }
-        return "nulo grupo";
+        return var;
     }
 
-    private String comparaDocenete(PeriodoHorarios hr) {
-        double entrada1, entrada2, salida1, salida2;
-        horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null,"hr_entrada" ,ConectarBase.conectado()));
+    private boolean comparaProfesores(PeriodoHorarios hr) {
+        System.out.println("entre a profesores");
+        boolean var = true;
+        double entradaHR, salidaHR, entradaBd, salidaBD;
+        horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, null, ConectarBase.conectado()));
+        grupos = ConsultasObjetos.consultaMuchos("grupo", null, null, null, null, "nombre_grupo", ConectarBase.conectado());
+
         for (int i = 0; i < horariosBD.size(); i++)
         {
-            System.out.println("entre a for docente " + horariosBD.get(i).getIdHorario());
-            if (horariosBD.get(i).getRfc().equals(hr.getRfc()) && horariosBD.get(i).getDia().equals(hr.getDia()))
+            if (hr.getRfc().equalsIgnoreCase(horariosBD.get(i).getRfc()) && hr.getDia().equals(horariosBD.get(i).getDia()))
             {
-                System.out.println("entre en primer condicion ");
-                entrada1 = Double.parseDouble(horariosBD.get(i).getEntrada().substring(0, 2) + "." + horariosBD.get(i).getEntrada().substring(3, 5));
-                salida1 = Double.parseDouble(horariosBD.get(i).getSalida().substring(0, 2) + "." + horariosBD.get(i).getSalida().substring(3, 5));
-                entrada2 = Double.parseDouble(hr.getEntrada().substring(0, 2) + "." + hr.getEntrada().substring(3, 5));
-                salida2 = Double.parseDouble(hr.getSalida().substring(0, 2) + "." + hr.getSalida().substring(3, 5));
-                if (entrada2 >= entrada1 && entrada2 <= salida1)
+                System.out.println("+ + + + + Es el mismo rfc  y el mismo dia en registro " + horariosBD.get(i).getIdHorario());
+                entradaHR = Double.parseDouble(hr.getEntrada().substring(0, 2) + "." + hr.getEntrada().substring(3, 5));
+                salidaHR = Double.parseDouble(hr.getSalida().substring(0, 2) + "." + hr.getSalida().substring(3, 5));
+                entradaBd = Double.parseDouble(horariosBD.get(i).getEntrada().substring(0, 2) + "." + horariosBD.get(i).getEntrada().substring(3, 5));
+                salidaBD = Double.parseDouble(horariosBD.get(i).getSalida().substring(0, 2) + "." + horariosBD.get(i).getSalida().substring(3, 5));
+                System.out.println("Grupo: " + horariosBD.get(i).getIdGrupo());
+                System.out.println("Grupo: " + buscaGrupo(horariosBD.get(i).getIdGrupo(), null));
+                System.out.println(". . . . . entrada hr " + entradaHR + " Y salida " + salidaHR);
+                System.out.println(". . . . . entrada bd " + entradaBd + " Y salida " + salidaBD);
+                if (entradaHR >= entradaBd && entradaHR < salidaBD)
                 {
-                    return "Error por cruze de asignaturas con profesor " + buscaProfesor(horariosBD.get(i).getRfc(), null);
+                    Mensaje.error(this, "Este docente ya tiene una materia asignada de las: " + entradaBd + " Hrs. a las " + salidaBD + " Hrs. En el grupo " + buscaGrupo(horariosBD.get(i).getIdGrupo(), null));
+                    //System.out.println("! ! ! ! ! Choque de horas de entradaHR: " + entradaHR + " con entradaBD: " + entradaBd +" y salidaBD: " + salidaBD);
+                    //System.out.println("Del registro: " + horariosBD.get(i).getIdHorario());
+                    var = false;
                 }
-            } else
-            {
-                return "exitoso";
             }
         }
-        return "nulo docente";
+        return var;
+    }
+
+    private void cancelar() {
+        edicion();
+        CtrlInterfaz.limpia(jTIdhorario, jTEntrada, jTSalida);
+        CtrlInterfaz.habilita(false, jTIdhorario, jCPeriodo, jCLicenciatura, JCGrupo, JCMateria, JCDocente, jCDia, jTEntrada, jTSalida, jBCancelar);
+        CtrlInterfaz.habilita(true, jBAceptar1, jBModificar, jBeliminar, btnImportar, btnExportar);
+        jBAceptar1.setText("Nuevo");
+        jBModificar.setText("Modificar");
+    }
+
+    private boolean insertaEnBaseUnicoHorario(PeriodoHorarios horario) {
+        boolean registro = ConsultasObjetos.inserta(horario, ConectarBase.conectado(), "horarios");
+        return registro;
+    }
+
+    private int buscarCombo(String text, JComboBox<String> jCombo) {
+        for (int i = 0; i < jCombo.getItemCount(); i++)
+        {
+            if (text.equals(jCombo.getItemAt(i)))
+            {
+                return i;
+            }
+        }
+        return 0;
     }
 }

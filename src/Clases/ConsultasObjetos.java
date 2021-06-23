@@ -294,13 +294,13 @@ public class ConsultasObjetos {
                     break;
                 case "horarios":
                     PeriodoHorarios hr = (PeriodoHorarios) obj;
-                    ps = con.prepareStatement("INSERT INTO horarios(id_horarios, clave_materia, id_grupo, id_periodo, rfc, dia, hr_entrada, hr_salida) VALUES (?,?,?,?,?,?,?,?)");
+                    ps = con.prepareStatement("INSERT INTO horarios(id_horario, clave_materia, id_grupo, id_periodo, rfc, dia, hr_entrada, hr_salida) VALUES (?,?,?,?,?,?,?,?)");
                     ps.setString(1, hr.getIdHorario());
                     ps.setString(2, hr.getClaveMateria());
                     ps.setString(3, hr.getIdGrupo());
                     ps.setString(4, hr.getIdPeriodo());
                     ps.setString(5, hr.getRfc());
-                    ps.setString(5, hr.getDia());
+                    ps.setString(6, hr.getDia());
                     ps.setString(7, hr.getEntrada());
                     ps.setString(8, hr.getSalida());
                     ps.executeUpdate();
