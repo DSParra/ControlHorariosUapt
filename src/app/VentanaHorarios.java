@@ -1726,7 +1726,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
         horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, null, ConectarBase.conectado()));
         for (int i = 0; i < horariosBD.size(); i++)
         {
-            if (!hr.getIdHorario().equals(horariosBD.get(i).getIdHorario()) && hr.getDia().equals(horariosBD.get(i).getDia()) && hr.getIdGrupo().equals(horariosBD.get(i).getIdGrupo()))
+            if (!hr.getIdHorario().equals(horariosBD.get(i).getIdHorario()) && hr.getDia().equals(horariosBD.get(i).getDia()) && hr.getIdGrupo().equals(horariosBD.get(i).getIdGrupo()) && hr.getIdPeriodo().equals(horariosBD.get(i).getIdPeriodo()))
             {
                 System.out.println("+ + + + + Es el mismo dia en " + i + " y elm mismo grupo en registro " + horariosBD.get(i).getIdHorario());
                 entradaHR = Double.parseDouble(hr.getEntrada().substring(0, 2) + "." + hr.getEntrada().substring(3, 5));
@@ -1755,7 +1755,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
 
         for (int i = 0; i < horariosBD.size(); i++)
         {
-            if (!hr.getIdHorario().equals(horariosBD.get(i).getIdHorario()) && hr.getRfc().equalsIgnoreCase(horariosBD.get(i).getRfc()) && hr.getDia().equals(horariosBD.get(i).getDia()))
+            if (!hr.getIdHorario().equals(horariosBD.get(i).getIdHorario()) && hr.getRfc().equalsIgnoreCase(horariosBD.get(i).getRfc()) && hr.getDia().equals(horariosBD.get(i).getDia())&& hr.getIdPeriodo().equals(horariosBD.get(i).getIdPeriodo()))
             {
                 System.out.println("+ + + + + Es el mismo rfc  y el mismo dia en registro " + horariosBD.get(i).getIdHorario());
                 entradaHR = Double.parseDouble(hr.getEntrada().substring(0, 2) + "." + hr.getEntrada().substring(3, 5));

@@ -14,6 +14,7 @@ import Objetos.HorarioSalida;
 import Objetos.Licenciatura;
 import Objetos.Materia;
 import Objetos.PeriodoHorarios;
+import Objetos.PlanEstudios;
 import Objetos.Profesor;
 import Objetos.Usuario;
 import Objetos.periodoEscolar;
@@ -21,7 +22,10 @@ import cjb.ci.CtrlInterfaz;
 import cjb.ci.Mensaje;
 import cjb.ci.Validaciones;
 import java.awt.Color;
+import java.awt.event.ItemEvent;
 import java.util.ArrayList;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -33,12 +37,14 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
     int id = 0;
     private Boolean edicion = true;
     private DefaultTableModel modelo;
-    private ArrayList<PeriodoHorarios> horarios = new ArrayList<>();
     private ArrayList<Object> lics = new ArrayList<>();
     private ArrayList<Object> periodos = new ArrayList<>();
     private ArrayList<Object> grupos = new ArrayList<>();
+    private ArrayList<Object> grupos1 = new ArrayList<>();
     private ArrayList<Object> materias = new ArrayList<>();
     private ArrayList<Object> profesores = new ArrayList<>();
+    private ArrayList<Object> plans = new ArrayList<>();
+    private ArrayList<PeriodoHorarios> horariosBD = new ArrayList<>();
     VentanaLogin vtn = new VentanaLogin();
 
     /**
@@ -85,7 +91,6 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         JCDocente = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         JCGrupo = new javax.swing.JComboBox<>();
@@ -97,6 +102,8 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTIdhorario = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
+        jCPlanEstudios = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
         jBRegresar = new javax.swing.JButton();
         jBCerrarSesion = new javax.swing.JButton();
         btnExportar = new javax.swing.JButton();
@@ -107,6 +114,11 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLTituloUAPT = new javax.swing.JLabel();
         jLTituloUniversidad = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jCGrupofiltro = new javax.swing.JComboBox<>();
+        jCPeriodoFiltro = new javax.swing.JComboBox<>();
+        jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horarios UAPT");
@@ -148,10 +160,14 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Clave Materia", "Nombre Materia", "Grupo", "Periodo", "Profesor", "Dia", "Entrada", "Salida"
+                "CLAVE", "MATERIA", "GRUPO", "PERIODO", "PROFESOR", "DIA", "ENTRADA", "SALIDA"
             }
         ));
-        TablaHorarios.setEnabled(false);
+        TablaHorarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaHorariosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TablaHorarios);
 
         jPanel1.setBackground(new java.awt.Color(25, 83, 0));
@@ -188,11 +204,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel13.setText("ENTRADA");
-
-        jLabel12.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel12.setText("HORARIO");
+        jLabel13.setText("HORA ENTRADA");
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(254, 254, 254));
@@ -262,7 +274,23 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
 
         jLabel14.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel14.setText("SALIDA");
+        jLabel14.setText("HORA SALIDA");
+
+        jCPlanEstudios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2021A", "2021B" }));
+        jCPlanEstudios.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCPlanEstudiosItemStateChanged(evt);
+            }
+        });
+        jCPlanEstudios.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jCPlanEstudiosKeyPressed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel8.setText("PLAN ESTUDIOS");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -274,32 +302,28 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                     .addComponent(jCPeriodo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTIdhorario)
                     .addComponent(JCGrupo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JCMateria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JCDocente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jCDia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel6)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel13)
+                                    .addComponent(jLabel14))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTEntrada)
+                                    .addComponent(jTSalida, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11)
                             .addComponent(jLabel7)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(JCMateria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(JCDocente, 0, 276, Short.MAX_VALUE)
-                                .addComponent(jCDia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel9)
-                                .addComponent(jLabel10)
-                                .addComponent(jLabel11)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel12)
-                                            .addGap(69, 69, 69))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTEntrada)
-                                        .addComponent(jTSalida)))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jLabel8))
+                        .addGap(0, 25, Short.MAX_VALUE))
+                    .addComponent(jCPlanEstudios, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -313,7 +337,11 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCPlanEstudios, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JCGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -321,26 +349,26 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JCMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JCDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jCDia, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel13))
-                    .addComponent(jTEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(jCDia, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14)
+                            .addComponent(jTSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jBRegresar.setBackground(new java.awt.Color(102, 102, 0));
@@ -417,6 +445,58 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
         jLTituloUniversidad.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLTituloUniversidad.setText("UNIVERSIDAD AUTONOMA DEL ESTADO DE MEXICO");
 
+        jPanel2.setBackground(new java.awt.Color(25, 83, 0));
+
+        jLabel15.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel15.setText("GRUPO");
+
+        jCGrupofiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2021A", "2021B" }));
+        jCGrupofiltro.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCGrupofiltroItemStateChanged(evt);
+            }
+        });
+
+        jCPeriodoFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2021A", "2021B" }));
+        jCPeriodoFiltro.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCPeriodoFiltroItemStateChanged(evt);
+            }
+        });
+
+        jLabel16.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel16.setText("PERIODO");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(61, Short.MAX_VALUE)
+                .addComponent(jLabel15)
+                .addGap(18, 18, 18)
+                .addComponent(jCGrupofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel16)
+                .addGap(18, 18, 18)
+                .addComponent(jCPeriodoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel16)
+                        .addComponent(jCPeriodoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCGrupofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel15))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -432,14 +512,19 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                         .addComponent(jBeliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 562, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBRegresar)
-                        .addGap(41, 41, 41)
-                        .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1)
+                        .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -464,33 +549,29 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLTituloUAPT)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnImportar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnExportar))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel2))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(33, 33, 33))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBAceptar1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBeliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27))))
+                        .addGap(45, 45, 45)
+                        .addComponent(btnImportar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnExportar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jBAceptar1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jBeliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -501,11 +582,22 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
     }//GEN-LAST:event_jTIdhorarioActionPerformed
 
     private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
-
+        if (Mensaje.pregunta(this, "¿Seguro que desea eliminar este registro?") == 0)
+        {
+            String mensaje = Controlador.ControladorHorarios.eliminaHorario(jTIdhorario.getText());
+            if (mensaje.endsWith("operacion exitosa"))
+            {
+                actualizaTabla(1);
+                jCGrupofiltro.setSelectedIndex(0);
+            } else
+            {
+                JOptionPane.showMessageDialog(rootPane, mensaje);
+            }
+        }
     }//GEN-LAST:event_jBeliminarActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-        // TODO add your handling code here:
+        cancelar();
     }//GEN-LAST:event_jBCancelarActionPerformed
 
     private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
@@ -534,31 +626,123 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
         if (!edicion)
         {
             edicion();
-            jBAceptar1.setText("ACEPTAR");
+            jBAceptar1.setText("Aceptar");
             CtrlInterfaz.limpia(jTEntrada, jTSalida, jTIdhorario);
-            CtrlInterfaz.habilita(true, jTSalida, jTEntrada, jTIdhorario, jBCancelar);
+            CtrlInterfaz.habilita(true, jTSalida, jTEntrada, jTIdhorario, jCPeriodo, jCPlanEstudios, JCGrupo, JCMateria, JCDocente, jCDia, jBCancelar);
             CtrlInterfaz.habilita(false, jBeliminar, jBModificar, btnImportar, btnExportar);
             CtrlInterfaz.selecciona(jTIdhorario);
         } else
         {
-            //HorarioSalida hr = new HorarioSalida(jTIdhorario.getText(), buscaMateria(null, JCMateria.getSelectedItem().toString()), buscaGrupo(null, JCGrupo.getSelectedItem().toString()), buscaPeriodo(null, jCPeriodo.getSelectedItem().toString()), buscarProfesor(null, JCDocente.getSelectedItem().toString()), jCDia.getSelectedItem().toString(), jTEntrada.getText(),jTSalida.getText());
-            //String mensaje = ControladorHorarios.insertaMuchos(hr);
-            CtrlInterfaz.limpia(jTIdhorario, jTEntrada, jTSalida);
-            actualizaTabla();
-            edicion();
+            PeriodoHorarios horario = new PeriodoHorarios(jTIdhorario.getText(), buscaMateria(null, JCMateria.getSelectedItem().toString()), buscaGrupo(null, JCGrupo.getSelectedItem().toString()), buscaPeriodo(null, jCPeriodo.getSelectedItem().toString()), buscaProfesor(null, JCDocente.getSelectedItem().toString()), jCDia.getSelectedItem().toString(), jTEntrada.getText(), jTSalida.getText());
+            String mensaje = ControladorHorarios.insertaHorarioUnico(horario);
+            boolean var;
+            boolean var2, registro;
+            if (mensaje.equals("operacion exitosa"))
+            {
+                var = comparaGrupos(horario);
+                var2 = comparaProfesores(horario);
+                if (var == false)
+                {
+                    Mensaje.error(this, "Corrija las horas de entrada y salida de la materia que quiere asignar en este grupo");
+                } else
+                {
+                    if (var2 == false)
+                    {
+                        Mensaje.error(this, "Corrija el horario en el que el docente impartira la materia");
+                    } else
+                    {
+                        registro = ControladorHorarios.insertaEnBaseUnicoHorario(horario);
+                        if (registro == false)
+                        {
+                            Mensaje.exito(this, "Horario registrado correctamente");
+                            jBAceptar1.setText("Nuevo");
+                            CtrlInterfaz.limpia(jTEntrada, jTSalida, jTIdhorario);
+                            CtrlInterfaz.habilita(false, jTSalida, jTEntrada, jTIdhorario, jCPeriodo, jCPlanEstudios, JCGrupo, JCMateria, JCDocente, jCDia, jBCancelar);
+                            CtrlInterfaz.habilita(true, jBAceptar1, jBeliminar, jBModificar, btnImportar, btnExportar);
+                            jCGrupofiltro.setSelectedIndex(0);
+                            actualizaTabla(1);
+                            edicion();
+                            CtrlInterfaz.limpia(jTIdhorario, jTEntrada, jTSalida);
+                        } else
+                        {
+                            Mensaje.error(this, "No se pudo registrar el horario");
+                        }
+                    }
+                }
+            } else
+            {
+                JOptionPane.showMessageDialog(rootPane, mensaje);
+            }
+
         }
     }//GEN-LAST:event_jBAceptar1ActionPerformed
 
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
-        // TODO add your handling code here:
+        if (jTIdhorario.getText().compareTo("") == 0)
+        {
+            Mensaje.error(this, "No ha seleccionado nungun registro");
+        } else
+        {
+            if (!edicion)
+            {
+                edicion();
+                jBModificar.setText("Aceptar");
+                CtrlInterfaz.habilita(true, jTSalida, jTEntrada, jCPeriodo, jCPlanEstudios, JCGrupo, JCMateria, JCDocente, jCDia, jBCancelar);
+                CtrlInterfaz.habilita(false, jBeliminar, jBAceptar1, btnImportar, btnExportar);
+
+            } else
+            {
+                PeriodoHorarios horario = new PeriodoHorarios(jTIdhorario.getText(), buscaMateria(null, JCMateria.getSelectedItem().toString()), buscaGrupo(null, JCGrupo.getSelectedItem().toString()), buscaPeriodo(null, jCPeriodo.getSelectedItem().toString()), buscaProfesor(null, JCDocente.getSelectedItem().toString()), jCDia.getSelectedItem().toString(), jTEntrada.getText(), jTSalida.getText());
+                String mensaje = ControladorHorarios.modificaHorarioUnico(horario, (String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 0));
+                boolean var;
+                boolean var2, registro;
+                if (mensaje.equals("operacion exitosa"))
+                {
+                    var = comparaGrupos(horario);
+                    var2 = comparaProfesores(horario);
+                    if (var == false)
+                    {
+                        Mensaje.error(this, "Corrija las horas de entrada y salida de la materia que quiere asignar en este grupo");
+                    } else
+                    {
+                        if (var2 == false)
+                        {
+                            Mensaje.error(this, "Corrija el horario en el que el docente impartira la materia");
+                        } else
+                        {
+                            registro = ControladorHorarios.modificaEnBaseUnicoHorario(horario, (String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 0));
+                            if (registro == true)
+                            {
+                                Mensaje.exito(this, "Horario modificado correctamente");
+                                jBModificar.setText("Modificar");
+                                CtrlInterfaz.limpia(jTEntrada, jTSalida, jTIdhorario);
+                                CtrlInterfaz.habilita(false, jTSalida, jTEntrada, jTIdhorario, jCPeriodo, jCPlanEstudios, JCGrupo, JCMateria, JCDocente, jCDia, jBCancelar);
+                                CtrlInterfaz.habilita(true, jBAceptar1, jBeliminar, jBModificar, btnImportar, btnExportar);
+                                jCGrupofiltro.setSelectedIndex(0);
+                                actualizaTabla(1);
+                                edicion();
+                                CtrlInterfaz.limpia(jTIdhorario, jTEntrada, jTSalida);
+                            } else
+                            {
+                                Mensaje.error(this, "No se pudo registrar el horario");
+                            }
+                        }
+                    }
+                } else
+                {
+                    JOptionPane.showMessageDialog(rootPane, mensaje);
+                }
+            }
+        }
     }//GEN-LAST:event_jBModificarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        //horarios = new ArrayList(ConsultasObjetos.consultaHorarios(null,null, null, null, ConectarBase.conectado()));
         System.out.println("conecta");
-        jLabel2.setText("GESTION HORARIOS " + buscaLic(vtn.lic, null));
-        actualizaTabla();
+        cancelar();
+        llenaGruposFiltro();
+        actualizaTabla(1);
         cargaPeriodos();
+        llenaPlan();
         llenaGrupos();
         llenaMaterias();
         llenaDocentes();
@@ -597,36 +781,113 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
     }//GEN-LAST:event_jTIdhorarioFocusLost
 
     private void jTEntradaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTEntradaKeyTyped
-        Validaciones.validaFlotantes(evt);
+
     }//GEN-LAST:event_jTEntradaKeyTyped
 
     private void jTSalidaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTSalidaKeyPressed
-        Validaciones.validaFlotantes(evt);
+
     }//GEN-LAST:event_jTSalidaKeyPressed
 
-    public void actualizaTabla() {
+    private void jCGrupofiltroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCGrupofiltroItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED)
+        {
+            actualizaTabla(1);
+            jCPeriodoFiltro.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_jCGrupofiltroItemStateChanged
+
+    private void jCPeriodoFiltroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCPeriodoFiltroItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED)
+        {
+            actualizaTabla(2);
+        }
+    }//GEN-LAST:event_jCPeriodoFiltroItemStateChanged
+
+    private void TablaHorariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaHorariosMouseClicked
+        jTIdhorario.setText((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 0));
+        JCMateria.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 1), JCMateria)));
+        String GrupoACombo = retornameLic((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 2));
+        jCPlanEstudios.setSelectedIndex((buscarCombo(buscaLic(GrupoACombo, null), jCPlanEstudios)));
+        JCGrupo.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 2), JCGrupo)));
+        jCPeriodo.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 3), jCPeriodo)));
+        JCDocente.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 4), JCDocente)));
+        jCDia.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 5), jCDia)));
+        jTEntrada.setText((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 6));
+        jTSalida.setText((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 7));
+    }//GEN-LAST:event_TablaHorariosMouseClicked
+
+    private void jCPlanEstudiosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCPlanEstudiosKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCPlanEstudiosKeyPressed
+
+    private void jCPlanEstudiosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCPlanEstudiosItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED)
+        {
+            //Licenciatura lic = (Licenciatura) jCLicenciatura.getSelectedItem();
+            grupos = ConsultasObjetos.consultaMuchos("grupo", "id_licenciatura", vtn.lic, null, null, "nombre_grupo", ConectarBase.conectado());
+            materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", vtn.lic, "id_plan_estudios", buscaPlan(null, jCPlanEstudios.getSelectedItem().toString()), "unidad_aprendizaje", ConectarBase.conectado());
+            llenaGrupos();
+            llenaMaterias();
+        }
+    }//GEN-LAST:event_jCPlanEstudiosItemStateChanged
+
+    public void actualizaTabla(int valor) {
         lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
         periodos = ConsultasObjetos.consultaMuchos("periodo_escolar", null, null, null, null, "periodo", ConectarBase.conectado());
-        grupos = ConsultasObjetos.consultaMuchos("grupo", "id_licenciatura", vtn.lic, null, null, "grupos", ConectarBase.conectado());
-        materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", vtn.lic, null, null, "unidad_aprendizaje",ConectarBase.conectado());
-        profesores = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, "nombres",ConectarBase.conectado());
+        grupos = ConsultasObjetos.consultaMuchos("grupo", "id_licenciatura", vtn.lic, null, null, "nombre_grupo", ConectarBase.conectado());
+        materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", vtn.lic, null, null, "unidad_aprendizaje", ConectarBase.conectado());
+        profesores = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, "nombres", ConectarBase.conectado());
+        plans = ConsultasObjetos.consultaMuchos("plan_estudios", "id_licenciatura", vtn.lic, null, null, "plan_estudios", ConectarBase.conectado());
         modelo = (DefaultTableModel) TablaHorarios.getModel();
         ArrayList horarios = new ArrayList();
-        horarios = ConsultasObjetos.consultaHorarios(null, null, null, null, ConectarBase.conectado());
-        if (horarios.isEmpty())
+        switch (valor)
         {
-            Mensaje.error(this, "No se encuentran registros");
-        } else
-        {
-            modelo.setRowCount(0);
-            for (Object p : horarios)
-            {
-                HorarioSalida horario = (HorarioSalida) p;
-                modelo.addRow(new Object[]
+            case 1:
+
+                horarios = ConsultasObjetos.consultaMuchos("horarios", "id_grupo", buscaGrupoFiltro(null, jCGrupofiltro.getSelectedItem().toString()), null, null, "hr_entrada", ConectarBase.conectado());
+                if (horarios.isEmpty())
                 {
-//                  horario.getClave_materia(), horario.getUnidad_aprendizaje(), horario.getNombre_grupo(), horario.getPeriodo(), horario.getProfesor(), horario.getDia(), horario.getHr_entrada(), horario.getHr_salida()
-                });
-            }
+                    Mensaje.error(this, "No se encuentran registros");
+                } else
+                {
+                    modelo.setRowCount(0);
+                    for (Object p : horarios)
+                    {
+                        PeriodoHorarios horario = (PeriodoHorarios) p;
+                        modelo.addRow(new Object[]
+                        {
+                            horario.getIdHorario(), buscaMateria(horario.getClaveMateria(), null), buscaGrupo(horario.getIdGrupo(), null), buscaPeriodo(horario.getIdPeriodo(), null), buscaProfesor(horario.getRfc(), null), horario.getDia(), horario.getEntrada(), horario.getSalida()
+                        });
+                    }
+                }
+
+                break;
+            case 2:
+                if (jCPeriodoFiltro.getSelectedIndex() == 0)
+                {
+                    actualizaTabla(1);
+                } else
+                {
+                    horarios = ConsultasObjetos.consultaMuchos("horarios", "id_grupo", buscaGrupoFiltro(null, jCGrupofiltro.getSelectedItem().toString()), "id_periodo", buscaPeriodo(null, jCPeriodoFiltro.getSelectedItem().toString()), "hr_entrada", ConectarBase.conectado());
+                    if (horarios.isEmpty())
+                    {
+                        Mensaje.error(this, "No se encuentran registros");
+                    } else
+                    {
+                        modelo.setRowCount(0);
+                        for (Object p : horarios)
+                        {
+                            PeriodoHorarios horario = (PeriodoHorarios) p;
+                            modelo.addRow(new Object[]
+                            {
+                                horario.getIdHorario(), buscaMateria(horario.getClaveMateria(), null), buscaGrupo(horario.getIdGrupo(), null), buscaPeriodo(horario.getIdPeriodo(), null), buscaProfesor(horario.getRfc(), null), horario.getDia(), horario.getEntrada(), horario.getSalida()
+                            });
+                        }
+                    }
+                }
+                break;
+            default:
+                break;
         }
     }
 
@@ -918,6 +1179,774 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -941,21 +1970,27 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
     private javax.swing.JButton jBRegresar;
     private javax.swing.JButton jBeliminar;
     private javax.swing.JComboBox<String> jCDia;
+    private javax.swing.JComboBox<String> jCGrupofiltro;
     private javax.swing.JComboBox<String> jCPeriodo;
+    private javax.swing.JComboBox<String> jCPeriodoFiltro;
+    private javax.swing.JComboBox<String> jCPlanEstudios;
     private javax.swing.JLabel jLTituloUAPT;
     private javax.swing.JLabel jLTituloUniversidad;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTEntrada;
     private javax.swing.JTextField jTIdhorario;
@@ -987,39 +2022,61 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
         return null;
     }
 
-//
-//    private Object buscaGrupo(String idGrupo, Object object) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-//
-//    private Object buscaPeriodo(String idPeriodo, Object object) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-    private Object buscaProfesor(String rfc, Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private String buscaProfesor(String rfc, String profesor) {
+        if (profesor != null)
+        {
+            for (Object p : profesores)
+            {
+                Profesor pr = (Profesor) p;
+                if ((pr.getNombres() + " " + pr.getApellidoP() + " " + pr.getApellidoM()).equals(profesor))
+                {
+                    return pr.getRfc();
+                }
+            }
+        } else
+        {
+            for (Object p : profesores)
+            {
+                Profesor pr = (Profesor) p;
+                if ((pr.getRfc()).equals(rfc))
+                {
+                    return pr.getNombres() + " " + pr.getApellidoP() + " " + pr.getApellidoM();
+                }
+            }
+        }
+        return null;
     }
 
     private void cargaPeriodos() {
         jCPeriodo.removeAllItems();
-        jCPeriodo.addItem("TODOS");
+        jCPeriodoFiltro.removeAllItems();
+        jCPeriodoFiltro.addItem("TODOS");
         for (int i = 0; i < periodos.size(); i++)
         {
             jCPeriodo.addItem(((periodoEscolar) periodos.get(i)).getPeriodo());
+            jCPeriodoFiltro.addItem(((periodoEscolar) periodos.get(i)).getPeriodo());
         }
     }
 
     private void llenaGrupos() {
         JCGrupo.removeAllItems();
-        JCGrupo.addItem("TODOS");
         for (int i = 0; i < grupos.size(); i++)
         {
             JCGrupo.addItem(((Grupo) grupos.get(i)).getNombreGrupo());
         }
     }
 
+    private void llenaGruposFiltro() {
+        grupos1 = ConsultasObjetos.consultaMuchos("grupo", "id_licenciatura", vtn.lic, null, null, "nombre_grupo", ConectarBase.conectado());
+        jCGrupofiltro.removeAllItems();
+        for (int i = 0; i < grupos1.size(); i++)
+        {
+            jCGrupofiltro.addItem(((Grupo) grupos1.get(i)).getNombreGrupo());
+        }
+    }
+
     private void llenaMaterias() {
         JCMateria.removeAllItems();
-        JCMateria.addItem("TODOS");
         for (int i = 0; i < materias.size(); i++)
         {
             JCMateria.addItem(((Materia) materias.get(i)).getUnidadAprendizaje());
@@ -1028,7 +2085,6 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
 
     private void llenaDocentes() {
         JCDocente.removeAllItems();
-        JCMateria.addItem("TODOS");
         for (int i = 0; i < profesores.size(); i++)
         {
             JCDocente.addItem(((Profesor) profesores.get(i)).getNombres() + " " + ((Profesor) profesores.get(i)).getApellidoP() + " " + ((Profesor) profesores.get(i)).getApellidoM());
@@ -1043,5 +2099,236 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
         {
             edicion = true;
         }
+    }
+
+    private void llenaPlan() {
+        jCPlanEstudios.removeAllItems();
+        for (int i = 0; i < plans.size(); i++)
+        {
+            jCPlanEstudios.addItem(((PlanEstudios) plans.get(i)).getPlanEstudios());
+        }
+    }
+
+    private String buscaGrupo(String id, String grupo) {
+        if (grupo != null)
+        {
+            for (Object g : grupos)
+            {
+                Grupo gr = (Grupo) g;
+                if (gr.getNombreGrupo().equals(grupo))
+                {
+                    return gr.getIdGrupo();
+                }
+            }
+        } else
+        {
+            for (Object g : grupos)
+            {
+                Grupo gr = (Grupo) g;
+                if (gr.getIdGrupo().equals(id))
+                {
+                    return gr.getNombreGrupo();
+                }
+            }
+        }
+        return null;
+    }
+
+    private String buscaGrupoFiltro(String id, String grupo) {
+        System.out.println("netree al filtro");
+        if (grupo != null)
+        {
+            for (Object g : grupos1)
+            {
+                Grupo gr = (Grupo) g;
+                if (gr.getNombreGrupo().equals(grupo))
+                {
+                    return gr.getIdGrupo();
+                }
+            }
+        } else
+        {
+            for (Object g : grupos1)
+            {
+                Grupo gr = (Grupo) g;
+                if (gr.getIdGrupo().equals(id))
+                {
+                    return gr.getNombreGrupo();
+                }
+            }
+        }
+        return null;
+    }
+
+    private String buscaPeriodo(String id, String periodo) {
+        if (periodo != null)
+        {
+            for (Object p : periodos)
+            {
+                periodoEscolar gr = (periodoEscolar) p;
+                if ((gr.getPeriodo()).equals(periodo))
+                {
+                    return gr.getId_periodo();
+                }
+            }
+        } else
+        {
+            for (Object p : periodos)
+            {
+                periodoEscolar gr = (periodoEscolar) p;
+                if ((gr.getId_periodo()).equals(id))
+                {
+                    return gr.getPeriodo();
+                }
+            }
+        }
+        return null;
+    }
+
+    private String buscaMateria(String id, String materia) {
+        if (materia != null)
+        {
+            for (Object m : materias)
+            {
+                Materia mt = (Materia) m;
+                if (mt.getUnidadAprendizaje().equals(materia))
+                {
+                    return mt.getClaveMateria();
+                }
+            }
+        } else
+        {
+            for (Object m : materias)
+            {
+                Materia mt = (Materia) m;
+                if (mt.getClaveMateria().equals(id))
+                {
+                    return mt.getUnidadAprendizaje();
+                }
+            }
+        }
+        return null;
+    }
+
+    private boolean comparaGrupos(PeriodoHorarios hr) {
+        boolean var = true;
+        double entradaHR, salidaHR, entradaBd, salidaBD;
+        System.out.println("grpo " + hr.getIdGrupo());
+        materias = ConsultasObjetos.consultaMuchos("materia", null, null, null, null, "unidad_aprendizaje", ConectarBase.conectado());
+        horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, null, ConectarBase.conectado()));
+        for (int i = 0; i < horariosBD.size(); i++)
+        {
+            if (!hr.getIdHorario().equals(horariosBD.get(i).getIdHorario()) && hr.getDia().equals(horariosBD.get(i).getDia()) && hr.getIdGrupo().equals(horariosBD.get(i).getIdGrupo()) && hr.getIdPeriodo().equals(horariosBD.get(i).getIdPeriodo()))
+            {
+                System.out.println("+ + + + + Es el mismo dia en " + i + " y elm mismo grupo en registro " + horariosBD.get(i).getIdHorario());
+                entradaHR = Double.parseDouble(hr.getEntrada().substring(0, 2) + "." + hr.getEntrada().substring(3, 5));
+                salidaHR = Double.parseDouble(hr.getSalida().substring(0, 2) + "." + hr.getSalida().substring(3, 5));
+                entradaBd = Double.parseDouble(horariosBD.get(i).getEntrada().substring(0, 2) + "." + horariosBD.get(i).getEntrada().substring(3, 5));
+                salidaBD = Double.parseDouble(horariosBD.get(i).getSalida().substring(0, 2) + "." + horariosBD.get(i).getSalida().substring(3, 5));
+
+                System.out.println(". . . . . entrada registro " + entradaHR + " Y salida " + salidaHR);
+                System.out.println(". . . . . entrada registro " + entradaBd + " Y salida " + salidaBD);
+                if (entradaHR >= entradaBd && entradaHR < salidaBD)
+                {
+                    Mensaje.error(this, "Este grupo ya tiene la materia de " + buscaMateria(horariosBD.get(i).getClaveMateria(), null) + " De las " + entradaBd + "Hrs. a las " + salidaBD + "Hrs.");
+                    var = false;
+                }
+            }
+        }
+        return var;
+    }
+
+    private boolean comparaProfesores(PeriodoHorarios hr) {
+        System.out.println("entre a profesores");
+        boolean var = true;
+        double entradaHR, salidaHR, entradaBd, salidaBD;
+        horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, null, ConectarBase.conectado()));
+        grupos = ConsultasObjetos.consultaMuchos("grupo", null, null, null, null, "nombre_grupo", ConectarBase.conectado());
+
+        for (int i = 0; i < horariosBD.size(); i++)
+        {
+            if (!hr.getIdHorario().equals(horariosBD.get(i).getIdHorario()) && hr.getRfc().equalsIgnoreCase(horariosBD.get(i).getRfc()) && hr.getDia().equals(horariosBD.get(i).getDia()) && hr.getIdPeriodo().equals(horariosBD.get(i).getIdPeriodo()))
+            {
+                System.out.println("+ + + + + Es el mismo rfc  y el mismo dia en registro " + horariosBD.get(i).getIdHorario());
+                entradaHR = Double.parseDouble(hr.getEntrada().substring(0, 2) + "." + hr.getEntrada().substring(3, 5));
+                salidaHR = Double.parseDouble(hr.getSalida().substring(0, 2) + "." + hr.getSalida().substring(3, 5));
+                entradaBd = Double.parseDouble(horariosBD.get(i).getEntrada().substring(0, 2) + "." + horariosBD.get(i).getEntrada().substring(3, 5));
+                salidaBD = Double.parseDouble(horariosBD.get(i).getSalida().substring(0, 2) + "." + horariosBD.get(i).getSalida().substring(3, 5));
+                System.out.println("Grupo: " + horariosBD.get(i).getIdGrupo());
+                System.out.println("Grupo: " + buscaGrupo(horariosBD.get(i).getIdGrupo(), null));
+                System.out.println(". . . . . entrada hr " + entradaHR + " Y salida " + salidaHR);
+                System.out.println(". . . . . entrada bd " + entradaBd + " Y salida " + salidaBD);
+                if (entradaHR >= entradaBd && entradaHR < salidaBD)
+                {
+                    Mensaje.error(this, "Este docente ya tiene una materia asignada de las: " + entradaBd + " Hrs. a las " + salidaBD + " Hrs. En el grupo " + buscaGrupo(horariosBD.get(i).getIdGrupo(), null));
+                    //System.out.println("! ! ! ! ! Choque de horas de entradaHR: " + entradaHR + " con entradaBD: " + entradaBd +" y salidaBD: " + salidaBD);
+                    //System.out.println("Del registro: " + horariosBD.get(i).getIdHorario());
+                    var = false;
+                }
+            }
+        }
+        return var;
+    }
+
+    private void cancelar() {
+        edicion();
+        CtrlInterfaz.limpia(jTIdhorario, jTEntrada, jTSalida);
+        CtrlInterfaz.habilita(false, jTIdhorario, jCPeriodo, jCPlanEstudios, JCGrupo, JCMateria, JCDocente, jCDia, jTEntrada, jTSalida, jBCancelar);
+        CtrlInterfaz.habilita(true, jBAceptar1, jBModificar, jBeliminar, btnImportar, btnExportar);
+        jBAceptar1.setText("Nuevo");
+        jBModificar.setText("Modificar");
+    }
+
+    private boolean insertaEnBaseUnicoHorario(PeriodoHorarios horario) {
+        boolean registro = ConsultasObjetos.inserta(horario, ConectarBase.conectado(), "horarios");
+        return registro;
+    }
+
+    private int buscarCombo(String text, JComboBox<String> jCombo) {
+        for (int i = 0; i < jCombo.getItemCount(); i++)
+        {
+            if (text.equals(jCombo.getItemAt(i)))
+            {
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    private String retornameLic(String grupito) {
+        Grupo gp = new Grupo();
+        gp = (Grupo) ConsultasObjetos.consultaUnica("grupo", "nombre_grupo", grupito, ConectarBase.conectado());
+        if (gp != null)
+        {
+            return gp.getId_licenciatura();
+        } else
+        {
+            return "Sin datos";
+        }
+    }
+
+    private String buscaPlan(String id, String plan) {
+        if (plan != null)
+        {
+            for (Object pl : plans)
+            {
+                PlanEstudios plan1 = (PlanEstudios) pl;
+                if ((plan1.getPlanEstudios()).equals(plan))
+                {
+                    return plan1.getIdPlan();
+                }
+            }
+        } else
+        {
+            for (Object pl : plans)
+            {
+                PlanEstudios plan1 = (PlanEstudios) pl;
+                if ((plan1.getIdPlan()).equals(id))
+                {
+                    return plan1.getPlanEstudios();
+                }
+            }
+        }
+        return null;
     }
 }
