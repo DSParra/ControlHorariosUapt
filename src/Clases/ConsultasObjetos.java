@@ -529,11 +529,10 @@ public class ConsultasObjetos {
                     break;
                 case "licenciatura":
                     Licenciatura lic = (Licenciatura) obj;
-                    ps = con.prepareStatement("UPDATE " + tabla + " SET id_licenciatura=?,nombre=? WHERE id_licenciatura=?");
+                    ps = con.prepareStatement("UPDATE " + tabla + " SET nombre=? WHERE id_licenciatura=?");
                     //System.out.println("Update" + tabla + "id_licenciatura ="+ lic.getIdLicenciatura() "nombre = "+ lic.getRfcCordinador() + "where id_licenciatura = "+id.);
-                    ps.setString(1, lic.getIdLicenciatura());
-                    ps.setString(2, lic.getLicenciatura());
-                    ps.setString(3, id);
+                    ps.setString(1, lic.getLicenciatura());
+                    ps.setString(2, id);
                     res = ps.executeUpdate();
                     break;
                 case "periodo_escolar":
@@ -541,7 +540,7 @@ public class ConsultasObjetos {
                     ps = con.prepareStatement("UPDATE " + tabla + " SET periodo=? WHERE id_periodo=?");
                     //System.out.println("Update" + tabla + "id_licenciatura ="+ lic.getIdLicenciatura() "nombre = "+ lic.getRfcCordinador() + "where id_licenciatura = "+id.);
                     ps.setString(1, periodo.getPeriodo());
-                    ps.setInt(2, Integer.parseInt(id));
+                    ps.setString(2, id);
                     res = ps.executeUpdate();
                     break;
                 case "plan_estudios":
