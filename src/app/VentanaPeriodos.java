@@ -66,7 +66,6 @@ public class VentanaPeriodos extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTIdPeriodo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        btnAgregar2 = new javax.swing.JButton();
         btnAgregar3 = new javax.swing.JButton();
         btnBusca = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -76,6 +75,8 @@ public class VentanaPeriodos extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLTituloUAPT1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        txtnombreArchivo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horarios UAPT");
@@ -245,16 +246,6 @@ public class VentanaPeriodos extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnAgregar2.setBackground(new java.awt.Color(102, 102, 0));
-        btnAgregar2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnAgregar2.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregar2.setText("Importar");
-        btnAgregar2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregar2ActionPerformed(evt);
-            }
-        });
-
         btnAgregar3.setBackground(new java.awt.Color(102, 102, 0));
         btnAgregar3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnAgregar3.setForeground(new java.awt.Color(255, 255, 255));
@@ -325,6 +316,15 @@ public class VentanaPeriodos extends javax.swing.JFrame {
         jLTituloUAPT1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLTituloUAPT1.setText("UNIDAD ACADEMICA PROFESIONAL TIANGUISTENCO");
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Nombre del archivo");
+
+        txtnombreArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnombreArchivoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -334,11 +334,6 @@ public class VentanaPeriodos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 829, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel16)
                                 .addGap(6, 6, 6)
@@ -351,25 +346,38 @@ public class VentanaPeriodos extends javax.swing.JFrame {
                                             .addComponent(jLabel17)
                                             .addComponent(jLTituloUAPT1))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnAgregar3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAgregar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jBRegresar)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 351, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBRegresar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 36, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(61, 61, 61)
+                                .addComponent(btnAgregar3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGap(9, 9, 9)
+                                        .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(27, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -391,13 +399,17 @@ public class VentanaPeriodos extends javax.swing.JFrame {
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAgregar2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnAgregar3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE))
+                        .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAgregar3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -424,7 +436,7 @@ public class VentanaPeriodos extends javax.swing.JFrame {
             jBAceptar.setText("Aceptar");
             CtrlInterfaz.limpia(jTIdPeriodo, jTNombrePeriodo);
             CtrlInterfaz.habilita(true, jTIdPeriodo, jTNombrePeriodo, jBCancelar);
-            CtrlInterfaz.habilita(false, jBModificar, jBEliminar, btnAgregar2, btnAgregar3);
+            CtrlInterfaz.habilita(false, jBModificar, jBEliminar, btnAgregar3);
             CtrlInterfaz.selecciona(jTIdPeriodo);
         } else
         {
@@ -436,7 +448,7 @@ public class VentanaPeriodos extends javax.swing.JFrame {
                 jBAceptar.setText("Nuevo");
                 ConsultasObjetos.inserta(per, ConectarBase.conectado(), "periodo_escolar");
                 CtrlInterfaz.habilita(false, jTIdPeriodo, jTNombrePeriodo, jBCancelar);
-                CtrlInterfaz.habilita(true, jBModificar, jBEliminar, btnAgregar2, btnAgregar3);
+                CtrlInterfaz.habilita(true, jBModificar, jBEliminar, btnAgregar3);
                 CtrlInterfaz.limpia(jTIdPeriodo, jTNombrePeriodo);
                 actualizarTabla(1);
                 edicion();
@@ -481,7 +493,7 @@ public class VentanaPeriodos extends javax.swing.JFrame {
                 edicion();
                 jBModificar.setText("Aceptar");
                 CtrlInterfaz.habilita(true, jTNombrePeriodo, jBCancelar);
-                CtrlInterfaz.habilita(false, jBEliminar, jBAceptar, jTIdPeriodo, btnAgregar2, btnAgregar3);
+                CtrlInterfaz.habilita(false, jBEliminar, jBAceptar, jTIdPeriodo, btnAgregar3);
                 CtrlInterfaz.selecciona(jTNombrePeriodo);
             } else
             {
@@ -491,7 +503,7 @@ public class VentanaPeriodos extends javax.swing.JFrame {
                 {
                     jBModificar.setText("Modificar");
                     CtrlInterfaz.habilita(false, jTIdPeriodo, jTNombrePeriodo, jBCancelar);
-                    CtrlInterfaz.habilita(true, jBEliminar, jBAceptar, btnAgregar2, btnAgregar3);
+                    CtrlInterfaz.habilita(true, jBEliminar, jBAceptar, btnAgregar3);
                     CtrlInterfaz.limpia(jTIdPeriodo, jTNombrePeriodo);
                     actualizarTabla(1);
                     edicion();
@@ -538,18 +550,16 @@ public class VentanaPeriodos extends javax.swing.JFrame {
     private void jTNombrePeriodoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTNombrePeriodoKeyReleased
     }//GEN-LAST:event_jTNombrePeriodoKeyReleased
 
-    private void btnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregar2ActionPerformed
-
     private void btnAgregar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar3ActionPerformed
-        String mensaje = Archivo.Exportar(TablaPeriodos, "periodos", "filtro1");
-        if (mensaje.equals("Error en la Exportacion"))
-        {
-            Mensaje.error(this, mensaje);
-        } else
-        {
-            Mensaje.exito(this, mensaje);
+        if (txtnombreArchivo.getText() != null) {
+            String mensaje = Archivo.Exportar(TablaPeriodos, txtnombreArchivo.getText());
+            if (mensaje.equals("Error en la Exportacion")) {
+                Mensaje.error(this, mensaje);
+            } else {
+                Mensaje.exito(this, mensaje);
+            }
+        } else {
+            Mensaje.error(this, "Escriba el nombre del archivo");
         }
     }//GEN-LAST:event_btnAgregar3ActionPerformed
 
@@ -574,6 +584,10 @@ public class VentanaPeriodos extends javax.swing.JFrame {
     private void jTIdPeriodoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTIdPeriodoFocusLost
         Valida.convertirAMayusculas(jTIdPeriodo);
     }//GEN-LAST:event_jTIdPeriodoFocusLost
+
+    private void txtnombreArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreArchivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnombreArchivoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -650,7 +664,6 @@ public class VentanaPeriodos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaPeriodos;
-    private javax.swing.JButton btnAgregar2;
     private javax.swing.JButton btnAgregar3;
     private javax.swing.JButton btnBusca;
     private javax.swing.JButton jBAceptar;
@@ -661,6 +674,7 @@ public class VentanaPeriodos extends javax.swing.JFrame {
     private javax.swing.JButton jBRegresar;
     private javax.swing.JLabel jLTituloUAPT1;
     private javax.swing.JLabel jLTituloUniversidad1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -672,6 +686,7 @@ public class VentanaPeriodos extends javax.swing.JFrame {
     private javax.swing.JTextField jTIdPeriodo;
     private javax.swing.JTextField jTNombrePeriodo;
     private javax.swing.JTextField jtIDBusqeuda;
+    private javax.swing.JTextField txtnombreArchivo;
     // End of variables declaration//GEN-END:variables
 
     public void actualizarTabla(int valor) {
@@ -733,7 +748,7 @@ public class VentanaPeriodos extends javax.swing.JFrame {
         edicion();
         CtrlInterfaz.limpia(jTIdPeriodo, jTNombrePeriodo);
         CtrlInterfaz.habilita(false, jTIdPeriodo, jTNombrePeriodo, jBCancelar);
-        CtrlInterfaz.habilita(true, jBAceptar, jBEliminar, jBModificar, btnAgregar2, btnAgregar3);
+        CtrlInterfaz.habilita(true, jBAceptar, jBEliminar, jBModificar, btnAgregar3);
         jBAceptar.setText("Nuevo");
         jBModificar.setText("Modificar");
     }

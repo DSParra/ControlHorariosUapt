@@ -55,7 +55,6 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jBRegresar = new javax.swing.JButton();
         jBCerrarSesion = new javax.swing.JButton();
-        btnAgregar2 = new javax.swing.JButton();
         btnAgregar3 = new javax.swing.JButton();
         btncancelar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -81,6 +80,8 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLTituloUAPT1 = new javax.swing.JLabel();
         jLTituloUniversidad1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        txtnombreArchivo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horarios UAPT");
@@ -144,16 +145,6 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
         jBCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCerrarSesionActionPerformed(evt);
-            }
-        });
-
-        btnAgregar2.setBackground(new java.awt.Color(102, 102, 0));
-        btnAgregar2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnAgregar2.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregar2.setText("Importar");
-        btnAgregar2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregar2ActionPerformed(evt);
             }
         });
 
@@ -467,6 +458,15 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
         jLTituloUniversidad1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLTituloUniversidad1.setText("UNIVERSIDAD AUTONOMA DEL ESTADO DE MEXICO");
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Nombre del archivo");
+
+        txtnombreArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnombreArchivoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -481,7 +481,8 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
                         .addGap(769, 769, 769)
                         .addComponent(jBRegresar)
                         .addGap(18, 18, 18)
-                        .addComponent(jBCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
+                        .addComponent(jBCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                        .addGap(41, 41, 41))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -499,13 +500,25 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnAgregar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAgregar3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)))
-                .addGap(41, 41, 41))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(35, 35, 35)
+                                        .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(32, 32, 32))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addContainerGap())
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(btnAgregar3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(51, 51, 51))))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -529,13 +542,17 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 456, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAgregar2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAgregar3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(btnAgregar3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -557,27 +574,23 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
 
-        if (!edicion)
-        {
+        if (!edicion) {
             edicion();
             btnAgregar.setText("Aceptar");
             CtrlInterfaz.limpia(txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
             CtrlInterfaz.habilita(true, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
             CtrlInterfaz.selecciona(txtrfc);
 
-        } else
-        {
+        } else {
             Profesor p = new Profesor(txtrfc.getText(), txtapellidoP.getText(), txtapellidoM.getText(), txtnombres.getText(), txtgradoAcademico.getText(), txtcorreo.getText(), txttelefono.getText());
             String mensaje = ControladorProfesores.InsertaProfesor(p);
-            if (mensaje.equals("operacion exitosa"))
-            {
+            if (mensaje.equals("operacion exitosa")) {
                 btnAgregar.setText("Nuevo");
                 CtrlInterfaz.limpia(txtrfc, txtapellidoP, txtapellidoM, txtnombres, txtgradoAcademico, txtgradoAcademico, txttelefono);
                 CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
                 actualizaTabla(1);
                 edicion();
-            } else
-            {
+            } else {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
             }
         }
@@ -624,18 +637,16 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txttelefonoActionPerformed
 
-    private void btnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregar2ActionPerformed
-
     private void btnAgregar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar3ActionPerformed
-        String mensaje = Archivo.Exportar(jTable1, "cordinador", "filtro1");
-        if (mensaje.equals("Error en la Exportacion"))
-        {
-            Mensaje.error(this, mensaje);
-        } else
-        {
-            Mensaje.exito(this, mensaje);
+        if (txtnombreArchivo.getText() != null) {
+            String mensaje = Archivo.Exportar(jTable1, txtnombreArchivo.getText());
+            if (mensaje.equals("Error en la Exportacion")) {
+                Mensaje.error(this, mensaje);
+            } else {
+                Mensaje.exito(this, mensaje);
+            }
+        } else {
+            Mensaje.error(this, "Escriba el nombre del archivo");
         }
     }//GEN-LAST:event_btnAgregar3ActionPerformed
 
@@ -725,8 +736,7 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
 
     private void txtrfcKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtrfcKeyTyped
         Validaciones.validaAlfanumerico(evt);
-        if (txtrfc.getText().length() == 13)
-        {
+        if (txtrfc.getText().length() == 13) {
             evt.consume();
         }
     }//GEN-LAST:event_txtrfcKeyTyped
@@ -740,11 +750,9 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
     }//GEN-LAST:event_jtIDBusqeudaKeyPressed
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
-        if (jtIDBusqeuda.getText().equals(""))
-        {
+        if (jtIDBusqeuda.getText().equals("")) {
             actualizaTabla(1);
-        } else
-        {
+        } else {
             actualizaTabla(2);
         }
     }//GEN-LAST:event_btnBuscaActionPerformed
@@ -769,6 +777,10 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
         Valida.convertirAMayusculas(txtrfc);
     }//GEN-LAST:event_txtrfcFocusLost
 
+    private void txtnombreArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreArchivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnombreArchivoActionPerformed
+
     private void cancelar() {
         edicion();
         CtrlInterfaz.limpia(txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
@@ -778,11 +790,9 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
     }
 
     private void edicion() {
-        if (edicion)
-        {
+        if (edicion) {
             edicion = false;
-        } else
-        {
+        } else {
             edicion = true;
         }
     }
@@ -790,45 +800,35 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
     public void actualizaTabla(int valor) {
         modelo = (DefaultTableModel) jTable1.getModel();
         ArrayList profes = new ArrayList();
-        if (valor == 1)
-        {
+        if (valor == 1) {
 
             profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, "nombres", ConectarBase.conectado());
-            if (profes.isEmpty())
-            {
+            if (profes.isEmpty()) {
                 Mensaje.error(this, "No se encuentran registros");
-            } else
-            {
+            } else {
                 modelo.setRowCount(0);
-                for (Object p : profes)
-                {
+                for (Object p : profes) {
                     Profesor profe = (Profesor) p;
-                    modelo.addRow(new Object[]
-                    {
+                    modelo.addRow(new Object[]{
                         profe.getRfc(), profe.getApellidoP(), profe.getApellidoM(), profe.getNombres(), profe.getGradoAcademico(), profe.getCorreo(), profe.getTelefono()
                     });
                     System.out.println(((Profesor) p).getNombres());
                     btnBusca.setText("Buscar");
                 }
             }
-        } else if (valor == 2)
-        {
+        } else if (valor == 2) {
             profes = ConsultasObjetos.consultaMuchos("profesores", "nombres", jtIDBusqeuda.getText(), null, null, "nombres", ConectarBase.conectado());
-            if (profes.isEmpty())
-            {
+            if (profes.isEmpty()) {
                 Mensaje.error(this, "No se encuentran registros");
-            } else
-            {
+            } else {
                 modelo.setRowCount(0);
-                for (Object p : profes)
-                {
+                for (Object p : profes) {
                     Profesor profe = (Profesor) p;
-                    modelo.addRow(new Object[]
-                    {
+                    modelo.addRow(new Object[]{
                         profe.getRfc(), profe.getApellidoP(), profe.getApellidoM(), profe.getNombres(), profe.getGradoAcademico(), profe.getCorreo(), profe.getTelefono()
                     });
                     System.out.println(((Profesor) p).getNombres());
-                    jtIDBusqeuda.setText("");             
+                    jtIDBusqeuda.setText("");
                     btnBusca.setText("Todo");
                 }
             }
@@ -844,27 +844,20 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try
-        {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-            {
-                if ("Nimbus".equals(info.getName()))
-                {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex)
-        {
+        } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(VentanaDocentesCordinador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex)
-        {
+        } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(VentanaDocentesCordinador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex)
-        {
+        } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(VentanaDocentesCordinador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex)
-        {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VentanaDocentesCordinador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -1006,7 +999,6 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnAgregar2;
     private javax.swing.JButton btnAgregar3;
     private javax.swing.JButton btnBusca;
     private javax.swing.JButton btncancelar;
@@ -1014,6 +1006,7 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
     private javax.swing.JButton jBRegresar;
     private javax.swing.JLabel jLTituloUAPT1;
     private javax.swing.JLabel jLTituloUniversidad1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -1033,6 +1026,7 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
     private javax.swing.JTextField txtapellidoP;
     private javax.swing.JTextField txtcorreo;
     private javax.swing.JTextField txtgradoAcademico;
+    private javax.swing.JTextField txtnombreArchivo;
     private javax.swing.JTextField txtnombres;
     private javax.swing.JTextField txtrfc;
     private javax.swing.JTextField txttelefono;

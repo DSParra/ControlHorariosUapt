@@ -5,6 +5,7 @@
  */
 package app;
 
+import Clases.Archivo;
 import Clases.ConectarBase;
 import Clases.ConsultasObjetos;
 import Clases.Valida;
@@ -109,7 +110,6 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
         jBRegresar = new javax.swing.JButton();
         jBCerrarSesion = new javax.swing.JButton();
         btnExportar = new javax.swing.JButton();
-        btnImportar = new javax.swing.JButton();
         jBAceptar1 = new javax.swing.JButton();
         jBModificar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -121,6 +121,8 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
         jLTituloUniversidad = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        txtnombreArchivo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horarios UAPT");
@@ -405,16 +407,6 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
             }
         });
 
-        btnImportar.setBackground(new java.awt.Color(102, 102, 0));
-        btnImportar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnImportar.setForeground(new java.awt.Color(255, 255, 255));
-        btnImportar.setText("Importar");
-        btnImportar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImportarActionPerformed(evt);
-            }
-        });
-
         jBAceptar1.setBackground(new java.awt.Color(102, 102, 0));
         jBAceptar1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jBAceptar1.setForeground(new java.awt.Color(255, 255, 255));
@@ -499,6 +491,15 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(1, 1, 1));
         jLabel2.setText("GESTION HORARIOS");
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Nombre del archivo");
+
+        txtnombreArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnombreArchivoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -519,12 +520,8 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -532,13 +529,24 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                                     .addComponent(jLTituloUniversidad)
                                     .addComponent(jLabel2)
                                     .addComponent(jLTituloUAPT))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 269, Short.MAX_VALUE)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnImportar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(39, 39, 39))))
+                                .addGap(258, 258, 258)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 795, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGap(9, 9, 9)
+                                        .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 10, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -553,9 +561,9 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                             .addComponent(jLTituloUAPT)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jLabel2))))
-                .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1))
@@ -570,8 +578,11 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                                 .addComponent(jBeliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnImportar)
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
+                        .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
                         .addComponent(btnExportar)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
@@ -618,12 +629,17 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
     }//GEN-LAST:event_jTEntradaActionPerformed
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
-        // TODO add your handling code here:
+        if (txtnombreArchivo.getText() != null) {
+            String mensaje = Archivo.Exportar(TablaHorarios, txtnombreArchivo.getText());
+            if (mensaje.equals("Error en la Exportacion")) {
+                Mensaje.error(this, mensaje);
+            } else {
+                Mensaje.exito(this, mensaje);
+            }
+        } else {
+            Mensaje.error(this, "Escriba el nombre del archivo");
+        }
     }//GEN-LAST:event_btnExportarActionPerformed
-
-    private void btnImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnImportarActionPerformed
 
     private void jBAceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAceptar1ActionPerformed
         if (!edicion)
@@ -632,7 +648,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
             jBAceptar1.setText("Aceptar");
             CtrlInterfaz.limpia(jTEntrada, jTSalida, jTIdhorario);
             CtrlInterfaz.habilita(true, jTSalida, jTEntrada, jTIdhorario, jCPeriodo, jCPlanEstudios, JCGrupo, JCMateria, JCDocente, jCDia, jBCancelar);
-            CtrlInterfaz.habilita(false, jBeliminar, jBModificar, btnImportar, btnExportar);
+            CtrlInterfaz.habilita(false, jBeliminar, jBModificar, btnExportar);
             CtrlInterfaz.selecciona(jTIdhorario);
         } else
         {
@@ -661,7 +677,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                             jBAceptar1.setText("Nuevo");
                             CtrlInterfaz.limpia(jTEntrada, jTSalida, jTIdhorario);
                             CtrlInterfaz.habilita(false, jTSalida, jTEntrada, jTIdhorario, jCPeriodo, jCPlanEstudios, JCGrupo, JCMateria, JCDocente, jCDia, jBCancelar);
-                            CtrlInterfaz.habilita(true, jBAceptar1, jBeliminar, jBModificar, btnImportar, btnExportar);
+                            CtrlInterfaz.habilita(true, jBAceptar1, jBeliminar, jBModificar, btnExportar);
                             jCGrupofiltro.setSelectedIndex(0);
                             actualizaTabla(1);
                             edicion();
@@ -691,7 +707,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                 edicion();
                 jBModificar.setText("Aceptar");
                 CtrlInterfaz.habilita(true, jTSalida, jTEntrada, jCPeriodo, jCPlanEstudios, JCGrupo, JCMateria, JCDocente, jCDia, jBCancelar);
-                CtrlInterfaz.habilita(false, jBeliminar, jBAceptar1, btnImportar, btnExportar);
+                CtrlInterfaz.habilita(false, jBeliminar, jBAceptar1, btnExportar);
 
             } else
             {
@@ -720,7 +736,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                                 jBModificar.setText("Modificar");
                                 CtrlInterfaz.limpia(jTEntrada, jTSalida, jTIdhorario);
                                 CtrlInterfaz.habilita(false, jTSalida, jTEntrada, jTIdhorario, jCPeriodo, jCPlanEstudios, JCGrupo, JCMateria, JCDocente, jCDia, jBCancelar);
-                                CtrlInterfaz.habilita(true, jBAceptar1, jBeliminar, jBModificar, btnImportar, btnExportar);
+                                CtrlInterfaz.habilita(true, jBAceptar1, jBeliminar, jBModificar, btnExportar);
                                 jCGrupofiltro.setSelectedIndex(0);
                                 actualizaTabla(1);
                                 edicion();
@@ -834,6 +850,10 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
             llenaMaterias();
         }
     }//GEN-LAST:event_jCPlanEstudiosItemStateChanged
+
+    private void txtnombreArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreArchivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnombreArchivoActionPerformed
 
     public void actualizaTabla(int valor) {
         lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
@@ -1966,7 +1986,6 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> JCMateria;
     private javax.swing.JTable TablaHorarios;
     private javax.swing.JButton btnExportar;
-    private javax.swing.JButton btnImportar;
     private javax.swing.JButton jBAceptar1;
     private javax.swing.JButton jBCancelar;
     private javax.swing.JButton jBCerrarSesion;
@@ -1980,6 +1999,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jCPlanEstudios;
     private javax.swing.JLabel jLTituloUAPT;
     private javax.swing.JLabel jLTituloUniversidad;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
@@ -1999,6 +2019,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
     private javax.swing.JTextField jTEntrada;
     private javax.swing.JTextField jTIdhorario;
     private javax.swing.JTextField jTSalida;
+    private javax.swing.JTextField txtnombreArchivo;
     // End of variables declaration//GEN-END:variables
 
     public String buscaLic(String id, String licenciatura) {
@@ -2278,7 +2299,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
         edicion();
         CtrlInterfaz.limpia(jTIdhorario, jTEntrada, jTSalida);
         CtrlInterfaz.habilita(false, jTIdhorario, jCPeriodo, jCPlanEstudios, JCGrupo, JCMateria, JCDocente, jCDia, jTEntrada, jTSalida, jBCancelar);
-        CtrlInterfaz.habilita(true, jBAceptar1, jBModificar, jBeliminar, btnImportar, btnExportar);
+        CtrlInterfaz.habilita(true, jBAceptar1, jBModificar, jBeliminar, btnExportar);
         jBAceptar1.setText("Nuevo");
         jBModificar.setText("Modificar");
     }

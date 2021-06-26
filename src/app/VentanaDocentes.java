@@ -57,7 +57,6 @@ public class VentanaDocentes extends javax.swing.JFrame {
         jBRegresar = new javax.swing.JButton();
         jBCerrarSesion = new javax.swing.JButton();
         btnmodifica = new javax.swing.JButton();
-        btnImportar = new javax.swing.JButton();
         btnExportar = new javax.swing.JButton();
         btncancelar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -83,6 +82,8 @@ public class VentanaDocentes extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLTituloUAPT1 = new javax.swing.JLabel();
+        txtnombreArchivo = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horarios UAPT");
@@ -166,16 +167,6 @@ public class VentanaDocentes extends javax.swing.JFrame {
         btnmodifica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnmodificaActionPerformed(evt);
-            }
-        });
-
-        btnImportar.setBackground(new java.awt.Color(102, 102, 0));
-        btnImportar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnImportar.setForeground(new java.awt.Color(255, 255, 255));
-        btnImportar.setText("Importar");
-        btnImportar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImportarActionPerformed(evt);
             }
         });
 
@@ -498,6 +489,15 @@ public class VentanaDocentes extends javax.swing.JFrame {
         jLTituloUAPT1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLTituloUAPT1.setText("UNIDAD ACADEMICA PROFESIONAL TIANGUISTENCO");
 
+        txtnombreArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnombreArchivoActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Nombre del archivo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -538,15 +538,19 @@ public class VentanaDocentes extends javax.swing.JFrame {
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 874, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
                                 .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnImportar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(44, 44, 44)
                                 .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(22, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -569,17 +573,19 @@ public class VentanaDocentes extends javax.swing.JFrame {
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 449, Short.MAX_VALUE))
                         .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnImportar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
                         .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 367, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -606,7 +612,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
             btnAgregar.setText("Aceptar");
             CtrlInterfaz.limpia(txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
             CtrlInterfaz.habilita(true, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
-            CtrlInterfaz.habilita(false, btnelmina, btnmodifica, btnImportar, btnExportar);
+            CtrlInterfaz.habilita(false, btnelmina, btnmodifica, btnExportar);
             CtrlInterfaz.selecciona(txtrfc);
 
         } else
@@ -619,7 +625,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
                 btnAgregar.setText("Nuevo");
                 CtrlInterfaz.limpia(txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
                 CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
-                CtrlInterfaz.habilita(true, btnelmina, btnmodifica, btnImportar, btnExportar);
+                CtrlInterfaz.habilita(true, btnelmina, btnmodifica, btnExportar);
                 actualizaTabla(1);
                 edicion();
             } else
@@ -698,7 +704,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
                 edicion();
                 btnmodifica.setText("Aceptar");
                 CtrlInterfaz.habilita(true, txtapellidoM, txtapellidoP, txtnombres, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
-                CtrlInterfaz.habilita(false, btnelmina, btnAgregar, btnImportar, btnExportar);
+                CtrlInterfaz.habilita(false, btnelmina, btnAgregar, btnExportar);
                 CtrlInterfaz.selecciona(txtapellidoP);
             } else
             {
@@ -708,7 +714,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
                 if (mensaje.equals("operacion exitosa"))
                 {
                     CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
-                    CtrlInterfaz.habilita(true, btnelmina, btnAgregar, btnImportar, btnExportar);
+                    CtrlInterfaz.habilita(true, btnelmina, btnAgregar, btnExportar);
                     CtrlInterfaz.limpia(txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
                     edicion();
                     actualizaTabla(1);
@@ -723,18 +729,16 @@ public class VentanaDocentes extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnmodificaActionPerformed
 
-    private void btnImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnImportarActionPerformed
-
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
-        String mensaje = Archivo.Exportar(TablaDocentes, "docentes", "filtro1");
-        if (mensaje.equals("Error en la Exportacion"))
-        {
-            Mensaje.error(this, mensaje);
-        } else
-        {
-            Mensaje.exito(this, mensaje);
+        if (txtnombreArchivo.getText() != null) {
+            String mensaje = Archivo.Exportar(TablaDocentes, txtnombreArchivo.getText());
+            if (mensaje.equals("Error en la Exportacion")) {
+                Mensaje.error(this, mensaje);
+            } else {
+                Mensaje.exito(this, mensaje);
+            }
+        } else {
+            Mensaje.error(this, "Escriba el nombre del archivo");
         }
     }//GEN-LAST:event_btnExportarActionPerformed
 
@@ -884,11 +888,15 @@ public class VentanaDocentes extends javax.swing.JFrame {
         enter(this, evt, btnBusca);
     }//GEN-LAST:event_jtIDBusqeudaKeyPressed
 
+    private void txtnombreArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreArchivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnombreArchivoActionPerformed
+
     private void cancelar() {
         edicion();
         CtrlInterfaz.limpia(txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
         CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
-        CtrlInterfaz.habilita(true, btnAgregar, btnmodifica, btnelmina, btnImportar, btnExportar);
+        CtrlInterfaz.habilita(true, btnAgregar, btnmodifica, btnelmina, btnExportar);
         btnAgregar.setText("Nuevo");
         btnmodifica.setText("Modificar");
     }
@@ -1061,7 +1069,6 @@ public class VentanaDocentes extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBusca;
     private javax.swing.JButton btnExportar;
-    private javax.swing.JButton btnImportar;
     private javax.swing.JButton btncancelar;
     private javax.swing.JButton btnelmina;
     private javax.swing.JButton btnmodifica;
@@ -1069,6 +1076,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
     private javax.swing.JButton jBRegresar;
     private javax.swing.JLabel jLTituloUAPT1;
     private javax.swing.JLabel jLTituloUniversidad1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1087,6 +1095,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
     private javax.swing.JTextField txtapellidoP;
     private javax.swing.JTextField txtcorreo;
     private javax.swing.JTextField txtgradoAcademico;
+    private javax.swing.JTextField txtnombreArchivo;
     private javax.swing.JTextField txtnombres;
     private javax.swing.JTextField txtrfc;
     private javax.swing.JTextField txttelefono;

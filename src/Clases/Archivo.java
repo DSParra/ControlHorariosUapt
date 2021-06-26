@@ -164,9 +164,9 @@ public class Archivo {
 //        return mensaje;
 //    }
 
-    public static String Exportar(JTable tabla,String tipo,String filtro) {
+    public static String Exportar(JTable tabla,String nombre) {
         XSSFWorkbook archivo = new XSSFWorkbook();
-        XSSFSheet hoja = archivo.createSheet(tipo);
+        XSSFSheet hoja = archivo.createSheet(nombre);
 
         String mensaje = "Error en la Exportacion";
         int NumeroFila = tabla.getRowCount();
@@ -196,7 +196,7 @@ public class Archivo {
             
             if (destino.showSaveDialog(null) == destino.APPROVE_OPTION) {
                 File carpeta = destino.getSelectedFile();   
-                try (FileOutputStream outputStream = new FileOutputStream(carpeta.getAbsolutePath()+"\\"+tipo+"-"+filtro+".xlsx")) {//archivo.write(new FileOutputStream(archivo));
+                try (FileOutputStream outputStream = new FileOutputStream(carpeta.getAbsolutePath()+"\\"+nombre+".xlsx")) {//archivo.write(new FileOutputStream(archivo));
                     archivo.write(outputStream);
                      mensaje = "Archivo guardado en"+carpeta.getAbsolutePath();
                 }

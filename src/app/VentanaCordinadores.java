@@ -84,7 +84,6 @@ public class VentanaCordinadores extends javax.swing.JFrame {
         btnModificar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaUsuarios = new javax.swing.JTable();
-        btnImportar = new javax.swing.JButton();
         btnExportar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jtIDBusqeuda = new javax.swing.JTextField();
@@ -94,6 +93,8 @@ public class VentanaCordinadores extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLTituloUAPT1 = new javax.swing.JLabel();
         jLTituloUniversidad1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        txtnombreArchivo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -202,31 +203,22 @@ public class VentanaCordinadores extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtContrasenia, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(JCLicenciatura, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ComboRFC, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtID)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel6))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtContrasenia, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(JCLicenciatura, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(ComboRFC, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtID)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel7))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel10))
+                        .addGap(0, 132, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel10)
-                .addContainerGap(147, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -346,16 +338,6 @@ public class VentanaCordinadores extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TablaUsuarios);
 
-        btnImportar.setBackground(new java.awt.Color(102, 102, 0));
-        btnImportar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnImportar.setForeground(new java.awt.Color(255, 255, 255));
-        btnImportar.setText("Importar");
-        btnImportar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImportarActionPerformed(evt);
-            }
-        });
-
         btnExportar.setBackground(new java.awt.Color(102, 102, 0));
         btnExportar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnExportar.setForeground(new java.awt.Color(255, 255, 255));
@@ -426,6 +408,15 @@ public class VentanaCordinadores extends javax.swing.JFrame {
         jLTituloUniversidad1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLTituloUniversidad1.setText("UNIVERSIDAD AUTONOMA DEL ESTADO DE MEXICO");
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Nombre del archivo");
+
+        txtnombreArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnombreArchivoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -436,7 +427,8 @@ public class VentanaCordinadores extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBRegresar)
                         .addGap(18, 18, 18)
-                        .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(1073, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -462,45 +454,62 @@ public class VentanaCordinadores extends javax.swing.JFrame {
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnImportar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnExportar)
-                            .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(159, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addContainerGap(160, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(35, 35, 35))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnExportar)
+                                .addGap(79, 79, 79))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jLTituloUniversidad1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(jLTituloUniversidad1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLTituloUAPT1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel14))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLTituloUAPT1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel14))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnImportar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1))
-                .addGap(18, 18, 18)
+                        .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(271, 271, 271)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -512,34 +521,28 @@ public class VentanaCordinadores extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        if (!edicion)
-        {
+        if (!edicion) {
             edicion();
             btnAgregar.setText("Aceptar");
             CtrlInterfaz.limpia(txtID, txtUsuario, txtContrasenia);
             CtrlInterfaz.habilita(true, txtID, ComboRFC, txtUsuario, txtContrasenia, JCLicenciatura, btnCancelar);
-            CtrlInterfaz.habilita(false, btnEliminar, btnModificar, btnImportar, btnExportar);
+            CtrlInterfaz.habilita(false, btnEliminar, btnModificar, btnExportar);
             CtrlInterfaz.selecciona(txtID);
-        } else
-        {
+        } else {
 
-            if (JCLicenciatura.getItemCount() == 0)
-            {
+            if (JCLicenciatura.getItemCount() == 0) {
                 Mensaje.error(this, "Licenciatura no seleccionada, agregar o seleccionar licenciatura");
-            } else
-            {
+            } else {
                 Usuario us = new Usuario(txtID.getText(), buscaProfesor(null, ComboRFC.getSelectedItem().toString()), txtUsuario.getText(), txtContrasenia.getText(), buscarLic(null, JCLicenciatura.getSelectedItem().toString()));
                 String mensaje = Controlador.ControladorCoordnadores.insertarCoordinador(us);
-                if (mensaje.equals("operacion exitosa"))
-                {
+                if (mensaje.equals("operacion exitosa")) {
                     btnAgregar.setText("Nuevo");
                     CtrlInterfaz.habilita(false, txtID, ComboRFC, txtUsuario, txtContrasenia, JCLicenciatura, btnCancelar);
-                    CtrlInterfaz.habilita(true, btnEliminar, btnModificar, btnImportar, btnExportar);
+                    CtrlInterfaz.habilita(true, btnEliminar, btnModificar, btnExportar);
                     CtrlInterfaz.limpia(txtID, txtContrasenia, txtID, txtUsuario);
                     actualizaTabla(1);
                     edicion();
-                } else
-                {
+                } else {
                     JOptionPane.showMessageDialog(rootPane, mensaje);
                 }
             }
@@ -556,14 +559,11 @@ public class VentanaCordinadores extends javax.swing.JFrame {
     }//GEN-LAST:event_jBRegresarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        if (Mensaje.pregunta(this, "¿Seguro que quieres eliminar al usuario " + txtUsuario.getText() + "?") == 0)
-        {
+        if (Mensaje.pregunta(this, "¿Seguro que quieres eliminar al usuario " + txtUsuario.getText() + "?") == 0) {
             String mensaje = ControladorCoordnadores.eliminaUsuario(txtID.getText());
-            if (mensaje.equals("operacion exitosa"))
-            {
+            if (mensaje.equals("operacion exitosa")) {
                 actualizaTabla(1);
-            } else
-            {
+            } else {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
             }
         }
@@ -575,32 +575,26 @@ public class VentanaCordinadores extends javax.swing.JFrame {
     }//GEN-LAST:event_jBCerrarSesionActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        if (txtID.getText().compareTo("") == 0)
-        {
+        if (txtID.getText().compareTo("") == 0) {
             Mensaje.error(this, "Seleccione un registo a modificar");
-        } else
-        {
-            if (!edicion)
-            {
+        } else {
+            if (!edicion) {
                 edicion();
                 btnModificar.setText("Aceptar");
                 CtrlInterfaz.habilita(true, txtUsuario, ComboRFC, txtContrasenia, JCLicenciatura, btnCancelar);
-                CtrlInterfaz.habilita(false, btnEliminar, btnAgregar, btnImportar, btnExportar);
-            } else
-            {
+                CtrlInterfaz.habilita(false, btnEliminar, btnAgregar, btnExportar);
+            } else {
                 Usuario us = new Usuario(txtID.getText(), buscaProfesor(null, (String) ComboRFC.getSelectedItem()), txtUsuario.getText(), txtContrasenia.getText(), buscarLic(null, JCLicenciatura.getSelectedItem().toString()));
                 ConsultasObjetos.Modifica(us, ConectarBase.conectado(), "usuarios", txtID.getText());
                 String mensaje = ControladorCoordnadores.modifcaCoordinador(us, (String) TablaUsuarios.getValueAt(TablaUsuarios.getSelectedRow(), 1));
-                if (mensaje.equals("operacion exitosa"))
-                {
+                if (mensaje.equals("operacion exitosa")) {
                     btnModificar.setText("Modificar");
                     CtrlInterfaz.habilita(false, txtID, ComboRFC, txtUsuario, txtContrasenia, JCLicenciatura, btnCancelar);
-                    CtrlInterfaz.habilita(true, btnEliminar, btnAgregar, btnImportar, btnExportar);
+                    CtrlInterfaz.habilita(true, btnEliminar, btnAgregar, btnExportar);
                     CtrlInterfaz.limpia(txtID, txtContrasenia, txtID, txtUsuario);
                     actualizaTabla(1);
                     edicion();
-                } else
-                {
+                } else {
                     JOptionPane.showMessageDialog(rootPane, mensaje);
                 }
             }
@@ -622,21 +616,6 @@ public class VentanaCordinadores extends javax.swing.JFrame {
         JCLicenciatura.setSelectedIndex(buscarComboLic((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 4)));
     }//GEN-LAST:event_TablaUsuariosMouseClicked
 
-    private void btnImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnImportarActionPerformed
-
-    private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
-        String mensaje = Archivo.Exportar(TablaUsuarios, "Cordinadores", "filtro");
-        if (mensaje.equals("Error en la Exportacion"))
-        {
-            Mensaje.error(this, mensaje);
-        } else
-        {
-            Mensaje.exito(this, mensaje);
-        }
-    }//GEN-LAST:event_btnExportarActionPerformed
-
     private void jtIDBusqeudaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtIDBusqeudaFocusLost
         Valida.convertirAMayusculas(jtIDBusqeuda);
     }//GEN-LAST:event_jtIDBusqeudaFocusLost
@@ -646,11 +625,9 @@ public class VentanaCordinadores extends javax.swing.JFrame {
     }//GEN-LAST:event_jtIDBusqeudaKeyPressed
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
-        if (jtIDBusqeuda.getText().equals(""))
-        {
+        if (jtIDBusqeuda.getText().equals("")) {
             actualizaTabla(1);
-        } else
-        {
+        } else {
             actualizaTabla(2);
         }
     }//GEN-LAST:event_btnBuscaActionPerformed
@@ -716,6 +693,23 @@ public class VentanaCordinadores extends javax.swing.JFrame {
         Valida.convertirAMayusculas(txtID);
     }//GEN-LAST:event_txtIDFocusLost
 
+    private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
+        if (txtnombreArchivo.getText() != null) {
+            String mensaje = Archivo.Exportar(TablaUsuarios ,txtnombreArchivo.getText());
+            if (mensaje.equals("Error en la Exportacion")) {
+                Mensaje.error(this, mensaje);
+            } else {
+                Mensaje.exito(this, mensaje);
+            }
+        } else {
+            Mensaje.error(this, "Escriba el nombre del archivo");
+        }
+    }//GEN-LAST:event_btnExportarActionPerformed
+
+    private void txtnombreArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreArchivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnombreArchivoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -725,27 +719,20 @@ public class VentanaCordinadores extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try
-        {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-            {
-                if ("Nimbus".equals(info.getName()))
-                {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex)
-        {
+        } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(VentanaCordinadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex)
-        {
+        } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(VentanaCordinadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex)
-        {
+        } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(VentanaCordinadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex)
-        {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VentanaCordinadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -767,12 +754,12 @@ public class VentanaCordinadores extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnExportar;
-    private javax.swing.JButton btnImportar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton jBCerrarSesion;
     private javax.swing.JButton jBRegresar;
     private javax.swing.JLabel jLTituloUAPT1;
     private javax.swing.JLabel jLTituloUniversidad1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
@@ -788,6 +775,7 @@ public class VentanaCordinadores extends javax.swing.JFrame {
     private javax.swing.JTextField txtContrasenia;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtUsuario;
+    private javax.swing.JTextField txtnombreArchivo;
     // End of variables declaration//GEN-END:variables
 
     public void actualizaTabla(int valor) {
@@ -795,38 +783,28 @@ public class VentanaCordinadores extends javax.swing.JFrame {
         profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, "nombres", ConectarBase.conectado());
         modelo = (DefaultTableModel) TablaUsuarios.getModel();
         ArrayList<Object> user = new ArrayList<>();
-        if (valor == 1)
-        {
+        if (valor == 1) {
             user = ConsultasObjetos.consultaMuchos("usuarios", "nivel", "profesor", null, null, "rfc", ConectarBase.conectado());
-            if (user.isEmpty())
-            {
+            if (user.isEmpty()) {
                 Mensaje.error(this, "NO SE ENCUENTRAN COORDINADORES REGISTRADOS");
-            } else
-            {
+            } else {
                 modelo.setRowCount(0);
-                for (Object u : user)
-                {
+                for (Object u : user) {
                     Usuario us = (Usuario) u;
-                    modelo.addRow(new Object[]
-                    {
+                    modelo.addRow(new Object[]{
                         us.getIdUsuario(), buscaProfesor(us.getRfc(), null), us.getUsuario(), us.getContra(), buscarLic(us.getLicenciatura(), null)
                     });
                 }
             }
-        } else if (valor == 2)
-        {
+        } else if (valor == 2) {
             user = ConsultasObjetos.consultaMuchos("usuarios", "nivel", "profesor", "id_usuario", jtIDBusqeuda.getText(), "rfc", ConectarBase.conectado());
-            if (user.isEmpty())
-            {
+            if (user.isEmpty()) {
                 Mensaje.error(this, "NO SE ENCUENTRAN COORDINADORES REGISTRADOS");
-            } else
-            {
+            } else {
                 modelo.setRowCount(0);
-                for (Object u : user)
-                {
+                for (Object u : user) {
                     Usuario us = (Usuario) u;
-                    modelo.addRow(new Object[]
-                    {
+                    modelo.addRow(new Object[]{
                         us.getIdUsuario(), buscaProfesor(us.getRfc(), null), us.getUsuario(), us.getContra(), buscarLic(us.getLicenciatura(), null)
                     });
                 }
@@ -837,40 +815,31 @@ public class VentanaCordinadores extends javax.swing.JFrame {
 
     public void llenaComboProfesores() {
         ComboRFC.removeAllItems();
-        for (int i = 0; i < profes.size(); i++)
-        {
+        for (int i = 0; i < profes.size(); i++) {
             ComboRFC.addItem(((Profesor) profes.get(i)).getNombres() + " " + ((Profesor) profes.get(i)).getApellidoP() + " " + ((Profesor) profes.get(i)).getApellidoM());
         }
     }
 
     private void edicion() {
-        if (edicion)
-        {
+        if (edicion) {
             edicion = false;
-        } else
-        {
+        } else {
             edicion = true;
         }
     }
 
     public String buscaProfesor(String rfc, String nombre) {
-        if (nombre != null)
-        {
-            for (Object p : profes)
-            {
+        if (nombre != null) {
+            for (Object p : profes) {
                 Profesor profe = (Profesor) p;
-                if ((profe.getNombres() + " " + profe.getApellidoP() + " " + profe.getApellidoM()).equals(nombre))
-                {
+                if ((profe.getNombres() + " " + profe.getApellidoP() + " " + profe.getApellidoM()).equals(nombre)) {
                     return profe.getRfc();
                 }
             }
-        } else
-        {
-            for (Object p : profes)
-            {
+        } else {
+            for (Object p : profes) {
                 Profesor profe = (Profesor) p;
-                if (profe.getRfc().equals(rfc))
-                {
+                if (profe.getRfc().equals(rfc)) {
                     return profe.getNombres() + " " + profe.getApellidoP() + " " + profe.getApellidoM();
                 }
             }
@@ -879,10 +848,8 @@ public class VentanaCordinadores extends javax.swing.JFrame {
     }
 
     public int buscarCombo(String texto) {
-        for (int i = 0; i < ComboRFC.getItemCount(); i++)
-        {
-            if (texto.equals(ComboRFC.getItemAt(i)))
-            {
+        for (int i = 0; i < ComboRFC.getItemCount(); i++) {
+            if (texto.equals(ComboRFC.getItemAt(i))) {
                 return i;
             }
         }
@@ -893,37 +860,30 @@ public class VentanaCordinadores extends javax.swing.JFrame {
         edicion();
         CtrlInterfaz.limpia(txtID, txtUsuario, txtContrasenia);
         CtrlInterfaz.habilita(false, txtID, ComboRFC, txtUsuario, txtContrasenia, JCLicenciatura, btnCancelar);
-        CtrlInterfaz.habilita(true, btnAgregar, btnModificar, btnEliminar, btnImportar, btnExportar);
+        CtrlInterfaz.habilita(true, btnAgregar, btnModificar, btnEliminar, btnExportar);
         btnAgregar.setText("Nuevo");
         btnModificar.setText("Modificar");
     }
 
     public void llenaComboLic() {
         JCLicenciatura.removeAllItems();
-        for (int i = 0; i < lics.size(); i++)
-        {
+        for (int i = 0; i < lics.size(); i++) {
             JCLicenciatura.addItem(((Licenciatura) lics.get(i)).getLicenciatura());
         }
     }
 
     public String buscarLic(String id, String licenciatura) {
-        if (licenciatura != null)
-        {
-            for (Object l : lics)
-            {
+        if (licenciatura != null) {
+            for (Object l : lics) {
                 Licenciatura lic = (Licenciatura) l;
-                if ((lic.getLicenciatura()).equals(licenciatura))
-                {
+                if ((lic.getLicenciatura()).equals(licenciatura)) {
                     return lic.getIdLicenciatura();
                 }
             }
-        } else if (id != null)
-        {
-            for (Object l : lics)
-            {
+        } else if (id != null) {
+            for (Object l : lics) {
                 Licenciatura lic = (Licenciatura) l;
-                if (lic.getIdLicenciatura().equals(id))
-                {
+                if (lic.getIdLicenciatura().equals(id)) {
                     return lic.getLicenciatura();
                 }
             }
@@ -932,10 +892,8 @@ public class VentanaCordinadores extends javax.swing.JFrame {
     }
 
     private int buscarComboLic(String texto) {
-        for (int i = 0; i < JCLicenciatura.getItemCount(); i++)
-        {
-            if (texto.equals(JCLicenciatura.getItemAt((i))))
-            {
+        for (int i = 0; i < JCLicenciatura.getItemCount(); i++) {
+            if (texto.equals(JCLicenciatura.getItemAt((i)))) {
                 return i;
             }
         }
