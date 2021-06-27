@@ -450,7 +450,7 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
 
         jLabel14.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel14.setText("GESTION HORARIOS");
+        jLabel14.setText("GESTION DOCENTES");
 
         jLTituloUAPT1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLTituloUAPT1.setText("UNIDAD ACADEMICA PROFESIONAL TIANGUISTENCO");
@@ -478,90 +478,76 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
                         .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(769, 769, 769)
-                        .addComponent(jBRegresar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jBCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-                        .addGap(41, 41, 41))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(2, 2, 2)
-                                        .addComponent(jLTituloUniversidad1))
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLTituloUAPT1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBRegresar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(35, 35, 35)
-                                        .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(32, 32, 32))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap())
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(btnAgregar3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(51, 51, 51))))))))
+                                .addGap(2, 2, 2)
+                                .addComponent(jLTituloUniversidad1))
+                            .addComponent(jLabel14)
+                            .addComponent(jLTituloUAPT1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jBCerrarSesion))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addComponent(btnAgregar3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(46, 46, 46))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLTituloUniversidad1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLTituloUAPT1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel14))
+                        .addComponent(jLabel13))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13))
-                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLTituloUniversidad1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLTituloUAPT1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel14))
-                                .addComponent(jLabel13))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 456, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(btnAgregar3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 15, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAgregar3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(346, 346, 346)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 35, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(31, Short.MAX_VALUE))))
         );
 
         pack();
@@ -574,23 +560,27 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
 
-        if (!edicion) {
+        if (!edicion)
+        {
             edicion();
             btnAgregar.setText("Aceptar");
             CtrlInterfaz.limpia(txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
             CtrlInterfaz.habilita(true, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
             CtrlInterfaz.selecciona(txtrfc);
 
-        } else {
+        } else
+        {
             Profesor p = new Profesor(txtrfc.getText(), txtapellidoP.getText(), txtapellidoM.getText(), txtnombres.getText(), txtgradoAcademico.getText(), txtcorreo.getText(), txttelefono.getText());
             String mensaje = ControladorProfesores.InsertaProfesor(p);
-            if (mensaje.equals("operacion exitosa")) {
+            if (mensaje.equals("operacion exitosa"))
+            {
                 btnAgregar.setText("Nuevo");
                 CtrlInterfaz.limpia(txtrfc, txtapellidoP, txtapellidoM, txtnombres, txtgradoAcademico, txtgradoAcademico, txttelefono);
                 CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
                 actualizaTabla(1);
                 edicion();
-            } else {
+            } else
+            {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
             }
         }
@@ -638,14 +628,18 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
     }//GEN-LAST:event_txttelefonoActionPerformed
 
     private void btnAgregar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar3ActionPerformed
-        if (txtnombreArchivo.getText() != null) {
+        if (txtnombreArchivo.getText() != null)
+        {
             String mensaje = Archivo.Exportar(jTable1, txtnombreArchivo.getText());
-            if (mensaje.equals("Error en la Exportacion")) {
+            if (mensaje.equals("Error en la Exportacion"))
+            {
                 Mensaje.error(this, mensaje);
-            } else {
+            } else
+            {
                 Mensaje.exito(this, mensaje);
             }
-        } else {
+        } else
+        {
             Mensaje.error(this, "Escriba el nombre del archivo");
         }
     }//GEN-LAST:event_btnAgregar3ActionPerformed
@@ -656,9 +650,9 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         txtrfc.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 0));
-        txtapellidoP.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 1));
-        txtapellidoM.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 2));
-        txtnombres.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 3));
+        txtnombres.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 1));
+        txtapellidoP.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 2));
+        txtapellidoM.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 3));
         txtgradoAcademico.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 4));
         txtcorreo.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 5));
         txttelefono.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 6));
@@ -736,7 +730,8 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
 
     private void txtrfcKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtrfcKeyTyped
         Validaciones.validaAlfanumerico(evt);
-        if (txtrfc.getText().length() == 13) {
+        if (txtrfc.getText().length() == 13)
+        {
             evt.consume();
         }
     }//GEN-LAST:event_txtrfcKeyTyped
@@ -750,9 +745,11 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
     }//GEN-LAST:event_jtIDBusqeudaKeyPressed
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
-        if (jtIDBusqeuda.getText().equals("")) {
+        if (jtIDBusqeuda.getText().equals(""))
+        {
             actualizaTabla(1);
-        } else {
+        } else
+        {
             actualizaTabla(2);
         }
     }//GEN-LAST:event_btnBuscaActionPerformed
@@ -790,9 +787,11 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
     }
 
     private void edicion() {
-        if (edicion) {
+        if (edicion)
+        {
             edicion = false;
-        } else {
+        } else
+        {
             edicion = true;
         }
     }
@@ -800,32 +799,43 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
     public void actualizaTabla(int valor) {
         modelo = (DefaultTableModel) jTable1.getModel();
         ArrayList profes = new ArrayList();
-        if (valor == 1) {
+        if (valor == 1)
+        {
 
             profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, "nombres", ConectarBase.conectado());
-            if (profes.isEmpty()) {
+            if (profes.isEmpty())
+            {
                 Mensaje.error(this, "No se encuentran registros");
-            } else {
+            } else
+            {
                 modelo.setRowCount(0);
-                for (Object p : profes) {
+                for (Object p : profes)
+                {
                     Profesor profe = (Profesor) p;
-                    modelo.addRow(new Object[]{
-                        profe.getRfc(), profe.getApellidoP(), profe.getApellidoM(), profe.getNombres(), profe.getGradoAcademico(), profe.getCorreo(), profe.getTelefono()
+                    modelo.addRow(new Object[]
+                    {
+                        profe.getRfc(), profe.getNombres(), profe.getApellidoP(), profe.getApellidoM(), profe.getGradoAcademico(), profe.getCorreo(), profe.getTelefono()
+
                     });
                     System.out.println(((Profesor) p).getNombres());
                     btnBusca.setText("Buscar");
                 }
             }
-        } else if (valor == 2) {
+        } else if (valor == 2)
+        {
             profes = ConsultasObjetos.consultaMuchos("profesores", "nombres", jtIDBusqeuda.getText(), null, null, "nombres", ConectarBase.conectado());
-            if (profes.isEmpty()) {
+            if (profes.isEmpty())
+            {
                 Mensaje.error(this, "No se encuentran registros");
-            } else {
+            } else
+            {
                 modelo.setRowCount(0);
-                for (Object p : profes) {
+                for (Object p : profes)
+                {
                     Profesor profe = (Profesor) p;
-                    modelo.addRow(new Object[]{
-                        profe.getRfc(), profe.getApellidoP(), profe.getApellidoM(), profe.getNombres(), profe.getGradoAcademico(), profe.getCorreo(), profe.getTelefono()
+                    modelo.addRow(new Object[]
+                    {
+                        profe.getRfc(), profe.getNombres(), profe.getApellidoP(), profe.getApellidoM(), profe.getGradoAcademico(), profe.getCorreo(), profe.getTelefono()
                     });
                     System.out.println(((Profesor) p).getNombres());
                     jtIDBusqeuda.setText("");
@@ -844,20 +854,27 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(VentanaDocentesCordinador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(VentanaDocentesCordinador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(VentanaDocentesCordinador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(VentanaDocentesCordinador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>

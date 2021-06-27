@@ -45,9 +45,9 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
         this.getContentPane().setBackground(Color.white);
         this.setIconImage(new ImageIcon(getClass().getResource("../Iconos/SCHR.png")).getImage());
         TablaMAterias.getColumnModel().getColumn(0).setPreferredWidth(10);
-        TablaMAterias.getColumnModel().getColumn(1).setPreferredWidth(100);
-        TablaMAterias.getColumnModel().getColumn(2).setPreferredWidth(20);
-        TablaMAterias.getColumnModel().getColumn(3).setPreferredWidth(200);
+        TablaMAterias.getColumnModel().getColumn(1).setPreferredWidth(200);
+        TablaMAterias.getColumnModel().getColumn(2).setPreferredWidth(100);
+        TablaMAterias.getColumnModel().getColumn(3).setPreferredWidth(20);
         TablaMAterias.getColumnModel().getColumn(4).setPreferredWidth(3);
         TablaMAterias.getColumnModel().getColumn(5).setPreferredWidth(3);
         TablaMAterias.getColumnModel().getColumn(6).setPreferredWidth(10);
@@ -133,7 +133,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Matricula", "Licenciatura", "Plan", "Nombre", "Horas", "Creditos", "Periodo", "Nucleo", "Tipo"
+                "Matricula", "Nombre", "Licenciatura", "Plan", "Horas", "Creditos", "Periodo", "Nucleo", "Tipo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -310,7 +310,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(254, 254, 254));
         jLabel12.setText("Tipo");
 
-        jCNucleo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Basico", "Sustantivo", "Integral" }));
+        jCNucleo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BASICO", "SUSTANTIVO", "INTEGRAL" }));
         jCNucleo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jCNucleoKeyPressed(evt);
@@ -324,7 +324,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
             }
         });
 
-        jCTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Obligatoria", "Optativa" }));
+        jCTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "OBLIGATORIA", "OPTATIVA" }));
         jCTipo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jCTipoKeyPressed(evt);
@@ -359,10 +359,10 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTClave, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTClave, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -370,28 +370,28 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCSemestre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jCSemestre, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCNucleo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jCNucleo, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addComponent(jCTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         btnAgregar4.setBackground(new java.awt.Color(102, 102, 0));
@@ -712,14 +712,18 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
     }//GEN-LAST:event_jBCancelarActionPerformed
 
     private void btnAgregar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar4ActionPerformed
-        if (txtnombreArchivo.getText() != null) {
+        if (txtnombreArchivo.getText() != null)
+        {
             String mensaje = Archivo.Exportar(TablaMAterias, txtnombreArchivo.getText());
-            if (mensaje.equals("Error en la Exportacion")) {
+            if (mensaje.equals("Error en la Exportacion"))
+            {
                 Mensaje.error(this, mensaje);
-            } else {
+            } else
+            {
                 Mensaje.exito(this, mensaje);
             }
-        } else {
+        } else
+        {
             Mensaje.error(this, "Escriba el nombre del archivo");
         }
     }//GEN-LAST:event_btnAgregar4ActionPerformed
@@ -764,8 +768,8 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
 
     private void TablaMAteriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMAteriasMouseClicked
         jTClave.setText((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 0));
-        jCPlan.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 2), jCPlan)));
-        jTNombre.setText((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 3));
+        jTNombre.setText((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 1));
+        jCPlan.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 3), jCPlan)));
         jTHoras.setText((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 4).toString());
         jTCreditos.setText((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 5).toString());
         jCSemestre.setSelectedIndex(buscarCombo((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 6).toString(), jCSemestre));
@@ -975,13 +979,13 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                         Materia mat = (Materia) m;
                         modelo.addRow(new Object[]
                         {
-                            mat.getClaveMateria(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getUnidadAprendizaje(), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
+                            mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
                         });
                     }
                 }
                 break;
             case 2:
-                materias = ConsultasObjetos.consultaMuchos("materia", "clave_materia", jtIDBusqeuda.getText(), null, null, "unidad_aprendizaje", ConectarBase.conectado());
+                materias = ConsultasObjetos.consultaMuchos("materia", "unidad_aprendizaje", jtIDBusqeuda.getText(), null, null, "unidad_aprendizaje", ConectarBase.conectado());
                 if (materias.isEmpty())
                 {
                     Mensaje.error(this, "No hay materias registradas");
@@ -993,7 +997,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                         Materia mat = (Materia) m;
                         modelo.addRow(new Object[]
                         {
-                            mat.getClaveMateria(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getUnidadAprendizaje(), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
+                            mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
                         });
                     }
                 }
@@ -1017,7 +1021,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                             Materia mat = (Materia) m;
                             modelo.addRow(new Object[]
                             {
-                                mat.getClaveMateria(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getUnidadAprendizaje(), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
+                                mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
                             });
                         }
                     }

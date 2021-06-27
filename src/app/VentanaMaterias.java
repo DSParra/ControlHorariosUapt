@@ -47,9 +47,9 @@ public class VentanaMaterias extends javax.swing.JFrame {
         this.getContentPane().setBackground(Color.white);
         this.setIconImage(new ImageIcon(getClass().getResource("../Iconos/SCHR.png")).getImage());
         TablaMAterias.getColumnModel().getColumn(0).setPreferredWidth(10);
-        TablaMAterias.getColumnModel().getColumn(1).setPreferredWidth(100);
-        TablaMAterias.getColumnModel().getColumn(2).setPreferredWidth(20);
-        TablaMAterias.getColumnModel().getColumn(3).setPreferredWidth(200);
+        TablaMAterias.getColumnModel().getColumn(1).setPreferredWidth(200);
+        TablaMAterias.getColumnModel().getColumn(2).setPreferredWidth(100);
+        TablaMAterias.getColumnModel().getColumn(3).setPreferredWidth(20);
         TablaMAterias.getColumnModel().getColumn(4).setPreferredWidth(3);
         TablaMAterias.getColumnModel().getColumn(5).setPreferredWidth(3);
         TablaMAterias.getColumnModel().getColumn(6).setPreferredWidth(10);
@@ -140,7 +140,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "CLAVE", "LICENCIATURA", "PLAN", "NOMBRE", "HORAS", "CREDITOS", "PERIODOS", "NUCLEOS", "TIPO"
+                "CLAVE", "NOMBRE", "LICENCIATURA", "PLAN", "HORAS", "CREDITOS", "PERIODOS", "NUCLEOS", "TIPO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -343,7 +343,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(254, 254, 254));
         jLabel12.setText("Tipo");
 
-        jCNucleo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Basico", "Sustantivo", "Integral" }));
+        jCNucleo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BASICO", "SUSTANTIVO", "INTEGRAL" }));
         jCNucleo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jCNucleoKeyPressed(evt);
@@ -357,7 +357,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
             }
         });
 
-        jCTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Obligatoria", "Optativa" }));
+        jCTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "OBLIGATORIA", "OPTATIVA" }));
         jCTipo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jCTipoKeyPressed(evt);
@@ -454,11 +454,14 @@ public class VentanaMaterias extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jtIDBusqeudaKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtIDBusqeudaKeyTyped(evt);
+            }
         });
 
         jLabel13.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel13.setText("INSERTE ID PARA BUSCAR");
+        jLabel13.setText("INSERTE NOMBRE PARA BUSCAR");
 
         jLabel14.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(254, 254, 254));
@@ -497,7 +500,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jCLicenciaturaFiltro, 0, 214, Short.MAX_VALUE)
+                        .addComponent(jCLicenciaturaFiltro, 0, 213, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -560,9 +563,9 @@ public class VentanaMaterias extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -571,85 +574,71 @@ public class VentanaMaterias extends javax.swing.JFrame {
                         .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(519, 519, 519)
-                        .addComponent(jBRegresar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(77, 77, 77))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel16)
-                                .addGap(6, 6, 6)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel17)
-                                    .addComponent(jLTituloUniversidad1)
-                                    .addComponent(jLTituloUAPT1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBRegresar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap())))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(49, 49, 49)
-                                        .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(55, 55, 55)
-                                        .addComponent(btnAgregar4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(59, 59, 59))))))
+                            .addComponent(jLabel17)
+                            .addComponent(jLTituloUniversidad1)
+                            .addComponent(jLTituloUAPT1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAgregar4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jBCerrarSesion))
+                .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLTituloUniversidad1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLTituloUAPT1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel17))
-                        .addComponent(jLabel16))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLTituloUniversidad1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLTituloUAPT1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel17))
+                            .addComponent(jLabel16))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(77, 77, 77)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnAgregar4))
                             .addComponent(btnBusca))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(btnAgregar4)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(23, 23, 23))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -691,19 +680,24 @@ public class VentanaMaterias extends javax.swing.JFrame {
     }//GEN-LAST:event_jTCreditosKeyTyped
 
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
-        if (jTClave.getText().compareTo("") == 0) {
+        if (jTClave.getText().compareTo("") == 0)
+        {
             Mensaje.error(this, "NO HA SELECCIONADO NINGUN REGISTRO");
-        } else {
-            if (!edicion) {
+        } else
+        {
+            if (!edicion)
+            {
                 edicion();
                 jBModificar.setText("Aceptar");
                 CtrlInterfaz.habilita(true, jCLicenciatura, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
                 CtrlInterfaz.habilita(false, jBAceptar, jBEliminar, btnAgregar4);
 
-            } else {
+            } else
+            {
                 Materia materia = new Materia(jTClave.getText(), jTNombre.getText(), Integer.parseInt(jTHoras.getText()), Integer.parseInt(jTCreditos.getText()), Integer.parseInt(jCSemestre.getSelectedItem().toString()), jCNucleo.getSelectedItem().toString(), jCTipo.getSelectedItem().toString(), buscaLic(null, jCLicenciatura.getSelectedItem().toString()), buscaPlan(null, jCPlan.getSelectedItem().toString()));
                 String mensaje = Controlador.ControladorMaterias.modifcaMateria(materia, (String) TablaMAterias.getValueAt(TablaMAterias.getSelectedRow(), 0));
-                if (mensaje.equals("operacion exitosa")) {
+                if (mensaje.equals("operacion exitosa"))
+                {
                     jBModificar.setText("Modificar");
                     CtrlInterfaz.habilita(false, jTClave, jCLicenciatura, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
                     CtrlInterfaz.habilita(true, jBAceptar, jBEliminar, btnAgregar4);
@@ -711,7 +705,8 @@ public class VentanaMaterias extends javax.swing.JFrame {
                     actualizarTabla(1);
                     jCLicenciaturaFiltro.setSelectedIndex(0);
                     edicion();
-                } else {
+                } else
+                {
                     JOptionPane.showMessageDialog(rootPane, mensaje);
                 }
             }
@@ -719,29 +714,35 @@ public class VentanaMaterias extends javax.swing.JFrame {
     }//GEN-LAST:event_jBModificarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-        if (Mensaje.pregunta(this, "¿En realidad quiere eliminar el periodo " + jTClave.getText() + "?") == 0) {
+        if (Mensaje.pregunta(this, "¿En realidad quiere eliminar el periodo " + jTClave.getText() + "?") == 0)
+        {
             String mensaje = Controlador.ControladorMaterias.eliminaMateria(jTClave.getText());
-            if (mensaje.endsWith("operacion exitosa")) {
+            if (mensaje.endsWith("operacion exitosa"))
+            {
                 actualizarTabla(1);
                 jCLicenciaturaFiltro.setSelectedIndex(0);
-            } else {
+            } else
+            {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
             }
         }
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jBAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAceptarActionPerformed
-        if (!edicion) {
+        if (!edicion)
+        {
             edicion();
             jBAceptar.setText("Aceptar");
             CtrlInterfaz.limpia(jTClave, jTNombre, jTHoras, jTCreditos);
             CtrlInterfaz.habilita(true, jTClave, jCLicenciatura, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
             CtrlInterfaz.habilita(false, jBModificar, jBEliminar, btnAgregar4);
             CtrlInterfaz.selecciona(jTClave);
-        } else {
+        } else
+        {
             Materia mat = new Materia(jTClave.getText(), jTNombre.getText(), Integer.parseInt(jTHoras.getText()), Integer.parseInt(jTCreditos.getText()), Integer.parseInt(jCSemestre.getSelectedItem().toString()), jCNucleo.getSelectedItem().toString(), jCTipo.getSelectedItem().toString(), buscaLic(null, jCLicenciatura.getSelectedItem().toString()), buscaPlan(null, jCPlan.getSelectedItem().toString()));
             String mensaje = Controlador.ControladorMaterias.insertaMateria(mat);
-            if (mensaje.equals("operacion exitosa")) {
+            if (mensaje.equals("operacion exitosa"))
+            {
                 jBAceptar.setText("Nuevo");
                 CtrlInterfaz.habilita(false, jTClave, jCLicenciatura, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
                 CtrlInterfaz.habilita(true, jBModificar, jBEliminar, btnAgregar4);
@@ -749,7 +750,8 @@ public class VentanaMaterias extends javax.swing.JFrame {
                 actualizarTabla(1);
                 jCLicenciaturaFiltro.setSelectedIndex(0);
                 edicion();
-            } else {
+            } else
+            {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
             }
         }
@@ -760,14 +762,18 @@ public class VentanaMaterias extends javax.swing.JFrame {
     }//GEN-LAST:event_jBCancelarActionPerformed
 
     private void btnAgregar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar4ActionPerformed
-        if (txtnombreArchivo.getText() != null) {
+        if (txtnombreArchivo.getText() != null)
+        {
             String mensaje = Archivo.Exportar(TablaMAterias, txtnombreArchivo.getText());
-            if (mensaje.equals("Error en la Exportacion")) {
+            if (mensaje.equals("Error en la Exportacion"))
+            {
                 Mensaje.error(this, mensaje);
-            } else {
+            } else
+            {
                 Mensaje.exito(this, mensaje);
             }
-        } else {
+        } else
+        {
             Mensaje.error(this, "Escriba el nombre del archivo");
         }
     }//GEN-LAST:event_btnAgregar4ActionPerformed
@@ -824,7 +830,8 @@ public class VentanaMaterias extends javax.swing.JFrame {
     }//GEN-LAST:event_jCLicenciaturaMouseEntered
 
     private void jCLicenciaturaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCLicenciaturaItemStateChanged
-        if (evt.getStateChange() == ItemEvent.SELECTED) {
+        if (evt.getStateChange() == ItemEvent.SELECTED)
+        {
             //Licenciatura lic = (Licenciatura) jCLicenciatura.getSelectedItem();
             plans = ConsultasObjetos.consultaMuchos("plan_estudios", "id_licenciatura", buscaLic(null, jCLicenciatura.getSelectedItem().toString()), null, null, "plan_estudios", ConectarBase.conectado());
             llenaComboPlanes();
@@ -837,9 +844,9 @@ public class VentanaMaterias extends javax.swing.JFrame {
 
     private void TablaMAteriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMAteriasMouseClicked
         jTClave.setText((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 0));
-        jCLicenciatura.setSelectedIndex(buscarCombo((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 1)));
-        jCPlan.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 2), jCPlan)));
-        jTNombre.setText((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 3));
+        jTNombre.setText((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 1));
+        jCLicenciatura.setSelectedIndex(buscarCombo((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 2)));
+        jCPlan.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 3), jCPlan)));
         jTHoras.setText((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 4).toString());
         jTCreditos.setText((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 5).toString());
         jCSemestre.setSelectedIndex(buscarCombo((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 6).toString(), jCSemestre));
@@ -861,11 +868,11 @@ public class VentanaMaterias extends javax.swing.JFrame {
     }//GEN-LAST:event_jCLicenciaturaFiltroItemStateChanged
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
-        if (jtIDBusqeuda.getText().equals("")) {
+        if (jtIDBusqeuda.getText().equals(""))
+        {
             actualizarTabla(1);
-        } else if (jCLicenciaturaFiltro.getSelectedIndex() == 0) {
-            actualizarTabla(1);
-        } else {
+        }else  
+        {
             actualizarTabla(2);
         }
     }//GEN-LAST:event_btnBuscaActionPerformed
@@ -887,6 +894,10 @@ public class VentanaMaterias extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnombreArchivoActionPerformed
 
+    private void jtIDBusqeudaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDBusqeudaKeyTyped
+        btnBusca.setText("Buscar");
+    }//GEN-LAST:event_jtIDBusqeudaKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -896,20 +907,27 @@ public class VentanaMaterias extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(VentanaMaterias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(VentanaMaterias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(VentanaMaterias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(VentanaMaterias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -1004,32 +1022,42 @@ public class VentanaMaterias extends javax.swing.JFrame {
         plans = ConsultasObjetos.consultaMuchos("plan_estudios", null, null, null, null, "plan_estudios", ConectarBase.conectado());
         modelo = (DefaultTableModel) TablaMAterias.getModel();
         ArrayList materias = new ArrayList();
-        switch (valor) {
+        switch (valor)
+        {
             case 1:
                 materias = ConsultasObjetos.consultaMuchos("materia", null, null, null, null, "unidad_aprendizaje", ConectarBase.conectado());
-                if (materias.isEmpty()) {
+                if (materias.isEmpty())
+                {
                     Mensaje.error(this, "No hay materias registradas");
-                } else {
+                } else
+                {
                     modelo.setRowCount(0);
-                    for (Object m : materias) {
+                    for (Object m : materias)
+                    {
                         Materia mat = (Materia) m;
-                        modelo.addRow(new Object[]{
-                            mat.getClaveMateria(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getUnidadAprendizaje(), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
+                        modelo.addRow(new Object[]
+                        {
+                            mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
                         });
                         btnBusca.setText("Buscar");
                     }
                 }
                 break;
             case 2:
-                materias = ConsultasObjetos.consultaMuchos("materia", "clave_materia", jtIDBusqeuda.getText(), null, null, "unidad_aprendizaje", ConectarBase.conectado());
-                if (materias.isEmpty()) {
+                materias = ConsultasObjetos.consultaMuchos("materia", "unidad_aprendizaje", jtIDBusqeuda.getText(), null, null, "unidad_aprendizaje", ConectarBase.conectado());
+                if (materias.isEmpty())
+                {
                     Mensaje.error(this, "No hay materias registradas con este ID");
-                } else {
+                } else
+                {
                     modelo.setRowCount(0);
-                    for (Object m : materias) {
+                    for (Object m : materias)
+                    {
                         Materia mat = (Materia) m;
-                        modelo.addRow(new Object[]{
-                            mat.getClaveMateria(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getUnidadAprendizaje(), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
+                        modelo.addRow(new Object[]
+                        {
+                            
+                            mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
                         });
                         jtIDBusqeuda.setText("");
                         btnBusca.setText("Todas");
@@ -1037,18 +1065,24 @@ public class VentanaMaterias extends javax.swing.JFrame {
                 }
                 break;
             case 3:
-                if (jCLicenciaturaFiltro.getSelectedIndex() == 0) {
+                if (jCLicenciaturaFiltro.getSelectedIndex() == 0)
+                {
                     actualizarTabla(1);
-                } else {
+                } else
+                {
                     materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()), null, null, "unidad_aprendizaje", ConectarBase.conectado());
-                    if (materias.isEmpty()) {
+                    if (materias.isEmpty())
+                    {
                         Mensaje.error(this, "No hay materias registradas");
-                    } else {
+                    } else
+                    {
                         modelo.setRowCount(0);
-                        for (Object m : materias) {
+                        for (Object m : materias)
+                        {
                             Materia mat = (Materia) m;
-                            modelo.addRow(new Object[]{
-                                mat.getClaveMateria(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getUnidadAprendizaje(), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
+                            modelo.addRow(new Object[]
+                            {
+                                mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
                             });
                             btnBusca.setText("Todas");
                         }
@@ -1056,18 +1090,24 @@ public class VentanaMaterias extends javax.swing.JFrame {
                 }
                 break;
             case 4:
-                if (jcSesmtre.getSelectedIndex() == 0) {
+                if (jcSesmtre.getSelectedIndex() == 0)
+                {
                     actualizarTabla(3);
-                } else {
+                } else
+                {
                     materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()), "numero_periodo", jcSesmtre.getSelectedItem().toString(), "unidad_aprendizaje", ConectarBase.conectado());
-                    if (materias.isEmpty()) {
+                    if (materias.isEmpty())
+                    {
                         Mensaje.error(this, "No hay materias registradas con este semestre");
-                    } else {
+                    } else
+                    {
                         modelo.setRowCount(0);
-                        for (Object m : materias) {
+                        for (Object m : materias)
+                        {
                             Materia mat = (Materia) m;
-                            modelo.addRow(new Object[]{
-                                mat.getClaveMateria(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getUnidadAprendizaje(), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
+                            modelo.addRow(new Object[]
+                            {
+                                mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
                             });
                             btnBusca.setText("Todas");
                         }
@@ -1080,9 +1120,11 @@ public class VentanaMaterias extends javax.swing.JFrame {
     }
 
     private void edicion() {
-        if (edicion) {
+        if (edicion)
+        {
             edicion = false;
-        } else {
+        } else
+        {
             edicion = true;
         }
     }
@@ -1091,7 +1133,8 @@ public class VentanaMaterias extends javax.swing.JFrame {
         jCLicenciatura.removeAllItems();
         jCLicenciaturaFiltro.removeAllItems();
         jCLicenciaturaFiltro.addItem("TODAS");
-        for (int i = 0; i < lics.size(); i++) {
+        for (int i = 0; i < lics.size(); i++)
+        {
             jCLicenciatura.addItem(((Licenciatura) lics.get(i)).getLicenciatura());
             jCLicenciaturaFiltro.addItem(((Licenciatura) lics.get(i)).getLicenciatura());
         }
@@ -1108,23 +1151,30 @@ public class VentanaMaterias extends javax.swing.JFrame {
 
     public void llenaComboPlanes() {
         jCPlan.removeAllItems();
-        for (int i = 0; i < plans.size(); i++) {
+        for (int i = 0; i < plans.size(); i++)
+        {
             jCPlan.addItem(((PlanEstudios) plans.get(i)).getPlanEstudios());
         }
     }
 
     public String buscaLic(String id, String licenciatura) {
-        if (licenciatura != null) {
-            for (Object l : lics) {
+        if (licenciatura != null)
+        {
+            for (Object l : lics)
+            {
                 Licenciatura lic = (Licenciatura) l;
-                if ((lic.getLicenciatura()).equals(licenciatura)) {
+                if ((lic.getLicenciatura()).equals(licenciatura))
+                {
                     return lic.getIdLicenciatura();
                 }
             }
-        } else {
-            for (Object l : lics) {
+        } else
+        {
+            for (Object l : lics)
+            {
                 Licenciatura lic = (Licenciatura) l;
-                if (lic.getIdLicenciatura().equals(id)) {
+                if (lic.getIdLicenciatura().equals(id))
+                {
                     return lic.getLicenciatura();
                 }
             }
@@ -1133,17 +1183,23 @@ public class VentanaMaterias extends javax.swing.JFrame {
     }
 
     private String buscaPlan(String id, String plan) {
-        if (plan != null) {
-            for (Object p : plans) {
+        if (plan != null)
+        {
+            for (Object p : plans)
+            {
                 PlanEstudios pla = (PlanEstudios) p;
-                if ((pla.getPlanEstudios().equals(plan))) {
+                if ((pla.getPlanEstudios().equals(plan)))
+                {
                     return pla.getIdPlan();
                 }
             }
-        } else {
-            for (Object p : plans) {
+        } else
+        {
+            for (Object p : plans)
+            {
                 PlanEstudios pla = (PlanEstudios) p;
-                if (pla.getIdPlan().equals(id)) {
+                if (pla.getIdPlan().equals(id))
+                {
                     return pla.getPlanEstudios();
                 }
             }
@@ -1152,8 +1208,10 @@ public class VentanaMaterias extends javax.swing.JFrame {
     }
 
     public int buscarCombo(String text) {
-        for (int i = 0; i < jCLicenciatura.getItemCount(); i++) {
-            if (text.equals(jCLicenciatura.getItemAt(i))) {
+        for (int i = 0; i < jCLicenciatura.getItemCount(); i++)
+        {
+            if (text.equals(jCLicenciatura.getItemAt(i)))
+            {
                 return i;
             }
         }
@@ -1161,8 +1219,10 @@ public class VentanaMaterias extends javax.swing.JFrame {
     }
 
     private int buscarComboPlan(String text) {
-        for (int i = 0; i < jCPlan.getItemCount(); i++) {
-            if (text.equals(jCPlan.getItemAt(i))) {
+        for (int i = 0; i < jCPlan.getItemCount(); i++)
+        {
+            if (text.equals(jCPlan.getItemAt(i)))
+            {
                 return i;
             }
         }
@@ -1170,8 +1230,10 @@ public class VentanaMaterias extends javax.swing.JFrame {
     }
 
     private int buscarCombo(String text, JComboBox<String> jCSemestre) {
-        for (int i = 0; i < jCSemestre.getItemCount(); i++) {
-            if (text.equals(jCSemestre.getItemAt(i))) {
+        for (int i = 0; i < jCSemestre.getItemCount(); i++)
+        {
+            if (text.equals(jCSemestre.getItemAt(i)))
+            {
                 return i;
             }
         }
