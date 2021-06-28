@@ -47,7 +47,7 @@ public class VistaExcel extends javax.swing.JFrame {
     String tipoExcel = "";
     String cabecerasProfesor[] = {"rfc", "apellido paterno", "apellido materno", "nombre", "grado academico", "correo", "telefono"};
     String cabecerasMateria[] = {"clave de la materia", "unidad de aprendizaje", "horas", "creditos", "numero de periodo", "nucleo", "tipo", "licenciatura", "plan de estudios"};
-    String cabecerasHorario[] = {"clave", "unidad_aprendizaje", "rfc", "profesor", "grupo", "periodo", "dia", "entrada", "salida"};
+    String cabecerasHorario[] = {"clave materia", "unidad de aprendizaje", "rfc", "profesor", "grupo", "periodo", "dia", "entrada", "salida"};
     ArrayList<Profesor> profes;
     ArrayList<Materia> materias;
     ArrayList<Grupo> grupos;
@@ -563,15 +563,17 @@ public class VistaExcel extends javax.swing.JFrame {
     }
 
 
-    public boolean comparaMaterias() {
+    public boolean comparaMateriasExcel() {
         boolean prueba = true;
         double entrada1, salida1, entrada2, salida2;
         String mensaje = "";
         for (int i = 0; i < horarios.size(); i++) {
             for (int j = 0; j < horarios.size(); j++) {
                 //System.out.println("dia: "+horarios.get(i).getDia() + " ---->"+ "dia: "+horarios.get(j).getDia() );
-                if (horarios.get(i).getDia().equals(horarios.get(j).getDia()) && i != j && horarios.get(i).getIdGrupo().equals(horarios.get(j).getIdGrupo())
-                        && horarios.get(i).getClaveMateria().equals(horarios.get(j).getClaveMateria())) {
+                if (horarios.get(i).getDia().equals(horarios.get(j).getDia()) && i != j 
+                        //&& horarios.get(i).getIdGrupo().equals(horarios.get(j).getIdGrupo())
+                        //&& horarios.get(i).getClaveMateria().equals(horarios.get(j).getClaveMateria())
+                        && horarios.get(i).getRfc().equals(horarios.get(j).getRfc())) {
                     //System.out.println("Mismo dia ");
                     //System.out.println(horarios.get(i).getClaveMateria() + " " + horarios.get(i).getRfc() + " " + horarios.get(i).getIdPeriodo());
                     //System.out.println(horarios.get(j).getClaveMateria() + " " + horarios.get(j).getRfc() + " " + horarios.get(j).getIdPeriodo());
@@ -579,18 +581,57 @@ public class VistaExcel extends javax.swing.JFrame {
                     salida1 = Double.parseDouble(horarios.get(i).getSalida().substring(0, 2) + "." + horarios.get(i).getSalida().substring(3, 5));
                     entrada2 = Double.parseDouble(horarios.get(j).getEntrada().substring(0, 2) + "." + horarios.get(j).getEntrada().substring(3, 5));
                     salida2 = Double.parseDouble(horarios.get(j).getSalida().substring(0, 2) + "." + horarios.get(j).getSalida().substring(3, 5));
-                    if (entrada2 >= entrada1 && entrada2 <= salida1) {
+                    if (entrada2 >= entrada1 && entrada2 < salida1) {
+                        
                         prueba = false;
-                        mensaje += txtDatosNoEncontrados.getText() + "Error Por grupos\n"
-                                + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 5)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 8))
-                                + " y "
-                                + String.valueOf(jTDatosExcel.getValueAt(j, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 5)) + " " + String.valueOf(jTDatosExcel.getValueAt(j, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(j, 8)) + "\n\n";
+                        mensaje += "Cruze de Profesor\n"
+                                + "Materia: " + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 1))+"\n"
+                                + "Profesor " + String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 3)) + "\n"
+                                + "Grupo: " +  String.valueOf(jTDatosExcel.getValueAt(i, 4)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 4))+"\n"
+                                + "Dia: " +  String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j,6))+"\n"
+                                + "Horario: " +  String.valueOf(jTDatosExcel.getValueAt(i, 7)) +" - " +String.valueOf(jTDatosExcel.getValueAt(i, 8)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j,7)) +"- "+ String.valueOf(jTDatosExcel.getValueAt(j,8))+"\n\n";
+                                
+                             //   + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 4))+String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 8))
+                              //  + " y "
+                               // + String.valueOf(jTDatosExcel.getValueAt(j, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 4)) + " " +String.valueOf(jTDatosExcel.getValueAt(i, 3))+ String.valueOf(jTDatosExcel.getValueAt(j, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(j, 8)) + "\n\n";
                         //System.out.println("horarios cruzados");
                     }
+                    
+                    
+                }
+                
+                if (horarios.get(i).getDia().equals(horarios.get(j).getDia()) && i != j 
+                        && horarios.get(i).getIdGrupo().equals(horarios.get(j).getIdGrupo())
+                        && horarios.get(i).getClaveMateria().equals(horarios.get(j).getClaveMateria())){
+                        //&& horarios.get(i).getRfc().equals(horarios.get(j).getRfc())) {
+                    //System.out.println("Mismo dia ");
+                    //System.out.println(horarios.get(i).getClaveMateria() + " " + horarios.get(i).getRfc() + " " + horarios.get(i).getIdPeriodo());
+                    //System.out.println(horarios.get(j).getClaveMateria() + " " + horarios.get(j).getRfc() + " " + horarios.get(j).getIdPeriodo());
+                    entrada1 = Double.parseDouble(horarios.get(i).getEntrada().substring(0, 2) + "." + horarios.get(i).getEntrada().substring(3, 5));
+                    salida1 = Double.parseDouble(horarios.get(i).getSalida().substring(0, 2) + "." + horarios.get(i).getSalida().substring(3, 5));
+                    entrada2 = Double.parseDouble(horarios.get(j).getEntrada().substring(0, 2) + "." + horarios.get(j).getEntrada().substring(3, 5));
+                    salida2 = Double.parseDouble(horarios.get(j).getSalida().substring(0, 2) + "." + horarios.get(j).getSalida().substring(3, 5));
+                    if (entrada2 >= entrada1 && entrada2 < salida1) {
+                        
+                        prueba = false;
+                        mensaje += "Cruze del misma Materia\n"
+                                + "Materia: " + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 1))+"\n"
+                                + "Profesor " + String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 3)) + "\n"
+                                + "Grupo: " +  String.valueOf(jTDatosExcel.getValueAt(i, 4)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 4))+"\n"
+                                + "Dia: " +  String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j,6))+"\n"
+                                + "Horario: " +  String.valueOf(jTDatosExcel.getValueAt(i, 7)) +" - " +String.valueOf(jTDatosExcel.getValueAt(i, 8)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j,7)) +"- "+ String.valueOf(jTDatosExcel.getValueAt(j,8))+"\n\n";
+                                
+                             //   + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 4))+String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 8))
+                              //  + " y "
+                               // + String.valueOf(jTDatosExcel.getValueAt(j, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 4)) + " " +String.valueOf(jTDatosExcel.getValueAt(i, 3))+ String.valueOf(jTDatosExcel.getValueAt(j, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(j, 8)) + "\n\n";
+                        //System.out.println("horarios cruzados");
+                    }
+                    
+                    
                 }
             }
         }
-        txtCruzeMaterias.setText(mensaje);
+        txtcruzesExcel.setText(mensaje);
         return prueba;
     }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -608,8 +649,8 @@ public class VistaExcel extends javax.swing.JFrame {
             horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, null, ConectarBase.conectado()));
             horarios = guardaExcel();
             jCheckLllaves.setSelected(validaExcel());
+            jCheckExcel.setSelected(comparaMateriasExcel());
             if (jCheckLllaves.isSelected()) {
-                jCheckExcel.setSelected(comparaMaterias());
                 jCheckProfesores.setSelected(evaluaProfesores());
                 jCheckMateriasBD.setSelected(evaluaGruposBD());
                 
