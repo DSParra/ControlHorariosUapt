@@ -601,8 +601,8 @@ public class VistaExcel extends javax.swing.JFrame {
                 }
                 
                 if (horarios.get(i).getDia().equals(horarios.get(j).getDia()) && i != j 
-                        && horarios.get(i).getIdGrupo().equals(horarios.get(j).getIdGrupo())
-                        && horarios.get(i).getClaveMateria().equals(horarios.get(j).getClaveMateria())){
+                        && horarios.get(i).getIdGrupo().equals(horarios.get(j).getIdGrupo())){
+                        //&& horarios.get(i).getClaveMateria().equals(horarios.get(j).getClaveMateria())){
                         //&& horarios.get(i).getRfc().equals(horarios.get(j).getRfc())) {
                     //System.out.println("Mismo dia ");
                     //System.out.println(horarios.get(i).getClaveMateria() + " " + horarios.get(i).getRfc() + " " + horarios.get(i).getIdPeriodo());
@@ -614,7 +614,7 @@ public class VistaExcel extends javax.swing.JFrame {
                     if (entrada2 >= entrada1 && entrada2 < salida1) {
                         
                         prueba = false;
-                        mensaje += "Cruze del misma Materia\n"
+                        mensaje += "Cruze del mismo Grupo\n"
                                 + "Materia: " + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 1))+"\n"
                                 + "Profesor " + String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 3)) + "\n"
                                 + "Grupo: " +  String.valueOf(jTDatosExcel.getValueAt(i, 4)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 4))+"\n"
@@ -645,12 +645,12 @@ public class VistaExcel extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         limpiaDatos();
         if (tipoExcel.equalsIgnoreCase("horario")) {
-
             horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, null, ConectarBase.conectado()));
             horarios = guardaExcel();
             jCheckLllaves.setSelected(validaExcel());
             jCheckExcel.setSelected(comparaMateriasExcel());
             if (jCheckLllaves.isSelected()) {
+                
                 jCheckProfesores.setSelected(evaluaProfesores());
                 jCheckMateriasBD.setSelected(evaluaGruposBD());
                 
@@ -751,6 +751,7 @@ public class VistaExcel extends javax.swing.JFrame {
         double entrada1, entrada2, salida1, salida2;
         String mensaje = "";
         ordenamientoBurbujaID("materia");
+        ordenamientoBurbujaNombre("grupo");
         for (int i = 0; i < horarios.size(); i++) {
             System.out.println("registro " + i);
             if (busquedaBinariaBuscaID(String.valueOf(jTDatosExcel.getValueAt(i, 0)), "materia") == null) {
@@ -766,7 +767,7 @@ public class VistaExcel extends javax.swing.JFrame {
             if (busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(i, 4)), "grupo") == -1) {
                 prueba = false;
                 mensaje += "Grupo: " + String.valueOf(jTDatosExcel.getValueAt(i, 4) + " NO ENCONTRADO") + "\n\n";
-                //System.out.println("Grupos no encotrados");
+                System.out.println("Grupos no encontrado" + i);
             }
             if (busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(i, 5)), "periodo") == -1) {
                 prueba = false;
@@ -845,7 +846,7 @@ public class VistaExcel extends javax.swing.JFrame {
         switch (tipo) {
             case "grupo":
                 Grupo grup;
-                for (int i = 2; i < grupos.size(); i++) {
+                for (int i = 1; i < grupos.size(); i++) {
                     for (int j = 0; j < grupos.size() - i; j++) {
                         if (Integer.valueOf(grupos.get(j).getIdGrupo()) > Integer.valueOf(grupos.get(j + 1).getIdGrupo())) {
                             grup = grupos.get(j);
@@ -857,7 +858,7 @@ public class VistaExcel extends javax.swing.JFrame {
                 break;
             case "licenciatura":
                 Licenciatura lic;
-                for (int i = 2; i < carreras.size(); i++) {
+                for (int i = 1; i < carreras.size(); i++) {
                     for (int j = 0; j < carreras.size() - i; j++) {
                         if (carreras.get(j).getIdLicenciatura().compareToIgnoreCase(carreras.get(j + 1).getIdLicenciatura()) > 0) {
                             lic = carreras.get(j);
@@ -870,7 +871,7 @@ public class VistaExcel extends javax.swing.JFrame {
 
             case "materia":
                 Materia mat;
-                for (int i = 2; i < materias.size(); i++) {
+                for (int i = 1; i < materias.size(); i++) {
                     for (int j = 0; j < materias.size() - i; j++) {
                         if (materias.get(j).getClaveMateria().compareToIgnoreCase(materias.get(j + 1).getClaveMateria()) > 0) {
                             mat = materias.get(j);
@@ -888,7 +889,7 @@ public class VistaExcel extends javax.swing.JFrame {
         switch (tipo) {
             case "grupo":
                 Grupo grup;
-                for (int i = 2; i < grupos.size(); i++) {
+                for (int i = 1; i < grupos.size(); i++) {
                     for (int j = 0; j < grupos.size() - i; j++) {
                         if (grupos.get(j).getNombreGrupo().compareToIgnoreCase(grupos.get(j + 1).getNombreGrupo()) > 0) {
                             grup = grupos.get(j);
@@ -901,7 +902,7 @@ public class VistaExcel extends javax.swing.JFrame {
             //esta por id
             case "licenciatura":
                 Licenciatura lic;
-                for (int i = 2; i < carreras.size(); i++) {
+                for (int i = 1; i < carreras.size(); i++) {
                     for (int j = 0; j < carreras.size() - i; j++) {
                         if (carreras.get(j).getIdLicenciatura().compareToIgnoreCase(carreras.get(j + 1).getIdLicenciatura()) > 0) {
                             lic = carreras.get(j);
@@ -914,7 +915,7 @@ public class VistaExcel extends javax.swing.JFrame {
 
             case "materia":
                 Materia mat;
-                for (int i = 2; i < materias.size(); i++) {
+                for (int i = 1; i < materias.size(); i++) {
                     for (int j = 0; j < materias.size() - i; j++) {
                         if (materias.get(j).getUnidadAprendizaje().compareToIgnoreCase(materias.get(j + 1).getUnidadAprendizaje()) > 0) {
                             mat = materias.get(j);
