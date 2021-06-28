@@ -215,7 +215,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
             }
         });
 
-        jLabel10.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(254, 254, 254));
         jLabel10.setText("TELEFONO");
 
@@ -238,7 +238,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
             }
         });
 
-        jLabel9.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(254, 254, 254));
         jLabel9.setText("CORREO");
 
@@ -264,7 +264,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(254, 254, 254));
         jLabel7.setText("GRADO ACADEMICO");
 
@@ -290,7 +290,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(254, 254, 254));
         jLabel6.setText("NOMBRE(S)");
 
@@ -316,7 +316,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(254, 254, 254));
         jLabel8.setText("APELLIDO MATERNO");
 
@@ -342,7 +342,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(254, 254, 254));
         jLabel3.setText("APELLIDO PATERNO");
 
@@ -368,7 +368,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(254, 254, 254));
         jLabel4.setText("RFC");
 
@@ -442,7 +442,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(254, 254, 254));
         jLabel11.setText("ESCRIBA NOMBRES PARA BUSCAR");
 
@@ -477,16 +477,16 @@ public class VentanaDocentes extends javax.swing.JFrame {
             }
         });
 
-        jLTituloUniversidad1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLTituloUniversidad1.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
         jLTituloUniversidad1.setText("UNIVERSIDAD AUTONOMA DEL ESTADO DE MEXICO");
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/UAEMex.jpg"))); // NOI18N
 
-        jLabel13.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel13.setText("GESTION DOCENTES");
+        jLabel13.setText("GESTION DE DOCENTES");
 
-        jLTituloUAPT1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLTituloUAPT1.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
         jLTituloUAPT1.setText("UNIDAD ACADEMICA PROFESIONAL TIANGUISTENCO");
 
         txtnombreArchivo.addActionListener(new java.awt.event.ActionListener() {
@@ -495,8 +495,8 @@ public class VentanaDocentes extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Nombre del archivo");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setText("ESCRIBA UN NOMBRE DE ARCHIVO PARA EXPORTAR");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -513,75 +513,83 @@ public class VentanaDocentes extends javax.swing.JFrame {
                         .addComponent(btnelmina, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(494, 494, 494)
-                        .addComponent(jBRegresar))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(1, 1, 1)
-                            .addComponent(jLabel12)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(2, 2, 2)
-                                    .addComponent(jLTituloUniversidad1))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel13)
-                                        .addComponent(jLTituloUAPT1))
-                                    .addGap(252, 252, 252)
-                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBRegresar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBCerrarSesion))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 27, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(107, 107, 107)
+                                .addComponent(jLabel12))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLTituloUAPT1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addComponent(jLTituloUniversidad1))))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabel1)))
+                                    .addComponent(jScrollPane1)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(240, 240, 240)
+                                .addComponent(jLabel13)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLTituloUniversidad1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLTituloUAPT1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel13))
-                        .addComponent(jLabel12))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLTituloUniversidad1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLTituloUAPT1)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnmodifica, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnelmina, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnmodifica, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnelmina, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 

@@ -203,7 +203,7 @@ public class VentanaLogin extends javax.swing.JFrame {
 
         jLTituloUniversidad.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLTituloUniversidad.setForeground(new java.awt.Color(1, 1, 1));
-        jLTituloUniversidad.setText("UNIVERSIDAD AUTONOMA DEL ESTADO ME MEXICO");
+        jLTituloUniversidad.setText("UNIVERSIDAD AUTONOMA DEL ESTADO DE MEXICO");
 
         jLTituloUAPT.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLTituloUAPT.setForeground(new java.awt.Color(1, 1, 1));
@@ -224,18 +224,18 @@ public class VentanaLogin extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(jLTituloUniversidad))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(129, 129, 129)
                                 .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(79, 79, 79)
                                 .addComponent(jLTituloUAPT))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(184, 184, 184)
-                                .addComponent(jLabel5)))
-                        .addGap(27, 27, 27))
+                                .addGap(198, 198, 198)
+                                .addComponent(jLabel5))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(jLTituloUniversidad)))
+                        .addGap(28, 28, 28))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLTituloUAPT1)
                         .addGap(18, 18, 18)))
@@ -246,7 +246,7 @@ public class VentanaLogin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel5)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLTituloUniversidad, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLTituloUAPT1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)

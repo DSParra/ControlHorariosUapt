@@ -136,10 +136,10 @@ public class VentanaMenuCoordinador extends javax.swing.JFrame {
         LabelLic.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         LabelLic.setText("Unidad Académica Profesional Tianguistenco");
 
-        jLTituloUniversidad1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLTituloUniversidad1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLTituloUniversidad1.setText("UNIVERSIDAD AUTONOMA DEL ESTADO DE MEXICO");
 
-        jLTituloUAPT1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLTituloUAPT1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLTituloUAPT1.setText("UNIDAD ACADEMICA PROFESIONAL TIANGUISTENCO");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -171,7 +171,7 @@ public class VentanaMenuCoordinador extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jBMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,15 +179,15 @@ public class VentanaMenuCoordinador extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(6, 6, 6)
                         .addComponent(jLTituloUAPT1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLTituloUniversidad1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(LabelLic)))
-                .addGap(18, 18, 18)
+                        .addComponent(jLTituloUniversidad1)))
+                .addGap(3, 3, 3)
+                .addComponent(LabelLic)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addGap(38, 38, 38)
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -199,7 +199,7 @@ public class VentanaMenuCoordinador extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jBGrupos)
                             .addComponent(jBHorarios))))
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
 
         pack();

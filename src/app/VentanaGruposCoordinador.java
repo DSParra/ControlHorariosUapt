@@ -77,12 +77,12 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jtIDBusqeuda = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jLTituloUniversidad1 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLTituloUAPT1 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         txtnombreArchivo = new javax.swing.JTextField();
+        jLTituloUniversidad1 = new javax.swing.JLabel();
+        jLTituloUAPT1 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Horarios UAPT");
@@ -312,26 +312,26 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLTituloUniversidad1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jLTituloUniversidad1.setText("UNIVERSIDAD AUTONOMA DEL ESTADO DE MEXICO");
-
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/UAEMex.jpg"))); // NOI18N
-
-        jLabel15.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel15.setText("GESTION GRUPOS");
-
-        jLTituloUAPT1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jLTituloUAPT1.setText("UNIDAD ACADEMICA PROFESIONAL TIANGUISTENCO");
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Nombre del archivo");
-
         txtnombreArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtnombreArchivoActionPerformed(evt);
             }
         });
+
+        jLTituloUniversidad1.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
+        jLTituloUniversidad1.setText("UNIVERSIDAD AUTONOMA DEL ESTADO DE MEXICO");
+
+        jLTituloUAPT1.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
+        jLTituloUAPT1.setText("UNIDAD ACADEMICA PROFESIONAL TIANGUISTENCO");
+
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/UAEMex.jpg"))); // NOI18N
+
+        jLabel14.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel14.setText("GESTION DE GRUPOS");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setText("ESCRIBA UN NOMBRE DE ARCHIVO PARA EXPORTAR");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -339,7 +339,7 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -348,67 +348,85 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
                         .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(466, 466, 466)
-                        .addComponent(jBRegresar))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jLabel14)
-                            .addGap(6, 6, 6)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLTituloUniversidad1)
-                                .addComponent(jLabel15)
-                                .addComponent(jLTituloUAPT1))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 775, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 27, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(96, 96, 96)
+                                        .addComponent(jLabel16))
+                                    .addComponent(jLTituloUAPT1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addComponent(jLTituloUniversidad1)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jBRegresar)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 963, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGap(0, 0, Short.MAX_VALUE)
+                                                    .addComponent(jLabel1)))))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(288, 288, 288)
+                                .addComponent(jLabel14)))
+                        .addGap(0, 18, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLTituloUniversidad1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLTituloUAPT1))
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel15))
-                    .addComponent(jLabel14))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLTituloUniversidad1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLTituloUAPT1)
+                        .addGap(10, 10, 10)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnBusca)
+                                    .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnExportar))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3))
         );
 
         pack();
@@ -436,19 +454,6 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
     private void jTIdGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTIdGrupoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTIdGrupoActionPerformed
-
-    private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
-        if (txtnombreArchivo.getText() != null) {
-            String mensaje = Archivo.Exportar(TablaGrupos, txtnombreArchivo.getText());
-            if (mensaje.equals("Error en la Exportacion")) {
-                Mensaje.error(this, mensaje);
-            } else {
-                Mensaje.exito(this, mensaje);
-            }
-        } else {
-            Mensaje.error(this, "Escriba el nombre del archivo");
-        }
-    }//GEN-LAST:event_btnExportarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
         if (Mensaje.pregunta(this, "¿En realidad quiere eliminar el periodo " + jTIdGrupo.getText() + "?") == 0)
@@ -550,6 +555,10 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTIdGrupoKeyTyped
 
+    private void jTIdGrupoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTIdGrupoFocusLost
+        Valida.convertirAMayusculas(jTIdGrupo);
+    }//GEN-LAST:event_jTIdGrupoFocusLost
+
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
         if (jtIDBusqeuda.getText().equals(""))
         {
@@ -560,21 +569,30 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscaActionPerformed
 
-    private void jtIDBusqeudaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtIDBusqeudaFocusLost
-        Valida.convertirAMayusculas(jtIDBusqeuda);
-    }//GEN-LAST:event_jtIDBusqeudaFocusLost
+    private void txtnombreArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreArchivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnombreArchivoActionPerformed
+
+    private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
+        if (txtnombreArchivo.getText() != null) {
+            String mensaje = Archivo.Exportar(TablaGrupos, txtnombreArchivo.getText());
+            if (mensaje.equals("Error en la Exportacion")) {
+                Mensaje.error(this, mensaje);
+            } else {
+                Mensaje.exito(this, mensaje);
+            }
+        } else {
+            Mensaje.error(this, "Escriba el nombre del archivo");
+        }
+    }//GEN-LAST:event_btnExportarActionPerformed
 
     private void jtIDBusqeudaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDBusqeudaKeyPressed
         enter(this, evt, btnBusca);
     }//GEN-LAST:event_jtIDBusqeudaKeyPressed
 
-    private void jTIdGrupoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTIdGrupoFocusLost
-        Valida.convertirAMayusculas(jTIdGrupo);
-    }//GEN-LAST:event_jTIdGrupoFocusLost
-
-    private void txtnombreArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreArchivoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtnombreArchivoActionPerformed
+    private void jtIDBusqeudaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtIDBusqeudaFocusLost
+        Valida.convertirAMayusculas(jtIDBusqeuda);
+    }//GEN-LAST:event_jtIDBusqeudaFocusLost
 
     /**
      * @param args the command line arguments
@@ -760,7 +778,7 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
