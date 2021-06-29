@@ -37,7 +37,7 @@ public class VentanaCordinadores extends javax.swing.JFrame {
         initComponents();
         this.getContentPane().setBackground(Color.white);
         this.setResizable(false);
-        this.setIconImage(new ImageIcon(getClass().getResource("../Iconos/SCHR.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("/Iconos/SCHR.png")).getImage());
         TablaUsuarios.getColumnModel().getColumn(0).setPreferredWidth(20);
         TablaUsuarios.getColumnModel().getColumn(1).setPreferredWidth(100);
         TablaUsuarios.getColumnModel().getColumn(2).setPreferredWidth(70);

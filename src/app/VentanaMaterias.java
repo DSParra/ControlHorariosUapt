@@ -46,7 +46,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.getContentPane().setBackground(Color.white);
-        this.setIconImage(new ImageIcon(getClass().getResource("../Iconos/SCHR.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("/Iconos/SCHR.png")).getImage());
         TablaMAterias.getColumnModel().getColumn(0).setPreferredWidth(10);
         TablaMAterias.getColumnModel().getColumn(1).setPreferredWidth(200);
         TablaMAterias.getColumnModel().getColumn(2).setPreferredWidth(100);
@@ -555,13 +555,14 @@ public class VentanaMaterias extends javax.swing.JFrame {
                     .addComponent(jLabel13)
                     .addComponent(btnBusca))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel15)
-                    .addComponent(jcSesmtre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCLicenciaturaFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel18)
-                    .addComponent(JCPlanFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCLicenciaturaFiltro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel14)
+                        .addComponent(jLabel15)
+                        .addComponent(jcSesmtre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel18)
+                        .addComponent(JCPlanFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28))
         );
 

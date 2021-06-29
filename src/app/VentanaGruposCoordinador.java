@@ -41,7 +41,7 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.getContentPane().setBackground(Color.white);
-        this.setIconImage(new ImageIcon(getClass().getResource("../Iconos/SCHR.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("/Iconos/SCHR.png")).getImage());
         TablaGrupos.getColumnModel().getColumn(0).setPreferredWidth(20);
         TablaGrupos.getColumnModel().getColumn(1).setPreferredWidth(100);
         TablaGrupos.getColumnModel().getColumn(2).setPreferredWidth(200);

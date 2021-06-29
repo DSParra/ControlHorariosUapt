@@ -40,7 +40,7 @@ public class VentanaPlanEstudios extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.getContentPane().setBackground(Color.white);
-        this.setIconImage(new ImageIcon(getClass().getResource("../Iconos/SCHR.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("/Iconos/SCHR.png")).getImage());
         TablaPeriodos.getColumnModel().getColumn(0).setPreferredWidth(50);
         TablaPeriodos.getColumnModel().getColumn(1).setPreferredWidth(50);
         TablaPeriodos.getColumnModel().getColumn(2).setPreferredWidth(200);

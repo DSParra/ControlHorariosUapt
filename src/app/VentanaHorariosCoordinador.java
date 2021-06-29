@@ -56,7 +56,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.getContentPane().setBackground(Color.white);
-        this.setIconImage(new ImageIcon(getClass().getResource("../Iconos/SCHR.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("/Iconos/SCHR.png")).getImage());
         TablaHorarios.getColumnModel().getColumn(0).setPreferredWidth(10);
         TablaHorarios.getColumnModel().getColumn(0).setResizable(false);
         TablaHorarios.getColumnModel().getColumn(1).setPreferredWidth(120);
@@ -239,7 +239,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
             }
         });
 
-        jCDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" }));
+        jCDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO" }));
 
         JCMateria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Algebra", "Computacion", "Inlges", "Calculo Diferencial E Integral" }));
         JCMateria.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -655,7 +655,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
             CtrlInterfaz.selecciona(jTIdhorario);
         } else
         {
-            PeriodoHorarios horario = new PeriodoHorarios(jTIdhorario.getText(), buscaMateria(null, JCMateria.getSelectedItem().toString()), buscaGrupo(null, JCGrupo.getSelectedItem().toString()), buscaPeriodo(null, jCPeriodo.getSelectedItem().toString()), buscaProfesor(null, JCDocente.getSelectedItem().toString()), jCDia.getSelectedItem().toString(), jTEntrada.getText(), jTSalida.getText());
+            PeriodoHorarios horario = new PeriodoHorarios(jTIdhorario.getText(), buscaMateria(null, JCMateria.getSelectedItem().toString()), buscaGrupo(null, JCGrupo.getSelectedItem().toString()), buscaPeriodo(null, jCPeriodo.getSelectedItem().toString()), buscaProfesor(null, JCDocente.getSelectedItem().toString()), String.valueOf(ControladorHorarios.numdia(jCDia.getSelectedItem().toString())), jTEntrada.getText(), jTSalida.getText());
             String mensaje = ControladorHorarios.insertaHorarioUnico(horario);
             boolean var;
             boolean var2, registro;
@@ -714,7 +714,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
 
             } else
             {
-                PeriodoHorarios horario = new PeriodoHorarios(jTIdhorario.getText(), buscaMateria(null, JCMateria.getSelectedItem().toString()), buscaGrupo(null, JCGrupo.getSelectedItem().toString()), buscaPeriodo(null, jCPeriodo.getSelectedItem().toString()), buscaProfesor(null, JCDocente.getSelectedItem().toString()), jCDia.getSelectedItem().toString(), jTEntrada.getText(), jTSalida.getText());
+                PeriodoHorarios horario = new PeriodoHorarios(jTIdhorario.getText(), buscaMateria(null, JCMateria.getSelectedItem().toString()), buscaGrupo(null, JCGrupo.getSelectedItem().toString()), buscaPeriodo(null, jCPeriodo.getSelectedItem().toString()), buscaProfesor(null, JCDocente.getSelectedItem().toString()), String.valueOf(ControladorHorarios.numdia(jCDia.getSelectedItem().toString())), jTEntrada.getText(), jTSalida.getText());
                 String mensaje = ControladorHorarios.modificaHorarioUnico(horario, (String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 0));
                 boolean var;
                 boolean var2, registro;
@@ -871,7 +871,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
         {
             case 1:
 
-                horarios = ConsultasObjetos.consultaMuchos("horarios", "id_grupo", buscaGrupoFiltro(null, jCGrupofiltro.getSelectedItem().toString()), null, null, "hr_entrada", ConectarBase.conectado());
+                horarios = ConsultasObjetos.consultaMuchos("horarios", "id_grupo", buscaGrupoFiltro(null, jCGrupofiltro.getSelectedItem().toString()), null, null, "dia", ConectarBase.conectado());
                 if (horarios.isEmpty())
                 {
                     Mensaje.error(this, "No se encuentran registros");
@@ -883,7 +883,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                         PeriodoHorarios horario = (PeriodoHorarios) p;
                         modelo.addRow(new Object[]
                         {
-                            horario.getIdHorario(), buscaMateria(horario.getClaveMateria(), null), buscaGrupo(horario.getIdGrupo(), null), buscaPeriodo(horario.getIdPeriodo(), null), buscaProfesor(horario.getRfc(), null), horario.getDia(), horario.getEntrada(), horario.getSalida()
+                            horario.getIdHorario(), buscaMateria(horario.getClaveMateria(), null), buscaGrupo(horario.getIdGrupo(), null), buscaPeriodo(horario.getIdPeriodo(), null), buscaProfesor(horario.getRfc(), null), ControladorHorarios.numdia(Integer.parseInt(horario.getDia())), horario.getEntrada(), horario.getSalida()
                         });
                     }
                 }
@@ -895,7 +895,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                     actualizaTabla(1);
                 } else
                 {
-                    horarios = ConsultasObjetos.consultaMuchos("horarios", "id_grupo", buscaGrupoFiltro(null, jCGrupofiltro.getSelectedItem().toString()), "id_periodo", buscaPeriodo(null, jCPeriodoFiltro.getSelectedItem().toString()), "hr_entrada", ConectarBase.conectado());
+                    horarios = ConsultasObjetos.consultaMuchos("horarios", "id_grupo", buscaGrupoFiltro(null, jCGrupofiltro.getSelectedItem().toString()), "id_periodo", buscaPeriodo(null, jCPeriodoFiltro.getSelectedItem().toString()), "dia", ConectarBase.conectado());
                     if (horarios.isEmpty())
                     {
                         Mensaje.error(this, "No se encuentran registros");
@@ -907,7 +907,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                             PeriodoHorarios horario = (PeriodoHorarios) p;
                             modelo.addRow(new Object[]
                             {
-                                horario.getIdHorario(), buscaMateria(horario.getClaveMateria(), null), buscaGrupo(horario.getIdGrupo(), null), buscaPeriodo(horario.getIdPeriodo(), null), buscaProfesor(horario.getRfc(), null), horario.getDia(), horario.getEntrada(), horario.getSalida()
+                                horario.getIdHorario(), buscaMateria(horario.getClaveMateria(), null), buscaGrupo(horario.getIdGrupo(), null), buscaPeriodo(horario.getIdPeriodo(), null), buscaProfesor(horario.getRfc(), null), ControladorHorarios.numdia(Integer.parseInt(horario.getDia())), horario.getEntrada(), horario.getSalida()
                             });
                         }
                     }

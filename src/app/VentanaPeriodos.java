@@ -37,7 +37,7 @@ public class VentanaPeriodos extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.getContentPane().setBackground(Color.white);
-        this.setIconImage(new ImageIcon(getClass().getResource("../Iconos/SCHR.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("/Iconos/SCHR.png")).getImage());
         TablaPeriodos.getColumnModel().getColumn(0).setPreferredWidth(20);
         TablaPeriodos.getColumnModel().getColumn(1).setPreferredWidth(100);
         TablaPeriodos.getColumnModel().getColumn(0).setResizable(false);
