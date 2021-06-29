@@ -58,7 +58,7 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
                                               <Component id="btnBusca" min="-2" pref="106" max="-2" attributes="0"/>
-                                              <EmptySpace pref="126" max="32767" attributes="0"/>
+                                              <EmptySpace pref="106" max="32767" attributes="0"/>
                                               <Component id="txtnombreArchivo" min="-2" pref="150" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="btnExportar" min="-2" pref="106" max="-2" attributes="0"/>
@@ -440,7 +440,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="fe" green="fe" red="fe" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="INSERTE ID PARA BUSCAR"/>
+            <Property name="text" type="java.lang.String" value="ESCRIBA UN PLAN A BUSCAR"/>
           </Properties>
         </Component>
       </SubComponents>

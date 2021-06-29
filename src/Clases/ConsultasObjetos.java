@@ -36,20 +36,24 @@ public class ConsultasObjetos {
     public static String nivel = "";
 
     public static String obtieneIDLic(String usuario, Connection con) {
-        try {
+        try
+        {
             String sql = "SELECT * FROM usuarios WHERE usuario='" + usuario + "'";
 
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
             String id = "";
-            if (rs.next()) {
+            if (rs.next())
+            {
                 System.out.println("id_lic " + rs.getString("id_licenciatura"));
                 return rs.getString("id_licenciatura");
-            } else {
+            } else
+            {
                 System.out.println("no se encontro lic");
             }
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             Logger.getLogger(ConsultasObjetos.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
@@ -58,58 +62,72 @@ public class ConsultasObjetos {
     public static String validaEntrar(String usuario, String contrasenia, Connection con) {
         String sql = "SELECT * FROM usuarios WHERE usuario='" + usuario + "'";
 
-        try {
+        try
+        {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
             String niv = "";
             String pass = "", nombr_us = "";
 
-            if (rs.next()) {
+            if (rs.next())
+            {
                 nombr_us = rs.getString("usuario");
                 pass = rs.getString("Contrasenia");
                 niv = rs.getString("nivel");
 
-                if (contrasenia.equals(pass)) {
+                if (contrasenia.equals(pass))
+                {
                     System.out.println("datos correctos");
                     nivel = niv;
-                    if (nivel.equals("usuario")) {
+                    if (nivel.equals("usuario"))
+                    {
                         return "usuario";
-                    } else if (nivel.equals("profesor")) {
+                    } else if (nivel.equals("profesor"))
+                    {
                         return "profesor";
                     }
-                } else {
+                } else
+                {
                     System.out.println("Contrasenia incorrecta");
                     JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
                 }
-            } else {
+            } else
+            {
                 JOptionPane.showMessageDialog(null, "Usuario no encontrado");
             }
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
         }
         return "";
     }
 
     public static Object consultaUnica(String tabla, String campo, String valor, Connection con) {
-        try {
-            if (campo == null) {
+        try
+        {
+            if (campo == null)
+            {
                 ps = con.prepareStatement("SELECT * FROM " + tabla); //traer un dato
-            } else {
+            } else
+            {
                 ps = con.prepareStatement("SELECT * FROM " + tabla + " WHERE " + campo + " = ?"); //traer un dato
                 ps.setString(1, valor);
             }
-            switch (tabla) {
+            switch (tabla)
+            {
                 case "usuarios":
                     Usuario usuario = null;
                     rs = ps.executeQuery();
-                    if (rs.next()) {
+                    if (rs.next())
+                    {
                         usuario = new Usuario();
                         usuario.setIdUsuario(rs.getString("id_usuario"));
                         usuario.setUsuario(rs.getString("usuario"));
                         usuario.setContra(rs.getString("contrasenia"));
                         usuario.setLicenciatura(rs.getString("id_licenciatura"));
                         usuario.setRfc(rs.getString("rfc"));
-                    } else {
+                    } else
+                    {
                         System.out.println("No se encontro el usuario");
                         //JOptionPane.showMessageDialog(null, "No se encontro el usuario");
                     }
@@ -117,7 +135,8 @@ public class ConsultasObjetos {
                 case "profesores":
                     Profesor profe = null;
                     rs = ps.executeQuery();
-                    if (rs.next()) {
+                    if (rs.next())
+                    {
                         profe = new Profesor();
                         profe.setRfc(rs.getString("rfc"));
                         profe.setNombres(rs.getString("nombres"));
@@ -126,7 +145,8 @@ public class ConsultasObjetos {
                         profe.setGradoAcademico(rs.getString("grado_academico"));
                         profe.setCorreo(rs.getString("correo"));
                         profe.setTelefono(rs.getString("telefono"));
-                    } else {
+                    } else
+                    {
                         System.out.println("No se encontro el usuario");
                         //JOptionPane.showMessageDialog(null, "No se encontro el profesor");
                     }
@@ -134,11 +154,13 @@ public class ConsultasObjetos {
                 case "licenciatura":
                     Licenciatura licen = null;
                     rs = ps.executeQuery();
-                    if (rs.next()) {
+                    if (rs.next())
+                    {
                         licen = new Licenciatura();
                         licen.setIdLicenciatura(rs.getString("id_licenciatura"));
                         licen.setLicenciatura(rs.getString("nombre"));
-                    } else {
+                    } else
+                    {
                         System.out.println("No se encontro el usuario");
                         //JOptionPane.showMessageDialog(null, "No se encontro la Licenciatura");
                     }
@@ -146,30 +168,35 @@ public class ConsultasObjetos {
                 case "plan_estudios":
                     PlanEstudios plan = null;
                     rs = ps.executeQuery();
-                    if (rs.next()) {
+                    if (rs.next())
+                    {
                         plan = new PlanEstudios();
                         plan.setIdPlan(rs.getString("id_plan_estudios"));
                         plan.setPlanEstudios(rs.getString("plan_estudios"));
                         plan.setClaveCarrera(rs.getString("id_licenciatura"));
-                    } else {
+                    } else
+                    {
                         System.out.println("No se encontro el plan de estudios");
                     }
                     return plan;
                 case "periodo_escolar":
                     periodoEscolar periodo = null;
                     rs = ps.executeQuery();
-                    if (rs.next()) {
+                    if (rs.next())
+                    {
                         periodo = new periodoEscolar();
                         periodo.setId_periodo(rs.getString("id_periodo"));
                         periodo.setPeriodo(rs.getString("periodo"));
-                    } else {
+                    } else
+                    {
                         System.out.println("No se encontro el periodo");
                     }
                     return periodo;
                 case "materia":
                     Materia materia = null;
                     rs = ps.executeQuery();
-                    if (rs.next()) {
+                    if (rs.next())
+                    {
                         materia = new Materia();
                         materia.setClaveMateria(rs.getString("clave_materia"));
                         materia.setUnidadAprendizaje(rs.getString("unidad_aprendizaje"));
@@ -180,26 +207,30 @@ public class ConsultasObjetos {
                         materia.setTipo(rs.getString("tipo"));
                         materia.setClaveCarrera(rs.getString("id_licenciatura"));
                         materia.setPlanEstudios(rs.getString("id_plan_estudios"));
-                    } else {
+                    } else
+                    {
                         System.out.println("No se encontro la materia");
                     }
                     return materia;
                 case "grupo":
                     Grupo grupo = null;
                     rs = ps.executeQuery();
-                    if (rs.next()) {
+                    if (rs.next())
+                    {
                         grupo = new Grupo();
                         grupo.setIdGrupo(rs.getString("id_grupo"));
                         grupo.setNombreGrupo(rs.getString("nombre_grupo"));
                         grupo.setId_licenciatura(rs.getString("id_licenciatura"));
-                    } else {
+                    } else
+                    {
                         System.out.println("No se encontro el grupo");
                     }
                     return grupo;
                 case "horarios":
                     PeriodoHorarios horario = null;
                     rs = ps.executeQuery();
-                    if (rs.next()) {
+                    if (rs.next())
+                    {
                         horario = new PeriodoHorarios();
                         horario.setIdHorario(rs.getString("id_horario"));
                         horario.setClaveMateria(rs.getString("clave_materia"));
@@ -209,21 +240,25 @@ public class ConsultasObjetos {
                         horario.setDia(rs.getString("dia"));
                         horario.setEntrada(rs.getString("hr_entrada"));
                         horario.setSalida(rs.getString("hr_salida"));
-                    } else {
+                    } else
+                    {
                         System.out.println("No se encontro el horario");
                     }
                     return horario;
             }
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             System.out.println(e.toString());
         }
         return null;
     }
 
     public static boolean inserta(Object obj, Connection con, String tabla) {
-        try {
+        try
+        {
             int res = -1;
-            switch (tabla) {
+            switch (tabla)
+            {
                 case "usuarios":
                     Usuario emp = (Usuario) obj;
                     ps = con.prepareStatement("INSERT INTO usuarios(id_usuario,rfc,usuario, contrasenia,id_licenciatura) VALUES (?,?,?,?,?)");//por seguridad
@@ -315,7 +350,8 @@ public class ConsultasObjetos {
 //                return false;
 //                //JOptionPane.showMessageDialog(null, "ERROR");
 //            }
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             System.out.println("ConsultaObjetos: error al hacer la insercion" + e);
             //JOptionPane.showMessageDialog(null, "Error al hacer la insercion");
             System.out.println(e.toString());
@@ -324,26 +360,34 @@ public class ConsultasObjetos {
     }
 
     public static ArrayList<Object> consultaMuchos(String tabla, String campo, String valor, String campo2, String valor2, String valorOrden, Connection con) {
-        try {
-            if (campo == null) {
-                ps = con.prepareStatement("SELECT * FROM " + tabla + " ORDER BY "+ valorOrden + " ASC"); //traer un dato
-            } else if (campo != null && campo2 == null) {
-                ps = con.prepareStatement("SELECT * FROM " + tabla + " WHERE " + campo + "=?" + " ORDER BY "+ valorOrden + " ASC"); //traer un dato
-                ps.setString(1, valor);
-            } else {
-                ps = con.prepareStatement("SELECT * FROM " + tabla + " WHERE " + campo + "=? AND " + campo2 + "=?" + " ORDER BY "+ valorOrden + " ASC"); //traer un dato
+        try
+        {
+            if (campo == null)
+            {
+                ps = con.prepareStatement("SELECT * FROM " + tabla + " ORDER BY " + valorOrden + " ASC"); //traer un dato
+            } else if (campo != null && campo2 == null)
+            {
+                //ps = con.prepareStatement("SELECT * FROM " + tabla + " WHERE " + campo + "=?" + " ORDER BY "+ valorOrden + " ASC"); //traer un dato
+                ps = con.prepareStatement("SELECT * FROM " + tabla + " WHERE " + campo + " LIKE '%" + valor + "%' ORDER BY " + valorOrden + " ASC"); //traer un dato
+                //ps.setString(1, valor);
+            } else
+            {
+                ps = con.prepareStatement("SELECT * FROM " + tabla + " WHERE " + campo + "=? AND " + campo2 + "=?" + " ORDER BY " + valorOrden + " ASC"); //traer un dato
                 ps.setString(1, valor);
                 ps.setString(2, valor2);
             }
 
             ArrayList<Object> objetos = new ArrayList();
 
-            switch (tabla) {
+            switch (tabla)
+            {
                 case "usuarios":
 
                     rs = ps.executeQuery();
-                    if (rs.next()) {
-                        do {
+                    if (rs.next())
+                    {
+                        do
+                        {
                             Usuario usuario = new Usuario();
                             System.out.println(usuario.getUsuario());
                             usuario.setIdUsuario(rs.getString("id_usuario"));
@@ -353,14 +397,17 @@ public class ConsultasObjetos {
                             usuario.setLicenciatura(rs.getString("id_licenciatura"));
                             objetos.add(usuario);
                         } while (rs.next());
-                    } else {
+                    } else
+                    {
                         //JOptionPane.showMessageDialog(null, "No se encontro el usuario");
                     }
                     return objetos;
                 case "profesores":
                     rs = ps.executeQuery();
-                    if (rs.next()) {
-                        do {
+                    if (rs.next())
+                    {
+                        do
+                        {
                             Profesor profe = new Profesor();
                             profe.setRfc(rs.getString("rfc"));
                             profe.setNombres(rs.getString("nombres"));
@@ -371,40 +418,49 @@ public class ConsultasObjetos {
                             profe.setTelefono(rs.getString("telefono"));
                             objetos.add(profe);
                         } while (rs.next());
-                    } else {
+                    } else
+                    {
                         //JOptionPane.showMessageDialog(null, "No se encontro el profesor");
                     }
                     return objetos;
                 case "licenciatura":
                     rs = ps.executeQuery();
-                    if (rs.next()) {
-                        do {
+                    if (rs.next())
+                    {
+                        do
+                        {
                             Licenciatura licen = new Licenciatura();
                             licen.setIdLicenciatura(rs.getString("id_licenciatura"));
                             licen.setLicenciatura(rs.getString("nombre"));
                             objetos.add(licen);
                         } while (rs.next());
-                    } else {
+                    } else
+                    {
                         //JOptionPane.showMessageDialog(null, "No se encontro la licenciatura");
                     }
                     return objetos;
                 case "periodo_escolar":
                     rs = ps.executeQuery();
-                    if (rs.next()) {
-                        do {
+                    if (rs.next())
+                    {
+                        do
+                        {
                             periodoEscolar perio = new periodoEscolar();
                             perio.setId_periodo(rs.getString("id_periodo"));
                             perio.setPeriodo(rs.getString("periodo"));
                             objetos.add(perio);
                         } while (rs.next());
-                    } else {
+                    } else
+                    {
                         //JOptionPane.showMessageDialog(null, "No se encontraron periodos");
                     }
                     return objetos;
                 case "plan_estudios":
                     rs = ps.executeQuery();
-                    if (rs.next()) {
-                        do {
+                    if (rs.next())
+                    {
+                        do
+                        {
                             PlanEstudios plan = new PlanEstudios();
                             plan.setIdPlan(rs.getString("id_plan_estudios"));
                             plan.setPlanEstudios(rs.getString("plan_estudios"));
@@ -415,8 +471,10 @@ public class ConsultasObjetos {
                     return objetos;
                 case "materia":
                     rs = ps.executeQuery();
-                    if (rs.next()) {
-                        do {
+                    if (rs.next())
+                    {
+                        do
+                        {
                             Materia mat = new Materia();
                             mat.setClaveMateria(rs.getString("clave_materia"));
                             mat.setUnidadAprendizaje(rs.getString("unidad_aprendizaje"));
@@ -433,8 +491,10 @@ public class ConsultasObjetos {
                     return objetos;
                 case "grupo":
                     rs = ps.executeQuery();
-                    if (rs.next()) {
-                        do {
+                    if (rs.next())
+                    {
+                        do
+                        {
                             Grupo gr = new Grupo();
                             gr.setIdGrupo(rs.getString("id_grupo"));
                             gr.setNombreGrupo(rs.getString("nombre_grupo"));
@@ -445,8 +505,10 @@ public class ConsultasObjetos {
                     return objetos;
                 case "horarios":
                     rs = ps.executeQuery();
-                    if (rs.next()) {
-                        do {
+                    if (rs.next())
+                    {
+                        do
+                        {
                             PeriodoHorarios hr = new PeriodoHorarios();
                             hr.setIdHorario(rs.getString("id_horario"));
                             hr.setClaveMateria(rs.getString("clave_materia"));
@@ -462,8 +524,10 @@ public class ConsultasObjetos {
                     return objetos;
                 case "horariosSalida":
                     rs = ps.executeQuery();
-                    if (rs.next()) {
-                        do {
+                    if (rs.next())
+                    {
+                        do
+                        {
                             HorarioSalida hr = new HorarioSalida();
                             hr.setId_horario(rs.getString("id_horario"));
                             hr.setUnidad_aprendizaje(rs.getString("clave_materia"));
@@ -478,33 +542,40 @@ public class ConsultasObjetos {
                     }
                     return objetos;
             }
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             System.out.println(e.toString());
         }
         return null;
     }
 
     public static boolean elimina(String tabla, String campo, String id2, int id, Connection con) {
-        try {
-            if (id2 == null) {
+        try
+        {
+            if (id2 == null)
+            {
                 ps = con.prepareStatement("DELETE FROM " + tabla + " WHERE " + campo + " = ?");
                 ps.setInt(1, id);
-            } else {
+            } else
+            {
                 ps = con.prepareStatement("DELETE FROM " + tabla + " WHERE " + campo + " = ?");
                 ps.setString(1, id2);
             }
             int res = ps.executeUpdate();
             return (res > 0) ? true : false;
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             System.out.println("Aqui imprime " + e.toString());
         }
         return false;
     }
 
     public static boolean Modifica(Object obj, Connection con, String tabla, String id) {
-        try {
+        try
+        {
             int res = -1;
-            switch (tabla) {
+            switch (tabla)
+            {
                 case "usuarios":
                     Usuario emp = (Usuario) obj;
                     ps = con.prepareStatement("UPDATE " + tabla + " SET  rfc=?,usuario=?,contrasenia=?, id_licenciatura=? WHERE id_usuario =?");//por seguridad
@@ -589,7 +660,8 @@ public class ConsultasObjetos {
                     break;
             }
             return (res > 0) ? true : false;
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             System.out.println(e.toString());
         }
         return false;
@@ -598,7 +670,8 @@ public class ConsultasObjetos {
     public static ArrayList<String> llenaCombo(String tabla, String campo, Connection con) {
         ArrayList<String> lista = new ArrayList<String>();
 
-        try {
+        try
+        {
             String consulta = "SELECT * FROM " + tabla;
 
             ps = con.prepareStatement(consulta);
@@ -606,10 +679,12 @@ public class ConsultasObjetos {
 
             lista.add("Seleccione una opcion");
 
-            while (rs.next()) {
+            while (rs.next())
+            {
                 lista.add(rs.getString(campo));
             }
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             e.toString();
         }
         System.out.println(lista);
@@ -618,23 +693,28 @@ public class ConsultasObjetos {
 
     public static int obtieneID(String tabla, String campo, Connection con) {
         int id = 1;
-        try {
+        try
+        {
             ps = con.prepareStatement("SELECT  MAX(id_periodo) FROM periodo_escolar");
             rs = ps.executeQuery();
-            while (rs.next()) {
+            while (rs.next())
+            {
                 id = rs.getInt((1) + 1);
                 System.out.println(id);
             }
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             System.out.println(ex.toString());
         }
         return id;
     }
 
     public static void insertaMuchos(ArrayList<Object> obj, Connection con, String tabla) {
-        try {
+        try
+        {
             int res = -1;
-            switch (tabla) {
+            switch (tabla)
+            {
 //                case "usuarios":
 //                    Usuario emp = (Usuario) obj;
 //                    ps = con.prepareStatement("INSERT INTO usuarios(id_usuario,rfc,usuario, contrasenia,pregunta_seguridad,respuesta_seguridad) VALUES (?,?,?,?,?,?)");//por seguridad
@@ -656,7 +736,8 @@ public class ConsultasObjetos {
                     String consulta = "INSERT INTO `profesores` (`rfc`, `apellido_paterno`, `apellido_materno`, `nombres`, `grado_academico`, `correo`, `telefono`) VALUES ";
                     String valores = "";
                     System.out.println("tamaño" + obj.size());
-                    for (int i = 0; i < obj.size(); i++) {
+                    for (int i = 0; i < obj.size(); i++)
+                    {
                         valores = " (";
                         valores += "\'" + ((Profesor) obj.get(i)).getRfc() + "\',";
                         valores += "\'" + ((Profesor) obj.get(i)).getApellidoP() + "\',";
@@ -670,15 +751,18 @@ public class ConsultasObjetos {
                     }
                     ps = con.prepareStatement(consulta);
                     res = ps.executeUpdate();
-                    if (res > 0) {
+                    if (res > 0)
+                    {
                         JOptionPane.showMessageDialog(null, "Se registro exitosamente");
-                    } else {
+                    } else
+                    {
                         JOptionPane.showMessageDialog(null, "ERROR");
                     }
                     break;
                 case "horarios":
                     consulta = "INSERT INTO `horarios` (`clave_materia`, `id_grupo`, `id_periodo`, `rfc`, `dia`, `hr_entrada`,`hr_salida`) VALUES ";
-                    for (int i = 0; i < obj.size(); i++) {
+                    for (int i = 0; i < obj.size(); i++)
+                    {
                         valores = " (";
                         valores += "\'" + ((PeriodoHorarios) obj.get(i)).getClaveMateria() + "\',";
                         valores += "\'" + ((PeriodoHorarios) obj.get(i)).getIdGrupo() + "\',";
@@ -693,9 +777,11 @@ public class ConsultasObjetos {
                     System.out.println(consulta);
                     ps = con.prepareStatement(consulta);
                     res = ps.executeUpdate();
-                    if (res > 0) {
+                    if (res > 0)
+                    {
                         JOptionPane.showMessageDialog(null, "Se registro exitosamente");
-                    } else {
+                    } else
+                    {
                         JOptionPane.showMessageDialog(null, "ERROR");
                     }
                     break;
@@ -714,7 +800,8 @@ public class ConsultasObjetos {
 //                    }
 //                    break;
             }
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             JOptionPane.showMessageDialog(null, "Error al hacer la insercion");
             System.out.println(e.toString());
         }
@@ -728,21 +815,27 @@ public class ConsultasObjetos {
                 + "INNER JOIN profesores ON horarios.rfc = profesores.rfc "
                 + "INNER JOIN periodo_escolar ON horarios.id_periodo = periodo_escolar.id_periodo";
 
-        try {
-            if (campo == null) {
+        try
+        {
+            if (campo == null)
+            {
                 ps = con.prepareStatement(consulta); //traer un dato
-            } else if (campo != null && campo2 == null) {
+            } else if (campo != null && campo2 == null)
+            {
                 ps = con.prepareStatement(consulta + " WHERE " + campo + "=?"); //traer un dato
                 ps.setString(1, valor);
-            } else {
+            } else
+            {
                 ps = con.prepareStatement(consulta + "WHERE " + campo + "=? AND " + campo2 + "=?"); //traer un dato
                 ps.setString(1, valor);
                 ps.setString(2, valor2);
             }
             ArrayList<Object> horarios = new ArrayList();
             rs = ps.executeQuery();
-            if (rs.next()) {
-                do {
+            if (rs.next())
+            {
+                do
+                {
                     HorarioSalida hr = new HorarioSalida();
                     hr.setId_horario(rs.getString("id_horario"));
                     hr.setUnidad_aprendizaje(rs.getString("unidad_aprendizaje"));
@@ -756,7 +849,190 @@ public class ConsultasObjetos {
                 } while (rs.next());
                 return horarios;
             }
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
+            System.out.println(e.toString());
+        }
+        return null;
+    }
+
+    public static ArrayList<Object> consultaMuchasMaterias(String tabla, String campo, String valor, String campo2, String valor2, String campo3, String valor3, String valorOrden, Connection con) {
+
+        try
+        {
+
+            ps = con.prepareStatement("SELECT * FROM " + tabla + " WHERE " + campo + "=? AND " + campo2 + "=?" + " AND "+ campo3 + "=?" +" ORDER BY " + valorOrden + " ASC"); //traer un dato
+            ps.setString(1, valor);
+            ps.setString(2, valor2);
+            ps.setString(3, valor3);
+
+            ArrayList<Object> objetos = new ArrayList();
+
+            switch (tabla)
+            {
+                case "usuarios":
+
+                    rs = ps.executeQuery();
+                    if (rs.next())
+                    {
+                        do
+                        {
+                            Usuario usuario = new Usuario();
+                            System.out.println(usuario.getUsuario());
+                            usuario.setIdUsuario(rs.getString("id_usuario"));
+                            usuario.setRfc(rs.getString("rfc"));
+                            usuario.setUsuario(rs.getString("usuario"));
+                            usuario.setContra(rs.getString("contrasenia"));
+                            usuario.setLicenciatura(rs.getString("id_licenciatura"));
+                            objetos.add(usuario);
+                        } while (rs.next());
+                    } else
+                    {
+                        //JOptionPane.showMessageDialog(null, "No se encontro el usuario");
+                    }
+                    return objetos;
+                case "profesores":
+                    rs = ps.executeQuery();
+                    if (rs.next())
+                    {
+                        do
+                        {
+                            Profesor profe = new Profesor();
+                            profe.setRfc(rs.getString("rfc"));
+                            profe.setNombres(rs.getString("nombres"));
+                            profe.setApellidoP(rs.getString("apellido_paterno"));
+                            profe.setApellidoM(rs.getString("apellido_materno"));
+                            profe.setGradoAcademico(rs.getString("grado_academico"));
+                            profe.setCorreo(rs.getString("correo"));
+                            profe.setTelefono(rs.getString("telefono"));
+                            objetos.add(profe);
+                        } while (rs.next());
+                    } else
+                    {
+                        //JOptionPane.showMessageDialog(null, "No se encontro el profesor");
+                    }
+                    return objetos;
+                case "licenciatura":
+                    rs = ps.executeQuery();
+                    if (rs.next())
+                    {
+                        do
+                        {
+                            Licenciatura licen = new Licenciatura();
+                            licen.setIdLicenciatura(rs.getString("id_licenciatura"));
+                            licen.setLicenciatura(rs.getString("nombre"));
+                            objetos.add(licen);
+                        } while (rs.next());
+                    } else
+                    {
+                        //JOptionPane.showMessageDialog(null, "No se encontro la licenciatura");
+                    }
+                    return objetos;
+                case "periodo_escolar":
+                    rs = ps.executeQuery();
+                    if (rs.next())
+                    {
+                        do
+                        {
+                            periodoEscolar perio = new periodoEscolar();
+                            perio.setId_periodo(rs.getString("id_periodo"));
+                            perio.setPeriodo(rs.getString("periodo"));
+                            objetos.add(perio);
+                        } while (rs.next());
+                    } else
+                    {
+                        //JOptionPane.showMessageDialog(null, "No se encontraron periodos");
+                    }
+                    return objetos;
+                case "plan_estudios":
+                    rs = ps.executeQuery();
+                    if (rs.next())
+                    {
+                        do
+                        {
+                            PlanEstudios plan = new PlanEstudios();
+                            plan.setIdPlan(rs.getString("id_plan_estudios"));
+                            plan.setPlanEstudios(rs.getString("plan_estudios"));
+                            plan.setClaveCarrera(rs.getString("id_licenciatura"));
+                            objetos.add(plan);
+                        } while (rs.next());
+                    }
+                    return objetos;
+                case "materia":
+                    rs = ps.executeQuery();
+                    if (rs.next())
+                    {
+                        do
+                        {
+                            Materia mat = new Materia();
+                            mat.setClaveMateria(rs.getString("clave_materia"));
+                            mat.setUnidadAprendizaje(rs.getString("unidad_aprendizaje"));
+                            mat.setHoras(rs.getInt("horas"));
+                            mat.setCreditos(rs.getInt("creditos"));
+                            mat.setNumeroPeriodo(rs.getInt("numero_periodo"));
+                            mat.setNucleo(rs.getString("nucleo"));
+                            mat.setTipo(rs.getString("tipo"));
+                            mat.setClaveCarrera(rs.getString("id_licenciatura"));
+                            mat.setPlanEstudios(rs.getString("id_plan_estudios"));
+                            objetos.add(mat);
+                        } while (rs.next());
+                    }
+                    return objetos;
+                case "grupo":
+                    rs = ps.executeQuery();
+                    if (rs.next())
+                    {
+                        do
+                        {
+                            Grupo gr = new Grupo();
+                            gr.setIdGrupo(rs.getString("id_grupo"));
+                            gr.setNombreGrupo(rs.getString("nombre_grupo"));
+                            gr.setId_licenciatura(rs.getString("id_licenciatura"));
+                            objetos.add(gr);
+                        } while (rs.next());
+                    }
+                    return objetos;
+                case "horarios":
+                    rs = ps.executeQuery();
+                    if (rs.next())
+                    {
+                        do
+                        {
+                            PeriodoHorarios hr = new PeriodoHorarios();
+                            hr.setIdHorario(rs.getString("id_horario"));
+                            hr.setClaveMateria(rs.getString("clave_materia"));
+                            hr.setIdGrupo(rs.getString("id_grupo"));
+                            hr.setIdPeriodo(rs.getString("id_periodo"));
+                            hr.setRfc(rs.getString("rfc"));
+                            hr.setDia(rs.getString("dia"));
+                            hr.setEntrada(rs.getString("hr_entrada"));
+                            hr.setSalida(rs.getString("hr_salida"));
+                            objetos.add(hr);
+                        } while (rs.next());
+                    }
+                    return objetos;
+                case "horariosSalida":
+                    rs = ps.executeQuery();
+                    if (rs.next())
+                    {
+                        do
+                        {
+                            HorarioSalida hr = new HorarioSalida();
+                            hr.setId_horario(rs.getString("id_horario"));
+                            hr.setUnidad_aprendizaje(rs.getString("clave_materia"));
+                            hr.setNombre_grupo(rs.getString("id_grupo"));
+                            hr.setPeriodo(rs.getString("id_periodo"));
+                            hr.setProfesor(rs.getString("rfc"));
+                            hr.setDia(rs.getString("dia"));
+                            hr.setHr_entrada(rs.getString("hr_entrada"));
+                            hr.setHr_salida(rs.getString("hr_salida"));
+                            objetos.add(hr);
+                        } while (rs.next());
+                    }
+                    return objetos;
+            }
+        } catch (Exception e)
+        {
             System.out.println(e.toString());
         }
         return null;

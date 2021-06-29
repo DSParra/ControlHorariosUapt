@@ -178,6 +178,11 @@ public class VentanaPeriodos extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(25, 83, 0));
 
+        jTNombrePeriodo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTNombrePeriodoFocusLost(evt);
+            }
+        });
         jTNombrePeriodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTNombrePeriodoActionPerformed(evt);
@@ -276,6 +281,9 @@ public class VentanaPeriodos extends javax.swing.JFrame {
         jtIDBusqeuda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jtIDBusqeudaKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtIDBusqeudaKeyReleased(evt);
             }
         });
 
@@ -586,6 +594,14 @@ public class VentanaPeriodos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnombreArchivoActionPerformed
 
+    private void jTNombrePeriodoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTNombrePeriodoFocusLost
+        Valida.convertirAMayusculas(jTNombrePeriodo);
+    }//GEN-LAST:event_jTNombrePeriodoFocusLost
+
+    private void jtIDBusqeudaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDBusqeudaKeyReleased
+        
+    }//GEN-LAST:event_jtIDBusqeudaKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -706,12 +722,12 @@ public class VentanaPeriodos extends javax.swing.JFrame {
                     {
                         periodo.getId_periodo(), periodo.getPeriodo()
                     });
-                    System.out.println(((periodoEscolar) p).getPeriodo());
+                    btnBusca.setText("Buscar");
                 }
             }
         } else if (valor == 2)
         {
-            periodos = ConsultasObjetos.consultaMuchos("periodo_escolar", "id_periodo", jtIDBusqeuda.getText(), null, null, "periodo", ConectarBase.conectado());
+            periodos = ConsultasObjetos.consultaMuchos("periodo_escolar", "periodo", jtIDBusqeuda.getText(), null, null, "periodo", ConectarBase.conectado());
             if (periodos.isEmpty())
             {
                 Mensaje.error(this, "No hay periodos registrados");
@@ -725,7 +741,8 @@ public class VentanaPeriodos extends javax.swing.JFrame {
                     {
                         periodo.getId_periodo(), periodo.getPeriodo()
                     });
-                    System.out.println(((periodoEscolar) p).getPeriodo());
+                    btnBusca.setText("Todos");
+                    jtIDBusqeuda.setText("");
                 }
             }
         }

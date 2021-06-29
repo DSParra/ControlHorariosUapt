@@ -310,7 +310,7 @@ public class VentanaPlanEstudios extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel11.setText("INSERTE ID PARA BUSCAR");
+        jLabel11.setText("ESCRIBA UN PLAN A BUSCAR");
 
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(254, 254, 254));

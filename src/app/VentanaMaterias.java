@@ -35,6 +35,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
     private Boolean edicion = true;
     private DefaultTableModel modelo;
     private ArrayList<Object> plans = new ArrayList<>();
+    private ArrayList<Object> planes1 = new ArrayList<>();
     private ArrayList<Object> lics = new ArrayList<>();
     public String licen = "";
 
@@ -111,6 +112,8 @@ public class VentanaMaterias extends javax.swing.JFrame {
         jcSesmtre = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
         btnBusca = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
+        JCPlanFiltro = new javax.swing.JComboBox<>();
         txtnombreArchivo = new javax.swing.JTextField();
         jLTituloUniversidad1 = new javax.swing.JLabel();
         jLTituloUAPT1 = new javax.swing.JLabel();
@@ -454,6 +457,9 @@ public class VentanaMaterias extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jtIDBusqeudaKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtIDBusqeudaKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtIDBusqeudaKeyTyped(evt);
             }
@@ -489,6 +495,32 @@ public class VentanaMaterias extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(254, 254, 254));
         jLabel15.setText("SEMESTRE");
 
+        btnBusca.setBackground(new java.awt.Color(102, 102, 0));
+        btnBusca.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnBusca.setForeground(new java.awt.Color(255, 255, 255));
+        btnBusca.setText("Buscar");
+        btnBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaActionPerformed(evt);
+            }
+        });
+
+        jLabel18.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel18.setText("PLAN");
+
+        JCPlanFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        JCPlanFiltro.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                JCPlanFiltroItemStateChanged(evt);
+            }
+        });
+        JCPlanFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCPlanFiltroActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -499,14 +531,20 @@ public class VentanaMaterias extends javax.swing.JFrame {
                     .addComponent(jLabel13))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtIDBusqeuda)
+                    .addComponent(jCLicenciaturaFiltro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jCLicenciaturaFiltro, 0, 183, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jcSesmtre, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jtIDBusqeuda))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jcSesmtre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JCPlanFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(4, 4, 4))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -514,25 +552,18 @@ public class VentanaMaterias extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtIDBusqeuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13))
+                    .addComponent(jLabel13)
+                    .addComponent(btnBusca))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(jCLicenciaturaFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15)
-                    .addComponent(jcSesmtre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcSesmtre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCLicenciaturaFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18)
+                    .addComponent(JCPlanFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28))
         );
-
-        btnBusca.setBackground(new java.awt.Color(102, 102, 0));
-        btnBusca.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnBusca.setForeground(new java.awt.Color(255, 255, 255));
-        btnBusca.setText("Buscar");
-        btnBusca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscaActionPerformed(evt);
-            }
-        });
 
         txtnombreArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -577,15 +608,11 @@ public class VentanaMaterias extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel1))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                 .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(btnAgregar4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -635,9 +662,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnBusca)
-                                    .addComponent(jLabel1))
+                                .addComponent(jLabel1)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -875,13 +900,16 @@ public class VentanaMaterias extends javax.swing.JFrame {
     private void jCLicenciaturaFiltroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCLicenciaturaFiltroItemStateChanged
         actualizarTabla(3);
         jcSesmtre.setSelectedIndex(0);
+        JCPlanFiltro.setSelectedIndex(0);
+        planes1 = ConsultasObjetos.consultaMuchos("plan_estudios", "id_licenciatura", buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()), null, null, "plan_estudios", ConectarBase.conectado());
+        llenaComboPlanesFiltro();
     }//GEN-LAST:event_jCLicenciaturaFiltroItemStateChanged
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
         if (jtIDBusqeuda.getText().equals(""))
         {
             actualizarTabla(1);
-        }else  
+        } else
         {
             actualizarTabla(2);
         }
@@ -889,6 +917,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
 
     private void jcSesmtreItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcSesmtreItemStateChanged
         actualizarTabla(4);
+        JCPlanFiltro.setSelectedIndex(0);
     }//GEN-LAST:event_jcSesmtreItemStateChanged
 
     private void jcSesmtreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcSesmtreActionPerformed
@@ -907,6 +936,18 @@ public class VentanaMaterias extends javax.swing.JFrame {
     private void jtIDBusqeudaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDBusqeudaKeyTyped
         btnBusca.setText("Buscar");
     }//GEN-LAST:event_jtIDBusqeudaKeyTyped
+
+    private void jtIDBusqeudaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDBusqeudaKeyReleased
+
+    }//GEN-LAST:event_jtIDBusqeudaKeyReleased
+
+    private void JCPlanFiltroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JCPlanFiltroItemStateChanged
+        actualizarTabla(5);
+    }//GEN-LAST:event_JCPlanFiltroItemStateChanged
+
+    private void JCPlanFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCPlanFiltroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JCPlanFiltroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -983,6 +1024,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> JCPlanFiltro;
     private javax.swing.JTable TablaMAterias;
     private javax.swing.JButton btnAgregar4;
     private javax.swing.JButton btnBusca;
@@ -1009,6 +1051,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
@@ -1066,7 +1109,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
                         Materia mat = (Materia) m;
                         modelo.addRow(new Object[]
                         {
-                            
+
                             mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
                         });
                         jtIDBusqeuda.setText("");
@@ -1106,6 +1149,31 @@ public class VentanaMaterias extends javax.swing.JFrame {
                 } else
                 {
                     materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()), "numero_periodo", jcSesmtre.getSelectedItem().toString(), "unidad_aprendizaje", ConectarBase.conectado());
+                    if (materias.isEmpty())
+                    {
+                        Mensaje.error(this, "No hay materias registradas con este semestre");
+                    } else
+                    {
+                        modelo.setRowCount(0);
+                        for (Object m : materias)
+                        {
+                            Materia mat = (Materia) m;
+                            modelo.addRow(new Object[]
+                            {
+                                mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
+                            });
+                            btnBusca.setText("Todas");
+                        }
+                    }
+                }
+                break;
+            case 5:
+                if (jcSesmtre.getSelectedIndex() == 0)
+                {
+                    actualizarTabla(3);
+                } else
+                {
+                    materias = ConsultasObjetos.consultaMuchasMaterias("materia", "id_licenciatura", buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()), "numero_periodo", jcSesmtre.getSelectedItem().toString(), "id_plan_estudios", buscaPlan(null, JCPlanFiltro.getSelectedItem().toString()),"unidad_aprendizaje", ConectarBase.conectado());
                     if (materias.isEmpty())
                     {
                         Mensaje.error(this, "No hay materias registradas con este semestre");
@@ -1164,6 +1232,15 @@ public class VentanaMaterias extends javax.swing.JFrame {
         for (int i = 0; i < plans.size(); i++)
         {
             jCPlan.addItem(((PlanEstudios) plans.get(i)).getPlanEstudios());
+        }
+    }
+
+    public void llenaComboPlanesFiltro() {
+        JCPlanFiltro.removeAllItems();
+        JCPlanFiltro.addItem("Todos");
+        for (int i = 0; i < planes1.size(); i++)
+        {
+            JCPlanFiltro.addItem(((PlanEstudios) planes1.get(i)).getPlanEstudios());
         }
     }
 
