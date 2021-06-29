@@ -25,22 +25,22 @@ public class ControladorHorarios {
     }
 
     public static int numdia(String dia) {
-        if (dia.equals("Lunes") || dia.equals("lunes") || dia.equals("lun") || dia.equals("LUNES"))
+        if (dia.equals("Lunes") || dia.equals("lunes") || dia.equals("lun") || dia.equals("LUNES") || dia.equals("L") || dia.equals("l"))
         {
             return 1;
-        } else if (dia.equals("Martes") || dia.equals("martes") || dia.equals("mar") || dia.equals("MARTES"))
+        } else if (dia.equals("Martes") || dia.equals("martes") || dia.equals("mar") || dia.equals("MARTES") || dia.equals("M") || dia.equals("m"))
         {
             return 2;
-        } else if (dia.equals("Miercoles") || dia.equals("miercoles") || dia.equals("mie") || dia.equals("MIERCOLES"))
+        } else if (dia.equals("Miercoles") || dia.equals("miercoles") || dia.equals("mie") || dia.equals("MIERCOLES") || dia.equals("MI") || dia.equals("mi") || dia.equals("Mi"))
         {
             return 3;
-        } else if (dia.equals("Jueves") || dia.equals("jueves") || dia.equals("jue") || dia.equals("JUEVES"))
+        } else if (dia.equals("Jueves") || dia.equals("jueves") || dia.equals("jue") || dia.equals("JUEVES") || dia.equals("J") || dia.equals("j"))
         {
             return 4;
-        } else if (dia.equals("Viernes") || dia.equals("viernes") || dia.equals("vie") || dia.equals("VIERNES"))
+        } else if (dia.equals("Viernes") || dia.equals("viernes") || dia.equals("vie") || dia.equals("VIERNES") || dia.equals("V") || dia.equals("v"))
         {
             return 5;
-        } else if (dia.equals("Sabado") || dia.equals("sabado") || dia.equals("sab") || dia.equals("SABADO"))
+        } else if (dia.equals("Sabado") || dia.equals("sabado") || dia.equals("sab") || dia.equals("SABADO") || dia.equals("S") || dia.equals("s"))
         {
             return 6;
         }

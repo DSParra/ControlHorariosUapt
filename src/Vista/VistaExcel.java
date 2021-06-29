@@ -433,6 +433,7 @@ public class VistaExcel extends javax.swing.JFrame {
         //muestraBD();
         ordenamientoBurbujaID("licenciatura");
         ordenamientoBurbujaNombre("materia");
+        ordenamientoBurbujaNombre("grupo");
         muestraBD();
 
         System.out.println("Busqueda " + busquedaBinariaRetID("INGENIERIA EN COMPUTACION", "licenciatura"));
@@ -666,6 +667,7 @@ public class VistaExcel extends javax.swing.JFrame {
         if (tipoExcel.equalsIgnoreCase("horario")) {
             horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, null, ConectarBase.conectado()));
             horarios = guardaExcel();
+            System.out.println("");
             jCheckLllaves.setSelected(validaExcel());
             jCheckExcel.setSelected(comparaMateriasExcel());
             if (jCheckLllaves.isSelected()) {
