@@ -464,6 +464,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
             String mensaje = Controlador.ControladorLicenciatura.eliminaLicenciatura(txtcodigolic.getText());
             if (mensaje.equals("operacion exitosa")) {
                 actualizaTabla(1);
+                cancelar();
             } else {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
             }
@@ -589,7 +590,7 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
 
     private void txtcodigolicKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcodigolicKeyTyped
         Validaciones.validaAlfanumerico(evt);
-        Valida.validaLongitud(txtcodigolic, 5, evt);
+        Valida.validaLongitud(txtcodigolic, 60, evt);
     }//GEN-LAST:event_txtcodigolicKeyTyped
 
     private void txtnombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtnombreFocusLost

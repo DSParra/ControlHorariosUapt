@@ -641,6 +641,7 @@ public class VentanaDocentes extends javax.swing.JFrame {
             String mensaje = ControladorProfesores.eliminaProfesor(txtrfc.getText());
             if (mensaje.equals("operacion exitosa"))
             {
+                cancelar();
                 actualizaTabla(1);
             } else
             {
