@@ -27,7 +27,6 @@ public class VentanaMenuCoordinador extends javax.swing.JFrame {
      */
     public VentanaMenuCoordinador() {
         initComponents();
-        this.setResizable(false);
         this.getContentPane().setBackground(Color.white);
         this.setIconImage(new ImageIcon(getClass().getResource("/Iconos/SCHR.png")).getImage());
     }

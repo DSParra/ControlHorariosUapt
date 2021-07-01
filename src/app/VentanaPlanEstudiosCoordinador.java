@@ -39,7 +39,7 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
      */
     public VentanaPlanEstudiosCoordinador() {
         initComponents();
-        this.setResizable(false);
+        //this.setResizable(false);
         this.getContentPane().setBackground(Color.white);
         this.setIconImage(new ImageIcon(getClass().getResource("/Iconos/SCHR.png")).getImage());
         TablaPeriodos.getColumnModel().getColumn(0).setPreferredWidth(50);

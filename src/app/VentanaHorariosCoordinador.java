@@ -54,7 +54,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
      */
     public VentanaHorariosCoordinador() {
         initComponents();
-        this.setResizable(false);
+        //this.setResizable(false);
         this.getContentPane().setBackground(Color.white);
         this.setIconImage(new ImageIcon(getClass().getResource("/Iconos/SCHR.png")).getImage());
         TablaHorarios.getColumnModel().getColumn(0).setPreferredWidth(10);

@@ -19,19 +19,13 @@ import javax.swing.ImageIcon;
  */
 public class VentanaAdministrador extends javax.swing.JFrame {
 
-    int ancho = Toolkit.getDefaultToolkit().getScreenSize().width;
-    int alto = Toolkit.getDefaultToolkit().getScreenSize().height;
-    int alto2;
-
     /**
      * Creates new form VentanaPrinicipal
      */
     public VentanaAdministrador() {
         initComponents();
-        this.setResizable(false);
         this.getContentPane().setBackground(Color.white);
         this.setIconImage(new ImageIcon(getClass().getResource("/Iconos/SCHR.png")).getImage());
-        //this.setSize(ancho, alto-40);
     }
 
     /**
