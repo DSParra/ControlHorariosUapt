@@ -532,6 +532,7 @@ public class VistaExcel extends javax.swing.JFrame {
             System.out.println("Entrando a horario");
             ArrayList horarios = new ArrayList();
             PeriodoHorarios horario;
+            
 
             for (int i = 0; i < jTDatosExcel.getRowCount(); i++) {
                 horario = new PeriodoHorarios();
@@ -547,6 +548,7 @@ public class VistaExcel extends javax.swing.JFrame {
                 horarios.add(horario);
                 muestraHorarios(horario);
             }
+            ordenamientoBurbujaID("grupo");
             return horarios;
         }
         return null;
@@ -716,7 +718,7 @@ public class VistaExcel extends javax.swing.JFrame {
                         mensaje += "Cruze de Profesores\n"
                                 + "Materia: " + String.valueOf(jTDatosExcel.getValueAt(i, 1))  + " -> " + busquedaBinariaRetNombre(horariosBD.get(j).getClaveMateria(), "materias")+"\n"
                                 + "Profesor: " + String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " -> " + busquedaBinariaRetNombre(horariosBD.get(j).getRfc(), "profesores")  + "\n"
-                                + "Grupo: " +  String.valueOf(jTDatosExcel.getValueAt(i, 4))  + "\n"
+                                + "Grupo: " +  String.valueOf(jTDatosExcel.getValueAt(i, 4))  + "->"+busquedaBinariaRetNombre(Integer.valueOf(horariosBD.get(j).getIdGrupo()), "grupo") + "\n"
                                 + "Dia: " +  String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " -> " + ControladorHorarios.numdia(Integer.valueOf(horariosBD.get(j).getDia()))+"\n"
                                 + "Horario: "  + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " - " + String.valueOf(jTDatosExcel.getValueAt(i, 8)) + " -> " + horariosBD.get(j).getEntrada().substring(0,5) + " " + horariosBD.get(j).getSalida().substring(0,5) + "\n\n";
                         
@@ -760,7 +762,7 @@ public class VistaExcel extends javax.swing.JFrame {
                         mensaje += "Cruze de Materia\n"
                                 + "Materia: " + String.valueOf(jTDatosExcel.getValueAt(i, 1))  + " -> " + busquedaBinariaRetNombre(horariosBD.get(j).getClaveMateria(), "materias")+"\n"
                                 + "Profesor " + String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " -> " + busquedaBinariaRetNombre(horariosBD.get(j).getRfc(), "profesores")  + "\n"
-                                + "Grupo: " +  String.valueOf(jTDatosExcel.getValueAt(i, 4))  + "\n"
+                                + "Grupo: " +  String.valueOf(jTDatosExcel.getValueAt(i, 4))  + busquedaBinariaRetNombre(Integer.valueOf(horariosBD.get(j).getIdGrupo()), "grupo") + "\n"
                                 + "Dia: " +  String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " -> " + ControladorHorarios.numdia(Integer.valueOf(horariosBD.get(j).getDia()))+"\n"
                                 + "Horario: "  + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " - " + String.valueOf(jTDatosExcel.getValueAt(i, 8)) + " -> " + horariosBD.get(j).getEntrada().substring(0,5) + " " + horariosBD.get(j).getSalida().substring(0,5) + "\n\n";
                         
@@ -1069,7 +1071,7 @@ public class VistaExcel extends javax.swing.JFrame {
     }
 
     public String busquedaBinariaRetNombre(int dato, String tipo) {
-        
+        ordenamientoBurbujaID("grupo");
         int n, inf = 0, sup, centro;
         switch (tipo) {
             case "licenciatura":
@@ -1078,6 +1080,7 @@ public class VistaExcel extends javax.swing.JFrame {
                 while (inf <= sup) {
                     centro = (sup + inf) / 2;
                     if (Integer.parseInt(carreras.get(centro).getIdLicenciatura()) == dato) {
+                        ordenamientoBurbujaNombre("grupo");
                         return carreras.get(centro).getLicenciatura();
                     } else if (dato < Integer.valueOf(carreras.get(centro).getIdLicenciatura())) {
                         sup = centro - 1;
@@ -1100,6 +1103,7 @@ public class VistaExcel extends javax.swing.JFrame {
                     }
                 }
         }
+        ordenamientoBurbujaNombre("grupo");
         return "";
     }
 
