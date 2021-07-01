@@ -620,7 +620,7 @@ public class VentanaGrupos extends javax.swing.JFrame {
     }//GEN-LAST:event_jTNombreGrupoKeyPressed
 
     private void jTIdGrupoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTIdGrupoKeyTyped
-        Validaciones.validaAlfanumerico(evt);
+        Validaciones.validaEntero(evt);
         if (jTIdGrupo.getText().length() == 5)
         {
             evt.consume();

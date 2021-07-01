@@ -712,10 +712,20 @@ public class VistaExcel extends javax.swing.JFrame {
                     System.out.println("mismo dia ");
                     if (entrada2 >= entrada1 && entrada2 <= salida1) {
                         prueba = false;
-                        mensaje += "Error Por Profesores\n"
-                                + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 8))
-                                + " y "
-                                + busquedaBinariaRetNombre(horariosBD.get(j).getClaveMateria(), "materias") + "-> " + ControladorHorarios.numdia(Integer.valueOf(horariosBD.get(j).getDia())) + " " + horariosBD.get(j).getEntrada() + " " + horariosBD.get(j).getSalida() + "\n\n";
+                        
+                        mensaje += "Cruze de Profesores\n"
+                                + "Materia: " + String.valueOf(jTDatosExcel.getValueAt(i, 1))  + " -> " + busquedaBinariaRetNombre(horariosBD.get(j).getClaveMateria(), "materias")+"\n"
+                                + "Profesor: " + String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " -> " + busquedaBinariaRetNombre(horariosBD.get(j).getRfc(), "profesores")  + "\n"
+                                + "Grupo: " +  String.valueOf(jTDatosExcel.getValueAt(i, 4))  + "\n"
+                                + "Dia: " +  String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " -> " + ControladorHorarios.numdia(Integer.valueOf(horariosBD.get(j).getDia()))+"\n"
+                                + "Horario: "  + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " - " + String.valueOf(jTDatosExcel.getValueAt(i, 8)) + " -> " + horariosBD.get(j).getEntrada().substring(0,5) + " " + horariosBD.get(j).getSalida().substring(0,5) + "\n\n";
+                        
+                        
+                        
+//                        mensaje += "Error Por Profesores\n"
+//                                + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 8))
+//                                + " y "+"\n"
+//                                + busquedaBinariaRetNombre(horariosBD.get(j).getClaveMateria(), "materias") + "-> " + ControladorHorarios.numdia(Integer.valueOf(horariosBD.get(j).getDia())) + " " + horariosBD.get(j).getEntrada() + " " + horariosBD.get(j).getSalida() + "\n\n";
 
                         System.out.println("Profesor: " + String.valueOf(jTDatosExcel.getValueAt(i, 2)) + "cruzado " + horarios.get(i).getDia() + " " + horarios.get(i).getEntrada() + " " + horarios.get(i).getSalida());
                         System.out.println("Con id: " + horariosBD.get(j).getIdHorario() + " " + horariosBD.get(j).getDia() + " " + horariosBD.get(j).getEntrada() + " " + horariosBD.get(j).getSalida());
@@ -747,10 +757,18 @@ public class VistaExcel extends javax.swing.JFrame {
                     salida2 = Double.parseDouble(horariosBD.get(j).getSalida().substring(0, 2) + "." + horariosBD.get(j).getSalida().substring(3, 5));
                     if (entrada2 >= entrada1 && entrada2 <= salida1) {
                         prueba = false;
-                        mensaje += "Error en materia BD\n"
-                                + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 8))
-                                + " y "
-                                + busquedaBinariaRetNombre(horariosBD.get(j).getClaveMateria(), "materias") + "-> " + ControladorHorarios.numdia(Integer.valueOf(horariosBD.get(j).getDia())) + " " + horariosBD.get(j).getEntrada() + " " + horariosBD.get(j).getSalida() + "\n\n";
+                        mensaje += "Cruze de Materia\n"
+                                + "Materia: " + String.valueOf(jTDatosExcel.getValueAt(i, 1))  + " -> " + busquedaBinariaRetNombre(horariosBD.get(j).getClaveMateria(), "materias")+"\n"
+                                + "Profesor " + String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " -> " + busquedaBinariaRetNombre(horariosBD.get(j).getRfc(), "profesores")  + "\n"
+                                + "Grupo: " +  String.valueOf(jTDatosExcel.getValueAt(i, 4))  + "\n"
+                                + "Dia: " +  String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " -> " + ControladorHorarios.numdia(Integer.valueOf(horariosBD.get(j).getDia()))+"\n"
+                                + "Horario: "  + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " - " + String.valueOf(jTDatosExcel.getValueAt(i, 8)) + " -> " + horariosBD.get(j).getEntrada().substring(0,5) + " " + horariosBD.get(j).getSalida().substring(0,5) + "\n\n";
+                        
+                        
+//                        mensaje += "Error en materia BD\n"
+//                                + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 8))
+//                                + " y "
+//                                + busquedaBinariaRetNombre(horariosBD.get(j).getClaveMateria(), "materias") + "-> " + ControladorHorarios.numdia(Integer.valueOf(horariosBD.get(j).getDia())) + " " + horariosBD.get(j).getEntrada() + " " + horariosBD.get(j).getSalida() + "\n\n";
                         //System.out.println("Profesor: " + String.valueOf(jTDatosExcel.getValueAt(i, 2)) + "cruzado " + horarios.get(i).getDia() + " " + horarios.get(i).getEntrada() + " " + horarios.get(i).getSalida());
                         //System.out.println("Con id: " + horariosBD.get(j).getIdHorario() + " " + horariosBD.get(j).getDia() + " " + horariosBD.get(j).getEntrada() + " " + horariosBD.get(j).getSalida());
 
@@ -989,7 +1007,7 @@ public class VistaExcel extends javax.swing.JFrame {
                 while (inf <= sup) {
                     centro = (sup + inf) / 2;
                     if (periodos.get(centro).getPeriodo().equalsIgnoreCase(dato)) {
-                        return Integer.valueOf(grupos.get(centro).getIdGrupo());
+                        return Integer.valueOf(periodos.get(centro).getId_periodo());
                     } else if (dato.compareToIgnoreCase(periodos.get(centro).getPeriodo()) < 0) {
                         sup = centro - 1;
                     } else {
@@ -1051,6 +1069,7 @@ public class VistaExcel extends javax.swing.JFrame {
     }
 
     public String busquedaBinariaRetNombre(int dato, String tipo) {
+        
         int n, inf = 0, sup, centro;
         switch (tipo) {
             case "licenciatura":
@@ -1067,6 +1086,7 @@ public class VistaExcel extends javax.swing.JFrame {
                     }
                 }
             case "grupo":
+                //ordenamientoBurbujaID("grupo");
                 n = grupos.size();
                 sup = n - 1;
                 while (inf <= sup) {
@@ -1103,8 +1123,21 @@ public class VistaExcel extends javax.swing.JFrame {
                 while (inf <= sup) {
                     centro = (sup + inf) / 2;
                     if (materias.get(centro).getClaveMateria().equalsIgnoreCase(dato)) {
-                        return materias.get(centro).getClaveMateria();
+                        return materias.get(centro).getUnidadAprendizaje();
                     } else if (dato.compareToIgnoreCase(materias.get(centro).getClaveMateria()) < 0) {
+                        sup = centro - 1;
+                    } else {
+                        inf = centro + 1;
+                    }
+                }
+            case "profesores":
+                n = profes.size();
+                sup = n - 1;
+                while (inf <= sup) {
+                    centro = (sup + inf) / 2;
+                    if (profes.get(centro).getRfc().equalsIgnoreCase(dato)) {
+                        return profes.get(centro).getNombres() + " " + profes.get(centro).getApellidoP()  ;
+                    } else if (dato.compareToIgnoreCase(profes.get(centro).getRfc()) < 0) {
                         sup = centro - 1;
                     } else {
                         inf = centro + 1;
