@@ -18,7 +18,7 @@ public class VentanaGestionExcels extends javax.swing.JFrame {
      */
     public VentanaGestionExcels() {
         initComponents();
-        this.setResizable(false);
+        //this.setResizable(false);
         this.getContentPane().setBackground(Color.white);
     }
 

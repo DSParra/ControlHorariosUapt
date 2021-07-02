@@ -37,14 +37,12 @@ public class VentanaMaterias extends javax.swing.JFrame {
     private ArrayList<Object> plans = new ArrayList<>();
     private ArrayList<Object> planes1 = new ArrayList<>();
     private ArrayList<Object> lics = new ArrayList<>();
-    public String licen = "";
 
     /**
      * Creates new form VentanaPrinicipal
      */
     public VentanaMaterias() {
         initComponents();
-        this.setResizable(false);
         this.getContentPane().setBackground(Color.white);
         this.setIconImage(new ImageIcon(getClass().getResource("/Iconos/SCHR.png")).getImage());
         TablaMAterias.getColumnModel().getColumn(0).setPreferredWidth(10);
@@ -532,7 +530,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jtIDBusqeuda)
-                    .addComponent(jCLicenciaturaFiltro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jCLicenciaturaFiltro, 0, 222, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -618,10 +616,10 @@ public class VentanaMaterias extends javax.swing.JFrame {
                                                 .addGap(18, 18, 18)
                                                 .addComponent(btnAgregar4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(766, 766, 766)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jBRegresar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jBCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jBCerrarSesion))
                                     .addComponent(jScrollPane1))
                                 .addGap(18, 18, 18))
                             .addGroup(layout.createSequentialGroup()
