@@ -162,6 +162,7 @@ public class ConsultasObjetos {
                         System.out.println("No se encontro el usuario");
                         //JOptionPane.showMessageDialog(null, "No se encontro el usuario");
                     }
+                    ConectarBase.desconectaBD();
                     return usuario;
                 case "profesores":
                     Profesor profe = null;
@@ -179,8 +180,8 @@ public class ConsultasObjetos {
                     } else
                     {
                         System.out.println("No se encontro el usuario");
-                        //JOptionPane.showMessageDialog(null, "No se encontro el profesor");
                     }
+                    ConectarBase.desconectaBD();
                     return profe;
                 case "licenciatura":
                     Licenciatura licen = null;
@@ -193,8 +194,8 @@ public class ConsultasObjetos {
                     } else
                     {
                         System.out.println("No se encontro el usuario");
-                        //JOptionPane.showMessageDialog(null, "No se encontro la Licenciatura");
                     }
+                    ConectarBase.desconectaBD();
                     return licen;
                 case "plan_estudios":
                     PlanEstudios plan = null;
@@ -209,6 +210,7 @@ public class ConsultasObjetos {
                     {
                         System.out.println("No se encontro el plan de estudios");
                     }
+                    ConectarBase.desconectaBD();
                     return plan;
                 case "periodo_escolar":
                     periodoEscolar periodo = null;
@@ -222,6 +224,7 @@ public class ConsultasObjetos {
                     {
                         System.out.println("No se encontro el periodo");
                     }
+                    ConectarBase.desconectaBD();
                     return periodo;
                 case "materia":
                     Materia materia = null;
@@ -242,6 +245,7 @@ public class ConsultasObjetos {
                     {
                         System.out.println("No se encontro la materia");
                     }
+                    ConectarBase.desconectaBD();
                     return materia;
                 case "grupo":
                     Grupo grupo = null;
@@ -256,26 +260,8 @@ public class ConsultasObjetos {
                     {
                         System.out.println("No se encontro el grupo");
                     }
+                    ConectarBase.desconectaBD();
                     return grupo;
-                case "horarios":
-                    PeriodoHorarios horario = null;
-                    rs = ps.executeQuery();
-                    if (rs.next())
-                    {
-                        horario = new PeriodoHorarios();
-                        horario.setIdHorario(rs.getInt("id_horario"));
-                        horario.setClaveMateria(rs.getString("clave_materia"));
-                        horario.setIdGrupo(rs.getString("id_grupo"));
-                        horario.setIdPeriodo(rs.getString("id_periodo"));
-                        horario.setRfc(rs.getString("rfc"));
-                        horario.setDia(rs.getString("dia"));
-                        horario.setEntrada(rs.getString("hr_entrada"));
-                        horario.setSalida(rs.getString("hr_salida"));
-                    } else
-                    {
-                        System.out.println("No se encontro el horario");
-                    }
-                    return horario;
             }
         } catch (Exception e)
         {
@@ -519,6 +505,7 @@ public class ConsultasObjetos {
                             objetos.add(mat);
                         } while (rs.next());
                     }
+                    ConectarBase.desconectaBD();
                     return objetos;
                 case "grupo":
                     rs = ps.executeQuery();
@@ -533,6 +520,7 @@ public class ConsultasObjetos {
                             objetos.add(gr);
                         } while (rs.next());
                     }
+                    ConectarBase.desconectaBD();
                     return objetos;
                 case "horarios":
                     rs = ps.executeQuery();
@@ -1063,6 +1051,7 @@ public class ConsultasObjetos {
                             objetos.add(hr);
                         } while (rs.next());
                     }
+                    ConectarBase.desconectaBD();
                     return objetos;
                 case "horariosSalida":
                     rs = ps.executeQuery();
