@@ -10,7 +10,10 @@ import Clases.ConsultasObjetos;
 import static Controlador.ControladorProfesores.evaluaDatos;
 import Objetos.PeriodoHorarios;
 import Objetos.Profesor;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -112,10 +115,7 @@ public class ControladorHorarios {
 //    }
     public static String evaluaDatos(PeriodoHorarios horario) {
         String mensaje = "";
-        if (horario.getIdHorario() == null || horario.getIdHorario().equals(""))
-        {
-            mensaje += "ID vacio";
-        } else if (horario.getIdPeriodo() == null || horario.getIdHorario().equals(""))
+        if (horario.getIdPeriodo() == null || horario.getIdPeriodo().equals(""))
         {
             mensaje += "Periodo vacio o no asignado";
         } else if (horario.getIdGrupo() == null || horario.getIdGrupo().equals(""))
@@ -171,14 +171,18 @@ public class ControladorHorarios {
         String mensaje = evaluaDatos(horario);
         if (mensaje.equals(""))
         {
-            Object id_horario;
-            id_horario = ConsultasObjetos.consultaUnica("horarios", "id_horario", horario.getIdHorario(), ConectarBase.conectado());
-            if (id_horario != null)
-            {
-                return "ID de horario repetido inserte uno nuevo o diferente";
-            } else
-            {
-                return "operacion exitosa";
+            try {
+                Object id_horario;
+                id_horario = ConsultasObjetos.consultaUnicaHorario("horarios", "id_horario", horario.getIdHorario(), ConectarBase.conectado());
+                if (id_horario != null)
+                {
+                    return "ID de horario repetido inserte uno nuevo o diferente";
+                } else
+                {
+                    return "operacion exitosa";
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorHorarios.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return mensaje;
@@ -189,7 +193,7 @@ public class ControladorHorarios {
         return registro;
     }
 
-    public static String modificaHorarioUnico(PeriodoHorarios horario, String id) {
+    public static String modificaHorarioUnico(PeriodoHorarios horario, int id) {
         String mensaje = evaluaDatos(horario);
         if (mensaje.equals(""))
         {
@@ -200,9 +204,9 @@ public class ControladorHorarios {
         }
     }
 
-    public static boolean modificaEnBaseUnicoHorario(PeriodoHorarios horario, String id) {
-        Boolean registro = ConsultasObjetos.Modifica(horario, ConectarBase.conectado(), "horarios", id);
-        ConsultasObjetos.Modifica(horario, ConectarBase.conectado(), "horarios", id);
+    public static boolean modificaEnBaseUnicoHorario(PeriodoHorarios horario, int id) {
+        Boolean registro = ConsultasObjetos.ModificaHorario(horario, ConectarBase.conectado(), "horarios", id);
+        ConsultasObjetos.ModificaHorario(horario, ConectarBase.conectado(), "horarios", id);
         return registro;
     }
 

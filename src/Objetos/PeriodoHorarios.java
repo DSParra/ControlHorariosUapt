@@ -10,7 +10,7 @@ package Objetos;
  * @author DELL
  */
 public class PeriodoHorarios {
-    private String idHorario;
+    private int idHorario;
     private String claveMateria;
     private String idGrupo;
     private String idPeriodo;
@@ -23,7 +23,7 @@ public class PeriodoHorarios {
     public PeriodoHorarios() {
     }
 
-    public PeriodoHorarios(String idHorario, String claveMateria, String idGrupo, String idPeriodo, String rfc, String dia, String entrada, String salida) {
+    public PeriodoHorarios(int idHorario, String claveMateria, String idGrupo, String idPeriodo, String rfc, String dia, String entrada, String salida) {
         this.idHorario = idHorario;
         this.claveMateria = claveMateria;
         this.idGrupo = idGrupo;
@@ -137,14 +137,14 @@ public class PeriodoHorarios {
     /**
      * @return the idHorario
      */
-    public String getIdHorario() {
+    public int getIdHorario() {
         return idHorario;
     }
 
     /**
      * @param idHorario the idHorario to set
      */
-    public void setIdHorario(String idHorario) {
+    public void setIdHorario(int idHorario) {
         this.idHorario = idHorario;
     }
     

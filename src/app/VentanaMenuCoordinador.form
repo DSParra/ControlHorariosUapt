@@ -27,40 +27,38 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
+              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel2" min="-2" pref="861" max="-2" attributes="0"/>
-                          <Component id="jLTituloUniversidad1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLTituloUAPT1" min="-2" max="-2" attributes="0"/>
-                          <Component id="LabelLic" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <Component id="jLabel2" min="-2" pref="861" max="-2" attributes="0"/>
+                  <Component id="jLTituloUniversidad1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLTituloUAPT1" min="-2" max="-2" attributes="0"/>
+                  <Component id="LabelLic" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="jBDocentes" min="-2" pref="306" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
-                              <Component id="jBPlanes" min="-2" pref="306" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="jBGrupos" min="-2" pref="306" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jBHorarios" min="-2" pref="306" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButton1" min="-2" pref="284" max="-2" attributes="0"/>
-                          <Component id="jBMaterias" min="-2" pref="284" max="-2" attributes="0"/>
+                          <Component id="jBGrupos" alignment="0" min="-2" pref="241" max="-2" attributes="0"/>
+                          <Component id="jBDocentes" alignment="0" min="-2" pref="241" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jButton1" min="-2" pref="243" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jBPlanes" max="32767" attributes="0"/>
+                                  <Component id="jBHorarios" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jBPlanes1" min="-2" pref="246" max="-2" attributes="0"/>
+                                  <Component id="jBMaterias" min="-2" pref="243" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="86" max="32767" attributes="0"/>
+              <EmptySpace pref="190" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -80,23 +78,28 @@
               <Component id="LabelLic" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jButton1" min="-2" pref="141" max="-2" attributes="0"/>
-                  <Group type="102" alignment="1" attributes="0">
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jBDocentes" min="-2" pref="92" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                      <Component id="jBGrupos" min="-2" pref="92" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jBDocentes" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBPlanes" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBMaterias" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBPlanes" alignment="3" min="-2" pref="92" max="-2" attributes="0"/>
+                          <Component id="jBMaterias" alignment="3" min="-2" pref="92" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jBGrupos" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBHorarios" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jBHorarios" alignment="3" min="-2" pref="92" max="-2" attributes="0"/>
+                          <Component id="jBPlanes1" alignment="3" pref="94" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="115" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+              <Component id="jButton1" min="-2" pref="94" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -261,6 +264,26 @@
         </Property>
         <Property name="text" type="java.lang.String" value="UNIDAD ACADEMICA PROFESIONAL TIANGUISTENCO"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jBPlanes1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="66" red="66" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Iconos/excel.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="CARGAR EXCEL"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBPlanes1ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

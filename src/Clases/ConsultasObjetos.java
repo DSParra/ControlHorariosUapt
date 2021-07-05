@@ -102,6 +102,37 @@ public class ConsultasObjetos {
         return "";
     }
 
+    public static Object consultaUnicaHorario(String tabla, String campo, int valor, Connection con) throws SQLException {
+        if (campo == null)
+        {
+            ps = con.prepareStatement("SELECT * FROM " + tabla); //traer un dato
+        } else
+        {
+            ps = con.prepareStatement("SELECT * FROM " + tabla + " WHERE " + campo + " = ?"); //traer un dato
+            ps.setInt(1, valor);
+        }
+
+        PeriodoHorarios horario = null;
+        rs = ps.executeQuery();
+        if (rs.next())
+        {
+            horario = new PeriodoHorarios();
+            horario.setIdHorario(rs.getInt("id_horario"));
+            horario.setClaveMateria(rs.getString("clave_materia"));
+            horario.setIdGrupo(rs.getString("id_grupo"));
+            horario.setIdPeriodo(rs.getString("id_periodo"));
+            horario.setRfc(rs.getString("rfc"));
+            horario.setDia(rs.getString("dia"));
+            horario.setEntrada(rs.getString("hr_entrada"));
+            horario.setSalida(rs.getString("hr_salida"));
+        } else
+        {
+            System.out.println("No se encontro el horario");
+        }
+        return horario;
+
+    }
+
     public static Object consultaUnica(String tabla, String campo, String valor, Connection con) {
         try
         {
@@ -232,7 +263,7 @@ public class ConsultasObjetos {
                     if (rs.next())
                     {
                         horario = new PeriodoHorarios();
-                        horario.setIdHorario(rs.getString("id_horario"));
+                        horario.setIdHorario(rs.getInt("id_horario"));
                         horario.setClaveMateria(rs.getString("clave_materia"));
                         horario.setIdGrupo(rs.getString("id_grupo"));
                         horario.setIdPeriodo(rs.getString("id_periodo"));
@@ -330,7 +361,7 @@ public class ConsultasObjetos {
                 case "horarios":
                     PeriodoHorarios hr = (PeriodoHorarios) obj;
                     ps = con.prepareStatement("INSERT INTO horarios(id_horario, clave_materia, id_grupo, id_periodo, rfc, dia, hr_entrada, hr_salida) VALUES (?,?,?,?,?,?,?,?)");
-                    ps.setString(1, hr.getIdHorario());
+                    ps.setInt(1, hr.getIdHorario());
                     ps.setString(2, hr.getClaveMateria());
                     ps.setString(3, hr.getIdGrupo());
                     ps.setString(4, hr.getIdPeriodo());
@@ -510,7 +541,7 @@ public class ConsultasObjetos {
                         do
                         {
                             PeriodoHorarios hr = new PeriodoHorarios();
-                            hr.setIdHorario(rs.getString("id_horario"));
+                            hr.setIdHorario(rs.getInt("id_horario"));
                             hr.setClaveMateria(rs.getString("clave_materia"));
                             hr.setIdGrupo(rs.getString("id_grupo"));
                             hr.setIdPeriodo(rs.getString("id_periodo"));
@@ -566,6 +597,28 @@ public class ConsultasObjetos {
         } catch (Exception e)
         {
             System.out.println("Aqui imprime " + e.toString());
+        }
+        return false;
+    }
+
+    public static boolean ModificaHorario(Object obj, Connection con, String tabla, int id) {
+        try
+        {
+            int res = -1;
+            PeriodoHorarios hr = (PeriodoHorarios) obj;
+            ps = con.prepareStatement("UPDATE " + tabla + " SET clave_materia = ?, id_grupo = ?, id_periodo = ?, rfc = ?, dia = ?, hr_entrada =?, hr_salida = ? WHERE id_horario=?");
+            ps.setString(1, hr.getClaveMateria());
+            ps.setString(2, hr.getIdGrupo());
+            ps.setString(3, hr.getIdPeriodo());
+            ps.setString(4, hr.getRfc());
+            ps.setString(5, hr.getDia());
+            ps.setString(6, hr.getEntrada());
+            ps.setString(7, hr.getSalida());
+            ps.setInt(8, id);
+            res = ps.executeUpdate();
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(ConsultasObjetos.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -861,7 +914,7 @@ public class ConsultasObjetos {
         try
         {
 
-            ps = con.prepareStatement("SELECT * FROM " + tabla + " WHERE " + campo + "=? AND " + campo2 + "=?" + " AND "+ campo3 + "=?" +" ORDER BY " + valorOrden + " ASC"); //traer un dato
+            ps = con.prepareStatement("SELECT * FROM " + tabla + " WHERE " + campo + "=? AND " + campo2 + "=?" + " AND " + campo3 + "=?" + " ORDER BY " + valorOrden + " ASC"); //traer un dato
             ps.setString(1, valor);
             ps.setString(2, valor2);
             ps.setString(3, valor3);
@@ -999,7 +1052,7 @@ public class ConsultasObjetos {
                         do
                         {
                             PeriodoHorarios hr = new PeriodoHorarios();
-                            hr.setIdHorario(rs.getString("id_horario"));
+                            hr.setIdHorario(rs.getInt("id_horario"));
                             hr.setClaveMateria(rs.getString("clave_materia"));
                             hr.setIdGrupo(rs.getString("id_grupo"));
                             hr.setIdPeriodo(rs.getString("id_periodo"));

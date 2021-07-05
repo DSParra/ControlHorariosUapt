@@ -240,6 +240,11 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
         });
 
         jCDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO" }));
+        jCDia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jCDiaKeyPressed(evt);
+            }
+        });
 
         JCMateria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Algebra", "Computacion", "Inlges", "Calculo Diferencial E Integral" }));
         JCMateria.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -655,7 +660,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
             CtrlInterfaz.selecciona(jTIdhorario);
         } else
         {
-            PeriodoHorarios horario = new PeriodoHorarios(jTIdhorario.getText(), buscaMateria(null, JCMateria.getSelectedItem().toString()), buscaGrupo(null, JCGrupo.getSelectedItem().toString()), buscaPeriodo(null, jCPeriodo.getSelectedItem().toString()), buscaProfesor(null, JCDocente.getSelectedItem().toString()), String.valueOf(ControladorHorarios.numdia(jCDia.getSelectedItem().toString())), jTEntrada.getText(), jTSalida.getText());
+            PeriodoHorarios horario = new PeriodoHorarios(0, buscaMateria(null, JCMateria.getSelectedItem().toString()), buscaGrupo(null, JCGrupo.getSelectedItem().toString()), buscaPeriodo(null, jCPeriodo.getSelectedItem().toString()), buscaProfesor(null, JCDocente.getSelectedItem().toString()), String.valueOf(ControladorHorarios.numdia(jCDia.getSelectedItem().toString())), jTEntrada.getText(), jTSalida.getText());
             String mensaje = ControladorHorarios.insertaHorarioUnico(horario);
             boolean var;
             boolean var2, registro;
@@ -714,8 +719,8 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
 
             } else
             {
-                PeriodoHorarios horario = new PeriodoHorarios(jTIdhorario.getText(), buscaMateria(null, JCMateria.getSelectedItem().toString()), buscaGrupo(null, JCGrupo.getSelectedItem().toString()), buscaPeriodo(null, jCPeriodo.getSelectedItem().toString()), buscaProfesor(null, JCDocente.getSelectedItem().toString()), String.valueOf(ControladorHorarios.numdia(jCDia.getSelectedItem().toString())), jTEntrada.getText(), jTSalida.getText());
-                String mensaje = ControladorHorarios.modificaHorarioUnico(horario, (String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 0));
+                PeriodoHorarios horario = new PeriodoHorarios(Integer.parseInt(jTIdhorario.getText()), buscaMateria(null, JCMateria.getSelectedItem().toString()), buscaGrupo(null, JCGrupo.getSelectedItem().toString()), buscaPeriodo(null, jCPeriodo.getSelectedItem().toString()), buscaProfesor(null, JCDocente.getSelectedItem().toString()), String.valueOf(ControladorHorarios.numdia(jCDia.getSelectedItem().toString())), jTEntrada.getText(), jTSalida.getText());
+                String mensaje = ControladorHorarios.modificaHorarioUnico(horario, Integer.parseInt(jTIdhorario.getText()));
                 boolean var;
                 boolean var2, registro;
                 if (mensaje.equals("operacion exitosa"))
@@ -732,8 +737,8 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                             Mensaje.error(this, "Corrija el horario en el que el docente impartira la materia");
                         } else
                         {
-                            registro = ControladorHorarios.modificaEnBaseUnicoHorario(horario, (String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 0));
-                            if (registro == true)
+                            registro = ControladorHorarios.modificaEnBaseUnicoHorario(horario, Integer.parseInt(jTIdhorario.getText()));
+                            if (registro != true)
                             {
                                 Mensaje.exito(this, "Horario modificado correctamente");
                                 jBModificar.setText("Modificar");
@@ -787,7 +792,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
     }//GEN-LAST:event_JCMateriaKeyPressed
 
     private void JCDocenteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JCDocenteKeyPressed
-        Validaciones.enter(this, evt, jTEntrada);
+        Validaciones.enter(this, evt, jCDia);
     }//GEN-LAST:event_JCDocenteKeyPressed
 
     private void jTEntradaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTEntradaKeyPressed
@@ -827,7 +832,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
     }//GEN-LAST:event_jCPeriodoFiltroItemStateChanged
 
     private void TablaHorariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaHorariosMouseClicked
-        jTIdhorario.setText((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 0));
+        jTIdhorario.setText(String.valueOf(modelo.getValueAt(TablaHorarios.getSelectedRow(), 0)));
         JCMateria.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 1), JCMateria)));
         String GrupoACombo = retornameLic((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 2));
         jCPlanEstudios.setSelectedIndex((buscarCombo(buscaLic(GrupoACombo, null), jCPlanEstudios)));
@@ -857,6 +862,10 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
     private void txtnombreArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreArchivoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnombreArchivoActionPerformed
+
+    private void jCDiaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCDiaKeyPressed
+        Validaciones.enter(this, evt, jTEntrada);
+    }//GEN-LAST:event_jCDiaKeyPressed
 
     public void actualizaTabla(int valor) {
         lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
@@ -2246,7 +2255,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
         horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, null, ConectarBase.conectado()));
         for (int i = 0; i < horariosBD.size(); i++)
         {
-            if (!hr.getIdHorario().equals(horariosBD.get(i).getIdHorario()) && hr.getDia().equals(horariosBD.get(i).getDia()) && hr.getIdGrupo().equals(horariosBD.get(i).getIdGrupo()) && hr.getIdPeriodo().equals(horariosBD.get(i).getIdPeriodo()))
+            if (hr.getIdHorario() != horariosBD.get(i).getIdHorario() && hr.getDia().equals(horariosBD.get(i).getDia()) && hr.getIdGrupo().equals(horariosBD.get(i).getIdGrupo()) && hr.getIdPeriodo().equals(horariosBD.get(i).getIdPeriodo()))
             {
                 System.out.println("+ + + + + Es el mismo dia en " + i + " y elm mismo grupo en registro " + horariosBD.get(i).getIdHorario());
                 entradaHR = Double.parseDouble(hr.getEntrada().substring(0, 2) + "." + hr.getEntrada().substring(3, 5));
@@ -2275,7 +2284,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
 
         for (int i = 0; i < horariosBD.size(); i++)
         {
-            if (!hr.getIdHorario().equals(horariosBD.get(i).getIdHorario()) && hr.getRfc().equalsIgnoreCase(horariosBD.get(i).getRfc()) && hr.getDia().equals(horariosBD.get(i).getDia()) && hr.getIdPeriodo().equals(horariosBD.get(i).getIdPeriodo()))
+            if (hr.getIdHorario() != horariosBD.get(i).getIdHorario() && hr.getRfc().equalsIgnoreCase(horariosBD.get(i).getRfc()) && hr.getDia().equals(horariosBD.get(i).getDia()) && hr.getIdPeriodo().equals(horariosBD.get(i).getIdPeriodo()))
             {
                 System.out.println("+ + + + + Es el mismo rfc  y el mismo dia en registro " + horariosBD.get(i).getIdHorario());
                 entradaHR = Double.parseDouble(hr.getEntrada().substring(0, 2) + "." + hr.getEntrada().substring(3, 5));

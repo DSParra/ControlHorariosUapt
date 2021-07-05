@@ -16,6 +16,9 @@ import Objetos.Materia;
 import Objetos.PeriodoHorarios;
 import Objetos.Profesor;
 import Objetos.periodoEscolar;
+import app.VentanaAdministrador;
+import app.VentanaLogin;
+import app.VentanaMenuCoordinador;
 import cjb.ci.Mensaje;
 import java.awt.Color;
 import java.io.BufferedReader;
@@ -33,6 +36,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VistaExcel extends javax.swing.JFrame {
 
+    public static int valVentana;
     /**
      * Creates new form VistaExcel
      */
@@ -40,14 +44,23 @@ public class VistaExcel extends javax.swing.JFrame {
         initComponents();
         this.getContentPane().setBackground(Color.WHITE);
     }
-
+    
     File archivo;
     int numcorreo = 0;
     String cabeceras[];
     String tipoExcel = "";
-    String cabecerasProfesor[] = {"rfc", "apellido paterno", "apellido materno", "nombre", "grado academico", "correo", "telefono"};
-    String cabecerasMateria[] = {"clave de la materia", "unidad de aprendizaje", "horas", "creditos", "numero de periodo", "nucleo", "tipo", "licenciatura", "plan de estudios"};
-    String cabecerasHorario[] = {"clave materia", "unidad de aprendizaje", "rfc", "profesor", "grupo", "periodo", "dia", "entrada", "salida"};
+    String cabecerasProfesor[] =
+    {
+        "rfc", "apellido paterno", "apellido materno", "nombre", "grado academico", "correo", "telefono"
+    };
+    String cabecerasMateria[] =
+    {
+        "clave de la materia", "unidad de aprendizaje", "horas", "creditos", "numero de periodo", "nucleo", "tipo", "licenciatura", "plan de estudios"
+    };
+    String cabecerasHorario[] =
+    {
+        "clave materia", "unidad de aprendizaje", "rfc", "profesor", "grupo", "periodo", "dia", "entrada", "salida"
+    };
     ArrayList<Profesor> profes;
     ArrayList<Materia> materias;
     ArrayList<Grupo> grupos;
@@ -55,14 +68,15 @@ public class VistaExcel extends javax.swing.JFrame {
     ArrayList<periodoEscolar> periodos;
     ArrayList<PeriodoHorarios> horarios;
     ArrayList<PeriodoHorarios> horariosBD;
-
+    
     private File abrirArchivo() {
         String aux = "";
         String texto = "";
         String nombre = "";
         File abre = null;
-
-        try {
+        
+        try
+        {
             /**
              * llamamos el metodo que permite cargar la ventana
              */
@@ -72,7 +86,7 @@ public class VistaExcel extends javax.swing.JFrame {
             /**
              * abrimos el archivo seleccionado
              */
-
+            
             abre = file.getSelectedFile();
             //Archivo.AbreArchivoV1(abre);
             return abre;
@@ -88,7 +102,8 @@ public class VistaExcel extends javax.swing.JFrame {
 //                }
 //                lee.close();
 //            }
-        } catch (Exception ex) {
+        } catch (Exception ex)
+        {
             JOptionPane.showMessageDialog(null, ex + ""
                     + "\nNo se ha encontrado el archivo",
                     "ADVERTENCIA!!!", JOptionPane.WARNING_MESSAGE);
@@ -114,9 +129,6 @@ public class VistaExcel extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         btnpruebas = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtDatosNoEncontrados = new javax.swing.JTextArea();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtcruzesExcel = new javax.swing.JTextArea();
@@ -126,12 +138,17 @@ public class VistaExcel extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         txtCruzeProfesores = new javax.swing.JTextArea();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtDatosNoEncontrados = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jCheckLllaves = new javax.swing.JCheckBox();
         jCheckMateriasBD = new javax.swing.JCheckBox();
         jCheckProfesores = new javax.swing.JCheckBox();
         jCheckExcel = new javax.swing.JCheckBox();
+        jBRegresar = new javax.swing.JButton();
+        jBCerrarSesion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -194,29 +211,6 @@ public class VistaExcel extends javax.swing.JFrame {
             }
         });
 
-        txtDatosNoEncontrados.setColumns(20);
-        txtDatosNoEncontrados.setRows(5);
-        jScrollPane2.setViewportView(txtDatosNoEncontrados);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("DATOS NO ENCONTRADOS", jPanel2);
-
         txtcruzesExcel.setColumns(20);
         txtcruzesExcel.setRows(5);
         jScrollPane3.setViewportView(txtcruzesExcel);
@@ -234,7 +228,7 @@ public class VistaExcel extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -257,7 +251,7 @@ public class VistaExcel extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -285,6 +279,29 @@ public class VistaExcel extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("ERRORES CON PROFESORES", jPanel1);
+
+        txtDatosNoEncontrados.setColumns(20);
+        txtDatosNoEncontrados.setRows(5);
+        jScrollPane2.setViewportView(txtDatosNoEncontrados);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("DATOS NO ENCONTRADOS", jPanel2);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("RESULTADO DE PRUEBAS");
@@ -338,6 +355,28 @@ public class VistaExcel extends javax.swing.JFrame {
                 .addGap(17, 17, 17))
         );
 
+        jBRegresar.setBackground(new java.awt.Color(102, 102, 0));
+        jBRegresar.setForeground(new java.awt.Color(255, 255, 255));
+        jBRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/flecha(2).png"))); // NOI18N
+        jBRegresar.setText("Regresar");
+        jBRegresar.setToolTipText("");
+        jBRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBRegresarActionPerformed(evt);
+            }
+        });
+
+        jBCerrarSesion.setBackground(new java.awt.Color(102, 102, 0));
+        jBCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
+        jBCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/flecha(3).png"))); // NOI18N
+        jBCerrarSesion.setText("Salir");
+        jBCerrarSesion.setToolTipText("");
+        jBCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCerrarSesionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -358,16 +397,21 @@ public class VistaExcel extends javax.swing.JFrame {
                             .addComponent(txtidentifica, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTabbedPane1)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(27, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(160, 160, 160))))
+                        .addGap(160, 160, 160))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jBRegresar)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTabbedPane1)
+                                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap(27, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,14 +431,19 @@ public class VistaExcel extends javax.swing.JFrame {
                                 .addGap(66, 66, 66)
                                 .addComponent(txtidentifica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(2, 2, 2)))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(17, 17, 17)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(27, 27, 27))
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
 
         pack();
@@ -407,7 +456,8 @@ public class VistaExcel extends javax.swing.JFrame {
         archivo = abrirArchivo();
         Archivo.Importar(archivo, jTDatosExcel);
         cabeceras = new String[jTDatosExcel.getColumnCount()];
-        for (int i = 0; i < jTDatosExcel.getColumnCount(); i++) {
+        for (int i = 0; i < jTDatosExcel.getColumnCount(); i++)
+        {
             cabeceras[i] = jTDatosExcel.getColumnName(i);
         }
         tipoExcel = identifica();
@@ -427,8 +477,7 @@ public class VistaExcel extends javax.swing.JFrame {
         jCheckLllaves.setEnabled(false);
         jCheckMateriasBD.setEnabled(false);
         jCheckProfesores.setEnabled(false);
-
-
+        
         importaBD();
         ordenamientoBurbujaID("licenciatura");
         ordenamientoBurbujaNombre("materia");
@@ -441,12 +490,10 @@ public class VistaExcel extends javax.swing.JFrame {
 //        System.out.println("Busqueda " + busquedaBinariaRetID("s2", "grupo"));
 //        System.out.println("Busqueda " + busquedaBinariaRetNombre(2, "grupo"));
         //txtidentifica.setForeground(Color.red);
-        
-
 
     }//GEN-LAST:event_formWindowOpened
-
-    public void limpiaDatos(){
+    
+    public void limpiaDatos() {
         txtCruzeMaterias.setText("");
         txtCruzeProfesores.setText("");
         txtDatosNoEncontrados.setText("");
@@ -456,10 +503,12 @@ public class VistaExcel extends javax.swing.JFrame {
         jCheckMateriasBD.setSelected(false);
         jCheckProfesores.setSelected(false);
     }
+    
     public ArrayList<Object> extraeDatos() {
         ArrayList profesores = new ArrayList();
-
-        for (int i = 0; i < jTDatosExcel.getRowCount(); i++) {
+        
+        for (int i = 0; i < jTDatosExcel.getRowCount(); i++)
+        {
             Profesor profe = new Profesor();
             profe.setRfc(String.valueOf(jTDatosExcel.getValueAt(i, 1)));
             System.out.println(String.valueOf(jTDatosExcel.getValueAt(i, 1)));
@@ -473,46 +522,56 @@ public class VistaExcel extends javax.swing.JFrame {
         }
         return profesores;
     }
-
+    
     public String identifica() {
         boolean identificado = false;
-        if (cabeceras.length == cabecerasProfesor.length) {
-            for (int i = 0; i < cabeceras.length; i++) {
-                if (!cabeceras[i].equalsIgnoreCase(cabecerasProfesor[i])) {
+        if (cabeceras.length == cabecerasProfesor.length)
+        {
+            for (int i = 0; i < cabeceras.length; i++)
+            {
+                if (!cabeceras[i].equalsIgnoreCase(cabecerasProfesor[i]))
+                {
                     break;
                 }
             }
             txtDatosNoEncontrados.setText("Es un profesor");
             identificado = true;
             return "profesor";
-
+            
         }
-        if (cabeceras.length == cabecerasMateria.length && identificado) {
-            for (int i = 0; i < cabeceras.length; i++) {
-                if (!cabeceras[i].equalsIgnoreCase(cabecerasMateria[i])) {
+        if (cabeceras.length == cabecerasMateria.length && identificado)
+        {
+            for (int i = 0; i < cabeceras.length; i++)
+            {
+                if (!cabeceras[i].equalsIgnoreCase(cabecerasMateria[i]))
+                {
                     break;
                 }
             }
             identificado = true;
             return "materia";
         }
-
-        if (cabeceras.length == cabecerasHorario.length) {
-            for (int i = 0; i < cabeceras.length; i++) {
-                if (!cabeceras[i].equalsIgnoreCase(cabecerasHorario[i])) {
+        
+        if (cabeceras.length == cabecerasHorario.length)
+        {
+            for (int i = 0; i < cabeceras.length; i++)
+            {
+                if (!cabeceras[i].equalsIgnoreCase(cabecerasHorario[i]))
+                {
                     break;
                 }
             }
             identificado = true;
             return "horario";
         }
-        if (!identificado) {
+        if (!identificado)
+        {
             return "No es encontro el tipo de excel";
         }
         return null;
     }
     private void btnCargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargaActionPerformed
-
+        
         ArrayList horarios = guardaExcel();
         ConsultasObjetos.insertaMuchos(horarios, ConectarBase.conectado(), "horarios");
         ConectarBase.desconectaBD();
@@ -525,20 +584,22 @@ public class VistaExcel extends javax.swing.JFrame {
 //ConsultasObjetos.insertaMuchos(profes, ConectarBase.conectado(), "profesores");
 
     }//GEN-LAST:event_btnCargaActionPerformed
-
+    
     public ArrayList guardaExcel() {
-
-        if (tipoExcel.equalsIgnoreCase("horario")) {
+        
+        if (tipoExcel.equalsIgnoreCase("horario"))
+        {
             System.out.println("Entrando a horario");
             ArrayList horarios = new ArrayList();
             PeriodoHorarios horario;
             
-
-            for (int i = 0; i < jTDatosExcel.getRowCount(); i++) {
+            for (int i = 0; i < jTDatosExcel.getRowCount(); i++)
+            {
                 horario = new PeriodoHorarios();
                 horario.setClaveMateria(String.valueOf(jTDatosExcel.getValueAt(i, 0)));
                 horario.setRfc(String.valueOf(String.valueOf(jTDatosExcel.getValueAt(i, 2))));
-                if (ControladorHorarios.numdia(String.valueOf(jTDatosExcel.getValueAt(i, 6))) != 0) {
+                if (ControladorHorarios.numdia(String.valueOf(jTDatosExcel.getValueAt(i, 6))) != 0)
+                {
                     horario.setDia(String.valueOf(ControladorHorarios.numdia(String.valueOf(jTDatosExcel.getValueAt(i, 6)))));
                 }
                 horario.setIdGrupo(String.valueOf(busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(i, 4)), "grupo")));
@@ -553,7 +614,7 @@ public class VistaExcel extends javax.swing.JFrame {
         }
         return null;
     }
-
+    
     public void importaBD() {
         materias = new ArrayList(ConsultasObjetos.consultaMuchos("materia", null, null, null, null, null, ConectarBase.conectado()));
         profes = new ArrayList(ConsultasObjetos.consultaMuchos("profesores", null, null, null, null, null, ConectarBase.conectado()));
@@ -563,41 +624,47 @@ public class VistaExcel extends javax.swing.JFrame {
         horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, null, ConectarBase.conectado()));
         ConectarBase.desconectaBD();
     }
-
+    
     public void muestraBD() {
-        for (Object materia : materias) {
+        for (Object materia : materias)
+        {
             System.out.println(((Materia) materia).getUnidadAprendizaje());
         }
 //        for (Object profesor : profes){
 //            System.out.println(((Profesor)profesor).getNombres());
 //        }
-        for (Object grupo : grupos) {
+        for (Object grupo : grupos)
+        {
             System.out.println(((Grupo) grupo).getNombreGrupo());
         }
-        for (Object licen : carreras) {
+        for (Object licen : carreras)
+        {
             System.out.println(((Licenciatura) licen).getLicenciatura());
         }
-        for (Object periodo : periodos) {
+        for (Object periodo : periodos)
+        {
             System.out.println(((periodoEscolar) periodo).getPeriodo());
         }
     }
-
+    
     public void transforma() {
-
+        
     }
-
-
+    
     public boolean comparaMateriasExcel() {
         boolean prueba = true;
         double entrada1, salida1, entrada2, salida2;
         String mensaje = "";
-        for (int i = 0; i < horarios.size(); i++) {
-            for (int j = 0; j < horarios.size(); j++) {
+        for (int i = 0; i < horarios.size(); i++)
+        {
+            for (int j = 0; j < horarios.size(); j++)
+            {
                 //System.out.println("dia: "+horarios.get(i).getDia() + " ---->"+ "dia: "+horarios.get(j).getDia() );
-                if (horarios.get(i).getDia().equals(horarios.get(j).getDia()) && i != j 
+                if (horarios.get(i).getDia().equals(horarios.get(j).getDia()) && i != j
                         //&& horarios.get(i).getIdGrupo().equals(horarios.get(j).getIdGrupo())
                         //&& horarios.get(i).getClaveMateria().equals(horarios.get(j).getClaveMateria())
-                        && horarios.get(i).getRfc().equals(horarios.get(j).getRfc())) {
+                        && horarios.get(i).getRfc().equals(horarios.get(j).getRfc()))
+                {
                     //System.out.println("Mismo dia ");
                     //System.out.println(horarios.get(i).getClaveMateria() + " " + horarios.get(i).getRfc() + " " + horarios.get(i).getIdPeriodo());
                     //System.out.println(horarios.get(j).getClaveMateria() + " " + horarios.get(j).getRfc() + " " + horarios.get(j).getIdPeriodo());
@@ -605,29 +672,30 @@ public class VistaExcel extends javax.swing.JFrame {
                     salida1 = Double.parseDouble(horarios.get(i).getSalida().substring(0, 2) + "." + horarios.get(i).getSalida().substring(3, 5));
                     entrada2 = Double.parseDouble(horarios.get(j).getEntrada().substring(0, 2) + "." + horarios.get(j).getEntrada().substring(3, 5));
                     salida2 = Double.parseDouble(horarios.get(j).getSalida().substring(0, 2) + "." + horarios.get(j).getSalida().substring(3, 5));
-                    if (entrada2 >= entrada1 && entrada2 < salida1) {
+                    if (entrada2 >= entrada1 && entrada2 < salida1)
+                    {
                         
                         prueba = false;
                         mensaje += "Cruze de Profesor\n"
-                                + "Materia: " + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 1))+"\n"
+                                + "Materia: " + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 1)) + "\n"
                                 + "Profesor " + String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 3)) + "\n"
-                                + "Grupo: " +  String.valueOf(jTDatosExcel.getValueAt(i, 4)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 4))+"\n"
-                                + "Dia: " +  String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j,6))+"\n"
-                                + "Horario: " +  String.valueOf(jTDatosExcel.getValueAt(i, 7)) +" - " +String.valueOf(jTDatosExcel.getValueAt(i, 8)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j,7)) +"- "+ String.valueOf(jTDatosExcel.getValueAt(j,8))+"\n\n";
-                                
-                             //   + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 4))+String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 8))
-                              //  + " y "
-                               // + String.valueOf(jTDatosExcel.getValueAt(j, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 4)) + " " +String.valueOf(jTDatosExcel.getValueAt(i, 3))+ String.valueOf(jTDatosExcel.getValueAt(j, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(j, 8)) + "\n\n";
+                                + "Grupo: " + String.valueOf(jTDatosExcel.getValueAt(i, 4)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 4)) + "\n"
+                                + "Dia: " + String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 6)) + "\n"
+                                + "Horario: " + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " - " + String.valueOf(jTDatosExcel.getValueAt(i, 8)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 7)) + "- " + String.valueOf(jTDatosExcel.getValueAt(j, 8)) + "\n\n";
+
+                        //   + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 4))+String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 8))
+                        //  + " y "
+                        // + String.valueOf(jTDatosExcel.getValueAt(j, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 4)) + " " +String.valueOf(jTDatosExcel.getValueAt(i, 3))+ String.valueOf(jTDatosExcel.getValueAt(j, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(j, 8)) + "\n\n";
                         //System.out.println("horarios cruzados");
                     }
                     
-                    
                 }
                 
-                if (horarios.get(i).getDia().equals(horarios.get(j).getDia()) && i != j 
-                        && horarios.get(i).getIdGrupo().equals(horarios.get(j).getIdGrupo())){
-                        //&& horarios.get(i).getClaveMateria().equals(horarios.get(j).getClaveMateria())){
-                        //&& horarios.get(i).getRfc().equals(horarios.get(j).getRfc())) {
+                if (horarios.get(i).getDia().equals(horarios.get(j).getDia()) && i != j
+                        && horarios.get(i).getIdGrupo().equals(horarios.get(j).getIdGrupo()))
+                {
+                    //&& horarios.get(i).getClaveMateria().equals(horarios.get(j).getClaveMateria())){
+                    //&& horarios.get(i).getRfc().equals(horarios.get(j).getRfc())) {
                     //System.out.println("Mismo dia ");
                     //System.out.println(horarios.get(i).getClaveMateria() + " " + horarios.get(i).getRfc() + " " + horarios.get(i).getIdPeriodo());
                     //System.out.println(horarios.get(j).getClaveMateria() + " " + horarios.get(j).getRfc() + " " + horarios.get(j).getIdPeriodo());
@@ -635,22 +703,22 @@ public class VistaExcel extends javax.swing.JFrame {
                     salida1 = Double.parseDouble(horarios.get(i).getSalida().substring(0, 2) + "." + horarios.get(i).getSalida().substring(3, 5));
                     entrada2 = Double.parseDouble(horarios.get(j).getEntrada().substring(0, 2) + "." + horarios.get(j).getEntrada().substring(3, 5));
                     salida2 = Double.parseDouble(horarios.get(j).getSalida().substring(0, 2) + "." + horarios.get(j).getSalida().substring(3, 5));
-                    if (entrada2 >= entrada1 && entrada2 < salida1) {
+                    if (entrada2 >= entrada1 && entrada2 < salida1)
+                    {
                         
                         prueba = false;
                         mensaje += "Cruze del mismo Grupo\n"
-                                + "Materia: " + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 1))+"\n"
+                                + "Materia: " + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 1)) + "\n"
                                 + "Profesor " + String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 3)) + "\n"
-                                + "Grupo: " +  String.valueOf(jTDatosExcel.getValueAt(i, 4)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 4))+"\n"
-                                + "Dia: " +  String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j,6))+"\n"
-                                + "Horario: " +  String.valueOf(jTDatosExcel.getValueAt(i, 7)) +" - " +String.valueOf(jTDatosExcel.getValueAt(i, 8)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j,7)) +"- "+ String.valueOf(jTDatosExcel.getValueAt(j,8))+"\n\n";
-                                
-                             //   + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 4))+String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 8))
-                              //  + " y "
-                               // + String.valueOf(jTDatosExcel.getValueAt(j, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 4)) + " " +String.valueOf(jTDatosExcel.getValueAt(i, 3))+ String.valueOf(jTDatosExcel.getValueAt(j, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(j, 8)) + "\n\n";
+                                + "Grupo: " + String.valueOf(jTDatosExcel.getValueAt(i, 4)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 4)) + "\n"
+                                + "Dia: " + String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 6)) + "\n"
+                                + "Horario: " + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " - " + String.valueOf(jTDatosExcel.getValueAt(i, 8)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 7)) + "- " + String.valueOf(jTDatosExcel.getValueAt(j, 8)) + "\n\n";
+
+                        //   + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 4))+String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 8))
+                        //  + " y "
+                        // + String.valueOf(jTDatosExcel.getValueAt(j, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 4)) + " " +String.valueOf(jTDatosExcel.getValueAt(i, 3))+ String.valueOf(jTDatosExcel.getValueAt(j, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(j, 8)) + "\n\n";
                         //System.out.println("horarios cruzados");
                     }
-                    
                     
                 }
             }
@@ -659,9 +727,11 @@ public class VistaExcel extends javax.swing.JFrame {
         return prueba;
     }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if (jTDatosExcel.getSelectedRow() != -1) {
+        if (jTDatosExcel.getSelectedRow() != -1)
+        {
             ((DefaultTableModel) jTDatosExcel.getModel()).removeRow(jTDatosExcel.getSelectedRow());
-        } else {
+        } else
+        {
             Mensaje.error(this, "No se pudo eliminar la celda");
         }
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -669,27 +739,31 @@ public class VistaExcel extends javax.swing.JFrame {
     private void btnpruebasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpruebasActionPerformed
         System.out.println("");
         limpiaDatos();
-        if (tipoExcel.equalsIgnoreCase("horario")) {
+        if (tipoExcel.equalsIgnoreCase("horario"))
+        {
             
             horarios = guardaExcel();
             System.out.println("");
             jCheckLllaves.setSelected(validaExcel());
             jCheckExcel.setSelected(comparaMateriasExcel());
-            if (jCheckLllaves.isSelected()) {
+            if (jCheckLllaves.isSelected())
+            {
                 
                 jCheckProfesores.setSelected(evaluaProfesores());
                 jCheckMateriasBD.setSelected(evaluaGruposBD());
                 
             }
-
-            if (jCheckExcel.isSelected() && jCheckProfesores.isSelected() && jCheckMateriasBD.isSelected() && jCheckLllaves.isSelected()) {
+            
+            if (jCheckExcel.isSelected() && jCheckProfesores.isSelected() && jCheckMateriasBD.isSelected() && jCheckLllaves.isSelected())
+            {
                 btnCarga.setEnabled(true);
                 Mensaje.exito(this, "Se han pasado todas las pruebas");
-            } else {
+            } else
+            {
                 btnCarga.setEnabled(false);
                 Mensaje.error(this, "Alguna prueba no ha sido superada");
             }
-
+            
         }
 
     }//GEN-LAST:event_btnpruebasActionPerformed
@@ -698,16 +772,36 @@ public class VistaExcel extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckExcelActionPerformed
 
+    private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
+        this.setVisible(false);
+        if (valVentana == 1)
+        {
+            new VentanaAdministrador().setVisible(true);
+        } else
+        {
+            new VentanaMenuCoordinador().setVisible(true);
+        }
+
+    }//GEN-LAST:event_jBRegresarActionPerformed
+
+    private void jBCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarSesionActionPerformed
+        this.setVisible(false);
+        new VentanaLogin().setVisible(true);
+    }//GEN-LAST:event_jBCerrarSesionActionPerformed
+    
     public boolean evaluaProfesores() {
         boolean prueba = true;
         double entrada1, entrada2, salida1, salida2;
         String mensaje = "";
-        for (int i = 0; i < horarios.size(); i++) {
-            for (int j = 0; j < horariosBD.size(); j++) {
+        for (int i = 0; i < horarios.size(); i++)
+        {
+            for (int j = 0; j < horariosBD.size(); j++)
+            {
                 System.out.println("i: " + i);
                 System.out.println("j: " + j);
-                if (horarios.get(i).getRfc().equalsIgnoreCase(horariosBD.get(j).getRfc()) && horarios.get(i).getDia().equals(horariosBD.get(j).getDia())) {
-
+                if (horarios.get(i).getRfc().equalsIgnoreCase(horariosBD.get(j).getRfc()) && horarios.get(i).getDia().equals(horariosBD.get(j).getDia()))
+                {
+                    
                     entrada1 = Double.parseDouble(horarios.get(i).getEntrada().substring(0, 2) + "." + horarios.get(i).getEntrada().substring(3, 5));
                     salida1 = Double.parseDouble(horarios.get(i).getSalida().substring(0, 2) + "." + horarios.get(i).getSalida().substring(3, 5));
                     entrada2 = Double.parseDouble(horariosBD.get(j).getEntrada().substring(0, 2) + "." + horariosBD.get(j).getEntrada().substring(3, 5));
@@ -715,23 +809,21 @@ public class VistaExcel extends javax.swing.JFrame {
                     System.out.println("horario1 " + entrada1 + " " + salida1);
                     System.out.println("horario2 " + entrada2 + " " + salida2);
                     System.out.println("mismo dia ");
-                    if (entrada2 >= entrada1 && entrada2 <= salida1) {
+                    if (entrada2 >= entrada1 && entrada2 <= salida1)
+                    {
                         prueba = false;
                         
                         mensaje += "Cruze de Profesores\n"
-                                + "Materia: " + String.valueOf(jTDatosExcel.getValueAt(i, 1))  + " -> " + busquedaBinariaRetNombre(horariosBD.get(j).getClaveMateria(), "materias")+"\n"
-                                + "Profesor: " + String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " -> " + busquedaBinariaRetNombre(horariosBD.get(j).getRfc(), "profesores")  + "\n"
-                                + "Grupo: " +  String.valueOf(jTDatosExcel.getValueAt(i, 4))  + "->"+busquedaBinariaRetNombre(Integer.valueOf(horariosBD.get(j).getIdGrupo()), "grupo") + "\n"
-                                + "Dia: " +  String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " -> " + ControladorHorarios.numdia(Integer.valueOf(horariosBD.get(j).getDia()))+"\n"
-                                + "Horario: "  + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " - " + String.valueOf(jTDatosExcel.getValueAt(i, 8)) + " -> " + horariosBD.get(j).getEntrada().substring(0,5) + " " + horariosBD.get(j).getSalida().substring(0,5) + "\n\n";
-                        
-                        
-                        
+                                + "Materia: " + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + busquedaBinariaRetNombre(horariosBD.get(j).getClaveMateria(), "materias") + "\n"
+                                + "Profesor: " + String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " -> " + busquedaBinariaRetNombre(horariosBD.get(j).getRfc(), "profesores") + "\n"
+                                + "Grupo: " + String.valueOf(jTDatosExcel.getValueAt(i, 4)) + "->" + busquedaBinariaRetNombre(Integer.valueOf(horariosBD.get(j).getIdGrupo()), "grupo") + "\n"
+                                + "Dia: " + String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " -> " + ControladorHorarios.numdia(Integer.valueOf(horariosBD.get(j).getDia())) + "\n"
+                                + "Horario: " + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " - " + String.valueOf(jTDatosExcel.getValueAt(i, 8)) + " -> " + horariosBD.get(j).getEntrada().substring(0, 5) + " " + horariosBD.get(j).getSalida().substring(0, 5) + "\n\n";
+
 //                        mensaje += "Error Por Profesores\n"
 //                                + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 8))
 //                                + " y "+"\n"
 //                                + busquedaBinariaRetNombre(horariosBD.get(j).getClaveMateria(), "materias") + "-> " + ControladorHorarios.numdia(Integer.valueOf(horariosBD.get(j).getDia())) + " " + horariosBD.get(j).getEntrada() + " " + horariosBD.get(j).getSalida() + "\n\n";
-
                         System.out.println("Profesor: " + String.valueOf(jTDatosExcel.getValueAt(i, 2)) + "cruzado " + horarios.get(i).getDia() + " " + horarios.get(i).getEntrada() + " " + horarios.get(i).getSalida());
                         System.out.println("Con id: " + horariosBD.get(j).getIdHorario() + " " + horariosBD.get(j).getDia() + " " + horariosBD.get(j).getEntrada() + " " + horariosBD.get(j).getSalida());
 
@@ -747,36 +839,38 @@ public class VistaExcel extends javax.swing.JFrame {
         txtCruzeProfesores.setText(mensaje);
         return prueba;
     }
-
+    
     public boolean evaluaGruposBD() {
         boolean prueba = true;
         double entrada1, entrada2, salida1, salida2;
         String mensaje = "";
-        for (int i = 0; i < horarios.size(); i++) {
-            for (int j = 0; j < horariosBD.size(); j++) {
+        for (int i = 0; i < horarios.size(); i++)
+        {
+            for (int j = 0; j < horariosBD.size(); j++)
+            {
                 if (horarios.get(i).getClaveMateria().equalsIgnoreCase(horariosBD.get(j).getClaveMateria()) && horarios.get(i).getDia().equalsIgnoreCase(horariosBD.get(j).getDia())
-                        && horarios.get(i).getIdGrupo().equals(horariosBD.get(j).getIdGrupo())) {
+                        && horarios.get(i).getIdGrupo().equals(horariosBD.get(j).getIdGrupo()))
+                {
                     entrada1 = Double.parseDouble(horarios.get(i).getEntrada().substring(0, 2) + "." + horarios.get(i).getEntrada().substring(3, 5));
                     salida1 = Double.parseDouble(horarios.get(i).getSalida().substring(0, 2) + "." + horarios.get(i).getSalida().substring(3, 5));
                     entrada2 = Double.parseDouble(horariosBD.get(j).getEntrada().substring(0, 2) + "." + horariosBD.get(j).getEntrada().substring(3, 5));
                     salida2 = Double.parseDouble(horariosBD.get(j).getSalida().substring(0, 2) + "." + horariosBD.get(j).getSalida().substring(3, 5));
-                    if (entrada2 >= entrada1 && entrada2 <= salida1) {
+                    if (entrada2 >= entrada1 && entrada2 <= salida1)
+                    {
                         prueba = false;
                         mensaje += "Cruze de Materia\n"
-                                + "Materia: " + String.valueOf(jTDatosExcel.getValueAt(i, 1))  + " -> " + busquedaBinariaRetNombre(horariosBD.get(j).getClaveMateria(), "materias")+"\n"
-                                + "Profesor " + String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " -> " + busquedaBinariaRetNombre(horariosBD.get(j).getRfc(), "profesores")  + "\n"
-                                + "Grupo: " +  String.valueOf(jTDatosExcel.getValueAt(i, 4))  + busquedaBinariaRetNombre(Integer.valueOf(horariosBD.get(j).getIdGrupo()), "grupo") + "\n"
-                                + "Dia: " +  String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " -> " + ControladorHorarios.numdia(Integer.valueOf(horariosBD.get(j).getDia()))+"\n"
-                                + "Horario: "  + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " - " + String.valueOf(jTDatosExcel.getValueAt(i, 8)) + " -> " + horariosBD.get(j).getEntrada().substring(0,5) + " " + horariosBD.get(j).getSalida().substring(0,5) + "\n\n";
-                        
-                        
+                                + "Materia: " + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + busquedaBinariaRetNombre(horariosBD.get(j).getClaveMateria(), "materias") + "\n"
+                                + "Profesor " + String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " -> " + busquedaBinariaRetNombre(horariosBD.get(j).getRfc(), "profesores") + "\n"
+                                + "Grupo: " + String.valueOf(jTDatosExcel.getValueAt(i, 4)) + busquedaBinariaRetNombre(Integer.valueOf(horariosBD.get(j).getIdGrupo()), "grupo") + "\n"
+                                + "Dia: " + String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " -> " + ControladorHorarios.numdia(Integer.valueOf(horariosBD.get(j).getDia())) + "\n"
+                                + "Horario: " + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " - " + String.valueOf(jTDatosExcel.getValueAt(i, 8)) + " -> " + horariosBD.get(j).getEntrada().substring(0, 5) + " " + horariosBD.get(j).getSalida().substring(0, 5) + "\n\n";
+
 //                        mensaje += "Error en materia BD\n"
 //                                + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 8))
 //                                + " y "
 //                                + busquedaBinariaRetNombre(horariosBD.get(j).getClaveMateria(), "materias") + "-> " + ControladorHorarios.numdia(Integer.valueOf(horariosBD.get(j).getDia())) + " " + horariosBD.get(j).getEntrada() + " " + horariosBD.get(j).getSalida() + "\n\n";
                         //System.out.println("Profesor: " + String.valueOf(jTDatosExcel.getValueAt(i, 2)) + "cruzado " + horarios.get(i).getDia() + " " + horarios.get(i).getEntrada() + " " + horarios.get(i).getSalida());
                         //System.out.println("Con id: " + horariosBD.get(j).getIdHorario() + " " + horariosBD.get(j).getDia() + " " + horariosBD.get(j).getEntrada() + " " + horariosBD.get(j).getSalida());
-
                         //txtconsulta.setText(txtconsulta.getText() + "Error en Grupos: " + String.valueOf(jTDatosExcel.getValueAt(i, 0)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " y " + String.valueOf(jTDatosExcel.getValueAt(j, 0)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 3)) + "\n\n");
                         //System.out.println("horarios cruzados");
                     }
@@ -789,31 +883,36 @@ public class VistaExcel extends javax.swing.JFrame {
         txtCruzeMaterias.setText(mensaje);
         return prueba;
     }
-
+    
     public boolean validaExcel() {
         boolean prueba = true;
         double entrada1, entrada2, salida1, salida2;
         String mensaje = "";
         ordenamientoBurbujaID("materia");
         ordenamientoBurbujaNombre("grupo");
-        for (int i = 0; i < horarios.size(); i++) {
+        for (int i = 0; i < horarios.size(); i++)
+        {
             System.out.println("registro " + i);
-            if (busquedaBinariaBuscaID(String.valueOf(jTDatosExcel.getValueAt(i, 0)), "materia") == null) {
+            if (busquedaBinariaBuscaID(String.valueOf(jTDatosExcel.getValueAt(i, 0)), "materia") == null)
+            {
                 prueba = false;
                 mensaje += "Materia: " + String.valueOf(jTDatosExcel.getValueAt(i, 0) + " NO ENCONTRADO") + "\n\n";
                 //System.out.println("Materia no encontrado");
             }
-            if (busquedaBinariaBuscaID(String.valueOf(jTDatosExcel.getValueAt(i, 2)), "profesor") == null) {
+            if (busquedaBinariaBuscaID(String.valueOf(jTDatosExcel.getValueAt(i, 2)), "profesor") == null)
+            {
                 prueba = false;
                 mensaje += "Profesor: " + String.valueOf(jTDatosExcel.getValueAt(i, 2) + " NO ENCONTRADO") + "\n\n";
                 System.out.println("profesor no encontrado");
             }
-            if (busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(i, 4)), "grupo") == -1) {
+            if (busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(i, 4)), "grupo") == -1)
+            {
                 prueba = false;
                 mensaje += "Grupo: " + String.valueOf(jTDatosExcel.getValueAt(i, 4) + " NO ENCONTRADO") + "\n\n";
                 System.out.println("Grupos no encontrado" + i);
             }
-            if (busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(i, 5)), "periodo") == -1) {
+            if (busquedaBinariaRetID(String.valueOf(jTDatosExcel.getValueAt(i, 5)), "periodo") == -1)
+            {
                 prueba = false;
                 mensaje += "Periodo: " + String.valueOf(jTDatosExcel.getValueAt(i, 5) + " NO ENCONTRADO") + "\n\n";
                 //System.out.println("periodo no encontrado");
@@ -832,20 +931,27 @@ public class VistaExcel extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(VistaExcel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(VistaExcel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(VistaExcel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(VistaExcel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -862,6 +968,8 @@ public class VistaExcel extends javax.swing.JFrame {
     private javax.swing.JButton btnCarga;
     public javax.swing.JButton btnImportar;
     private javax.swing.JButton btnpruebas;
+    private javax.swing.JButton jBCerrarSesion;
+    private javax.swing.JButton jBRegresar;
     private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCheckExcel;
     private javax.swing.JCheckBox jCheckLllaves;
@@ -888,12 +996,16 @@ public class VistaExcel extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void ordenamientoBurbujaID(String tipo) {
-        switch (tipo) {
+        switch (tipo)
+        {
             case "grupo":
                 Grupo grup;
-                for (int i = 1; i < grupos.size(); i++) {
-                    for (int j = 0; j < grupos.size() - i; j++) {
-                        if (Integer.valueOf(grupos.get(j).getIdGrupo()) > Integer.valueOf(grupos.get(j + 1).getIdGrupo())) {
+                for (int i = 1; i < grupos.size(); i++)
+                {
+                    for (int j = 0; j < grupos.size() - i; j++)
+                    {
+                        if (Integer.valueOf(grupos.get(j).getIdGrupo()) > Integer.valueOf(grupos.get(j + 1).getIdGrupo()))
+                        {
                             grup = grupos.get(j);
                             grupos.set(j, grupos.get(j + 1));
                             grupos.set(j + 1, grup);
@@ -903,9 +1015,12 @@ public class VistaExcel extends javax.swing.JFrame {
                 break;
             case "licenciatura":
                 Licenciatura lic;
-                for (int i = 1; i < carreras.size(); i++) {
-                    for (int j = 0; j < carreras.size() - i; j++) {
-                        if (carreras.get(j).getIdLicenciatura().compareToIgnoreCase(carreras.get(j + 1).getIdLicenciatura()) > 0) {
+                for (int i = 1; i < carreras.size(); i++)
+                {
+                    for (int j = 0; j < carreras.size() - i; j++)
+                    {
+                        if (carreras.get(j).getIdLicenciatura().compareToIgnoreCase(carreras.get(j + 1).getIdLicenciatura()) > 0)
+                        {
                             lic = carreras.get(j);
                             carreras.set(j, carreras.get(j + 1));
                             carreras.set(j + 1, lic);
@@ -913,30 +1028,37 @@ public class VistaExcel extends javax.swing.JFrame {
                     }
                 }
                 break;
-
+            
             case "materia":
                 Materia mat;
-                for (int i = 1; i < materias.size(); i++) {
-                    for (int j = 0; j < materias.size() - i; j++) {
-                        if (materias.get(j).getClaveMateria().compareToIgnoreCase(materias.get(j + 1).getClaveMateria()) > 0) {
+                for (int i = 1; i < materias.size(); i++)
+                {
+                    for (int j = 0; j < materias.size() - i; j++)
+                    {
+                        if (materias.get(j).getClaveMateria().compareToIgnoreCase(materias.get(j + 1).getClaveMateria()) > 0)
+                        {
                             mat = materias.get(j);
                             materias.set(j, materias.get(j + 1));
                             materias.set(j + 1, mat);
                         }
                     }
                 }
-
+                
                 break;
         }
     }
-
+    
     public void ordenamientoBurbujaNombre(String tipo) {
-        switch (tipo) {
+        switch (tipo)
+        {
             case "grupo":
                 Grupo grup;
-                for (int i = 1; i < grupos.size(); i++) {
-                    for (int j = 0; j < grupos.size() - i; j++) {
-                        if (grupos.get(j).getNombreGrupo().compareToIgnoreCase(grupos.get(j + 1).getNombreGrupo()) > 0) {
+                for (int i = 1; i < grupos.size(); i++)
+                {
+                    for (int j = 0; j < grupos.size() - i; j++)
+                    {
+                        if (grupos.get(j).getNombreGrupo().compareToIgnoreCase(grupos.get(j + 1).getNombreGrupo()) > 0)
+                        {
                             grup = grupos.get(j);
                             grupos.set(j, grupos.get(j + 1));
                             grupos.set(j + 1, grup);
@@ -947,9 +1069,12 @@ public class VistaExcel extends javax.swing.JFrame {
             //esta por id
             case "licenciatura":
                 Licenciatura lic;
-                for (int i = 1; i < carreras.size(); i++) {
-                    for (int j = 0; j < carreras.size() - i; j++) {
-                        if (carreras.get(j).getIdLicenciatura().compareToIgnoreCase(carreras.get(j + 1).getIdLicenciatura()) > 0) {
+                for (int i = 1; i < carreras.size(); i++)
+                {
+                    for (int j = 0; j < carreras.size() - i; j++)
+                    {
+                        if (carreras.get(j).getIdLicenciatura().compareToIgnoreCase(carreras.get(j + 1).getIdLicenciatura()) > 0)
+                        {
                             lic = carreras.get(j);
                             carreras.set(j, carreras.get(j + 1));
                             carreras.set(j + 1, lic);
@@ -957,36 +1082,44 @@ public class VistaExcel extends javax.swing.JFrame {
                     }
                 }
                 break;
-
+            
             case "materia":
                 Materia mat;
-                for (int i = 1; i < materias.size(); i++) {
-                    for (int j = 0; j < materias.size() - i; j++) {
-                        if (materias.get(j).getUnidadAprendizaje().compareToIgnoreCase(materias.get(j + 1).getUnidadAprendizaje()) > 0) {
+                for (int i = 1; i < materias.size(); i++)
+                {
+                    for (int j = 0; j < materias.size() - i; j++)
+                    {
+                        if (materias.get(j).getUnidadAprendizaje().compareToIgnoreCase(materias.get(j + 1).getUnidadAprendizaje()) > 0)
+                        {
                             mat = materias.get(j);
                             materias.set(j, materias.get(j + 1));
                             materias.set(j + 1, mat);
                         }
                     }
                 }
-
+                
                 break;
         }
     }
-
+    
     public int busquedaBinariaRetID(String dato, String tipo) {
         int n, inf = 0, sup, centro;
-        switch (tipo) {
+        switch (tipo)
+        {
             case "licenciatura":
                 n = carreras.size();
                 sup = n - 1;
-                while (inf <= sup) {
+                while (inf <= sup)
+                {
                     centro = (sup + inf) / 2;
-                    if (carreras.get(centro).getLicenciatura().equalsIgnoreCase(dato)) {
+                    if (carreras.get(centro).getLicenciatura().equalsIgnoreCase(dato))
+                    {
                         return Integer.parseInt(carreras.get(centro).getIdLicenciatura());
-                    } else if (dato.compareToIgnoreCase(carreras.get(centro).getLicenciatura()) > 0) {
+                    } else if (dato.compareToIgnoreCase(carreras.get(centro).getLicenciatura()) > 0)
+                    {
                         sup = centro - 1;
-                    } else {
+                    } else
+                    {
                         inf = centro + 1;
                     }
                 }
@@ -994,14 +1127,18 @@ public class VistaExcel extends javax.swing.JFrame {
             case "grupo":
                 n = grupos.size();
                 sup = n - 1;
-                while (inf <= sup) {
+                while (inf <= sup)
+                {
                     centro = (sup + inf) / 2;
-                    if (grupos.get(centro).getNombreGrupo().equalsIgnoreCase(dato)) {
+                    if (grupos.get(centro).getNombreGrupo().equalsIgnoreCase(dato))
+                    {
                         return Integer.valueOf(grupos.get(centro).getIdGrupo());
-                    } else if (dato.compareToIgnoreCase(grupos.get(centro).getNombreGrupo()) < 0) {
-
+                    } else if (dato.compareToIgnoreCase(grupos.get(centro).getNombreGrupo()) < 0)
+                    {
+                        
                         sup = centro - 1;
-                    } else {
+                    } else
+                    {
                         inf = centro + 1;
                     }
                 }
@@ -1009,13 +1146,17 @@ public class VistaExcel extends javax.swing.JFrame {
             case "periodo":
                 n = periodos.size();
                 sup = n - 1;
-                while (inf <= sup) {
+                while (inf <= sup)
+                {
                     centro = (sup + inf) / 2;
-                    if (periodos.get(centro).getPeriodo().equalsIgnoreCase(dato)) {
+                    if (periodos.get(centro).getPeriodo().equalsIgnoreCase(dato))
+                    {
                         return Integer.valueOf(periodos.get(centro).getId_periodo());
-                    } else if (dato.compareToIgnoreCase(periodos.get(centro).getPeriodo()) < 0) {
+                    } else if (dato.compareToIgnoreCase(periodos.get(centro).getPeriodo()) < 0)
+                    {
                         sup = centro - 1;
-                    } else {
+                    } else
+                    {
                         inf = centro + 1;
                     }
                 }
@@ -1023,13 +1164,17 @@ public class VistaExcel extends javax.swing.JFrame {
             case "materia":
                 n = materias.size();
                 sup = n - 1;
-                while (inf <= sup) {
+                while (inf <= sup)
+                {
                     centro = (sup + inf) / 2;
-                    if (materias.get(centro).getUnidadAprendizaje().equalsIgnoreCase(dato)) {
+                    if (materias.get(centro).getUnidadAprendizaje().equalsIgnoreCase(dato))
+                    {
                         return Integer.valueOf(materias.get(centro).getClaveMateria().replaceAll(" ", "").trim().trim());
-                    } else if (dato.compareToIgnoreCase(materias.get(centro).getUnidadAprendizaje()) < 0) {
+                    } else if (dato.compareToIgnoreCase(materias.get(centro).getUnidadAprendizaje()) < 0)
+                    {
                         sup = centro - 1;
-                    } else {
+                    } else
+                    {
                         inf = centro + 1;
                     }
                 }
@@ -1037,20 +1182,25 @@ public class VistaExcel extends javax.swing.JFrame {
         }
         return -1;
     }
-
+    
     public String busquedaBinariaBuscaID(String id, String tipo) {
         int n, inf = 0, sup, centro;
-        switch (tipo) {
+        switch (tipo)
+        {
             case "profesor":
                 n = profes.size();
                 sup = n - 1;
-                while (inf <= sup) {
+                while (inf <= sup)
+                {
                     centro = (sup + inf) / 2;
-                    if (profes.get(centro).getRfc().equalsIgnoreCase(id)) {
+                    if (profes.get(centro).getRfc().equalsIgnoreCase(id))
+                    {
                         return profes.get(centro).getRfc();
-                    } else if (id.compareToIgnoreCase(profes.get(centro).getRfc()) < 0) {
+                    } else if (id.compareToIgnoreCase(profes.get(centro).getRfc()) < 0)
+                    {
                         sup = centro - 1;
-                    } else {
+                    } else
+                    {
                         inf = centro + 1;
                     }
                 }
@@ -1058,13 +1208,17 @@ public class VistaExcel extends javax.swing.JFrame {
             case "materia":
                 n = materias.size();
                 sup = n - 1;
-                while (inf <= sup) {
+                while (inf <= sup)
+                {
                     centro = (sup + inf) / 2;
-                    if (materias.get(centro).getClaveMateria().equalsIgnoreCase(id)) {
+                    if (materias.get(centro).getClaveMateria().equalsIgnoreCase(id))
+                    {
                         return materias.get(centro).getClaveMateria();
-                    } else if (id.compareToIgnoreCase(materias.get(centro).getClaveMateria()) < 0) {
+                    } else if (id.compareToIgnoreCase(materias.get(centro).getClaveMateria()) < 0)
+                    {
                         sup = centro - 1;
-                    } else {
+                    } else
+                    {
                         inf = centro + 1;
                     }
                 }
@@ -1072,22 +1226,27 @@ public class VistaExcel extends javax.swing.JFrame {
         }
         return null;
     }
-
+    
     public String busquedaBinariaRetNombre(int dato, String tipo) {
         ordenamientoBurbujaID("grupo");
         int n, inf = 0, sup, centro;
-        switch (tipo) {
+        switch (tipo)
+        {
             case "licenciatura":
                 n = carreras.size();
                 sup = n - 1;
-                while (inf <= sup) {
+                while (inf <= sup)
+                {
                     centro = (sup + inf) / 2;
-                    if (Integer.parseInt(carreras.get(centro).getIdLicenciatura()) == dato) {
+                    if (Integer.parseInt(carreras.get(centro).getIdLicenciatura()) == dato)
+                    {
                         ordenamientoBurbujaNombre("grupo");
                         return carreras.get(centro).getLicenciatura();
-                    } else if (dato < Integer.valueOf(carreras.get(centro).getIdLicenciatura())) {
+                    } else if (dato < Integer.valueOf(carreras.get(centro).getIdLicenciatura()))
+                    {
                         sup = centro - 1;
-                    } else {
+                    } else
+                    {
                         inf = centro + 1;
                     }
                 }
@@ -1095,13 +1254,17 @@ public class VistaExcel extends javax.swing.JFrame {
                 //ordenamientoBurbujaID("grupo");
                 n = grupos.size();
                 sup = n - 1;
-                while (inf <= sup) {
+                while (inf <= sup)
+                {
                     centro = (sup + inf) / 2;
-                    if (Integer.valueOf(grupos.get(centro).getIdGrupo()) == dato) {
+                    if (Integer.valueOf(grupos.get(centro).getIdGrupo()) == dato)
+                    {
                         return grupos.get(centro).getNombreGrupo();
-                    } else if (dato < Integer.valueOf(grupos.get(centro).getIdGrupo())) {
+                    } else if (dato < Integer.valueOf(grupos.get(centro).getIdGrupo()))
+                    {
                         sup = centro - 1;
-                    } else {
+                    } else
+                    {
                         inf = centro + 1;
                     }
                 }
@@ -1109,7 +1272,7 @@ public class VistaExcel extends javax.swing.JFrame {
         ordenamientoBurbujaNombre("grupo");
         return "";
     }
-
+    
     public void muestraHorarios(PeriodoHorarios horario) {
         System.out.println("Materia " + horario.getClaveMateria());
         System.out.println("RFC " + horario.getRfc());
@@ -1119,34 +1282,43 @@ public class VistaExcel extends javax.swing.JFrame {
         System.out.println("Entrada " + horario.getEntrada());
         System.out.println("Salida " + horario.getSalida());
     }
-
+    
     public String busquedaBinariaRetNombre(String dato, String tipo) {
         ordenamientoBurbujaID("materia");
         int n, inf = 0, sup, centro;
-        switch (tipo) {
+        switch (tipo)
+        {
             case "materias":
                 n = materias.size();
                 sup = n - 1;
-                while (inf <= sup) {
+                while (inf <= sup)
+                {
                     centro = (sup + inf) / 2;
-                    if (materias.get(centro).getClaveMateria().equalsIgnoreCase(dato)) {
+                    if (materias.get(centro).getClaveMateria().equalsIgnoreCase(dato))
+                    {
                         return materias.get(centro).getUnidadAprendizaje();
-                    } else if (dato.compareToIgnoreCase(materias.get(centro).getClaveMateria()) < 0) {
+                    } else if (dato.compareToIgnoreCase(materias.get(centro).getClaveMateria()) < 0)
+                    {
                         sup = centro - 1;
-                    } else {
+                    } else
+                    {
                         inf = centro + 1;
                     }
                 }
             case "profesores":
                 n = profes.size();
                 sup = n - 1;
-                while (inf <= sup) {
+                while (inf <= sup)
+                {
                     centro = (sup + inf) / 2;
-                    if (profes.get(centro).getRfc().equalsIgnoreCase(dato)) {
-                        return profes.get(centro).getNombres() + " " + profes.get(centro).getApellidoP()  ;
-                    } else if (dato.compareToIgnoreCase(profes.get(centro).getRfc()) < 0) {
+                    if (profes.get(centro).getRfc().equalsIgnoreCase(dato))
+                    {
+                        return profes.get(centro).getNombres() + " " + profes.get(centro).getApellidoP();
+                    } else if (dato.compareToIgnoreCase(profes.get(centro).getRfc()) < 0)
+                    {
                         sup = centro - 1;
-                    } else {
+                    } else
+                    {
                         inf = centro + 1;
                     }
                 }
@@ -1166,5 +1338,5 @@ public class VistaExcel extends javax.swing.JFrame {
         }
         return "";
     }
-
+    
 }
