@@ -37,7 +37,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
     private ArrayList<Object> plans = new ArrayList<>();
     private ArrayList<Object> planes1 = new ArrayList<>();
     private ArrayList<Object> lics = new ArrayList<>();
-    private ArrayList<Materia> materia = new ArrayList<>();
+    private ArrayList<Object> materia = new ArrayList<>();
 
     /**
      * Creates new form VentanaPrinicipal
@@ -843,6 +843,8 @@ public class VentanaMaterias extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         cancelar();
+        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
+        plans = ConsultasObjetos.consultaMuchos("plan_estudios", null, null, null, null, "plan_estudios", ConectarBase.conectado());
         actualizarTabla(1);
         llenaComboLic();
         llenaComboPlanes();
@@ -1071,15 +1073,32 @@ public class VentanaMaterias extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void actualizarTabla(int valor) {
-        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
-        plans = ConsultasObjetos.consultaMuchos("plan_estudios", null, null, null, null, "plan_estudios", ConectarBase.conectado());
         modelo = (DefaultTableModel) TablaMAterias.getModel();
         ArrayList materias = new ArrayList();
         materias = ConsultasObjetos.consultaMuchos("materia", null, null, null, null, "unidad_aprendizaje", ConectarBase.conectado());
+        materia = materias;
         switch (valor)
         {
             case 1:
-                //materias = ConsultasObjetos.consultaMuchos("materia", null, null, null, null, "unidad_aprendizaje", ConectarBase.conectado());
+                if (materia.isEmpty())
+                {
+                    Mensaje.error(this, "No hay materias registradas");
+                } else
+                {
+                    modelo.setRowCount(0);
+                    for (Object m : materia)
+                    {
+                        Materia mat = (Materia) m;
+                        modelo.addRow(new Object[]
+                        {
+                            mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
+                        });
+                        btnBusca.setText("Buscar");
+                    }
+                }
+                break;
+            case 2:
+                materias = ConsultasObjetos.consultaMuchos("materia", "unidad_aprendizaje", jtIDBusqeuda.getText(), null, null, "unidad_aprendizaje", ConectarBase.conectado());
                 if (materias.isEmpty())
                 {
                     Mensaje.error(this, "No hay materias registradas");
@@ -1093,32 +1112,8 @@ public class VentanaMaterias extends javax.swing.JFrame {
                         {
                             mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
                         });
-                        btnBusca.setText("Buscar");
-                    }
-                }
-                break;
-            case 2:
-                //materias = ConsultasObjetos.consultaMuchos("materia", "unidad_aprendizaje", jtIDBusqeuda.getText(), null, null, "unidad_aprendizaje", ConectarBase.conectado());
-                materia = materias;
-                for (int i = 0; i < materia.size(); i++)
-                {
-                    if (materia.get(i).getClaveCarrera().equals(buscaLic(null, jCLicenciatura.getSelectedItem().toString())))
-                    {
-                        modelo.setRowCount(0);
-                        for (Object m : materia)
-                        {
-                            Materia mat = (Materia) m;
-                            modelo.addRow(new Object[]
-                            {
-
-                                mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
-                            });
-                            jtIDBusqeuda.setText("");
-                            btnBusca.setText("Todas");
-                        }
-                    } else if (materias.isEmpty())
-                    {
-                        Mensaje.error(this, "No hay materias registradas con este ID");
+                        jtIDBusqeuda.setText("");
+                        btnBusca.setText("Todas");
                     }
                 }
                 break;
@@ -1128,22 +1123,19 @@ public class VentanaMaterias extends javax.swing.JFrame {
                     actualizarTabla(1);
                 } else
                 {
-                    materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()), null, null, "unidad_aprendizaje", ConectarBase.conectado());
-                    if (materias.isEmpty())
+                    modelo.setRowCount(0);
+                    for (Object m : materia)
                     {
-                        Mensaje.error(this, "No hay materias registradas");
-                    } else
-                    {
-                        modelo.setRowCount(0);
-                        for (Object m : materias)
+                        Materia mat = (Materia) m;
+                        if (mat.getClaveCarrera().equals(buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString())))
                         {
-                            Materia mat = (Materia) m;
                             modelo.addRow(new Object[]
                             {
                                 mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
                             });
-                            btnBusca.setText("Todas");
                         }
+                        jtIDBusqeuda.setText("");
+                        btnBusca.setText("Todas");
                     }
                 }
                 break;
@@ -1153,20 +1145,24 @@ public class VentanaMaterias extends javax.swing.JFrame {
                     actualizarTabla(3);
                 } else
                 {
-                    materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()), "numero_periodo", jcSesmtre.getSelectedItem().toString(), "unidad_aprendizaje", ConectarBase.conectado());
-                    if (materias.isEmpty())
+                    //materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()), "numero_periodo", jcSesmtre.getSelectedItem().toString(), "unidad_aprendizaje", ConectarBase.conectado());
+                    if (materia.isEmpty())
                     {
                         Mensaje.error(this, "No hay materias registradas con este semestre");
                     } else
                     {
                         modelo.setRowCount(0);
-                        for (Object m : materias)
+                        for (Object m : materia)
                         {
                             Materia mat = (Materia) m;
-                            modelo.addRow(new Object[]
+                            if (mat.getClaveCarrera().equals(buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString())) && mat.getNumeroPeriodo() == Integer.parseInt(jcSesmtre.getSelectedItem().toString()))
                             {
-                                mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
-                            });
+                                modelo.addRow(new Object[]
+                                {
+                                    mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
+                                });
+                            }
+                            jtIDBusqeuda.setText("");
                             btnBusca.setText("Todas");
                         }
                     }
@@ -1178,20 +1174,24 @@ public class VentanaMaterias extends javax.swing.JFrame {
                     actualizarTabla(3);
                 } else
                 {
-                    materias = ConsultasObjetos.consultaMuchasMaterias("materia", "id_licenciatura", buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()), "numero_periodo", jcSesmtre.getSelectedItem().toString(), "id_plan_estudios", buscaPlan(null, JCPlanFiltro.getSelectedItem().toString()), "unidad_aprendizaje", ConectarBase.conectado());
-                    if (materias.isEmpty())
+                    //materias = ConsultasObjetos.consultaMuchasMaterias("materia", "id_licenciatura", buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()), "numero_periodo", jcSesmtre.getSelectedItem().toString(), "id_plan_estudios", buscaPlan(null, JCPlanFiltro.getSelectedItem().toString()), "unidad_aprendizaje", ConectarBase.conectado());
+                    if (materia.isEmpty())
                     {
                         Mensaje.error(this, "No hay materias registradas con este semestre");
                     } else
                     {
                         modelo.setRowCount(0);
-                        for (Object m : materias)
+                        for (Object m : materia)
                         {
                             Materia mat = (Materia) m;
-                            modelo.addRow(new Object[]
+                            if (mat.getClaveCarrera().equals(buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString())) && mat.getNumeroPeriodo() == Integer.parseInt(jcSesmtre.getSelectedItem().toString()) && mat.getPlanEstudios().equals(buscaPlan(null, JCPlanFiltro.getSelectedItem().toString())))
                             {
-                                mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
-                            });
+                                modelo.addRow(new Object[]
+                                {
+                                    mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
+                                });
+                            }
+                            jtIDBusqeuda.setText("");
                             btnBusca.setText("Todas");
                         }
                     }

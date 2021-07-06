@@ -3,15 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/NetbeansProjects/Proyecto%20Horarios%202/ControlHorarios/src/Vista/VistaExcel.java</file>
-            <file>file:/D:/NetbeansProjects/Proyecto%20Horarios%202/ControlHorarios/src/Objetos/Licenciatura.java</file>
-            <file>file:/D:/NetbeansProjects/Proyecto%20Horarios%202/ControlHorarios/src/Clases/ConsultasObjetos.java</file>
-            <file>file:/D:/NetbeansProjects/Proyecto%20Horarios%202/ControlHorarios/src/Objetos/HorarioSalida.java</file>
-            <file>file:/D:/NetbeansProjects/Proyecto%20Horarios%202/ControlHorarios/src/app/VentanaHorarios.java</file>
-            <file>file:/D:/NetbeansProjects/Proyecto%20Horarios%202/ControlHorarios/src/Clases/Conexion.java</file>
-            <file>file:/D:/NetbeansProjects/Proyecto%20Horarios%202/ControlHorarios/src/Clases/ConectarBase.java</file>
-            <file>file:/D:/NetbeansProjects/Proyecto%20Horarios%202/ControlHorarios/src/app/VentanaGrupos.java</file>
-            <file>file:/D:/NetbeansProjects/Proyecto%20Horarios%202/ControlHorarios/src/Objetos/Grupo.java</file>
+            <file>file:/C:/Users/MoisesVidalHernandez/Downloads/ControlHorarios/src/app/VentanaHorarios.java</file>
+            <file>file:/C:/Users/MoisesVidalHernandez/Downloads/ControlHorarios/src/app/VentanaAdministrador.java</file>
+            <file>file:/C:/Users/MoisesVidalHernandez/Downloads/ControlHorarios/src/Vista/VistaExcel.java</file>
+            <file>file:/C:/Users/MoisesVidalHernandez/Downloads/ControlHorarios/src/app/VentanaMenuCoordinador.java</file>
+            <file>file:/C:/Users/MoisesVidalHernandez/Downloads/ControlHorarios/src/Clases/ConsultasObjetos.java</file>
+            <file>file:/C:/Users/MoisesVidalHernandez/Downloads/ControlHorarios/src/Clases/ConectarBase.java</file>
+            <file>file:/C:/Users/MoisesVidalHernandez/Downloads/ControlHorarios/src/app/VentanaGrupos.java</file>
+            <file>file:/C:/Users/MoisesVidalHernandez/Downloads/ControlHorarios/src/app/VentanaMaterias.java</file>
         </group>
     </open-files>
 </project-private>

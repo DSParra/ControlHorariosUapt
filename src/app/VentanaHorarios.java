@@ -1656,6 +1656,10 @@ public class VentanaHorarios extends javax.swing.JFrame {
             jCPeriodo.addItem(((periodoEscolar) periodos.get(i)).getPeriodo());
             jCPeriodoFiltro.addItem(((periodoEscolar) periodos.get(i)).getPeriodo());
         }
+        if (JCGrupo.getItemCount() == 0)
+        {
+            Mensaje.error(this, "NO HAY PERIODOS EN LA LIC. " + jCLicenciatura.getSelectedItem().toString() + ", POR FAVOR DE ALTA NUEVOS PERIODOS PARA CONTINUAR");
+        }
     }
 
     private void llenaGrupos() {
@@ -1677,6 +1681,10 @@ public class VentanaHorarios extends javax.swing.JFrame {
         {
             jCGrupofiltro.addItem(((Grupo) grupos1.get(i)).getNombreGrupo());
         }
+        if (jCGrupofiltro.getItemCount() == 0)
+        {
+            Mensaje.error(this, "NO HAY GRUPOS EN LA LIC. " + jCLicenciaturaFiltro.getSelectedItem().toString() + ", POR FAVOR DE ALTA UNO O VARIOS GRUPOS PARA CONTINUAR");
+        }
     }
 
     private void llenaMaterias() {
@@ -1685,6 +1693,10 @@ public class VentanaHorarios extends javax.swing.JFrame {
         {
             JCMateria.addItem(((Materia) materias.get(i)).getUnidadAprendizaje());
         }
+        if (JCMateria.getItemCount() == 0)
+        {
+            Mensaje.error(this, "NO HAY MATERIAS EN LA LIC. " + jCLicenciatura.getSelectedItem().toString() + ", POR FAVOR DE ALTA NUEVAS MATERIAS PARA CONTINUAR");
+        }
     }
 
     private void llenaDocentes() {
@@ -1692,6 +1704,9 @@ public class VentanaHorarios extends javax.swing.JFrame {
         for (int i = 0; i < profesores.size(); i++)
         {
             JCDocente.addItem(((Profesor) profesores.get(i)).getNombres() + " " + ((Profesor) profesores.get(i)).getApellidoP() + " " + ((Profesor) profesores.get(i)).getApellidoM());
+        }if (JCDocente.getItemCount() == 0)
+        {
+            Mensaje.error(this, "NO HAY DOCENTES, POR FAVOR DE ALTA NUEVOS DOCENTES PARA CONTINUAR");
         }
     }
 
@@ -1712,6 +1727,10 @@ public class VentanaHorarios extends javax.swing.JFrame {
         {
             jCLicenciatura.addItem(((Licenciatura) lics.get(i)).getLicenciatura());
             jCLicenciaturaFiltro.addItem(((Licenciatura) lics.get(i)).getLicenciatura());
+        }
+        if (JCGrupo.getItemCount() == 0)
+        {
+                Mensaje.error(this, "NO HAY LICENCIATURAS, POR FAVOR DE ALTA NEUVAS LICENCIATURAS PARA CONTINUAR");
         }
     }
 
