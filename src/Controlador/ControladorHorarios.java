@@ -171,7 +171,8 @@ public class ControladorHorarios {
         String mensaje = evaluaDatos(horario);
         if (mensaje.equals(""))
         {
-            try {
+            try
+            {
                 Object id_horario;
                 id_horario = ConsultasObjetos.consultaUnicaHorario("horarios", "id_horario", horario.getIdHorario(), ConectarBase.conectado());
                 if (id_horario != null)
@@ -181,7 +182,8 @@ public class ControladorHorarios {
                 {
                     return "operacion exitosa";
                 }
-            } catch (SQLException ex) {
+            } catch (SQLException ex)
+            {
                 Logger.getLogger(ControladorHorarios.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -217,19 +219,15 @@ public class ControladorHorarios {
         } else
         {
             Object idHorario = ConsultasObjetos.consultaUnica("horarios", "id_horario", id_horario, ConectarBase.conectado());
-            if (idHorario == null)
+
+            if (ConsultasObjetos.elimina("horarios", "id_horario", id_horario, 0, ConectarBase.conectado()))
             {
-                return "Horario no encontrado";
+                return "operacion exitosa";
             } else
             {
-                if (ConsultasObjetos.elimina("horarios", "id_horario", id_horario, 0, ConectarBase.conectado()))
-                {
-                    return "operacion exitosa";
-                } else
-                {
-                    return "No se pudo eliminar la materia";
-                }
+                return "No se pudo eliminar la materia";
             }
+
         }
     }
 

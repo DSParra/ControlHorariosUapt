@@ -430,7 +430,8 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        if (!edicion) {
+        if (!edicion)
+        {
             edicion();
             btnAgregar.setText("Aceptar");
             CtrlInterfaz.limpia(txtnombre, txtcodigolic);
@@ -438,10 +439,12 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
             CtrlInterfaz.habilita(false, btnmodifica, btnelmina, btnExportar);
             CtrlInterfaz.selecciona(txtcodigolic);
             //llenaComboProfesores();
-        } else {
+        } else
+        {
             Licenciatura lic = new Licenciatura(txtcodigolic.getText(), txtnombre.getText());
             String mensaje = Controlador.ControladorLicenciatura.insertaLicenciatura(lic);
-            if (mensaje.equals("operacion exitosa")) {
+            if (mensaje.equals("operacion exitosa"))
+            {
                 btnAgregar.setText("Nuevo");
                 CtrlInterfaz.limpia(txtcodigolic, txtnombre);
                 CtrlInterfaz.habilita(false, txtnombre, txtcodigolic, btncancelar);
@@ -449,19 +452,23 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
                 //llenaComboCordinadores();
                 actualizaTabla(1);
                 edicion();
-            } else {
+            } else
+            {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
             }
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnelminaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnelminaActionPerformed
-        if (JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar a " + txtnombre.getText()) == 0) {
+        if (JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar a " + txtnombre.getText()) == 0)
+        {
             String mensaje = Controlador.ControladorLicenciatura.eliminaLicenciatura(txtcodigolic.getText());
-            if (mensaje.equals("operacion exitosa")) {
+            if (mensaje.equals("operacion exitosa"))
+            {
                 actualizaTabla(1);
                 cancelar();
-            } else {
+            } else
+            {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
             }
         }
@@ -484,26 +491,32 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnmodificaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificaActionPerformed
-        if (txtcodigolic.getText().compareTo("") == 0) {
+        if (txtcodigolic.getText().compareTo("") == 0)
+        {
             JOptionPane.showMessageDialog(this, "Seleccione un registro para editar");
-        } else {
-            if (!edicion) {
+        } else
+        {
+            if (!edicion)
+            {
                 edicion();
                 btnmodifica.setText("Aceptar");
                 CtrlInterfaz.habilita(true, txtnombre, btncancelar);
                 CtrlInterfaz.habilita(false, btnelmina, btnAgregar, btnExportar);
                 CtrlInterfaz.selecciona(txtnombre);
-            } else {
+            } else
+            {
                 Licenciatura lic = new Licenciatura(txtcodigolic.getText(), txtnombre.getText());
                 String mensaje = Controlador.ControladorLicenciatura.modificaLicenciatura(lic, (String) tablaLicenciatura.getValueAt(tablaLicenciatura.getSelectedRow(), 0));
-                if (mensaje.equals("operacion exitosa")) {
+                if (mensaje.equals("operacion exitosa"))
+                {
                     btnmodifica.setText("Modificar");
                     CtrlInterfaz.limpia(txtcodigolic, txtnombre);
                     CtrlInterfaz.habilita(false, txtnombre, btncancelar, txtcodigolic);
                     CtrlInterfaz.habilita(true, btnelmina, btnmodifica, btnAgregar);
                     actualizaTabla(1);
                     edicion();
-                } else {
+                } else
+                {
                     JOptionPane.showMessageDialog(rootPane, mensaje);
                 }
             }
@@ -557,14 +570,18 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
     }//GEN-LAST:event_txtnombreActionPerformed
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
-        if (txtnombreArchivo.getText() != null) {
+        if (txtnombreArchivo.getText() != null)
+        {
             String mensaje = Archivo.Exportar(tablaLicenciatura, txtnombreArchivo.getText());
-            if (mensaje.equals("Error en la Exportacion")) {
+            if (mensaje.equals("Error en la Exportacion"))
+            {
                 Mensaje.error(this, mensaje);
-            } else {
+            } else
+            {
                 Mensaje.exito(this, mensaje);
             }
-        } else {
+        } else
+        {
             Mensaje.error(this, "Escriba el nombre del archivo");
         }
     }//GEN-LAST:event_btnExportarActionPerformed
@@ -602,9 +619,11 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
     }//GEN-LAST:event_jtIDBusqeudaKeyPressed
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
-        if (jtIDBusqeuda.getText().equals("")) {
+        if (jtIDBusqeuda.getText().equals(""))
+        {
             actualizaTabla(1);
-        } else {
+        } else
+        {
             actualizaTabla(2);
         }
     }//GEN-LAST:event_btnBuscaActionPerformed
@@ -627,9 +646,11 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
     }
 
     private void edicion() {
-        if (edicion) {
+        if (edicion)
+        {
             edicion = false;
-        } else {
+        } else
+        {
             edicion = true;
         }
     }
@@ -639,48 +660,66 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
         modelo = (DefaultTableModel) tablaLicenciatura.getModel();
         ArrayList<Object> licenciatura = new ArrayList();
 
-        if (valor == 1) {
+        if (valor == 1)
+        {
             licenciatura = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
-            if (licenciatura.isEmpty()) {
+            if (licenciatura.isEmpty())
+            {
                 Mensaje.error(this, "No se encuentran registros");
-            } else {
+            } else
+            {
                 modelo.setRowCount(0);
-                for (Object p : licenciatura) {
+                for (Object p : licenciatura)
+                {
                     Licenciatura lic = (Licenciatura) p;
-                    modelo.addRow(new Object[]{
+                    modelo.addRow(new Object[]
+                    {
                         lic.getIdLicenciatura(), lic.getLicenciatura()
                     });
-
                 }
+                btnBusca.setText("Buscar");
             }
-        } else if (valor == 2) {
+        } else if (valor == 2)
+        {
             licenciatura = ConsultasObjetos.consultaMuchos("licenciatura", "nombre", jtIDBusqeuda.getText(), null, null, "nombre", ConectarBase.conectado());
-            if (licenciatura.isEmpty()) {
+            if (licenciatura.isEmpty())
+            {
                 Mensaje.error(this, "No se encuentran registros");
-            } else {
+            } else
+            {
                 modelo.setRowCount(0);
-                for (Object p : licenciatura) {
+                for (Object p : licenciatura)
+                {
                     Licenciatura lic = (Licenciatura) p;
-                    modelo.addRow(new Object[]{
+                    modelo.addRow(new Object[]
+                    {
                         lic.getIdLicenciatura(), lic.getLicenciatura()
                     });
                 }
+                jtIDBusqeuda.setText("");
+                btnBusca.setText("Todas");
             }
         }
     }
 
     public String buscaProfesor(String rfc, String nombre) {
-        if (nombre != null) {
-            for (Object p : profes) {
+        if (nombre != null)
+        {
+            for (Object p : profes)
+            {
                 Profesor profe = (Profesor) p;
-                if ((profe.getNombres() + " " + profe.getApellidoP()).equals(nombre)) {
+                if ((profe.getNombres() + " " + profe.getApellidoP()).equals(nombre))
+                {
                     return profe.getRfc();
                 }
             }
-        } else {
-            for (Object p : profes) {
+        } else
+        {
+            for (Object p : profes)
+            {
                 Profesor profe = (Profesor) p;
-                if (profe.getRfc().equals(rfc)) {
+                if (profe.getRfc().equals(rfc))
+                {
                     return profe.getNombres() + " " + profe.getApellidoP();
                 }
             }
@@ -725,20 +764,27 @@ public class VentanaLicenciatura extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(VentanaLicenciatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(VentanaLicenciatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(VentanaLicenciatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(VentanaLicenciatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>

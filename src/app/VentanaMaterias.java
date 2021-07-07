@@ -38,6 +38,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
     private ArrayList<Object> planes1 = new ArrayList<>();
     private ArrayList<Object> lics = new ArrayList<>();
     private ArrayList<Object> materia = new ArrayList<>();
+    ArrayList materias = new ArrayList();
 
     /**
      * Creates new form VentanaPrinicipal
@@ -737,6 +738,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
                     CtrlInterfaz.habilita(false, jTClave, jCLicenciatura, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
                     CtrlInterfaz.habilita(true, jBAceptar, jBEliminar, btnAgregar4);
                     CtrlInterfaz.limpia(jTClave, jTCreditos, jTHoras, jTNombre);
+                    importarBD();
                     actualizarTabla(1);
                     jCLicenciaturaFiltro.setSelectedIndex(0);
                     edicion();
@@ -754,6 +756,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
             String mensaje = Controlador.ControladorMaterias.eliminaMateria(jTClave.getText());
             if (mensaje.endsWith("operacion exitosa"))
             {
+                importarBD();
                 actualizarTabla(1);
                 jCLicenciaturaFiltro.setSelectedIndex(0);
             } else
@@ -782,6 +785,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
                 CtrlInterfaz.habilita(false, jTClave, jCLicenciatura, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
                 CtrlInterfaz.habilita(true, jBModificar, jBEliminar, btnAgregar4);
                 CtrlInterfaz.limpia(jTClave, jTCreditos, jTHoras, jTNombre);
+                importarBD();
                 actualizarTabla(1);
                 jCLicenciaturaFiltro.setSelectedIndex(0);
                 edicion();
@@ -843,8 +847,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         cancelar();
-        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
-        plans = ConsultasObjetos.consultaMuchos("plan_estudios", null, null, null, null, "plan_estudios", ConectarBase.conectado());
+        importarBD();
         actualizarTabla(1);
         llenaComboLic();
         llenaComboPlanes();
@@ -869,8 +872,6 @@ public class VentanaMaterias extends javax.swing.JFrame {
     private void jCLicenciaturaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCLicenciaturaItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED)
         {
-            //Licenciatura lic = (Licenciatura) jCLicenciatura.getSelectedItem();
-            plans = ConsultasObjetos.consultaMuchos("plan_estudios", "id_licenciatura", buscaLic(null, jCLicenciatura.getSelectedItem().toString()), null, null, "plan_estudios", ConectarBase.conectado());
             llenaComboPlanes();
         }
     }//GEN-LAST:event_jCLicenciaturaItemStateChanged
@@ -903,7 +904,6 @@ public class VentanaMaterias extends javax.swing.JFrame {
         actualizarTabla(3);
         jcSesmtre.setSelectedIndex(0);
         JCPlanFiltro.setSelectedIndex(0);
-        planes1 = ConsultasObjetos.consultaMuchos("plan_estudios", "id_licenciatura", buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()), null, null, "plan_estudios", ConectarBase.conectado());
         llenaComboPlanesFiltro();
     }//GEN-LAST:event_jCLicenciaturaFiltroItemStateChanged
 
@@ -1074,8 +1074,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
 
     public void actualizarTabla(int valor) {
         modelo = (DefaultTableModel) TablaMAterias.getModel();
-        ArrayList materias = new ArrayList();
-        materias = ConsultasObjetos.consultaMuchos("materia", null, null, null, null, "unidad_aprendizaje", ConectarBase.conectado());
+        planes1 = plans;
         materia = materias;
         switch (valor)
         {
@@ -1111,6 +1110,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
                         modelo.addRow(new Object[]
                         {
                             mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
+
                         });
                         jtIDBusqeuda.setText("");
                         btnBusca.setText("Todas");
@@ -1124,7 +1124,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
                 } else
                 {
                     modelo.setRowCount(0);
-                    for (Object m : materia)
+                    for (Object m : materias)
                     {
                         Materia mat = (Materia) m;
                         if (mat.getClaveCarrera().equals(buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString())))
@@ -1132,11 +1132,12 @@ public class VentanaMaterias extends javax.swing.JFrame {
                             modelo.addRow(new Object[]
                             {
                                 mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
+
                             });
                         }
-                        jtIDBusqeuda.setText("");
-                        btnBusca.setText("Todas");
                     }
+                    jtIDBusqeuda.setText("");
+                    btnBusca.setText("Todas");
                 }
                 break;
             case 4:
@@ -1236,7 +1237,10 @@ public class VentanaMaterias extends javax.swing.JFrame {
         jCPlan.removeAllItems();
         for (int i = 0; i < plans.size(); i++)
         {
-            jCPlan.addItem(((PlanEstudios) plans.get(i)).getPlanEstudios());
+            if (((PlanEstudios) plans.get(i)).getClaveCarrera().equals(buscaLic(null, jCLicenciatura.getSelectedItem().toString())))
+            {
+                jCPlan.addItem(((PlanEstudios) plans.get(i)).getPlanEstudios());
+            }
         }
     }
 
@@ -1245,7 +1249,10 @@ public class VentanaMaterias extends javax.swing.JFrame {
         JCPlanFiltro.addItem("Todos");
         for (int i = 0; i < planes1.size(); i++)
         {
-            JCPlanFiltro.addItem(((PlanEstudios) planes1.get(i)).getPlanEstudios());
+            if (((PlanEstudios) planes1.get(i)).getClaveCarrera().equals(buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString())))
+            {
+                JCPlanFiltro.addItem(((PlanEstudios) planes1.get(i)).getPlanEstudios());
+            }
         }
     }
 
@@ -1330,6 +1337,13 @@ public class VentanaMaterias extends javax.swing.JFrame {
             }
         }
         return 0;
+    }
+
+    private void importarBD() {
+        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
+        plans = ConsultasObjetos.consultaMuchos("plan_estudios", null, null, null, null, "plan_estudios", ConectarBase.conectado());
+        materias = ConsultasObjetos.consultaMuchos("materia", null, null, null, null, "unidad_aprendizaje", ConectarBase.conectado());
+        ConectarBase.desconectaBD();
     }
 
 }

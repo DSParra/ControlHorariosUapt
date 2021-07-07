@@ -36,6 +36,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
     private ArrayList<Object> planes1 = new ArrayList<>();
     private ArrayList<Object> lics = new ArrayList<>();
     VentanaLogin vtn = new VentanaLogin();
+    ArrayList materias = new ArrayList();
 
     /**
      * Creates new form VentanaPrinicipal
@@ -666,6 +667,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
             } else
             {
                 Materia materia = new Materia(jTClave.getText(), jTNombre.getText(), Integer.parseInt(jTHoras.getText()), Integer.parseInt(jTCreditos.getText()), Integer.parseInt(jCSemestre.getSelectedItem().toString()), jCNucleo.getSelectedItem().toString(), jCTipo.getSelectedItem().toString(), vtn.lic, buscaPlan(null, jCPlan.getSelectedItem().toString()));
+                Mensaje.exito(this, "Espere por favor haciendo modificacion en base de datos");
                 String mensaje = Controlador.ControladorMaterias.modifcaMateria(materia, (String) TablaMAterias.getValueAt(TablaMAterias.getSelectedRow(), 0));
                 if (mensaje.equals("operacion exitosa"))
                 {
@@ -673,6 +675,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                     CtrlInterfaz.habilita(false, jTClave, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
                     CtrlInterfaz.habilita(true, jBAceptar, jBEliminar, btnAgregar4);
                     CtrlInterfaz.limpia(jTClave, jTCreditos, jTHoras, jTNombre);
+                    importarBD();
                     actualizarTabla(1);
                     jcSesmtre.setSelectedItem(0);
                     edicion();
@@ -687,9 +690,11 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
         if (Mensaje.pregunta(this, "¿En realidad quiere eliminar el periodo " + jTClave.getText() + "?") == 0)
         {
+            Mensaje.exito(this, "Espere por favor eliminando registro de la base de datos");
             String mensaje = Controlador.ControladorMaterias.eliminaMateria(jTClave.getText());
             if (mensaje.endsWith("operacion exitosa"))
             {
+                importarBD();
                 actualizarTabla(1);
                 jcSesmtre.setSelectedItem(0);
             } else
@@ -709,8 +714,9 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
             CtrlInterfaz.habilita(false, jBModificar, jBEliminar, btnAgregar4);
             CtrlInterfaz.selecciona(jTClave);
         } else
-        {;
+        {
             Materia mat = new Materia(jTClave.getText(), jTNombre.getText(), Integer.parseInt(jTHoras.getText()), Integer.parseInt(jTCreditos.getText()), Integer.parseInt(jCSemestre.getSelectedItem().toString()), jCNucleo.getSelectedItem().toString(), jCTipo.getSelectedItem().toString(), vtn.lic, buscaPlan(null, jCPlan.getSelectedItem().toString()));
+            Mensaje.exito(this, "Espere por favor haciendo inserccion en base de datos");
             String mensaje = Controlador.ControladorMaterias.insertaMateria(mat);
             if (mensaje.equals("operacion exitosa"))
             {
@@ -718,6 +724,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                 CtrlInterfaz.habilita(false, jTClave, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
                 CtrlInterfaz.habilita(true, jBModificar, jBEliminar, btnAgregar4);
                 CtrlInterfaz.limpia(jTClave, jTCreditos, jTHoras, jTNombre);
+                importarBD();
                 actualizarTabla(1);
                 jcSesmtre.setSelectedItem(0);
                 edicion();
@@ -775,6 +782,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         cancelar();
+        importarBD();
         actualizarTabla(1);
         llenaComboPlanes();
         llenaComboPlanesFiltro();
@@ -992,14 +1000,11 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void actualizarTabla(int valor) {
-        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
-        plans = ConsultasObjetos.consultaMuchos("plan_estudios", "id_licenciatura", vtn.lic, null, null, "plan_estudios", ConectarBase.conectado());
         modelo = (DefaultTableModel) TablaMAterias.getModel();
-        ArrayList materias = new ArrayList();
+
         switch (valor)
         {
             case 1:
-                materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", vtn.lic, null, null, "unidad_aprendizaje", ConectarBase.conectado());
                 if (materias.isEmpty())
                 {
                     Mensaje.error(this, "No hay materias registradas");
@@ -1017,7 +1022,7 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                 }
                 break;
             case 2:
-                materias = ConsultasObjetos.consultaMuchos("materia", "unidad_aprendizaje", jtIDBusqeuda.getText(), null, null, "unidad_aprendizaje", ConectarBase.conectado());
+                materias = ConsultasObjetos.consultaMuchos("materia", "unidad_aprendizaje", jtIDBusqeuda.getText(), "id_licenciatura", vtn.lic, "unidad_aprendizaje", ConectarBase.conectado());
                 if (materias.isEmpty())
                 {
                     Mensaje.error(this, "No hay materias registradas");
@@ -1040,7 +1045,6 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                     actualizarTabla(1);
                 } else
                 {
-                    materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", vtn.lic, "numero_periodo", jcSesmtre.getSelectedItem().toString(), "unidad_aprendizaje", ConectarBase.conectado());
                     if (materias.isEmpty())
                     {
                         Mensaje.error(this, "No hay materias registradas con este semestre");
@@ -1051,10 +1055,13 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                         for (Object m : materias)
                         {
                             Materia mat = (Materia) m;
-                            modelo.addRow(new Object[]
+                            if (mat.getClaveCarrera().equals(vtn.lic) && mat.getNumeroPeriodo() == Integer.parseInt(jcSesmtre.getSelectedItem().toString()))
                             {
-                                mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
-                            });
+                                modelo.addRow(new Object[]
+                                {
+                                    mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
+                                });
+                            }
                         }
                     }
                 }
@@ -1065,7 +1072,6 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                     actualizarTabla(3);
                 } else
                 {
-                    materias = ConsultasObjetos.consultaMuchasMaterias("materia", "id_licenciatura", vtn.lic, "numero_periodo", jcSesmtre.getSelectedItem().toString(), "id_plan_estudios", buscaPlan(null, JCPlanFiltro.getSelectedItem().toString()), "unidad_aprendizaje", ConectarBase.conectado());
                     if (materias.isEmpty())
                     {
                         Mensaje.error(this, "No hay materias registradas con este semestre");
@@ -1075,10 +1081,13 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                         for (Object m : materias)
                         {
                             Materia mat = (Materia) m;
-                            modelo.addRow(new Object[]
+                            if (mat.getClaveCarrera().equals(vtn.lic) && mat.getNumeroPeriodo() == Integer.parseInt(jcSesmtre.getSelectedItem().toString()) && mat.getPlanEstudios().equals(buscaPlan(null, JCPlanFiltro.getSelectedItem().toString())))
                             {
-                                mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
-                            });
+                                modelo.addRow(new Object[]
+                                {
+                                    mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
+                                });
+                            }
                             btnBusca.setText("Todas");
                         }
                     }
@@ -1196,5 +1205,12 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
         {
             JCPlanFiltro.addItem(((PlanEstudios) planes1.get(i)).getPlanEstudios());
         }
+    }
+
+    private void importarBD() {
+        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
+        plans = ConsultasObjetos.consultaMuchos("plan_estudios", "id_licenciatura", vtn.lic, null, null, "plan_estudios", ConectarBase.conectado());
+        materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", vtn.lic, null, null, "unidad_aprendizaje", ConectarBase.conectado());
+        ConectarBase.desconectaBD();
     }
 }

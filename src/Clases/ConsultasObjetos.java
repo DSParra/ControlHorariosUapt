@@ -486,6 +486,20 @@ public class ConsultasObjetos {
                         } while (rs.next());
                     }
                     return objetos;
+                case "grupo":
+                    rs = ps.executeQuery();
+                    if (rs.next())
+                    {
+                        do
+                        {
+                            Grupo gr = new Grupo();
+                            gr.setIdGrupo(rs.getString("id_grupo"));
+                            gr.setNombreGrupo(rs.getString("nombre_grupo"));
+                            gr.setId_licenciatura(rs.getString("id_licenciatura"));
+                            objetos.add(gr);
+                        } while (rs.next());
+                    }
+                    return objetos;
                 case "materia":
                     rs = ps.executeQuery();
                     if (rs.next())
@@ -503,21 +517,6 @@ public class ConsultasObjetos {
                             mat.setClaveCarrera(rs.getString("id_licenciatura"));
                             mat.setPlanEstudios(rs.getString("id_plan_estudios"));
                             objetos.add(mat);
-                        } while (rs.next());
-                    }
-                    ConectarBase.desconectaBD();
-                    return objetos;
-                case "grupo":
-                    rs = ps.executeQuery();
-                    if (rs.next())
-                    {
-                        do
-                        {
-                            Grupo gr = new Grupo();
-                            gr.setIdGrupo(rs.getString("id_grupo"));
-                            gr.setNombreGrupo(rs.getString("nombre_grupo"));
-                            gr.setId_licenciatura(rs.getString("id_licenciatura"));
-                            objetos.add(gr);
                         } while (rs.next());
                     }
                     ConectarBase.desconectaBD();
@@ -540,6 +539,7 @@ public class ConsultasObjetos {
                             objetos.add(hr);
                         } while (rs.next());
                     }
+                    ConectarBase.desconectaBD();
                     return objetos;
                 case "horariosSalida":
                     rs = ps.executeQuery();
@@ -559,6 +559,7 @@ public class ConsultasObjetos {
                             objetos.add(hr);
                         } while (rs.next());
                     }
+                    ConectarBase.desconectaBD();
                     return objetos;
             }
         } catch (Exception e)
@@ -1018,6 +1019,7 @@ public class ConsultasObjetos {
                             objetos.add(mat);
                         } while (rs.next());
                     }
+                    ConectarBase.desconectaBD();
                     return objetos;
                 case "grupo":
                     rs = ps.executeQuery();

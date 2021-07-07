@@ -47,6 +47,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
     private ArrayList<Object> profesores = new ArrayList<>();
     private ArrayList<Object> plans = new ArrayList<>();
     private ArrayList<PeriodoHorarios> horariosBD = new ArrayList<>();
+    ArrayList horarios = new ArrayList();
 
     /**
      * Creates new form VentanaPrinicipal
@@ -642,6 +643,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
             String mensaje = Controlador.ControladorHorarios.eliminaHorario(jTIdhorario.getText());
             if (mensaje.endsWith("operacion exitosa"))
             {
+                importarBD();
                 actualizaTabla(1);
                 jCGrupofiltro.setSelectedIndex(0);
             } else
@@ -723,6 +725,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
                             CtrlInterfaz.limpia(jTEntrada, jTSalida, jTIdhorario);
                             CtrlInterfaz.habilita(false, jTSalida, jTEntrada, jTIdhorario, jCPeriodo, jCLicenciatura, JCGrupo, JCMateria, JCDocente, jCDia, jBCancelar);
                             CtrlInterfaz.habilita(true, jBAceptar1, jBeliminar, jBModificar, btnExportar);
+                            importarBD();
                             jCGrupofiltro.setSelectedIndex(0);
                             actualizaTabla(1);
                             edicion();
@@ -782,6 +785,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
                                 CtrlInterfaz.limpia(jTEntrada, jTSalida, jTIdhorario);
                                 CtrlInterfaz.habilita(false, jTSalida, jTEntrada, jTIdhorario, jCPeriodo, jCLicenciatura, JCGrupo, JCMateria, JCDocente, jCDia, jBCancelar);
                                 CtrlInterfaz.habilita(true, jBAceptar1, jBeliminar, jBModificar, btnExportar);
+                                importarBD();
                                 jCGrupofiltro.setSelectedIndex(0);
                                 actualizaTabla(1);
                                 edicion();
@@ -803,6 +807,8 @@ public class VentanaHorarios extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         System.out.println("conecta");
         cancelar();
+        JOptionPane.showMessageDialog(this, "Por favor espere estamos conectando con base de datos");
+        importarBD();
         actualizaTabla(1);
         cargaPeriodos();
         llenaLicenciatura();
@@ -859,9 +865,6 @@ public class VentanaHorarios extends javax.swing.JFrame {
     private void jCLicenciaturaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCLicenciaturaItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED)
         {
-            //Licenciatura lic = (Licenciatura) jCLicenciatura.getSelectedItem();
-            grupos = ConsultasObjetos.consultaMuchos("grupo", "id_licenciatura", buscaLic(null, jCLicenciatura.getSelectedItem().toString()), null, null, "nombre_grupo", ConectarBase.conectado());
-            materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", buscaLic(null, jCLicenciatura.getSelectedItem().toString()), null, null, "unidad_aprendizaje", ConectarBase.conectado());
             llenaGrupos();
             llenaMaterias();
         }
@@ -906,7 +909,6 @@ public class VentanaHorarios extends javax.swing.JFrame {
     private void jCLicenciaturaFiltroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCLicenciaturaFiltroItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED)
         {
-            grupos1 = ConsultasObjetos.consultaMuchos("grupo", "id_licenciatura", buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()), null, null, "nombre_grupo", ConectarBase.conectado());
             llenaGruposFiltro();
         }
     }//GEN-LAST:event_jCLicenciaturaFiltroItemStateChanged
@@ -920,17 +922,10 @@ public class VentanaHorarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jCDiaKeyPressed
 
     public void actualizaTabla(int valor) {
-        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
-        periodos = ConsultasObjetos.consultaMuchos("periodo_escolar", null, null, null, null, "periodo", ConectarBase.conectado());
-        grupos = ConsultasObjetos.consultaMuchos("grupo", null, null, null, null, "nombre_grupo", ConectarBase.conectado());
-        materias = ConsultasObjetos.consultaMuchos("materia", null, null, null, null, "unidad_aprendizaje", ConectarBase.conectado());
-        profesores = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, "nombres", ConectarBase.conectado());
         modelo = (DefaultTableModel) TablaHorarios.getModel();
-        ArrayList horarios = new ArrayList();
         switch (valor)
         {
             case 1:
-                horarios = ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, "dia", ConectarBase.conectado());
                 if (horarios.isEmpty())
                 {
                     Mensaje.error(this, "No se encuentran registros");
@@ -953,7 +948,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
                     actualizaTabla(1);
                 } else
                 {
-                    horarios = ConsultasObjetos.consultaMuchos("horarios", "id_grupo", buscaGrupoFiltro(null, jCGrupofiltro.getSelectedItem().toString()), null, null, "dia", ConectarBase.conectado());
+                    //horarios = ConsultasObjetos.consultaMuchos("horarios", "id_grupo", buscaGrupoFiltro(null, jCGrupofiltro.getSelectedItem().toString()), null, null, "dia", ConectarBase.conectado());
                     if (horarios.isEmpty())
                     {
                         Mensaje.error(this, "No se encuentran registros");
@@ -963,10 +958,13 @@ public class VentanaHorarios extends javax.swing.JFrame {
                         for (Object p : horarios)
                         {
                             PeriodoHorarios horario = (PeriodoHorarios) p;
-                            modelo.addRow(new Object[]
+                            if (horario.getIdGrupo().equals(buscaGrupo(null, jCGrupofiltro.getSelectedItem().toString())))
                             {
-                                horario.getIdHorario(), buscaMateria(horario.getClaveMateria(), null), buscaGrupo(horario.getIdGrupo(), null), buscaPeriodo(horario.getIdPeriodo(), null), buscaProfesor(horario.getRfc(), null), ControladorHorarios.numdia(Integer.parseInt(horario.getDia())), horario.getEntrada(), horario.getSalida()
-                            });
+                                modelo.addRow(new Object[]
+                                {
+                                    horario.getIdHorario(), buscaMateria(horario.getClaveMateria(), null), buscaGrupo(horario.getIdGrupo(), null), buscaPeriodo(horario.getIdPeriodo(), null), buscaProfesor(horario.getRfc(), null), ControladorHorarios.numdia(Integer.parseInt(horario.getDia())), horario.getEntrada(), horario.getSalida()
+                                });
+                            }
                         }
                     }
                 }
@@ -977,7 +975,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
                     actualizaTabla(2);
                 } else
                 {
-                    horarios = ConsultasObjetos.consultaMuchos("horarios", "id_grupo", buscaGrupoFiltro(null, jCGrupofiltro.getSelectedItem().toString()), "id_periodo", buscaPeriodo(null, jCPeriodoFiltro.getSelectedItem().toString()), "dia", ConectarBase.conectado());
+                    //horarios = ConsultasObjetos.consultaMuchos("horarios", "id_grupo", buscaGrupoFiltro(null, jCGrupofiltro.getSelectedItem().toString()), "id_periodo", buscaPeriodo(null, jCPeriodoFiltro.getSelectedItem().toString()), "dia", ConectarBase.conectado());
                     if (horarios.isEmpty())
                     {
                         Mensaje.error(this, "No se encuentran registros");
@@ -987,10 +985,13 @@ public class VentanaHorarios extends javax.swing.JFrame {
                         for (Object p : horarios)
                         {
                             PeriodoHorarios horario = (PeriodoHorarios) p;
-                            modelo.addRow(new Object[]
+                            if (horario.getIdGrupo().equals(buscaGrupo(null, jCGrupofiltro.getSelectedItem().toString())) && horario.getIdPeriodo().equals(buscaPeriodo(null, jCPeriodoFiltro.getSelectedItem().toString())))
                             {
-                                horario.getIdHorario(), buscaMateria(horario.getClaveMateria(), null), buscaGrupo(horario.getIdGrupo(), null), buscaPeriodo(horario.getIdPeriodo(), null), buscaProfesor(horario.getRfc(), null), ControladorHorarios.numdia(Integer.parseInt(horario.getDia())), horario.getEntrada(), horario.getSalida()
-                            });
+                                modelo.addRow(new Object[]
+                                {
+                                    horario.getIdHorario(), buscaMateria(horario.getClaveMateria(), null), buscaGrupo(horario.getIdGrupo(), null), buscaPeriodo(horario.getIdPeriodo(), null), buscaProfesor(horario.getRfc(), null), ControladorHorarios.numdia(Integer.parseInt(horario.getDia())), horario.getEntrada(), horario.getSalida()
+                                });
+                            }
                         }
                     }
                 }
@@ -1666,7 +1667,11 @@ public class VentanaHorarios extends javax.swing.JFrame {
         JCGrupo.removeAllItems();
         for (int i = 0; i < grupos.size(); i++)
         {
-            JCGrupo.addItem(((Grupo) grupos.get(i)).getNombreGrupo());
+            if (((Grupo) grupos.get(i)).getId_licenciatura().equals(buscaLic(null, jCLicenciatura.getSelectedItem().toString())))
+            {
+                JCGrupo.addItem(((Grupo) grupos.get(i)).getNombreGrupo());
+            }
+
         }
         if (JCGrupo.getItemCount() == 0)
         {
@@ -1677,9 +1682,12 @@ public class VentanaHorarios extends javax.swing.JFrame {
     private void llenaGruposFiltro() {
         jCGrupofiltro.removeAllItems();
         jCGrupofiltro.addItem("Todos");
-        for (int i = 0; i < grupos1.size(); i++)
+        for (int i = 0; i < grupos.size(); i++)
         {
-            jCGrupofiltro.addItem(((Grupo) grupos1.get(i)).getNombreGrupo());
+            if (((Grupo) grupos.get(i)).getId_licenciatura().equals(buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString())))
+            {
+                jCGrupofiltro.addItem(((Grupo) grupos.get(i)).getNombreGrupo());
+            }
         }
         if (jCGrupofiltro.getItemCount() == 0)
         {
@@ -1691,7 +1699,10 @@ public class VentanaHorarios extends javax.swing.JFrame {
         JCMateria.removeAllItems();
         for (int i = 0; i < materias.size(); i++)
         {
-            JCMateria.addItem(((Materia) materias.get(i)).getUnidadAprendizaje());
+            if (((Materia) materias.get(i)).getClaveCarrera().equals(buscaLic(null, jCLicenciatura.getSelectedItem().toString())))
+            {
+                JCMateria.addItem(((Materia) materias.get(i)).getUnidadAprendizaje());
+            }
         }
         if (JCMateria.getItemCount() == 0)
         {
@@ -1704,7 +1715,8 @@ public class VentanaHorarios extends javax.swing.JFrame {
         for (int i = 0; i < profesores.size(); i++)
         {
             JCDocente.addItem(((Profesor) profesores.get(i)).getNombres() + " " + ((Profesor) profesores.get(i)).getApellidoP() + " " + ((Profesor) profesores.get(i)).getApellidoM());
-        }if (JCDocente.getItemCount() == 0)
+        }
+        if (JCDocente.getItemCount() == 0)
         {
             Mensaje.error(this, "NO HAY DOCENTES, POR FAVOR DE ALTA NUEVOS DOCENTES PARA CONTINUAR");
         }
@@ -1730,7 +1742,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
         }
         if (JCGrupo.getItemCount() == 0)
         {
-                Mensaje.error(this, "NO HAY LICENCIATURAS, POR FAVOR DE ALTA NEUVAS LICENCIATURAS PARA CONTINUAR");
+            Mensaje.error(this, "NO HAY LICENCIATURAS, POR FAVOR DE ALTA NEUVAS LICENCIATURAS PARA CONTINUAR");
         }
     }
 
@@ -1839,8 +1851,6 @@ public class VentanaHorarios extends javax.swing.JFrame {
         boolean var = true;
         double entradaHR, salidaHR, entradaBd, salidaBD;
         System.out.println("grpo " + hr.getIdGrupo());
-        materias = ConsultasObjetos.consultaMuchos("materia", null, null, null, null, "unidad_aprendizaje", ConectarBase.conectado());
-        horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, null, ConectarBase.conectado()));
         for (int i = 0; i < horariosBD.size(); i++)
         {
             if (hr.getIdHorario() != horariosBD.get(i).getIdHorario() && hr.getDia().equals(horariosBD.get(i).getDia()) && hr.getIdGrupo().equals(horariosBD.get(i).getIdGrupo()) && hr.getIdPeriodo().equals(horariosBD.get(i).getIdPeriodo()))
@@ -1867,8 +1877,6 @@ public class VentanaHorarios extends javax.swing.JFrame {
         System.out.println("entre a profesores");
         boolean var = true;
         double entradaHR, salidaHR, entradaBd, salidaBD;
-        horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, null, ConectarBase.conectado()));
-        grupos = ConsultasObjetos.consultaMuchos("grupo", null, null, null, null, "nombre_grupo", ConectarBase.conectado());
 
         for (int i = 0; i < horariosBD.size(); i++)
         {
@@ -1930,5 +1938,15 @@ public class VentanaHorarios extends javax.swing.JFrame {
         {
             return "Sin datos";
         }
+    }
+
+    private void importarBD() {
+        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
+        periodos = ConsultasObjetos.consultaMuchos("periodo_escolar", null, null, null, null, "periodo", ConectarBase.conectado());
+        grupos = ConsultasObjetos.consultaMuchos("grupo", null, null, null, null, "nombre_grupo", ConectarBase.conectado());
+        materias = ConsultasObjetos.consultaMuchos("materia", null, null, null, null, "unidad_aprendizaje", ConectarBase.conectado());
+        profesores = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, "nombres", ConectarBase.conectado());
+        horarios = ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, "dia", ConectarBase.conectado());
+        horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, null, ConectarBase.conectado()));
     }
 }

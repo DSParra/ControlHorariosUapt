@@ -287,7 +287,8 @@ public class VentanaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnentrarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-            con = ConectarBase.conectado();       
+        Mensaje.exito(this, "Estamos conectando con la base de datos");
+        con = ConectarBase.conectado();       
     }//GEN-LAST:event_formWindowOpened
 
     private void txtusuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtusuarioKeyPressed
