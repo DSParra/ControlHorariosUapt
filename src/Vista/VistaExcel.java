@@ -149,6 +149,7 @@ public class VistaExcel extends javax.swing.JFrame {
         jCheckExcel = new javax.swing.JCheckBox();
         jBRegresar = new javax.swing.JButton();
         jBCerrarSesion = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -313,10 +314,15 @@ public class VistaExcel extends javax.swing.JFrame {
         jCheckLllaves.setText("DATOS CORRECTOS EN EXCEL");
 
         jCheckMateriasBD.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckMateriasBD.setText("MATERIAS CURZADAS");
+        jCheckMateriasBD.setText("MATERIAS CRUZADAS");
 
         jCheckProfesores.setForeground(new java.awt.Color(255, 255, 255));
         jCheckProfesores.setText("PROFESORES CRUZADOS ");
+        jCheckProfesores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckProfesoresActionPerformed(evt);
+            }
+        });
 
         jCheckExcel.setForeground(new java.awt.Color(255, 255, 255));
         jCheckExcel.setText("HORARIOS CRUZADOS EN EL EXCEL");
@@ -377,6 +383,9 @@ public class VistaExcel extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setText("Tipo de excel:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -394,7 +403,9 @@ public class VistaExcel extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtidentifica, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtidentifica, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -411,7 +422,7 @@ public class VistaExcel extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jTabbedPane1)
                                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addContainerGap(27, Short.MAX_VALUE))))
+                        .addContainerGap(30, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -419,16 +430,18 @@ public class VistaExcel extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnImportar)
+                            .addComponent(btnpruebas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCarga))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnImportar)
-                                    .addComponent(btnpruebas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnCarga))
-                                .addGap(27, 27, 27)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
                                 .addComponent(jButton3))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(66, 66, 66)
                                 .addComponent(txtidentifica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(2, 2, 2)))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -566,7 +579,7 @@ public class VistaExcel extends javax.swing.JFrame {
         }
         if (!identificado)
         {
-            return "No es encontro el tipo de excel";
+            return "NO SE ENCUENTRA EL FORMATO";
         }
         return null;
     }
@@ -788,6 +801,10 @@ public class VistaExcel extends javax.swing.JFrame {
         this.setVisible(false);
         new VentanaLogin().setVisible(true);
     }//GEN-LAST:event_jBCerrarSesionActionPerformed
+
+    private void jCheckProfesoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckProfesoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckProfesoresActionPerformed
     
     public boolean evaluaProfesores() {
         boolean prueba = true;
@@ -976,6 +993,7 @@ public class VistaExcel extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckMateriasBD;
     private javax.swing.JCheckBox jCheckProfesores;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
