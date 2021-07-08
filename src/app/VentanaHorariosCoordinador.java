@@ -165,9 +165,17 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "CLAVE", "MATERIA", "GRUPO", "PERIODO", "PROFESOR", "DIA", "ENTRADA", "SALIDA"
+                "ID", "MATERIA", "GRUPO", "PERIODO", "PROFESOR", "DIA", "ENTRADA", "SALIDA"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         TablaHorarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TablaHorariosMouseClicked(evt);

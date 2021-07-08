@@ -908,7 +908,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
     }//GEN-LAST:event_jCLicenciaturaFiltroItemStateChanged
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
-        if (jtIDBusqeuda.getText().equals(""))
+        if (jtIDBusqeuda.getText().equals("") && btnBusca.getText().equals("Buscar"))
         {
             actualizarTabla(1);
         } else
