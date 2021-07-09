@@ -499,6 +499,7 @@ public class ConsultasObjetos {
                             objetos.add(gr);
                         } while (rs.next());
                     }
+                    ConectarBase.desconectaBD();
                     return objetos;
                 case "materia":
                     rs = ps.executeQuery();
