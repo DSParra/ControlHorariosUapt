@@ -59,22 +59,24 @@ public class VentanaHorarios extends javax.swing.JFrame {
         this.setIconImage(new ImageIcon(getClass().getResource("/Iconos/SCHR.png")).getImage());
         TablaHorarios.getColumnModel().getColumn(0).setPreferredWidth(10);
         TablaHorarios.getColumnModel().getColumn(0).setResizable(false);
-        TablaHorarios.getColumnModel().getColumn(1).setPreferredWidth(120);
+        TablaHorarios.getColumnModel().getColumn(1).setPreferredWidth(10);
         TablaHorarios.getColumnModel().getColumn(1).setResizable(false);
-        TablaHorarios.getColumnModel().getColumn(2).setPreferredWidth(60);
+        TablaHorarios.getColumnModel().getColumn(2).setPreferredWidth(120);
         TablaHorarios.getColumnModel().getColumn(2).setResizable(false);
-        TablaHorarios.getColumnModel().getColumn(3).setPreferredWidth(120);
+        TablaHorarios.getColumnModel().getColumn(3).setPreferredWidth(60);
         TablaHorarios.getColumnModel().getColumn(3).setResizable(false);
-        TablaHorarios.getColumnModel().getColumn(4).setPreferredWidth(30);
+        TablaHorarios.getColumnModel().getColumn(4).setPreferredWidth(120);
         TablaHorarios.getColumnModel().getColumn(4).setResizable(false);
         TablaHorarios.getColumnModel().getColumn(5).setPreferredWidth(30);
         TablaHorarios.getColumnModel().getColumn(5).setResizable(false);
-        TablaHorarios.getColumnModel().getColumn(6).setPreferredWidth(50);
+        TablaHorarios.getColumnModel().getColumn(6).setPreferredWidth(30);
         TablaHorarios.getColumnModel().getColumn(6).setResizable(false);
-        TablaHorarios.getColumnModel().getColumn(7).setPreferredWidth(10);
+        TablaHorarios.getColumnModel().getColumn(7).setPreferredWidth(50);
         TablaHorarios.getColumnModel().getColumn(7).setResizable(false);
         TablaHorarios.getColumnModel().getColumn(8).setPreferredWidth(10);
         TablaHorarios.getColumnModel().getColumn(8).setResizable(false);
+        TablaHorarios.getColumnModel().getColumn(9).setPreferredWidth(10);
+        TablaHorarios.getColumnModel().getColumn(9).setResizable(false);
     }
 
     /**
@@ -160,19 +162,19 @@ public class VentanaHorarios extends javax.swing.JFrame {
         TablaHorarios.setForeground(new java.awt.Color(254, 254, 254));
         TablaHorarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "MATERIA", "RFC", "PROFESOR", "GRUPO", "PERIODO", "DIA", "ENTRADA", "SALIDA"
+                "ID", "CLAVE MATERIA", "MATERIA", "RFC", "PROFESOR", "GRUPO", "PERIODO", "DIA", "ENTRADA", "SALIDA"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -590,7 +592,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 810, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 864, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -600,7 +602,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
                                                 .addGap(18, 18, 18)
                                                 .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))))))))
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -897,15 +899,15 @@ public class VentanaHorarios extends javax.swing.JFrame {
 
     private void TablaHorariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaHorariosMouseClicked
         jTIdhorario.setText(String.valueOf(modelo.getValueAt(TablaHorarios.getSelectedRow(), 0)));
-        String GrupoACombo = retornameLic((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 4));
+        String GrupoACombo = retornameLic((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 5));
         jCLicenciatura.setSelectedIndex((buscarCombo(buscaLic(GrupoACombo, null), jCLicenciatura)));
-        JCMateria.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 1), JCMateria)));
-        JCGrupo.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 4), JCGrupo)));
-        jCPeriodo.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 5), jCPeriodo)));
-        JCDocente.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 3), JCDocente)));
-        jCDia.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 6), jCDia)));
-        jTEntrada.setText((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 7));
-        jTSalida.setText((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 8));
+        JCMateria.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 2), JCMateria)));
+        JCGrupo.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 5), JCGrupo)));
+        jCPeriodo.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 6), jCPeriodo)));
+        JCDocente.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 4), JCDocente)));
+        jCDia.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 7), jCDia)));
+        jTEntrada.setText((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 8));
+        jTSalida.setText((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 9));
     }//GEN-LAST:event_TablaHorariosMouseClicked
 
     private void txtnombreArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreArchivoActionPerformed
@@ -947,7 +949,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
                         PeriodoHorarios horario = (PeriodoHorarios) p;
                         modelo.addRow(new Object[]
                         {
-                            horario.getIdHorario(), buscaMateria(horario.getClaveMateria(), null), horario.getRfc(), buscaProfesor(horario.getRfc(), null), buscaGrupo(horario.getIdGrupo(), null), buscaPeriodo(horario.getIdPeriodo(), null), ControladorHorarios.numdia(Integer.parseInt(horario.getDia())), horario.getEntrada(), horario.getSalida()
+                            horario.getIdHorario(), horario.getClaveMateria(), buscaMateria(horario.getClaveMateria(), null), horario.getRfc(), buscaProfesor(horario.getRfc(), null), buscaGrupo(horario.getIdGrupo(), null), buscaPeriodo(horario.getIdPeriodo(), null), ControladorHorarios.numdia(Integer.parseInt(horario.getDia())), horario.getEntrada(), horario.getSalida()
                         });
                     }
                 }
@@ -972,7 +974,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
                             {
                                 modelo.addRow(new Object[]
                                 {
-                                    horario.getIdHorario(), buscaMateria(horario.getClaveMateria(), null), horario.getRfc(), buscaProfesor(horario.getRfc(), null), buscaGrupo(horario.getIdGrupo(), null), buscaPeriodo(horario.getIdPeriodo(), null), ControladorHorarios.numdia(Integer.parseInt(horario.getDia())), horario.getEntrada(), horario.getSalida()
+                                    horario.getIdHorario(), horario.getClaveMateria(), buscaMateria(horario.getClaveMateria(), null), horario.getRfc(), buscaProfesor(horario.getRfc(), null), buscaGrupo(horario.getIdGrupo(), null), buscaPeriodo(horario.getIdPeriodo(), null), ControladorHorarios.numdia(Integer.parseInt(horario.getDia())), horario.getEntrada(), horario.getSalida()
 
                                 });
                             }
@@ -1000,7 +1002,7 @@ public class VentanaHorarios extends javax.swing.JFrame {
                             {
                                 modelo.addRow(new Object[]
                                 {
-                            horario.getIdHorario(), buscaMateria(horario.getClaveMateria(), null), horario.getRfc(), buscaProfesor(horario.getRfc(), null), buscaGrupo(horario.getIdGrupo(), null), buscaPeriodo(horario.getIdPeriodo(), null), ControladorHorarios.numdia(Integer.parseInt(horario.getDia())), horario.getEntrada(), horario.getSalida()
+                            horario.getIdHorario(), horario.getClaveMateria(), buscaMateria(horario.getClaveMateria(), null), horario.getRfc(), buscaProfesor(horario.getRfc(), null), buscaGrupo(horario.getIdGrupo(), null), buscaPeriodo(horario.getIdPeriodo(), null), ControladorHorarios.numdia(Integer.parseInt(horario.getDia())), horario.getEntrada(), horario.getSalida()
                                 });
                             }
                         }

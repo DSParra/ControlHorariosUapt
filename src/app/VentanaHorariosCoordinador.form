@@ -59,36 +59,35 @@
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="jBRegresar" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jBCerrarSesion" min="-2" pref="118" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="jPanel2" min="-2" pref="440" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <Component id="txtnombreArchivo" min="-2" pref="150" max="-2" attributes="0"/>
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="btnExportar" min="-2" pref="100" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Component id="jScrollPane1" alignment="0" min="-2" pref="805" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace pref="142" max="32767" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                               <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="jBRegresar" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jBCerrarSesion" min="-2" pref="118" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jPanel2" min="-2" pref="440" max="-2" attributes="0"/>
+                                      <EmptySpace pref="122" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="txtnombreArchivo" min="-2" pref="150" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="btnExportar" min="-2" pref="100" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -100,7 +99,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
@@ -192,8 +191,9 @@
               <Color blue="fe" green="fe" red="fe" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="9" rowCount="6">
+              <Table columnCount="10" rowCount="6">
                 <Column editable="false" title="ID" type="java.lang.Object"/>
+                <Column editable="false" title="CLAVE MATERIA" type="java.lang.Object"/>
                 <Column editable="false" title="MATERIA" type="java.lang.Object"/>
                 <Column editable="false" title="RFC" type="java.lang.Object"/>
                 <Column editable="false" title="PROFESOR" type="java.lang.Object"/>
