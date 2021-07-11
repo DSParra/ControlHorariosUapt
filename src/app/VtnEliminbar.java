@@ -282,7 +282,7 @@ public class VtnEliminbar extends javax.swing.JFrame {
     private void BtnElimUsuariisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnElimUsuariisActionPerformed
         if (JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar todos los registrosa de coordinadores ") == 0)
         {
-            boolean mensaje = ConsultasObjetos.elimina("usuarios", null, null, 0, ConectarBase.conectado());
+            boolean mensaje = ConsultasObjetos.elimina("usuarios", "nivel", "profesor", 0, ConectarBase.conectado());
             if (mensaje)
             {
                 Mensaje.exito(this, "se eliminaron todos los registros de los coordinadores");

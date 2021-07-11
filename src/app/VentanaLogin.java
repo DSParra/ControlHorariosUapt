@@ -16,6 +16,7 @@ import cjb.ci.Mensaje;
 import cjb.ci.Validaciones;
 import java.awt.Image;
 import java.sql.Connection;
+import static java.sql.JDBCType.NULL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -288,7 +289,9 @@ public class VentanaLogin extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         Mensaje.exito(this, "Estamos conectando con la base de datos");
-        con = ConectarBase.conectado();       
+        con = ConectarBase.conectado();
+        /*Usuario u = new Usuario("admin001", "ADMIN001", "admin@gmail.com", "admin", null);
+        ConsultasObjetos.inserta(u, con, "usuarios");*/
     }//GEN-LAST:event_formWindowOpened
 
     private void txtusuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtusuarioKeyPressed

@@ -826,7 +826,7 @@ public class VistaExcel extends javax.swing.JFrame {
                     System.out.println("horario1 " + entrada1 + " " + salida1);
                     System.out.println("horario2 " + entrada2 + " " + salida2);
                     System.out.println("mismo dia ");
-                    if (entrada2 >= entrada1 && entrada2 <= salida1)
+                    if (entrada2 >= entrada1 && entrada2 < salida1)
                     {
                         prueba = false;
                         
@@ -872,7 +872,7 @@ public class VistaExcel extends javax.swing.JFrame {
                     salida1 = Double.parseDouble(horarios.get(i).getSalida().substring(0, 2) + "." + horarios.get(i).getSalida().substring(3, 5));
                     entrada2 = Double.parseDouble(horariosBD.get(j).getEntrada().substring(0, 2) + "." + horariosBD.get(j).getEntrada().substring(3, 5));
                     salida2 = Double.parseDouble(horariosBD.get(j).getSalida().substring(0, 2) + "." + horariosBD.get(j).getSalida().substring(3, 5));
-                    if (entrada2 >= entrada1 && entrada2 <= salida1)
+                    if (entrada2 >= entrada1 && entrada2 < salida1)
                     {
                         prueba = false;
                         mensaje += "Cruze de Materia\n"

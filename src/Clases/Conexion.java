@@ -5,6 +5,7 @@
  */
 package Clases;
 
+import cjb.ci.Mensaje;
 import com.mysql.cj.protocol.Resultset;
 import com.mysql.cj.xdevapi.Statement;
 import java.sql.Connection;
@@ -16,13 +17,11 @@ import java.sql.SQLException;
  *
  * @author mosh_
  */
-public class Conexion
-{
+public class Conexion {
 
     Connection con;
 
-    public Connection Conecta(String host, String instancia, String usuario, String pass, int manejador) throws SQLException
-    {
+    public Connection Conecta(String host, String instancia, String usuario, String pass, int manejador) throws SQLException {
         String driver = "";
         String error = "";
         String url = "";
@@ -62,7 +61,7 @@ public class Conexion
             {
                 // Ocurrió un error con la conexi¢n 
                 System.out.println("Error con la conexi¢n a la base de datos:");
-
+                Mensaje.error(null, "SE PERDIO LA CONEXION, POR FAVOR CIERRE Y ABRA NUEVAMENTE EL PROGRAMA");
             }
         } else
         {
@@ -78,8 +77,7 @@ public class Conexion
      * @param usuario -Usuario de la base de datos
      * @param pass -Password del usuario en la base de datos
      */
-    public Connection Conecta(/*String host,*/String bd, String usuario, String pass)
-    {
+    public Connection Conecta(/*String host,*/String bd, String usuario, String pass) {
         String url = "jdbc:odbc:" + bd;//"+host+"/"+bd;       
         try
         {
@@ -106,8 +104,7 @@ public class Conexion
      *
      * @param conect recibe la conexión que se desea cerrar
      */
-    public void desconectar(Connection conect)
-    {
+    public void desconectar(Connection conect) {
         conect = null;
     }
 }

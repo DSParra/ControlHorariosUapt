@@ -21,7 +21,6 @@ public class Usuario {
     private String contra;
     private String licenciatura;
     private int nivel;
-    
     private PreparedStatement ps;
     private ResultSet rs;
 
