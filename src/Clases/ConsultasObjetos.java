@@ -573,7 +573,11 @@ public class ConsultasObjetos {
     public static boolean elimina(String tabla, String campo, String id2, int id, Connection con) {
         try
         {
-            if (id2 == null)
+            if (campo == null)
+            {
+                ps = con.prepareStatement("DELETE FROM " + tabla);
+            }
+            else if (id2 == null)
             {
                 ps = con.prepareStatement("DELETE FROM " + tabla + " WHERE " + campo + " = ?");
                 ps.setInt(1, id);

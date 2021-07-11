@@ -648,7 +648,6 @@ public class VentanaDocentes extends javax.swing.JFrame {
             {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
             }
-
         }
     }//GEN-LAST:event_btnelminaActionPerformed
 
