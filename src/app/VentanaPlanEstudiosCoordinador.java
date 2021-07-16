@@ -32,6 +32,7 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
     private Boolean edicion = true;
     private DefaultTableModel modelo;
     private ArrayList<Object> lics = new ArrayList<>();
+    private ArrayList<Object> planes = new ArrayList<>();
     VentanaLogin vtn = new VentanaLogin();
 
     /**
@@ -288,6 +289,9 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jtIDBusqeudaKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtIDBusqeudaKeyTyped(evt);
+            }
         });
 
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -454,6 +458,7 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
                 CtrlInterfaz.limpia(jTPlan, jTIdPlan);
                 CtrlInterfaz.habilita(false, jTIdPlan, jTPlan, jBCancelar);
                 CtrlInterfaz.habilita(true, jBModificar, jBEliminar, btnExportar);
+                importaBD();
                 actualizarTabla(1);
                 edicion();
             } else
@@ -478,8 +483,8 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
     }//GEN-LAST:event_jBCerrarSesionActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        
         cancelar();
+        importaBD();
         actualizarTabla(1);
     }//GEN-LAST:event_formWindowOpened
 
@@ -506,6 +511,7 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
                     CtrlInterfaz.limpia(jTPlan, jTIdPlan);
                     CtrlInterfaz.habilita(false, jTIdPlan, jTPlan, jBAceptar, jBCancelar);
                     CtrlInterfaz.habilita(true, jBEliminar, jBAceptar, btnExportar);
+                    importaBD();
                     actualizarTabla(1);
                     edicion();
                 } else
@@ -522,6 +528,7 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
             String mensaje = Controlador.ControladorPlanes.eliminarPlan(jTIdPlan.getText());
             if (mensaje.endsWith("operacion exitosa"))
             {
+                importaBD();
                 actualizarTabla(1);
             } else
             {
@@ -536,14 +543,18 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
     }//GEN-LAST:event_TablaPeriodosMouseClicked
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
-         if (txtnombreArchivo.getText() != null) {
+        if (txtnombreArchivo.getText() != null)
+        {
             String mensaje = Archivo.Exportar(TablaPeriodos, txtnombreArchivo.getText());
-            if (mensaje.equals("Error en la Exportacion")) {
+            if (mensaje.equals("Error en la Exportacion"))
+            {
                 Mensaje.error(this, mensaje);
-            } else {
+            } else
+            {
                 Mensaje.exito(this, mensaje);
             }
-        } else {
+        } else
+        {
             Mensaje.error(this, "Escriba el nombre del archivo");
         }
     }//GEN-LAST:event_btnExportarActionPerformed
@@ -579,7 +590,7 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
     }//GEN-LAST:event_jTIdPlanFocusLost
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
-        if (jtIDBusqeuda.getText().equals(""))
+        if (jtIDBusqeuda.getText().equals("") && btnBusca.getText().equals("Buscar"))
         {
             actualizarTabla(1);
         } else
@@ -599,6 +610,10 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
     private void txtnombreArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreArchivoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnombreArchivoActionPerformed
+
+    private void jtIDBusqeudaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDBusqeudaKeyTyped
+        btnBusca.setText("Buscar");
+    }//GEN-LAST:event_jtIDBusqeudaKeyTyped
 
     private void jTPlanKeyPressed(java.awt.event.KeyEvent evt) {
     }
@@ -800,12 +815,9 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void actualizarTabla(int valor) {
-        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
         modelo = (DefaultTableModel) TablaPeriodos.getModel();
-        ArrayList planes = new ArrayList();
         if (valor == 1)
         {
-            planes = ConsultasObjetos.consultaMuchos("plan_estudios", "id_licenciatura", vtn.lic, null, null, "plan_estudios", ConectarBase.conectado());
             if (planes.isEmpty())
             {
                 Mensaje.error(this, "No hay planes de estudio registrados");
@@ -815,16 +827,20 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
                 for (Object p : planes)
                 {
                     PlanEstudios plan = (PlanEstudios) p;
-                    modelo.addRow(new Object[]
+                    if (plan.getClaveCarrera().equals(vtn.lic))
                     {
-                        plan.getIdPlan(), plan.getPlanEstudios(), buscaLic(plan.getClaveCarrera(), null)
-                    });
-                    System.out.println(((PlanEstudios) p).getPlanEstudios());
+
+                        modelo.addRow(new Object[]
+                        {
+                            plan.getIdPlan(), plan.getPlanEstudios(), buscaLic(plan.getClaveCarrera(), null)
+                        });
+                    }
                 }
+                btnBusca.setText("Buscar");
             }
         } else if (valor == 2)
         {
-            planes = ConsultasObjetos.consultaMuchos("plan_estudios", "id_plan_estudios", jtIDBusqeuda.getText(), null, null, "plan_estudios", ConectarBase.conectado());
+            planes = ConsultasObjetos.consultaMuchos("plan_estudios", "plan_estudios", jtIDBusqeuda.getText(), null, null, "plan_estudios", ConectarBase.conectado());
             if (planes.isEmpty())
             {
                 Mensaje.error(this, "No hay planes de estudio registrados");
@@ -834,12 +850,16 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
                 for (Object p : planes)
                 {
                     PlanEstudios plan = (PlanEstudios) p;
-                    modelo.addRow(new Object[]
+                    if (plan.getClaveCarrera().equals(vtn.lic))
                     {
-                        plan.getIdPlan(), plan.getPlanEstudios(), buscaLic(plan.getClaveCarrera(), null)
-                    });
-                    System.out.println(((PlanEstudios) p).getPlanEstudios());
+                        modelo.addRow(new Object[]
+                        {
+                            plan.getIdPlan(), plan.getPlanEstudios(), buscaLic(plan.getClaveCarrera(), null)
+                        });
+                    }
                 }
+                btnBusca.setText("Todos");
+                jtIDBusqeuda.setText("");
             }
         }
 
@@ -889,4 +909,9 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
         return null;
     }
 
+    private void importaBD() {
+        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
+        planes = ConsultasObjetos.consultaMuchos("plan_estudios", null, null, null, null, "plan_estudios", ConectarBase.conectado());
+        ConectarBase.desconectaBD();
+    }
 }

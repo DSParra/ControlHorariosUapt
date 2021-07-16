@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/MoisesVidalHernandez/Downloads/ControlHorarios/src/app/VentanaAdministrador.java</file>
-            <file>file:/C:/Users/MoisesVidalHernandez/Downloads/ControlHorarios/src/app/VentanaDocentes.java</file>
-            <file>file:/C:/Users/MoisesVidalHernandez/Downloads/ControlHorarios/src/Clases/ConsultasObjetos.java</file>
-            <file>file:/C:/Users/MoisesVidalHernandez/Downloads/ControlHorarios/src/app/VtnEliminbar.java</file>
+            <file>file:/D:/NetbeansProjects/Proyecto%20Horarios%202/ControlHorarios/src/Vista/VistaExcel.java</file>
+            <file>file:/D:/NetbeansProjects/Proyecto%20Horarios%202/ControlHorarios/src/app/VentanaDocentes.java</file>
+            <file>file:/D:/NetbeansProjects/Proyecto%20Horarios%202/ControlHorarios/src/app/VentanaGrupos.java</file>
+            <file>file:/D:/NetbeansProjects/Proyecto%20Horarios%202/ControlHorarios/src/Clases/ConectarBase.java</file>
+            <file>file:/D:/NetbeansProjects/Proyecto%20Horarios%202/ControlHorarios/src/Controlador/ControladorHorarios.java</file>
+            <file>file:/C:/Users/MoisesVidalHernandez/Downloads/ControlHorarios/src/app/VentanaCordinadores.java</file>
+            <file>file:/C:/Users/MoisesVidalHernandez/Downloads/ControlHorarios/src/Clases/ConectarBase.java</file>
         </group>
     </open-files>
 </project-private>

@@ -117,7 +117,7 @@ public class Archivo {
                             hora = celda.getDateCellValue();
                             String horas = (hora.getHours() < 10) ? "0"+String.valueOf(hora.getHours()) : String.valueOf(hora.getHours());
                             String minutos = (hora.getMinutes() == 0) ? "00" : String.valueOf(hora.getMinutes());
-                            System.out.println(hora.getMinutes());
+                            //System.out.println(hora.getMinutes());
                             ListaColumna[IndiceColumna] = String.valueOf(horas+ ":" + minutos);
 //                                System.out.println("Index agregando Fecha" + hora.getTime() + numCelda);
                         }

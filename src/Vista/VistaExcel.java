@@ -599,10 +599,10 @@ public class VistaExcel extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCargaActionPerformed
     
     public ArrayList guardaExcel() {
-        
+        //try{
         if (tipoExcel.equalsIgnoreCase("horario"))
         {
-            System.out.println("Entrando a horario");
+            //System.out.println("Entrando a horario");
             ArrayList horarios = new ArrayList();
             PeriodoHorarios horario;
             
@@ -626,6 +626,13 @@ public class VistaExcel extends javax.swing.JFrame {
             return horarios;
         }
         return null;
+        
+//        }catch(Exception e){
+//            Mensaje.error(this, "Algun dato no es correcto");
+//            System.out.println("Error en guarda excel "+e);
+//        }finally{
+//            return null;
+//        }
     }
     
     public void importaBD() {
@@ -668,6 +675,7 @@ public class VistaExcel extends javax.swing.JFrame {
         boolean prueba = true;
         double entrada1, salida1, entrada2, salida2;
         String mensaje = "";
+        try{
         for (int i = 0; i < horarios.size(); i++)
         {
             for (int j = 0; j < horarios.size(); j++)
@@ -736,6 +744,11 @@ public class VistaExcel extends javax.swing.JFrame {
                 }
             }
         }
+        }catch(Exception e){
+            Mensaje.error(this, "Error en los datos");
+            System.out.println("Error en comparaMaterias "+e);
+            prueba = false;
+        }
         txtcruzesExcel.setText(mensaje);
         return prueba;
     }
@@ -754,8 +767,10 @@ public class VistaExcel extends javax.swing.JFrame {
         limpiaDatos();
         if (tipoExcel.equalsIgnoreCase("horario"))
         {
-            
             horarios = guardaExcel();
+            if (horarios == null) {
+                Mensaje.error(this, "Hay un error con los datos, guarda excel en null");
+            }else{
             System.out.println("");
             jCheckLllaves.setSelected(validaExcel());
             jCheckExcel.setSelected(comparaMateriasExcel());
@@ -776,6 +791,9 @@ public class VistaExcel extends javax.swing.JFrame {
                 btnCarga.setEnabled(false);
                 Mensaje.error(this, "Alguna prueba no ha sido superada");
             }
+            }
+
+            
             
         }
 
@@ -814,8 +832,8 @@ public class VistaExcel extends javax.swing.JFrame {
         {
             for (int j = 0; j < horariosBD.size(); j++)
             {
-                System.out.println("i: " + i);
-                System.out.println("j: " + j);
+//                System.out.println("i: " + i);
+//                System.out.println("j: " + j);
                 if (horarios.get(i).getRfc().equalsIgnoreCase(horariosBD.get(j).getRfc()) && horarios.get(i).getDia().equals(horariosBD.get(j).getDia()))
                 {
                     
@@ -823,9 +841,9 @@ public class VistaExcel extends javax.swing.JFrame {
                     salida1 = Double.parseDouble(horarios.get(i).getSalida().substring(0, 2) + "." + horarios.get(i).getSalida().substring(3, 5));
                     entrada2 = Double.parseDouble(horariosBD.get(j).getEntrada().substring(0, 2) + "." + horariosBD.get(j).getEntrada().substring(3, 5));
                     salida2 = Double.parseDouble(horariosBD.get(j).getSalida().substring(0, 2) + "." + horariosBD.get(j).getSalida().substring(3, 5));
-                    System.out.println("horario1 " + entrada1 + " " + salida1);
-                    System.out.println("horario2 " + entrada2 + " " + salida2);
-                    System.out.println("mismo dia ");
+                    //System.out.println("horario1 " + entrada1 + " " + salida1);
+                    //System.out.println("horario2 " + entrada2 + " " + salida2);
+                    //System.out.println("mismo dia ");
                     if (entrada2 >= entrada1 && entrada2 < salida1)
                     {
                         prueba = false;
@@ -841,8 +859,8 @@ public class VistaExcel extends javax.swing.JFrame {
 //                                + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 8))
 //                                + " y "+"\n"
 //                                + busquedaBinariaRetNombre(horariosBD.get(j).getClaveMateria(), "materias") + "-> " + ControladorHorarios.numdia(Integer.valueOf(horariosBD.get(j).getDia())) + " " + horariosBD.get(j).getEntrada() + " " + horariosBD.get(j).getSalida() + "\n\n";
-                        System.out.println("Profesor: " + String.valueOf(jTDatosExcel.getValueAt(i, 2)) + "cruzado " + horarios.get(i).getDia() + " " + horarios.get(i).getEntrada() + " " + horarios.get(i).getSalida());
-                        System.out.println("Con id: " + horariosBD.get(j).getIdHorario() + " " + horariosBD.get(j).getDia() + " " + horariosBD.get(j).getEntrada() + " " + horariosBD.get(j).getSalida());
+                        //System.out.println("Profesor: " + String.valueOf(jTDatosExcel.getValueAt(i, 2)) + "cruzado " + horarios.get(i).getDia() + " " + horarios.get(i).getEntrada() + " " + horarios.get(i).getSalida());
+                        //System.out.println("Con id: " + horariosBD.get(j).getIdHorario() + " " + horariosBD.get(j).getDia() + " " + horariosBD.get(j).getEntrada() + " " + horariosBD.get(j).getSalida());
 
                         //txtconsulta.setText(txtconsulta.getText() + "Error en Grupos: " + String.valueOf(jTDatosExcel.getValueAt(i, 0)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " y " + String.valueOf(jTDatosExcel.getValueAt(j, 0)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 3)) + "\n\n");
                         //System.out.println("horarios cruzados");
@@ -907,16 +925,19 @@ public class VistaExcel extends javax.swing.JFrame {
         String mensaje = "";
         ordenamientoBurbujaID("materia");
         ordenamientoBurbujaNombre("grupo");
+        //try{
         for (int i = 0; i < horarios.size(); i++)
         {
-            System.out.println("registro " + i);
-            if (busquedaBinariaBuscaID(String.valueOf(jTDatosExcel.getValueAt(i, 0)), "materia") == null)
+            //System.out.println("registro " + i);
+            if (busquedaBinariaBuscaID(String.valueOf(jTDatosExcel.getValueAt(i, 0)), "materia") == "")
             {
                 prueba = false;
                 mensaje += "Materia: " + String.valueOf(jTDatosExcel.getValueAt(i, 0) + " NO ENCONTRADO") + "\n\n";
+          //      throw new NullPointerException( "demo" );
+
                 //System.out.println("Materia no encontrado");
             }
-            if (busquedaBinariaBuscaID(String.valueOf(jTDatosExcel.getValueAt(i, 2)), "profesor") == null)
+            if (busquedaBinariaBuscaID(String.valueOf(jTDatosExcel.getValueAt(i, 2)), "profesor") == "")
             {
                 prueba = false;
                 mensaje += "Profesor: " + String.valueOf(jTDatosExcel.getValueAt(i, 2) + " NO ENCONTRADO") + "\n\n";
@@ -935,8 +956,16 @@ public class VistaExcel extends javax.swing.JFrame {
                 //System.out.println("periodo no encontrado");
             }
         }
+        
         txtDatosNoEncontrados.setText(mensaje);
         return prueba;
+        
+//        }catch(Exception e){
+//            Mensaje.error(this, "Error en los datos");
+//            System.out.println("Error en valida excel "+ e);
+//
+//        }
+        
     }
 
     /**
@@ -1242,7 +1271,7 @@ public class VistaExcel extends javax.swing.JFrame {
                 }
                 break;
         }
-        return null;
+        return "";
     }
     
     public String busquedaBinariaRetNombre(int dato, String tipo) {

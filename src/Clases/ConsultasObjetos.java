@@ -195,7 +195,6 @@ public class ConsultasObjetos {
                     {
                         System.out.println("No se encontro el usuario");
                     }
-                    ConectarBase.desconectaBD();
                     return licen;
                 case "plan_estudios":
                     PlanEstudios plan = null;
@@ -210,7 +209,6 @@ public class ConsultasObjetos {
                     {
                         System.out.println("No se encontro el plan de estudios");
                     }
-                    ConectarBase.desconectaBD();
                     return plan;
                 case "periodo_escolar":
                     periodoEscolar periodo = null;
@@ -418,6 +416,7 @@ public class ConsultasObjetos {
                     {
                         //JOptionPane.showMessageDialog(null, "No se encontro el usuario");
                     }
+                    ConectarBase.desconectaBD();
                     return objetos;
                 case "profesores":
                     rs = ps.executeQuery();
@@ -439,6 +438,7 @@ public class ConsultasObjetos {
                     {
                         //JOptionPane.showMessageDialog(null, "No se encontro el profesor");
                     }
+                    ConectarBase.desconectaBD();
                     return objetos;
                 case "licenciatura":
                     rs = ps.executeQuery();
@@ -455,6 +455,7 @@ public class ConsultasObjetos {
                     {
                         //JOptionPane.showMessageDialog(null, "No se encontro la licenciatura");
                     }
+                    ConectarBase.desconectaBD();
                     return objetos;
                 case "periodo_escolar":
                     rs = ps.executeQuery();
@@ -471,6 +472,7 @@ public class ConsultasObjetos {
                     {
                         //JOptionPane.showMessageDialog(null, "No se encontraron periodos");
                     }
+                    ConectarBase.desconectaBD();
                     return objetos;
                 case "plan_estudios":
                     rs = ps.executeQuery();
@@ -485,6 +487,7 @@ public class ConsultasObjetos {
                             objetos.add(plan);
                         } while (rs.next());
                     }
+                    ConectarBase.desconectaBD();
                     return objetos;
                 case "grupo":
                     rs = ps.executeQuery();
