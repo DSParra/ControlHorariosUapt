@@ -32,6 +32,7 @@ public class VentanaGrupos extends javax.swing.JFrame {
     private Boolean edicion = true;
     private DefaultTableModel modelo;
     private ArrayList<Object> lics = new ArrayList<>();
+    private ArrayList<Object> grupos = new ArrayList<>();
 
     /**
      * Creates new form VentanaPrinicipal
@@ -302,6 +303,9 @@ public class VentanaGrupos extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jtIDBusqeudaKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtIDBusqeudaKeyTyped(evt);
+            }
         });
 
         jLabel13.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
@@ -493,14 +497,18 @@ public class VentanaGrupos extends javax.swing.JFrame {
     }//GEN-LAST:event_jTIdGrupoActionPerformed
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
-        if (txtnombreArchivo.getText() != null) {
+        if (txtnombreArchivo.getText() != null)
+        {
             String mensaje = Archivo.Exportar(TablaGrupos, txtnombreArchivo.getText());
-            if (mensaje.equals("Error en la Exportacion")) {
+            if (mensaje.equals("Error en la Exportacion"))
+            {
                 Mensaje.error(this, mensaje);
-            } else {
+            } else
+            {
                 Mensaje.exito(this, mensaje);
             }
-        } else {
+        } else
+        {
             Mensaje.error(this, "Escriba el nombre del archivo");
         }
     }//GEN-LAST:event_btnExportarActionPerformed
@@ -511,6 +519,7 @@ public class VentanaGrupos extends javax.swing.JFrame {
             String mensaje = Controlador.ControladorGrupos.eliminarGrupo(jTIdGrupo.getText());
             if (mensaje.equals("operacion exitosa"))
             {
+                importaBD();
                 jCLicenciaturaFiltro.setSelectedIndex(0);
                 actualizarTabla(1);
             } else
@@ -538,6 +547,7 @@ public class VentanaGrupos extends javax.swing.JFrame {
                 jBAceptar.setText("Nuevo");
                 CtrlInterfaz.habilita(false, jTIdGrupo, jTNombreGrupo, jCLicenciatura, jBCancelar);
                 CtrlInterfaz.habilita(true, jBModificar, jBEliminar, btnExportar);
+                importaBD();
                 actualizarTabla(1);
                 edicion();
             } else
@@ -573,6 +583,7 @@ public class VentanaGrupos extends javax.swing.JFrame {
                     jBModificar.setText("Modificar");
                     CtrlInterfaz.habilita(false, jTIdGrupo, jTNombreGrupo, jBAceptar, jCLicenciatura, jBCancelar);
                     CtrlInterfaz.habilita(true, jBEliminar, jBAceptar, btnExportar);
+                    importaBD();
                     actualizarTabla(1);
                     edicion();
                 } else
@@ -585,6 +596,7 @@ public class VentanaGrupos extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         cancelar();
+        importaBD();
         actualizarTabla(1);
         llenaComboLic();
     }//GEN-LAST:event_formWindowOpened
@@ -596,7 +608,7 @@ public class VentanaGrupos extends javax.swing.JFrame {
     }//GEN-LAST:event_TablaGruposMouseClicked
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
-        if (jtIDBusqeuda.getText().equals(""))
+        if (jtIDBusqeuda.getText().equals("") && btnBusca.getText().equals("Buscar"))
         {
             actualizarTabla(1);
         } else
@@ -641,6 +653,10 @@ public class VentanaGrupos extends javax.swing.JFrame {
     private void txtnombreArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreArchivoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnombreArchivoActionPerformed
+
+    private void jtIDBusqeudaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDBusqeudaKeyTyped
+        btnBusca.setText("Buscar");
+    }//GEN-LAST:event_jtIDBusqeudaKeyTyped
 
     /**
      * @param args the command line arguments
@@ -779,13 +795,10 @@ public class VentanaGrupos extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void actualizarTabla(int valor) {
-        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
         modelo = (DefaultTableModel) TablaGrupos.getModel();
-        ArrayList grupos = new ArrayList();
         switch (valor)
         {
             case 1:
-                grupos = ConsultasObjetos.consultaMuchos("grupo", null, null, null, null, "nombre_grupo", ConectarBase.conectado());
                 if (grupos.isEmpty())
                 {
                     Mensaje.error(this, "No hay grupos registrados");
@@ -799,7 +812,6 @@ public class VentanaGrupos extends javax.swing.JFrame {
                         {
                             grupo.getIdGrupo(), grupo.getNombreGrupo(), buscarLic(grupo.getId_licenciatura(), null)
                         });
-                        System.out.println(((Grupo) g).getIdGrupo());
                         btnBusca.setText("Buscar");
                     }
                 }
@@ -819,36 +831,34 @@ public class VentanaGrupos extends javax.swing.JFrame {
                         {
                             grupo.getIdGrupo(), grupo.getNombreGrupo(), buscarLic(grupo.getId_licenciatura(), null)
                         });
-                        System.out.println(((Grupo) g).getIdGrupo());
                         jtIDBusqeuda.setText("");
                         btnBusca.setText("Todo");
                     }
                 }
                 break;
             case 3:
+                System.out.println("caso 3");
                 if (jCLicenciaturaFiltro.getSelectedIndex() == 0)
                 {
                     actualizarTabla(1);
                 } else
                 {
-                    grupos = ConsultasObjetos.consultaMuchos("grupo", "id_licenciatura", buscarLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()), null, null, "nombre_grupo", ConectarBase.conectado());
-                    if (grupos.isEmpty())
+
+                    modelo.setRowCount(0);
+                    for (Object g : grupos)
                     {
-                        Mensaje.error(this, "No hay grupos registrados");
-                    } else
-                    {
-                        modelo.setRowCount(0);
-                        for (Object g : grupos)
+                        Grupo grupo = (Grupo) g;
+                        System.out.println("grupo  3  " + grupo.getId_licenciatura() + " y " + buscarLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()));
+                        if (grupo.getId_licenciatura().equals(buscarLic(null, jCLicenciaturaFiltro.getSelectedItem().toString())))
                         {
-                            Grupo grupo = (Grupo) g;
                             modelo.addRow(new Object[]
                             {
                                 grupo.getIdGrupo(), grupo.getNombreGrupo(), buscarLic(grupo.getId_licenciatura(), null)
                             });
-                            System.out.println(((Grupo) g).getIdGrupo());
-                            btnBusca.setText("Todo");
                         }
                     }
+                    btnBusca.setText("Todo");
+
                 }
                 break;
             default:
@@ -872,7 +882,7 @@ public class VentanaGrupos extends javax.swing.JFrame {
             for (Object l : lics)
             {
                 Licenciatura lic = (Licenciatura) l;
-                if ((lic.getLicenciatura()).equals(licenciatura))
+                if (lic.getLicenciatura().equals(licenciatura))
                 {
                     return lic.getIdLicenciatura();
                 }
@@ -921,4 +931,11 @@ public class VentanaGrupos extends javax.swing.JFrame {
         }
         return 0;
     }
+
+    private void importaBD() {
+        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
+        grupos = ConsultasObjetos.consultaMuchos("grupo", null, null, null, null, "nombre_grupo", ConectarBase.conectado());
+        ConectarBase.desconectaBD();
+    }
+
 }
