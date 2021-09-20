@@ -34,14 +34,14 @@ public class VtnMenuCoordinador extends javax.swing.JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel2 = new javax.swing.JPanel();
-        jButton17 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
-        jButton21 = new javax.swing.JButton();
-        jButton22 = new javax.swing.JButton();
-        jButton23 = new javax.swing.JButton();
-        jButton24 = new javax.swing.JButton();
-        jButton25 = new javax.swing.JButton();
-        jButton27 = new javax.swing.JButton();
+        btnDocentes = new javax.swing.JButton();
+        btnPeriodos = new javax.swing.JButton();
+        btnPlanes = new javax.swing.JButton();
+        btnMaterias = new javax.swing.JButton();
+        btnGrupos = new javax.swing.JButton();
+        btnHorarios = new javax.swing.JButton();
+        btnCargaExcel = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLTituloUAPT1 = new javax.swing.JLabel();
@@ -54,110 +54,131 @@ public class VtnMenuCoordinador extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 51, 0));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jButton17.setBackground(new java.awt.Color(102, 102, 0));
-        jButton17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton17.setForeground(new java.awt.Color(255, 255, 255));
-        jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/profesor.png"))); // NOI18N
-        jButton17.setText("DOCENTES");
+        btnDocentes.setBackground(new java.awt.Color(102, 102, 0));
+        btnDocentes.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnDocentes.setForeground(new java.awt.Color(255, 255, 255));
+        btnDocentes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/profesor.png"))); // NOI18N
+        btnDocentes.setText("DOCENTES");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.ipady = 50;
-        jPanel2.add(jButton17, gridBagConstraints);
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel2.add(btnDocentes, gridBagConstraints);
 
-        jButton20.setBackground(new java.awt.Color(102, 102, 0));
-        jButton20.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton20.setForeground(new java.awt.Color(255, 255, 255));
-        jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/calendario.png"))); // NOI18N
-        jButton20.setText("PERIODOS");
+        btnPeriodos.setBackground(new java.awt.Color(102, 102, 0));
+        btnPeriodos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnPeriodos.setForeground(new java.awt.Color(255, 255, 255));
+        btnPeriodos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/calendario.png"))); // NOI18N
+        btnPeriodos.setText("PERIODOS");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.ipady = 50;
-        jPanel2.add(jButton20, gridBagConstraints);
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel2.add(btnPeriodos, gridBagConstraints);
 
-        jButton21.setBackground(new java.awt.Color(102, 102, 0));
-        jButton21.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton21.setForeground(new java.awt.Color(255, 255, 255));
-        jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/plan.png"))); // NOI18N
-        jButton21.setText("PLAN ESTUDIOS");
+        btnPlanes.setBackground(new java.awt.Color(102, 102, 0));
+        btnPlanes.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnPlanes.setForeground(new java.awt.Color(255, 255, 255));
+        btnPlanes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/plan.png"))); // NOI18N
+        btnPlanes.setText("PLAN ESTUDIOS");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.ipady = 50;
-        jPanel2.add(jButton21, gridBagConstraints);
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel2.add(btnPlanes, gridBagConstraints);
 
-        jButton22.setBackground(new java.awt.Color(102, 102, 0));
-        jButton22.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton22.setForeground(new java.awt.Color(255, 255, 255));
-        jButton22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/Materias.png"))); // NOI18N
-        jButton22.setText("MATERIAS");
-        jButton22.setActionCommand("Materias");
+        btnMaterias.setBackground(new java.awt.Color(102, 102, 0));
+        btnMaterias.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnMaterias.setForeground(new java.awt.Color(255, 255, 255));
+        btnMaterias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/Materias.png"))); // NOI18N
+        btnMaterias.setText("MATERIAS");
+        btnMaterias.setActionCommand("Materias");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.ipady = 50;
-        jPanel2.add(jButton22, gridBagConstraints);
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel2.add(btnMaterias, gridBagConstraints);
 
-        jButton23.setBackground(new java.awt.Color(102, 102, 0));
-        jButton23.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton23.setForeground(new java.awt.Color(255, 255, 255));
-        jButton23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/grupo.png"))); // NOI18N
-        jButton23.setText("GRUPOS");
+        btnGrupos.setBackground(new java.awt.Color(102, 102, 0));
+        btnGrupos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnGrupos.setForeground(new java.awt.Color(255, 255, 255));
+        btnGrupos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/grupo.png"))); // NOI18N
+        btnGrupos.setText("GRUPOS");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.ipady = 50;
-        jPanel2.add(jButton23, gridBagConstraints);
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel2.add(btnGrupos, gridBagConstraints);
 
-        jButton24.setBackground(new java.awt.Color(102, 102, 0));
-        jButton24.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton24.setForeground(new java.awt.Color(255, 255, 255));
-        jButton24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/horario.png"))); // NOI18N
-        jButton24.setText("HORARIOS");
+        btnHorarios.setBackground(new java.awt.Color(102, 102, 0));
+        btnHorarios.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnHorarios.setForeground(new java.awt.Color(255, 255, 255));
+        btnHorarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/horario.png"))); // NOI18N
+        btnHorarios.setText("HORARIOS");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.ipady = 50;
-        jPanel2.add(jButton24, gridBagConstraints);
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel2.add(btnHorarios, gridBagConstraints);
 
-        jButton25.setBackground(new java.awt.Color(102, 102, 0));
-        jButton25.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton25.setForeground(new java.awt.Color(255, 255, 255));
-        jButton25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/excel.png"))); // NOI18N
-        jButton25.setText("CARGAR EXCEL");
+        btnCargaExcel.setBackground(new java.awt.Color(102, 102, 0));
+        btnCargaExcel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnCargaExcel.setForeground(new java.awt.Color(255, 255, 255));
+        btnCargaExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/excel.png"))); // NOI18N
+        btnCargaExcel.setText("CARGAR EXCEL");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.ipady = 50;
-        jPanel2.add(jButton25, gridBagConstraints);
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel2.add(btnCargaExcel, gridBagConstraints);
 
-        jButton27.setBackground(new java.awt.Color(153, 0, 0));
-        jButton27.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton27.setForeground(new java.awt.Color(255, 255, 255));
-        jButton27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/flecha(3).png"))); // NOI18N
-        jButton27.setText("SALIR");
+        btnSalir.setBackground(new java.awt.Color(153, 0, 0));
+        btnSalir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/flecha(3).png"))); // NOI18N
+        btnSalir.setText("SALIR");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.ipady = 50;
-        jPanel2.add(jButton27, gridBagConstraints);
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel2.add(btnSalir, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -210,6 +231,11 @@ public class VtnMenuCoordinador extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        this.setVisible(false);
+        new Login().setVisible(true);
+    }//GEN-LAST:event_btnSalirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -239,7 +265,7 @@ public class VtnMenuCoordinador extends javax.swing.JFrame {
         {
             java.util.logging.Logger.getLogger(VtnMenuCoordinador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
-        {
+btnDocentes
             java.util.logging.Logger.getLogger(VtnMenuCoordinador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -260,14 +286,14 @@ public class VtnMenuCoordinador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
-    private javax.swing.JButton jButton24;
-    private javax.swing.JButton jButton25;
-    private javax.swing.JButton jButton27;
+    private javax.swing.JButton btnCargaExcel;
+    private javax.swing.JButton btnDocentes;
+    private javax.swing.JButton btnGrupos;
+    private javax.swing.JButton btnHorarios;
+    private javax.swing.JButton btnMaterias;
+    private javax.swing.JButton btnPeriodos;
+    private javax.swing.JButton btnPlanes;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLTituloUAPT1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

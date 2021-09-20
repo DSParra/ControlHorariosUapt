@@ -5,7 +5,19 @@
  */
 package redisenio;
 
+import Clases.Archivo;
+import Clases.ConectarBase;
+import Clases.ConsultasObjetos;
+import Clases.Valida;
+import Controlador.ControladorProfesores;
+import Objetos.Profesor;
+import cjb.ci.CtrlInterfaz;
+import cjb.ci.Mensaje;
+import cjb.ci.Validaciones;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,7 +31,10 @@ public class VtnDocentes extends javax.swing.JFrame {
     public VtnDocentes() {
         initComponents();
         this.setIconImage(new ImageIcon(getClass().getResource("/Iconos2/SCHR.png")).getImage());
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
+    private Boolean edicion = true;
+    private DefaultTableModel modelo;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,19 +71,24 @@ public class VtnDocentes extends javax.swing.JFrame {
         panelBusqeuda = new javax.swing.JPanel();
         labelnombre8 = new javax.swing.JLabel();
         labelnombre7 = new javax.swing.JLabel();
-        txtRFC1 = new javax.swing.JTextField();
+        txtBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         panelTabla = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaDocentes = new javax.swing.JTable();
         panelEXportacion = new javax.swing.JPanel();
         labelnombre10 = new javax.swing.JLabel();
-        nombreArchivo1 = new javax.swing.JTextField();
-        btnExportar1 = new javax.swing.JButton();
+        txtNombreArchivo = new javax.swing.JTextField();
+        btnExportar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         panelCaptura.setBackground(new java.awt.Color(255, 255, 255));
@@ -153,6 +173,23 @@ public class VtnDocentes extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(labelnombre6, gridBagConstraints);
+
+        txtRFC.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtRFCFocusLost(evt);
+            }
+        });
+        txtRFC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtRFCKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtRFCKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRFCKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -160,6 +197,23 @@ public class VtnDocentes extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(txtRFC, gridBagConstraints);
+
+        txtAPaterno.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtAPaternoFocusLost(evt);
+            }
+        });
+        txtAPaterno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtAPaternoKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtAPaternoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAPaternoKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -167,6 +221,23 @@ public class VtnDocentes extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(txtAPaterno, gridBagConstraints);
+
+        txtAMaterno.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtAMaternoFocusLost(evt);
+            }
+        });
+        txtAMaterno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtAMaternoKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtAMaternoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAMaternoKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -174,6 +245,20 @@ public class VtnDocentes extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(txtAMaterno, gridBagConstraints);
+
+        txtNombres.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNombresFocusLost(evt);
+            }
+        });
+        txtNombres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombresKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombresKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
@@ -181,6 +266,20 @@ public class VtnDocentes extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(txtNombres, gridBagConstraints);
+
+        txtGrado.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtGradoFocusLost(evt);
+            }
+        });
+        txtGrado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtGradoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtGradoKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 9;
@@ -188,6 +287,15 @@ public class VtnDocentes extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(txtGrado, gridBagConstraints);
+
+        txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCorreoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCorreoKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 11;
@@ -195,6 +303,12 @@ public class VtnDocentes extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(txtCorreo, gridBagConstraints);
+
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 13;
@@ -207,6 +321,11 @@ public class VtnDocentes extends javax.swing.JFrame {
         btnNuevo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
         btnNuevo.setText("NUEVO");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 14;
@@ -219,6 +338,11 @@ public class VtnDocentes extends javax.swing.JFrame {
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 15;
@@ -231,6 +355,11 @@ public class VtnDocentes extends javax.swing.JFrame {
         btnModificar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnModificar.setForeground(new java.awt.Color(255, 255, 255));
         btnModificar.setText("MODIFICAR");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 16;
@@ -243,6 +372,11 @@ public class VtnDocentes extends javax.swing.JFrame {
         btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelar.setText("CANCELAR");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 17;
@@ -298,12 +432,17 @@ public class VtnDocentes extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        panelBusqeuda.add(txtRFC1, gridBagConstraints);
+        panelBusqeuda.add(txtBuscar, gridBagConstraints);
 
         btnBuscar.setBackground(new java.awt.Color(102, 102, 0));
         btnBuscar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscar.setText("BUSCAR");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -322,7 +461,8 @@ public class VtnDocentes extends javax.swing.JFrame {
 
         panelTabla.setLayout(new java.awt.GridBagLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaDocentes.setBackground(new java.awt.Color(255, 255, 204));
+        TablaDocentes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -332,8 +472,21 @@ public class VtnDocentes extends javax.swing.JFrame {
             new String [] {
                 "RFC", "A. PATERNO", "A. MATERNO", "NOMBRES", "GRADO", "CORREO", "TELEFONO"
             }
-        ));
-        jScrollPane2.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TablaDocentes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaDocentesMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(TablaDocentes);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -370,25 +523,35 @@ public class VtnDocentes extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        panelEXportacion.add(nombreArchivo1, gridBagConstraints);
+        panelEXportacion.add(txtNombreArchivo, gridBagConstraints);
 
-        btnExportar1.setBackground(new java.awt.Color(102, 102, 0));
-        btnExportar1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnExportar1.setForeground(new java.awt.Color(255, 255, 255));
-        btnExportar1.setText("EXPORTAR");
+        btnExportar.setBackground(new java.awt.Color(102, 102, 0));
+        btnExportar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnExportar.setForeground(new java.awt.Color(255, 255, 255));
+        btnExportar.setText("EXPORTAR");
+        btnExportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        panelEXportacion.add(btnExportar1, gridBagConstraints);
+        panelEXportacion.add(btnExportar, gridBagConstraints);
 
         btnRegresar.setBackground(new java.awt.Color(102, 102, 0));
         btnRegresar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnRegresar.setForeground(new java.awt.Color(255, 255, 255));
         btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/flecha(2).png"))); // NOI18N
         btnRegresar.setText("REGRESAR AL MENU");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -402,6 +565,11 @@ public class VtnDocentes extends javax.swing.JFrame {
         btnCerrar.setForeground(new java.awt.Color(255, 255, 255));
         btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/flecha(3).png"))); // NOI18N
         btnCerrar.setText("SALIR");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -435,7 +603,230 @@ public class VtnDocentes extends javax.swing.JFrame {
         getContentPane().add(panelConsulta1, gridBagConstraints);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        this.setVisible(false);
+        new VtnAdministrador().setVisible(true);
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        this.setVisible(false);
+        new Login().setVisible(true);
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+
+        if (!edicion)
+        {
+            edicion();
+            btnNuevo.setText("ACEPTAR");
+            CtrlInterfaz.limpia(txtAMaterno, txtAMaterno, txtNombres, txtRFC, txtGrado, txtCorreo, txtTelefono);
+            CtrlInterfaz.habilita(true, txtAMaterno, txtAPaterno, txtNombres, txtRFC, txtGrado, txtCorreo, txtTelefono, btnCancelar);
+            CtrlInterfaz.habilita(false, btnEliminar, btnModificar, btnExportar);
+            CtrlInterfaz.selecciona(txtRFC);
+
+        } else
+        {
+
+            Profesor p = new Profesor(txtRFC.getText(), txtAPaterno.getText(), txtAMaterno.getText(), txtNombres.getText(), txtGrado.getText(), txtCorreo.getText(), txtTelefono.getText());
+            String mensaje = Controlador.ControladorProfesores.InsertaProfesor(p);
+            if (mensaje.equals("operacion exitosa"))
+            {
+                btnNuevo.setText("NUEVO");
+                CtrlInterfaz.limpia(txtAMaterno, txtAPaterno, txtNombres, txtRFC, txtGrado, txtCorreo, txtTelefono);
+                CtrlInterfaz.habilita(false, txtAPaterno, txtAMaterno, txtNombres, txtRFC, txtGrado, txtCorreo, txtTelefono, btnCancelar);
+                CtrlInterfaz.habilita(true, btnEliminar, btnModificar, btnExportar);
+                actualizaTabla(1);
+                edicion();
+            } else
+            {
+                JOptionPane.showMessageDialog(rootPane, mensaje);
+            }
+
+        }
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        if (txtRFC.getText().compareTo("") == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Seleccione un registro para editar");
+        } else
+        {
+
+            if (!edicion)
+            {
+                edicion();
+                btnModificar.setText("ACEPTAR");
+                CtrlInterfaz.habilita(true, txtAMaterno, txtAPaterno, txtNombres, txtGrado, txtCorreo, txtTelefono, btnCancelar);
+                CtrlInterfaz.habilita(false, btnEliminar, btnNuevo, btnExportar);
+                CtrlInterfaz.selecciona(txtAPaterno);
+            } else
+            {
+                Profesor p = new Profesor(txtRFC.getText(), txtAPaterno.getText(), txtAMaterno.getText(), txtNombres.getText(), txtGrado.getText(), txtCorreo.getText(), txtTelefono.getText());
+                String mensaje = ControladorProfesores.modificaProfesor(p, (String) TablaDocentes.getValueAt(TablaDocentes.getSelectedRow(), 0));
+                if (mensaje.equals("operacion exitosa"))
+                {
+                    CtrlInterfaz.habilita(false, txtAMaterno, txtAPaterno, txtNombres, txtRFC, txtGrado, txtCorreo, txtTelefono, btnCancelar);
+                    CtrlInterfaz.habilita(true, btnEliminar, btnNuevo, btnExportar);
+                    CtrlInterfaz.limpia(txtAMaterno, txtAPaterno, txtNombres, txtRFC, txtGrado, txtCorreo, txtTelefono);
+                    edicion();
+                    actualizaTabla(1);
+                    btnModificar.setText("MODIFICAR");
+                } else
+                {
+                    JOptionPane.showMessageDialog(rootPane, mensaje);
+                }
+
+            }
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        if (JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar a " + txtNombres.getText()) == 0)
+        {
+            String mensaje = ControladorProfesores.eliminaProfesor(txtRFC.getText());
+            if (mensaje.equals("operacion exitosa"))
+            {
+                cancelar();
+                actualizaTabla(1);
+            } else
+            {
+                JOptionPane.showMessageDialog(rootPane, mensaje);
+            }
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        cancelar();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void TablaDocentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaDocentesMouseClicked
+        txtRFC.setText((String) modelo.getValueAt(TablaDocentes.getSelectedRow(), 0));
+        txtNombres.setText((String) modelo.getValueAt(TablaDocentes.getSelectedRow(), 1));
+        txtAPaterno.setText((String) modelo.getValueAt(TablaDocentes.getSelectedRow(), 2));
+        txtAMaterno.setText((String) modelo.getValueAt(TablaDocentes.getSelectedRow(), 3));
+        txtGrado.setText((String) modelo.getValueAt(TablaDocentes.getSelectedRow(), 4));
+        txtCorreo.setText((String) modelo.getValueAt(TablaDocentes.getSelectedRow(), 5));
+        txtTelefono.setText((String) modelo.getValueAt(TablaDocentes.getSelectedRow(), 6));
+    }//GEN-LAST:event_TablaDocentesMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        cancelar();
+        actualizaTabla(1);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        if (txtBuscar.getText().equals(""))
+        {
+            actualizaTabla(1);
+        } else
+        {
+            actualizaTabla(2);
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
+        if (txtNombreArchivo.getText() != null)
+        {
+            String mensaje = Archivo.Exportar(TablaDocentes, txtNombreArchivo.getText());
+            if (mensaje.equals("Error en la Exportacion"))
+            {
+                Mensaje.error(this, mensaje);
+            } else
+            {
+                Mensaje.exito(this, mensaje);
+            }
+        } else
+        {
+            Mensaje.error(this, "Escriba el nombre del archivo");
+        }
+    }//GEN-LAST:event_btnExportarActionPerformed
+
+    private void txtRFCKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRFCKeyPressed
+        Validaciones.enter(this, evt, txtAPaterno);
+    }//GEN-LAST:event_txtRFCKeyPressed
+
+    private void txtRFCKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRFCKeyReleased
+    }//GEN-LAST:event_txtRFCKeyReleased
+
+    private void txtRFCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRFCKeyTyped
+        Validaciones.validaAlfanumerico(evt);
+        Valida.validaLongitud(txtRFC, 13, evt);
+    }//GEN-LAST:event_txtRFCKeyTyped
+
+    private void txtAPaternoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAPaternoKeyPressed
+        Validaciones.enter(this, evt, txtAMaterno);
+    }//GEN-LAST:event_txtAPaternoKeyPressed
+
+    private void txtAPaternoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAPaternoKeyReleased
+    }//GEN-LAST:event_txtAPaternoKeyReleased
+
+    private void txtAPaternoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAPaternoKeyTyped
+        Validaciones.validaAlfabeticos(evt);
+    }//GEN-LAST:event_txtAPaternoKeyTyped
+
+    private void txtAMaternoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAMaternoKeyPressed
+        Validaciones.enter(this, evt, txtNombres);
+    }//GEN-LAST:event_txtAMaternoKeyPressed
+
+    private void txtAMaternoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAMaternoKeyReleased
+    }//GEN-LAST:event_txtAMaternoKeyReleased
+
+    private void txtAMaternoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAMaternoKeyTyped
+        Validaciones.validaAlfabeticos(evt);
+    }//GEN-LAST:event_txtAMaternoKeyTyped
+
+    private void txtNombresKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyPressed
+        Validaciones.enter(this, evt, txtGrado);
+    }//GEN-LAST:event_txtNombresKeyPressed
+
+    private void txtRFCFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRFCFocusLost
+        Valida.convertirAMayusculas(txtRFC);
+    }//GEN-LAST:event_txtRFCFocusLost
+
+    private void txtAPaternoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAPaternoFocusLost
+        Valida.convertirAMayusculas(txtAPaterno);
+
+    }//GEN-LAST:event_txtAPaternoFocusLost
+
+    private void txtAMaternoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAMaternoFocusLost
+        Valida.convertirAMayusculas(txtAMaterno);
+    }//GEN-LAST:event_txtAMaternoFocusLost
+
+    private void txtNombresFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombresFocusLost
+        Valida.convertirAMayusculas(txtNombres);
+    }//GEN-LAST:event_txtNombresFocusLost
+
+    private void txtNombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyTyped
+        Validaciones.validaAlfabeticos(evt);
+    }//GEN-LAST:event_txtNombresKeyTyped
+
+    private void txtGradoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGradoKeyPressed
+        Validaciones.enter(this, evt, txtCorreo);
+    }//GEN-LAST:event_txtGradoKeyPressed
+
+    private void txtGradoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGradoKeyTyped
+
+    }//GEN-LAST:event_txtGradoKeyTyped
+
+    private void txtGradoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtGradoFocusLost
+        Valida.convertirAMayusculas(txtGrado);
+    }//GEN-LAST:event_txtGradoFocusLost
+
+    private void txtCorreoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyPressed
+        Validaciones.enter(this, evt, txtTelefono);
+    }//GEN-LAST:event_txtCorreoKeyPressed
+
+    private void txtCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCorreoKeyTyped
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        Validaciones.validaEntero(evt);
+        Valida.validaLongitud(txtTelefono, 10, evt);
+    }//GEN-LAST:event_txtTelefonoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -479,18 +870,86 @@ public class VtnDocentes extends javax.swing.JFrame {
         });
     }
 
+    private void cancelar() {
+        edicion();
+        CtrlInterfaz.limpia(txtAMaterno, txtAMaterno, txtNombres, txtRFC, txtGrado, txtCorreo, txtTelefono);
+        CtrlInterfaz.habilita(false, txtAPaterno, txtAMaterno, txtNombres, txtRFC, txtGrado, txtCorreo, txtTelefono, btnCancelar);
+        CtrlInterfaz.habilita(true, btnNuevo, btnModificar, btnEliminar, btnExportar);
+        btnNuevo.setText("NUEVO");
+        btnModificar.setText("MODIFICAR");
+    }
+
+    private void edicion() {
+        if (edicion)
+        {
+            edicion = false;
+        } else
+        {
+            edicion = true;
+        }
+    }
+
+    public void actualizaTabla(int valor) {
+        modelo = (DefaultTableModel) TablaDocentes.getModel();
+        ArrayList profes = new ArrayList();
+        if (valor == 1)
+        {
+            profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, "nombres", ConectarBase.conectado());
+            if (profes.isEmpty())
+            {
+                Mensaje.error(this, "No se encuentran registros");
+            } else
+            {
+                modelo.setRowCount(0);
+                for (Object p : profes)
+                {
+                    Profesor profe = (Profesor) p;
+                    modelo.addRow(new Object[]
+                    {
+                        profe.getRfc(), profe.getNombres(), profe.getApellidoP(), profe.getApellidoM(), profe.getGradoAcademico(), profe.getCorreo(), profe.getTelefono()
+                    });
+                    System.out.println(((Profesor) p).getNombres());
+                    btnBuscar.setText("BUSCAR");
+                }
+            }
+        } else if (valor == 2)
+        {
+            profes = ConsultasObjetos.consultaMuchos("profesores", "nombres", txtBuscar.getText(), null, null, "nombres", ConectarBase.conectado());
+            if (profes.isEmpty())
+            {
+                Mensaje.error(this, "No se encuentran registros");
+            } else
+            {
+                modelo.setRowCount(0);
+                for (Object p : profes)
+                {
+                    Profesor profe = (Profesor) p;
+                    modelo.addRow(new Object[]
+                    {
+                        profe.getRfc(), profe.getNombres(), profe.getApellidoP(), profe.getApellidoM(), profe.getGradoAcademico(), profe.getCorreo(), profe.getTelefono()
+                    });
+                    System.out.println(((Profesor) p).getNombres());
+                    txtBuscar.setText("");
+                    btnBuscar.setText("TODO");
+                }
+            }
+
+        }
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TablaDocentes;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnExportar1;
+    private javax.swing.JButton btnExportar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelnombre;
     private javax.swing.JLabel labelnombre1;
     private javax.swing.JLabel labelnombre10;
@@ -501,7 +960,6 @@ public class VtnDocentes extends javax.swing.JFrame {
     private javax.swing.JLabel labelnombre6;
     private javax.swing.JLabel labelnombre7;
     private javax.swing.JLabel labelnombre8;
-    private javax.swing.JTextField nombreArchivo1;
     private javax.swing.JPanel panelBusqeuda;
     private javax.swing.JPanel panelCaptura;
     private javax.swing.JPanel panelConsulta1;
@@ -510,11 +968,12 @@ public class VtnDocentes extends javax.swing.JFrame {
     private javax.swing.JPanel panelTabla;
     private javax.swing.JTextField txtAMaterno;
     private javax.swing.JTextField txtAPaterno;
+    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtGrado;
+    private javax.swing.JTextField txtNombreArchivo;
     private javax.swing.JTextField txtNombres;
     private javax.swing.JTextField txtRFC;
-    private javax.swing.JTextField txtRFC1;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

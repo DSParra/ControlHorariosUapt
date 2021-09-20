@@ -5,7 +5,21 @@
  */
 package redisenio;
 
+import Clases.Archivo;
+import Clases.ConectarBase;
+import Clases.ConsultasObjetos;
+import Clases.Valida;
+import Controlador.ControladorCoordnadores;
+import Objetos.Licenciatura;
+import Objetos.Profesor;
+import Objetos.Usuario;
+import cjb.ci.CtrlInterfaz;
+import cjb.ci.Mensaje;
+import cjb.ci.Validaciones;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,7 +33,24 @@ public class VtnCoordinadores extends javax.swing.JFrame {
     public VtnCoordinadores() {
         initComponents();
         this.setIconImage(new ImageIcon(getClass().getResource("/Iconos2/SCHR.png")).getImage());
+        this.setExtendedState(MAXIMIZED_BOTH);
+        TablaUsuarios.getColumnModel().getColumn(0).setPreferredWidth(20);
+        TablaUsuarios.getColumnModel().getColumn(1).setPreferredWidth(100);
+        TablaUsuarios.getColumnModel().getColumn(2).setPreferredWidth(70);
+        TablaUsuarios.getColumnModel().getColumn(3).setPreferredWidth(50);
+        TablaUsuarios.getColumnModel().getColumn(4).setPreferredWidth(150);
+        TablaUsuarios.getColumnModel().getColumn(0).setResizable(false);
+        TablaUsuarios.getColumnModel().getColumn(1).setResizable(false);
+        TablaUsuarios.getColumnModel().getColumn(2).setResizable(false);
+        TablaUsuarios.getColumnModel().getColumn(3).setResizable(false);
+        TablaUsuarios.getColumnModel().getColumn(4).setResizable(false);
     }
+
+    private Boolean edicion = true;
+    private DefaultTableModel modelo;
+    private ArrayList<Object> usuarios = new ArrayList<>();
+    private ArrayList<Object> profes = new ArrayList<>();
+    private ArrayList<Object> lics = new ArrayList<>();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,8 +70,8 @@ public class VtnCoordinadores extends javax.swing.JFrame {
         labelnombre3 = new javax.swing.JLabel();
         labelnombre4 = new javax.swing.JLabel();
         txtRFC = new javax.swing.JTextField();
-        txtAMaterno = new javax.swing.JTextField();
-        txtNombres = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
+        txtContrasenia = new javax.swing.JTextField();
         btnNuevo = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
@@ -52,19 +83,24 @@ public class VtnCoordinadores extends javax.swing.JFrame {
         panelBusqeuda = new javax.swing.JPanel();
         labelnombre8 = new javax.swing.JLabel();
         labelnombre7 = new javax.swing.JLabel();
-        txtRFC1 = new javax.swing.JTextField();
+        txtIdBusqueda = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         panelTabla = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaUsuarios = new javax.swing.JTable();
         panelEXportacion = new javax.swing.JPanel();
         labelnombre10 = new javax.swing.JLabel();
-        nombreArchivo1 = new javax.swing.JTextField();
+        txtNombreArchivo = new javax.swing.JTextField();
         btnExportar1 = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         panelCaptura.setBackground(new java.awt.Color(255, 255, 255));
@@ -127,6 +163,18 @@ public class VtnCoordinadores extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(labelnombre4, gridBagConstraints);
+
+        txtRFC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtRFCKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtRFCKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRFCKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -134,25 +182,42 @@ public class VtnCoordinadores extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(txtRFC, gridBagConstraints);
+
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(txtAMaterno, gridBagConstraints);
+        jPanel1.add(txtUsuario, gridBagConstraints);
+
+        txtContrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtContraseniaKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(txtNombres, gridBagConstraints);
+        jPanel1.add(txtContrasenia, gridBagConstraints);
 
         btnNuevo.setBackground(new java.awt.Color(102, 102, 0));
         btnNuevo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
         btnNuevo.setText("NUEVO");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 14;
@@ -165,6 +230,11 @@ public class VtnCoordinadores extends javax.swing.JFrame {
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 15;
@@ -177,6 +247,11 @@ public class VtnCoordinadores extends javax.swing.JFrame {
         btnModificar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnModificar.setForeground(new java.awt.Color(255, 255, 255));
         btnModificar.setText("MODIFICAR");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 16;
@@ -189,6 +264,11 @@ public class VtnCoordinadores extends javax.swing.JFrame {
         btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelar.setText("CANCELAR");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 17;
@@ -197,6 +277,11 @@ public class VtnCoordinadores extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(btnCancelar, gridBagConstraints);
 
+        comboRFC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                comboRFCKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -260,12 +345,17 @@ public class VtnCoordinadores extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        panelBusqeuda.add(txtRFC1, gridBagConstraints);
+        panelBusqeuda.add(txtIdBusqueda, gridBagConstraints);
 
         btnBuscar.setBackground(new java.awt.Color(102, 102, 0));
         btnBuscar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscar.setText("BUSCAR");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -284,18 +374,32 @@ public class VtnCoordinadores extends javax.swing.JFrame {
 
         panelTabla.setLayout(new java.awt.GridBagLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaUsuarios.setBackground(new java.awt.Color(255, 255, 204));
+        TablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "RFC", "A. PATERNO", "A. MATERNO", "NOMBRES", "GRADO", "CORREO", "TELEFONO"
+                "ID", "COORDINADOR", "USUARIO", "CONTRASEÑA", "LICENCIATURA"
             }
-        ));
-        jScrollPane2.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TablaUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaUsuariosMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(TablaUsuarios);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -332,12 +436,17 @@ public class VtnCoordinadores extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        panelEXportacion.add(nombreArchivo1, gridBagConstraints);
+        panelEXportacion.add(txtNombreArchivo, gridBagConstraints);
 
         btnExportar1.setBackground(new java.awt.Color(102, 102, 0));
         btnExportar1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnExportar1.setForeground(new java.awt.Color(255, 255, 255));
         btnExportar1.setText("EXPORTAR");
+        btnExportar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportar1ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -351,6 +460,11 @@ public class VtnCoordinadores extends javax.swing.JFrame {
         btnRegresar.setForeground(new java.awt.Color(255, 255, 255));
         btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/flecha(2).png"))); // NOI18N
         btnRegresar.setText("REGRESAR AL MENU");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -364,6 +478,11 @@ public class VtnCoordinadores extends javax.swing.JFrame {
         btnCerrar.setForeground(new java.awt.Color(255, 255, 255));
         btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/flecha(3).png"))); // NOI18N
         btnCerrar.setText("SALIR");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -397,7 +516,171 @@ public class VtnCoordinadores extends javax.swing.JFrame {
         getContentPane().add(panelConsulta1, gridBagConstraints);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        this.setVisible(false);
+        new VtnAdministrador().setVisible(true);
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        this.setVisible(false);
+        new Login().setVisible(true);
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        if (!edicion)
+        {
+            edicion();
+            btnNuevo.setText("ACEPTAR");
+            CtrlInterfaz.limpia(txtRFC, txtUsuario, txtContrasenia);
+            CtrlInterfaz.habilita(true, txtRFC, comboRFC, txtUsuario, txtContrasenia, comboLIc, btnCancelar);
+            CtrlInterfaz.habilita(false, btnEliminar, btnModificar, btnExportar1);
+            CtrlInterfaz.selecciona(txtRFC);
+        } else
+        {
+
+            if (comboLIc.getItemCount() == 0)
+            {
+                Mensaje.error(this, "Licenciatura no seleccionada, agregar o seleccionar licenciatura");
+            } else
+            {
+                Usuario us = new Usuario(txtRFC.getText(), buscaProfesor(null, comboRFC.getSelectedItem().toString()), txtUsuario.getText(), txtContrasenia.getText(), buscarLic(null, comboLIc.getSelectedItem().toString()));
+                String mensaje = Controlador.ControladorCoordnadores.insertarCoordinador(us);
+                if (mensaje.equals("operacion exitosa"))
+                {
+                    btnNuevo.setText("NUEVO");
+                    CtrlInterfaz.habilita(false, txtRFC, comboRFC, txtUsuario, txtContrasenia, comboLIc, btnCancelar);
+                    CtrlInterfaz.habilita(true, btnEliminar, btnModificar, btnExportar1);
+                    CtrlInterfaz.limpia(txtRFC, txtContrasenia, txtUsuario);
+                    actualizaTabla(1);
+                    edicion();
+                } else
+                {
+                    JOptionPane.showMessageDialog(rootPane, mensaje);
+                }
+            }
+        }
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        cancelar();
+        actualizaTabla(1);
+        llenaComboLic();
+        llenaComboProfesores();
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        if (txtRFC.getText().compareTo("") == 0)
+        {
+            Mensaje.error(this, "Seleccione un registo a modificar");
+        } else
+        {
+            if (!edicion)
+            {
+                edicion();
+                btnModificar.setText("ACEPTAR");
+                CtrlInterfaz.habilita(true, txtUsuario, comboRFC, txtContrasenia, comboLIc, btnCancelar);
+                CtrlInterfaz.habilita(false, btnEliminar, btnNuevo, btnExportar1);
+            } else
+            {
+                Usuario us = new Usuario(txtRFC.getText(), buscaProfesor(null, (String) comboRFC.getSelectedItem()), txtUsuario.getText(), txtContrasenia.getText(), buscarLic(null, comboLIc.getSelectedItem().toString()));
+                ConsultasObjetos.Modifica(us, ConectarBase.conectado(), "usuarios", txtRFC.getText());
+                String mensaje = ControladorCoordnadores.modifcaCoordinador(us, (String) TablaUsuarios.getValueAt(TablaUsuarios.getSelectedRow(), 1));
+                if (mensaje.equals("operacion exitosa"))
+                {
+                    btnModificar.setText("MODIFICAR");
+                    CtrlInterfaz.habilita(false, txtRFC, comboRFC, txtUsuario, txtContrasenia, comboLIc, btnCancelar);
+                    CtrlInterfaz.habilita(true, btnEliminar, btnNuevo, btnExportar1);
+                    CtrlInterfaz.limpia(txtRFC, txtContrasenia, txtRFC, txtUsuario);
+                    actualizaTabla(1);
+                    edicion();
+                } else
+                {
+                    JOptionPane.showMessageDialog(rootPane, mensaje);
+                }
+            }
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        if (Mensaje.pregunta(this, "¿Seguro que quieres eliminar al usuario " + txtUsuario.getText() + "?") == 0)
+        {
+            String mensaje = ControladorCoordnadores.eliminaUsuario(txtRFC.getText());
+            if (mensaje.equals("operacion exitosa"))
+            {
+                actualizaTabla(1);
+            } else
+            {
+                JOptionPane.showMessageDialog(rootPane, mensaje);
+            }
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        cancelar();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void TablaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaUsuariosMouseClicked
+        txtRFC.setText((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 0));
+        comboRFC.setSelectedIndex(buscarCombo(((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 1))));
+        txtUsuario.setText((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 2));
+        txtContrasenia.setText((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 3));
+        comboLIc.setSelectedIndex(buscarComboLic((String) modelo.getValueAt(TablaUsuarios.getSelectedRow(), 4)));
+    }//GEN-LAST:event_TablaUsuariosMouseClicked
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        if (txtIdBusqueda.getText().equals(""))
+        {
+            actualizaTabla(1);
+        } else
+        {
+            actualizaTabla(2);
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnExportar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportar1ActionPerformed
+        if (txtNombreArchivo.getText() != null)
+        {
+            String mensaje = Archivo.Exportar(TablaUsuarios, txtNombreArchivo.getText());
+            if (mensaje.equals("Error en la Exportacion"))
+            {
+                Mensaje.error(this, mensaje);
+            } else
+            {
+                Mensaje.exito(this, mensaje);
+            }
+        } else
+        {
+            Mensaje.error(this, "Escriba el nombre del archivo");
+        }
+    }//GEN-LAST:event_btnExportar1ActionPerformed
+
+    private void txtRFCKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRFCKeyPressed
+        Validaciones.enter(this, evt, comboRFC);
+    }//GEN-LAST:event_txtRFCKeyPressed
+
+    private void txtRFCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRFCKeyTyped
+        Valida.validaLongitud(txtRFC, 5, evt);
+        Validaciones.validaAlfanumerico(evt);
+    }//GEN-LAST:event_txtRFCKeyTyped
+
+    private void comboRFCKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboRFCKeyPressed
+        Validaciones.enter(this, evt, txtUsuario);
+    }//GEN-LAST:event_comboRFCKeyPressed
+
+    private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
+        Validaciones.enter(this, evt, txtContrasenia);
+    }//GEN-LAST:event_txtUsuarioKeyPressed
+
+    private void txtRFCKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRFCKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRFCKeyReleased
+
+    private void txtContraseniaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseniaKeyPressed
+        Validaciones.enter(this, evt, comboLIc);
+    }//GEN-LAST:event_txtContraseniaKeyPressed
 
     /**
      * @param args the command line arguments
@@ -442,7 +725,162 @@ public class VtnCoordinadores extends javax.swing.JFrame {
         });
     }
 
+    public int buscarCombo(String texto) {
+        for (int i = 0; i < comboRFC.getItemCount(); i++)
+        {
+            if (texto.equals(comboRFC.getItemAt(i)))
+            {
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    public void actualizaTabla(int valor) {
+        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
+        profes = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, "nombres", ConectarBase.conectado());
+        modelo = (DefaultTableModel) TablaUsuarios.getModel();
+        ArrayList<Object> user = new ArrayList<>();
+        if (valor == 1)
+        {
+            user = ConsultasObjetos.consultaMuchos("usuarios", "nivel", "profesor", null, null, "rfc", ConectarBase.conectado());
+            if (user.isEmpty())
+            {
+                Mensaje.error(this, "NO SE ENCUENTRAN COORDINADORES REGISTRADOS");
+            } else
+            {
+                modelo.setRowCount(0);
+                for (Object u : user)
+                {
+                    Usuario us = (Usuario) u;
+                    modelo.addRow(new Object[]
+                    {
+                        us.getIdUsuario(), buscaProfesor(us.getRfc(), null), us.getUsuario(), us.getContra(), buscarLic(us.getLicenciatura(), null)
+                    });
+                }
+                btnBuscar.setText("BUSCAR");
+            }
+        } else if (valor == 2)
+        {
+            user = ConsultasObjetos.consultaMuchos("usuarios", "nivel", "profesor", "id_usuario", txtIdBusqueda.getText(), "rfc", ConectarBase.conectado());
+            if (user.isEmpty())
+            {
+                Mensaje.error(this, "NO SE ENCUENTRAN COORDINADORES REGISTRADOS");
+            } else
+            {
+                modelo.setRowCount(0);
+                for (Object u : user)
+                {
+                    Usuario us = (Usuario) u;
+                    modelo.addRow(new Object[]
+                    {
+                        us.getIdUsuario(), buscaProfesor(us.getRfc(), null), us.getUsuario(), us.getContra(), buscarLic(us.getLicenciatura(), null)
+                    });
+                }
+                btnBuscar.setText("TODAS");
+                txtIdBusqueda.setText("");
+            }
+        }
+    }
+
+    public String buscarLic(String id, String licenciatura) {
+        if (licenciatura != null)
+        {
+            for (Object l : lics)
+            {
+                Licenciatura lic = (Licenciatura) l;
+                if ((lic.getLicenciatura()).equals(licenciatura))
+                {
+                    return lic.getIdLicenciatura();
+                }
+            }
+        } else if (id != null)
+        {
+            for (Object l : lics)
+            {
+                Licenciatura lic = (Licenciatura) l;
+                if (lic.getIdLicenciatura().equals(id))
+                {
+                    return lic.getLicenciatura();
+                }
+            }
+        }
+        return null;
+    }
+
+    private int buscarComboLic(String texto) {
+        for (int i = 0; i < comboLIc.getItemCount(); i++)
+        {
+            if (texto.equals(comboLIc.getItemAt((i))))
+            {
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    private void edicion() {
+        if (edicion)
+        {
+            edicion = false;
+        } else
+        {
+            edicion = true;
+        }
+    }
+
+    public void llenaComboLic() {
+        comboLIc.removeAllItems();
+        for (int i = 0; i < lics.size(); i++)
+        {
+            comboLIc.addItem(((Licenciatura) lics.get(i)).getLicenciatura());
+        }
+    }
+
+    public void llenaComboProfesores() {
+        comboRFC.removeAllItems();
+        for (int i = 0; i < profes.size(); i++)
+        {
+            comboRFC.addItem(((Profesor) profes.get(i)).getNombres() + " " + ((Profesor) profes.get(i)).getApellidoP() + " " + ((Profesor) profes.get(i)).getApellidoM());
+        }
+    }
+
+    public String buscaProfesor(String rfc, String nombre) {
+        if (nombre != null)
+        {
+            for (Object p : profes)
+            {
+                Profesor profe = (Profesor) p;
+                if ((profe.getNombres() + " " + profe.getApellidoP() + " " + profe.getApellidoM()).equals(nombre))
+                {
+                    return profe.getRfc();
+                }
+            }
+        } else
+        {
+            for (Object p : profes)
+            {
+                Profesor profe = (Profesor) p;
+                if (profe.getRfc().equals(rfc))
+                {
+                    return profe.getNombres() + " " + profe.getApellidoP() + " " + profe.getApellidoM();
+                }
+            }
+        }
+        return null;
+    }
+
+    private void cancelar() {
+        edicion();
+        CtrlInterfaz.limpia(txtRFC, txtUsuario, txtContrasenia);
+        CtrlInterfaz.habilita(false, txtRFC, comboLIc, txtUsuario, txtContrasenia, comboRFC, btnCancelar);
+        CtrlInterfaz.habilita(true, btnNuevo, btnModificar, btnEliminar, btnExportar1);
+        btnNuevo.setText("NUEVO");
+        btnModificar.setText("MODIFICAR");
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TablaUsuarios;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCerrar;
@@ -455,7 +893,6 @@ public class VtnCoordinadores extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboRFC;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelnombre;
     private javax.swing.JLabel labelnombre1;
     private javax.swing.JLabel labelnombre10;
@@ -464,16 +901,16 @@ public class VtnCoordinadores extends javax.swing.JFrame {
     private javax.swing.JLabel labelnombre4;
     private javax.swing.JLabel labelnombre7;
     private javax.swing.JLabel labelnombre8;
-    private javax.swing.JTextField nombreArchivo1;
     private javax.swing.JPanel panelBusqeuda;
     private javax.swing.JPanel panelCaptura;
     private javax.swing.JPanel panelConsulta1;
     private javax.swing.JPanel panelEXportacion;
     private javax.swing.JPanel panelFiltros;
     private javax.swing.JPanel panelTabla;
-    private javax.swing.JTextField txtAMaterno;
-    private javax.swing.JTextField txtNombres;
+    private javax.swing.JTextField txtContrasenia;
+    private javax.swing.JTextField txtIdBusqueda;
+    private javax.swing.JTextField txtNombreArchivo;
     private javax.swing.JTextField txtRFC;
-    private javax.swing.JTextField txtRFC1;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

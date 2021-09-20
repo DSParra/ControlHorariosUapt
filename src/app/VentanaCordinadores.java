@@ -307,7 +307,7 @@ public class VentanaCordinadores extends javax.swing.JFrame {
             }
         });
 
-        TablaUsuarios.setBackground(new java.awt.Color(25, 83, 0));
+        TablaUsuarios.setBackground(new java.awt.Color(0, 51, 51));
         TablaUsuarios.setForeground(new java.awt.Color(254, 254, 254));
         TablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -850,7 +850,6 @@ public class VentanaCordinadores extends javax.swing.JFrame {
                 jtIDBusqeuda.setText("");
             }
         }
-
     }
 
     public void llenaComboProfesores() {
