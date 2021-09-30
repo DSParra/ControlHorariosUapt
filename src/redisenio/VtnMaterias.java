@@ -5,7 +5,18 @@
  */
 package redisenio;
 
+import Clases.ConectarBase;
+import Clases.ConsultasObjetos;
+import Objetos.Licenciatura;
+import Objetos.Materia;
+import Objetos.PlanEstudios;
+import cjb.ci.CtrlInterfaz;
+import cjb.ci.Mensaje;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,12 +24,41 @@ import javax.swing.ImageIcon;
  */
 public class VtnMaterias extends javax.swing.JFrame {
 
+    int id = 0;
+    private Boolean edicion = true;
+    private DefaultTableModel modelo;
+    private ArrayList<Object> plans = new ArrayList<>();
+    private ArrayList<Object> planes1 = new ArrayList<>();
+    private ArrayList<Object> lics = new ArrayList<>();
+    private ArrayList<Object> materia = new ArrayList<>();
+    ArrayList materias = new ArrayList();
+    
     /**
      * Creates new form VtnDocentes
      */
     public VtnMaterias() {
         initComponents();
         this.setIconImage(new ImageIcon(getClass().getResource("/Iconos2/SCHR.png")).getImage());
+        this.setExtendedState(MAXIMIZED_BOTH);
+        tablaMaterias.getColumnModel().getColumn(0).setPreferredWidth(10);
+        tablaMaterias.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tablaMaterias.getColumnModel().getColumn(2).setPreferredWidth(100);
+        tablaMaterias.getColumnModel().getColumn(3).setPreferredWidth(20);
+        tablaMaterias.getColumnModel().getColumn(4).setPreferredWidth(3);
+        tablaMaterias.getColumnModel().getColumn(5).setPreferredWidth(3);
+        tablaMaterias.getColumnModel().getColumn(6).setPreferredWidth(10);
+        tablaMaterias.getColumnModel().getColumn(7).setPreferredWidth(20);
+        tablaMaterias.getColumnModel().getColumn(8).setPreferredWidth(20);
+        tablaMaterias.getColumnModel().getColumn(0).setResizable(false);
+        tablaMaterias.getColumnModel().getColumn(1).setResizable(false);
+        tablaMaterias.getColumnModel().getColumn(2).setResizable(false);
+        tablaMaterias.getColumnModel().getColumn(3).setResizable(false);
+        tablaMaterias.getColumnModel().getColumn(4).setResizable(false);
+        tablaMaterias.getColumnModel().getColumn(5).setResizable(false);
+        tablaMaterias.getColumnModel().getColumn(6).setResizable(false);
+        tablaMaterias.getColumnModel().getColumn(7).setResizable(false);
+        tablaMaterias.getColumnModel().getColumn(8).setResizable(false);
+
     }
 
     /**
@@ -42,8 +82,8 @@ public class VtnMaterias extends javax.swing.JFrame {
         labelnombre6 = new javax.swing.JLabel();
         txtMatricula = new javax.swing.JTextField();
         txtNombres = new javax.swing.JTextField();
-        txtGrado = new javax.swing.JTextField();
-        txtCorreo = new javax.swing.JTextField();
+        txtHoras = new javax.swing.JTextField();
+        txtCreditos = new javax.swing.JTextField();
         btnNuevo = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
@@ -60,7 +100,7 @@ public class VtnMaterias extends javax.swing.JFrame {
         panelBusqeuda = new javax.swing.JPanel();
         labelnombre8 = new javax.swing.JLabel();
         labelnombre7 = new javax.swing.JLabel();
-        txtRFC1 = new javax.swing.JTextField();
+        txtIdBusqueda = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         labelnombre12 = new javax.swing.JLabel();
         comboLicBusqueda = new javax.swing.JComboBox<>();
@@ -68,7 +108,7 @@ public class VtnMaterias extends javax.swing.JFrame {
         comboPlanBusqueda = new javax.swing.JComboBox<>();
         panelTabla = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaMaterias = new javax.swing.JTable();
         panelEXportacion = new javax.swing.JPanel();
         labelnombre10 = new javax.swing.JLabel();
         nombreArchivo1 = new javax.swing.JTextField();
@@ -181,19 +221,24 @@ public class VtnMaterias extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(txtGrado, gridBagConstraints);
+        jPanel1.add(txtHoras, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 11;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(txtCorreo, gridBagConstraints);
+        jPanel1.add(txtCreditos, gridBagConstraints);
 
         btnNuevo.setBackground(new java.awt.Color(102, 102, 0));
         btnNuevo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
         btnNuevo.setText("NUEVO");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 18;
@@ -349,7 +394,7 @@ public class VtnMaterias extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        panelBusqeuda.add(txtRFC1, gridBagConstraints);
+        panelBusqeuda.add(txtIdBusqueda, gridBagConstraints);
 
         btnBuscar.setBackground(new java.awt.Color(102, 102, 0));
         btnBuscar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -398,7 +443,8 @@ public class VtnMaterias extends javax.swing.JFrame {
 
         panelTabla.setLayout(new java.awt.GridBagLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaMaterias.setBackground(new java.awt.Color(255, 255, 204));
+        tablaMaterias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -408,8 +454,16 @@ public class VtnMaterias extends javax.swing.JFrame {
             new String [] {
                 "CLAVE", "LICENCIATURA", "PLAN ESTUDIOS", "NOMBRES", "HORAS", "CREDITOS", "SEMESTRE", "NUCLEO", "TIPO"
             }
-        ));
-        jScrollPane2.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tablaMaterias);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -533,6 +587,314 @@ public class VtnMaterias extends javax.swing.JFrame {
         new Login().setVisible(true);
     }//GEN-LAST:event_btnCerrarActionPerformed
 
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        if (!edicion)
+        {
+            edicion();
+            btnNuevo.setText("Aceptar");
+            CtrlInterfaz.limpia(txtMatricula, txtNombres, txtHoras, txtCreditos);
+            CtrlInterfaz.habilita(true, txtMatricula, comboLicenciatura, comboPlanEstudios, txtNombres, txtHoras, txtCreditos, comboSemestre, comboNucleo, comboTipo, btnCancelar);
+            CtrlInterfaz.habilita(false, btnModificar, btnEliminar, btnExportar1);
+            CtrlInterfaz.selecciona(txtMatricula);
+        } else
+        {
+            Materia mat = new Materia(txtMatricula.getText(), txtNombres.getText(), Integer.parseInt(txtHoras.getText()), Integer.parseInt(txtCreditos.getText()), Integer.parseInt(comboSemestre.getSelectedItem().toString()), 
+                    comboNucleo.getSelectedItem().toString(), comboTipo.getSelectedItem().toString(), buscaLic(null, comboLicenciatura.getSelectedItem().toString()), buscaPlan(null, comboPlanEstudios.getSelectedItem().toString()));
+            String mensaje = Controlador.ControladorMaterias.insertaMateria(mat);
+            if (mensaje.equals("operacion exitosa"))
+            {
+                btnNuevo.setText("Nuevo");
+                CtrlInterfaz.habilita(false, txtMatricula, comboLicenciatura, comboPlanEstudios, txtNombres, txtHoras, 
+                        txtCreditos, comboSemestre, comboNucleo, comboTipo, btnCancelar);
+                CtrlInterfaz.habilita(true, btnModificar, btnEliminar, btnExportar1);
+                CtrlInterfaz.limpia(txtMatricula, txtCreditos, txtHoras, txtNombres);
+                importarBD();
+                actualizarTabla(1);
+                comboLicBusqueda.setSelectedIndex(0);
+                edicion();
+            } else
+            {
+                JOptionPane.showMessageDialog(rootPane, mensaje);
+            }
+        }
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
+    
+    public void actualizarTabla(int valor) {
+        modelo = (DefaultTableModel) tablaMaterias.getModel();
+        planes1 = plans;
+        materia = materias;
+        switch (valor)
+        {
+            case 1:
+                if (materia.isEmpty())
+                {
+                    Mensaje.error(this, "No hay materias registradas");
+                } else
+                {
+                    modelo.setRowCount(0);
+                    for (Object m : materia)
+                    {
+                        Materia mat = (Materia) m;
+                        modelo.addRow(new Object[]
+                        {
+                            mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
+                        });
+                        btnBuscar.setText("Buscar");
+                    }
+                }
+                break;
+            case 2:
+                materias = ConsultasObjetos.consultaMuchos("materia", "unidad_aprendizaje", txtIdBusqueda.getText(), null, null, "unidad_aprendizaje", ConectarBase.conectado());
+                if (materias.isEmpty())
+                {
+                    Mensaje.error(this, "No hay materias registradas");
+                } else
+                {
+                    modelo.setRowCount(0);
+                    for (Object m : materias)
+                    {
+                        Materia mat = (Materia) m;
+                        modelo.addRow(new Object[]
+                        {
+                            mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
+
+                        });
+                        txtIdBusqueda.setText("");
+                        btnBuscar.setText("Todas");
+                    }
+                }
+                break;
+            case 3:
+                if (comboLicBusqueda.getSelectedIndex() == 0)
+                {
+                    actualizarTabla(1);
+                } else
+                {
+                    modelo.setRowCount(0);
+                    for (Object m : materias)
+                    {
+                        Materia mat = (Materia) m;
+                        if (mat.getClaveCarrera().equals(buscaLic(null, comboLicBusqueda.getSelectedItem().toString())))
+                        {
+                            modelo.addRow(new Object[]
+                            {
+                                mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
+
+                            });
+                        }
+                    }
+                    txtIdBusqueda.setText("");
+                    btnBuscar.setText("Todas");
+                }
+                break;
+            case 4:
+                if (comboSemestreBusqueda.getSelectedIndex() == 0)
+                {
+                    actualizarTabla(3);
+                } else
+                {
+                    //materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()), "numero_periodo", jcSesmtre.getSelectedItem().toString(), "unidad_aprendizaje", ConectarBase.conectado());
+                    if (materia.isEmpty())
+                    {
+                        Mensaje.error(this, "No hay materias registradas con este semestre");
+                    } else
+                    {
+                        modelo.setRowCount(0);
+                        for (Object m : materia)
+                        {
+                            Materia mat = (Materia) m;
+                            if (mat.getClaveCarrera().equals(buscaLic(null, comboLicBusqueda.getSelectedItem().toString())) && mat.getNumeroPeriodo() == Integer.parseInt(comboSemestreBusqueda.getSelectedItem().toString()))
+                            {
+                                modelo.addRow(new Object[]
+                                {
+                                    mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
+                                });
+                            }
+                            txtIdBusqueda.setText("");
+                            btnBuscar.setText("Todas");
+                        }
+                    }
+                }
+                break;
+            case 5:
+                if (comboSemestreBusqueda.getSelectedIndex() == 0)
+                {
+                    actualizarTabla(3);
+                } else
+                {
+                    //materias = ConsultasObjetos.consultaMuchasMaterias("materia", "id_licenciatura", buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString()), "numero_periodo", jcSesmtre.getSelectedItem().toString(), "id_plan_estudios", buscaPlan(null, JCPlanFiltro.getSelectedItem().toString()), "unidad_aprendizaje", ConectarBase.conectado());
+                    if (materia.isEmpty())
+                    {
+                        Mensaje.error(this, "No hay materias registradas con este semestre");
+                    } else
+                    {
+                        modelo.setRowCount(0);
+                        for (Object m : materia)
+                        {
+                            Materia mat = (Materia) m;
+                            if (mat.getClaveCarrera().equals(buscaLic(null, comboLicBusqueda.getSelectedItem().toString())) && mat.getNumeroPeriodo() == Integer.parseInt(comboSemestreBusqueda.getSelectedItem().toString()) && mat.getPlanEstudios().equals(buscaPlan(null, comboPlanBusqueda.getSelectedItem().toString())))
+                            {
+                                modelo.addRow(new Object[]
+                                {
+                                    mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
+                                });
+                            }
+                            txtIdBusqueda.setText("");
+                            btnBuscar.setText("Todas");
+                        }
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void edicion() {
+        if (edicion)
+        {
+            edicion = false;
+        } else
+        {
+            edicion = true;
+        }
+    }
+
+    public void llenaComboLic() {
+        comboLicenciatura.removeAllItems();
+        comboLicBusqueda.removeAllItems();
+        comboLicBusqueda.addItem("TODAS");
+        for (int i = 0; i < lics.size(); i++)
+        {
+            comboLicenciatura.addItem(((Licenciatura) lics.get(i)).getLicenciatura());
+            comboLicBusqueda.addItem(((Licenciatura) lics.get(i)).getLicenciatura());
+        }
+    }
+
+    private void cancelar() {
+        edicion();
+        CtrlInterfaz.limpia(jTClave, jTNombre, jTHoras, jTCreditos);
+        CtrlInterfaz.habilita(false, jTClave, jCLicenciatura, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
+        CtrlInterfaz.habilita(true, jBModificar, jBAceptar, jBEliminar, btnAgregar4);
+        jBAceptar.setText("Nuevo");
+        jBModificar.setText("Modificar");
+    }
+
+    public void llenaComboPlanes() {
+        jCPlan.removeAllItems();
+        for (int i = 0; i < plans.size(); i++)
+        {
+            if (((PlanEstudios) plans.get(i)).getClaveCarrera().equals(buscaLic(null, jCLicenciatura.getSelectedItem().toString())))
+            {
+                jCPlan.addItem(((PlanEstudios) plans.get(i)).getPlanEstudios());
+            }
+        }
+    }
+
+    public void llenaComboPlanesFiltro() {
+        JCPlanFiltro.removeAllItems();
+        JCPlanFiltro.addItem("Todos");
+        for (int i = 0; i < planes1.size(); i++)
+        {
+            if (((PlanEstudios) planes1.get(i)).getClaveCarrera().equals(buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString())))
+            {
+                JCPlanFiltro.addItem(((PlanEstudios) planes1.get(i)).getPlanEstudios());
+            }
+        }
+    }
+
+    public String buscaLic(String id, String licenciatura) {
+        if (licenciatura != null)
+        {
+            for (Object l : lics)
+            {
+                Licenciatura lic = (Licenciatura) l;
+                if ((lic.getLicenciatura()).equals(licenciatura))
+                {
+                    return lic.getIdLicenciatura();
+                }
+            }
+        } else
+        {
+            for (Object l : lics)
+            {
+                Licenciatura lic = (Licenciatura) l;
+                if (lic.getIdLicenciatura().equals(id))
+                {
+                    return lic.getLicenciatura();
+                }
+            }
+        }
+        return null;
+    }
+
+    private String buscaPlan(String id, String plan) {
+        if (plan != null)
+        {
+            for (Object p : plans)
+            {
+                PlanEstudios pla = (PlanEstudios) p;
+                if ((pla.getPlanEstudios().equals(plan)))
+                {
+                    return pla.getIdPlan();
+                }
+            }
+        } else
+        {
+            for (Object p : plans)
+            {
+                PlanEstudios pla = (PlanEstudios) p;
+                if (pla.getIdPlan().equals(id))
+                {
+                    return pla.getPlanEstudios();
+                }
+            }
+        }
+        return null;
+    }
+
+    public int buscarCombo(String text) {
+        for (int i = 0; i < jCLicenciatura.getItemCount(); i++)
+        {
+            if (text.equals(jCLicenciatura.getItemAt(i)))
+            {
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    private int buscarComboPlan(String text) {
+        for (int i = 0; i < jCPlan.getItemCount(); i++)
+        {
+            if (text.equals(jCPlan.getItemAt(i)))
+            {
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    private int buscarCombo(String text, JComboBox<String> jCSemestre) {
+        for (int i = 0; i < jCSemestre.getItemCount(); i++)
+        {
+            if (text.equals(jCSemestre.getItemAt(i)))
+            {
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    private void importarBD() {
+        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
+        plans = ConsultasObjetos.consultaMuchos("plan_estudios", null, null, null, null, "plan_estudios", ConectarBase.conectado());
+        materias = ConsultasObjetos.consultaMuchos("materia", null, null, null, null, "unidad_aprendizaje", ConectarBase.conectado());
+        ConectarBase.desconectaBD();
+    }
+
+    
     /**
      * @param args the command line arguments
      */
@@ -595,7 +957,6 @@ public class VtnMaterias extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboTipo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelnombre;
     private javax.swing.JLabel labelnombre1;
     private javax.swing.JLabel labelnombre10;
@@ -616,10 +977,11 @@ public class VtnMaterias extends javax.swing.JFrame {
     private javax.swing.JPanel panelEXportacion;
     private javax.swing.JPanel panelFiltros;
     private javax.swing.JPanel panelTabla;
-    private javax.swing.JTextField txtCorreo;
-    private javax.swing.JTextField txtGrado;
+    private javax.swing.JTable tablaMaterias;
+    private javax.swing.JTextField txtCreditos;
+    private javax.swing.JTextField txtHoras;
+    private javax.swing.JTextField txtIdBusqueda;
     private javax.swing.JTextField txtMatricula;
     private javax.swing.JTextField txtNombres;
-    private javax.swing.JTextField txtRFC1;
     // End of variables declaration//GEN-END:variables
 }
