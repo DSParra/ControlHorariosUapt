@@ -5,7 +5,26 @@
  */
 package redisenio;
 
+import Clases.Archivo;
+import Clases.ConectarBase;
+import Clases.ConsultasObjetos;
+import Clases.Valida;
+import Controlador.ControladorHorarios;
+import Objetos.Grupo;
+import Objetos.Licenciatura;
+import Objetos.Materia;
+import Objetos.PeriodoHorarios;
+import Objetos.Profesor;
+import Objetos.periodoEscolar;
+import cjb.ci.CtrlInterfaz;
+import cjb.ci.Mensaje;
+import cjb.ci.Validaciones;
+import java.awt.event.ItemEvent;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,12 +32,45 @@ import javax.swing.ImageIcon;
  */
 public class VtnHorarios extends javax.swing.JFrame {
 
+    int id = 0;
+    private Boolean edicion = true;
+    private DefaultTableModel modelo;
+    private ArrayList<Object> lics = new ArrayList<>();
+    private ArrayList<Object> periodos = new ArrayList<>();
+    private ArrayList<Object> grupos = new ArrayList<>();
+    private ArrayList<Object> grupos1 = new ArrayList<>();
+    private ArrayList<Object> materias = new ArrayList<>();
+    private ArrayList<Object> profesores = new ArrayList<>();
+    private ArrayList<Object> plans = new ArrayList<>();
+    private ArrayList<PeriodoHorarios> horariosBD = new ArrayList<>();
+    ArrayList horarios = new ArrayList();
     /**
      * Creates new form VtnDocentes
      */
     public VtnHorarios() {
         initComponents();
         this.setIconImage(new ImageIcon(getClass().getResource("/Iconos2/SCHR.png")).getImage());
+        this.setExtendedState(MAXIMIZED_BOTH);
+        TablaHorarios.getColumnModel().getColumn(0).setPreferredWidth(10);
+        TablaHorarios.getColumnModel().getColumn(0).setResizable(false);
+        TablaHorarios.getColumnModel().getColumn(1).setPreferredWidth(10);
+        TablaHorarios.getColumnModel().getColumn(1).setResizable(false);
+        TablaHorarios.getColumnModel().getColumn(2).setPreferredWidth(120);
+        TablaHorarios.getColumnModel().getColumn(2).setResizable(false);
+        TablaHorarios.getColumnModel().getColumn(3).setPreferredWidth(60);
+        TablaHorarios.getColumnModel().getColumn(3).setResizable(false);
+        TablaHorarios.getColumnModel().getColumn(4).setPreferredWidth(120);
+        TablaHorarios.getColumnModel().getColumn(4).setResizable(false);
+        TablaHorarios.getColumnModel().getColumn(5).setPreferredWidth(30);
+        TablaHorarios.getColumnModel().getColumn(5).setResizable(false);
+        TablaHorarios.getColumnModel().getColumn(6).setPreferredWidth(30);
+        TablaHorarios.getColumnModel().getColumn(6).setResizable(false);
+        TablaHorarios.getColumnModel().getColumn(7).setPreferredWidth(50);
+        TablaHorarios.getColumnModel().getColumn(7).setResizable(false);
+        TablaHorarios.getColumnModel().getColumn(8).setPreferredWidth(10);
+        TablaHorarios.getColumnModel().getColumn(8).setResizable(false);
+        TablaHorarios.getColumnModel().getColumn(9).setPreferredWidth(10);
+        TablaHorarios.getColumnModel().getColumn(9).setResizable(false);
     }
 
     /**
@@ -40,7 +92,7 @@ public class VtnHorarios extends javax.swing.JFrame {
         labelnombre4 = new javax.swing.JLabel();
         labelnombre5 = new javax.swing.JLabel();
         labelnombre6 = new javax.swing.JLabel();
-        txtMatricula = new javax.swing.JTextField();
+        txtId = new javax.swing.JTextField();
         txtHoraEntrada = new javax.swing.JTextField();
         txtHoraSalida = new javax.swing.JTextField();
         btnNuevo = new javax.swing.JButton();
@@ -68,15 +120,20 @@ public class VtnHorarios extends javax.swing.JFrame {
         labelnombre13 = new javax.swing.JLabel();
         panelTabla = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaHorarios = new javax.swing.JTable();
         panelEXportacion = new javax.swing.JPanel();
         labelnombre10 = new javax.swing.JLabel();
-        nombreArchivo1 = new javax.swing.JTextField();
+        txtNombreArchivo1 = new javax.swing.JTextField();
         btnExportar1 = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         panelCaptura.setBackground(new java.awt.Color(255, 255, 255));
@@ -161,13 +218,36 @@ public class VtnHorarios extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(labelnombre6, gridBagConstraints);
+
+        txtId.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtIdFocusLost(evt);
+            }
+        });
+        txtId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtIdKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(txtMatricula, gridBagConstraints);
+        jPanel1.add(txtId, gridBagConstraints);
+
+        txtHoraEntrada.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtHoraEntradaKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtHoraEntradaKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 15;
@@ -175,6 +255,15 @@ public class VtnHorarios extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(txtHoraEntrada, gridBagConstraints);
+
+        txtHoraSalida.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtHoraSalidaKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtHoraSalidaKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 17;
@@ -187,6 +276,11 @@ public class VtnHorarios extends javax.swing.JFrame {
         btnNuevo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
         btnNuevo.setText("NUEVO");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 18;
@@ -199,6 +293,11 @@ public class VtnHorarios extends javax.swing.JFrame {
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 19;
@@ -211,6 +310,11 @@ public class VtnHorarios extends javax.swing.JFrame {
         btnModificar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnModificar.setForeground(new java.awt.Color(255, 255, 255));
         btnModificar.setText("MODIFICAR");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 20;
@@ -223,6 +327,11 @@ public class VtnHorarios extends javax.swing.JFrame {
         btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelar.setText("CANCELAR");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 21;
@@ -231,6 +340,16 @@ public class VtnHorarios extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(btnCancelar, gridBagConstraints);
 
+        comboLicenciatura.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboLicenciaturaItemStateChanged(evt);
+            }
+        });
+        comboLicenciatura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                comboLicenciaturaKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -239,6 +358,11 @@ public class VtnHorarios extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(comboLicenciatura, gridBagConstraints);
 
+        comboPeriodo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                comboPeriodoKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -247,6 +371,11 @@ public class VtnHorarios extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(comboPeriodo, gridBagConstraints);
 
+        comboGrupo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                comboGrupoKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
@@ -255,6 +384,11 @@ public class VtnHorarios extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(comboGrupo, gridBagConstraints);
 
+        comboMateria.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                comboMateriaKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 9;
@@ -294,6 +428,11 @@ public class VtnHorarios extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(labelnombre11, gridBagConstraints);
 
+        comboDocente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                comboDocenteKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 11;
@@ -303,6 +442,11 @@ public class VtnHorarios extends javax.swing.JFrame {
         jPanel1.add(comboDocente, gridBagConstraints);
 
         comboDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO" }));
+        comboDia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                comboDiaKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 13;
@@ -363,16 +507,34 @@ public class VtnHorarios extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         panelBusqeuda.add(labelnombre12, gridBagConstraints);
 
+        comboLicBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2021A", "2021B" }));
+        comboLicBusqueda.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboLicBusquedaItemStateChanged(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         panelBusqeuda.add(comboLicBusqueda, gridBagConstraints);
 
+        comboGrupoBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2021A", "2021B" }));
+        comboGrupoBusqueda.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboGrupoBusquedaItemStateChanged(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         panelBusqeuda.add(comboGrupoBusqueda, gridBagConstraints);
 
+        comboPeriodoBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2021A", "2021B" }));
+        comboPeriodoBusqueda.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboPeriodoBusquedaItemStateChanged(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
@@ -398,18 +560,32 @@ public class VtnHorarios extends javax.swing.JFrame {
 
         panelTabla.setLayout(new java.awt.GridBagLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaHorarios.setBackground(new java.awt.Color(255, 255, 204));
+        TablaHorarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "CLAVE", "LICENCIATURA", "PLAN ESTUDIOS", "NOMBRES", "HORAS", "CREDITOS", "SEMESTRE", "NUCLEO", "TIPO"
+                "ID", "CLAVE MATERIA", "MATERIA", "RFC", "DOCENTE", "GRUPO", "PERIODO", "DIA", "ENTRADA", "SALIDA"
             }
-        ));
-        jScrollPane2.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TablaHorarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaHorariosMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(TablaHorarios);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -446,12 +622,17 @@ public class VtnHorarios extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        panelEXportacion.add(nombreArchivo1, gridBagConstraints);
+        panelEXportacion.add(txtNombreArchivo1, gridBagConstraints);
 
         btnExportar1.setBackground(new java.awt.Color(102, 102, 0));
         btnExportar1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnExportar1.setForeground(new java.awt.Color(255, 255, 255));
         btnExportar1.setText("EXPORTAR");
+        btnExportar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportar1ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -533,6 +714,702 @@ public class VtnHorarios extends javax.swing.JFrame {
         new Login().setVisible(true);
     }//GEN-LAST:event_btnCerrarActionPerformed
 
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        if (!edicion)
+        {
+            edicion();
+            btnNuevo.setText("Aceptar");
+            CtrlInterfaz.limpia(txtHoraEntrada, txtHoraSalida, txtId);
+            CtrlInterfaz.habilita(true, txtHoraSalida, txtHoraEntrada, txtId, comboPeriodo, comboLicenciatura, 
+                    comboGrupo, comboMateria, comboDocente, comboDia, btnCancelar);
+            CtrlInterfaz.habilita(false, btnEliminar, btnModificar, btnExportar1);
+            CtrlInterfaz.selecciona(txtId);
+        } else
+        {
+            PeriodoHorarios horario = new PeriodoHorarios(0, buscaMateria(null, comboMateria.getSelectedItem().toString()), buscaGrupo(null, comboGrupo.getSelectedItem().toString()), buscaPeriodo(null, comboPeriodo.getSelectedItem().toString()), buscaProfesor(null, comboDocente.getSelectedItem().toString()), String.valueOf(ControladorHorarios.numdia(comboDia.getSelectedItem().toString())), txtHoraEntrada.getText(), txtHoraSalida.getText());
+            String mensaje = ControladorHorarios.insertaHorarioUnico(horario);
+            boolean var;
+            boolean var2, registro;
+            if (mensaje.equals("operacion exitosa"))
+            {
+                var = comparaGrupos(horario);
+                var2 = comparaProfesores(horario);
+                if (var == false)
+                {
+                    Mensaje.error(this, "Corrija las horas de entrada y salida de la materia que quiere asignar en este grupo");
+                } else
+                {
+                    if (var2 == false)
+                    {
+                        Mensaje.error(this, "Corrija el horario en el que el docente impartira la materia");
+                    } else
+                    {
+                        registro = ControladorHorarios.insertaEnBaseUnicoHorario(horario);
+                        if (registro == false)
+                        {
+                            Mensaje.exito(this, "Horario registrado correctamente");
+                            btnNuevo.setText("Nuevo");
+                            CtrlInterfaz.limpia(txtHoraEntrada, txtHoraSalida, txtId);
+                            CtrlInterfaz.habilita(false, txtHoraSalida, txtHoraEntrada, txtId, comboPeriodo, 
+                                    comboLicenciatura, comboGrupo, comboMateria, comboDocente, comboDia, btnCancelar);
+                            CtrlInterfaz.habilita(true, btnNuevo, btnEliminar, btnModificar, btnExportar1);
+                            importarBD();
+                            comboGrupoBusqueda.setSelectedIndex(0);
+                            actualizaTabla(1);
+                            edicion();
+                            CtrlInterfaz.limpia(txtId, txtHoraEntrada, txtHoraSalida);
+                        } else
+                        {
+                            Mensaje.error(this, "No se pudo registrar el horario");
+                        }
+                    }
+                }
+            } else
+            {
+                JOptionPane.showMessageDialog(rootPane, mensaje);
+            }
+        }
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        if (Mensaje.pregunta(this, "¿Seguro que desea eliminar este registro?") == 0)
+        {
+            String mensaje = Controlador.ControladorHorarios.eliminaHorario(txtId.getText());
+            if (mensaje.endsWith("operacion exitosa"))
+            {
+                importarBD();
+                actualizaTabla(1);
+                comboGrupoBusqueda.setSelectedIndex(0);
+            } else
+            {
+                JOptionPane.showMessageDialog(rootPane, mensaje);
+            }
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        cancelar();
+        JOptionPane.showMessageDialog(this, "Por favor espere estamos conectando con base de datos");
+        importarBD();
+        actualizaTabla(1);
+        cargaPeriodos();
+        llenaLicenciatura();
+        llenaGrupos();
+        llenaMaterias();
+        llenaDocentes();
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+         if (txtId.getText().compareTo("") == 0)
+        {
+            Mensaje.error(this, "No ha seleccionado nungun registro");
+        } else
+        {
+            if (!edicion)
+            {
+                edicion();
+                btnModificar.setText("Aceptar");
+                CtrlInterfaz.habilita(true, txtHoraSalida, txtHoraEntrada, comboPeriodo, comboLicenciatura, comboGrupo, 
+                        comboMateria, comboDocente, comboDia, btnCancelar);
+                CtrlInterfaz.habilita(false, btnEliminar, btnNuevo, btnExportar1);
+
+            } else
+            {
+                PeriodoHorarios horario = new PeriodoHorarios(Integer.parseInt(txtId.getText()), buscaMateria(null, comboMateria.getSelectedItem().toString()), buscaGrupo(null, comboGrupo.getSelectedItem().toString()), buscaPeriodo(null, comboPeriodo.getSelectedItem().toString()), buscaProfesor(null, comboDocente.getSelectedItem().toString()), String.valueOf(ControladorHorarios.numdia(comboDia.getSelectedItem().toString())), txtHoraEntrada.getText(), txtHoraSalida.getText());
+                String mensaje = ControladorHorarios.modificaHorarioUnico(horario, Integer.parseInt(txtId.getText()));
+                boolean var;
+                boolean var2, registro;
+                if (mensaje.equals("operacion exitosa"))
+                {
+                    var = comparaGrupos(horario);
+                    var2 = comparaProfesores(horario);
+                    if (var == false)
+                    {
+                        Mensaje.error(this, "Corrija las horas de entrada y salida de la materia que quiere asignar en este grupo");
+                    } else
+                    {
+                        if (var2 == false)
+                        {
+                            Mensaje.error(this, "Corrija el horario en el que el docente impartira la materia");
+                        } else
+                        {
+                            registro = ControladorHorarios.modificaEnBaseUnicoHorario(horario, Integer.parseInt(txtId.getText()));
+                            if (registro != true)
+                            {
+                                Mensaje.exito(this, "Horario modificado correctamente");
+                                btnModificar.setText("Modificar");
+                                CtrlInterfaz.limpia(txtHoraEntrada, txtHoraSalida, txtId);
+                                CtrlInterfaz.habilita(false, txtHoraSalida, txtHoraEntrada, txtId, comboPeriodo, comboPeriodo, comboGrupo, comboMateria, comboDocente, comboDia, btnCancelar);
+                                CtrlInterfaz.habilita(true, btnNuevo, btnEliminar, btnModificar, btnExportar1);
+                                importarBD();
+                                comboGrupoBusqueda.setSelectedIndex(0);
+                                actualizaTabla(1);
+                                edicion();
+                                CtrlInterfaz.limpia(txtId, txtHoraEntrada, txtHoraSalida);
+                            } else
+                            {
+                                Mensaje.error(this, "No se pudo modificar el horario");
+                            }
+                        }
+                    }
+                } else
+                {
+                    JOptionPane.showMessageDialog(rootPane, mensaje);
+                }
+            }
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        cancelar();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnExportar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportar1ActionPerformed
+        if (txtNombreArchivo1.getText() != null)
+        {
+            String mensaje = Archivo.Exportar(TablaHorarios, txtNombreArchivo1.getText());
+            if (mensaje.equals("Error en la Exportacion"))
+            {
+                Mensaje.error(this, mensaje);
+            } else
+            {
+                Mensaje.exito(this, mensaje);
+            }
+        } else
+        {
+            Mensaje.error(this, "Escriba el nombre del archivo");
+        }
+    }//GEN-LAST:event_btnExportar1ActionPerformed
+
+    private void TablaHorariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaHorariosMouseClicked
+        txtId.setText(String.valueOf(modelo.getValueAt(TablaHorarios.getSelectedRow(), 0)));
+        String GrupoACombo = retornameLic((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 5));
+        comboLicenciatura.setSelectedIndex((buscarCombo(buscaLic(GrupoACombo, null), comboLicenciatura)));
+        comboMateria.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 2), comboMateria)));
+        comboGrupo.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 5), comboGrupo)));
+        comboPeriodo.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 6), comboPeriodo)));
+        comboDocente.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 4), comboDocente)));
+        comboDia.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 7), comboDia)));
+        txtHoraEntrada.setText((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 8));
+        txtHoraSalida.setText((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 9));
+
+    }//GEN-LAST:event_TablaHorariosMouseClicked
+
+    private void comboLicBusquedaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboLicBusquedaItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED)
+        {
+            llenaGruposFiltro();
+        }
+    }//GEN-LAST:event_comboLicBusquedaItemStateChanged
+
+    private void comboLicenciaturaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboLicenciaturaItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED)
+        {
+            llenaGrupos();
+            llenaMaterias();
+        }
+    }//GEN-LAST:event_comboLicenciaturaItemStateChanged
+
+    private void comboGrupoBusquedaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboGrupoBusquedaItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED)
+        {
+            actualizaTabla(2);
+            comboPeriodoBusqueda.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_comboGrupoBusquedaItemStateChanged
+
+    private void comboPeriodoBusquedaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboPeriodoBusquedaItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED)
+        {
+            actualizaTabla(3);
+        }
+    }//GEN-LAST:event_comboPeriodoBusquedaItemStateChanged
+
+    private void txtIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyTyped
+        Valida.validaLongitud(txtId, 10, evt);
+    }//GEN-LAST:event_txtIdKeyTyped
+
+    private void txtIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyPressed
+        Validaciones.enter(this, evt, comboPeriodo);
+    }//GEN-LAST:event_txtIdKeyPressed
+
+    private void txtIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdFocusLost
+        Valida.convertirAMayusculas(txtId);
+    }//GEN-LAST:event_txtIdFocusLost
+
+    private void comboPeriodoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboPeriodoKeyPressed
+        Validaciones.enter(this, evt, comboLicenciatura);
+    }//GEN-LAST:event_comboPeriodoKeyPressed
+
+    private void comboLicenciaturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboLicenciaturaKeyPressed
+        Validaciones.enter(this, evt, comboGrupo);
+    }//GEN-LAST:event_comboLicenciaturaKeyPressed
+
+    private void comboGrupoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboGrupoKeyPressed
+        Validaciones.enter(this, evt, comboMateria);
+    }//GEN-LAST:event_comboGrupoKeyPressed
+
+    private void comboMateriaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboMateriaKeyPressed
+        Validaciones.enter(this, evt, comboDocente);
+    }//GEN-LAST:event_comboMateriaKeyPressed
+
+    private void comboDocenteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboDocenteKeyPressed
+        Validaciones.enter(this, evt, comboDia);
+    }//GEN-LAST:event_comboDocenteKeyPressed
+
+    private void comboDiaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboDiaKeyPressed
+        Validaciones.enter(this, evt, txtHoraEntrada);
+    }//GEN-LAST:event_comboDiaKeyPressed
+
+    private void txtHoraSalidaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoraSalidaKeyPressed
+        Validaciones.enter(this, evt, txtHoraSalida);
+    }//GEN-LAST:event_txtHoraSalidaKeyPressed
+
+    private void txtHoraEntradaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoraEntradaKeyTyped
+    }//GEN-LAST:event_txtHoraEntradaKeyTyped
+
+    private void txtHoraSalidaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoraSalidaKeyTyped
+    }//GEN-LAST:event_txtHoraSalidaKeyTyped
+
+    private void txtHoraEntradaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoraEntradaKeyPressed
+        Validaciones.enter(this, evt, txtHoraSalida);
+    }//GEN-LAST:event_txtHoraEntradaKeyPressed
+
+     public void actualizaTabla(int valor) {
+        modelo = (DefaultTableModel) TablaHorarios.getModel();
+        switch (valor)
+        {
+            case 1:
+                if (horarios.isEmpty())
+                {
+                    Mensaje.error(this, "No se encuentran registros");
+                } else
+                {
+                    modelo.setRowCount(0);
+                    for (Object p : horarios)
+                    {
+                        PeriodoHorarios horario = (PeriodoHorarios) p;
+                        modelo.addRow(new Object[]
+                        {
+                            horario.getIdHorario(), horario.getClaveMateria(), buscaMateria(horario.getClaveMateria(), null), horario.getRfc(), buscaProfesor(horario.getRfc(), null), buscaGrupo(horario.getIdGrupo(), null), buscaPeriodo(horario.getIdPeriodo(), null), ControladorHorarios.numdia(Integer.parseInt(horario.getDia())), horario.getEntrada(), horario.getSalida()
+                        });
+                    }
+                }
+                break;
+            case 2:
+                if (comboGrupoBusqueda.getSelectedIndex() == 0)
+                {
+                    actualizaTabla(1);
+                } else
+                {
+                    //horarios = ConsultasObjetos.consultaMuchos("horarios", "id_grupo", buscaGrupoFiltro(null, jCGrupofiltro.getSelectedItem().toString()), null, null, "dia", ConectarBase.conectado());
+                    if (horarios.isEmpty())
+                    {
+                        Mensaje.error(this, "No se encuentran registros");
+                    } else
+                    {
+                        modelo.setRowCount(0);
+                        for (Object p : horarios)
+                        {
+                            PeriodoHorarios horario = (PeriodoHorarios) p;
+                            if (horario.getIdGrupo().equals(buscaGrupo(null, comboGrupoBusqueda.getSelectedItem().toString())))
+                            {
+                                modelo.addRow(new Object[]
+                                {
+                                    horario.getIdHorario(), horario.getClaveMateria(), buscaMateria(horario.getClaveMateria(), null), horario.getRfc(), buscaProfesor(horario.getRfc(), null), buscaGrupo(horario.getIdGrupo(), null), buscaPeriodo(horario.getIdPeriodo(), null), ControladorHorarios.numdia(Integer.parseInt(horario.getDia())), horario.getEntrada(), horario.getSalida()
+
+                                });
+                            }
+                        }
+                    }
+                }
+                break;
+            case 3:
+                if (comboPeriodoBusqueda.getSelectedIndex() == 0)
+                {
+                    actualizaTabla(2);
+                } else
+                {
+                    //horarios = ConsultasObjetos.consultaMuchos("horarios", "id_grupo", buscaGrupoFiltro(null, jCGrupofiltro.getSelectedItem().toString()), "id_periodo", buscaPeriodo(null, jCPeriodoFiltro.getSelectedItem().toString()), "dia", ConectarBase.conectado());
+                    if (horarios.isEmpty())
+                    {
+                        Mensaje.error(this, "No se encuentran registros");
+                    } else
+                    {
+                        modelo.setRowCount(0);
+                        for (Object p : horarios)
+                        {
+                            PeriodoHorarios horario = (PeriodoHorarios) p;
+                            if (horario.getIdGrupo().equals(buscaGrupo(null, comboGrupoBusqueda.getSelectedItem().toString())) && horario.getIdPeriodo().equals(buscaPeriodo(null, comboPeriodoBusqueda.getSelectedItem().toString())))
+                            {
+                                modelo.addRow(new Object[]
+                                {
+                            horario.getIdHorario(), horario.getClaveMateria(), buscaMateria(horario.getClaveMateria(), null), horario.getRfc(), buscaProfesor(horario.getRfc(), null), buscaGrupo(horario.getIdGrupo(), null), buscaPeriodo(horario.getIdPeriodo(), null), ControladorHorarios.numdia(Integer.parseInt(horario.getDia())), horario.getEntrada(), horario.getSalida()
+                                });
+                            }
+                        }
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    
+    public String buscaLic(String id, String licenciatura) {
+        if (licenciatura != null)
+        {
+            for (Object l : lics)
+            {
+                Licenciatura lic = (Licenciatura) l;
+                if ((lic.getLicenciatura()).equals(licenciatura))
+                {
+                    return lic.getIdLicenciatura();
+                }
+            }
+        } else
+        {
+            for (Object l : lics)
+            {
+                Licenciatura lic = (Licenciatura) l;
+                if (lic.getIdLicenciatura().equals(id))
+                {
+                    return lic.getLicenciatura();
+                }
+            }
+        }
+        return null;
+    }
+
+    private String buscaProfesor(String rfc, String profesor) {
+        if (profesor != null)
+        {
+            for (Object p : profesores)
+            {
+                Profesor pr = (Profesor) p;
+                if ((pr.getNombres() + " " + pr.getApellidoP() + " " + pr.getApellidoM()).equals(profesor))
+                {
+                    return pr.getRfc();
+                }
+            }
+        } else
+        {
+            for (Object p : profesores)
+            {
+                Profesor pr = (Profesor) p;
+                if ((pr.getRfc()).equals(rfc))
+                {
+                    return pr.getNombres() + " " + pr.getApellidoP() + " " + pr.getApellidoM();
+                }
+            }
+        }
+        return null;
+    }
+
+    private void cargaPeriodos() {
+        comboPeriodo.removeAllItems();
+        comboPeriodoBusqueda.removeAllItems();
+        comboPeriodoBusqueda.addItem("TODOS");
+        for (int i = 0; i < periodos.size(); i++)
+        {
+            comboPeriodo.addItem(((periodoEscolar) periodos.get(i)).getPeriodo());
+            comboPeriodoBusqueda.addItem(((periodoEscolar) periodos.get(i)).getPeriodo());
+        }
+        if (comboPeriodo.getItemCount() == 0)
+        {
+            Mensaje.error(this, "NO HAY PERIODOS EN LA LIC. " + comboLicenciatura.getSelectedItem().toString() + ", POR FAVOR DE ALTA NUEVOS PERIODOS PARA CONTINUAR");
+        }
+    }
+
+    private void llenaGrupos() {
+        comboGrupo.removeAllItems();
+        for (int i = 0; i < grupos.size(); i++)
+        {
+            if (((Grupo) grupos.get(i)).getId_licenciatura().equals(buscaLic(null, comboLicenciatura.getSelectedItem().toString())))
+            {
+                comboGrupo.addItem(((Grupo) grupos.get(i)).getNombreGrupo());
+            }
+
+        }
+        if (comboGrupo.getItemCount() == 0)
+        {
+            Mensaje.error(this, "NO HAY GRUPOS EN LA LIC. " + comboLicenciatura.getSelectedItem().toString() + ", POR FAVOR DE ALTA UNO O VARIOS GRUPOS PARA CONTINUAR");
+        }
+    }
+
+    private void llenaGruposFiltro() {
+        comboGrupoBusqueda.removeAllItems();
+        comboGrupoBusqueda.addItem("Todos");
+        for (int i = 0; i < grupos.size(); i++)
+        {
+            if (((Grupo) grupos.get(i)).getId_licenciatura().equals(buscaLic(null, comboLicBusqueda.getSelectedItem().toString())))
+            {
+                comboGrupoBusqueda.addItem(((Grupo) grupos.get(i)).getNombreGrupo());
+            }
+        }
+        if (comboGrupoBusqueda.getItemCount() == 0)
+        {
+            Mensaje.error(this, "NO HAY GRUPOS EN LA LIC. " + comboLicBusqueda.getSelectedItem().toString() + ", POR FAVOR DE ALTA UNO O VARIOS GRUPOS PARA CONTINUAR");
+        }
+    }
+
+    private void llenaMaterias() {
+        comboMateria.removeAllItems();
+        for (int i = 0; i < materias.size(); i++)
+        {
+            if (((Materia) materias.get(i)).getClaveCarrera().equals(buscaLic(null, comboLicenciatura.getSelectedItem().toString())))
+            {
+                comboMateria.addItem(((Materia) materias.get(i)).getUnidadAprendizaje());
+            }
+        }
+        if (comboMateria.getItemCount() == 0)
+        {
+            Mensaje.error(this, "NO HAY MATERIAS EN LA LIC. " + comboLicenciatura.getSelectedItem().toString() + ", POR FAVOR DE ALTA NUEVAS MATERIAS PARA CONTINUAR");
+        }
+    }
+
+    private void llenaDocentes() {
+        comboDocente.removeAllItems();
+        for (int i = 0; i < profesores.size(); i++)
+        {
+            comboDocente.addItem(((Profesor) profesores.get(i)).getNombres() + " " + ((Profesor) profesores.get(i)).getApellidoP() + " " + ((Profesor) profesores.get(i)).getApellidoM());
+        }
+        if (comboDocente.getItemCount() == 0)
+        {
+            Mensaje.error(this, "NO HAY DOCENTES, POR FAVOR DE ALTA NUEVOS DOCENTES PARA CONTINUAR");
+        }
+    }
+
+    private void edicion() {
+        if (edicion)
+        {
+            edicion = false;
+        } else
+        {
+            edicion = true;
+        }
+    }
+
+    private void llenaLicenciatura() {
+        comboLicenciatura.removeAllItems();
+        comboLicBusqueda.removeAllItems();
+        for (int i = 0; i < lics.size(); i++)
+        {
+            comboLicenciatura.addItem(((Licenciatura) lics.get(i)).getLicenciatura());
+            comboLicBusqueda.addItem(((Licenciatura) lics.get(i)).getLicenciatura());
+        }
+        if (comboGrupo.getItemCount() == 0)
+        {
+            Mensaje.error(this, "NO HAY LICENCIATURAS, POR FAVOR DE ALTA NEUVAS LICENCIATURAS PARA CONTINUAR");
+        }
+    }
+
+    private String buscaGrupo(String id, String grupo) {
+        if (grupo != null)
+        {
+            for (Object g : grupos)
+            {
+                Grupo gr = (Grupo) g;
+                if (gr.getNombreGrupo().equals(grupo))
+                {
+                    return gr.getIdGrupo();
+                }
+            }
+        } else
+        {
+            for (Object g : grupos)
+            {
+                Grupo gr = (Grupo) g;
+                if (gr.getIdGrupo().equals(id))
+                {
+                    return gr.getNombreGrupo();
+                }
+            }
+        }
+        return null;
+    }
+
+    private String buscaGrupoFiltro(String id, String grupo) {
+        System.out.println("netree al filtro");
+        if (grupo != null)
+        {
+            for (Object g : grupos1)
+            {
+                Grupo gr = (Grupo) g;
+                if (gr.getNombreGrupo().equals(grupo))
+                {
+                    return gr.getIdGrupo();
+                }
+            }
+        } else
+        {
+            for (Object g : grupos1)
+            {
+                Grupo gr = (Grupo) g;
+                if (gr.getIdGrupo().equals(id))
+                {
+                    return gr.getNombreGrupo();
+                }
+            }
+        }
+        return null;
+    }
+
+    private String buscaPeriodo(String id, String periodo) {
+        if (periodo != null)
+        {
+            for (Object p : periodos)
+            {
+                periodoEscolar gr = (periodoEscolar) p;
+                if ((gr.getPeriodo()).equals(periodo))
+                {
+                    return gr.getId_periodo();
+                }
+            }
+        } else
+        {
+            for (Object p : periodos)
+            {
+                periodoEscolar gr = (periodoEscolar) p;
+                if ((gr.getId_periodo()).equals(id))
+                {
+                    return gr.getPeriodo();
+                }
+            }
+        }
+        return null;
+    }
+
+    private String buscaMateria(String id, String materia) {
+        if (materia != null)
+        {
+            for (Object m : materias)
+            {
+                Materia mt = (Materia) m;
+                if (mt.getUnidadAprendizaje().equals(materia))
+                {
+                    return mt.getClaveMateria();
+                }
+            }
+        } else
+        {
+            for (Object m : materias)
+            {
+                Materia mt = (Materia) m;
+                if (mt.getClaveMateria().equals(id))
+                {
+                    return mt.getUnidadAprendizaje();
+                }
+            }
+        }
+        return null;
+    }
+
+    private boolean comparaGrupos(PeriodoHorarios hr) {
+        boolean var = true;
+        double entradaHR, salidaHR, entradaBd, salidaBD;
+        System.out.println("grpo " + hr.getIdGrupo());
+        for (int i = 0; i < horariosBD.size(); i++)
+        {
+            if (hr.getIdHorario() != horariosBD.get(i).getIdHorario() && hr.getDia().equals(horariosBD.get(i).getDia()) && hr.getIdGrupo().equals(horariosBD.get(i).getIdGrupo()) && hr.getIdPeriodo().equals(horariosBD.get(i).getIdPeriodo()))
+            {
+                System.out.println("+ + + + + Es el mismo dia en " + i + " y elm mismo grupo en registro " + horariosBD.get(i).getIdHorario());
+                entradaHR = Double.parseDouble(hr.getEntrada().substring(0, 2) + "." + hr.getEntrada().substring(3, 5));
+                salidaHR = Double.parseDouble(hr.getSalida().substring(0, 2) + "." + hr.getSalida().substring(3, 5));
+                entradaBd = Double.parseDouble(horariosBD.get(i).getEntrada().substring(0, 2) + "." + horariosBD.get(i).getEntrada().substring(3, 5));
+                salidaBD = Double.parseDouble(horariosBD.get(i).getSalida().substring(0, 2) + "." + horariosBD.get(i).getSalida().substring(3, 5));
+
+                System.out.println(". . . . . entrada registro " + entradaHR + " Y salida " + salidaHR);
+                System.out.println(". . . . . entrada registro " + entradaBd + " Y salida " + salidaBD);
+                if (entradaHR >= entradaBd && entradaHR < salidaBD)
+                {
+                    Mensaje.error(this, "Este grupo ya tiene la materia de " + buscaMateria(horariosBD.get(i).getClaveMateria(), null) + " De las " + entradaBd + "Hrs. a las " + salidaBD + "Hrs.");
+                    var = false;
+                }
+            }
+        }
+        return var;
+    }
+
+    private boolean comparaProfesores(PeriodoHorarios hr) {
+        System.out.println("entre a profesores");
+        boolean var = true;
+        double entradaHR, salidaHR, entradaBd, salidaBD;
+
+        for (int i = 0; i < horariosBD.size(); i++)
+        {
+            if (hr.getIdHorario() != horariosBD.get(i).getIdHorario() && hr.getRfc().equalsIgnoreCase(horariosBD.get(i).getRfc()) && hr.getDia().equals(horariosBD.get(i).getDia()) && hr.getIdPeriodo().equals(horariosBD.get(i).getIdPeriodo()))
+            {
+                System.out.println("+ + + + + Es el mismo rfc  y el mismo dia en registro " + horariosBD.get(i).getIdHorario());
+                entradaHR = Double.parseDouble(hr.getEntrada().substring(0, 2) + "." + hr.getEntrada().substring(3, 5));
+                salidaHR = Double.parseDouble(hr.getSalida().substring(0, 2) + "." + hr.getSalida().substring(3, 5));
+                entradaBd = Double.parseDouble(horariosBD.get(i).getEntrada().substring(0, 2) + "." + horariosBD.get(i).getEntrada().substring(3, 5));
+                salidaBD = Double.parseDouble(horariosBD.get(i).getSalida().substring(0, 2) + "." + horariosBD.get(i).getSalida().substring(3, 5));
+                System.out.println("Grupo: " + horariosBD.get(i).getIdGrupo());
+                System.out.println("Grupo: " + buscaGrupo(horariosBD.get(i).getIdGrupo(), null));
+                System.out.println(". . . . . entrada hr " + entradaHR + " Y salida " + salidaHR);
+                System.out.println(". . . . . entrada bd " + entradaBd + " Y salida " + salidaBD);
+                if (entradaHR >= entradaBd && entradaHR < salidaBD)
+                {
+                    Mensaje.error(this, "Este docente ya tiene una materia asignada de las: " + entradaBd + " Hrs. a las " + salidaBD + " Hrs. En el grupo " + buscaGrupo(horariosBD.get(i).getIdGrupo(), null));
+                    //System.out.println("! ! ! ! ! Choque de horas de entradaHR: " + entradaHR + " con entradaBD: " + entradaBd +" y salidaBD: " + salidaBD);
+                    //System.out.println("Del registro: " + horariosBD.get(i).getIdHorario());
+                    var = false;
+                }
+            }
+        }
+        return var;
+    }
+
+    private void cancelar() {
+        edicion();
+        CtrlInterfaz.limpia(txtId, txtHoraEntrada, txtHoraSalida);
+        CtrlInterfaz.habilita(false, txtId, comboPeriodo, comboLicenciatura, comboGrupo, comboMateria, comboDocente, 
+                comboDia, txtHoraEntrada, txtHoraSalida, btnCancelar);
+        CtrlInterfaz.habilita(true, btnNuevo, btnModificar, btnEliminar, btnExportar1);
+        btnNuevo.setText("Nuevo");
+        btnModificar.setText("Modificar");
+    }
+
+    private boolean insertaEnBaseUnicoHorario(PeriodoHorarios horario) {
+        boolean registro = ConsultasObjetos.inserta(horario, ConectarBase.conectado(), "horarios");
+        return registro;
+    }
+
+    private int buscarCombo(String text, JComboBox<String> jCombo) {
+        for (int i = 0; i < jCombo.getItemCount(); i++)
+        {
+            if (text.equals(jCombo.getItemAt(i)))
+            {
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    private String retornameLic(String grupito) {
+        Grupo gp = new Grupo();
+        gp = (Grupo) ConsultasObjetos.consultaUnica("grupo", "nombre_grupo", grupito, ConectarBase.conectado());
+        if (gp != null)
+        {
+            return gp.getId_licenciatura();
+        } else
+        {
+            return "Sin datos";
+        }
+    }
+
+    private void importarBD() {
+        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
+        periodos = ConsultasObjetos.consultaMuchos("periodo_escolar", null, null, null, null, "periodo", ConectarBase.conectado());
+        grupos = ConsultasObjetos.consultaMuchos("grupo", null, null, null, null, "nombre_grupo", ConectarBase.conectado());
+        materias = ConsultasObjetos.consultaMuchos("materia", null, null, null, null, "unidad_aprendizaje", ConectarBase.conectado());
+        profesores = ConsultasObjetos.consultaMuchos("profesores", "nivel", "profesor", null, null, "nombres", ConectarBase.conectado());
+        horarios = ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, "dia", ConectarBase.conectado());
+        horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, null, ConectarBase.conectado()));
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -579,6 +1456,7 @@ public class VtnHorarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TablaHorarios;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnEliminar;
@@ -598,7 +1476,6 @@ public class VtnHorarios extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboTipo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelnombre;
     private javax.swing.JLabel labelnombre1;
     private javax.swing.JLabel labelnombre10;
@@ -613,7 +1490,6 @@ public class VtnHorarios extends javax.swing.JFrame {
     private javax.swing.JLabel labelnombre7;
     private javax.swing.JLabel labelnombre8;
     private javax.swing.JLabel labelnombre9;
-    private javax.swing.JTextField nombreArchivo1;
     private javax.swing.JPanel panelBusqeuda;
     private javax.swing.JPanel panelCaptura;
     private javax.swing.JPanel panelConsulta1;
@@ -622,6 +1498,7 @@ public class VtnHorarios extends javax.swing.JFrame {
     private javax.swing.JPanel panelTabla;
     private javax.swing.JTextField txtHoraEntrada;
     private javax.swing.JTextField txtHoraSalida;
-    private javax.swing.JTextField txtMatricula;
+    private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtNombreArchivo1;
     // End of variables declaration//GEN-END:variables
 }

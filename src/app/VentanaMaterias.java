@@ -109,7 +109,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jCLicenciaturaFiltro = new javax.swing.JComboBox<>();
-        jcSesmtre = new javax.swing.JComboBox<>();
+        jcSesmtrefiltro = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
         btnBusca = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
@@ -479,15 +479,15 @@ public class VentanaMaterias extends javax.swing.JFrame {
             }
         });
 
-        jcSesmtre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
-        jcSesmtre.addItemListener(new java.awt.event.ItemListener() {
+        jcSesmtrefiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        jcSesmtrefiltro.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcSesmtreItemStateChanged(evt);
+                jcSesmtrefiltroItemStateChanged(evt);
             }
         });
-        jcSesmtre.addActionListener(new java.awt.event.ActionListener() {
+        jcSesmtrefiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcSesmtreActionPerformed(evt);
+                jcSesmtrefiltroActionPerformed(evt);
             }
         });
 
@@ -539,7 +539,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jcSesmtre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jcSesmtrefiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -560,7 +560,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel14)
                         .addComponent(jLabel15)
-                        .addComponent(jcSesmtre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jcSesmtrefiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel18)
                         .addComponent(JCPlanFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28))
@@ -618,7 +618,6 @@ public class VentanaMaterias extends javax.swing.JFrame {
                                                 .addGap(18, 18, 18)
                                                 .addComponent(btnAgregar4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jBRegresar)
                                         .addGap(18, 18, 18)
                                         .addComponent(jBCerrarSesion))
@@ -902,7 +901,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
 
     private void jCLicenciaturaFiltroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCLicenciaturaFiltroItemStateChanged
         actualizarTabla(3);
-        jcSesmtre.setSelectedIndex(0);
+        jcSesmtrefiltro.setSelectedIndex(0);
         JCPlanFiltro.setSelectedIndex(0);
         llenaComboPlanesFiltro();
     }//GEN-LAST:event_jCLicenciaturaFiltroItemStateChanged
@@ -917,14 +916,14 @@ public class VentanaMaterias extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscaActionPerformed
 
-    private void jcSesmtreItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcSesmtreItemStateChanged
+    private void jcSesmtrefiltroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcSesmtrefiltroItemStateChanged
         actualizarTabla(4);
         JCPlanFiltro.setSelectedIndex(0);
-    }//GEN-LAST:event_jcSesmtreItemStateChanged
+    }//GEN-LAST:event_jcSesmtrefiltroItemStateChanged
 
-    private void jcSesmtreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcSesmtreActionPerformed
+    private void jcSesmtrefiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcSesmtrefiltroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jcSesmtreActionPerformed
+    }//GEN-LAST:event_jcSesmtrefiltroActionPerformed
 
     private void jTClaveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTClaveKeyTyped
         Validaciones.validaAlfanumerico(evt);
@@ -1067,7 +1066,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
     private javax.swing.JTextField jTCreditos;
     private javax.swing.JTextField jTHoras;
     private javax.swing.JTextField jTNombre;
-    private javax.swing.JComboBox<String> jcSesmtre;
+    private javax.swing.JComboBox<String> jcSesmtrefiltro;
     private javax.swing.JTextField jtIDBusqeuda;
     private javax.swing.JTextField txtnombreArchivo;
     // End of variables declaration//GEN-END:variables
@@ -1141,7 +1140,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
                 }
                 break;
             case 4:
-                if (jcSesmtre.getSelectedIndex() == 0)
+                if (jcSesmtrefiltro.getSelectedIndex() == 0)
                 {
                     actualizarTabla(3);
                 } else
@@ -1156,7 +1155,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
                         for (Object m : materia)
                         {
                             Materia mat = (Materia) m;
-                            if (mat.getClaveCarrera().equals(buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString())) && mat.getNumeroPeriodo() == Integer.parseInt(jcSesmtre.getSelectedItem().toString()))
+                            if (mat.getClaveCarrera().equals(buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString())) && mat.getNumeroPeriodo() == Integer.parseInt(jcSesmtrefiltro.getSelectedItem().toString()))
                             {
                                 modelo.addRow(new Object[]
                                 {
@@ -1170,7 +1169,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
                 }
                 break;
             case 5:
-                if (jcSesmtre.getSelectedIndex() == 0)
+                if (jcSesmtrefiltro.getSelectedIndex() == 0)
                 {
                     actualizarTabla(3);
                 } else
@@ -1185,7 +1184,7 @@ public class VentanaMaterias extends javax.swing.JFrame {
                         for (Object m : materia)
                         {
                             Materia mat = (Materia) m;
-                            if (mat.getClaveCarrera().equals(buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString())) && mat.getNumeroPeriodo() == Integer.parseInt(jcSesmtre.getSelectedItem().toString()) && mat.getPlanEstudios().equals(buscaPlan(null, JCPlanFiltro.getSelectedItem().toString())))
+                            if (mat.getClaveCarrera().equals(buscaLic(null, jCLicenciaturaFiltro.getSelectedItem().toString())) && mat.getNumeroPeriodo() == Integer.parseInt(jcSesmtrefiltro.getSelectedItem().toString()) && mat.getPlanEstudios().equals(buscaPlan(null, JCPlanFiltro.getSelectedItem().toString())))
                             {
                                 modelo.addRow(new Object[]
                                 {
