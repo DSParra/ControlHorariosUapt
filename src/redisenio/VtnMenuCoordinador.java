@@ -5,7 +5,12 @@
  */
 package redisenio;
 
+import Clases.ConectarBase;
+import Clases.ConsultasObjetos;
+import Objetos.Licenciatura;
+import app.VentanaLogin;
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 /**
@@ -14,12 +19,15 @@ import javax.swing.ImageIcon;
  */
 public class VtnMenuCoordinador extends javax.swing.JFrame {
 
+    public static String licenciatura;
+    private ArrayList<Object> lics = new ArrayList<>();
+    Login vtn = new Login();
     /**
      * Creates new form NewJFrame
      */
     public VtnMenuCoordinador() {
         initComponents();
-        this.getContentPane().setBackground(Color.WHITE);
+        this.setExtendedState(MAXIMIZED_BOTH);
         this.setIconImage(new ImageIcon(getClass().getResource("/Iconos2/SCHR.png")).getImage());
     }
 
@@ -35,7 +43,6 @@ public class VtnMenuCoordinador extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         btnDocentes = new javax.swing.JButton();
-        btnPeriodos = new javax.swing.JButton();
         btnPlanes = new javax.swing.JButton();
         btnMaterias = new javax.swing.JButton();
         btnGrupos = new javax.swing.JButton();
@@ -45,10 +52,21 @@ public class VtnMenuCoordinador extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLTituloUAPT1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        labelLic = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel2.setBackground(new java.awt.Color(0, 51, 0));
@@ -59,6 +77,11 @@ public class VtnMenuCoordinador extends javax.swing.JFrame {
         btnDocentes.setForeground(new java.awt.Color(255, 255, 255));
         btnDocentes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/profesor.png"))); // NOI18N
         btnDocentes.setText("DOCENTES");
+        btnDocentes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDocentesActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -69,28 +92,18 @@ public class VtnMenuCoordinador extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel2.add(btnDocentes, gridBagConstraints);
 
-        btnPeriodos.setBackground(new java.awt.Color(102, 102, 0));
-        btnPeriodos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnPeriodos.setForeground(new java.awt.Color(255, 255, 255));
-        btnPeriodos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/calendario.png"))); // NOI18N
-        btnPeriodos.setText("PERIODOS");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 20;
-        gridBagConstraints.ipady = 50;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel2.add(btnPeriodos, gridBagConstraints);
-
         btnPlanes.setBackground(new java.awt.Color(102, 102, 0));
         btnPlanes.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnPlanes.setForeground(new java.awt.Color(255, 255, 255));
         btnPlanes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/plan.png"))); // NOI18N
         btnPlanes.setText("PLAN ESTUDIOS");
+        btnPlanes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlanesActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 20;
@@ -105,9 +118,14 @@ public class VtnMenuCoordinador extends javax.swing.JFrame {
         btnMaterias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/Materias.png"))); // NOI18N
         btnMaterias.setText("MATERIAS");
         btnMaterias.setActionCommand("Materias");
+        btnMaterias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMateriasActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.ipady = 50;
@@ -120,8 +138,13 @@ public class VtnMenuCoordinador extends javax.swing.JFrame {
         btnGrupos.setForeground(new java.awt.Color(255, 255, 255));
         btnGrupos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/grupo.png"))); // NOI18N
         btnGrupos.setText("GRUPOS");
+        btnGrupos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGruposActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 20;
@@ -135,8 +158,13 @@ public class VtnMenuCoordinador extends javax.swing.JFrame {
         btnHorarios.setForeground(new java.awt.Color(255, 255, 255));
         btnHorarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/horario.png"))); // NOI18N
         btnHorarios.setText("HORARIOS");
+        btnHorarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHorariosActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 20;
@@ -150,9 +178,14 @@ public class VtnMenuCoordinador extends javax.swing.JFrame {
         btnCargaExcel.setForeground(new java.awt.Color(255, 255, 255));
         btnCargaExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/excel.png"))); // NOI18N
         btnCargaExcel.setText("CARGAR EXCEL");
+        btnCargaExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCargaExcelActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.ipady = 50;
@@ -205,12 +238,12 @@ public class VtnMenuCoordinador extends javax.swing.JFrame {
         gridBagConstraints.gridy = 2;
         jPanel1.add(jLTituloUAPT1, gridBagConstraints);
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel3.setText("MENÚ PRINCIPAL COORDINADOR");
+        labelLic.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelLic.setText("MENÚ PRINCIPAL COORDINADOR");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        jPanel1.add(jLabel3, gridBagConstraints);
+        jPanel1.add(labelLic, gridBagConstraints);
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos2/logoUAEMEX.png"))); // NOI18N
@@ -218,6 +251,13 @@ public class VtnMenuCoordinador extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         jPanel1.add(jLabel4, gridBagConstraints);
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel5.setText("PARA GESTIONAR CUALQUIERA DE LOS APARTADOS, POR FAVOR PRESIONA UN BOTÓN.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        jPanel1.add(jLabel5, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -236,6 +276,72 @@ public class VtnMenuCoordinador extends javax.swing.JFrame {
         new Login().setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void btnDocentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocentesActionPerformed
+        this.setVisible(false);
+        new VtnDocentesCoordinador().setVisible(true);
+    }//GEN-LAST:event_btnDocentesActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        
+    }//GEN-LAST:event_formKeyPressed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
+        labelLic.setText(buscaLic(licenciatura, null));
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btnPlanesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanesActionPerformed
+        this.setVisible(false);
+        new VtnPlanEstudiosCoordinador().setVisible(true);
+    }//GEN-LAST:event_btnPlanesActionPerformed
+
+    private void btnMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMateriasActionPerformed
+        this.setVisible(false);
+        new VtnMateriasCoordinador().setVisible(true);
+    }//GEN-LAST:event_btnMateriasActionPerformed
+
+    private void btnGruposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGruposActionPerformed
+        this.setVisible(false);
+        new VtnGruposCoordinador().setVisible(true);
+        
+    }//GEN-LAST:event_btnGruposActionPerformed
+
+    private void btnHorariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHorariosActionPerformed
+        this.setVisible(false);
+        new VtnHorariosCoordinador().setVisible(true);
+    }//GEN-LAST:event_btnHorariosActionPerformed
+
+    private void btnCargaExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargaExcelActionPerformed
+        this.setVisible(false);
+        Vista.VistaExcel.valVentana = 2;
+        new Vista.VistaExcel().setVisible(true);
+    }//GEN-LAST:event_btnCargaExcelActionPerformed
+
+      public String buscaLic(String id, String licenciatura) {
+        if (licenciatura != null)
+        {
+            for (Object l : lics)
+            {
+                Licenciatura lic = (Licenciatura) l;
+                if ((lic.getLicenciatura()).equals(licenciatura))
+                {
+                    return lic.getIdLicenciatura();
+                }
+            }
+        } else
+        {
+            for (Object l : lics)
+            {
+                Licenciatura lic = (Licenciatura) l;
+                if (lic.getIdLicenciatura().equals(id))
+                {
+                    return lic.getLicenciatura();
+                }
+            }
+        }
+        return null;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -264,8 +370,8 @@ public class VtnMenuCoordinador extends javax.swing.JFrame {
         } catch (IllegalAccessException ex)
         {
             java.util.logging.Logger.getLogger(VtnMenuCoordinador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex)
-btnDocentes
+        } catch (javax.swing.UnsupportedLookAndFeelException ex){
+
             java.util.logging.Logger.getLogger(VtnMenuCoordinador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -291,14 +397,14 @@ btnDocentes
     private javax.swing.JButton btnGrupos;
     private javax.swing.JButton btnHorarios;
     private javax.swing.JButton btnMaterias;
-    private javax.swing.JButton btnPeriodos;
     private javax.swing.JButton btnPlanes;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLTituloUAPT1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel labelLic;
     // End of variables declaration//GEN-END:variables
 }

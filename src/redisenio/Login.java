@@ -13,6 +13,7 @@ import app.VentanaAdministrador;
 import static app.VentanaLogin.con;
 import static app.VentanaLogin.lic;
 import app.VentanaMenuCoordinador;
+import redisenio.VtnMenuCoordinador;
 import cjb.ci.Mensaje;
 import cjb.ci.Validaciones;
 import java.awt.Color;
@@ -250,7 +251,7 @@ public class Login extends javax.swing.JFrame {
         String val = ConsultasObjetos.validaEntrar(txtUsuario.getText(), txtcontrasenia.getText(), con);
         lic = ConsultasObjetos.obtieneIDLic(txtUsuario.getText(), ConectarBase.conectado());
         System.out.println("lic" + lic);
-        VentanaMenuCoordinador.licenciatura = lic;
+        redisenio.VtnMenuCoordinador.licenciatura = lic;
         
         if (val.equals("usuario"))
         {

@@ -5,7 +5,22 @@
  */
 package redisenio;
 
+import Clases.Archivo;
+import Clases.ConectarBase;
+import Clases.ConsultasObjetos;
+import Clases.Valida;
+import Objetos.Licenciatura;
+import Objetos.Materia;
+import Objetos.PlanEstudios;
+import app.VentanaLogin;
+import cjb.ci.CtrlInterfaz;
+import cjb.ci.Mensaje;
+import cjb.ci.Validaciones;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,12 +28,41 @@ import javax.swing.ImageIcon;
  */
 public class VtnMateriasCoordinador extends javax.swing.JFrame {
 
+    int id = 0;
+    private Boolean edicion = true;
+    private DefaultTableModel modelo;
+    private ArrayList<Object> plans = new ArrayList<>();
+    private ArrayList<Object> planes1 = new ArrayList<>();
+    private ArrayList<Object> lics = new ArrayList<>();
+    Login login = new Login();
+    ArrayList materias = new ArrayList();
+
     /**
      * Creates new form VtnDocentes
      */
     public VtnMateriasCoordinador() {
         initComponents();
         this.setIconImage(new ImageIcon(getClass().getResource("/Iconos2/SCHR.png")).getImage());
+        this.setExtendedState(MAXIMIZED_BOTH);
+        tablaMaterias.getColumnModel().getColumn(0).setPreferredWidth(10);
+        tablaMaterias.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tablaMaterias.getColumnModel().getColumn(2).setPreferredWidth(100);
+        tablaMaterias.getColumnModel().getColumn(3).setPreferredWidth(20);
+        tablaMaterias.getColumnModel().getColumn(4).setPreferredWidth(3);
+        tablaMaterias.getColumnModel().getColumn(5).setPreferredWidth(3);
+        tablaMaterias.getColumnModel().getColumn(6).setPreferredWidth(10);
+        tablaMaterias.getColumnModel().getColumn(7).setPreferredWidth(20);
+        tablaMaterias.getColumnModel().getColumn(8).setPreferredWidth(20);
+        tablaMaterias.getColumnModel().getColumn(0).setResizable(false);
+        tablaMaterias.getColumnModel().getColumn(1).setResizable(false);
+        tablaMaterias.getColumnModel().getColumn(2).setResizable(false);
+        tablaMaterias.getColumnModel().getColumn(3).setResizable(false);
+        tablaMaterias.getColumnModel().getColumn(4).setResizable(false);
+        tablaMaterias.getColumnModel().getColumn(5).setResizable(false);
+        tablaMaterias.getColumnModel().getColumn(6).setResizable(false);
+        tablaMaterias.getColumnModel().getColumn(7).setResizable(false);
+        tablaMaterias.getColumnModel().getColumn(8).setResizable(false);
+
     }
 
     /**
@@ -40,9 +84,9 @@ public class VtnMateriasCoordinador extends javax.swing.JFrame {
         labelnombre5 = new javax.swing.JLabel();
         labelnombre6 = new javax.swing.JLabel();
         txtMatricula = new javax.swing.JTextField();
-        txtNombres = new javax.swing.JTextField();
-        txtGrado = new javax.swing.JTextField();
-        txtCorreo = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        txtHoras = new javax.swing.JTextField();
+        txtCreditos = new javax.swing.JTextField();
         btnNuevo = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
@@ -58,22 +102,27 @@ public class VtnMateriasCoordinador extends javax.swing.JFrame {
         panelBusqeuda = new javax.swing.JPanel();
         labelnombre8 = new javax.swing.JLabel();
         labelnombre7 = new javax.swing.JLabel();
-        txtRFC1 = new javax.swing.JTextField();
+        txtIdBusqueda = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         labelnombre12 = new javax.swing.JLabel();
         comboSemestreBusqueda = new javax.swing.JComboBox<>();
         comboPlanBusqueda = new javax.swing.JComboBox<>();
         panelTabla = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaMaterias = new javax.swing.JTable();
         panelEXportacion = new javax.swing.JPanel();
         labelnombre10 = new javax.swing.JLabel();
-        nombreArchivo1 = new javax.swing.JTextField();
-        btnExportar1 = new javax.swing.JButton();
+        txtNombreArchivo = new javax.swing.JTextField();
+        btnExportar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         panelCaptura.setBackground(new java.awt.Color(255, 255, 255));
@@ -147,6 +196,20 @@ public class VtnMateriasCoordinador extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(labelnombre6, gridBagConstraints);
+
+        txtMatricula.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtMatriculaFocusLost(evt);
+            }
+        });
+        txtMatricula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtMatriculaKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMatriculaKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -154,32 +217,71 @@ public class VtnMateriasCoordinador extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(txtMatricula, gridBagConstraints);
+
+        txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNombreFocusLost(evt);
+            }
+        });
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(txtNombres, gridBagConstraints);
+        jPanel1.add(txtNombre, gridBagConstraints);
+
+        txtHoras.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtHorasKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtHorasKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 9;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(txtGrado, gridBagConstraints);
+        jPanel1.add(txtHoras, gridBagConstraints);
+
+        txtCreditos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCreditosKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCreditosKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 11;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(txtCorreo, gridBagConstraints);
+        jPanel1.add(txtCreditos, gridBagConstraints);
 
         btnNuevo.setBackground(new java.awt.Color(102, 102, 0));
         btnNuevo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
         btnNuevo.setText("NUEVO");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 18;
@@ -192,6 +294,11 @@ public class VtnMateriasCoordinador extends javax.swing.JFrame {
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 19;
@@ -204,6 +311,11 @@ public class VtnMateriasCoordinador extends javax.swing.JFrame {
         btnModificar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnModificar.setForeground(new java.awt.Color(255, 255, 255));
         btnModificar.setText("MODIFICAR");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 20;
@@ -216,6 +328,11 @@ public class VtnMateriasCoordinador extends javax.swing.JFrame {
         btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelar.setText("CANCELAR");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 21;
@@ -224,6 +341,11 @@ public class VtnMateriasCoordinador extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(btnCancelar, gridBagConstraints);
 
+        comboPlanEstudios.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                comboPlanEstudiosKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -232,6 +354,12 @@ public class VtnMateriasCoordinador extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(comboPlanEstudios, gridBagConstraints);
 
+        comboSemestre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        comboSemestre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                comboSemestreKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 13;
@@ -241,6 +369,11 @@ public class VtnMateriasCoordinador extends javax.swing.JFrame {
         jPanel1.add(comboSemestre, gridBagConstraints);
 
         comboNucleo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BASICO", "SUSTANTIVO", "INTEGRAL" }));
+        comboNucleo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                comboNucleoKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 15;
@@ -321,13 +454,24 @@ public class VtnMateriasCoordinador extends javax.swing.JFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         panelBusqeuda.add(labelnombre7, gridBagConstraints);
+
+        txtIdBusqueda.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtIdBusquedaFocusLost(evt);
+            }
+        });
+        txtIdBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdBusquedaKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        panelBusqeuda.add(txtRFC1, gridBagConstraints);
+        panelBusqeuda.add(txtIdBusqueda, gridBagConstraints);
 
         btnBuscar.setBackground(new java.awt.Color(102, 102, 0));
         btnBuscar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -351,11 +495,23 @@ public class VtnMateriasCoordinador extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         panelBusqeuda.add(labelnombre12, gridBagConstraints);
 
+        comboSemestreBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        comboSemestreBusqueda.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboSemestreBusquedaItemStateChanged(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         panelBusqeuda.add(comboSemestreBusqueda, gridBagConstraints);
 
+        comboPlanBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        comboPlanBusqueda.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboPlanBusquedaItemStateChanged(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
@@ -371,7 +527,8 @@ public class VtnMateriasCoordinador extends javax.swing.JFrame {
 
         panelTabla.setLayout(new java.awt.GridBagLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaMaterias.setBackground(new java.awt.Color(255, 255, 204));
+        tablaMaterias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -381,8 +538,21 @@ public class VtnMateriasCoordinador extends javax.swing.JFrame {
             new String [] {
                 "CLAVE", "LICENCIATURA", "PLAN ESTUDIOS", "NOMBRES", "HORAS", "CREDITOS", "SEMESTRE", "NUCLEO", "TIPO"
             }
-        ));
-        jScrollPane2.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaMaterias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMateriasMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tablaMaterias);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -419,19 +589,24 @@ public class VtnMateriasCoordinador extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        panelEXportacion.add(nombreArchivo1, gridBagConstraints);
+        panelEXportacion.add(txtNombreArchivo, gridBagConstraints);
 
-        btnExportar1.setBackground(new java.awt.Color(102, 102, 0));
-        btnExportar1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnExportar1.setForeground(new java.awt.Color(255, 255, 255));
-        btnExportar1.setText("EXPORTAR");
+        btnExportar.setBackground(new java.awt.Color(102, 102, 0));
+        btnExportar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnExportar.setForeground(new java.awt.Color(255, 255, 255));
+        btnExportar.setText("EXPORTAR");
+        btnExportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        panelEXportacion.add(btnExportar1, gridBagConstraints);
+        panelEXportacion.add(btnExportar, gridBagConstraints);
 
         btnRegresar.setBackground(new java.awt.Color(102, 102, 0));
         btnRegresar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -506,6 +681,425 @@ public class VtnMateriasCoordinador extends javax.swing.JFrame {
         new VtnMenuCoordinador().setVisible(true);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        if (!edicion)
+        {
+            edicion();
+            btnNuevo.setText("ACEPTAR");
+            CtrlInterfaz.limpia(txtMatricula, txtNombre, txtHoras, txtCreditos);
+            CtrlInterfaz.habilita(true, txtMatricula, comboPlanEstudios, txtNombre, txtHoras, txtCreditos, comboSemestre, comboNucleo, comboTipo, btnCancelar);
+            CtrlInterfaz.habilita(false, btnModificar, btnEliminar, btnExportar);
+            CtrlInterfaz.selecciona(txtMatricula);
+        } else
+        {
+            Materia mat = new Materia(txtMatricula.getText(), txtNombre.getText(), Integer.parseInt(txtHoras.getText()), Integer.parseInt(txtCreditos.getText()), Integer.parseInt(comboSemestre.getSelectedItem().toString()), comboNucleo.getSelectedItem().toString(), comboTipo.getSelectedItem().toString(), login.lic, buscaPlan(null, comboPlanEstudios.getSelectedItem().toString()));
+            Mensaje.exito(this, "Espere por favor haciendo inserccion en base de datos");
+            String mensaje = Controlador.ControladorMaterias.insertaMateria(mat);
+            if (mensaje.equals("operacion exitosa"))
+            {
+                btnNuevo.setText("NUEVO");
+                CtrlInterfaz.habilita(false, txtMatricula, comboPlanEstudios, txtNombre, txtHoras, txtCreditos, comboSemestre, comboNucleo, comboTipo, btnCancelar);
+                CtrlInterfaz.habilita(true, btnModificar, btnEliminar, btnExportar);
+                CtrlInterfaz.limpia(txtMatricula, txtCreditos, txtHoras, txtNombre);
+                importarBD();
+                actualizarTabla(1);
+                comboSemestre.setSelectedItem(0);
+                edicion();
+            } else
+            {
+                JOptionPane.showMessageDialog(rootPane, mensaje);
+            }
+        }
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        if (txtMatricula.getText().compareTo("") == 0)
+        {
+            Mensaje.error(this, "NO HA SELECCIONADO NINGUN REGISTRO");
+        } else
+        {
+            if (!edicion)
+            {
+                edicion();
+                btnModificar.setText("ACEPTAR");
+                CtrlInterfaz.habilita(true, comboPlanEstudios, txtNombre, txtHoras, txtCreditos, comboSemestre, comboNucleo, comboTipo, btnCancelar);
+                CtrlInterfaz.habilita(false, btnNuevo, btnEliminar, btnExportar);
+
+            } else
+            {
+                Materia materia = new Materia(txtMatricula.getText(), txtNombre.getText(), Integer.parseInt(txtHoras.getText()), Integer.parseInt(txtCreditos.getText()), Integer.parseInt(comboSemestre.getSelectedItem().toString()), comboNucleo.getSelectedItem().toString(), comboTipo.getSelectedItem().toString(), login.lic, buscaPlan(null, comboPlanEstudios.getSelectedItem().toString()));
+                Mensaje.exito(this, "Espere por favor haciendo modificacion en base de datos");
+                String mensaje = Controlador.ControladorMaterias.modifcaMateria(materia, (String) tablaMaterias.getValueAt(tablaMaterias.getSelectedRow(), 0));
+                if (mensaje.equals("operacion exitosa"))
+                {
+                    btnModificar.setText("MODIFICAR");
+                    CtrlInterfaz.habilita(false, txtMatricula, comboPlanEstudios, txtNombre, txtHoras, txtCreditos, comboSemestre, comboNucleo, comboTipo, btnCancelar);
+                    CtrlInterfaz.habilita(true, btnNuevo, btnEliminar, btnExportar);
+                    CtrlInterfaz.limpia(txtMatricula, txtCreditos, txtHoras, txtNombre);
+                    importarBD();
+                    actualizarTabla(1);
+                    comboSemestre.setSelectedItem(0);
+                    edicion();
+                } else
+                {
+                    JOptionPane.showMessageDialog(rootPane, mensaje);
+                }
+            }
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        if (Mensaje.pregunta(this, "¿En realidad quiere eliminar el periodo " + txtMatricula.getText() + "?") == 0)
+        {
+            Mensaje.exito(this, "Espere por favor eliminando registro de la base de datos");
+            String mensaje = Controlador.ControladorMaterias.eliminaMateria(txtMatricula.getText());
+            if (mensaje.endsWith("operacion exitosa"))
+            {
+                importarBD();
+                actualizarTabla(1);
+                comboSemestre.setSelectedItem(0);
+            } else
+            {
+                JOptionPane.showMessageDialog(rootPane, mensaje);
+            }
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        cancelar();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
+        if (txtNombreArchivo.getText() != null)
+        {
+            String mensaje = Archivo.Exportar(tablaMaterias, txtNombreArchivo.getText());
+            if (mensaje.equals("Error en la Exportacion"))
+            {
+                Mensaje.error(this, mensaje);
+            } else
+            {
+                Mensaje.exito(this, mensaje);
+            }
+        } else
+        {
+            Mensaje.error(this, "Escriba el nombre del archivo");
+        }
+    }//GEN-LAST:event_btnExportarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        cancelar();
+        importarBD();
+        actualizarTabla(1);
+        llenaComboPlanes();
+        llenaComboPlanesFiltro();
+    }//GEN-LAST:event_formWindowOpened
+
+    private void tablaMateriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMateriasMouseClicked
+        txtMatricula.setText((String) modelo.getValueAt(tablaMaterias.getSelectedRow(), 0));
+        txtNombre.setText((String) modelo.getValueAt(tablaMaterias.getSelectedRow(), 1));
+        comboPlanEstudios.setSelectedIndex((buscarCombo((String) modelo.getValueAt(tablaMaterias.getSelectedRow(), 3), comboPlanEstudios)));
+        txtHoras.setText((String) modelo.getValueAt(tablaMaterias.getSelectedRow(), 4).toString());
+        txtCreditos.setText((String) modelo.getValueAt(tablaMaterias.getSelectedRow(), 5).toString());
+        comboSemestre.setSelectedIndex(buscarCombo((String) modelo.getValueAt(tablaMaterias.getSelectedRow(), 6).toString(), comboSemestre));
+        comboNucleo.setSelectedIndex(buscarCombo((String) modelo.getValueAt(tablaMaterias.getSelectedRow(), 7), comboNucleo));
+        comboTipo.setSelectedIndex(buscarCombo((String) modelo.getValueAt(tablaMaterias.getSelectedRow(), 8), comboTipo));
+
+    }//GEN-LAST:event_tablaMateriasMouseClicked
+
+    private void comboSemestreBusquedaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboSemestreBusquedaItemStateChanged
+        actualizarTabla(3);
+        comboPlanBusqueda.setSelectedIndex(0);
+    }//GEN-LAST:event_comboSemestreBusquedaItemStateChanged
+
+    private void comboPlanBusquedaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboPlanBusquedaItemStateChanged
+        actualizarTabla(4);
+    }//GEN-LAST:event_comboPlanBusquedaItemStateChanged
+
+    private void txtMatriculaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatriculaKeyTyped
+        Validaciones.validaAlfanumerico(evt);
+        Valida.validaLongitud(txtMatricula, 10, evt);
+    }//GEN-LAST:event_txtMatriculaKeyTyped
+
+    private void txtMatriculaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMatriculaFocusLost
+        Valida.convertirAMayusculas(txtMatricula);
+    }//GEN-LAST:event_txtMatriculaFocusLost
+
+    private void txtMatriculaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatriculaKeyPressed
+        Validaciones.enter(this, evt, comboPlanEstudios);
+    }//GEN-LAST:event_txtMatriculaKeyPressed
+
+    private void comboPlanEstudiosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboPlanEstudiosKeyPressed
+        Validaciones.enter(this, evt, txtNombre);
+    }//GEN-LAST:event_comboPlanEstudiosKeyPressed
+
+    private void txtNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyPressed
+        Validaciones.enter(this, evt, txtHoras);
+    }//GEN-LAST:event_txtNombreKeyPressed
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
+        Valida.convertirAMayusculas(txtNombre);
+    }//GEN-LAST:event_txtNombreFocusLost
+
+    private void txtHorasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHorasKeyTyped
+        Validaciones.validaFlotantes(evt);
+    }//GEN-LAST:event_txtHorasKeyTyped
+
+    private void txtHorasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHorasKeyPressed
+        Validaciones.enter(this, evt, txtCreditos);
+    }//GEN-LAST:event_txtHorasKeyPressed
+
+    private void txtCreditosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCreditosKeyTyped
+        Validaciones.validaEntero(evt);
+    }//GEN-LAST:event_txtCreditosKeyTyped
+
+    private void txtCreditosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCreditosKeyPressed
+        Validaciones.enter(this, evt, comboSemestre);
+    }//GEN-LAST:event_txtCreditosKeyPressed
+
+    private void comboSemestreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboSemestreKeyPressed
+        Validaciones.enter(this, evt, comboNucleo);
+
+    }//GEN-LAST:event_comboSemestreKeyPressed
+
+    private void comboNucleoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboNucleoKeyPressed
+        Validaciones.enter(this, evt, comboTipo);
+
+    }//GEN-LAST:event_comboNucleoKeyPressed
+
+    private void txtIdBusquedaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdBusquedaFocusLost
+        Valida.convertirAMayusculas(txtIdBusqueda);
+    }//GEN-LAST:event_txtIdBusquedaFocusLost
+
+    private void txtIdBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdBusquedaKeyTyped
+        btnBuscar.setText("BUSCAR");
+    }//GEN-LAST:event_txtIdBusquedaKeyTyped
+
+    public void actualizarTabla(int valor) {
+        modelo = (DefaultTableModel) tablaMaterias.getModel();
+
+        switch (valor)
+        {
+            case 1:
+                if (materias.isEmpty())
+                {
+                    Mensaje.error(this, "No hay materias registradas");
+                } else
+                {
+                    modelo.setRowCount(0);
+                    for (Object m : materias)
+                    {
+                        Materia mat = (Materia) m;
+                        modelo.addRow(new Object[]
+                        {
+                            mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
+                        });
+                    }
+                    btnBuscar.setText("BUSAr");
+                }
+                break;
+            case 2:
+                materias = ConsultasObjetos.consultaMuchos("materia", "unidad_aprendizaje", txtIdBusqueda.getText(), null, null, "unidad_aprendizaje", ConectarBase.conectado());
+                if (materias.isEmpty())
+                {
+                    Mensaje.error(this, "No hay materias registradas");
+                } else
+                {
+                    modelo.setRowCount(0);
+                    for (Object m : materias)
+                    {
+                        Materia mat = (Materia) m;
+                        if (mat.getClaveCarrera().equals(login.lic))
+                        {
+                            modelo.addRow(new Object[]
+                            {
+                                mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
+                            });
+                        }
+                    }
+                    txtIdBusqueda.setText("");
+                    btnBuscar.setText("TODAS");
+                }
+                break;
+            case 3:
+                if (comboSemestreBusqueda.getSelectedIndex() == 0)
+                {
+                    actualizarTabla(1);
+                } else
+                {
+                    if (materias.isEmpty())
+                    {
+                        Mensaje.error(this, "No hay materias registradas con este semestre");
+                        comboSemestreBusqueda.setSelectedIndex(0);
+                    } else
+                    {
+                        modelo.setRowCount(0);
+                        for (Object m : materias)
+                        {
+                            Materia mat = (Materia) m;
+                            if (mat.getClaveCarrera().equals(login.lic) && mat.getNumeroPeriodo() == Integer.parseInt(comboSemestreBusqueda.getSelectedItem().toString()))
+                            {
+                                modelo.addRow(new Object[]
+                                {
+                                    mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
+                                });
+                            }
+                        }
+                        btnBuscar.setText("TODAS");
+                    }
+                }
+                break;
+            case 4:
+                if (comboSemestreBusqueda.getSelectedIndex() == 0)
+                {
+                    actualizarTabla(3);
+                } else
+                {
+                    if (materias.isEmpty())
+                    {
+                        Mensaje.error(this, "No hay materias registradas con este semestre");
+                    } else
+                    {
+                        modelo.setRowCount(0);
+                        for (Object m : materias)
+                        {
+                            Materia mat = (Materia) m;
+                            if (mat.getClaveCarrera().equals(login.lic) && mat.getNumeroPeriodo() == Integer.parseInt(comboSemestreBusqueda.getSelectedItem().toString()) && mat.getPlanEstudios().equals(buscaPlan(null, comboPlanBusqueda.getSelectedItem().toString())))
+                            {
+                                modelo.addRow(new Object[]
+                                {
+                                    mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
+                                });
+                            }
+                            btnBuscar.setText("Todas");
+                        }
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void edicion() {
+        if (edicion)
+        {
+            edicion = false;
+        } else
+        {
+            edicion = true;
+        }
+    }
+
+    private void cancelar() {
+        edicion();
+        CtrlInterfaz.limpia(txtMatricula, txtNombre, txtHoras, txtCreditos);
+        CtrlInterfaz.habilita(false, txtMatricula, comboPlanEstudios, txtNombre, txtHoras, txtCreditos, comboSemestre, comboNucleo, comboTipo, btnCancelar);
+        CtrlInterfaz.habilita(true, btnModificar, btnNuevo, btnEliminar, btnExportar);
+        btnNuevo.setText("Nuevo");
+        btnModificar.setText("Modificar");
+    }
+
+    public void llenaComboPlanes() {
+        comboPlanEstudios.removeAllItems();
+        for (int i = 0; i < plans.size(); i++)
+        {
+            comboPlanEstudios.addItem(((PlanEstudios) plans.get(i)).getPlanEstudios());
+        }
+    }
+
+    public String buscaLic(String id, String licenciatura) {
+        if (licenciatura != null)
+        {
+            for (Object l : lics)
+            {
+                Licenciatura lic = (Licenciatura) l;
+                if ((lic.getLicenciatura()).equals(licenciatura))
+                {
+                    return lic.getIdLicenciatura();
+                }
+            }
+        } else
+        {
+            for (Object l : lics)
+            {
+                Licenciatura lic = (Licenciatura) l;
+                if (lic.getIdLicenciatura().equals(id))
+                {
+                    return lic.getLicenciatura();
+                }
+            }
+        }
+        return null;
+    }
+
+    private String buscaPlan(String id, String plan) {
+        if (plan != null)
+        {
+            for (Object p : plans)
+            {
+                PlanEstudios pla = (PlanEstudios) p;
+                if ((pla.getPlanEstudios().equals(plan)))
+                {
+                    return pla.getIdPlan();
+                }
+            }
+        } else
+        {
+            for (Object p : plans)
+            {
+                PlanEstudios pla = (PlanEstudios) p;
+                if (pla.getIdPlan().equals(id))
+                {
+                    return pla.getPlanEstudios();
+                }
+            }
+        }
+        return null;
+    }
+
+    private int buscarComboPlan(String text) {
+        for (int i = 0; i < comboPlanEstudios.getItemCount(); i++)
+        {
+            if (text.equals(comboPlanEstudios.getItemAt(i)))
+            {
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    private int buscarCombo(String text, JComboBox<String> jCSemestre) {
+        for (int i = 0; i < jCSemestre.getItemCount(); i++)
+        {
+            if (text.equals(jCSemestre.getItemAt(i)))
+            {
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    public void llenaComboPlanesFiltro() {
+        comboPlanBusqueda.removeAllItems();
+        comboPlanBusqueda.addItem("Todos");
+        planes1 = ConsultasObjetos.consultaMuchos("plan_estudios", "id_licenciatura", login.lic, null, null, "plan_estudios", ConectarBase.conectado());
+        for (int i = 0; i < planes1.size(); i++)
+        {
+            comboPlanBusqueda.addItem(((PlanEstudios) planes1.get(i)).getPlanEstudios());
+        }
+    }
+
+    private void importarBD() {
+        lics = ConsultasObjetos.consultaMuchos("licenciatura", null, null, null, null, "nombre", ConectarBase.conectado());
+        plans = ConsultasObjetos.consultaMuchos("plan_estudios", "id_licenciatura", login.lic, null, null, "plan_estudios", ConectarBase.conectado());
+        materias = ConsultasObjetos.consultaMuchos("materia", "id_licenciatura", login.lic, null, null, "unidad_aprendizaje", ConectarBase.conectado());
+        ConectarBase.desconectaBD();
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -556,7 +1150,7 @@ public class VtnMateriasCoordinador extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnExportar1;
+    private javax.swing.JButton btnExportar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnRegresar;
@@ -568,7 +1162,6 @@ public class VtnMateriasCoordinador extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboTipo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelnombre;
     private javax.swing.JLabel labelnombre10;
     private javax.swing.JLabel labelnombre11;
@@ -581,17 +1174,18 @@ public class VtnMateriasCoordinador extends javax.swing.JFrame {
     private javax.swing.JLabel labelnombre7;
     private javax.swing.JLabel labelnombre8;
     private javax.swing.JLabel labelnombre9;
-    private javax.swing.JTextField nombreArchivo1;
     private javax.swing.JPanel panelBusqeuda;
     private javax.swing.JPanel panelCaptura;
     private javax.swing.JPanel panelConsulta1;
     private javax.swing.JPanel panelEXportacion;
     private javax.swing.JPanel panelFiltros;
     private javax.swing.JPanel panelTabla;
-    private javax.swing.JTextField txtCorreo;
-    private javax.swing.JTextField txtGrado;
+    private javax.swing.JTable tablaMaterias;
+    private javax.swing.JTextField txtCreditos;
+    private javax.swing.JTextField txtHoras;
+    private javax.swing.JTextField txtIdBusqueda;
     private javax.swing.JTextField txtMatricula;
-    private javax.swing.JTextField txtNombres;
-    private javax.swing.JTextField txtRFC1;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNombreArchivo;
     // End of variables declaration//GEN-END:variables
 }

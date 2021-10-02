@@ -43,12 +43,12 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
         //this.setResizable(false);
         this.getContentPane().setBackground(Color.white);
         this.setIconImage(new ImageIcon(getClass().getResource("/Iconos/SCHR.png")).getImage());
-        TablaGrupos.getColumnModel().getColumn(0).setPreferredWidth(20);
-        TablaGrupos.getColumnModel().getColumn(1).setPreferredWidth(100);
-        TablaGrupos.getColumnModel().getColumn(2).setPreferredWidth(200);
-        TablaGrupos.getColumnModel().getColumn(0).setResizable(false);
-        TablaGrupos.getColumnModel().getColumn(1).setResizable(false);
-        TablaGrupos.getColumnModel().getColumn(2).setResizable(false);
+        tablaGrupos.getColumnModel().getColumn(0).setPreferredWidth(20);
+        tablaGrupos.getColumnModel().getColumn(1).setPreferredWidth(100);
+        tablaGrupos.getColumnModel().getColumn(2).setPreferredWidth(200);
+        tablaGrupos.getColumnModel().getColumn(0).setResizable(false);
+        tablaGrupos.getColumnModel().getColumn(1).setResizable(false);
+        tablaGrupos.getColumnModel().getColumn(2).setResizable(false);
     }
 
     /**
@@ -63,22 +63,22 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTNombreGrupo = new javax.swing.JTextField();
-        jTIdGrupo = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        txtId = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TablaGrupos = new javax.swing.JTable();
+        tablaGrupos = new javax.swing.JTable();
         jBRegresar = new javax.swing.JButton();
         jBCerrarSesion = new javax.swing.JButton();
         btnExportar = new javax.swing.JButton();
-        jBEliminar = new javax.swing.JButton();
-        jBAceptar = new javax.swing.JButton();
-        jBCancelar = new javax.swing.JButton();
-        jBModificar = new javax.swing.JButton();
-        btnBusca = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnNuevo = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jtIDBusqeuda = new javax.swing.JTextField();
+        txtIdBusqueda = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        txtnombreArchivo = new javax.swing.JTextField();
+        txtNombreArchivo = new javax.swing.JTextField();
         jLTituloUniversidad1 = new javax.swing.JLabel();
         jLTituloUAPT1 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -103,35 +103,35 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(254, 254, 254));
         jLabel4.setText("Id grupo");
 
-        jTNombreGrupo.setBackground(new java.awt.Color(254, 254, 254));
-        jTNombreGrupo.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtNombre.setBackground(new java.awt.Color(254, 254, 254));
+        txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTNombreGrupoFocusLost(evt);
+                txtNombreFocusLost(evt);
             }
         });
-        jTNombreGrupo.addActionListener(new java.awt.event.ActionListener() {
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTNombreGrupoActionPerformed(evt);
+                txtNombreActionPerformed(evt);
             }
         });
 
-        jTIdGrupo.setBackground(new java.awt.Color(254, 254, 254));
-        jTIdGrupo.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtId.setBackground(new java.awt.Color(254, 254, 254));
+        txtId.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTIdGrupoFocusLost(evt);
+                txtIdFocusLost(evt);
             }
         });
-        jTIdGrupo.addActionListener(new java.awt.event.ActionListener() {
+        txtId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTIdGrupoActionPerformed(evt);
+                txtIdActionPerformed(evt);
             }
         });
-        jTIdGrupo.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtId.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTIdGrupoKeyPressed(evt);
+                txtIdKeyPressed(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTIdGrupoKeyTyped(evt);
+                txtIdKeyTyped(evt);
             }
         });
 
@@ -142,13 +142,13 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTNombreGrupo)
+                    .addComponent(txtNombre)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel3))
                         .addGap(0, 195, Short.MAX_VALUE))
-                    .addComponent(jTIdGrupo))
+                    .addComponent(txtId))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -157,17 +157,17 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
                 .addGap(51, 51, 51)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
-                .addComponent(jTIdGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jTNombreGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(205, Short.MAX_VALUE))
         );
 
-        TablaGrupos.setBackground(new java.awt.Color(25, 83, 0));
-        TablaGrupos.setForeground(new java.awt.Color(254, 254, 254));
-        TablaGrupos.setModel(new javax.swing.table.DefaultTableModel(
+        tablaGrupos.setBackground(new java.awt.Color(25, 83, 0));
+        tablaGrupos.setForeground(new java.awt.Color(254, 254, 254));
+        tablaGrupos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -186,12 +186,12 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        TablaGrupos.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablaGrupos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TablaGruposMouseClicked(evt);
+                tablaGruposMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(TablaGrupos);
+        jScrollPane1.setViewportView(tablaGrupos);
 
         jBRegresar.setBackground(new java.awt.Color(102, 102, 0));
         jBRegresar.setForeground(new java.awt.Color(255, 255, 255));
@@ -225,69 +225,69 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
             }
         });
 
-        jBEliminar.setBackground(new java.awt.Color(102, 102, 0));
-        jBEliminar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jBEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        jBEliminar.setText("Eliminar");
-        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setBackground(new java.awt.Color(102, 102, 0));
+        btnEliminar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBEliminarActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
 
-        jBAceptar.setBackground(new java.awt.Color(102, 102, 0));
-        jBAceptar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jBAceptar.setForeground(new java.awt.Color(255, 255, 255));
-        jBAceptar.setText("Aceptar");
-        jBAceptar.addActionListener(new java.awt.event.ActionListener() {
+        btnNuevo.setBackground(new java.awt.Color(102, 102, 0));
+        btnNuevo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
+        btnNuevo.setText("Aceptar");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAceptarActionPerformed(evt);
+                btnNuevoActionPerformed(evt);
             }
         });
 
-        jBCancelar.setBackground(new java.awt.Color(102, 102, 0));
-        jBCancelar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jBCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        jBCancelar.setText("Cancelar");
-        jBCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setBackground(new java.awt.Color(102, 102, 0));
+        btnCancelar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBCancelarActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
-        jBModificar.setBackground(new java.awt.Color(102, 102, 0));
-        jBModificar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jBModificar.setForeground(new java.awt.Color(255, 255, 255));
-        jBModificar.setText("Modificar");
-        jBModificar.addActionListener(new java.awt.event.ActionListener() {
+        btnModificar.setBackground(new java.awt.Color(102, 102, 0));
+        btnModificar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnModificar.setForeground(new java.awt.Color(255, 255, 255));
+        btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBModificarActionPerformed(evt);
+                btnModificarActionPerformed(evt);
             }
         });
 
-        btnBusca.setBackground(new java.awt.Color(102, 102, 0));
-        btnBusca.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnBusca.setForeground(new java.awt.Color(255, 255, 255));
-        btnBusca.setText("Buscar");
-        btnBusca.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setBackground(new java.awt.Color(102, 102, 0));
+        btnBuscar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscaActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
 
         jPanel2.setBackground(new java.awt.Color(25, 83, 0));
 
-        jtIDBusqeuda.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtIdBusqueda.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jtIDBusqeudaFocusLost(evt);
+                txtIdBusquedaFocusLost(evt);
             }
         });
-        jtIDBusqeuda.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtIdBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jtIDBusqeudaKeyPressed(evt);
+                txtIdBusquedaKeyPressed(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jtIDBusqeudaKeyTyped(evt);
+                txtIdBusquedaKeyTyped(evt);
             }
         });
 
@@ -303,7 +303,7 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jtIDBusqeuda, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtIdBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -311,14 +311,14 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtIDBusqeuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        txtnombreArchivo.addActionListener(new java.awt.event.ActionListener() {
+        txtNombreArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnombreArchivoActionPerformed(evt);
+                txtNombreArchivoActionPerformed(evt);
             }
         });
 
@@ -345,13 +345,13 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBRegresar)
                         .addGap(18, 18, 18)
@@ -377,12 +377,12 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(132, 132, 132)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(16, 16, 16)
-                                                .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtNombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(jLabel1)))
@@ -418,17 +418,17 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnBusca)
-                                    .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnBuscar)
+                                    .addComponent(txtNombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnExportar))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3))
@@ -448,22 +448,22 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
         new VentanaLogin().setVisible(true);
     }//GEN-LAST:event_jBCerrarSesionActionPerformed
 
-    private void jTNombreGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTNombreGrupoActionPerformed
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTNombreGrupoActionPerformed
+    }//GEN-LAST:event_txtNombreActionPerformed
 
-    private void jTNombreGrupoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTNombreGrupoFocusLost
-        Valida.convertirAMayusculas(jTNombreGrupo);
-    }//GEN-LAST:event_jTNombreGrupoFocusLost
+    private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
+        Valida.convertirAMayusculas(txtNombre);
+    }//GEN-LAST:event_txtNombreFocusLost
 
-    private void jTIdGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTIdGrupoActionPerformed
+    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTIdGrupoActionPerformed
+    }//GEN-LAST:event_txtIdActionPerformed
 
-    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-        if (Mensaje.pregunta(this, "¿En realidad quiere eliminar el periodo " + jTIdGrupo.getText() + "?") == 0)
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        if (Mensaje.pregunta(this, "¿En realidad quiere eliminar el periodo " + txtId.getText() + "?") == 0)
         {
-            String mensaje = Controlador.ControladorGrupos.eliminarGrupo(jTIdGrupo.getText());
+            String mensaje = Controlador.ControladorGrupos.eliminarGrupo(txtId.getText());
             if (mensaje.equals("operacion exitosa"))
             {
                 importaBD();
@@ -473,27 +473,27 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
             }
         }
-    }//GEN-LAST:event_jBEliminarActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void jBAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAceptarActionPerformed
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         if (!edicion)
         {
             edicion();
-            jBAceptar.setText("Aceptar");
-            CtrlInterfaz.limpia(jTIdGrupo, jTNombreGrupo);
-            CtrlInterfaz.habilita(true, jTIdGrupo, jTNombreGrupo, jBCancelar);
-            CtrlInterfaz.habilita(false, jBModificar, jBEliminar, btnExportar);
-            CtrlInterfaz.selecciona(jTIdGrupo);
+            btnNuevo.setText("Aceptar");
+            CtrlInterfaz.limpia(txtId, txtNombre);
+            CtrlInterfaz.habilita(true, txtId, txtNombre, btnCancelar);
+            CtrlInterfaz.habilita(false, btnModificar, btnEliminar, btnExportar);
+            CtrlInterfaz.selecciona(txtId);
         } else
         {
-            Grupo grup = new Grupo(jTIdGrupo.getText(), jTNombreGrupo.getText(), vtn.lic);
+            Grupo grup = new Grupo(txtId.getText(), txtNombre.getText(), vtn.lic);
             String mensaje = Controlador.ControladorGrupos.insertaGrupo(grup);
             if (mensaje.equals("operacion exitosa"))
             {
-                jBAceptar.setText("Nuevo");
-                CtrlInterfaz.limpia(jTIdGrupo, jTNombreGrupo);
-                CtrlInterfaz.habilita(false, jTIdGrupo, jTNombreGrupo, jBCancelar);
-                CtrlInterfaz.habilita(true, jBModificar, jBEliminar, btnExportar);
+                btnNuevo.setText("Nuevo");
+                CtrlInterfaz.limpia(txtId, txtNombre);
+                CtrlInterfaz.habilita(false, txtId, txtNombre, btnCancelar);
+                CtrlInterfaz.habilita(true, btnModificar, btnEliminar, btnExportar);
                 importaBD();
                 actualizarTabla(1);
                 edicion();
@@ -502,14 +502,14 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
             }
         }
-    }//GEN-LAST:event_jBAceptarActionPerformed
+    }//GEN-LAST:event_btnNuevoActionPerformed
 
-    private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         cancelar();
-    }//GEN-LAST:event_jBCancelarActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
-        if (jTIdGrupo.getText().compareTo("") == 0)
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        if (txtId.getText().compareTo("") == 0)
         {
             Mensaje.error(this, "NO HA SELECCIONADO NINGUN REGISTRO");
         } else
@@ -517,20 +517,20 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
             if (!edicion)
             {
                 edicion();
-                jBModificar.setText("Aceptar");
-                CtrlInterfaz.habilita(true, jTNombreGrupo, jBModificar, jBCancelar);
-                CtrlInterfaz.habilita(false, jBEliminar, jBAceptar, jTIdGrupo, btnExportar);
-                CtrlInterfaz.selecciona(jTNombreGrupo);
+                btnModificar.setText("Aceptar");
+                CtrlInterfaz.habilita(true, txtNombre, btnModificar, btnCancelar);
+                CtrlInterfaz.habilita(false, btnEliminar, btnNuevo, txtId, btnExportar);
+                CtrlInterfaz.selecciona(txtNombre);
             } else
             {
-                Grupo grup = new Grupo(jTIdGrupo.getText(), jTNombreGrupo.getText(), vtn.lic);
-                String mensaje = Controlador.ControladorGrupos.modificaGrupo(grup, (String) TablaGrupos.getValueAt(TablaGrupos.getSelectedRow(), 0));
+                Grupo grup = new Grupo(txtId.getText(), txtNombre.getText(), vtn.lic);
+                String mensaje = Controlador.ControladorGrupos.modificaGrupo(grup, (String) tablaGrupos.getValueAt(tablaGrupos.getSelectedRow(), 0));
                 if (mensaje.equals("operacion exitosa"))
                 {
-                    jBModificar.setText("Modificar");
-                    CtrlInterfaz.limpia(jTIdGrupo, jTNombreGrupo);
-                    CtrlInterfaz.habilita(false, jTIdGrupo, jTNombreGrupo, jBAceptar, jBCancelar);
-                    CtrlInterfaz.habilita(true, jBEliminar, jBAceptar, btnExportar);
+                    btnModificar.setText("Modificar");
+                    CtrlInterfaz.limpia(txtId, txtNombre);
+                    CtrlInterfaz.habilita(false, txtId, txtNombre, btnNuevo, btnCancelar);
+                    CtrlInterfaz.habilita(true, btnEliminar, btnNuevo, btnExportar);
                     importaBD();
                     actualizarTabla(1);
                     edicion();
@@ -540,7 +540,7 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
                 }
             }
         }
-    }//GEN-LAST:event_jBModificarActionPerformed
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         cancelar();
@@ -548,44 +548,44 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
         actualizarTabla(1);
     }//GEN-LAST:event_formWindowOpened
 
-    private void TablaGruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaGruposMouseClicked
-        jTIdGrupo.setText((String) modelo.getValueAt(TablaGrupos.getSelectedRow(), 0));
-        jTNombreGrupo.setText((String) modelo.getValueAt(TablaGrupos.getSelectedRow(), 1));
-    }//GEN-LAST:event_TablaGruposMouseClicked
+    private void tablaGruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaGruposMouseClicked
+        txtId.setText((String) modelo.getValueAt(tablaGrupos.getSelectedRow(), 0));
+        txtNombre.setText((String) modelo.getValueAt(tablaGrupos.getSelectedRow(), 1));
+    }//GEN-LAST:event_tablaGruposMouseClicked
 
-    private void jTIdGrupoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTIdGrupoKeyPressed
-        Validaciones.enter(this, evt, jTNombreGrupo);
-    }//GEN-LAST:event_jTIdGrupoKeyPressed
+    private void txtIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyPressed
+        Validaciones.enter(this, evt, txtNombre);
+    }//GEN-LAST:event_txtIdKeyPressed
 
-    private void jTIdGrupoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTIdGrupoKeyTyped
-        if (jTIdGrupo.getText().length() == 5)
+    private void txtIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyTyped
+        if (txtId.getText().length() == 5)
         {
             evt.consume();
         }
-    }//GEN-LAST:event_jTIdGrupoKeyTyped
+    }//GEN-LAST:event_txtIdKeyTyped
 
-    private void jTIdGrupoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTIdGrupoFocusLost
-        Valida.convertirAMayusculas(jTIdGrupo);
-    }//GEN-LAST:event_jTIdGrupoFocusLost
+    private void txtIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdFocusLost
+        Valida.convertirAMayusculas(txtId);
+    }//GEN-LAST:event_txtIdFocusLost
 
-    private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
-        if (jtIDBusqeuda.getText().equals("") && btnBusca.getText().equals("Buscar"))
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        if (txtIdBusqueda.getText().equals("") && btnBuscar.getText().equals("Buscar"))
         {
             actualizarTabla(1);
         } else
         {
             actualizarTabla(2);
         }
-    }//GEN-LAST:event_btnBuscaActionPerformed
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void txtnombreArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreArchivoActionPerformed
+    private void txtNombreArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreArchivoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnombreArchivoActionPerformed
+    }//GEN-LAST:event_txtNombreArchivoActionPerformed
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
-        if (txtnombreArchivo.getText() != null)
+        if (txtNombreArchivo.getText() != null)
         {
-            String mensaje = Archivo.Exportar(TablaGrupos, txtnombreArchivo.getText());
+            String mensaje = Archivo.Exportar(tablaGrupos, txtNombreArchivo.getText());
             if (mensaje.equals("Error en la Exportacion"))
             {
                 Mensaje.error(this, mensaje);
@@ -599,17 +599,17 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnExportarActionPerformed
 
-    private void jtIDBusqeudaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDBusqeudaKeyPressed
-        enter(this, evt, btnBusca);
-    }//GEN-LAST:event_jtIDBusqeudaKeyPressed
+    private void txtIdBusquedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdBusquedaKeyPressed
+        enter(this, evt, btnBuscar);
+    }//GEN-LAST:event_txtIdBusquedaKeyPressed
 
-    private void jtIDBusqeudaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtIDBusqeudaFocusLost
-        Valida.convertirAMayusculas(jtIDBusqeuda);
-    }//GEN-LAST:event_jtIDBusqeudaFocusLost
+    private void txtIdBusquedaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdBusquedaFocusLost
+        Valida.convertirAMayusculas(txtIdBusqueda);
+    }//GEN-LAST:event_txtIdBusquedaFocusLost
 
-    private void jtIDBusqeudaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDBusqeudaKeyTyped
-        btnBusca.setText("Buscar");
-    }//GEN-LAST:event_jtIDBusqeudaKeyTyped
+    private void txtIdBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdBusquedaKeyTyped
+        btnBuscar.setText("Buscar");
+    }//GEN-LAST:event_txtIdBusquedaKeyTyped
 
     /**
      * @param args the command line arguments
@@ -781,14 +781,13 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TablaGrupos;
-    private javax.swing.JButton btnBusca;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnExportar;
-    private javax.swing.JButton jBAceptar;
-    private javax.swing.JButton jBCancelar;
+    private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnNuevo;
     private javax.swing.JButton jBCerrarSesion;
-    private javax.swing.JButton jBEliminar;
-    private javax.swing.JButton jBModificar;
     private javax.swing.JButton jBRegresar;
     private javax.swing.JLabel jLTituloUAPT1;
     private javax.swing.JLabel jLTituloUniversidad1;
@@ -801,14 +800,15 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTIdGrupo;
-    private javax.swing.JTextField jTNombreGrupo;
-    private javax.swing.JTextField jtIDBusqeuda;
-    private javax.swing.JTextField txtnombreArchivo;
+    private javax.swing.JTable tablaGrupos;
+    private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtIdBusqueda;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNombreArchivo;
     // End of variables declaration//GEN-END:variables
 
     private void actualizarTabla(int valor) {
-        modelo = (DefaultTableModel) TablaGrupos.getModel();
+        modelo = (DefaultTableModel) tablaGrupos.getModel();
         if (valor == 1)
         {
             if (grupos.isEmpty())
@@ -828,11 +828,11 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
                         });
                     }
                 }
-                btnBusca.setText("Buscar");
+                btnBuscar.setText("Buscar");
             }
         } else if (valor == 2)
         {
-            grupos = ConsultasObjetos.consultaMuchos("grupo", "nombre_grupo", jtIDBusqeuda.getText(), null, null, "nombre_grupo", ConectarBase.conectado());
+            grupos = ConsultasObjetos.consultaMuchos("grupo", "nombre_grupo", txtIdBusqueda.getText(), null, null, "nombre_grupo", ConectarBase.conectado());
             if (grupos.isEmpty())
             {
                 Mensaje.error(this, "No hay grupos registrados");
@@ -850,8 +850,8 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
                         });
                     }
                 }
-                btnBusca.setText("Todo");
-                jtIDBusqeuda.setText("");
+                btnBuscar.setText("Todo");
+                txtIdBusqueda.setText("");
 
             }
         }
@@ -894,11 +894,11 @@ public class VentanaGruposCoordinador extends javax.swing.JFrame {
 
     private void cancelar() {
         edicion();
-        CtrlInterfaz.limpia(jTIdGrupo, jTNombreGrupo);
-        CtrlInterfaz.habilita(false, jTIdGrupo, jTNombreGrupo, jBCancelar);
-        CtrlInterfaz.habilita(true, jBAceptar, jBEliminar, jBModificar, btnExportar);
-        jBAceptar.setText("Nuevo");
-        jBModificar.setText("Modificar");
+        CtrlInterfaz.limpia(txtId, txtNombre);
+        CtrlInterfaz.habilita(false, txtId, txtNombre, btnCancelar);
+        CtrlInterfaz.habilita(true, btnNuevo, btnEliminar, btnModificar, btnExportar);
+        btnNuevo.setText("Nuevo");
+        btnModificar.setText("Modificar");
     }
 
     private void importaBD() {
