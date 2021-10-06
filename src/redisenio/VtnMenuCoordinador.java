@@ -8,8 +8,6 @@ package redisenio;
 import Clases.ConectarBase;
 import Clases.ConsultasObjetos;
 import Objetos.Licenciatura;
-import app.VentanaLogin;
-import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
@@ -313,8 +311,8 @@ public class VtnMenuCoordinador extends javax.swing.JFrame {
 
     private void btnCargaExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargaExcelActionPerformed
         this.setVisible(false);
-        Vista.VistaExcel.valVentana = 2;
-        new Vista.VistaExcel().setVisible(true);
+        VistaExcel.valVentana = 2;
+        new VistaExcel().setVisible(true);
     }//GEN-LAST:event_btnCargaExcelActionPerformed
 
       public String buscaLic(String id, String licenciatura) {

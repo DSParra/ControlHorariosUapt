@@ -376,7 +376,8 @@ public class VtnAdministrador extends javax.swing.JFrame {
 
     private void btnCargaExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargaExcelActionPerformed
         this.setVisible(false);
-        new Vista.VistaExcel().setVisible(true);
+        VistaExcel.valVentana = 1;
+        new VistaExcel().setVisible(true);
     }//GEN-LAST:event_btnCargaExcelActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
