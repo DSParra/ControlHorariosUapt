@@ -26,6 +26,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -476,8 +478,13 @@ public class VistaExcel extends javax.swing.JFrame {
         tipoExcel = identifica();
         txtidentifica.setText(tipoExcel);
 
+
     }//GEN-LAST:event_btnImportarActionPerformed
 
+    
+    
+    
+    
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         limpiaDatos();
         txtCruzeMaterias.setEditable(false);
@@ -919,10 +926,34 @@ public class VistaExcel extends javax.swing.JFrame {
         return prueba;
     }
     
+    public String compruebaVacios(){
+        String  mensaje = "";
+        Pattern pat;
+        for (int i = 0; i < jTDatosExcel.getColumnCount(); i++) {
+            for (int j = 0; j < jTDatosExcel.getRowCount(); j++) {
+                if (String.valueOf(jTDatosExcel.getModel().getValueAt(j, i)).equals("0") &&
+                                String.valueOf(jTDatosExcel.getModel().getValueAt(j, i)) == null ) {
+                            mensaje += "Dato vacio en: " + i + "en la fila : " + j+"\n";
+                }
+                if(i==7 || i==8){
+                    pat = Pattern.compile("[0-9][0-9]:[0-9][0-9]");
+                    Matcher mat = pat.matcher(String.valueOf(jTDatosExcel.getModel().getValueAt(j, i)));
+                    if (!mat.find()) {
+                        mensaje += "Hora invalida en :" + i + "en la fila : " + j + "\n";
+                        System.out.println();
+                    }   
+                }                
+                //System.out.println(String.valueOf(jTDatosExcel.getModel().getValueAt(j, i)));
+            }
+        }
+        System.out.println("PAro");
+        return mensaje;
+    }
+    
     public boolean validaExcel() {
         boolean prueba = true;
         double entrada1, entrada2, salida1, salida2;
-        String mensaje = "";
+        String mensaje = compruebaVacios();
         ordenamientoBurbujaID("materia");
         ordenamientoBurbujaNombre("grupo");
         //try{

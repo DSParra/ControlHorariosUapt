@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Nombre de programadores:
+ * Funcion principal del archivo:
+ * Notas:
  */
 package redisenio;
 
@@ -22,6 +22,8 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author MoisesVidalHernandez
  */
+    
+
 public class VtnPeriodos extends javax.swing.JFrame {
 
     int id = 0;
@@ -720,3 +722,5 @@ public class VtnPeriodos extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombreArchivo1;
     // End of variables declaration//GEN-END:variables
 }
+
+
