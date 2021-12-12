@@ -622,7 +622,7 @@ public class VtnDocentes extends javax.swing.JFrame {
         {
             edicion();
             btnNuevo.setText("ACEPTAR");
-            CtrlInterfaz.limpia(txtAMaterno, txtAMaterno, txtNombres, txtRFC, txtGrado, txtCorreo, txtTelefono);
+            CtrlInterfaz.limpia(txtAMaterno, txtAPaterno, txtNombres, txtRFC, txtGrado, txtCorreo, txtTelefono);
             CtrlInterfaz.habilita(true, txtAMaterno, txtAPaterno, txtNombres, txtRFC, txtGrado, txtCorreo, txtTelefono, btnCancelar);
             CtrlInterfaz.habilita(false, btnEliminar, btnModificar, btnExportar);
             CtrlInterfaz.selecciona(txtRFC);
