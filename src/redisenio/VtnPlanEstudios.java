@@ -519,7 +519,7 @@ public class VtnPlanEstudios extends javax.swing.JFrame {
         if (!edicion)
         {
             edicion();
-            btnNuevo.setText("Aceptar");
+            btnNuevo.setText("ACEPTAR");
             CtrlInterfaz.limpia(txtId, txtNombre);
             CtrlInterfaz.habilita(true, txtId, txtNombre, comboLicecniatura, btnCancelar);
             CtrlInterfaz.habilita(false, btnModificar, btnEliminar, btnExportar1);

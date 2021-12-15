@@ -34,7 +34,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VtnHorariosCoordinador extends javax.swing.JFrame {
 
-    
+    String cadena = "";
     int id = 0;
     private Boolean edicion = true;
     private DefaultTableModel modelo;
@@ -48,6 +48,7 @@ public class VtnHorariosCoordinador extends javax.swing.JFrame {
     private ArrayList<PeriodoHorarios> horariosBD = new ArrayList<>();
     Login login = new Login();
     ArrayList horarios = new ArrayList();
+
     /**
      * Creates new form VtnDocentes
      */
@@ -128,6 +129,9 @@ public class VtnHorariosCoordinador extends javax.swing.JFrame {
         btnExportar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtInconsistencias = new javax.swing.JTextArea();
+        labelnombre12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -589,8 +593,8 @@ public class VtnHorariosCoordinador extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -608,7 +612,7 @@ public class VtnHorariosCoordinador extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -626,11 +630,34 @@ public class VtnHorariosCoordinador extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         panelEXportacion.add(btnCerrar, gridBagConstraints);
+
+        txtInconsistencias.setBackground(new java.awt.Color(255, 204, 204));
+        txtInconsistencias.setColumns(20);
+        txtInconsistencias.setRows(5);
+        jScrollPane1.setViewportView(txtInconsistencias);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        panelEXportacion.add(jScrollPane1, gridBagConstraints);
+
+        labelnombre12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        labelnombre12.setForeground(new java.awt.Color(255, 255, 255));
+        labelnombre12.setText("INCONSISTENCIAS");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        panelEXportacion.add(labelnombre12, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -670,7 +697,7 @@ public class VtnHorariosCoordinador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-         if (!edicion)
+        if (!edicion)
         {
             edicion();
             btnNuevo.setText("ACEPTAR");
@@ -811,7 +838,7 @@ public class VtnHorariosCoordinador extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaHorariosMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-         if (Mensaje.pregunta(this, "¿Seguro que desea eliminar este registro?") == 0)
+        if (Mensaje.pregunta(this, "¿Seguro que desea eliminar este registro?") == 0)
         {
             String mensaje = Controlador.ControladorHorarios.eliminaHorario(txtMatricula.getText());
             if (mensaje.endsWith("operacion exitosa"))
@@ -1014,7 +1041,7 @@ public class VtnHorariosCoordinador extends javax.swing.JFrame {
                 break;
         }
     }
-    
+
     private void cargaPeriodos() {
         comboPeriodo.removeAllItems();
         comboPeriodoBusqueda.removeAllItems();
@@ -1024,6 +1051,11 @@ public class VtnHorariosCoordinador extends javax.swing.JFrame {
             comboPeriodo.addItem(((periodoEscolar) periodos.get(i)).getPeriodo());
             comboPeriodoBusqueda.addItem(((periodoEscolar) periodos.get(i)).getPeriodo());
         }
+        if (comboPeriodo.getItemCount() == 0)
+        {
+            cadena += "\n NO HAY PERIODOS REGISTRADOS, CONTACTE A SU ADMINISTRADOR PARA QUE REGISTRE NUEVOS PERIODOS";
+            txtInconsistencias.setText(cadena);
+        }
     }
 
     private void llenaGrupos() {
@@ -1031,6 +1063,11 @@ public class VtnHorariosCoordinador extends javax.swing.JFrame {
         for (int i = 0; i < grupos.size(); i++)
         {
             comboGrupo.addItem(((Grupo) grupos.get(i)).getNombreGrupo());
+        }
+        if (comboGrupo.getItemCount() == 0)
+        {
+            cadena += "\n NO HAY GRUPOS REGISTRADOS, REGISTRE NUEVO GRUPOS";
+            txtInconsistencias.setText(cadena);
         }
     }
 
@@ -1048,6 +1085,11 @@ public class VtnHorariosCoordinador extends javax.swing.JFrame {
         {
             comboMateria.addItem(((Materia) materias.get(i)).getUnidadAprendizaje());
         }
+        if (comboMateria.getItemCount() == 0)
+        {
+            cadena += "\n NO HAY UNIDADES DE APRENDIZAJE (MATERIAS) REGISTRADAS, REGISTRE NUEVAS MATERIAS";
+            txtInconsistencias.setText(cadena);
+        }
     }
 
     private void llenaDocentes() {
@@ -1055,6 +1097,11 @@ public class VtnHorariosCoordinador extends javax.swing.JFrame {
         for (int i = 0; i < profesores.size(); i++)
         {
             comboDocente.addItem(((Profesor) profesores.get(i)).getNombres() + " " + ((Profesor) profesores.get(i)).getApellidoP() + " " + ((Profesor) profesores.get(i)).getApellidoM());
+        }
+        if (comboDocente.getItemCount() == 0)
+        {
+            cadena += "\n NO HAY DOCENTES REGISTRADOS, REGISTRE NUEVOS DOCENTES";
+            txtInconsistencias.setText(cadena);
         }
     }
 
@@ -1073,6 +1120,11 @@ public class VtnHorariosCoordinador extends javax.swing.JFrame {
         for (int i = 0; i < plans.size(); i++)
         {
             comboPlanes.addItem(((PlanEstudios) plans.get(i)).getPlanEstudios());
+        }
+                if (comboGrupo.getItemCount() == 0)
+        {
+            cadena += "\n NO HAY PLANES REGISTRADOS, REGISTRE NUEVOS PLANES";
+            txtInconsistencias.setText(cadena);
         }
     }
 
@@ -1279,7 +1331,7 @@ public class VtnHorariosCoordinador extends javax.swing.JFrame {
         horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, null, ConectarBase.conectado()));
         ConectarBase.desconectaBD();
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -1347,11 +1399,13 @@ public class VtnHorariosCoordinador extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboPlanes;
     private javax.swing.JComboBox<String> comboTipo;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelnombre;
     private javax.swing.JLabel labelnombre1;
     private javax.swing.JLabel labelnombre10;
     private javax.swing.JLabel labelnombre11;
+    private javax.swing.JLabel labelnombre12;
     private javax.swing.JLabel labelnombre2;
     private javax.swing.JLabel labelnombre3;
     private javax.swing.JLabel labelnombre4;
@@ -1369,6 +1423,7 @@ public class VtnHorariosCoordinador extends javax.swing.JFrame {
     private javax.swing.JTable tablaHorarios;
     private javax.swing.JTextField txtHoraEntrada;
     private javax.swing.JTextField txtHoraSalida;
+    private javax.swing.JTextArea txtInconsistencias;
     private javax.swing.JTextField txtMatricula;
     private javax.swing.JTextField txtNombreArchivo;
     // End of variables declaration//GEN-END:variables

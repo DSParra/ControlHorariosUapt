@@ -64,7 +64,7 @@ public class ControladorPeriodos
     public static String eliminarPeriodo(String id_periodo) {
         if (id_periodo == null || id_periodo.equals(""))
         {
-            return "No ha seleccionado a ningun coordi";
+            return "No ha seleccionado ningun periodo";
         } else
         {
             System.out.println("ide " + id_periodo);
@@ -79,7 +79,7 @@ public class ControladorPeriodos
                     return "operacion exitosa";
                 } else
                 {
-                    return "No se pudo elimiar a este usuario";
+                    return "No se pudo elimiar este periodo";
                 }
             }
         }

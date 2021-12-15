@@ -32,6 +32,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VtnHorarios extends javax.swing.JFrame {
 
+    String cadena = "";
     int id = 0;
     private Boolean edicion = true;
     private DefaultTableModel modelo;
@@ -44,6 +45,7 @@ public class VtnHorarios extends javax.swing.JFrame {
     private ArrayList<Object> plans = new ArrayList<>();
     private ArrayList<PeriodoHorarios> horariosBD = new ArrayList<>();
     ArrayList horarios = new ArrayList();
+
     /**
      * Creates new form VtnDocentes
      */
@@ -127,6 +129,9 @@ public class VtnHorarios extends javax.swing.JFrame {
         btnExportar1 = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtInconsistencias = new javax.swing.JTextArea();
+        labelnombre14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -634,8 +639,8 @@ public class VtnHorarios extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -653,7 +658,7 @@ public class VtnHorarios extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -671,11 +676,34 @@ public class VtnHorarios extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         panelEXportacion.add(btnCerrar, gridBagConstraints);
+
+        txtInconsistencias.setBackground(new java.awt.Color(255, 204, 204));
+        txtInconsistencias.setColumns(20);
+        txtInconsistencias.setRows(5);
+        jScrollPane1.setViewportView(txtInconsistencias);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        panelEXportacion.add(jScrollPane1, gridBagConstraints);
+
+        labelnombre14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        labelnombre14.setForeground(new java.awt.Color(255, 255, 255));
+        labelnombre14.setText("INCONSISTENCIAS");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        panelEXportacion.add(labelnombre14, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -718,9 +746,9 @@ public class VtnHorarios extends javax.swing.JFrame {
         if (!edicion)
         {
             edicion();
-            btnNuevo.setText("Aceptar");
+            btnNuevo.setText("ACEPTAR");
             CtrlInterfaz.limpia(txtHoraEntrada, txtHoraSalida, txtId);
-            CtrlInterfaz.habilita(true, txtHoraSalida, txtHoraEntrada, txtId, comboPeriodo, comboLicenciatura, 
+            CtrlInterfaz.habilita(true, txtHoraSalida, txtHoraEntrada, txtId, comboPeriodo, comboLicenciatura,
                     comboGrupo, comboMateria, comboDocente, comboDia, btnCancelar);
             CtrlInterfaz.habilita(false, btnEliminar, btnModificar, btnExportar1);
             CtrlInterfaz.selecciona(txtId);
@@ -750,7 +778,7 @@ public class VtnHorarios extends javax.swing.JFrame {
                             Mensaje.exito(this, "Horario registrado correctamente");
                             btnNuevo.setText("Nuevo");
                             CtrlInterfaz.limpia(txtHoraEntrada, txtHoraSalida, txtId);
-                            CtrlInterfaz.habilita(false, txtHoraSalida, txtHoraEntrada, txtId, comboPeriodo, 
+                            CtrlInterfaz.habilita(false, txtHoraSalida, txtHoraEntrada, txtId, comboPeriodo,
                                     comboLicenciatura, comboGrupo, comboMateria, comboDocente, comboDia, btnCancelar);
                             CtrlInterfaz.habilita(true, btnNuevo, btnEliminar, btnModificar, btnExportar1);
                             importarBD();
@@ -789,7 +817,6 @@ public class VtnHorarios extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         cancelar();
-        JOptionPane.showMessageDialog(this, "Por favor espere estamos conectando con base de datos");
         importarBD();
         actualizaTabla(1);
         cargaPeriodos();
@@ -800,7 +827,7 @@ public class VtnHorarios extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-         if (txtId.getText().compareTo("") == 0)
+        if (txtId.getText().compareTo("") == 0)
         {
             Mensaje.error(this, "No ha seleccionado nungun registro");
         } else
@@ -808,8 +835,8 @@ public class VtnHorarios extends javax.swing.JFrame {
             if (!edicion)
             {
                 edicion();
-                btnModificar.setText("Aceptar");
-                CtrlInterfaz.habilita(true, txtHoraSalida, txtHoraEntrada, comboPeriodo, comboLicenciatura, comboGrupo, 
+                btnModificar.setText("ACEPTAR");
+                CtrlInterfaz.habilita(true, txtHoraSalida, txtHoraEntrada, comboPeriodo, comboLicenciatura, comboGrupo,
                         comboMateria, comboDocente, comboDia, btnCancelar);
                 CtrlInterfaz.habilita(false, btnEliminar, btnNuevo, btnExportar1);
 
@@ -975,7 +1002,7 @@ public class VtnHorarios extends javax.swing.JFrame {
         Validaciones.enter(this, evt, txtHoraSalida);
     }//GEN-LAST:event_txtHoraEntradaKeyPressed
 
-     public void actualizaTabla(int valor) {
+    public void actualizaTabla(int valor) {
         modelo = (DefaultTableModel) TablaHorarios.getModel();
         switch (valor)
         {
@@ -1044,7 +1071,7 @@ public class VtnHorarios extends javax.swing.JFrame {
                             {
                                 modelo.addRow(new Object[]
                                 {
-                            horario.getIdHorario(), horario.getClaveMateria(), buscaMateria(horario.getClaveMateria(), null), horario.getRfc(), buscaProfesor(horario.getRfc(), null), buscaGrupo(horario.getIdGrupo(), null), buscaPeriodo(horario.getIdPeriodo(), null), ControladorHorarios.numdia(Integer.parseInt(horario.getDia())), horario.getEntrada(), horario.getSalida()
+                                    horario.getIdHorario(), horario.getClaveMateria(), buscaMateria(horario.getClaveMateria(), null), horario.getRfc(), buscaProfesor(horario.getRfc(), null), buscaGrupo(horario.getIdGrupo(), null), buscaPeriodo(horario.getIdPeriodo(), null), ControladorHorarios.numdia(Integer.parseInt(horario.getDia())), horario.getEntrada(), horario.getSalida()
                                 });
                             }
                         }
@@ -1055,7 +1082,7 @@ public class VtnHorarios extends javax.swing.JFrame {
                 break;
         }
     }
-    
+
     public String buscaLic(String id, String licenciatura) {
         if (licenciatura != null)
         {
@@ -1117,7 +1144,9 @@ public class VtnHorarios extends javax.swing.JFrame {
         }
         if (comboPeriodo.getItemCount() == 0)
         {
-            Mensaje.error(this, "NO HAY PERIODOS EN LA LIC. " + comboLicenciatura.getSelectedItem().toString() + ", POR FAVOR DE ALTA NUEVOS PERIODOS PARA CONTINUAR");
+            cadena += "\n NO HAY PERIODOS REGISTRADOS POR FAVOR REGISTRE NUEVOS PERIODOS PARA CONTINUAR";
+            //Mensaje.error(this, "NO HAY PERIODOS EN LA LIC. " + comboLicenciatura.getSelectedItem().toString() + ", POR FAVOR DE ALTA NUEVOS PERIODOS PARA CONTINUAR");
+            txtInconsistencias.setText(cadena);
         }
     }
 
@@ -1133,7 +1162,9 @@ public class VtnHorarios extends javax.swing.JFrame {
         }
         if (comboGrupo.getItemCount() == 0)
         {
-            Mensaje.error(this, "NO HAY GRUPOS EN LA LIC. " + comboLicenciatura.getSelectedItem().toString() + ", POR FAVOR DE ALTA UNO O VARIOS GRUPOS PARA CONTINUAR");
+            cadena += "\n NO HAY GRUPOS EN " + comboLicenciatura.getSelectedItem().toString() + ", POR FAVOR REGISTRE GRUPOS PARA CONTINUAR";
+                    txtInconsistencias.setText(cadena);
+            //Mensaje.error(this, "NO HAY GRUPOS EN LA LIC. " + comboLicenciatura.getSelectedItem().toString() + ", POR FAVOR DE ALTA UNO O VARIOS GRUPOS PARA CONTINUAR");
         }
     }
 
@@ -1149,7 +1180,9 @@ public class VtnHorarios extends javax.swing.JFrame {
         }
         if (comboGrupoBusqueda.getItemCount() == 0)
         {
-            Mensaje.error(this, "NO HAY GRUPOS EN LA LIC. " + comboLicBusqueda.getSelectedItem().toString() + ", POR FAVOR DE ALTA UNO O VARIOS GRUPOS PARA CONTINUAR");
+            cadena += "\n NO HAY GRUPOS EN " + comboLicBusqueda.getSelectedItem().toString() + ", POR FAVOR REGISTRE NUEVOS GRUPOS PARA CONTINUAR";
+                    txtInconsistencias.setText(cadena);
+            //Mensaje.error(this, "NO HAY GRUPOS EN LA LIC. " + comboLicBusqueda.getSelectedItem().toString() + ", POR FAVOR DE ALTA UNO O VARIOS GRUPOS PARA CONTINUAR");
         }
     }
 
@@ -1164,7 +1197,9 @@ public class VtnHorarios extends javax.swing.JFrame {
         }
         if (comboMateria.getItemCount() == 0)
         {
-            Mensaje.error(this, "NO HAY MATERIAS EN LA LIC. " + comboLicenciatura.getSelectedItem().toString() + ", POR FAVOR DE ALTA NUEVAS MATERIAS PARA CONTINUAR");
+            cadena += "\n NO HAY MATERIAS EN " + comboLicenciatura.getSelectedItem().toString() + ", POR FAVOR REGISTRE NUEVAS MATERIAS PARA CONTINUAR";
+                    txtInconsistencias.setText(cadena);
+            //Mensaje.error(this, "NO HAY MATERIAS EN LA LIC. " + comboLicenciatura.getSelectedItem().toString() + ", POR FAVOR DE ALTA NUEVAS MATERIAS PARA CONTINUAR");
         }
     }
 
@@ -1176,7 +1211,9 @@ public class VtnHorarios extends javax.swing.JFrame {
         }
         if (comboDocente.getItemCount() == 0)
         {
-            Mensaje.error(this, "NO HAY DOCENTES, POR FAVOR DE ALTA NUEVOS DOCENTES PARA CONTINUAR");
+            cadena += "\n NO HAY DOCENTES, POR FAVOR REGISTRE NUEVOS DOCENTES PARA CONTINUAR";
+                    txtInconsistencias.setText(cadena);
+            //Mensaje.error(this, "NO HAY DOCENTES, POR FAVOR DE ALTA NUEVOS DOCENTES PARA CONTINUAR");
         }
     }
 
@@ -1200,7 +1237,9 @@ public class VtnHorarios extends javax.swing.JFrame {
         }
         if (comboGrupo.getItemCount() == 0)
         {
-            Mensaje.error(this, "NO HAY LICENCIATURAS, POR FAVOR DE ALTA NEUVAS LICENCIATURAS PARA CONTINUAR");
+            cadena += "\n NO HAY LICENCIATURAS, POR FAVOR REGISTRE NUEVAS LICENCIATURAS PARA CONTINUAR";
+                    txtInconsistencias.setText(cadena);
+            //Mensaje.error(this, "NO HAY LICENCIATURAS, POR FAVOR DE ALTA NEUVAS LICENCIATURAS PARA CONTINUAR");
         }
     }
 
@@ -1364,7 +1403,7 @@ public class VtnHorarios extends javax.swing.JFrame {
     private void cancelar() {
         edicion();
         CtrlInterfaz.limpia(txtId, txtHoraEntrada, txtHoraSalida);
-        CtrlInterfaz.habilita(false, txtId, comboPeriodo, comboLicenciatura, comboGrupo, comboMateria, comboDocente, 
+        CtrlInterfaz.habilita(false, txtId, comboPeriodo, comboLicenciatura, comboGrupo, comboMateria, comboDocente,
                 comboDia, txtHoraEntrada, txtHoraSalida, btnCancelar);
         CtrlInterfaz.habilita(true, btnNuevo, btnModificar, btnEliminar, btnExportar1);
         btnNuevo.setText("Nuevo");
@@ -1408,8 +1447,7 @@ public class VtnHorarios extends javax.swing.JFrame {
         horarios = ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, "dia", ConectarBase.conectado());
         horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, null, ConectarBase.conectado()));
     }
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -1475,6 +1513,7 @@ public class VtnHorarios extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboPeriodoBusqueda;
     private javax.swing.JComboBox<String> comboTipo;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelnombre;
     private javax.swing.JLabel labelnombre1;
@@ -1482,6 +1521,7 @@ public class VtnHorarios extends javax.swing.JFrame {
     private javax.swing.JLabel labelnombre11;
     private javax.swing.JLabel labelnombre12;
     private javax.swing.JLabel labelnombre13;
+    private javax.swing.JLabel labelnombre14;
     private javax.swing.JLabel labelnombre2;
     private javax.swing.JLabel labelnombre3;
     private javax.swing.JLabel labelnombre4;
@@ -1499,6 +1539,7 @@ public class VtnHorarios extends javax.swing.JFrame {
     private javax.swing.JTextField txtHoraEntrada;
     private javax.swing.JTextField txtHoraSalida;
     private javax.swing.JTextField txtId;
+    private javax.swing.JTextArea txtInconsistencias;
     private javax.swing.JTextField txtNombreArchivo1;
     // End of variables declaration//GEN-END:variables
 }

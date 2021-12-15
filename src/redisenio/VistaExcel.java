@@ -670,7 +670,7 @@ public class VistaExcel extends javax.swing.JFrame {
         jCheckLllaves.setEnabled(false);
         jCheckMateriasBD.setEnabled(false);
         jCheckProfesores.setEnabled(false);
-
+        
         importaBD();
         ordenamientoBurbujaID("licenciatura");
         ordenamientoBurbujaNombre("materia");

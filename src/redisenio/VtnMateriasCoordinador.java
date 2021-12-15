@@ -728,7 +728,6 @@ public class VtnMateriasCoordinador extends javax.swing.JFrame {
             } else
             {
                 Materia materia = new Materia(txtMatricula.getText(), txtNombre.getText(), Integer.parseInt(txtHoras.getText()), Integer.parseInt(txtCreditos.getText()), Integer.parseInt(comboSemestre.getSelectedItem().toString()), comboNucleo.getSelectedItem().toString(), comboTipo.getSelectedItem().toString(), login.lic, buscaPlan(null, comboPlanEstudios.getSelectedItem().toString()));
-                Mensaje.exito(this, "Espere por favor haciendo modificacion en base de datos");
                 String mensaje = Controlador.ControladorMaterias.modifcaMateria(materia, (String) tablaMaterias.getValueAt(tablaMaterias.getSelectedRow(), 0));
                 if (mensaje.equals("operacion exitosa"))
                 {
@@ -751,7 +750,6 @@ public class VtnMateriasCoordinador extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         if (Mensaje.pregunta(this, "¿En realidad quiere eliminar el periodo " + txtMatricula.getText() + "?") == 0)
         {
-            Mensaje.exito(this, "Espere por favor eliminando registro de la base de datos");
             String mensaje = Controlador.ControladorMaterias.eliminaMateria(txtMatricula.getText());
             if (mensaje.endsWith("operacion exitosa"))
             {
@@ -999,8 +997,8 @@ public class VtnMateriasCoordinador extends javax.swing.JFrame {
         CtrlInterfaz.limpia(txtMatricula, txtNombre, txtHoras, txtCreditos);
         CtrlInterfaz.habilita(false, txtMatricula, comboPlanEstudios, txtNombre, txtHoras, txtCreditos, comboSemestre, comboNucleo, comboTipo, btnCancelar);
         CtrlInterfaz.habilita(true, btnModificar, btnNuevo, btnEliminar, btnExportar);
-        btnNuevo.setText("Nuevo");
-        btnModificar.setText("Modificar");
+        btnNuevo.setText("NUEVO");
+        btnModificar.setText("MODIFICAR");
     }
 
     public void llenaComboPlanes() {

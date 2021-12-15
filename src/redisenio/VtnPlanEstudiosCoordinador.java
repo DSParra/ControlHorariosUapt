@@ -460,7 +460,7 @@ public class VtnPlanEstudiosCoordinador extends javax.swing.JFrame {
          if (!edicion)
         {
             edicion();
-            btnNuevo.setText("Aceptar");
+            btnNuevo.setText("ACEPTAR");
             CtrlInterfaz.limpia(txtId, txtPlan);
             CtrlInterfaz.habilita(true, txtId, txtPlan,btnCancelar);
             CtrlInterfaz.habilita(false, btnModificar, btnEliminar, btnExportar);
@@ -471,7 +471,7 @@ public class VtnPlanEstudiosCoordinador extends javax.swing.JFrame {
             String mensaje = Controlador.ControladorPlanes.insertarPlan(plan);
             if (mensaje.equals("operacion exitosa"))
             {
-                btnNuevo.setText("Nuevo");
+                btnNuevo.setText("NUEVO");
                 CtrlInterfaz.limpia(txtPlan, txtId);
                 CtrlInterfaz.habilita(false, txtId, txtPlan, btnCancelar);
                 CtrlInterfaz.habilita(true, btnModificar, btnEliminar, btnExportar);
@@ -494,7 +494,7 @@ public class VtnPlanEstudiosCoordinador extends javax.swing.JFrame {
             if (!edicion)
             {
                 edicion();
-                btnModificar.setText("Aceptar");
+                btnModificar.setText("ACEPTAR");
                 CtrlInterfaz.habilita(true, txtPlan, btnModificar, btnCancelar);
                 CtrlInterfaz.habilita(false, btnEliminar, btnNuevo, txtId, btnExportar);
                 CtrlInterfaz.selecciona(txtPlan);
@@ -504,7 +504,7 @@ public class VtnPlanEstudiosCoordinador extends javax.swing.JFrame {
                 String mensaje = Controlador.ControladorPlanes.modificarPlan(plan, (String) tablaPlanes.getValueAt(tablaPlanes.getSelectedRow(), 0));
                 if (mensaje.equals("operacion exitosa"))
                 {
-                    btnModificar.setText("Modificar");
+                    btnModificar.setText("MODIFICAR");
                     CtrlInterfaz.limpia(txtPlan, txtId);
                     CtrlInterfaz.habilita(false, txtId, txtPlan, btnNuevo, btnCancelar);
                     CtrlInterfaz.habilita(true, btnEliminar, btnNuevo, btnExportar);
@@ -659,8 +659,8 @@ public class VtnPlanEstudiosCoordinador extends javax.swing.JFrame {
         CtrlInterfaz.limpia(txtId, txtPlan);
         CtrlInterfaz.habilita(false, txtId, txtPlan,btnCancelar);
         CtrlInterfaz.habilita(true, btnNuevo, btnEliminar, btnModificar, btnExportar);
-        btnNuevo.setText("Nuevo");
-        btnModificar.setText("Modificar");
+        btnNuevo.setText("NUEVO");
+        btnModificar.setText("MODIFICAR");
     }
 
     public String buscaLic(String id, String licenciatura) {

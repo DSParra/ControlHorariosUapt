@@ -727,7 +727,7 @@ public class VtnMaterias extends javax.swing.JFrame {
         if (!edicion)
         {
             edicion();
-            btnNuevo.setText("Aceptar");
+            btnNuevo.setText("ACEPTAR");
             CtrlInterfaz.limpia(txtMatricula, txtNombres, txtHoras, txtCreditos);
             CtrlInterfaz.habilita(true, txtMatricula, comboLicenciatura, comboPlanEstudios, txtNombres, txtHoras, txtCreditos, comboSemestre, comboNucleo, comboTipo, btnCancelar);
             CtrlInterfaz.habilita(false, btnModificar, btnEliminar, btnExportar1);
@@ -739,7 +739,7 @@ public class VtnMaterias extends javax.swing.JFrame {
             String mensaje = Controlador.ControladorMaterias.insertaMateria(mat);
             if (mensaje.equals("operacion exitosa"))
             {
-                btnNuevo.setText("Nuevo");
+                btnNuevo.setText("NUEVO");
                 CtrlInterfaz.habilita(false, txtMatricula, comboLicenciatura, comboPlanEstudios, txtNombres, txtHoras,
                         txtCreditos, comboSemestre, comboNucleo, comboTipo, btnCancelar);
                 CtrlInterfaz.habilita(true, btnModificar, btnEliminar, btnExportar1);
@@ -764,7 +764,7 @@ public class VtnMaterias extends javax.swing.JFrame {
             if (!edicion)
             {
                 edicion();
-                btnModificar.setText("Aceptar");
+                btnModificar.setText("ACEPTAR");
                 CtrlInterfaz.habilita(true, comboLicenciatura, comboPlanEstudios, txtNombres, txtHoras, txtCreditos,
                         comboSemestre, comboNucleo, comboTipo, btnCancelar);
                 CtrlInterfaz.habilita(false, btnNuevo, btnEliminar, btnExportar1);
@@ -775,7 +775,7 @@ public class VtnMaterias extends javax.swing.JFrame {
                 String mensaje = Controlador.ControladorMaterias.modifcaMateria(materia, (String) tablaMaterias.getValueAt(tablaMaterias.getSelectedRow(), 0));
                 if (mensaje.equals("operacion exitosa"))
                 {
-                    btnModificar.setText("Modificar");
+                    btnModificar.setText("MODIFICAR");
                     CtrlInterfaz.habilita(false, txtMatricula, comboLicenciatura, comboPlanEstudios, txtNombres, txtHoras, txtCreditos, comboSemestre, comboNucleo, comboTipo, btnCancelar);
                     CtrlInterfaz.habilita(true, btnNuevo, btnEliminar, btnExportar1);
                     CtrlInterfaz.limpia(txtMatricula, txtCreditos, txtHoras, txtNombres);
@@ -1105,8 +1105,8 @@ public class VtnMaterias extends javax.swing.JFrame {
         CtrlInterfaz.habilita(false, txtMatricula, comboLicenciatura, comboPlanEstudios, txtNombres, txtHoras,
                 txtCreditos, comboSemestre, comboNucleo, comboTipo, btnCancelar);
         CtrlInterfaz.habilita(true, btnModificar, btnNuevo, btnEliminar, btnExportar1);
-        btnNuevo.setText("Nuevo");
-        btnModificar.setText("Modificar");
+        btnNuevo.setText("NUEVO");
+        btnModificar.setText("MODIFICAR");
     }
 
     public void llenaComboPlanes() {

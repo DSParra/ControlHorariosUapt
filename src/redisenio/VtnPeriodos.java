@@ -454,7 +454,7 @@ public class VtnPeriodos extends javax.swing.JFrame {
          if (!edicion)
         {
             edicion();
-            btnNuevo.setText("Aceptar");
+            btnNuevo.setText("ACEPTAR");
             CtrlInterfaz.limpia(txtId, txtNombre);
             CtrlInterfaz.habilita(true,txtId, txtNombre, btnCancelar);
             CtrlInterfaz.habilita(false, btnModificar, btnEliminar, btnExportar1);
@@ -466,7 +466,7 @@ public class VtnPeriodos extends javax.swing.JFrame {
             String mensaje = Controlador.ControladorPeriodos.insertaPeriodo(per);
             if (mensaje.equals("operacion exitosa"))
             {
-                btnNuevo.setText("Nuevo");
+                btnNuevo.setText("NUEVO");
                 ConsultasObjetos.inserta(per, ConectarBase.conectado(), "periodo_escolar");
                 CtrlInterfaz.habilita(false,txtId, txtNombre, btnCancelar);
                 CtrlInterfaz.habilita(true,  btnModificar, btnEliminar, btnExportar1);
@@ -498,7 +498,7 @@ public class VtnPeriodos extends javax.swing.JFrame {
             if (!edicion)
             {
                 edicion();
-                btnModificar.setText("Aceptar");
+                btnModificar.setText("ACEPTAR");
                 CtrlInterfaz.habilita(true, txtNombre, btnCancelar);
                 CtrlInterfaz.habilita(false, btnEliminar, btnNuevo, txtId, btnExportar1);
                 CtrlInterfaz.selecciona(txtNombre);
@@ -508,7 +508,7 @@ public class VtnPeriodos extends javax.swing.JFrame {
                 String mensaje = Controlador.ControladorPeriodos.modificaPeriodo(perio, txtId.getText());
                 if (mensaje.equals("operacion exitosa"))
                 {
-                    btnModificar.setText("Modificar");
+                        btnModificar.setText("MODIFICAR");
                     CtrlInterfaz.habilita(false, txtId, txtNombre, btnCancelar);
                     CtrlInterfaz.habilita(true, btnEliminar, btnNuevo, btnExportar1);
                     CtrlInterfaz.limpia(txtId, txtNombre);

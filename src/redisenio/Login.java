@@ -19,6 +19,7 @@ import cjb.ci.Validaciones;
 import java.awt.Color;
 import java.sql.Connection;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -242,9 +243,14 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-
-        Mensaje.exito(this, "Estamos conectando con la base de datos");
+        //Mensaje.exito(this, "Estamos conectando con la base de datos");
         con = ConectarBase.conectado();
+        if (con != null)
+        {
+            JOptionPane.showMessageDialog(this, "Conectado conla Base de Datos", "Conectado", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(this, "No se pudo conectar, compruebe su conexión a internet", "Error",JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed

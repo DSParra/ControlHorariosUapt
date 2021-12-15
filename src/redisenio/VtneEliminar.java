@@ -5,6 +5,11 @@
  */
 package redisenio;
 
+import Clases.ConectarBase;
+import Clases.ConsultasObjetos;
+import cjb.ci.Mensaje;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author MoisesVidalHernandez
@@ -16,6 +21,7 @@ public class VtneEliminar extends javax.swing.JFrame {
      */
     public VtneEliminar() {
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**
@@ -89,6 +95,11 @@ public class VtneEliminar extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("ELIMINAR HORARIOS");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -101,6 +112,11 @@ public class VtneEliminar extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("ELIMINAR MATERIAS");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -113,6 +129,11 @@ public class VtneEliminar extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("ELIMINAR PLANES");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -126,6 +147,11 @@ public class VtneEliminar extends javax.swing.JFrame {
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("ELIMINAR PERIODOS");
         jButton4.setToolTipText("");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
@@ -138,6 +164,11 @@ public class VtneEliminar extends javax.swing.JFrame {
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("ELIMINAR GRUPOS");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -151,6 +182,11 @@ public class VtneEliminar extends javax.swing.JFrame {
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("ELIMINAR LICENCIATURAS");
         jButton6.setToolTipText("");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -163,6 +199,11 @@ public class VtneEliminar extends javax.swing.JFrame {
         jButton7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("ELIMINAR USUARIOS");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -175,6 +216,11 @@ public class VtneEliminar extends javax.swing.JFrame {
         jButton8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton8.setForeground(new java.awt.Color(255, 255, 255));
         jButton8.setText("ELIMINAR DOCENTES");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
@@ -227,6 +273,118 @@ public class VtneEliminar extends javax.swing.JFrame {
         this.setVisible(false);
         new VtnAdministrador().setVisible(true);
     }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar todos los registrosa de horarios ") == 0)
+        {
+            boolean mensaje = ConsultasObjetos.elimina("horarios", null, null, 0, ConectarBase.conectado());
+            if (mensaje)
+            {
+                Mensaje.exito(this, "se eliminaron todos los registros de horarios");
+            } else
+            {
+                Mensaje.exito(this, "no se pudieron eliminar los registros de los horarios");
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar todos los registrosa de lasm materias ") == 0)
+        {
+            boolean mensaje = ConsultasObjetos.elimina("materia", null, null, 0, ConectarBase.conectado());
+            if (mensaje)
+            {
+                Mensaje.exito(this, "se eliminaron todos los registros de materias");
+            } else
+            {
+                Mensaje.exito(this, "no se pudieron eliminar los registros de los materias");
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if (JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar todos los registrosa de planes de estudios ") == 0)
+        {
+            boolean mensaje = ConsultasObjetos.elimina("plan_estudios", null, null, 0, ConectarBase.conectado());
+            if (mensaje)
+            {
+                Mensaje.exito(this, "se eliminaron todos los registros de planes de estudios");
+            } else
+            {
+                Mensaje.exito(this, "no se pudieron eliminar los registros de los planes de estudios");
+            }
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if (JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar todos los registrosa de periodos ") == 0)
+        {
+            boolean mensaje = ConsultasObjetos.elimina("periodo_escolar", null, null, 0, ConectarBase.conectado());
+            if (mensaje)
+            {
+                Mensaje.exito(this, "se eliminaron todos los registros de periodos");
+            } else
+            {
+                Mensaje.exito(this, "no se pudieron eliminar los registros de los periodos");
+            }
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        if (JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar todos los registrosa de grupos ") == 0)
+        {
+            boolean mensaje = ConsultasObjetos.elimina("grupo", null, null, 0, ConectarBase.conectado());
+            if (mensaje)
+            {
+                Mensaje.exito(this, "se eliminaron todos los registros de grupos");
+            } else
+            {
+                Mensaje.exito(this, "no se pudieron eliminar los registros de los grupos");
+            }
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        if (JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar todos los registrosa de licenciaturas ") == 0)
+        {
+            boolean mensaje = ConsultasObjetos.elimina("licenciatura", null, null, 0, ConectarBase.conectado());
+            if (mensaje)
+            {
+                Mensaje.exito(this, "se eliminaron todos los registros de licenciaturas");
+            } else
+            {
+                Mensaje.exito(this, "no se pudieron eliminar los registros de las licenciaturas");
+            }
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        if (JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar todos los registrosa de coordinadores ") == 0)
+        {
+            boolean mensaje = ConsultasObjetos.elimina("usuarios", "nivel", "profesor", 0, ConectarBase.conectado());
+            if (mensaje)
+            {
+                Mensaje.exito(this, "se eliminaron todos los registros de los coordinadores");
+            } else
+            {
+                Mensaje.exito(this, "no se pudieron eliminar los registros de los cooordinadores");
+            }
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        if (JOptionPane.showConfirmDialog(this, "Seguro que desea eliminar todos los registrosa de docenctes ") == 0)
+        {
+            boolean mensaje = ConsultasObjetos.elimina("profesores", null, null, 0, ConectarBase.conectado());
+            if (mensaje)
+            {
+                Mensaje.exito(this, "se eliminaron todos los registros de docentes");
+            } else
+            {
+                Mensaje.exito(this, "no se pudieron eliminar los registros de los docentes");
+            }
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
