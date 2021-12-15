@@ -247,7 +247,7 @@ public class Login extends javax.swing.JFrame {
         con = ConectarBase.conectado();
         if (con != null)
         {
-            JOptionPane.showMessageDialog(this, "Conectado conla Base de Datos", "Conectado", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Conectado con la Base de Datos", "Conectado", JOptionPane.INFORMATION_MESSAGE);
         }else{
             JOptionPane.showMessageDialog(this, "No se pudo conectar, compruebe su conexión a internet", "Error",JOptionPane.ERROR_MESSAGE);
         }
