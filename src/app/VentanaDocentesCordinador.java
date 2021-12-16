@@ -49,33 +49,33 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnAgregar = new javax.swing.JButton();
+        btnNuevo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaDocentes = new javax.swing.JTable();
         jBRegresar = new javax.swing.JButton();
         jBCerrarSesion = new javax.swing.JButton();
-        btnAgregar3 = new javax.swing.JButton();
-        btncancelar = new javax.swing.JButton();
+        btnExportar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        txttelefono = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        txtcorreo = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txtgradoAcademico = new javax.swing.JTextField();
+        txtGrado = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtnombres = new javax.swing.JTextField();
+        txtNombres = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtapellidoM = new javax.swing.JTextField();
+        txtAMaterno = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        txtapellidoP = new javax.swing.JTextField();
+        txtAPaterno = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtrfc = new javax.swing.JTextField();
+        txtRFC = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jtIDBusqeuda = new javax.swing.JTextField();
+        txtIdBusqueda = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        btnBusca = new javax.swing.JButton();
-        txtnombreArchivo = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        txtNombreArchivo = new javax.swing.JTextField();
         jLTituloUAPT1 = new javax.swing.JLabel();
         jLTituloUniversidad1 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -90,19 +90,19 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
             }
         });
 
-        btnAgregar.setBackground(new java.awt.Color(102, 102, 0));
-        btnAgregar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregar.setText("Nuevo");
-        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+        btnNuevo.setBackground(new java.awt.Color(102, 102, 0));
+        btnNuevo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
+        btnNuevo.setText("Nuevo");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarActionPerformed(evt);
+                btnNuevoActionPerformed(evt);
             }
         });
 
-        jTable1.setBackground(new java.awt.Color(25, 83, 0));
-        jTable1.setForeground(new java.awt.Color(254, 254, 254));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaDocentes.setBackground(new java.awt.Color(25, 83, 0));
+        tablaDocentes.setForeground(new java.awt.Color(254, 254, 254));
+        tablaDocentes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -118,12 +118,12 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablaDocentes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                tablaDocentesMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaDocentes);
 
         jBRegresar.setBackground(new java.awt.Color(102, 102, 0));
         jBRegresar.setForeground(new java.awt.Color(255, 255, 255));
@@ -147,43 +147,43 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
             }
         });
 
-        btnAgregar3.setBackground(new java.awt.Color(102, 102, 0));
-        btnAgregar3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnAgregar3.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregar3.setText("Exportar");
-        btnAgregar3.addActionListener(new java.awt.event.ActionListener() {
+        btnExportar.setBackground(new java.awt.Color(102, 102, 0));
+        btnExportar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnExportar.setForeground(new java.awt.Color(255, 255, 255));
+        btnExportar.setText("Exportar");
+        btnExportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregar3ActionPerformed(evt);
+                btnExportarActionPerformed(evt);
             }
         });
 
-        btncancelar.setBackground(new java.awt.Color(102, 102, 0));
-        btncancelar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btncancelar.setForeground(new java.awt.Color(255, 255, 255));
-        btncancelar.setText("Cancelar");
-        btncancelar.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setBackground(new java.awt.Color(102, 102, 0));
+        btnCancelar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btncancelarActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
         jPanel1.setBackground(new java.awt.Color(25, 83, 0));
         jPanel1.setPreferredSize(new java.awt.Dimension(320, 485));
 
-        txttelefono.addActionListener(new java.awt.event.ActionListener() {
+        txtTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txttelefonoActionPerformed(evt);
+                txtTelefonoActionPerformed(evt);
             }
         });
-        txttelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txttelefonoKeyPressed(evt);
+                txtTelefonoKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txttelefonoKeyReleased(evt);
+                txtTelefonoKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txttelefonoKeyTyped(evt);
+                txtTelefonoKeyTyped(evt);
             }
         });
 
@@ -191,17 +191,17 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(254, 254, 254));
         jLabel10.setText("TELEFONO");
 
-        txtcorreo.addActionListener(new java.awt.event.ActionListener() {
+        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcorreoActionPerformed(evt);
+                txtCorreoActionPerformed(evt);
             }
         });
-        txtcorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtcorreoKeyPressed(evt);
+                txtCorreoKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtcorreoKeyReleased(evt);
+                txtCorreoKeyReleased(evt);
             }
         });
 
@@ -209,25 +209,25 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(254, 254, 254));
         jLabel9.setText("CORREO");
 
-        txtgradoAcademico.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtGrado.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtgradoAcademicoFocusLost(evt);
+                txtGradoFocusLost(evt);
             }
         });
-        txtgradoAcademico.addActionListener(new java.awt.event.ActionListener() {
+        txtGrado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtgradoAcademicoActionPerformed(evt);
+                txtGradoActionPerformed(evt);
             }
         });
-        txtgradoAcademico.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtGrado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtgradoAcademicoKeyPressed(evt);
+                txtGradoKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtgradoAcademicoKeyReleased(evt);
+                txtGradoKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtgradoAcademicoKeyTyped(evt);
+                txtGradoKeyTyped(evt);
             }
         });
 
@@ -235,25 +235,25 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(254, 254, 254));
         jLabel7.setText("GRADO ACADEMICO");
 
-        txtnombres.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtNombres.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtnombresFocusLost(evt);
+                txtNombresFocusLost(evt);
             }
         });
-        txtnombres.addActionListener(new java.awt.event.ActionListener() {
+        txtNombres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnombresActionPerformed(evt);
+                txtNombresActionPerformed(evt);
             }
         });
-        txtnombres.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtNombres.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtnombresKeyPressed(evt);
+                txtNombresKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtnombresKeyReleased(evt);
+                txtNombresKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtnombresKeyTyped(evt);
+                txtNombresKeyTyped(evt);
             }
         });
 
@@ -261,25 +261,25 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(254, 254, 254));
         jLabel6.setText("NOMBRE(S)");
 
-        txtapellidoM.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtAMaterno.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtapellidoMFocusLost(evt);
+                txtAMaternoFocusLost(evt);
             }
         });
-        txtapellidoM.addActionListener(new java.awt.event.ActionListener() {
+        txtAMaterno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtapellidoMActionPerformed(evt);
+                txtAMaternoActionPerformed(evt);
             }
         });
-        txtapellidoM.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtAMaterno.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtapellidoMKeyPressed(evt);
+                txtAMaternoKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtapellidoMKeyReleased(evt);
+                txtAMaternoKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtapellidoMKeyTyped(evt);
+                txtAMaternoKeyTyped(evt);
             }
         });
 
@@ -287,25 +287,25 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(254, 254, 254));
         jLabel8.setText("APELLIDO MATERNO");
 
-        txtapellidoP.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtAPaterno.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtapellidoPFocusLost(evt);
+                txtAPaternoFocusLost(evt);
             }
         });
-        txtapellidoP.addActionListener(new java.awt.event.ActionListener() {
+        txtAPaterno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtapellidoPActionPerformed(evt);
+                txtAPaternoActionPerformed(evt);
             }
         });
-        txtapellidoP.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtAPaterno.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtapellidoPKeyPressed(evt);
+                txtAPaternoKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtapellidoPKeyReleased(evt);
+                txtAPaternoKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtapellidoPKeyTyped(evt);
+                txtAPaternoKeyTyped(evt);
             }
         });
 
@@ -313,25 +313,25 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(254, 254, 254));
         jLabel3.setText("APELLIDO PATERNO");
 
-        txtrfc.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtRFC.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtrfcFocusLost(evt);
+                txtRFCFocusLost(evt);
             }
         });
-        txtrfc.addActionListener(new java.awt.event.ActionListener() {
+        txtRFC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtrfcActionPerformed(evt);
+                txtRFCActionPerformed(evt);
             }
         });
-        txtrfc.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtRFC.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtrfcKeyPressed(evt);
+                txtRFCKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtrfcKeyReleased(evt);
+                txtRFCKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtrfcKeyTyped(evt);
+                txtRFCKeyTyped(evt);
             }
         });
 
@@ -346,7 +346,7 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txttelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
                     .addComponent(jLabel10)
                     .addComponent(jLabel6)
                     .addComponent(jLabel4)
@@ -354,12 +354,12 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(jLabel7)
                     .addComponent(jLabel9)
-                    .addComponent(txtcorreo)
-                    .addComponent(txtgradoAcademico)
-                    .addComponent(txtnombres)
-                    .addComponent(txtapellidoM)
-                    .addComponent(txtapellidoP)
-                    .addComponent(txtrfc))
+                    .addComponent(txtCorreo)
+                    .addComponent(txtGrado)
+                    .addComponent(txtNombres)
+                    .addComponent(txtAMaterno)
+                    .addComponent(txtAPaterno)
+                    .addComponent(txtRFC))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -368,44 +368,44 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtrfc, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtapellidoP, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtAPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtapellidoM, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtAMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtnombres, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtgradoAcademico, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtGrado, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtcorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(25, 83, 0));
 
-        jtIDBusqeuda.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtIdBusqueda.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jtIDBusqeudaFocusLost(evt);
+                txtIdBusquedaFocusLost(evt);
             }
         });
-        jtIDBusqeuda.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtIdBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jtIDBusqeudaKeyPressed(evt);
+                txtIdBusquedaKeyPressed(evt);
             }
         });
 
@@ -421,7 +421,7 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtIDBusqeuda, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtIdBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -429,24 +429,24 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtIDBusqeuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnBusca.setBackground(new java.awt.Color(102, 102, 0));
-        btnBusca.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnBusca.setForeground(new java.awt.Color(255, 255, 255));
-        btnBusca.setText("Buscar");
-        btnBusca.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setBackground(new java.awt.Color(102, 102, 0));
+        btnBuscar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscaActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
 
-        txtnombreArchivo.addActionListener(new java.awt.event.ActionListener() {
+        txtNombreArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnombreArchivoActionPerformed(evt);
+                txtNombreArchivoActionPerformed(evt);
             }
         });
 
@@ -473,9 +473,9 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 718, Short.MAX_VALUE)
                         .addComponent(jBRegresar)
                         .addGap(18, 18, 18)
@@ -505,11 +505,11 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
                                         .addGap(14, 14, 14))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(12, 12, 12)
-                                        .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtNombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(32, 32, 32)
-                                        .addComponent(btnAgregar3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -530,9 +530,9 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAgregar3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnBusca))
+                            .addComponent(txtNombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnExportar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnBuscar))
                         .addGap(2, 2, 2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -544,8 +544,8 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
                         .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btncancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -553,29 +553,29 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtrfcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtrfcActionPerformed
+    private void txtRFCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRFCActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtrfcActionPerformed
+    }//GEN-LAST:event_txtRFCActionPerformed
 
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
 
         if (!edicion)
         {
             edicion();
-            btnAgregar.setText("Aceptar");
-            CtrlInterfaz.limpia(txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
-            CtrlInterfaz.habilita(true, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
-            CtrlInterfaz.selecciona(txtrfc);
+            btnNuevo.setText("Aceptar");
+            CtrlInterfaz.limpia(txtAMaterno, txtAPaterno, txtNombres, txtRFC, txtGrado, txtCorreo, txtTelefono);
+            CtrlInterfaz.habilita(true, txtAMaterno, txtAPaterno, txtNombres, txtRFC, txtGrado, txtCorreo, txtTelefono, btnCancelar);
+            CtrlInterfaz.selecciona(txtRFC);
 
         } else
         {
-            Profesor p = new Profesor(txtrfc.getText(), txtapellidoP.getText(), txtapellidoM.getText(), txtnombres.getText(), txtgradoAcademico.getText(), txtcorreo.getText(), txttelefono.getText());
+            Profesor p = new Profesor(txtRFC.getText(), txtAPaterno.getText(), txtAMaterno.getText(), txtNombres.getText(), txtGrado.getText(), txtCorreo.getText(), txtTelefono.getText());
             String mensaje = ControladorProfesores.InsertaProfesor(p);
             if (mensaje.equals("operacion exitosa"))
             {
-                btnAgregar.setText("Nuevo");
-                CtrlInterfaz.limpia(txtrfc, txtapellidoP, txtapellidoM, txtnombres, txtgradoAcademico, txtgradoAcademico, txttelefono);
-                CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
+                btnNuevo.setText("Nuevo");
+                CtrlInterfaz.limpia(txtRFC, txtAPaterno, txtAMaterno, txtNombres, txtGrado, txtGrado, txtTelefono);
+                CtrlInterfaz.habilita(false, txtAMaterno, txtAPaterno, txtNombres, txtRFC, txtGrado, txtCorreo, txtTelefono);
                 actualizaTabla(1);
                 edicion();
             } else
@@ -585,7 +585,7 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
         }
 
 
-    }//GEN-LAST:event_btnAgregarActionPerformed
+    }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
         this.setVisible(false);
@@ -597,39 +597,39 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
         new VentanaLogin().setVisible(true);
     }//GEN-LAST:event_jBCerrarSesionActionPerformed
 
-    private void txtgradoAcademicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtgradoAcademicoActionPerformed
+    private void txtGradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGradoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtgradoAcademicoActionPerformed
+    }//GEN-LAST:event_txtGradoActionPerformed
 
-    private void txtapellidoPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtapellidoPActionPerformed
+    private void txtAPaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAPaternoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtapellidoPActionPerformed
+    }//GEN-LAST:event_txtAPaternoActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         cancelar();
         actualizaTabla(1);
     }//GEN-LAST:event_formWindowOpened
 
-    private void txtapellidoMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtapellidoMActionPerformed
+    private void txtAMaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAMaternoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtapellidoMActionPerformed
+    }//GEN-LAST:event_txtAMaternoActionPerformed
 
-    private void txtnombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombresActionPerformed
+    private void txtNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnombresActionPerformed
+    }//GEN-LAST:event_txtNombresActionPerformed
 
-    private void txtcorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcorreoActionPerformed
+    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtcorreoActionPerformed
+    }//GEN-LAST:event_txtCorreoActionPerformed
 
-    private void txttelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttelefonoActionPerformed
+    private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txttelefonoActionPerformed
+    }//GEN-LAST:event_txtTelefonoActionPerformed
 
-    private void btnAgregar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar3ActionPerformed
-        if (txtnombreArchivo.getText() != null)
+    private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
+        if (txtNombreArchivo.getText() != null)
         {
-            String mensaje = Archivo.Exportar(jTable1, txtnombreArchivo.getText());
+            String mensaje = Archivo.Exportar(tablaDocentes, txtNombreArchivo.getText());
             if (mensaje.equals("Error en la Exportacion"))
             {
                 Mensaje.error(this, mensaje);
@@ -641,148 +641,148 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
         {
             Mensaje.error(this, "Escriba el nombre del archivo");
         }
-    }//GEN-LAST:event_btnAgregar3ActionPerformed
+    }//GEN-LAST:event_btnExportarActionPerformed
 
-    private void btncancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelarActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         cancelar();
-    }//GEN-LAST:event_btncancelarActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void txtrfcKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtrfcKeyPressed
-        enter(this, evt, txtapellidoP);
-    }//GEN-LAST:event_txtrfcKeyPressed
+    private void txtRFCKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRFCKeyPressed
+        enter(this, evt, txtAPaterno);
+    }//GEN-LAST:event_txtRFCKeyPressed
 
-    private void txtapellidoPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidoPKeyPressed
-        enter(this, evt, txtapellidoM);
-    }//GEN-LAST:event_txtapellidoPKeyPressed
+    private void txtAPaternoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAPaternoKeyPressed
+        enter(this, evt, txtAMaterno);
+    }//GEN-LAST:event_txtAPaternoKeyPressed
 
-    private void txtapellidoMKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidoMKeyPressed
-        enter(this, evt, txtnombres);
-    }//GEN-LAST:event_txtapellidoMKeyPressed
+    private void txtAMaternoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAMaternoKeyPressed
+        enter(this, evt, txtNombres);
+    }//GEN-LAST:event_txtAMaternoKeyPressed
 
-    private void txtnombresKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombresKeyPressed
-        enter(this, evt, txtgradoAcademico);
-    }//GEN-LAST:event_txtnombresKeyPressed
+    private void txtNombresKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyPressed
+        enter(this, evt, txtGrado);
+    }//GEN-LAST:event_txtNombresKeyPressed
 
-    private void txtgradoAcademicoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtgradoAcademicoKeyPressed
-        enter(this, evt, txtcorreo);
-    }//GEN-LAST:event_txtgradoAcademicoKeyPressed
+    private void txtGradoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGradoKeyPressed
+        enter(this, evt, txtCorreo);
+    }//GEN-LAST:event_txtGradoKeyPressed
 
-    private void txtcorreoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcorreoKeyPressed
-        enter(this, evt, txttelefono);
-    }//GEN-LAST:event_txtcorreoKeyPressed
+    private void txtCorreoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyPressed
+        enter(this, evt, txtTelefono);
+    }//GEN-LAST:event_txtCorreoKeyPressed
 
-    private void txttelefonoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefonoKeyPressed
+    private void txtTelefonoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyPressed
         //enter(this, evt, btnAgregar);
-    }//GEN-LAST:event_txttelefonoKeyPressed
+    }//GEN-LAST:event_txtTelefonoKeyPressed
 
-    private void txtrfcKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtrfcKeyReleased
-    }//GEN-LAST:event_txtrfcKeyReleased
+    private void txtRFCKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRFCKeyReleased
+    }//GEN-LAST:event_txtRFCKeyReleased
 
-    private void txtapellidoPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidoPKeyReleased
-    }//GEN-LAST:event_txtapellidoPKeyReleased
+    private void txtAPaternoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAPaternoKeyReleased
+    }//GEN-LAST:event_txtAPaternoKeyReleased
 
-    private void txtapellidoMKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidoMKeyReleased
-    }//GEN-LAST:event_txtapellidoMKeyReleased
+    private void txtAMaternoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAMaternoKeyReleased
+    }//GEN-LAST:event_txtAMaternoKeyReleased
 
-    private void txtnombresKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombresKeyReleased
-    }//GEN-LAST:event_txtnombresKeyReleased
+    private void txtNombresKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyReleased
+    }//GEN-LAST:event_txtNombresKeyReleased
 
-    private void txtgradoAcademicoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtgradoAcademicoKeyReleased
-    }//GEN-LAST:event_txtgradoAcademicoKeyReleased
+    private void txtGradoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGradoKeyReleased
+    }//GEN-LAST:event_txtGradoKeyReleased
 
-    private void txtcorreoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcorreoKeyReleased
-    }//GEN-LAST:event_txtcorreoKeyReleased
+    private void txtCorreoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyReleased
+    }//GEN-LAST:event_txtCorreoKeyReleased
 
-    private void txttelefonoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefonoKeyReleased
-    }//GEN-LAST:event_txttelefonoKeyReleased
+    private void txtTelefonoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyReleased
+    }//GEN-LAST:event_txtTelefonoKeyReleased
 
-    private void txttelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefonoKeyTyped
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
         Validaciones.validaEntero(evt);
-        Valida.validaLongitud(txttelefono, 10, evt);
-    }//GEN-LAST:event_txttelefonoKeyTyped
+        Valida.validaLongitud(txtTelefono, 10, evt);
+    }//GEN-LAST:event_txtTelefonoKeyTyped
 
-    private void txtapellidoPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidoPKeyTyped
+    private void txtAPaternoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAPaternoKeyTyped
         Validaciones.validaAlfabeticos(evt);
-    }//GEN-LAST:event_txtapellidoPKeyTyped
+    }//GEN-LAST:event_txtAPaternoKeyTyped
 
-    private void txtapellidoMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidoMKeyTyped
+    private void txtAMaternoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAMaternoKeyTyped
         Validaciones.validaAlfabeticos(evt);
-    }//GEN-LAST:event_txtapellidoMKeyTyped
+    }//GEN-LAST:event_txtAMaternoKeyTyped
 
-    private void txtnombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombresKeyTyped
+    private void txtNombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyTyped
         Validaciones.validaAlfabeticos(evt);
-    }//GEN-LAST:event_txtnombresKeyTyped
+    }//GEN-LAST:event_txtNombresKeyTyped
 
-    private void txtgradoAcademicoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtgradoAcademicoKeyTyped
+    private void txtGradoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGradoKeyTyped
         Validaciones.validaAlfabeticos(evt);
-    }//GEN-LAST:event_txtgradoAcademicoKeyTyped
+    }//GEN-LAST:event_txtGradoKeyTyped
 
-    private void txtrfcKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtrfcKeyTyped
+    private void txtRFCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRFCKeyTyped
         Validaciones.validaAlfanumerico(evt);
-        if (txtrfc.getText().length() == 13)
+        if (txtRFC.getText().length() == 13)
         {
             evt.consume();
         }
-    }//GEN-LAST:event_txtrfcKeyTyped
+    }//GEN-LAST:event_txtRFCKeyTyped
 
-    private void jtIDBusqeudaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtIDBusqeudaFocusLost
-        Valida.convertirAMayusculas(jtIDBusqeuda);
-    }//GEN-LAST:event_jtIDBusqeudaFocusLost
+    private void txtIdBusquedaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdBusquedaFocusLost
+        Valida.convertirAMayusculas(txtIdBusqueda);
+    }//GEN-LAST:event_txtIdBusquedaFocusLost
 
-    private void jtIDBusqeudaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDBusqeudaKeyPressed
-        enter(this, evt, btnBusca);
-    }//GEN-LAST:event_jtIDBusqeudaKeyPressed
+    private void txtIdBusquedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdBusquedaKeyPressed
+        enter(this, evt, btnBuscar);
+    }//GEN-LAST:event_txtIdBusquedaKeyPressed
 
-    private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
-        if (jtIDBusqeuda.getText().equals(""))
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        if (txtIdBusqueda.getText().equals(""))
         {
             actualizaTabla(1);
         } else
         {
             actualizaTabla(2);
         }
-    }//GEN-LAST:event_btnBuscaActionPerformed
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void txtapellidoPFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtapellidoPFocusLost
-        Valida.convertirAMayusculas(txtapellidoP);
-    }//GEN-LAST:event_txtapellidoPFocusLost
+    private void txtAPaternoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAPaternoFocusLost
+        Valida.convertirAMayusculas(txtAPaterno);
+    }//GEN-LAST:event_txtAPaternoFocusLost
 
-    private void txtapellidoMFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtapellidoMFocusLost
-        Valida.convertirAMayusculas(txtapellidoM);
-    }//GEN-LAST:event_txtapellidoMFocusLost
+    private void txtAMaternoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAMaternoFocusLost
+        Valida.convertirAMayusculas(txtAMaterno);
+    }//GEN-LAST:event_txtAMaternoFocusLost
 
-    private void txtnombresFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtnombresFocusLost
-        Valida.convertirAMayusculas(txtnombres);
-    }//GEN-LAST:event_txtnombresFocusLost
+    private void txtNombresFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombresFocusLost
+        Valida.convertirAMayusculas(txtNombres);
+    }//GEN-LAST:event_txtNombresFocusLost
 
-    private void txtgradoAcademicoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtgradoAcademicoFocusLost
-        Valida.convertirAMayusculas(txtgradoAcademico);
-    }//GEN-LAST:event_txtgradoAcademicoFocusLost
+    private void txtGradoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtGradoFocusLost
+        Valida.convertirAMayusculas(txtGrado);
+    }//GEN-LAST:event_txtGradoFocusLost
 
-    private void txtrfcFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtrfcFocusLost
-        Valida.convertirAMayusculas(txtrfc);
-    }//GEN-LAST:event_txtrfcFocusLost
+    private void txtRFCFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRFCFocusLost
+        Valida.convertirAMayusculas(txtRFC);
+    }//GEN-LAST:event_txtRFCFocusLost
 
-    private void txtnombreArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreArchivoActionPerformed
+    private void txtNombreArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreArchivoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnombreArchivoActionPerformed
+    }//GEN-LAST:event_txtNombreArchivoActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        txtrfc.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 0));
-        txtnombres.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 1));
-        txtapellidoP.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 2));
-        txtapellidoM.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 3));
-        txtgradoAcademico.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 4));
-        txtcorreo.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 5));
-        txttelefono.setText((String) modelo.getValueAt(jTable1.getSelectedRow(), 6));
-    }//GEN-LAST:event_jTable1MouseClicked
+    private void tablaDocentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaDocentesMouseClicked
+        txtRFC.setText((String) modelo.getValueAt(tablaDocentes.getSelectedRow(), 0));
+        txtNombres.setText((String) modelo.getValueAt(tablaDocentes.getSelectedRow(), 1));
+        txtAPaterno.setText((String) modelo.getValueAt(tablaDocentes.getSelectedRow(), 2));
+        txtAMaterno.setText((String) modelo.getValueAt(tablaDocentes.getSelectedRow(), 3));
+        txtGrado.setText((String) modelo.getValueAt(tablaDocentes.getSelectedRow(), 4));
+        txtCorreo.setText((String) modelo.getValueAt(tablaDocentes.getSelectedRow(), 5));
+        txtTelefono.setText((String) modelo.getValueAt(tablaDocentes.getSelectedRow(), 6));
+    }//GEN-LAST:event_tablaDocentesMouseClicked
 
     private void cancelar() {
         edicion();
-        CtrlInterfaz.limpia(txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono);
-        CtrlInterfaz.habilita(false, txtapellidoM, txtapellidoP, txtnombres, txtrfc, txtgradoAcademico, txtcorreo, txttelefono, btncancelar);
-        CtrlInterfaz.habilita(true, btnAgregar);
-        btnAgregar.setText("Nuevo");
+        CtrlInterfaz.limpia(txtAMaterno, txtAPaterno, txtNombres, txtRFC, txtGrado, txtCorreo, txtTelefono);
+        CtrlInterfaz.habilita(false, txtAMaterno, txtAPaterno, txtNombres, txtRFC, txtGrado, txtCorreo, txtTelefono, btnCancelar);
+        CtrlInterfaz.habilita(true, btnNuevo);
+        btnNuevo.setText("Nuevo");
     }
 
     private void edicion() {
@@ -796,7 +796,7 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
     }
 
     public void actualizaTabla(int valor) {
-        modelo = (DefaultTableModel) jTable1.getModel();
+        modelo = (DefaultTableModel) tablaDocentes.getModel();
         ArrayList profes = new ArrayList();
         if (valor == 1)
         {
@@ -817,12 +817,12 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
 
                     });
                     System.out.println(((Profesor) p).getNombres());
-                    btnBusca.setText("Buscar");
+                    btnBuscar.setText("Buscar");
                 }
             }
         } else if (valor == 2)
         {
-            profes = ConsultasObjetos.consultaMuchos("profesores", "nombres", jtIDBusqeuda.getText(), null, null, "nombres", ConectarBase.conectado());
+            profes = ConsultasObjetos.consultaMuchos("profesores", "nombres", txtIdBusqueda.getText(), null, null, "nombres", ConectarBase.conectado());
             if (profes.isEmpty())
             {
                 Mensaje.error(this, "No se encuentran registros");
@@ -837,8 +837,8 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
                         profe.getRfc(), profe.getNombres(), profe.getApellidoP(), profe.getApellidoM(), profe.getGradoAcademico(), profe.getCorreo(), profe.getTelefono()
                     });
                     System.out.println(((Profesor) p).getNombres());
-                    jtIDBusqeuda.setText("");
-                    btnBusca.setText("Todo");
+                    txtIdBusqueda.setText("");
+                    btnBuscar.setText("Todo");
                 }
             }
         }
@@ -1014,10 +1014,10 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnAgregar3;
-    private javax.swing.JButton btnBusca;
-    private javax.swing.JButton btncancelar;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnExportar;
+    private javax.swing.JButton btnNuevo;
     private javax.swing.JButton jBCerrarSesion;
     private javax.swing.JButton jBRegresar;
     private javax.swing.JLabel jLTituloUAPT1;
@@ -1036,15 +1036,15 @@ public class VentanaDocentesCordinador extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jtIDBusqeuda;
-    private javax.swing.JTextField txtapellidoM;
-    private javax.swing.JTextField txtapellidoP;
-    private javax.swing.JTextField txtcorreo;
-    private javax.swing.JTextField txtgradoAcademico;
-    private javax.swing.JTextField txtnombreArchivo;
-    private javax.swing.JTextField txtnombres;
-    private javax.swing.JTextField txtrfc;
-    private javax.swing.JTextField txttelefono;
+    private javax.swing.JTable tablaDocentes;
+    private javax.swing.JTextField txtAMaterno;
+    private javax.swing.JTextField txtAPaterno;
+    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtGrado;
+    private javax.swing.JTextField txtIdBusqueda;
+    private javax.swing.JTextField txtNombreArchivo;
+    private javax.swing.JTextField txtNombres;
+    private javax.swing.JTextField txtRFC;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

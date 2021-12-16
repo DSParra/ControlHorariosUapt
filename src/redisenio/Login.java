@@ -5,8 +5,22 @@
  */
 package redisenio;
 
+import Clases.ConectarBase;
+import Clases.ConsultasObjetos;
+import Clases.Querys;
+import Objetos.Usuario;
+import app.VentanaAdministrador;
+import static app.VentanaLogin.con;
+import static app.VentanaLogin.lic;
+import app.VentanaMenuCoordinador;
+import redisenio.VtnMenuCoordinador;
+import cjb.ci.Mensaje;
+import cjb.ci.Validaciones;
 import java.awt.Color;
+import java.sql.Connection;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,8 +35,30 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         this.getContentPane().setBackground(Color.WHITE);
         this.setIconImage(new ImageIcon(getClass().getResource("/Iconos2/SCHR.png")).getImage());
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
+    public static Connection con = null;
+    public static String lic;
+    Querys q;
+
+    public boolean login() {
+        q = new Querys();
+        //try {
+            Usuario us = new Usuario();
+            us =(Usuario)ConsultasObjetos.consultaUnica("usuarios","usuario",txtUsuario.getText(), con);
+            if (us  == null) {
+                return false;
+            }else{
+                if (us.getContra().equals(txtcontrasenia.getText())) {
+                    return true;
+                }else{
+                    JOptionPane.showMessageDialog(null,"Contaseña incorrecta");
+                }                
+            }
+        return false;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,11 +79,16 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        txtUsuario = new javax.swing.JTextField();
+        txtcontrasenia = new javax.swing.JPasswordField();
+        btnEntrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -60,7 +101,7 @@ public class Login extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.RELATIVE;
         jPanel4.add(logo, gridBagConstraints);
 
-        uaem.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        uaem.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         uaem.setText("UNIVERSIDAD AUTONOMA DEL ESTADO DE MÉXICO");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -68,7 +109,7 @@ public class Login extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 3;
         jPanel4.add(uaem, gridBagConstraints);
 
-        uapt.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        uapt.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         uapt.setText("UNIDAD ACADEMICA PROFESIONAL TIANGUISTENCO");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -76,7 +117,7 @@ public class Login extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 4;
         jPanel4.add(uapt, gridBagConstraints);
 
-        schr.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        schr.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         schr.setText("SISTEMA DE CONTROL DE HORARIOS");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -94,8 +135,10 @@ public class Login extends javax.swing.JFrame {
         jPanel4.add(schr1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jPanel4, gridBagConstraints);
 
@@ -137,39 +180,59 @@ public class Login extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(jLabel3, gridBagConstraints);
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField1.setText("jTextField1");
+        txtUsuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jTextField1, gridBagConstraints);
+        jPanel1.add(txtUsuario, gridBagConstraints);
 
-        jPasswordField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPasswordField1.setText("jPasswordField1");
+        txtcontrasenia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtcontrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtcontraseniaKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jPasswordField1, gridBagConstraints);
+        jPanel1.add(txtcontrasenia, gridBagConstraints);
 
-        jButton1.setBackground(new java.awt.Color(102, 102, 0));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("ENTRAR");
+        btnEntrar.setBackground(new java.awt.Color(102, 102, 0));
+        btnEntrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEntrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEntrar.setText("ENTRAR");
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntrarActionPerformed(evt);
+            }
+        });
+        btnEntrar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnEntrarKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jButton1, gridBagConstraints);
+        jPanel1.add(btnEntrar, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -178,6 +241,50 @@ public class Login extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        //Mensaje.exito(this, "Estamos conectando con la base de datos");
+        con = ConectarBase.conectado();
+        if (con != null)
+        {
+            JOptionPane.showMessageDialog(this, "Conectado con la Base de Datos", "Conectado", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(this, "No se pudo conectar, compruebe su conexión a internet", "Error",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+        String val = ConsultasObjetos.validaEntrar(txtUsuario.getText(), txtcontrasenia.getText(), con);
+        lic = ConsultasObjetos.obtieneIDLic(txtUsuario.getText(), ConectarBase.conectado());
+        System.out.println("lic" + lic);
+        redisenio.VtnMenuCoordinador.licenciatura = lic;
+        
+        if (val.equals("usuario"))
+        {
+            this.setVisible(false);
+            new VtnAdministrador().setVisible(true);
+        }
+        else if(val.equals("profesor"))
+        {
+            this.setVisible(false);
+            new VtnMenuCoordinador().setVisible(true);
+        }
+    }//GEN-LAST:event_btnEntrarActionPerformed
+
+    private void btnEntrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnEntrarKeyPressed
+        if (evt.getKeyChar() == '\n')
+        {
+            btnEntrarActionPerformed(null);
+        }
+    }//GEN-LAST:event_btnEntrarKeyPressed
+
+    private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
+        Validaciones.enter(this, evt, txtcontrasenia);
+    }//GEN-LAST:event_txtUsuarioKeyPressed
+
+    private void txtcontraseniaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcontraseniaKeyPressed
+        Validaciones.enter(this, evt, btnEntrar);
+    }//GEN-LAST:event_txtcontraseniaKeyPressed
 
     /**
      * @param args the command line arguments
@@ -222,17 +329,17 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnEntrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel schr;
     private javax.swing.JLabel schr1;
+    private javax.swing.JTextField txtUsuario;
+    private javax.swing.JPasswordField txtcontrasenia;
     private javax.swing.JLabel uaem;
     private javax.swing.JLabel uapt;
     // End of variables declaration//GEN-END:variables

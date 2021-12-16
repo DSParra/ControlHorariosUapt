@@ -43,12 +43,12 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
         //this.setResizable(false);
         this.getContentPane().setBackground(Color.white);
         this.setIconImage(new ImageIcon(getClass().getResource("/Iconos/SCHR.png")).getImage());
-        TablaPeriodos.getColumnModel().getColumn(0).setPreferredWidth(50);
-        TablaPeriodos.getColumnModel().getColumn(1).setPreferredWidth(50);
-        TablaPeriodos.getColumnModel().getColumn(2).setPreferredWidth(200);
-        TablaPeriodos.getColumnModel().getColumn(0).setResizable(false);
-        TablaPeriodos.getColumnModel().getColumn(1).setResizable(false);
-        TablaPeriodos.getColumnModel().getColumn(2).setResizable(false);
+        tablaPlanes.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tablaPlanes.getColumnModel().getColumn(1).setPreferredWidth(50);
+        tablaPlanes.getColumnModel().getColumn(2).setPreferredWidth(200);
+        tablaPlanes.getColumnModel().getColumn(0).setResizable(false);
+        tablaPlanes.getColumnModel().getColumn(1).setResizable(false);
+        tablaPlanes.getColumnModel().getColumn(2).setResizable(false);
     }
 
     /**
@@ -60,25 +60,25 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jBAceptar = new javax.swing.JButton();
-        jBCancelar = new javax.swing.JButton();
+        btnNuevo = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TablaPeriodos = new javax.swing.JTable();
+        tablaPlanes = new javax.swing.JTable();
         jBRegresar = new javax.swing.JButton();
         jBCerrarSesion = new javax.swing.JButton();
-        jBModificar = new javax.swing.JButton();
-        jBEliminar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jTPlan = new javax.swing.JTextField();
+        txtPlan = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTIdPlan = new javax.swing.JTextField();
+        txtId = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         btnExportar = new javax.swing.JButton();
-        btnBusca = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jtIDBusqeuda = new javax.swing.JTextField();
+        txtIdBusqueda = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        txtnombreArchivo = new javax.swing.JTextField();
+        txtNombreArchivo = new javax.swing.JTextField();
         jLTituloUniversidad1 = new javax.swing.JLabel();
         jLTituloUAPT1 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -93,29 +93,29 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
             }
         });
 
-        jBAceptar.setBackground(new java.awt.Color(102, 102, 0));
-        jBAceptar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jBAceptar.setForeground(new java.awt.Color(255, 255, 255));
-        jBAceptar.setText("Aceptar");
-        jBAceptar.addActionListener(new java.awt.event.ActionListener() {
+        btnNuevo.setBackground(new java.awt.Color(102, 102, 0));
+        btnNuevo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
+        btnNuevo.setText("Aceptar");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAceptarActionPerformed(evt);
+                btnNuevoActionPerformed(evt);
             }
         });
 
-        jBCancelar.setBackground(new java.awt.Color(102, 102, 0));
-        jBCancelar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jBCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        jBCancelar.setText("Cancelar");
-        jBCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setBackground(new java.awt.Color(102, 102, 0));
+        btnCancelar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBCancelarActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
-        TablaPeriodos.setBackground(new java.awt.Color(25, 83, 0));
-        TablaPeriodos.setForeground(new java.awt.Color(254, 254, 254));
-        TablaPeriodos.setModel(new javax.swing.table.DefaultTableModel(
+        tablaPlanes.setBackground(new java.awt.Color(25, 83, 0));
+        tablaPlanes.setForeground(new java.awt.Color(254, 254, 254));
+        tablaPlanes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -134,12 +134,12 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        TablaPeriodos.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablaPlanes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TablaPeriodosMouseClicked(evt);
+                tablaPlanesMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(TablaPeriodos);
+        jScrollPane1.setViewportView(tablaPlanes);
 
         jBRegresar.setBackground(new java.awt.Color(102, 102, 0));
         jBRegresar.setForeground(new java.awt.Color(255, 255, 255));
@@ -163,41 +163,41 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
             }
         });
 
-        jBModificar.setBackground(new java.awt.Color(102, 102, 0));
-        jBModificar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jBModificar.setForeground(new java.awt.Color(255, 255, 255));
-        jBModificar.setText("Modificar");
-        jBModificar.addActionListener(new java.awt.event.ActionListener() {
+        btnModificar.setBackground(new java.awt.Color(102, 102, 0));
+        btnModificar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnModificar.setForeground(new java.awt.Color(255, 255, 255));
+        btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBModificarActionPerformed(evt);
+                btnModificarActionPerformed(evt);
             }
         });
 
-        jBEliminar.setBackground(new java.awt.Color(102, 102, 0));
-        jBEliminar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jBEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        jBEliminar.setText("Eliminar");
-        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setBackground(new java.awt.Color(102, 102, 0));
+        btnEliminar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBEliminarActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
 
         jPanel1.setBackground(new java.awt.Color(25, 83, 0));
 
-        jTPlan.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtPlan.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTPlanFocusLost(evt);
+                txtPlanFocusLost(evt);
             }
         });
-        jTPlan.addActionListener(new java.awt.event.ActionListener() {
+        txtPlan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTPlanActionPerformed(evt);
+                txtPlanActionPerformed(evt);
             }
         });
-        jTPlan.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtPlan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTPlanKeyReleased(evt);
+                txtPlanKeyReleased(evt);
             }
         });
 
@@ -205,25 +205,25 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(254, 254, 254));
         jLabel3.setText("PLAN DE ESTUDIO");
 
-        jTIdPlan.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtId.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTIdPlanFocusLost(evt);
+                txtIdFocusLost(evt);
             }
         });
-        jTIdPlan.addActionListener(new java.awt.event.ActionListener() {
+        txtId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTIdPlanActionPerformed(evt);
+                txtIdActionPerformed(evt);
             }
         });
-        jTIdPlan.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtId.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTIdPlanKeyTyped(evt);
+                txtIdKeyTyped(evt);
             }
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTIdPlanKeyPressed(evt);
+                txtIdKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTIdPlanKeyReleased(evt);
+                txtIdKeyReleased(evt);
             }
         });
 
@@ -240,8 +240,8 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4)
                     .addComponent(jLabel3)
-                    .addComponent(jTPlan, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
-                    .addComponent(jTIdPlan))
+                    .addComponent(txtPlan, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                    .addComponent(txtId))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -250,11 +250,11 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
-                .addComponent(jTIdPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jTPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(248, Short.MAX_VALUE))
         );
 
@@ -268,29 +268,29 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
             }
         });
 
-        btnBusca.setBackground(new java.awt.Color(102, 102, 0));
-        btnBusca.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnBusca.setForeground(new java.awt.Color(255, 255, 255));
-        btnBusca.setText("Buscar");
-        btnBusca.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setBackground(new java.awt.Color(102, 102, 0));
+        btnBuscar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscaActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
 
         jPanel2.setBackground(new java.awt.Color(25, 83, 0));
 
-        jtIDBusqeuda.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtIdBusqueda.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jtIDBusqeudaFocusLost(evt);
+                txtIdBusquedaFocusLost(evt);
             }
         });
-        jtIDBusqeuda.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtIdBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jtIDBusqeudaKeyPressed(evt);
+                txtIdBusquedaKeyPressed(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jtIDBusqeudaKeyTyped(evt);
+                txtIdBusquedaKeyTyped(evt);
             }
         });
 
@@ -306,7 +306,7 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jtIDBusqeuda, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtIdBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -314,14 +314,14 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtIDBusqeuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        txtnombreArchivo.addActionListener(new java.awt.event.ActionListener() {
+        txtNombreArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnombreArchivoActionPerformed(evt);
+                txtNombreArchivoActionPerformed(evt);
             }
         });
 
@@ -369,9 +369,9 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
-                                                .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtNombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(layout.createSequentialGroup()
@@ -383,13 +383,13 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
                                 .addComponent(jLabel17)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBRegresar)
                         .addGap(18, 18, 18)
@@ -418,18 +418,18 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnBusca)
-                                .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnBuscar)
+                                .addComponent(txtNombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -439,25 +439,25 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAceptarActionPerformed
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         if (!edicion)
         {
             edicion();
-            jBAceptar.setText("Aceptar");
-            CtrlInterfaz.limpia(jTIdPlan, jTPlan);
-            CtrlInterfaz.habilita(true, jTIdPlan, jTPlan, jBCancelar);
-            CtrlInterfaz.habilita(false, jBModificar, jBEliminar, btnExportar);
-            CtrlInterfaz.selecciona(jTIdPlan);
+            btnNuevo.setText("Aceptar");
+            CtrlInterfaz.limpia(txtId, txtPlan);
+            CtrlInterfaz.habilita(true, txtId, txtPlan, btnCancelar);
+            CtrlInterfaz.habilita(false, btnModificar, btnEliminar, btnExportar);
+            CtrlInterfaz.selecciona(txtId);
         } else
         {
-            PlanEstudios plan = new PlanEstudios(jTIdPlan.getText(), jTPlan.getText(), vtn.lic);
+            PlanEstudios plan = new PlanEstudios(txtId.getText(), txtPlan.getText(), vtn.lic);
             String mensaje = Controlador.ControladorPlanes.insertarPlan(plan);
             if (mensaje.equals("operacion exitosa"))
             {
-                jBAceptar.setText("Nuevo");
-                CtrlInterfaz.limpia(jTPlan, jTIdPlan);
-                CtrlInterfaz.habilita(false, jTIdPlan, jTPlan, jBCancelar);
-                CtrlInterfaz.habilita(true, jBModificar, jBEliminar, btnExportar);
+                btnNuevo.setText("Nuevo");
+                CtrlInterfaz.limpia(txtPlan, txtId);
+                CtrlInterfaz.habilita(false, txtId, txtPlan, btnCancelar);
+                CtrlInterfaz.habilita(true, btnModificar, btnEliminar, btnExportar);
                 importaBD();
                 actualizarTabla(1);
                 edicion();
@@ -466,11 +466,11 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
             }
         }
-    }//GEN-LAST:event_jBAceptarActionPerformed
+    }//GEN-LAST:event_btnNuevoActionPerformed
 
-    private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         cancelar();
-    }//GEN-LAST:event_jBCancelarActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
         this.setVisible(false);
@@ -488,8 +488,8 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
         actualizarTabla(1);
     }//GEN-LAST:event_formWindowOpened
 
-    private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
-        if (jTIdPlan.getText().compareTo("") == 0)
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        if (txtId.getText().compareTo("") == 0)
         {
             Mensaje.error(this, "NO HA SELECCIONADO NINGUN REGISTRO");
         } else
@@ -497,20 +497,20 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
             if (!edicion)
             {
                 edicion();
-                jBModificar.setText("Aceptar");
-                CtrlInterfaz.habilita(true, jTPlan, jBModificar, jBCancelar);
-                CtrlInterfaz.habilita(false, jBEliminar, jBAceptar, jTIdPlan, btnExportar);
-                CtrlInterfaz.selecciona(jTPlan);
+                btnModificar.setText("Aceptar");
+                CtrlInterfaz.habilita(true, txtPlan, btnModificar, btnCancelar);
+                CtrlInterfaz.habilita(false, btnEliminar, btnNuevo, txtId, btnExportar);
+                CtrlInterfaz.selecciona(txtPlan);
             } else
             {
-                PlanEstudios plan = new PlanEstudios(jTIdPlan.getText(), jTPlan.getText(), vtn.lic);
-                String mensaje = Controlador.ControladorPlanes.modificarPlan(plan, (String) TablaPeriodos.getValueAt(TablaPeriodos.getSelectedRow(), 0));
+                PlanEstudios plan = new PlanEstudios(txtId.getText(), txtPlan.getText(), vtn.lic);
+                String mensaje = Controlador.ControladorPlanes.modificarPlan(plan, (String) tablaPlanes.getValueAt(tablaPlanes.getSelectedRow(), 0));
                 if (mensaje.equals("operacion exitosa"))
                 {
-                    jBModificar.setText("Modificar");
-                    CtrlInterfaz.limpia(jTPlan, jTIdPlan);
-                    CtrlInterfaz.habilita(false, jTIdPlan, jTPlan, jBAceptar, jBCancelar);
-                    CtrlInterfaz.habilita(true, jBEliminar, jBAceptar, btnExportar);
+                    btnModificar.setText("Modificar");
+                    CtrlInterfaz.limpia(txtPlan, txtId);
+                    CtrlInterfaz.habilita(false, txtId, txtPlan, btnNuevo, btnCancelar);
+                    CtrlInterfaz.habilita(true, btnEliminar, btnNuevo, btnExportar);
                     importaBD();
                     actualizarTabla(1);
                     edicion();
@@ -520,12 +520,12 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
                 }
             }
         }
-    }//GEN-LAST:event_jBModificarActionPerformed
+    }//GEN-LAST:event_btnModificarActionPerformed
 
-    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-        if (Mensaje.pregunta(this, "¿En realidad quiere eliminar el periodo " + jTPlan.getText() + "?") == 0)
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        if (Mensaje.pregunta(this, "¿En realidad quiere eliminar el periodo " + txtPlan.getText() + "?") == 0)
         {
-            String mensaje = Controlador.ControladorPlanes.eliminarPlan(jTIdPlan.getText());
+            String mensaje = Controlador.ControladorPlanes.eliminarPlan(txtId.getText());
             if (mensaje.endsWith("operacion exitosa"))
             {
                 importaBD();
@@ -535,17 +535,17 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
             }
         }
-    }//GEN-LAST:event_jBEliminarActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void TablaPeriodosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaPeriodosMouseClicked
-        jTIdPlan.setText(modelo.getValueAt(TablaPeriodos.getSelectedRow(), 0).toString());
-        jTPlan.setText(modelo.getValueAt(TablaPeriodos.getSelectedRow(), 1).toString());
-    }//GEN-LAST:event_TablaPeriodosMouseClicked
+    private void tablaPlanesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPlanesMouseClicked
+        txtId.setText(modelo.getValueAt(tablaPlanes.getSelectedRow(), 0).toString());
+        txtPlan.setText(modelo.getValueAt(tablaPlanes.getSelectedRow(), 1).toString());
+    }//GEN-LAST:event_tablaPlanesMouseClicked
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
-        if (txtnombreArchivo.getText() != null)
+        if (txtNombreArchivo.getText() != null)
         {
-            String mensaje = Archivo.Exportar(TablaPeriodos, txtnombreArchivo.getText());
+            String mensaje = Archivo.Exportar(tablaPlanes, txtNombreArchivo.getText());
             if (mensaje.equals("Error en la Exportacion"))
             {
                 Mensaje.error(this, mensaje);
@@ -559,61 +559,61 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnExportarActionPerformed
 
-    private void jTIdPlanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTIdPlanKeyReleased
+    private void txtIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTIdPlanKeyReleased
+    }//GEN-LAST:event_txtIdKeyReleased
 
-    private void jTIdPlanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTIdPlanKeyPressed
-        Validaciones.enter(this, evt, jTPlan);
-    }//GEN-LAST:event_jTIdPlanKeyPressed
+    private void txtIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyPressed
+        Validaciones.enter(this, evt, txtPlan);
+    }//GEN-LAST:event_txtIdKeyPressed
 
-    private void jTIdPlanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTIdPlanKeyTyped
-    }//GEN-LAST:event_jTIdPlanKeyTyped
+    private void txtIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyTyped
+    }//GEN-LAST:event_txtIdKeyTyped
 
-    private void jTIdPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTIdPlanActionPerformed
+    private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTIdPlanActionPerformed
+    }//GEN-LAST:event_txtIdActionPerformed
 
-    private void jTPlanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPlanKeyReleased
-    }//GEN-LAST:event_jTPlanKeyReleased
+    private void txtPlanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlanKeyReleased
+    }//GEN-LAST:event_txtPlanKeyReleased
 
-    private void jTPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPlanActionPerformed
+    private void txtPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPlanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlanActionPerformed
+    }//GEN-LAST:event_txtPlanActionPerformed
 
-    private void jTPlanFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTPlanFocusLost
-        Valida.convertirAMayusculas(jTPlan);
-    }//GEN-LAST:event_jTPlanFocusLost
+    private void txtPlanFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPlanFocusLost
+        Valida.convertirAMayusculas(txtPlan);
+    }//GEN-LAST:event_txtPlanFocusLost
 
-    private void jTIdPlanFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTIdPlanFocusLost
-        Valida.convertirAMayusculas(jTIdPlan);
-    }//GEN-LAST:event_jTIdPlanFocusLost
+    private void txtIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdFocusLost
+        Valida.convertirAMayusculas(txtId);
+    }//GEN-LAST:event_txtIdFocusLost
 
-    private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
-        if (jtIDBusqeuda.getText().equals("") && btnBusca.getText().equals("Buscar"))
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        if (txtIdBusqueda.getText().equals("") && btnBuscar.getText().equals("Buscar"))
         {
             actualizarTabla(1);
         } else
         {
             actualizarTabla(2);
         }
-    }//GEN-LAST:event_btnBuscaActionPerformed
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void jtIDBusqeudaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtIDBusqeudaFocusLost
-        Valida.convertirAMayusculas(jtIDBusqeuda);
-    }//GEN-LAST:event_jtIDBusqeudaFocusLost
+    private void txtIdBusquedaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdBusquedaFocusLost
+        Valida.convertirAMayusculas(txtIdBusqueda);
+    }//GEN-LAST:event_txtIdBusquedaFocusLost
 
-    private void jtIDBusqeudaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDBusqeudaKeyPressed
-        enter(this, evt, btnBusca);
-    }//GEN-LAST:event_jtIDBusqeudaKeyPressed
+    private void txtIdBusquedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdBusquedaKeyPressed
+        enter(this, evt, btnBuscar);
+    }//GEN-LAST:event_txtIdBusquedaKeyPressed
 
-    private void txtnombreArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreArchivoActionPerformed
+    private void txtNombreArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreArchivoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnombreArchivoActionPerformed
+    }//GEN-LAST:event_txtNombreArchivoActionPerformed
 
-    private void jtIDBusqeudaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDBusqeudaKeyTyped
-        btnBusca.setText("Buscar");
-    }//GEN-LAST:event_jtIDBusqeudaKeyTyped
+    private void txtIdBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdBusquedaKeyTyped
+        btnBuscar.setText("Buscar");
+    }//GEN-LAST:event_txtIdBusquedaKeyTyped
 
     private void jTPlanKeyPressed(java.awt.event.KeyEvent evt) {
     }
@@ -788,14 +788,13 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TablaPeriodos;
-    private javax.swing.JButton btnBusca;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnExportar;
-    private javax.swing.JButton jBAceptar;
-    private javax.swing.JButton jBCancelar;
+    private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnNuevo;
     private javax.swing.JButton jBCerrarSesion;
-    private javax.swing.JButton jBEliminar;
-    private javax.swing.JButton jBModificar;
     private javax.swing.JButton jBRegresar;
     private javax.swing.JLabel jLTituloUAPT1;
     private javax.swing.JLabel jLTituloUniversidad1;
@@ -808,14 +807,15 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTIdPlan;
-    private javax.swing.JTextField jTPlan;
-    private javax.swing.JTextField jtIDBusqeuda;
-    private javax.swing.JTextField txtnombreArchivo;
+    private javax.swing.JTable tablaPlanes;
+    private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtIdBusqueda;
+    private javax.swing.JTextField txtNombreArchivo;
+    private javax.swing.JTextField txtPlan;
     // End of variables declaration//GEN-END:variables
 
     public void actualizarTabla(int valor) {
-        modelo = (DefaultTableModel) TablaPeriodos.getModel();
+        modelo = (DefaultTableModel) tablaPlanes.getModel();
         if (valor == 1)
         {
             if (planes.isEmpty())
@@ -836,11 +836,11 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
                         });
                     }
                 }
-                btnBusca.setText("Buscar");
+                btnBuscar.setText("Buscar");
             }
         } else if (valor == 2)
         {
-            planes = ConsultasObjetos.consultaMuchos("plan_estudios", "plan_estudios", jtIDBusqeuda.getText(), null, null, "plan_estudios", ConectarBase.conectado());
+            planes = ConsultasObjetos.consultaMuchos("plan_estudios", "plan_estudios", txtIdBusqueda.getText(), null, null, "plan_estudios", ConectarBase.conectado());
             if (planes.isEmpty())
             {
                 Mensaje.error(this, "No hay planes de estudio registrados");
@@ -858,8 +858,8 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
                         });
                     }
                 }
-                btnBusca.setText("Todos");
-                jtIDBusqeuda.setText("");
+                btnBuscar.setText("Todos");
+                txtIdBusqueda.setText("");
             }
         }
 
@@ -877,11 +877,11 @@ public class VentanaPlanEstudiosCoordinador extends javax.swing.JFrame {
 
     private void cancelar() {
         edicion();
-        CtrlInterfaz.limpia(jTIdPlan, jTPlan);
-        CtrlInterfaz.habilita(false, jTIdPlan, jTPlan, jBCancelar);
-        CtrlInterfaz.habilita(true, jBAceptar, jBEliminar, jBModificar, btnExportar);
-        jBAceptar.setText("Nuevo");
-        jBModificar.setText("Modificar");
+        CtrlInterfaz.limpia(txtId, txtPlan);
+        CtrlInterfaz.habilita(false, txtId, txtPlan, btnCancelar);
+        CtrlInterfaz.habilita(true, btnNuevo, btnEliminar, btnModificar, btnExportar);
+        btnNuevo.setText("Nuevo");
+        btnModificar.setText("Modificar");
     }
 
     public String buscaLic(String id, String licenciatura) {

@@ -268,8 +268,6 @@ public class VentanaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtusuarioActionPerformed
 
     private void btnentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnentrarActionPerformed
-
-
         String val = ConsultasObjetos.validaEntrar(txtusuario.getText(), jPassContrasenaia.getText(), con);
         lic = ConsultasObjetos.obtieneIDLic(txtusuario.getText(), ConectarBase.conectado());
         System.out.println("lic" + lic);

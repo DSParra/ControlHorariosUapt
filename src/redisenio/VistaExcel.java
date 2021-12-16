@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista;
+package redisenio;
 
 import Clases.Archivo;
 import Clases.ConectarBase;
-import Clases.Conexion;
 import Clases.ConsultasObjetos;
 import Controlador.ControladorHorarios;
 import Objetos.Grupo;
@@ -16,37 +15,30 @@ import Objetos.Materia;
 import Objetos.PeriodoHorarios;
 import Objetos.Profesor;
 import Objetos.periodoEscolar;
-import app.VentanaAdministrador;
-import app.VentanaLogin;
-import app.VentanaMenuCoordinador;
 import cjb.ci.Mensaje;
-import java.awt.Color;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author JeanCarlos
+ * @author MoisesVidalHernandez
  */
 public class VistaExcel extends javax.swing.JFrame {
 
-    public static int valVentana;
     /**
      * Creates new form VistaExcel
      */
     public VistaExcel() {
         initComponents();
-        this.getContentPane().setBackground(Color.WHITE);
+        this.setIconImage(new ImageIcon(getClass().getResource("/Iconos2/SCHR.png")).getImage());
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
-    
+    public static int valVentana;
+
     File archivo;
     int numcorreo = 0;
     String cabeceras[];
@@ -70,13 +62,13 @@ public class VistaExcel extends javax.swing.JFrame {
     ArrayList<periodoEscolar> periodos;
     ArrayList<PeriodoHorarios> horarios;
     ArrayList<PeriodoHorarios> horariosBD;
-    
+
     private File abrirArchivo() {
         String aux = "";
         String texto = "";
         String nombre = "";
         File abre = null;
-        
+
         try
         {
             /**
@@ -88,22 +80,10 @@ public class VistaExcel extends javax.swing.JFrame {
             /**
              * abrimos el archivo seleccionado
              */
-            
+
             abre = file.getSelectedFile();
             //Archivo.AbreArchivoV1(abre);
             return abre;
-//
-//            /**
-//             * recorremos el archivo, lo leemos para plasmarlo en el area de texto
-//             */
-//            if (abre != null) {
-//                FileReader archivos = new FileReader(abre);
-//                BufferedReader lee = new BufferedReader(archivos);
-//                while ((aux = lee.readLine()) != null) {
-//                    texto += aux + "\n";
-//                }
-//                lee.close();
-//            }
         } catch (Exception ex)
         {
             JOptionPane.showMessageDialog(null, ex + ""
@@ -111,7 +91,7 @@ public class VistaExcel extends javax.swing.JFrame {
                     "ADVERTENCIA!!!", JOptionPane.WARNING_MESSAGE);
         }
         return abre;
-        //El texto se almacena en el JTextArea
+        //El texto se 
     }
 
     /**
@@ -122,36 +102,46 @@ public class VistaExcel extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        btnImportar = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        btnImportar1 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        btnpruebas = new javax.swing.JButton();
+        btnCarga = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        txtidentifica = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTDatosExcel = new javax.swing.JTable();
-        btnCarga = new javax.swing.JButton();
-        txtidentifica = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        btnpruebas = new javax.swing.JButton();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        txtcruzesExcel = new javax.swing.JTextArea();
-        jPanel4 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        txtCruzeMaterias = new javax.swing.JTextArea();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        txtCruzeProfesores = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtDatosNoEncontrados = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
         jCheckLllaves = new javax.swing.JCheckBox();
         jCheckMateriasBD = new javax.swing.JCheckBox();
         jCheckProfesores = new javax.swing.JCheckBox();
         jCheckExcel = new javax.swing.JCheckBox();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel10 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtcruzesExcel = new javax.swing.JTextArea();
+        jPanel11 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        txtCruzeMaterias = new javax.swing.JTextArea();
+        jPanel12 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        txtCruzeProfesores = new javax.swing.JTextArea();
+        jPanel13 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtDatosNoEncontrados = new javax.swing.JTextArea();
+        jPanel9 = new javax.swing.JPanel();
         jBRegresar = new javax.swing.JButton();
         jBCerrarSesion = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -159,16 +149,141 @@ public class VistaExcel extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        btnImportar.setBackground(new java.awt.Color(102, 102, 0));
-        btnImportar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnImportar.setForeground(new java.awt.Color(255, 255, 255));
-        btnImportar.setText("Importar");
-        btnImportar.addActionListener(new java.awt.event.ActionListener() {
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new java.awt.GridBagLayout());
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("VISTA EXCEL");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        jPanel4.add(jLabel1, gridBagConstraints);
+
+        jPanel6.setBackground(new java.awt.Color(51, 51, 0));
+        jPanel6.setLayout(new java.awt.GridBagLayout());
+
+        btnImportar1.setBackground(new java.awt.Color(102, 102, 0));
+        btnImportar1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnImportar1.setForeground(new java.awt.Color(255, 255, 255));
+        btnImportar1.setText("Importar");
+        btnImportar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImportarActionPerformed(evt);
+                btnImportar1ActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel6.add(btnImportar1, gridBagConstraints);
+
+        jButton4.setBackground(new java.awt.Color(102, 102, 0));
+        jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Eliminar Celda");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel6.add(jButton4, gridBagConstraints);
+
+        btnpruebas.setBackground(new java.awt.Color(102, 102, 0));
+        btnpruebas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnpruebas.setForeground(new java.awt.Color(255, 255, 255));
+        btnpruebas.setText("Ejectuar Pruebas");
+        btnpruebas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnpruebasActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel6.add(btnpruebas, gridBagConstraints);
+
+        btnCarga.setBackground(new java.awt.Color(102, 102, 0));
+        btnCarga.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCarga.setForeground(new java.awt.Color(255, 255, 255));
+        btnCarga.setText("Cargar");
+        btnCarga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCargaActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel6.add(btnCarga, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        jPanel4.add(jPanel6, gridBagConstraints);
+
+        jPanel5.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel5.setLayout(new java.awt.GridBagLayout());
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Tipo de excel:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel5.add(jLabel2, gridBagConstraints);
+
+        txtidentifica.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtidentifica.setText("No identificado");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel5.add(txtidentifica, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        jPanel4.add(jPanel5, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.RELATIVE;
+        gridBagConstraints.gridheight = java.awt.GridBagConstraints.RELATIVE;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.3;
+        getContentPane().add(jPanel4, gridBagConstraints);
+
+        jPanel3.setLayout(new java.awt.GridBagLayout());
 
         jTDatosExcel.setBackground(new java.awt.Color(25, 83, 0));
         jTDatosExcel.setForeground(new java.awt.Color(255, 255, 255));
@@ -182,141 +297,54 @@ public class VistaExcel extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTDatosExcel);
 
-        btnCarga.setBackground(new java.awt.Color(102, 102, 0));
-        btnCarga.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnCarga.setForeground(new java.awt.Color(255, 255, 255));
-        btnCarga.setText("Cargar");
-        btnCarga.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCargaActionPerformed(evt);
-            }
-        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel3.add(jScrollPane1, gridBagConstraints);
 
-        txtidentifica.setText("No identificado");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.7;
+        getContentPane().add(jPanel3, gridBagConstraints);
 
-        jButton3.setBackground(new java.awt.Color(102, 102, 0));
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Eliminar Celda");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        btnpruebas.setBackground(new java.awt.Color(102, 102, 0));
-        btnpruebas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnpruebas.setForeground(new java.awt.Color(255, 255, 255));
-        btnpruebas.setText("Ejectuar Pruebas");
-        btnpruebas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnpruebasActionPerformed(evt);
-            }
-        });
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setText("RESULTADO DE PRUEBAS");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        jPanel2.add(jLabel3, gridBagConstraints);
 
-        txtcruzesExcel.setColumns(20);
-        txtcruzesExcel.setRows(5);
-        jScrollPane3.setViewportView(txtcruzesExcel);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("HORARIOS CRUZADOS EN EXCEL", jPanel3);
-
-        txtCruzeMaterias.setColumns(20);
-        txtCruzeMaterias.setRows(5);
-        jScrollPane4.setViewportView(txtCruzeMaterias);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("ERRORES CON MATERIAS", jPanel4);
-
-        txtCruzeProfesores.setColumns(20);
-        txtCruzeProfesores.setRows(5);
-        jScrollPane5.setViewportView(txtCruzeProfesores);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("ERRORES CON PROFESORES", jPanel1);
-
-        txtDatosNoEncontrados.setColumns(20);
-        txtDatosNoEncontrados.setRows(5);
-        jScrollPane2.setViewportView(txtDatosNoEncontrados);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("DATOS NO ENCONTRADOS", jPanel2);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("RESULTADO DE PRUEBAS");
-
-        jPanel5.setBackground(new java.awt.Color(25, 83, 0));
-        jPanel5.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel7.setBackground(new java.awt.Color(51, 51, 0));
+        jPanel7.setLayout(new java.awt.GridBagLayout());
 
         jCheckLllaves.setForeground(new java.awt.Color(255, 255, 255));
         jCheckLllaves.setText("DATOS CORRECTOS EN EXCEL");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel7.add(jCheckLllaves, gridBagConstraints);
 
         jCheckMateriasBD.setForeground(new java.awt.Color(255, 255, 255));
         jCheckMateriasBD.setText("MATERIAS CRUZADAS");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel7.add(jCheckMateriasBD, gridBagConstraints);
 
         jCheckProfesores.setForeground(new java.awt.Color(255, 255, 255));
         jCheckProfesores.setText("PROFESORES CRUZADOS ");
@@ -325,6 +353,13 @@ public class VistaExcel extends javax.swing.JFrame {
                 jCheckProfesoresActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel7.add(jCheckProfesores, gridBagConstraints);
 
         jCheckExcel.setForeground(new java.awt.Color(255, 255, 255));
         jCheckExcel.setText("HORARIOS CRUZADOS EN EL EXCEL");
@@ -333,35 +368,147 @@ public class VistaExcel extends javax.swing.JFrame {
                 jCheckExcelActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel7.add(jCheckExcel, gridBagConstraints);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckLllaves)
-                    .addComponent(jCheckExcel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckMateriasBD)
-                    .addComponent(jCheckProfesores))
-                .addGap(86, 86, 86))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        jPanel2.add(jPanel7, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.RELATIVE;
+        gridBagConstraints.gridheight = java.awt.GridBagConstraints.RELATIVE;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.3;
+        getContentPane().add(jPanel2, gridBagConstraints);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
+        jPanel8.setLayout(new java.awt.GridBagLayout());
+
+        txtcruzesExcel.setColumns(20);
+        txtcruzesExcel.setRows(5);
+        jScrollPane3.setViewportView(txtcruzesExcel);
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckLllaves)
-                    .addComponent(jCheckMateriasBD))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckExcel)
-                    .addComponent(jCheckProfesores))
-                .addGap(17, 17, 17))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
+                .addContainerGap())
         );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("HORARIOS CRUZADOS EN EXCEL", jPanel10);
+
+        txtCruzeMaterias.setColumns(20);
+        txtCruzeMaterias.setRows(5);
+        jScrollPane4.setViewportView(txtCruzeMaterias);
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("ERRORES CON MATERIAS", jPanel11);
+
+        txtCruzeProfesores.setColumns(20);
+        txtCruzeProfesores.setRows(5);
+        jScrollPane5.setViewportView(txtCruzeProfesores);
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("ERRORES CON PROFESORES", jPanel12);
+
+        txtDatosNoEncontrados.setColumns(20);
+        txtDatosNoEncontrados.setRows(5);
+        jScrollPane2.setViewportView(txtDatosNoEncontrados);
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("DATOS NO ENCONTRADOS", jPanel13);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.9;
+        jPanel8.add(jTabbedPane1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.8;
+        jPanel1.add(jPanel8, gridBagConstraints);
+
+        jPanel9.setBackground(new java.awt.Color(51, 51, 0));
+        jPanel9.setLayout(new java.awt.GridBagLayout());
 
         jBRegresar.setBackground(new java.awt.Color(102, 102, 0));
         jBRegresar.setForeground(new java.awt.Color(255, 255, 255));
@@ -373,6 +520,14 @@ public class VistaExcel extends javax.swing.JFrame {
                 jBRegresarActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 1.0;
+        jPanel9.add(jBRegresar, gridBagConstraints);
 
         jBCerrarSesion.setBackground(new java.awt.Color(102, 102, 0));
         jBCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
@@ -384,88 +539,35 @@ public class VistaExcel extends javax.swing.JFrame {
                 jBCerrarSesionActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        jPanel9.add(jBCerrarSesion, gridBagConstraints);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("Tipo de excel:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.5;
+        jPanel1.add(jPanel9, gridBagConstraints);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnImportar, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
-                        .addComponent(btnpruebas, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(btnCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtidentifica, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(160, 160, 160))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jBRegresar)
-                                .addGap(18, 18, 18)
-                                .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTabbedPane1)
-                                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addContainerGap(30, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnImportar)
-                            .addComponent(btnpruebas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCarga))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(jButton3))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtidentifica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(2, 2, 2)))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 1.0;
+        getContentPane().add(jPanel1, gridBagConstraints);
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportarActionPerformed
+    private void btnImportar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportar1ActionPerformed
         limpiaDatos();
         btnCarga.setEnabled(false);
         archivo = abrirArchivo();
@@ -477,14 +579,85 @@ public class VistaExcel extends javax.swing.JFrame {
         }
         tipoExcel = identifica();
         txtidentifica.setText(tipoExcel);
+    }//GEN-LAST:event_btnImportar1ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if (jTDatosExcel.getSelectedRow() != -1)
+        {
+            ((DefaultTableModel) jTDatosExcel.getModel()).removeRow(jTDatosExcel.getSelectedRow());
+        } else
+        {
+            Mensaje.error(this, "No se pudo eliminar la celda");
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
-    }//GEN-LAST:event_btnImportarActionPerformed
+    private void btnpruebasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpruebasActionPerformed
+        System.out.println("");
+        limpiaDatos();
+        if (tipoExcel.equalsIgnoreCase("horario"))
+        {
+            horarios = guardaExcel();
+            if (horarios == null)
+            {
+                Mensaje.error(this, "Hay un error con los datos, guarda excel en null");
+            } else
+            {
+                System.out.println("");
+                jCheckLllaves.setSelected(validaExcel());
+                jCheckExcel.setSelected(comparaMateriasExcel());
+                if (jCheckLllaves.isSelected())
+                {
 
-    
-    
-    
-    
+                    jCheckProfesores.setSelected(evaluaProfesores());
+                    jCheckMateriasBD.setSelected(evaluaGruposBD());
+
+                }
+
+                if (jCheckExcel.isSelected() && jCheckProfesores.isSelected() && jCheckMateriasBD.isSelected() && jCheckLllaves.isSelected())
+                {
+                    btnCarga.setEnabled(true);
+                    Mensaje.exito(this, "Se han pasado todas las pruebas");
+                } else
+                {
+                    btnCarga.setEnabled(false);
+                    Mensaje.error(this, "Alguna prueba no ha sido superada");
+                }
+            }
+
+        }
+
+    }//GEN-LAST:event_btnpruebasActionPerformed
+
+    private void btnCargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargaActionPerformed
+        ArrayList horarios = guardaExcel();
+        ConsultasObjetos.insertaMuchos(horarios, ConectarBase.conectado(), "horarios");
+        ConectarBase.desconectaBD();
+    }//GEN-LAST:event_btnCargaActionPerformed
+
+    private void jCheckProfesoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckProfesoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckProfesoresActionPerformed
+
+    private void jCheckExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckExcelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckExcelActionPerformed
+
+    private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
+        this.setVisible(false);
+        if (valVentana == 1)
+        {
+            new VtnAdministrador().setVisible(true);
+        } else
+        {
+            new VtnMenuCoordinador().setVisible(true);
+        }
+    }//GEN-LAST:event_jBRegresarActionPerformed
+
+    private void jBCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarSesionActionPerformed
+        this.setVisible(false);
+        new Login().setVisible(true);
+    }//GEN-LAST:event_jBCerrarSesionActionPerformed
+
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         limpiaDatos();
         txtCruzeMaterias.setEditable(false);
@@ -502,17 +675,8 @@ public class VistaExcel extends javax.swing.JFrame {
         ordenamientoBurbujaID("licenciatura");
         ordenamientoBurbujaNombre("materia");
         ordenamientoBurbujaNombre("grupo");
-        //muestraBD();
-
-//        System.out.println("Busqueda " + busquedaBinariaRetID("INGENIERIA EN COMPUTACION", "licenciatura"));
-//        System.out.println("Busqueda " + busquedaBinariaRetNombre(6, "licenciatura"));
-//
-//        System.out.println("Busqueda " + busquedaBinariaRetID("s2", "grupo"));
-//        System.out.println("Busqueda " + busquedaBinariaRetNombre(2, "grupo"));
-        //txtidentifica.setForeground(Color.red);
-
     }//GEN-LAST:event_formWindowOpened
-    
+
     public void limpiaDatos() {
         txtCruzeMaterias.setText("");
         txtCruzeProfesores.setText("");
@@ -523,10 +687,10 @@ public class VistaExcel extends javax.swing.JFrame {
         jCheckMateriasBD.setSelected(false);
         jCheckProfesores.setSelected(false);
     }
-    
+
     public ArrayList<Object> extraeDatos() {
         ArrayList profesores = new ArrayList();
-        
+
         for (int i = 0; i < jTDatosExcel.getRowCount(); i++)
         {
             Profesor profe = new Profesor();
@@ -542,7 +706,7 @@ public class VistaExcel extends javax.swing.JFrame {
         }
         return profesores;
     }
-    
+
     public String identifica() {
         boolean identificado = false;
         if (cabeceras.length == cabecerasProfesor.length)
@@ -557,7 +721,7 @@ public class VistaExcel extends javax.swing.JFrame {
             txtDatosNoEncontrados.setText("Es un profesor");
             identificado = true;
             return "profesor";
-            
+
         }
         if (cabeceras.length == cabecerasMateria.length && identificado)
         {
@@ -571,7 +735,7 @@ public class VistaExcel extends javax.swing.JFrame {
             identificado = true;
             return "materia";
         }
-        
+
         if (cabeceras.length == cabecerasHorario.length)
         {
             for (int i = 0; i < cabeceras.length; i++)
@@ -590,21 +754,7 @@ public class VistaExcel extends javax.swing.JFrame {
         }
         return null;
     }
-    private void btnCargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargaActionPerformed
-        
-        ArrayList horarios = guardaExcel();
-        ConsultasObjetos.insertaMuchos(horarios, ConectarBase.conectado(), "horarios");
-        ConectarBase.desconectaBD();
-        //        if (String.valueOf(jcTipo.getSelectedItem()).equals("Profesor")) {
-//            
-//        }
-//            ArrayList<Object> profes= extraeDatos();
-//            System.out.println(Controlador.ControladorProfesores.insertaMuchos(profes));
-//txtconsulta.setText(ConsultasObjetos.retornaConsulta(profes, ConectarBase.conectado(), "profesores"));
-//ConsultasObjetos.insertaMuchos(profes, ConectarBase.conectado(), "profesores");
 
-    }//GEN-LAST:event_btnCargaActionPerformed
-    
     public ArrayList guardaExcel() {
         //try{
         if (tipoExcel.equalsIgnoreCase("horario"))
@@ -612,7 +762,7 @@ public class VistaExcel extends javax.swing.JFrame {
             //System.out.println("Entrando a horario");
             ArrayList horarios = new ArrayList();
             PeriodoHorarios horario;
-            
+
             for (int i = 0; i < jTDatosExcel.getRowCount(); i++)
             {
                 horario = new PeriodoHorarios();
@@ -633,7 +783,7 @@ public class VistaExcel extends javax.swing.JFrame {
             return horarios;
         }
         return null;
-        
+
 //        }catch(Exception e){
 //            Mensaje.error(this, "Algun dato no es correcto");
 //            System.out.println("Error en guarda excel "+e);
@@ -641,7 +791,7 @@ public class VistaExcel extends javax.swing.JFrame {
 //            return null;
 //        }
     }
-    
+
     public void importaBD() {
         materias = new ArrayList(ConsultasObjetos.consultaMuchos("materia", null, null, null, null, null, ConectarBase.conectado()));
         profes = new ArrayList(ConsultasObjetos.consultaMuchos("profesores", null, null, null, null, null, ConectarBase.conectado()));
@@ -651,7 +801,7 @@ public class VistaExcel extends javax.swing.JFrame {
         horariosBD = new ArrayList(ConsultasObjetos.consultaMuchos("horarios", null, null, null, null, null, ConectarBase.conectado()));
         ConectarBase.desconectaBD();
     }
-    
+
     public void muestraBD() {
         for (Object materia : materias)
         {
@@ -673,164 +823,95 @@ public class VistaExcel extends javax.swing.JFrame {
             System.out.println(((periodoEscolar) periodo).getPeriodo());
         }
     }
-    
+
     public void transforma() {
-        
+
     }
-    
+
     public boolean comparaMateriasExcel() {
         boolean prueba = true;
         double entrada1, salida1, entrada2, salida2;
         String mensaje = "";
-        try{
-        for (int i = 0; i < horarios.size(); i++)
+        try
         {
-            for (int j = 0; j < horarios.size(); j++)
+            for (int i = 0; i < horarios.size(); i++)
             {
-                //System.out.println("dia: "+horarios.get(i).getDia() + " ---->"+ "dia: "+horarios.get(j).getDia() );
-                if (horarios.get(i).getDia().equals(horarios.get(j).getDia()) && i != j
-                        //&& horarios.get(i).getIdGrupo().equals(horarios.get(j).getIdGrupo())
-                        //&& horarios.get(i).getClaveMateria().equals(horarios.get(j).getClaveMateria())
-                        && horarios.get(i).getRfc().equals(horarios.get(j).getRfc()))
+                for (int j = 0; j < horarios.size(); j++)
                 {
-                    //System.out.println("Mismo dia ");
-                    //System.out.println(horarios.get(i).getClaveMateria() + " " + horarios.get(i).getRfc() + " " + horarios.get(i).getIdPeriodo());
-                    //System.out.println(horarios.get(j).getClaveMateria() + " " + horarios.get(j).getRfc() + " " + horarios.get(j).getIdPeriodo());
-                    entrada1 = Double.parseDouble(horarios.get(i).getEntrada().substring(0, 2) + "." + horarios.get(i).getEntrada().substring(3, 5));
-                    salida1 = Double.parseDouble(horarios.get(i).getSalida().substring(0, 2) + "." + horarios.get(i).getSalida().substring(3, 5));
-                    entrada2 = Double.parseDouble(horarios.get(j).getEntrada().substring(0, 2) + "." + horarios.get(j).getEntrada().substring(3, 5));
-                    salida2 = Double.parseDouble(horarios.get(j).getSalida().substring(0, 2) + "." + horarios.get(j).getSalida().substring(3, 5));
-                    if (entrada2 >= entrada1 && entrada2 < salida1)
+                    //System.out.println("dia: "+horarios.get(i).getDia() + " ---->"+ "dia: "+horarios.get(j).getDia() );
+                    if (horarios.get(i).getDia().equals(horarios.get(j).getDia()) && i != j
+                            //&& horarios.get(i).getIdGrupo().equals(horarios.get(j).getIdGrupo())
+                            //&& horarios.get(i).getClaveMateria().equals(horarios.get(j).getClaveMateria())
+                            && horarios.get(i).getRfc().equals(horarios.get(j).getRfc()))
                     {
-                        
-                        prueba = false;
-                        mensaje += "Cruze de Profesor\n"
-                                + "Materia: " + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 1)) + "\n"
-                                + "Profesor " + String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 3)) + "\n"
-                                + "Grupo: " + String.valueOf(jTDatosExcel.getValueAt(i, 4)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 4)) + "\n"
-                                + "Dia: " + String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 6)) + "\n"
-                                + "Horario: " + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " - " + String.valueOf(jTDatosExcel.getValueAt(i, 8)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 7)) + "- " + String.valueOf(jTDatosExcel.getValueAt(j, 8)) + "\n\n";
+                        //System.out.println("Mismo dia ");
+                        //System.out.println(horarios.get(i).getClaveMateria() + " " + horarios.get(i).getRfc() + " " + horarios.get(i).getIdPeriodo());
+                        //System.out.println(horarios.get(j).getClaveMateria() + " " + horarios.get(j).getRfc() + " " + horarios.get(j).getIdPeriodo());
+                        entrada1 = Double.parseDouble(horarios.get(i).getEntrada().substring(0, 2) + "." + horarios.get(i).getEntrada().substring(3, 5));
+                        salida1 = Double.parseDouble(horarios.get(i).getSalida().substring(0, 2) + "." + horarios.get(i).getSalida().substring(3, 5));
+                        entrada2 = Double.parseDouble(horarios.get(j).getEntrada().substring(0, 2) + "." + horarios.get(j).getEntrada().substring(3, 5));
+                        salida2 = Double.parseDouble(horarios.get(j).getSalida().substring(0, 2) + "." + horarios.get(j).getSalida().substring(3, 5));
+                        if (entrada2 >= entrada1 && entrada2 < salida1)
+                        {
 
-                        //   + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 4))+String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 8))
-                        //  + " y "
-                        // + String.valueOf(jTDatosExcel.getValueAt(j, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 4)) + " " +String.valueOf(jTDatosExcel.getValueAt(i, 3))+ String.valueOf(jTDatosExcel.getValueAt(j, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(j, 8)) + "\n\n";
-                        //System.out.println("horarios cruzados");
+                            prueba = false;
+                            mensaje += "Cruze de Profesor\n"
+                                    + "Materia: " + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 1)) + "\n"
+                                    + "Profesor " + String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 3)) + "\n"
+                                    + "Grupo: " + String.valueOf(jTDatosExcel.getValueAt(i, 4)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 4)) + "\n"
+                                    + "Dia: " + String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 6)) + "\n"
+                                    + "Horario: " + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " - " + String.valueOf(jTDatosExcel.getValueAt(i, 8)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 7)) + "- " + String.valueOf(jTDatosExcel.getValueAt(j, 8)) + "\n\n";
+
+                            //   + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 4))+String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 8))
+                            //  + " y "
+                            // + String.valueOf(jTDatosExcel.getValueAt(j, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 4)) + " " +String.valueOf(jTDatosExcel.getValueAt(i, 3))+ String.valueOf(jTDatosExcel.getValueAt(j, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(j, 8)) + "\n\n";
+                            //System.out.println("horarios cruzados");
+                        }
+
                     }
-                    
-                }
-                
-                if (horarios.get(i).getDia().equals(horarios.get(j).getDia()) && i != j
-                        && horarios.get(i).getIdGrupo().equals(horarios.get(j).getIdGrupo()))
-                {
-                    //&& horarios.get(i).getClaveMateria().equals(horarios.get(j).getClaveMateria())){
-                    //&& horarios.get(i).getRfc().equals(horarios.get(j).getRfc())) {
-                    //System.out.println("Mismo dia ");
-                    //System.out.println(horarios.get(i).getClaveMateria() + " " + horarios.get(i).getRfc() + " " + horarios.get(i).getIdPeriodo());
-                    //System.out.println(horarios.get(j).getClaveMateria() + " " + horarios.get(j).getRfc() + " " + horarios.get(j).getIdPeriodo());
-                    entrada1 = Double.parseDouble(horarios.get(i).getEntrada().substring(0, 2) + "." + horarios.get(i).getEntrada().substring(3, 5));
-                    salida1 = Double.parseDouble(horarios.get(i).getSalida().substring(0, 2) + "." + horarios.get(i).getSalida().substring(3, 5));
-                    entrada2 = Double.parseDouble(horarios.get(j).getEntrada().substring(0, 2) + "." + horarios.get(j).getEntrada().substring(3, 5));
-                    salida2 = Double.parseDouble(horarios.get(j).getSalida().substring(0, 2) + "." + horarios.get(j).getSalida().substring(3, 5));
-                    if (entrada2 >= entrada1 && entrada2 < salida1)
+
+                    if (horarios.get(i).getDia().equals(horarios.get(j).getDia()) && i != j
+                            && horarios.get(i).getIdGrupo().equals(horarios.get(j).getIdGrupo()))
                     {
-                        
-                        prueba = false;
-                        mensaje += "Cruze del mismo Grupo\n"
-                                + "Materia: " + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 1)) + "\n"
-                                + "Profesor " + String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 3)) + "\n"
-                                + "Grupo: " + String.valueOf(jTDatosExcel.getValueAt(i, 4)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 4)) + "\n"
-                                + "Dia: " + String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 6)) + "\n"
-                                + "Horario: " + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " - " + String.valueOf(jTDatosExcel.getValueAt(i, 8)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 7)) + "- " + String.valueOf(jTDatosExcel.getValueAt(j, 8)) + "\n\n";
+                        //&& horarios.get(i).getClaveMateria().equals(horarios.get(j).getClaveMateria())){
+                        //&& horarios.get(i).getRfc().equals(horarios.get(j).getRfc())) {
+                        //System.out.println("Mismo dia ");
+                        //System.out.println(horarios.get(i).getClaveMateria() + " " + horarios.get(i).getRfc() + " " + horarios.get(i).getIdPeriodo());
+                        //System.out.println(horarios.get(j).getClaveMateria() + " " + horarios.get(j).getRfc() + " " + horarios.get(j).getIdPeriodo());
+                        entrada1 = Double.parseDouble(horarios.get(i).getEntrada().substring(0, 2) + "." + horarios.get(i).getEntrada().substring(3, 5));
+                        salida1 = Double.parseDouble(horarios.get(i).getSalida().substring(0, 2) + "." + horarios.get(i).getSalida().substring(3, 5));
+                        entrada2 = Double.parseDouble(horarios.get(j).getEntrada().substring(0, 2) + "." + horarios.get(j).getEntrada().substring(3, 5));
+                        salida2 = Double.parseDouble(horarios.get(j).getSalida().substring(0, 2) + "." + horarios.get(j).getSalida().substring(3, 5));
+                        if (entrada2 >= entrada1 && entrada2 < salida1)
+                        {
 
-                        //   + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 4))+String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 8))
-                        //  + " y "
-                        // + String.valueOf(jTDatosExcel.getValueAt(j, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 4)) + " " +String.valueOf(jTDatosExcel.getValueAt(i, 3))+ String.valueOf(jTDatosExcel.getValueAt(j, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(j, 8)) + "\n\n";
-                        //System.out.println("horarios cruzados");
+                            prueba = false;
+                            mensaje += "Cruze del mismo Grupo\n"
+                                    + "Materia: " + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 1)) + "\n"
+                                    + "Profesor " + String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 3)) + "\n"
+                                    + "Grupo: " + String.valueOf(jTDatosExcel.getValueAt(i, 4)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 4)) + "\n"
+                                    + "Dia: " + String.valueOf(jTDatosExcel.getValueAt(i, 6)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 6)) + "\n"
+                                    + "Horario: " + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " - " + String.valueOf(jTDatosExcel.getValueAt(i, 8)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 7)) + "- " + String.valueOf(jTDatosExcel.getValueAt(j, 8)) + "\n\n";
+
+                            //   + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 4))+String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(i, 8))
+                            //  + " y "
+                            // + String.valueOf(jTDatosExcel.getValueAt(j, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 4)) + " " +String.valueOf(jTDatosExcel.getValueAt(i, 3))+ String.valueOf(jTDatosExcel.getValueAt(j, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(j, 8)) + "\n\n";
+                            //System.out.println("horarios cruzados");
+                        }
+
                     }
-                    
                 }
             }
-        }
-        }catch(Exception e){
+        } catch (Exception e)
+        {
             Mensaje.error(this, "Error en los datos");
-            System.out.println("Error en comparaMaterias "+e);
+            System.out.println("Error en comparaMaterias " + e);
             prueba = false;
         }
         txtcruzesExcel.setText(mensaje);
         return prueba;
     }
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if (jTDatosExcel.getSelectedRow() != -1)
-        {
-            ((DefaultTableModel) jTDatosExcel.getModel()).removeRow(jTDatosExcel.getSelectedRow());
-        } else
-        {
-            Mensaje.error(this, "No se pudo eliminar la celda");
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void btnpruebasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpruebasActionPerformed
-        System.out.println("");
-        limpiaDatos();
-        if (tipoExcel.equalsIgnoreCase("horario"))
-        {
-            horarios = guardaExcel();
-            if (horarios == null) {
-                Mensaje.error(this, "Hay un error con los datos, guarda excel en null");
-            }else{
-            System.out.println("");
-            jCheckLllaves.setSelected(validaExcel());
-            jCheckExcel.setSelected(comparaMateriasExcel());
-            if (jCheckLllaves.isSelected())
-            {
-                
-                jCheckProfesores.setSelected(evaluaProfesores());
-                jCheckMateriasBD.setSelected(evaluaGruposBD());
-                
-            }
-            
-            if (jCheckExcel.isSelected() && jCheckProfesores.isSelected() && jCheckMateriasBD.isSelected() && jCheckLllaves.isSelected())
-            {
-                btnCarga.setEnabled(true);
-                Mensaje.exito(this, "Se han pasado todas las pruebas");
-            } else
-            {
-                btnCarga.setEnabled(false);
-                Mensaje.error(this, "Alguna prueba no ha sido superada");
-            }
-            }
-
-            
-            
-        }
-
-    }//GEN-LAST:event_btnpruebasActionPerformed
-
-    private void jCheckExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckExcelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckExcelActionPerformed
-
-    private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
-        this.setVisible(false);
-        if (valVentana == 1)
-        {
-            new VentanaAdministrador().setVisible(true);
-        } else
-        {
-            new VentanaMenuCoordinador().setVisible(true);
-        }
-
-    }//GEN-LAST:event_jBRegresarActionPerformed
-
-    private void jBCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarSesionActionPerformed
-        this.setVisible(false);
-        new VentanaLogin().setVisible(true);
-    }//GEN-LAST:event_jBCerrarSesionActionPerformed
-
-    private void jCheckProfesoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckProfesoresActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckProfesoresActionPerformed
-    
     public boolean evaluaProfesores() {
         boolean prueba = true;
         double entrada1, entrada2, salida1, salida2;
@@ -843,7 +924,7 @@ public class VistaExcel extends javax.swing.JFrame {
 //                System.out.println("j: " + j);
                 if (horarios.get(i).getRfc().equalsIgnoreCase(horariosBD.get(j).getRfc()) && horarios.get(i).getDia().equals(horariosBD.get(j).getDia()))
                 {
-                    
+
                     entrada1 = Double.parseDouble(horarios.get(i).getEntrada().substring(0, 2) + "." + horarios.get(i).getEntrada().substring(3, 5));
                     salida1 = Double.parseDouble(horarios.get(i).getSalida().substring(0, 2) + "." + horarios.get(i).getSalida().substring(3, 5));
                     entrada2 = Double.parseDouble(horariosBD.get(j).getEntrada().substring(0, 2) + "." + horariosBD.get(j).getEntrada().substring(3, 5));
@@ -854,7 +935,7 @@ public class VistaExcel extends javax.swing.JFrame {
                     if (entrada2 >= entrada1 && entrada2 < salida1)
                     {
                         prueba = false;
-                        
+
                         mensaje += "Cruze de Profesores\n"
                                 + "Materia: " + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + busquedaBinariaRetNombre(horariosBD.get(j).getClaveMateria(), "materias") + "\n"
                                 + "Profesor: " + String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " -> " + busquedaBinariaRetNombre(horariosBD.get(j).getRfc(), "profesores") + "\n"
@@ -868,7 +949,6 @@ public class VistaExcel extends javax.swing.JFrame {
 //                                + busquedaBinariaRetNombre(horariosBD.get(j).getClaveMateria(), "materias") + "-> " + ControladorHorarios.numdia(Integer.valueOf(horariosBD.get(j).getDia())) + " " + horariosBD.get(j).getEntrada() + " " + horariosBD.get(j).getSalida() + "\n\n";
                         //System.out.println("Profesor: " + String.valueOf(jTDatosExcel.getValueAt(i, 2)) + "cruzado " + horarios.get(i).getDia() + " " + horarios.get(i).getEntrada() + " " + horarios.get(i).getSalida());
                         //System.out.println("Con id: " + horariosBD.get(j).getIdHorario() + " " + horariosBD.get(j).getDia() + " " + horariosBD.get(j).getEntrada() + " " + horariosBD.get(j).getSalida());
-
                         //txtconsulta.setText(txtconsulta.getText() + "Error en Grupos: " + String.valueOf(jTDatosExcel.getValueAt(i, 0)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 3)) + " y " + String.valueOf(jTDatosExcel.getValueAt(j, 0)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(i, 3)) + "\n\n");
                         //System.out.println("horarios cruzados");
                     }
@@ -881,7 +961,7 @@ public class VistaExcel extends javax.swing.JFrame {
         txtCruzeProfesores.setText(mensaje);
         return prueba;
     }
-    
+
     public boolean evaluaGruposBD() {
         boolean prueba = true;
         double entrada1, entrada2, salida1, salida2;
@@ -925,35 +1005,11 @@ public class VistaExcel extends javax.swing.JFrame {
         txtCruzeMaterias.setText(mensaje);
         return prueba;
     }
-    
-    public String compruebaVacios(){
-        String  mensaje = "";
-        Pattern pat;
-        for (int i = 0; i < jTDatosExcel.getColumnCount(); i++) {
-            for (int j = 0; j < jTDatosExcel.getRowCount(); j++) {
-                if (String.valueOf(jTDatosExcel.getModel().getValueAt(j, i)).equals("0") &&
-                                String.valueOf(jTDatosExcel.getModel().getValueAt(j, i)) == null ) {
-                            mensaje += "Dato vacio en: " + i + "en la fila : " + j+"\n";
-                }
-                if(i==7 || i==8){
-                    pat = Pattern.compile("[0-9][0-9]:[0-9][0-9]");
-                    Matcher mat = pat.matcher(String.valueOf(jTDatosExcel.getModel().getValueAt(j, i)));
-                    if (!mat.find()) {
-                        mensaje += "Hora invalida en :" + i + "en la fila : " + j + "\n";
-                        System.out.println();
-                    }   
-                }                
-                //System.out.println(String.valueOf(jTDatosExcel.getModel().getValueAt(j, i)));
-            }
-        }
-        System.out.println("PAro");
-        return mensaje;
-    }
-    
+
     public boolean validaExcel() {
         boolean prueba = true;
         double entrada1, entrada2, salida1, salida2;
-        String mensaje = compruebaVacios();
+        String mensaje = "";
         ordenamientoBurbujaID("materia");
         ordenamientoBurbujaNombre("grupo");
         //try{
@@ -964,7 +1020,7 @@ public class VistaExcel extends javax.swing.JFrame {
             {
                 prueba = false;
                 mensaje += "Materia: " + String.valueOf(jTDatosExcel.getValueAt(i, 0) + " NO ENCONTRADO") + "\n\n";
-          //      throw new NullPointerException( "demo" );
+                //      throw new NullPointerException( "demo" );
 
                 //System.out.println("Materia no encontrado");
             }
@@ -987,91 +1043,16 @@ public class VistaExcel extends javax.swing.JFrame {
                 //System.out.println("periodo no encontrado");
             }
         }
-        
+
         txtDatosNoEncontrados.setText(mensaje);
         return prueba;
-        
+
 //        }catch(Exception e){
 //            Mensaje.error(this, "Error en los datos");
 //            System.out.println("Error en valida excel "+ e);
 //
 //        }
-        
     }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try
-        {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-            {
-                if ("Nimbus".equals(info.getName()))
-                {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex)
-        {
-            java.util.logging.Logger.getLogger(VistaExcel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex)
-        {
-            java.util.logging.Logger.getLogger(VistaExcel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex)
-        {
-            java.util.logging.Logger.getLogger(VistaExcel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex)
-        {
-            java.util.logging.Logger.getLogger(VistaExcel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VistaExcel().setVisible(true);
-            }
-        });
-    }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCarga;
-    public javax.swing.JButton btnImportar;
-    private javax.swing.JButton btnpruebas;
-    private javax.swing.JButton jBCerrarSesion;
-    private javax.swing.JButton jBRegresar;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JCheckBox jCheckExcel;
-    private javax.swing.JCheckBox jCheckLllaves;
-    private javax.swing.JCheckBox jCheckMateriasBD;
-    private javax.swing.JCheckBox jCheckProfesores;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    public javax.swing.JTable jTDatosExcel;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea txtCruzeMaterias;
-    private javax.swing.JTextArea txtCruzeProfesores;
-    private javax.swing.JTextArea txtDatosNoEncontrados;
-    private javax.swing.JTextArea txtcruzesExcel;
-    private javax.swing.JTextField txtidentifica;
-    // End of variables declaration//GEN-END:variables
 
     public void ordenamientoBurbujaID(String tipo) {
         switch (tipo)
@@ -1106,7 +1087,7 @@ public class VistaExcel extends javax.swing.JFrame {
                     }
                 }
                 break;
-            
+
             case "materia":
                 Materia mat;
                 for (int i = 1; i < materias.size(); i++)
@@ -1121,11 +1102,11 @@ public class VistaExcel extends javax.swing.JFrame {
                         }
                     }
                 }
-                
+
                 break;
         }
     }
-    
+
     public void ordenamientoBurbujaNombre(String tipo) {
         switch (tipo)
         {
@@ -1160,7 +1141,7 @@ public class VistaExcel extends javax.swing.JFrame {
                     }
                 }
                 break;
-            
+
             case "materia":
                 Materia mat;
                 for (int i = 1; i < materias.size(); i++)
@@ -1175,11 +1156,11 @@ public class VistaExcel extends javax.swing.JFrame {
                         }
                     }
                 }
-                
+
                 break;
         }
     }
-    
+
     public int busquedaBinariaRetID(String dato, String tipo) {
         int n, inf = 0, sup, centro;
         switch (tipo)
@@ -1213,7 +1194,7 @@ public class VistaExcel extends javax.swing.JFrame {
                         return Integer.valueOf(grupos.get(centro).getIdGrupo());
                     } else if (dato.compareToIgnoreCase(grupos.get(centro).getNombreGrupo()) < 0)
                     {
-                        
+
                         sup = centro - 1;
                     } else
                     {
@@ -1260,7 +1241,7 @@ public class VistaExcel extends javax.swing.JFrame {
         }
         return -1;
     }
-    
+
     public String busquedaBinariaBuscaID(String id, String tipo) {
         int n, inf = 0, sup, centro;
         switch (tipo)
@@ -1304,7 +1285,7 @@ public class VistaExcel extends javax.swing.JFrame {
         }
         return "";
     }
-    
+
     public String busquedaBinariaRetNombre(int dato, String tipo) {
         ordenamientoBurbujaID("grupo");
         int n, inf = 0, sup, centro;
@@ -1350,7 +1331,7 @@ public class VistaExcel extends javax.swing.JFrame {
         ordenamientoBurbujaNombre("grupo");
         return "";
     }
-    
+
     public void muestraHorarios(PeriodoHorarios horario) {
         System.out.println("Materia " + horario.getClaveMateria());
         System.out.println("RFC " + horario.getRfc());
@@ -1360,7 +1341,7 @@ public class VistaExcel extends javax.swing.JFrame {
         System.out.println("Entrada " + horario.getEntrada());
         System.out.println("Salida " + horario.getSalida());
     }
-    
+
     public String busquedaBinariaRetNombre(String dato, String tipo) {
         ordenamientoBurbujaID("materia");
         int n, inf = 0, sup, centro;
@@ -1416,5 +1397,87 @@ public class VistaExcel extends javax.swing.JFrame {
         }
         return "";
     }
-    
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex)
+        {
+            java.util.logging.Logger.getLogger(VistaExcel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex)
+        {
+            java.util.logging.Logger.getLogger(VistaExcel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex)
+        {
+            java.util.logging.Logger.getLogger(VistaExcel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
+            java.util.logging.Logger.getLogger(VistaExcel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new VistaExcel().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCarga;
+    public javax.swing.JButton btnImportar1;
+    private javax.swing.JButton btnpruebas;
+    private javax.swing.JButton jBCerrarSesion;
+    private javax.swing.JButton jBRegresar;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JCheckBox jCheckExcel;
+    private javax.swing.JCheckBox jCheckLllaves;
+    private javax.swing.JCheckBox jCheckMateriasBD;
+    private javax.swing.JCheckBox jCheckProfesores;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    public javax.swing.JTable jTDatosExcel;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextArea txtCruzeMaterias;
+    private javax.swing.JTextArea txtCruzeProfesores;
+    private javax.swing.JTextArea txtDatosNoEncontrados;
+    private javax.swing.JTextArea txtcruzesExcel;
+    private javax.swing.JTextField txtidentifica;
+    // End of variables declaration//GEN-END:variables
 }

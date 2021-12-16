@@ -56,13 +56,13 @@ public class Archivo {
                     celda = celdas.next();
 
                     if (celda.getCellType() == CellType.NUMERIC) {
-                        System.out.println(celda.getNumericCellValue());
+                        //System.out.println(celda.getNumericCellValue());
                     } else if (celda.getCellType() == CellType.STRING) {
                         if (celda.getStringCellValue().equalsIgnoreCase("nombre profesor")) {
-                            System.out.println("Nombre -> Profesor");
-                            System.out.println(celda.getStringCellValue());
+                            //System.out.println("Nombre -> Profesor");
+                            //System.out.println(celda.getStringCellValue());
                         } else {
-                            System.out.println(celda.getStringCellValue());
+                            //System.out.println(celda.getStringCellValue());
                         }
 
                     }

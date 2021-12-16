@@ -46,24 +46,24 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
         //this.setResizable(false);
         this.getContentPane().setBackground(Color.white);
         this.setIconImage(new ImageIcon(getClass().getResource("/Iconos/SCHR.png")).getImage());
-        TablaMAterias.getColumnModel().getColumn(0).setPreferredWidth(10);
-        TablaMAterias.getColumnModel().getColumn(1).setPreferredWidth(200);
-        TablaMAterias.getColumnModel().getColumn(2).setPreferredWidth(100);
-        TablaMAterias.getColumnModel().getColumn(3).setPreferredWidth(20);
-        TablaMAterias.getColumnModel().getColumn(4).setPreferredWidth(3);
-        TablaMAterias.getColumnModel().getColumn(5).setPreferredWidth(3);
-        TablaMAterias.getColumnModel().getColumn(6).setPreferredWidth(10);
-        TablaMAterias.getColumnModel().getColumn(7).setPreferredWidth(20);
-        TablaMAterias.getColumnModel().getColumn(8).setPreferredWidth(20);
-        TablaMAterias.getColumnModel().getColumn(0).setResizable(false);
-        TablaMAterias.getColumnModel().getColumn(1).setResizable(false);
-        TablaMAterias.getColumnModel().getColumn(2).setResizable(false);
-        TablaMAterias.getColumnModel().getColumn(3).setResizable(false);
-        TablaMAterias.getColumnModel().getColumn(4).setResizable(false);
-        TablaMAterias.getColumnModel().getColumn(5).setResizable(false);
-        TablaMAterias.getColumnModel().getColumn(6).setResizable(false);
-        TablaMAterias.getColumnModel().getColumn(7).setResizable(false);
-        TablaMAterias.getColumnModel().getColumn(8).setResizable(false);
+        tablaMaterias.getColumnModel().getColumn(0).setPreferredWidth(10);
+        tablaMaterias.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tablaMaterias.getColumnModel().getColumn(2).setPreferredWidth(100);
+        tablaMaterias.getColumnModel().getColumn(3).setPreferredWidth(20);
+        tablaMaterias.getColumnModel().getColumn(4).setPreferredWidth(3);
+        tablaMaterias.getColumnModel().getColumn(5).setPreferredWidth(3);
+        tablaMaterias.getColumnModel().getColumn(6).setPreferredWidth(10);
+        tablaMaterias.getColumnModel().getColumn(7).setPreferredWidth(20);
+        tablaMaterias.getColumnModel().getColumn(8).setPreferredWidth(20);
+        tablaMaterias.getColumnModel().getColumn(0).setResizable(false);
+        tablaMaterias.getColumnModel().getColumn(1).setResizable(false);
+        tablaMaterias.getColumnModel().getColumn(2).setResizable(false);
+        tablaMaterias.getColumnModel().getColumn(3).setResizable(false);
+        tablaMaterias.getColumnModel().getColumn(4).setResizable(false);
+        tablaMaterias.getColumnModel().getColumn(5).setResizable(false);
+        tablaMaterias.getColumnModel().getColumn(6).setResizable(false);
+        tablaMaterias.getColumnModel().getColumn(7).setResizable(false);
+        tablaMaterias.getColumnModel().getColumn(8).setResizable(false);
     }
 
     /**
@@ -76,40 +76,40 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        TablaMAterias = new javax.swing.JTable();
+        tablaMaterias = new javax.swing.JTable();
         jBRegresar = new javax.swing.JButton();
         jBCerrarSesion = new javax.swing.JButton();
-        jBModificar = new javax.swing.JButton();
-        jBEliminar = new javax.swing.JButton();
-        jBAceptar = new javax.swing.JButton();
-        jBCancelar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnNuevo = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jTHoras = new javax.swing.JTextField();
-        jTCreditos = new javax.swing.JTextField();
+        txtHoras = new javax.swing.JTextField();
+        txtCreditos = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTClave = new javax.swing.JTextField();
+        txtMatricula = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTNombre = new javax.swing.JTextField();
-        jCPlan = new javax.swing.JComboBox<>();
+        txtNombre = new javax.swing.JTextField();
+        comboPlanEstudios = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jCNucleo = new javax.swing.JComboBox<>();
-        jCSemestre = new javax.swing.JComboBox<>();
-        jCTipo = new javax.swing.JComboBox<>();
-        btnAgregar4 = new javax.swing.JButton();
-        btnBusca = new javax.swing.JButton();
+        comboNucleo = new javax.swing.JComboBox<>();
+        comboSemestre = new javax.swing.JComboBox<>();
+        comboTipo = new javax.swing.JComboBox<>();
+        btnExportar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jtIDBusqeuda = new javax.swing.JTextField();
+        txtIdBusqeuda = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jcSesmtre = new javax.swing.JComboBox<>();
+        comboSemestreBusqueda = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
-        JCPlanFiltro = new javax.swing.JComboBox<>();
-        txtnombreArchivo = new javax.swing.JTextField();
+        comboPlanBusqueda = new javax.swing.JComboBox<>();
+        txtNombreArchivo = new javax.swing.JTextField();
         jLTituloUniversidad1 = new javax.swing.JLabel();
         jLTituloUAPT1 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -124,9 +124,9 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
             }
         });
 
-        TablaMAterias.setBackground(new java.awt.Color(25, 83, 0));
-        TablaMAterias.setForeground(new java.awt.Color(254, 254, 254));
-        TablaMAterias.setModel(new javax.swing.table.DefaultTableModel(
+        tablaMaterias.setBackground(new java.awt.Color(25, 83, 0));
+        tablaMaterias.setForeground(new java.awt.Color(254, 254, 254));
+        tablaMaterias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -148,12 +148,12 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        TablaMAterias.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablaMaterias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TablaMAteriasMouseClicked(evt);
+                tablaMateriasMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(TablaMAterias);
+        jScrollPane1.setViewportView(tablaMaterias);
 
         jBRegresar.setBackground(new java.awt.Color(102, 102, 0));
         jBRegresar.setForeground(new java.awt.Color(255, 255, 255));
@@ -177,70 +177,70 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
             }
         });
 
-        jBModificar.setBackground(new java.awt.Color(102, 102, 0));
-        jBModificar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jBModificar.setForeground(new java.awt.Color(255, 255, 255));
-        jBModificar.setText("Modificar");
-        jBModificar.addActionListener(new java.awt.event.ActionListener() {
+        btnModificar.setBackground(new java.awt.Color(102, 102, 0));
+        btnModificar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnModificar.setForeground(new java.awt.Color(255, 255, 255));
+        btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBModificarActionPerformed(evt);
+                btnModificarActionPerformed(evt);
             }
         });
 
-        jBEliminar.setBackground(new java.awt.Color(102, 102, 0));
-        jBEliminar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jBEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        jBEliminar.setText("Eliminar");
-        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setBackground(new java.awt.Color(102, 102, 0));
+        btnEliminar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBEliminarActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
 
-        jBAceptar.setBackground(new java.awt.Color(102, 102, 0));
-        jBAceptar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jBAceptar.setForeground(new java.awt.Color(255, 255, 255));
-        jBAceptar.setText("Aceptar");
-        jBAceptar.addActionListener(new java.awt.event.ActionListener() {
+        btnNuevo.setBackground(new java.awt.Color(102, 102, 0));
+        btnNuevo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
+        btnNuevo.setText("Aceptar");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAceptarActionPerformed(evt);
+                btnNuevoActionPerformed(evt);
             }
         });
 
-        jBCancelar.setBackground(new java.awt.Color(102, 102, 0));
-        jBCancelar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jBCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        jBCancelar.setText("Cancelar");
-        jBCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setBackground(new java.awt.Color(102, 102, 0));
+        btnCancelar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBCancelarActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
         jPanel1.setBackground(new java.awt.Color(25, 83, 0));
 
-        jTHoras.setBackground(new java.awt.Color(254, 254, 254));
-        jTHoras.addActionListener(new java.awt.event.ActionListener() {
+        txtHoras.setBackground(new java.awt.Color(254, 254, 254));
+        txtHoras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTHorasActionPerformed(evt);
+                txtHorasActionPerformed(evt);
             }
         });
-        jTHoras.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtHoras.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTHorasKeyTyped(evt);
+                txtHorasKeyTyped(evt);
             }
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTHorasKeyPressed(evt);
+                txtHorasKeyPressed(evt);
             }
         });
 
-        jTCreditos.setBackground(new java.awt.Color(254, 254, 254));
-        jTCreditos.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCreditos.setBackground(new java.awt.Color(254, 254, 254));
+        txtCreditos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTCreditosKeyTyped(evt);
+                txtCreditosKeyTyped(evt);
             }
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTCreditosKeyPressed(evt);
+                txtCreditosKeyPressed(evt);
             }
         });
 
@@ -260,23 +260,23 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(254, 254, 254));
         jLabel4.setText("Matricula");
 
-        jTClave.setBackground(new java.awt.Color(254, 254, 254));
-        jTClave.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtMatricula.setBackground(new java.awt.Color(254, 254, 254));
+        txtMatricula.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTClaveFocusLost(evt);
+                txtMatriculaFocusLost(evt);
             }
         });
-        jTClave.addActionListener(new java.awt.event.ActionListener() {
+        txtMatricula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTClaveActionPerformed(evt);
+                txtMatriculaActionPerformed(evt);
             }
         });
-        jTClave.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtMatricula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTClaveKeyPressed(evt);
+                txtMatriculaKeyPressed(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTClaveKeyTyped(evt);
+                txtMatriculaKeyTyped(evt);
             }
         });
 
@@ -284,21 +284,21 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(254, 254, 254));
         jLabel10.setText("Numero periodo");
 
-        jTNombre.setBackground(new java.awt.Color(254, 254, 254));
-        jTNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtNombre.setBackground(new java.awt.Color(254, 254, 254));
+        txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTNombreFocusLost(evt);
+                txtNombreFocusLost(evt);
             }
         });
-        jTNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTNombreKeyPressed(evt);
+                txtNombreKeyPressed(evt);
             }
         });
 
-        jCPlan.addKeyListener(new java.awt.event.KeyAdapter() {
+        comboPlanEstudios.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jCPlanKeyPressed(evt);
+                comboPlanEstudiosKeyPressed(evt);
             }
         });
 
@@ -314,24 +314,24 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(254, 254, 254));
         jLabel12.setText("Tipo");
 
-        jCNucleo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BASICO", "SUSTANTIVO", "INTEGRAL" }));
-        jCNucleo.addKeyListener(new java.awt.event.KeyAdapter() {
+        comboNucleo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BASICO", "SUSTANTIVO", "INTEGRAL" }));
+        comboNucleo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jCNucleoKeyPressed(evt);
+                comboNucleoKeyPressed(evt);
             }
         });
 
-        jCSemestre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
-        jCSemestre.addKeyListener(new java.awt.event.KeyAdapter() {
+        comboSemestre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        comboSemestre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jCSemestreKeyPressed(evt);
+                comboSemestreKeyPressed(evt);
             }
         });
 
-        jCTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "OBLIGATORIA", "OPTATIVA" }));
-        jCTipo.addKeyListener(new java.awt.event.KeyAdapter() {
+        comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "OBLIGATORIA", "OPTATIVA" }));
+        comboTipo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jCTipoKeyPressed(evt);
+                comboTipoKeyPressed(evt);
             }
         });
 
@@ -342,21 +342,21 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jCTipo, 0, 220, Short.MAX_VALUE)
-                    .addComponent(jCSemestre, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCNucleo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboTipo, 0, 220, Short.MAX_VALUE)
+                    .addComponent(comboSemestre, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboNucleo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel12)
                     .addComponent(jLabel11)
                     .addComponent(jLabel8)
-                    .addComponent(jCPlan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTHoras)
+                    .addComponent(comboPlanEstudios, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtHoras)
                     .addComponent(jLabel6)
-                    .addComponent(jTCreditos)
+                    .addComponent(txtCreditos)
                     .addComponent(jLabel7)
                     .addComponent(jLabel9)
-                    .addComponent(jTNombre)
+                    .addComponent(txtNombre)
                     .addComponent(jLabel10)
-                    .addComponent(jTClave)
+                    .addComponent(txtMatricula)
                     .addComponent(jLabel4))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
@@ -366,71 +366,71 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTClave, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboPlanEstudios, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCSemestre, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboSemestre, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCNucleo, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addComponent(comboNucleo, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        btnAgregar4.setBackground(new java.awt.Color(102, 102, 0));
-        btnAgregar4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnAgregar4.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregar4.setText("Exportar");
-        btnAgregar4.addActionListener(new java.awt.event.ActionListener() {
+        btnExportar.setBackground(new java.awt.Color(102, 102, 0));
+        btnExportar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnExportar.setForeground(new java.awt.Color(255, 255, 255));
+        btnExportar.setText("Exportar");
+        btnExportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregar4ActionPerformed(evt);
+                btnExportarActionPerformed(evt);
             }
         });
 
-        btnBusca.setBackground(new java.awt.Color(102, 102, 0));
-        btnBusca.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnBusca.setForeground(new java.awt.Color(255, 255, 255));
-        btnBusca.setText("Buscar");
-        btnBusca.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setBackground(new java.awt.Color(102, 102, 0));
+        btnBuscar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscaActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
 
         jPanel2.setBackground(new java.awt.Color(25, 83, 0));
 
-        jtIDBusqeuda.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtIdBusqeuda.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jtIDBusqeudaFocusLost(evt);
+                txtIdBusqeudaFocusLost(evt);
             }
         });
-        jtIDBusqeuda.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtIdBusqeuda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jtIDBusqeudaKeyPressed(evt);
+                txtIdBusqeudaKeyPressed(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jtIDBusqeudaKeyTyped(evt);
+                txtIdBusqeudaKeyTyped(evt);
             }
         });
 
@@ -442,15 +442,15 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(254, 254, 254));
         jLabel15.setText("SEMESTRE");
 
-        jcSesmtre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
-        jcSesmtre.addItemListener(new java.awt.event.ItemListener() {
+        comboSemestreBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        comboSemestreBusqueda.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcSesmtreItemStateChanged(evt);
+                comboSemestreBusquedaItemStateChanged(evt);
             }
         });
-        jcSesmtre.addActionListener(new java.awt.event.ActionListener() {
+        comboSemestreBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcSesmtreActionPerformed(evt);
+                comboSemestreBusquedaActionPerformed(evt);
             }
         });
 
@@ -458,15 +458,15 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
         jLabel18.setForeground(new java.awt.Color(254, 254, 254));
         jLabel18.setText("PLAN");
 
-        JCPlanFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
-        JCPlanFiltro.addItemListener(new java.awt.event.ItemListener() {
+        comboPlanBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        comboPlanBusqueda.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                JCPlanFiltroItemStateChanged(evt);
+                comboPlanBusquedaItemStateChanged(evt);
             }
         });
-        JCPlanFiltro.addActionListener(new java.awt.event.ActionListener() {
+        comboPlanBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JCPlanFiltroActionPerformed(evt);
+                comboPlanBusquedaActionPerformed(evt);
             }
         });
 
@@ -484,12 +484,12 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jcSesmtre, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboSemestreBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel18)
                         .addGap(18, 18, 18)
-                        .addComponent(JCPlanFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jtIDBusqeuda))
+                        .addComponent(comboPlanBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIdBusqeuda))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -498,19 +498,19 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jtIDBusqeuda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIdBusqeuda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel18)
-                        .addComponent(JCPlanFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jcSesmtre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(comboPlanBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboSemestreBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel15)))
         );
 
-        txtnombreArchivo.addActionListener(new java.awt.event.ActionListener() {
+        txtNombreArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnombreArchivoActionPerformed(evt);
+                txtNombreArchivoActionPerformed(evt);
             }
         });
 
@@ -554,26 +554,26 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(157, 157, 157)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtNombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(btnAgregar4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(260, 260, 260)
                                 .addComponent(jLabel17)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBRegresar)
                         .addGap(18, 18, 18)
@@ -594,14 +594,14 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAgregar4)))
+                            .addComponent(txtNombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnExportar)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnBusca)
+                                .addComponent(btnBuscar)
                                 .addGap(24, 24, 24))
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -610,13 +610,13 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                     .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jBAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -624,9 +624,9 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTClaveActionPerformed
+    private void txtMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatriculaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTClaveActionPerformed
+    }//GEN-LAST:event_txtMatriculaActionPerformed
 
     private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
         this.setVisible(false);
@@ -638,28 +638,28 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
         new VentanaLogin().setVisible(true);
     }//GEN-LAST:event_jBCerrarSesionActionPerformed
 
-    private void jTHorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTHorasActionPerformed
+    private void txtHorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHorasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTHorasActionPerformed
+    }//GEN-LAST:event_txtHorasActionPerformed
 
-    private void jTNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTNombreFocusLost
-        Valida.convertirAMayusculas(jTNombre);
-    }//GEN-LAST:event_jTNombreFocusLost
+    private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
+        Valida.convertirAMayusculas(txtNombre);
+    }//GEN-LAST:event_txtNombreFocusLost
 
-    private void jTClaveFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTClaveFocusLost
-        Valida.convertirAMayusculas(jTClave);
-    }//GEN-LAST:event_jTClaveFocusLost
+    private void txtMatriculaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMatriculaFocusLost
+        Valida.convertirAMayusculas(txtMatricula);
+    }//GEN-LAST:event_txtMatriculaFocusLost
 
-    private void jTHorasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTHorasKeyTyped
+    private void txtHorasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHorasKeyTyped
         cjb.ci.Validaciones.validaFlotantes(evt);
-    }//GEN-LAST:event_jTHorasKeyTyped
+    }//GEN-LAST:event_txtHorasKeyTyped
 
-    private void jTCreditosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCreditosKeyTyped
+    private void txtCreditosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCreditosKeyTyped
         cjb.ci.Validaciones.validaEntero(evt);
-    }//GEN-LAST:event_jTCreditosKeyTyped
+    }//GEN-LAST:event_txtCreditosKeyTyped
 
-    private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
-        if (jTClave.getText().compareTo("") == 0)
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        if (txtMatricula.getText().compareTo("") == 0)
         {
             Mensaje.error(this, "NO HA SELECCIONADO NINGUN REGISTRO");
         } else
@@ -667,24 +667,24 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
             if (!edicion)
             {
                 edicion();
-                jBModificar.setText("Aceptar");
-                CtrlInterfaz.habilita(true, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
-                CtrlInterfaz.habilita(false, jBAceptar, jBEliminar, btnAgregar4);
+                btnModificar.setText("Aceptar");
+                CtrlInterfaz.habilita(true, comboPlanEstudios, txtNombre, txtHoras, txtCreditos, comboSemestre, comboNucleo, comboTipo, btnCancelar);
+                CtrlInterfaz.habilita(false, btnNuevo, btnEliminar, btnExportar);
                 
             } else
             {
-                Materia materia = new Materia(jTClave.getText(), jTNombre.getText(), Integer.parseInt(jTHoras.getText()), Integer.parseInt(jTCreditos.getText()), Integer.parseInt(jCSemestre.getSelectedItem().toString()), jCNucleo.getSelectedItem().toString(), jCTipo.getSelectedItem().toString(), vtn.lic, buscaPlan(null, jCPlan.getSelectedItem().toString()));
+                Materia materia = new Materia(txtMatricula.getText(), txtNombre.getText(), Integer.parseInt(txtHoras.getText()), Integer.parseInt(txtCreditos.getText()), Integer.parseInt(comboSemestre.getSelectedItem().toString()), comboNucleo.getSelectedItem().toString(), comboTipo.getSelectedItem().toString(), vtn.lic, buscaPlan(null, comboPlanEstudios.getSelectedItem().toString()));
                 Mensaje.exito(this, "Espere por favor haciendo modificacion en base de datos");
-                String mensaje = Controlador.ControladorMaterias.modifcaMateria(materia, (String) TablaMAterias.getValueAt(TablaMAterias.getSelectedRow(), 0));
+                String mensaje = Controlador.ControladorMaterias.modifcaMateria(materia, (String) tablaMaterias.getValueAt(tablaMaterias.getSelectedRow(), 0));
                 if (mensaje.equals("operacion exitosa"))
                 {
-                    jBModificar.setText("Modificar");
-                    CtrlInterfaz.habilita(false, jTClave, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
-                    CtrlInterfaz.habilita(true, jBAceptar, jBEliminar, btnAgregar4);
-                    CtrlInterfaz.limpia(jTClave, jTCreditos, jTHoras, jTNombre);
+                    btnModificar.setText("Modificar");
+                    CtrlInterfaz.habilita(false, txtMatricula, comboPlanEstudios, txtNombre, txtHoras, txtCreditos, comboSemestre, comboNucleo, comboTipo, btnCancelar);
+                    CtrlInterfaz.habilita(true, btnNuevo, btnEliminar, btnExportar);
+                    CtrlInterfaz.limpia(txtMatricula, txtCreditos, txtHoras, txtNombre);
                     importarBD();
                     actualizarTabla(1);
-                    jcSesmtre.setSelectedItem(0);
+                    comboSemestreBusqueda.setSelectedItem(0);
                     edicion();
                 } else
                 {
@@ -692,64 +692,64 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                 }
             }
         }
-    }//GEN-LAST:event_jBModificarActionPerformed
+    }//GEN-LAST:event_btnModificarActionPerformed
 
-    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-        if (Mensaje.pregunta(this, "¿En realidad quiere eliminar el periodo " + jTClave.getText() + "?") == 0)
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        if (Mensaje.pregunta(this, "¿En realidad quiere eliminar el periodo " + txtMatricula.getText() + "?") == 0)
         {
             Mensaje.exito(this, "Espere por favor eliminando registro de la base de datos");
-            String mensaje = Controlador.ControladorMaterias.eliminaMateria(jTClave.getText());
+            String mensaje = Controlador.ControladorMaterias.eliminaMateria(txtMatricula.getText());
             if (mensaje.endsWith("operacion exitosa"))
             {
                 importarBD();
                 actualizarTabla(1);
-                jcSesmtre.setSelectedItem(0);
+                comboSemestreBusqueda.setSelectedItem(0);
             } else
             {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
             }
         }
-    }//GEN-LAST:event_jBEliminarActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void jBAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAceptarActionPerformed
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         if (!edicion)
         {
             edicion();
-            jBAceptar.setText("Aceptar");
-            CtrlInterfaz.limpia(jTClave, jTNombre, jTHoras, jTCreditos);
-            CtrlInterfaz.habilita(true, jTClave, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
-            CtrlInterfaz.habilita(false, jBModificar, jBEliminar, btnAgregar4);
-            CtrlInterfaz.selecciona(jTClave);
+            btnNuevo.setText("Aceptar");
+            CtrlInterfaz.limpia(txtMatricula, txtNombre, txtHoras, txtCreditos);
+            CtrlInterfaz.habilita(true, txtMatricula, comboPlanEstudios, txtNombre, txtHoras, txtCreditos, comboSemestre, comboNucleo, comboTipo, btnCancelar);
+            CtrlInterfaz.habilita(false, btnModificar, btnEliminar, btnExportar);
+            CtrlInterfaz.selecciona(txtMatricula);
         } else
         {
-            Materia mat = new Materia(jTClave.getText(), jTNombre.getText(), Integer.parseInt(jTHoras.getText()), Integer.parseInt(jTCreditos.getText()), Integer.parseInt(jCSemestre.getSelectedItem().toString()), jCNucleo.getSelectedItem().toString(), jCTipo.getSelectedItem().toString(), vtn.lic, buscaPlan(null, jCPlan.getSelectedItem().toString()));
+            Materia mat = new Materia(txtMatricula.getText(), txtNombre.getText(), Integer.parseInt(txtHoras.getText()), Integer.parseInt(txtCreditos.getText()), Integer.parseInt(comboSemestre.getSelectedItem().toString()), comboNucleo.getSelectedItem().toString(), comboTipo.getSelectedItem().toString(), vtn.lic, buscaPlan(null, comboPlanEstudios.getSelectedItem().toString()));
             Mensaje.exito(this, "Espere por favor haciendo inserccion en base de datos");
             String mensaje = Controlador.ControladorMaterias.insertaMateria(mat);
             if (mensaje.equals("operacion exitosa"))
             {
-                jBAceptar.setText("Nuevo");
-                CtrlInterfaz.habilita(false, jTClave, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
-                CtrlInterfaz.habilita(true, jBModificar, jBEliminar, btnAgregar4);
-                CtrlInterfaz.limpia(jTClave, jTCreditos, jTHoras, jTNombre);
+                btnNuevo.setText("Nuevo");
+                CtrlInterfaz.habilita(false, txtMatricula, comboPlanEstudios, txtNombre, txtHoras, txtCreditos, comboSemestre, comboNucleo, comboTipo, btnCancelar);
+                CtrlInterfaz.habilita(true, btnModificar, btnEliminar, btnExportar);
+                CtrlInterfaz.limpia(txtMatricula, txtCreditos, txtHoras, txtNombre);
                 importarBD();
                 actualizarTabla(1);
-                jcSesmtre.setSelectedItem(0);
+                comboSemestreBusqueda.setSelectedItem(0);
                 edicion();
             } else
             {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
             }
         }
-    }//GEN-LAST:event_jBAceptarActionPerformed
+    }//GEN-LAST:event_btnNuevoActionPerformed
 
-    private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         cancelar();
-    }//GEN-LAST:event_jBCancelarActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnAgregar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar4ActionPerformed
-        if (txtnombreArchivo.getText() != null)
+    private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
+        if (txtNombreArchivo.getText() != null)
         {
-            String mensaje = Archivo.Exportar(TablaMAterias, txtnombreArchivo.getText());
+            String mensaje = Archivo.Exportar(tablaMaterias, txtNombreArchivo.getText());
             if (mensaje.equals("Error en la Exportacion"))
             {
                 Mensaje.error(this, mensaje);
@@ -761,31 +761,31 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
         {
             Mensaje.error(this, "Escriba el nombre del archivo");
         }
-    }//GEN-LAST:event_btnAgregar4ActionPerformed
+    }//GEN-LAST:event_btnExportarActionPerformed
 
-    private void jTClaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTClaveKeyPressed
-        Validaciones.enter(this, evt, jCPlan);
-    }//GEN-LAST:event_jTClaveKeyPressed
+    private void txtMatriculaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatriculaKeyPressed
+        Validaciones.enter(this, evt, comboPlanEstudios);
+    }//GEN-LAST:event_txtMatriculaKeyPressed
 
-    private void jCPlanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCPlanKeyPressed
-        Validaciones.enter(this, evt, jTNombre);
-    }//GEN-LAST:event_jCPlanKeyPressed
+    private void comboPlanEstudiosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboPlanEstudiosKeyPressed
+        Validaciones.enter(this, evt, txtNombre);
+    }//GEN-LAST:event_comboPlanEstudiosKeyPressed
 
-    private void jTNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTNombreKeyPressed
-        Validaciones.enter(this, evt, jTHoras);
-    }//GEN-LAST:event_jTNombreKeyPressed
+    private void txtNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyPressed
+        Validaciones.enter(this, evt, txtHoras);
+    }//GEN-LAST:event_txtNombreKeyPressed
 
-    private void jTHorasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTHorasKeyPressed
-        Validaciones.enter(this, evt, jTCreditos);
-    }//GEN-LAST:event_jTHorasKeyPressed
+    private void txtHorasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHorasKeyPressed
+        Validaciones.enter(this, evt, txtCreditos);
+    }//GEN-LAST:event_txtHorasKeyPressed
 
-    private void jTCreditosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCreditosKeyPressed
-        Validaciones.enter(this, evt, jCSemestre);
-    }//GEN-LAST:event_jTCreditosKeyPressed
+    private void txtCreditosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCreditosKeyPressed
+        Validaciones.enter(this, evt, comboSemestre);
+    }//GEN-LAST:event_txtCreditosKeyPressed
 
-    private void jCNucleoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCNucleoKeyPressed
-        Validaciones.enter(this, evt, jCTipo);
-    }//GEN-LAST:event_jCNucleoKeyPressed
+    private void comboNucleoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboNucleoKeyPressed
+        Validaciones.enter(this, evt, comboTipo);
+    }//GEN-LAST:event_comboNucleoKeyPressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         cancelar();
@@ -795,74 +795,74 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
         llenaComboPlanesFiltro();
     }//GEN-LAST:event_formWindowOpened
 
-    private void jCSemestreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCSemestreKeyPressed
+    private void comboSemestreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboSemestreKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCSemestreKeyPressed
+    }//GEN-LAST:event_comboSemestreKeyPressed
 
-    private void jCTipoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCTipoKeyPressed
+    private void comboTipoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboTipoKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCTipoKeyPressed
+    }//GEN-LAST:event_comboTipoKeyPressed
 
-    private void TablaMAteriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMAteriasMouseClicked
-        jTClave.setText((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 0));
-        jTNombre.setText((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 1));
-        jCPlan.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 3), jCPlan)));
-        jTHoras.setText((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 4).toString());
-        jTCreditos.setText((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 5).toString());
-        jCSemestre.setSelectedIndex(buscarCombo((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 6).toString(), jCSemestre));
-        jCNucleo.setSelectedIndex(buscarCombo((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 7), jCNucleo));
-        jCTipo.setSelectedIndex(buscarCombo((String) modelo.getValueAt(TablaMAterias.getSelectedRow(), 8), jCTipo));
-    }//GEN-LAST:event_TablaMAteriasMouseClicked
+    private void tablaMateriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMateriasMouseClicked
+        txtMatricula.setText((String) modelo.getValueAt(tablaMaterias.getSelectedRow(), 0));
+        txtNombre.setText((String) modelo.getValueAt(tablaMaterias.getSelectedRow(), 1));
+        comboPlanEstudios.setSelectedIndex((buscarCombo((String) modelo.getValueAt(tablaMaterias.getSelectedRow(), 3), comboPlanEstudios)));
+        txtHoras.setText((String) modelo.getValueAt(tablaMaterias.getSelectedRow(), 4).toString());
+        txtCreditos.setText((String) modelo.getValueAt(tablaMaterias.getSelectedRow(), 5).toString());
+        comboSemestre.setSelectedIndex(buscarCombo((String) modelo.getValueAt(tablaMaterias.getSelectedRow(), 6).toString(), comboSemestre));
+        comboNucleo.setSelectedIndex(buscarCombo((String) modelo.getValueAt(tablaMaterias.getSelectedRow(), 7), comboNucleo));
+        comboTipo.setSelectedIndex(buscarCombo((String) modelo.getValueAt(tablaMaterias.getSelectedRow(), 8), comboTipo));
+    }//GEN-LAST:event_tablaMateriasMouseClicked
 
-    private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
-        if (jtIDBusqeuda.getText().equals("") && btnBusca.getText().equals("Buscar"))
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        if (txtIdBusqeuda.getText().equals("") && btnBuscar.getText().equals("Buscar"))
         {
             actualizarTabla(1);
         } else
         {
             actualizarTabla(2);
         }
-    }//GEN-LAST:event_btnBuscaActionPerformed
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void jtIDBusqeudaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtIDBusqeudaFocusLost
-        Valida.convertirAMayusculas(jtIDBusqeuda);
-    }//GEN-LAST:event_jtIDBusqeudaFocusLost
+    private void txtIdBusqeudaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIdBusqeudaFocusLost
+        Valida.convertirAMayusculas(txtIdBusqeuda);
+    }//GEN-LAST:event_txtIdBusqeudaFocusLost
 
-    private void jtIDBusqeudaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDBusqeudaKeyPressed
-        enter(this, evt, btnBusca);
-    }//GEN-LAST:event_jtIDBusqeudaKeyPressed
+    private void txtIdBusqeudaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdBusqeudaKeyPressed
+        enter(this, evt, btnBuscar);
+    }//GEN-LAST:event_txtIdBusqeudaKeyPressed
 
-    private void jcSesmtreItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcSesmtreItemStateChanged
+    private void comboSemestreBusquedaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboSemestreBusquedaItemStateChanged
         actualizarTabla(3);
-        JCPlanFiltro.setSelectedIndex(0);
-    }//GEN-LAST:event_jcSesmtreItemStateChanged
+        comboPlanBusqueda.setSelectedIndex(0);
+    }//GEN-LAST:event_comboSemestreBusquedaItemStateChanged
 
-    private void jcSesmtreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcSesmtreActionPerformed
+    private void comboSemestreBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSemestreBusquedaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jcSesmtreActionPerformed
+    }//GEN-LAST:event_comboSemestreBusquedaActionPerformed
 
-    private void jTClaveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTClaveKeyTyped
+    private void txtMatriculaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatriculaKeyTyped
         Validaciones.validaAlfanumerico(evt);
-        Valida.validaLongitud(jTClave, 10, evt);
-    }//GEN-LAST:event_jTClaveKeyTyped
+        Valida.validaLongitud(txtMatricula, 10, evt);
+    }//GEN-LAST:event_txtMatriculaKeyTyped
 
-    private void txtnombreArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreArchivoActionPerformed
+    private void txtNombreArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreArchivoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnombreArchivoActionPerformed
+    }//GEN-LAST:event_txtNombreArchivoActionPerformed
 
-    private void JCPlanFiltroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JCPlanFiltroItemStateChanged
+    private void comboPlanBusquedaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboPlanBusquedaItemStateChanged
         actualizarTabla(4);
-    }//GEN-LAST:event_JCPlanFiltroItemStateChanged
+    }//GEN-LAST:event_comboPlanBusquedaItemStateChanged
 
-    private void JCPlanFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCPlanFiltroActionPerformed
+    private void comboPlanBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPlanBusquedaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_JCPlanFiltroActionPerformed
+    }//GEN-LAST:event_comboPlanBusquedaActionPerformed
 
-    private void jtIDBusqeudaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDBusqeudaKeyTyped
-        btnBusca.setText("Buscar");
-        jcSesmtre.setSelectedIndex(0);
-        JCPlanFiltro.setSelectedIndex(0);
-    }//GEN-LAST:event_jtIDBusqeudaKeyTyped
+    private void txtIdBusqeudaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdBusqeudaKeyTyped
+        btnBuscar.setText("Buscar");
+        comboSemestreBusqueda.setSelectedIndex(0);
+        comboPlanBusqueda.setSelectedIndex(0);
+    }//GEN-LAST:event_txtIdBusqeudaKeyTyped
 
     /**
      * @param args the command line arguments
@@ -971,20 +971,20 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> JCPlanFiltro;
-    private javax.swing.JTable TablaMAterias;
-    private javax.swing.JButton btnAgregar4;
-    private javax.swing.JButton btnBusca;
-    private javax.swing.JButton jBAceptar;
-    private javax.swing.JButton jBCancelar;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnExportar;
+    private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnNuevo;
+    private javax.swing.JComboBox<String> comboNucleo;
+    private javax.swing.JComboBox<String> comboPlanBusqueda;
+    private javax.swing.JComboBox<String> comboPlanEstudios;
+    private javax.swing.JComboBox<String> comboSemestre;
+    private javax.swing.JComboBox<String> comboSemestreBusqueda;
+    private javax.swing.JComboBox<String> comboTipo;
     private javax.swing.JButton jBCerrarSesion;
-    private javax.swing.JButton jBEliminar;
-    private javax.swing.JButton jBModificar;
     private javax.swing.JButton jBRegresar;
-    private javax.swing.JComboBox<String> jCNucleo;
-    private javax.swing.JComboBox<String> jCPlan;
-    private javax.swing.JComboBox<String> jCSemestre;
-    private javax.swing.JComboBox<String> jCTipo;
     private javax.swing.JLabel jLTituloUAPT1;
     private javax.swing.JLabel jLTituloUniversidad1;
     private javax.swing.JLabel jLabel1;
@@ -1004,17 +1004,17 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTClave;
-    private javax.swing.JTextField jTCreditos;
-    private javax.swing.JTextField jTHoras;
-    private javax.swing.JTextField jTNombre;
-    private javax.swing.JComboBox<String> jcSesmtre;
-    private javax.swing.JTextField jtIDBusqeuda;
-    private javax.swing.JTextField txtnombreArchivo;
+    private javax.swing.JTable tablaMaterias;
+    private javax.swing.JTextField txtCreditos;
+    private javax.swing.JTextField txtHoras;
+    private javax.swing.JTextField txtIdBusqeuda;
+    private javax.swing.JTextField txtMatricula;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNombreArchivo;
     // End of variables declaration//GEN-END:variables
 
     public void actualizarTabla(int valor) {
-        modelo = (DefaultTableModel) TablaMAterias.getModel();
+        modelo = (DefaultTableModel) tablaMaterias.getModel();
         
         switch (valor)
         {
@@ -1033,11 +1033,11 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                             mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
                         });
                     }
-                    btnBusca.setText("Buscar");
+                    btnBuscar.setText("Buscar");
                 }
                 break;
             case 2:
-                materias = ConsultasObjetos.consultaMuchos("materia", "unidad_aprendizaje", jtIDBusqeuda.getText(), null, null, "unidad_aprendizaje", ConectarBase.conectado());
+                materias = ConsultasObjetos.consultaMuchos("materia", "unidad_aprendizaje", txtIdBusqeuda.getText(), null, null, "unidad_aprendizaje", ConectarBase.conectado());
                 if (materias.isEmpty())
                 {
                     Mensaje.error(this, "No hay materias registradas");
@@ -1055,12 +1055,12 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                             });
                         }
                     }
-                    jtIDBusqeuda.setText("");
-                    btnBusca.setText("Todas");
+                    txtIdBusqeuda.setText("");
+                    btnBuscar.setText("Todas");
                 }
                 break;
             case 3:
-                if (jcSesmtre.getSelectedIndex() == 0)
+                if (comboSemestreBusqueda.getSelectedIndex() == 0)
                 {
                     actualizarTabla(1);
                 } else
@@ -1068,14 +1068,14 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                     if (materias.isEmpty())
                     {
                         Mensaje.error(this, "No hay materias registradas con este semestre");
-                        jcSesmtre.setSelectedIndex(0);
+                        comboSemestreBusqueda.setSelectedIndex(0);
                     } else
                     {
                         modelo.setRowCount(0);
                         for (Object m : materias)
                         {
                             Materia mat = (Materia) m;
-                            if (mat.getClaveCarrera().equals(vtn.lic) && mat.getNumeroPeriodo() == Integer.parseInt(jcSesmtre.getSelectedItem().toString()))
+                            if (mat.getClaveCarrera().equals(vtn.lic) && mat.getNumeroPeriodo() == Integer.parseInt(comboSemestreBusqueda.getSelectedItem().toString()))
                             {
                                 modelo.addRow(new Object[]
                                 {
@@ -1083,12 +1083,12 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                                 });
                             }
                         }
-                        btnBusca.setText("Todas");
+                        btnBuscar.setText("Todas");
                     }
                 }
                 break;
             case 4:
-                if (jcSesmtre.getSelectedIndex() == 0)
+                if (comboSemestreBusqueda.getSelectedIndex() == 0)
                 {
                     actualizarTabla(3);
                 } else
@@ -1102,14 +1102,14 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
                         for (Object m : materias)
                         {
                             Materia mat = (Materia) m;
-                            if (mat.getClaveCarrera().equals(vtn.lic) && mat.getNumeroPeriodo() == Integer.parseInt(jcSesmtre.getSelectedItem().toString()) && mat.getPlanEstudios().equals(buscaPlan(null, JCPlanFiltro.getSelectedItem().toString())))
+                            if (mat.getClaveCarrera().equals(vtn.lic) && mat.getNumeroPeriodo() == Integer.parseInt(comboSemestreBusqueda.getSelectedItem().toString()) && mat.getPlanEstudios().equals(buscaPlan(null, comboPlanBusqueda.getSelectedItem().toString())))
                             {
                                 modelo.addRow(new Object[]
                                 {
                                     mat.getClaveMateria(), mat.getUnidadAprendizaje(), buscaLic(mat.getClaveCarrera(), null), buscaPlan(mat.getPlanEstudios(), null), mat.getHoras(), mat.getCreditos(), mat.getNumeroPeriodo(), mat.getNucleo(), mat.getTipo()
                                 });
                             }
-                            btnBusca.setText("Todas");
+                            btnBuscar.setText("Todas");
                         }
                     }
                 }
@@ -1131,18 +1131,18 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
     
     private void cancelar() {
         edicion();
-        CtrlInterfaz.limpia(jTClave, jTNombre, jTHoras, jTCreditos);
-        CtrlInterfaz.habilita(false, jTClave, jCPlan, jTNombre, jTHoras, jTCreditos, jCSemestre, jCNucleo, jCTipo, jBCancelar);
-        CtrlInterfaz.habilita(true, jBModificar, jBAceptar, jBEliminar, btnAgregar4);
-        jBAceptar.setText("Nuevo");
-        jBModificar.setText("Modificar");
+        CtrlInterfaz.limpia(txtMatricula, txtNombre, txtHoras, txtCreditos);
+        CtrlInterfaz.habilita(false, txtMatricula, comboPlanEstudios, txtNombre, txtHoras, txtCreditos, comboSemestre, comboNucleo, comboTipo, btnCancelar);
+        CtrlInterfaz.habilita(true, btnModificar, btnNuevo, btnEliminar, btnExportar);
+        btnNuevo.setText("Nuevo");
+        btnModificar.setText("Modificar");
     }
     
     public void llenaComboPlanes() {
-        jCPlan.removeAllItems();
+        comboPlanEstudios.removeAllItems();
         for (int i = 0; i < plans.size(); i++)
         {
-            jCPlan.addItem(((PlanEstudios) plans.get(i)).getPlanEstudios());
+            comboPlanEstudios.addItem(((PlanEstudios) plans.get(i)).getPlanEstudios());
         }
     }
     
@@ -1197,9 +1197,9 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
     }
     
     private int buscarComboPlan(String text) {
-        for (int i = 0; i < jCPlan.getItemCount(); i++)
+        for (int i = 0; i < comboPlanEstudios.getItemCount(); i++)
         {
-            if (text.equals(jCPlan.getItemAt(i)))
+            if (text.equals(comboPlanEstudios.getItemAt(i)))
             {
                 return i;
             }
@@ -1219,12 +1219,12 @@ public class VentanaMateriasCoordinador extends javax.swing.JFrame {
     }
     
     public void llenaComboPlanesFiltro() {
-        JCPlanFiltro.removeAllItems();
-        JCPlanFiltro.addItem("Todos");
+        comboPlanBusqueda.removeAllItems();
+        comboPlanBusqueda.addItem("Todos");
         planes1 = ConsultasObjetos.consultaMuchos("plan_estudios", "id_licenciatura", vtn.lic, null, null, "plan_estudios", ConectarBase.conectado());
         for (int i = 0; i < planes1.size(); i++)
         {
-            JCPlanFiltro.addItem(((PlanEstudios) planes1.get(i)).getPlanEstudios());
+            comboPlanBusqueda.addItem(((PlanEstudios) planes1.get(i)).getPlanEstudios());
         }
     }
     

@@ -58,26 +58,26 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
         //this.setResizable(false);
         this.getContentPane().setBackground(Color.white);
         this.setIconImage(new ImageIcon(getClass().getResource("/Iconos/SCHR.png")).getImage());
-        TablaHorarios.getColumnModel().getColumn(0).setPreferredWidth(10);
-        TablaHorarios.getColumnModel().getColumn(0).setResizable(false);
-        TablaHorarios.getColumnModel().getColumn(1).setPreferredWidth(10);
-        TablaHorarios.getColumnModel().getColumn(1).setResizable(false);
-        TablaHorarios.getColumnModel().getColumn(2).setPreferredWidth(120);
-        TablaHorarios.getColumnModel().getColumn(2).setResizable(false);
-        TablaHorarios.getColumnModel().getColumn(3).setPreferredWidth(60);
-        TablaHorarios.getColumnModel().getColumn(3).setResizable(false);
-        TablaHorarios.getColumnModel().getColumn(4).setPreferredWidth(120);
-        TablaHorarios.getColumnModel().getColumn(4).setResizable(false);
-        TablaHorarios.getColumnModel().getColumn(5).setPreferredWidth(30);
-        TablaHorarios.getColumnModel().getColumn(5).setResizable(false);
-        TablaHorarios.getColumnModel().getColumn(6).setPreferredWidth(30);
-        TablaHorarios.getColumnModel().getColumn(6).setResizable(false);
-        TablaHorarios.getColumnModel().getColumn(7).setPreferredWidth(50);
-        TablaHorarios.getColumnModel().getColumn(7).setResizable(false);
-        TablaHorarios.getColumnModel().getColumn(8).setPreferredWidth(10);
-        TablaHorarios.getColumnModel().getColumn(8).setResizable(false);
-        TablaHorarios.getColumnModel().getColumn(9).setPreferredWidth(10);
-        TablaHorarios.getColumnModel().getColumn(9).setResizable(false);
+        tablaHorarios.getColumnModel().getColumn(0).setPreferredWidth(10);
+        tablaHorarios.getColumnModel().getColumn(0).setResizable(false);
+        tablaHorarios.getColumnModel().getColumn(1).setPreferredWidth(10);
+        tablaHorarios.getColumnModel().getColumn(1).setResizable(false);
+        tablaHorarios.getColumnModel().getColumn(2).setPreferredWidth(120);
+        tablaHorarios.getColumnModel().getColumn(2).setResizable(false);
+        tablaHorarios.getColumnModel().getColumn(3).setPreferredWidth(60);
+        tablaHorarios.getColumnModel().getColumn(3).setResizable(false);
+        tablaHorarios.getColumnModel().getColumn(4).setPreferredWidth(120);
+        tablaHorarios.getColumnModel().getColumn(4).setResizable(false);
+        tablaHorarios.getColumnModel().getColumn(5).setPreferredWidth(30);
+        tablaHorarios.getColumnModel().getColumn(5).setResizable(false);
+        tablaHorarios.getColumnModel().getColumn(6).setPreferredWidth(30);
+        tablaHorarios.getColumnModel().getColumn(6).setResizable(false);
+        tablaHorarios.getColumnModel().getColumn(7).setPreferredWidth(50);
+        tablaHorarios.getColumnModel().getColumn(7).setResizable(false);
+        tablaHorarios.getColumnModel().getColumn(8).setPreferredWidth(10);
+        tablaHorarios.getColumnModel().getColumn(8).setResizable(false);
+        tablaHorarios.getColumnModel().getColumn(9).setPreferredWidth(10);
+        tablaHorarios.getColumnModel().getColumn(9).setResizable(false);
     }
 
     /**
@@ -89,40 +89,40 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jBeliminar = new javax.swing.JButton();
-        jBCancelar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TablaHorarios = new javax.swing.JTable();
+        tablaHorarios = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jTEntrada = new javax.swing.JTextField();
+        txtHoraEntrada = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        JCDocente = new javax.swing.JComboBox<>();
+        comboDocente = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        JCGrupo = new javax.swing.JComboBox<>();
-        jTSalida = new javax.swing.JTextField();
-        jCPeriodo = new javax.swing.JComboBox<>();
-        jCDia = new javax.swing.JComboBox<>();
-        JCMateria = new javax.swing.JComboBox<>();
+        comboGrupo = new javax.swing.JComboBox<>();
+        txtHoraSalida = new javax.swing.JTextField();
+        comboPeriodo = new javax.swing.JComboBox<>();
+        comboDia = new javax.swing.JComboBox<>();
+        comboMateria = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTIdhorario = new javax.swing.JTextField();
+        txtMatricula = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        jCPlanEstudios = new javax.swing.JComboBox<>();
+        comboPlanes = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jBRegresar = new javax.swing.JButton();
         jBCerrarSesion = new javax.swing.JButton();
         btnExportar = new javax.swing.JButton();
-        jBAceptar1 = new javax.swing.JButton();
-        jBModificar = new javax.swing.JButton();
+        btnNuevo = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
-        jCGrupofiltro = new javax.swing.JComboBox<>();
-        jCPeriodoFiltro = new javax.swing.JComboBox<>();
+        comboGrupoBusqueda = new javax.swing.JComboBox<>();
+        comboPeriodoBusqueda = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
-        txtnombreArchivo = new javax.swing.JTextField();
+        txtNombreArchivo = new javax.swing.JTextField();
         jLTituloUniversidad1 = new javax.swing.JLabel();
         jLTituloUAPT1 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -137,29 +137,29 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
             }
         });
 
-        jBeliminar.setBackground(new java.awt.Color(102, 102, 0));
-        jBeliminar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jBeliminar.setForeground(new java.awt.Color(255, 255, 255));
-        jBeliminar.setText("Eliminar");
-        jBeliminar.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setBackground(new java.awt.Color(102, 102, 0));
+        btnEliminar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBeliminarActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
 
-        jBCancelar.setBackground(new java.awt.Color(102, 102, 0));
-        jBCancelar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jBCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        jBCancelar.setText("Cancelar");
-        jBCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setBackground(new java.awt.Color(102, 102, 0));
+        btnCancelar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBCancelarActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
-        TablaHorarios.setBackground(new java.awt.Color(25, 83, 0));
-        TablaHorarios.setForeground(new java.awt.Color(254, 254, 254));
-        TablaHorarios.setModel(new javax.swing.table.DefaultTableModel(
+        tablaHorarios.setBackground(new java.awt.Color(25, 83, 0));
+        tablaHorarios.setForeground(new java.awt.Color(254, 254, 254));
+        tablaHorarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
@@ -180,27 +180,27 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        TablaHorarios.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablaHorarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TablaHorariosMouseClicked(evt);
+                tablaHorariosMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(TablaHorarios);
+        jScrollPane1.setViewportView(tablaHorarios);
 
         jPanel1.setBackground(new java.awt.Color(25, 83, 0));
 
-        jTEntrada.setBackground(new java.awt.Color(254, 254, 254));
-        jTEntrada.addActionListener(new java.awt.event.ActionListener() {
+        txtHoraEntrada.setBackground(new java.awt.Color(254, 254, 254));
+        txtHoraEntrada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTEntradaActionPerformed(evt);
+                txtHoraEntradaActionPerformed(evt);
             }
         });
-        jTEntrada.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtHoraEntrada.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTEntradaKeyPressed(evt);
+                txtHoraEntradaKeyPressed(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTEntradaKeyTyped(evt);
+                txtHoraEntradaKeyTyped(evt);
             }
         });
 
@@ -212,10 +212,10 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(254, 254, 254));
         jLabel7.setText("GRUPO");
 
-        JCDocente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mauro Sanchez Sanchez", "Elsa Vidal Hernandez", "Estefania Hernandez Caballero" }));
-        JCDocente.addKeyListener(new java.awt.event.KeyAdapter() {
+        comboDocente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mauro Sanchez Sanchez", "Elsa Vidal Hernandez", "Estefania Hernandez Caballero" }));
+        comboDocente.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                JCDocenteKeyPressed(evt);
+                comboDocenteKeyPressed(evt);
             }
         });
 
@@ -231,38 +231,38 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(254, 254, 254));
         jLabel11.setText("DIA");
 
-        JCGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "S1", "S2", "S3", "S4", "S5" }));
-        JCGrupo.addKeyListener(new java.awt.event.KeyAdapter() {
+        comboGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "S1", "S2", "S3", "S4", "S5" }));
+        comboGrupo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                JCGrupoKeyPressed(evt);
+                comboGrupoKeyPressed(evt);
             }
         });
 
-        jTSalida.setBackground(new java.awt.Color(254, 254, 254));
-        jTSalida.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtHoraSalida.setBackground(new java.awt.Color(254, 254, 254));
+        txtHoraSalida.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTSalidaKeyPressed(evt);
+                txtHoraSalidaKeyPressed(evt);
             }
         });
 
-        jCPeriodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2021A", "2021B" }));
-        jCPeriodo.addKeyListener(new java.awt.event.KeyAdapter() {
+        comboPeriodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2021A", "2021B" }));
+        comboPeriodo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jCPeriodoKeyPressed(evt);
+                comboPeriodoKeyPressed(evt);
             }
         });
 
-        jCDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO" }));
-        jCDia.addKeyListener(new java.awt.event.KeyAdapter() {
+        comboDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO" }));
+        comboDia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jCDiaKeyPressed(evt);
+                comboDiaKeyPressed(evt);
             }
         });
 
-        JCMateria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Algebra", "Computacion", "Inlges", "Calculo Diferencial E Integral" }));
-        JCMateria.addKeyListener(new java.awt.event.KeyAdapter() {
+        comboMateria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Algebra", "Computacion", "Inlges", "Calculo Diferencial E Integral" }));
+        comboMateria.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                JCMateriaKeyPressed(evt);
+                comboMateriaKeyPressed(evt);
             }
         });
 
@@ -274,23 +274,23 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(254, 254, 254));
         jLabel4.setText("MATRICULA");
 
-        jTIdhorario.setBackground(new java.awt.Color(254, 254, 254));
-        jTIdhorario.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtMatricula.setBackground(new java.awt.Color(254, 254, 254));
+        txtMatricula.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTIdhorarioFocusLost(evt);
+                txtMatriculaFocusLost(evt);
             }
         });
-        jTIdhorario.addActionListener(new java.awt.event.ActionListener() {
+        txtMatricula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTIdhorarioActionPerformed(evt);
+                txtMatriculaActionPerformed(evt);
             }
         });
-        jTIdhorario.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtMatricula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTIdhorarioKeyPressed(evt);
+                txtMatriculaKeyPressed(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTIdhorarioKeyTyped(evt);
+                txtMatriculaKeyTyped(evt);
             }
         });
 
@@ -298,15 +298,15 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
         jLabel14.setForeground(new java.awt.Color(254, 254, 254));
         jLabel14.setText("HORA SALIDA");
 
-        jCPlanEstudios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2021A", "2021B" }));
-        jCPlanEstudios.addItemListener(new java.awt.event.ItemListener() {
+        comboPlanes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2021A", "2021B" }));
+        comboPlanes.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jCPlanEstudiosItemStateChanged(evt);
+                comboPlanesItemStateChanged(evt);
             }
         });
-        jCPlanEstudios.addKeyListener(new java.awt.event.KeyAdapter() {
+        comboPlanes.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jCPlanEstudiosKeyPressed(evt);
+                comboPlanesKeyPressed(evt);
             }
         });
 
@@ -321,12 +321,12 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCPeriodo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTIdhorario)
-                    .addComponent(JCGrupo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JCMateria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JCDocente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCDia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboPeriodo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtMatricula)
+                    .addComponent(comboGrupo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboMateria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboDocente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboDia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -337,15 +337,15 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                                     .addComponent(jLabel14))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTEntrada)
-                                    .addComponent(jTSalida, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtHoraEntrada)
+                                    .addComponent(txtHoraSalida, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel9)
                             .addComponent(jLabel10)
                             .addComponent(jLabel11)
                             .addComponent(jLabel7)
                             .addComponent(jLabel8))
                         .addGap(0, 25, Short.MAX_VALUE))
-                    .addComponent(jCPlanEstudios, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(comboPlanes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -354,31 +354,31 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTIdhorario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCPlanEstudios, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboPlanes, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JCGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JCMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JCDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
-                .addComponent(jCDia, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboDia, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -386,9 +386,9 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14)
-                            .addComponent(jTSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtHoraSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtHoraEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -425,23 +425,23 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
             }
         });
 
-        jBAceptar1.setBackground(new java.awt.Color(102, 102, 0));
-        jBAceptar1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jBAceptar1.setForeground(new java.awt.Color(255, 255, 255));
-        jBAceptar1.setText("Aceptar");
-        jBAceptar1.addActionListener(new java.awt.event.ActionListener() {
+        btnNuevo.setBackground(new java.awt.Color(102, 102, 0));
+        btnNuevo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
+        btnNuevo.setText("Aceptar");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAceptar1ActionPerformed(evt);
+                btnNuevoActionPerformed(evt);
             }
         });
 
-        jBModificar.setBackground(new java.awt.Color(102, 102, 0));
-        jBModificar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jBModificar.setForeground(new java.awt.Color(255, 255, 255));
-        jBModificar.setText("Modificar");
-        jBModificar.addActionListener(new java.awt.event.ActionListener() {
+        btnModificar.setBackground(new java.awt.Color(102, 102, 0));
+        btnModificar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnModificar.setForeground(new java.awt.Color(255, 255, 255));
+        btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBModificarActionPerformed(evt);
+                btnModificarActionPerformed(evt);
             }
         });
 
@@ -451,17 +451,17 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
         jLabel15.setForeground(new java.awt.Color(254, 254, 254));
         jLabel15.setText("GRUPO");
 
-        jCGrupofiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2021A", "2021B" }));
-        jCGrupofiltro.addItemListener(new java.awt.event.ItemListener() {
+        comboGrupoBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2021A", "2021B" }));
+        comboGrupoBusqueda.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jCGrupofiltroItemStateChanged(evt);
+                comboGrupoBusquedaItemStateChanged(evt);
             }
         });
 
-        jCPeriodoFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2021A", "2021B" }));
-        jCPeriodoFiltro.addItemListener(new java.awt.event.ItemListener() {
+        comboPeriodoBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2021A", "2021B" }));
+        comboPeriodoBusqueda.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jCPeriodoFiltroItemStateChanged(evt);
+                comboPeriodoBusquedaItemStateChanged(evt);
             }
         });
 
@@ -477,11 +477,11 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel15)
                 .addGap(18, 18, 18)
-                .addComponent(jCGrupofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboGrupoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel16)
                 .addGap(18, 18, 18)
-                .addComponent(jCPeriodoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboPeriodoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
         jPanel2Layout.setVerticalGroup(
@@ -491,15 +491,15 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel16)
-                        .addComponent(jCPeriodoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jCGrupofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(comboPeriodoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboGrupoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel15))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        txtnombreArchivo.addActionListener(new java.awt.event.ActionListener() {
+        txtNombreArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnombreArchivoActionPerformed(evt);
+                txtNombreArchivoActionPerformed(evt);
             }
         });
 
@@ -526,13 +526,13 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBAceptar1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jBeliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -565,7 +565,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtNombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(btnExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(jLabel1)))
@@ -592,17 +592,17 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnExportar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtnombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtNombreArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBAceptar1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBeliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -612,29 +612,29 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTIdhorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTIdhorarioActionPerformed
+    private void txtMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatriculaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTIdhorarioActionPerformed
+    }//GEN-LAST:event_txtMatriculaActionPerformed
 
-    private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         if (Mensaje.pregunta(this, "¿Seguro que desea eliminar este registro?") == 0)
         {
-            String mensaje = Controlador.ControladorHorarios.eliminaHorario(jTIdhorario.getText());
+            String mensaje = Controlador.ControladorHorarios.eliminaHorario(txtMatricula.getText());
             if (mensaje.endsWith("operacion exitosa"))
             {
                 importarBD();
                 actualizaTabla(1);
-                jCGrupofiltro.setSelectedIndex(0);
+                comboGrupoBusqueda.setSelectedIndex(0);
             } else
             {
                 JOptionPane.showMessageDialog(rootPane, mensaje);
             }
         }
-    }//GEN-LAST:event_jBeliminarActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         cancelar();
-    }//GEN-LAST:event_jBCancelarActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
         this.setVisible(false);
@@ -646,14 +646,14 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
         new VentanaLogin().setVisible(true);
     }//GEN-LAST:event_jBCerrarSesionActionPerformed
 
-    private void jTEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTEntradaActionPerformed
+    private void txtHoraEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHoraEntradaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTEntradaActionPerformed
+    }//GEN-LAST:event_txtHoraEntradaActionPerformed
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
-        if (txtnombreArchivo.getText() != null)
+        if (txtNombreArchivo.getText() != null)
         {
-            String mensaje = Archivo.Exportar(TablaHorarios, txtnombreArchivo.getText());
+            String mensaje = Archivo.Exportar(tablaHorarios, txtNombreArchivo.getText());
             if (mensaje.equals("Error en la Exportacion"))
             {
                 Mensaje.error(this, mensaje);
@@ -667,18 +667,18 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnExportarActionPerformed
 
-    private void jBAceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAceptar1ActionPerformed
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         if (!edicion)
         {
             edicion();
-            jBAceptar1.setText("Aceptar");
-            CtrlInterfaz.limpia(jTEntrada, jTSalida, jTIdhorario);
-            CtrlInterfaz.habilita(true, jTSalida, jTEntrada, jTIdhorario, jCPeriodo, jCPlanEstudios, JCGrupo, JCMateria, JCDocente, jCDia, jBCancelar);
-            CtrlInterfaz.habilita(false, jBeliminar, jBModificar, btnExportar);
-            CtrlInterfaz.selecciona(jTIdhorario);
+            btnNuevo.setText("Aceptar");
+            CtrlInterfaz.limpia(txtHoraEntrada, txtHoraSalida, txtMatricula);
+            CtrlInterfaz.habilita(true, txtHoraSalida, txtHoraEntrada, txtMatricula, comboPeriodo, comboPlanes, comboGrupo, comboMateria, comboDocente, comboDia, btnCancelar);
+            CtrlInterfaz.habilita(false, btnEliminar, btnModificar, btnExportar);
+            CtrlInterfaz.selecciona(txtMatricula);
         } else
         {
-            PeriodoHorarios horario = new PeriodoHorarios(0, buscaMateria(null, JCMateria.getSelectedItem().toString()), buscaGrupo(null, JCGrupo.getSelectedItem().toString()), buscaPeriodo(null, jCPeriodo.getSelectedItem().toString()), buscaProfesor(null, JCDocente.getSelectedItem().toString()), String.valueOf(ControladorHorarios.numdia(jCDia.getSelectedItem().toString())), jTEntrada.getText(), jTSalida.getText());
+            PeriodoHorarios horario = new PeriodoHorarios(0, buscaMateria(null, comboMateria.getSelectedItem().toString()), buscaGrupo(null, comboGrupo.getSelectedItem().toString()), buscaPeriodo(null, comboPeriodo.getSelectedItem().toString()), buscaProfesor(null, comboDocente.getSelectedItem().toString()), String.valueOf(ControladorHorarios.numdia(comboDia.getSelectedItem().toString())), txtHoraEntrada.getText(), txtHoraSalida.getText());
             String mensaje = ControladorHorarios.insertaHorarioUnico(horario);
             boolean var;
             boolean var2, registro;
@@ -700,15 +700,15 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                         if (registro == false)
                         {
                             Mensaje.exito(this, "Horario registrado correctamente");
-                            jBAceptar1.setText("Nuevo");
-                            CtrlInterfaz.limpia(jTEntrada, jTSalida, jTIdhorario);
-                            CtrlInterfaz.habilita(false, jTSalida, jTEntrada, jTIdhorario, jCPeriodo, jCPlanEstudios, JCGrupo, JCMateria, JCDocente, jCDia, jBCancelar);
-                            CtrlInterfaz.habilita(true, jBAceptar1, jBeliminar, jBModificar, btnExportar);
+                            btnNuevo.setText("Nuevo");
+                            CtrlInterfaz.limpia(txtHoraEntrada, txtHoraSalida, txtMatricula);
+                            CtrlInterfaz.habilita(false, txtHoraSalida, txtHoraEntrada, txtMatricula, comboPeriodo, comboPlanes, comboGrupo, comboMateria, comboDocente, comboDia, btnCancelar);
+                            CtrlInterfaz.habilita(true, btnNuevo, btnEliminar, btnModificar, btnExportar);
                             importarBD();
-                            jCGrupofiltro.setSelectedIndex(0);
+                            comboGrupoBusqueda.setSelectedIndex(0);
                             actualizaTabla(1);
                             edicion();
-                            CtrlInterfaz.limpia(jTIdhorario, jTEntrada, jTSalida);
+                            CtrlInterfaz.limpia(txtMatricula, txtHoraEntrada, txtHoraSalida);
                         } else
                         {
                             Mensaje.error(this, "No se pudo registrar el horario");
@@ -721,10 +721,10 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
             }
 
         }
-    }//GEN-LAST:event_jBAceptar1ActionPerformed
+    }//GEN-LAST:event_btnNuevoActionPerformed
 
-    private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
-        if (jTIdhorario.getText().compareTo("") == 0)
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        if (txtMatricula.getText().compareTo("") == 0)
         {
             Mensaje.error(this, "No ha seleccionado nungun registro");
         } else
@@ -732,14 +732,14 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
             if (!edicion)
             {
                 edicion();
-                jBModificar.setText("Aceptar");
-                CtrlInterfaz.habilita(true, jTSalida, jTEntrada, jCPeriodo, jCPlanEstudios, JCGrupo, JCMateria, JCDocente, jCDia, jBCancelar);
-                CtrlInterfaz.habilita(false, jBeliminar, jBAceptar1, btnExportar);
+                btnModificar.setText("Aceptar");
+                CtrlInterfaz.habilita(true, txtHoraSalida, txtHoraEntrada, comboPeriodo, comboPlanes, comboGrupo, comboMateria, comboDocente, comboDia, btnCancelar);
+                CtrlInterfaz.habilita(false, btnEliminar, btnNuevo, btnExportar);
 
             } else
             {
-                PeriodoHorarios horario = new PeriodoHorarios(Integer.parseInt(jTIdhorario.getText()), buscaMateria(null, JCMateria.getSelectedItem().toString()), buscaGrupo(null, JCGrupo.getSelectedItem().toString()), buscaPeriodo(null, jCPeriodo.getSelectedItem().toString()), buscaProfesor(null, JCDocente.getSelectedItem().toString()), String.valueOf(ControladorHorarios.numdia(jCDia.getSelectedItem().toString())), jTEntrada.getText(), jTSalida.getText());
-                String mensaje = ControladorHorarios.modificaHorarioUnico(horario, Integer.parseInt(jTIdhorario.getText()));
+                PeriodoHorarios horario = new PeriodoHorarios(Integer.parseInt(txtMatricula.getText()), buscaMateria(null, comboMateria.getSelectedItem().toString()), buscaGrupo(null, comboGrupo.getSelectedItem().toString()), buscaPeriodo(null, comboPeriodo.getSelectedItem().toString()), buscaProfesor(null, comboDocente.getSelectedItem().toString()), String.valueOf(ControladorHorarios.numdia(comboDia.getSelectedItem().toString())), txtHoraEntrada.getText(), txtHoraSalida.getText());
+                String mensaje = ControladorHorarios.modificaHorarioUnico(horario, Integer.parseInt(txtMatricula.getText()));
                 boolean var;
                 boolean var2, registro;
                 if (mensaje.equals("operacion exitosa"))
@@ -756,19 +756,19 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                             Mensaje.error(this, "Corrija el horario en el que el docente impartira la materia");
                         } else
                         {
-                            registro = ControladorHorarios.modificaEnBaseUnicoHorario(horario, Integer.parseInt(jTIdhorario.getText()));
+                            registro = ControladorHorarios.modificaEnBaseUnicoHorario(horario, Integer.parseInt(txtMatricula.getText()));
                             if (registro != true)
                             {
                                 Mensaje.exito(this, "Horario modificado correctamente");
-                                jBModificar.setText("Modificar");
-                                CtrlInterfaz.limpia(jTEntrada, jTSalida, jTIdhorario);
-                                CtrlInterfaz.habilita(false, jTSalida, jTEntrada, jTIdhorario, jCPeriodo, jCPlanEstudios, JCGrupo, JCMateria, JCDocente, jCDia, jBCancelar);
-                                CtrlInterfaz.habilita(true, jBAceptar1, jBeliminar, jBModificar, btnExportar);
+                                btnModificar.setText("Modificar");
+                                CtrlInterfaz.limpia(txtHoraEntrada, txtHoraSalida, txtMatricula);
+                                CtrlInterfaz.habilita(false, txtHoraSalida, txtHoraEntrada, txtMatricula, comboPeriodo, comboPlanes, comboGrupo, comboMateria, comboDocente, comboDia, btnCancelar);
+                                CtrlInterfaz.habilita(true, btnNuevo, btnEliminar, btnModificar, btnExportar);
                                 importarBD();
-                                jCGrupofiltro.setSelectedIndex(0);
+                                comboGrupoBusqueda.setSelectedIndex(0);
                                 actualizaTabla(1);
                                 edicion();
-                                CtrlInterfaz.limpia(jTIdhorario, jTEntrada, jTSalida);
+                                CtrlInterfaz.limpia(txtMatricula, txtHoraEntrada, txtHoraSalida);
                             } else
                             {
                                 Mensaje.error(this, "No se pudo registrar el horario");
@@ -781,7 +781,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                 }
             }
         }
-    }//GEN-LAST:event_jBModificarActionPerformed
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         System.out.println("conecta");
@@ -796,98 +796,98 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
         llenaDocentes();
     }//GEN-LAST:event_formWindowOpened
 
-    private void jTIdhorarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTIdhorarioKeyPressed
-        Validaciones.enter(this, evt, jCPeriodo);
-    }//GEN-LAST:event_jTIdhorarioKeyPressed
+    private void txtMatriculaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatriculaKeyPressed
+        Validaciones.enter(this, evt, comboPeriodo);
+    }//GEN-LAST:event_txtMatriculaKeyPressed
 
-    private void jCPeriodoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCPeriodoKeyPressed
-        Validaciones.enter(this, evt, JCGrupo);
-    }//GEN-LAST:event_jCPeriodoKeyPressed
+    private void comboPeriodoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboPeriodoKeyPressed
+        Validaciones.enter(this, evt, comboGrupo);
+    }//GEN-LAST:event_comboPeriodoKeyPressed
 
-    private void JCGrupoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JCGrupoKeyPressed
-        Validaciones.enter(this, evt, JCMateria);
-    }//GEN-LAST:event_JCGrupoKeyPressed
+    private void comboGrupoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboGrupoKeyPressed
+        Validaciones.enter(this, evt, comboMateria);
+    }//GEN-LAST:event_comboGrupoKeyPressed
 
-    private void JCMateriaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JCMateriaKeyPressed
-        Validaciones.enter(this, evt, JCDocente);
-    }//GEN-LAST:event_JCMateriaKeyPressed
+    private void comboMateriaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboMateriaKeyPressed
+        Validaciones.enter(this, evt, comboDocente);
+    }//GEN-LAST:event_comboMateriaKeyPressed
 
-    private void JCDocenteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JCDocenteKeyPressed
-        Validaciones.enter(this, evt, jCDia);
-    }//GEN-LAST:event_JCDocenteKeyPressed
+    private void comboDocenteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboDocenteKeyPressed
+        Validaciones.enter(this, evt, comboDia);
+    }//GEN-LAST:event_comboDocenteKeyPressed
 
-    private void jTEntradaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTEntradaKeyPressed
-        Validaciones.enter(this, evt, jTSalida);
-    }//GEN-LAST:event_jTEntradaKeyPressed
+    private void txtHoraEntradaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoraEntradaKeyPressed
+        Validaciones.enter(this, evt, txtHoraSalida);
+    }//GEN-LAST:event_txtHoraEntradaKeyPressed
 
-    private void jTIdhorarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTIdhorarioKeyTyped
+    private void txtMatriculaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatriculaKeyTyped
         Validaciones.validaAlfanumerico(evt);
-        Valida.validaLongitud(jTIdhorario, 10, evt);
-    }//GEN-LAST:event_jTIdhorarioKeyTyped
+        Valida.validaLongitud(txtMatricula, 10, evt);
+    }//GEN-LAST:event_txtMatriculaKeyTyped
 
-    private void jTIdhorarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTIdhorarioFocusLost
-        Valida.convertirAMayusculas(jTIdhorario);
-    }//GEN-LAST:event_jTIdhorarioFocusLost
+    private void txtMatriculaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMatriculaFocusLost
+        Valida.convertirAMayusculas(txtMatricula);
+    }//GEN-LAST:event_txtMatriculaFocusLost
 
-    private void jTEntradaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTEntradaKeyTyped
+    private void txtHoraEntradaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoraEntradaKeyTyped
 
-    }//GEN-LAST:event_jTEntradaKeyTyped
+    }//GEN-LAST:event_txtHoraEntradaKeyTyped
 
-    private void jTSalidaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTSalidaKeyPressed
+    private void txtHoraSalidaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoraSalidaKeyPressed
 
-    }//GEN-LAST:event_jTSalidaKeyPressed
+    }//GEN-LAST:event_txtHoraSalidaKeyPressed
 
-    private void jCGrupofiltroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCGrupofiltroItemStateChanged
+    private void comboGrupoBusquedaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboGrupoBusquedaItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED)
         {
             actualizaTabla(1);
-            jCPeriodoFiltro.setSelectedIndex(0);
+            comboPeriodoBusqueda.setSelectedIndex(0);
         }
-    }//GEN-LAST:event_jCGrupofiltroItemStateChanged
+    }//GEN-LAST:event_comboGrupoBusquedaItemStateChanged
 
-    private void jCPeriodoFiltroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCPeriodoFiltroItemStateChanged
+    private void comboPeriodoBusquedaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboPeriodoBusquedaItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED)
         {
             actualizaTabla(2);
         }
-    }//GEN-LAST:event_jCPeriodoFiltroItemStateChanged
+    }//GEN-LAST:event_comboPeriodoBusquedaItemStateChanged
 
-    private void TablaHorariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaHorariosMouseClicked
-        jTIdhorario.setText(String.valueOf(modelo.getValueAt(TablaHorarios.getSelectedRow(), 0)));
-        JCMateria.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 2), JCMateria)));
-        String GrupoACombo = retornameLic((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 5));
-        jCPlanEstudios.setSelectedIndex((buscarCombo(buscaLic(GrupoACombo, null), jCPlanEstudios)));
-        JCGrupo.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 5), JCGrupo)));
-        jCPeriodo.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 6), jCPeriodo)));
-        JCDocente.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 4), JCDocente)));
-        jCDia.setSelectedIndex((buscarCombo((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 7), jCDia)));
-        jTEntrada.setText((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 8));
-        jTSalida.setText((String) modelo.getValueAt(TablaHorarios.getSelectedRow(), 9));
-    }//GEN-LAST:event_TablaHorariosMouseClicked
+    private void tablaHorariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaHorariosMouseClicked
+        txtMatricula.setText(String.valueOf(modelo.getValueAt(tablaHorarios.getSelectedRow(), 0)));
+        comboMateria.setSelectedIndex((buscarCombo((String) modelo.getValueAt(tablaHorarios.getSelectedRow(), 2), comboMateria)));
+        String GrupoACombo = retornameLic((String) modelo.getValueAt(tablaHorarios.getSelectedRow(), 5));
+        comboPlanes.setSelectedIndex((buscarCombo(buscaLic(GrupoACombo, null), comboPlanes)));
+        comboGrupo.setSelectedIndex((buscarCombo((String) modelo.getValueAt(tablaHorarios.getSelectedRow(), 5), comboGrupo)));
+        comboPeriodo.setSelectedIndex((buscarCombo((String) modelo.getValueAt(tablaHorarios.getSelectedRow(), 6), comboPeriodo)));
+        comboDocente.setSelectedIndex((buscarCombo((String) modelo.getValueAt(tablaHorarios.getSelectedRow(), 4), comboDocente)));
+        comboDia.setSelectedIndex((buscarCombo((String) modelo.getValueAt(tablaHorarios.getSelectedRow(), 7), comboDia)));
+        txtHoraEntrada.setText((String) modelo.getValueAt(tablaHorarios.getSelectedRow(), 8));
+        txtHoraSalida.setText((String) modelo.getValueAt(tablaHorarios.getSelectedRow(), 9));
+    }//GEN-LAST:event_tablaHorariosMouseClicked
 
-    private void jCPlanEstudiosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCPlanEstudiosKeyPressed
+    private void comboPlanesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboPlanesKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCPlanEstudiosKeyPressed
+    }//GEN-LAST:event_comboPlanesKeyPressed
 
-    private void jCPlanEstudiosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCPlanEstudiosItemStateChanged
+    private void comboPlanesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboPlanesItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED)
         {
             llenaGrupos();
             llenaMaterias();
         }
-    }//GEN-LAST:event_jCPlanEstudiosItemStateChanged
+    }//GEN-LAST:event_comboPlanesItemStateChanged
 
-    private void txtnombreArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreArchivoActionPerformed
+    private void txtNombreArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreArchivoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnombreArchivoActionPerformed
+    }//GEN-LAST:event_txtNombreArchivoActionPerformed
 
-    private void jCDiaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCDiaKeyPressed
-        Validaciones.enter(this, evt, jTEntrada);
-    }//GEN-LAST:event_jCDiaKeyPressed
+    private void comboDiaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_comboDiaKeyPressed
+        Validaciones.enter(this, evt, txtHoraEntrada);
+    }//GEN-LAST:event_comboDiaKeyPressed
 
     public void actualizaTabla(int valor) {
 
-        modelo = (DefaultTableModel) TablaHorarios.getModel();
+        modelo = (DefaultTableModel) tablaHorarios.getModel();
         switch (valor)
         {
             case 1:
@@ -900,7 +900,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                     for (Object p : horarios)
                     {
                         PeriodoHorarios horario = (PeriodoHorarios) p;
-                        if (horario.getIdGrupo().equals(buscaGrupo(null, jCGrupofiltro.getSelectedItem().toString())))
+                        if (horario.getIdGrupo().equals(buscaGrupo(null, comboGrupoBusqueda.getSelectedItem().toString())))
                         {
                             modelo.addRow(new Object[]
                             {
@@ -912,7 +912,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
 
                 break;
             case 2:
-                if (jCPeriodoFiltro.getSelectedIndex() == 0)
+                if (comboPeriodoBusqueda.getSelectedIndex() == 0)
                 {
                     actualizaTabla(1);
                 } else
@@ -927,7 +927,7 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
                         for (Object p : horarios)
                         {
                             PeriodoHorarios horario = (PeriodoHorarios) p;
-                            if (horario.getIdGrupo().equals(buscaGrupo(null, jCGrupofiltro.getSelectedItem().toString())) && horario.getIdPeriodo().equals(buscaPeriodo(null, jCPeriodoFiltro.getSelectedItem().toString())))
+                            if (horario.getIdGrupo().equals(buscaGrupo(null, comboGrupoBusqueda.getSelectedItem().toString())) && horario.getIdPeriodo().equals(buscaPeriodo(null, comboPeriodoBusqueda.getSelectedItem().toString())))
                             {
                                 modelo.addRow(new Object[]
                                 {
@@ -2010,22 +2010,21 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> JCDocente;
-    private javax.swing.JComboBox<String> JCGrupo;
-    private javax.swing.JComboBox<String> JCMateria;
-    private javax.swing.JTable TablaHorarios;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnExportar;
-    private javax.swing.JButton jBAceptar1;
-    private javax.swing.JButton jBCancelar;
+    private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnNuevo;
+    private javax.swing.JComboBox<String> comboDia;
+    private javax.swing.JComboBox<String> comboDocente;
+    private javax.swing.JComboBox<String> comboGrupo;
+    private javax.swing.JComboBox<String> comboGrupoBusqueda;
+    private javax.swing.JComboBox<String> comboMateria;
+    private javax.swing.JComboBox<String> comboPeriodo;
+    private javax.swing.JComboBox<String> comboPeriodoBusqueda;
+    private javax.swing.JComboBox<String> comboPlanes;
     private javax.swing.JButton jBCerrarSesion;
-    private javax.swing.JButton jBModificar;
     private javax.swing.JButton jBRegresar;
-    private javax.swing.JButton jBeliminar;
-    private javax.swing.JComboBox<String> jCDia;
-    private javax.swing.JComboBox<String> jCGrupofiltro;
-    private javax.swing.JComboBox<String> jCPeriodo;
-    private javax.swing.JComboBox<String> jCPeriodoFiltro;
-    private javax.swing.JComboBox<String> jCPlanEstudios;
     private javax.swing.JLabel jLTituloUAPT1;
     private javax.swing.JLabel jLTituloUniversidad1;
     private javax.swing.JLabel jLabel1;
@@ -2045,10 +2044,11 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTEntrada;
-    private javax.swing.JTextField jTIdhorario;
-    private javax.swing.JTextField jTSalida;
-    private javax.swing.JTextField txtnombreArchivo;
+    private javax.swing.JTable tablaHorarios;
+    private javax.swing.JTextField txtHoraEntrada;
+    private javax.swing.JTextField txtHoraSalida;
+    private javax.swing.JTextField txtMatricula;
+    private javax.swing.JTextField txtNombreArchivo;
     // End of variables declaration//GEN-END:variables
 
     public String buscaLic(String id, String licenciatura) {
@@ -2102,45 +2102,45 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
     }
 
     private void cargaPeriodos() {
-        jCPeriodo.removeAllItems();
-        jCPeriodoFiltro.removeAllItems();
-        jCPeriodoFiltro.addItem("TODOS");
+        comboPeriodo.removeAllItems();
+        comboPeriodoBusqueda.removeAllItems();
+        comboPeriodoBusqueda.addItem("TODOS");
         for (int i = 0; i < periodos.size(); i++)
         {
-            jCPeriodo.addItem(((periodoEscolar) periodos.get(i)).getPeriodo());
-            jCPeriodoFiltro.addItem(((periodoEscolar) periodos.get(i)).getPeriodo());
+            comboPeriodo.addItem(((periodoEscolar) periodos.get(i)).getPeriodo());
+            comboPeriodoBusqueda.addItem(((periodoEscolar) periodos.get(i)).getPeriodo());
         }
     }
 
     private void llenaGrupos() {
-        JCGrupo.removeAllItems();
+        comboGrupo.removeAllItems();
         for (int i = 0; i < grupos.size(); i++)
         {
-            JCGrupo.addItem(((Grupo) grupos.get(i)).getNombreGrupo());
+            comboGrupo.addItem(((Grupo) grupos.get(i)).getNombreGrupo());
         }
     }
 
     private void llenaGruposFiltro() {
-        jCGrupofiltro.removeAllItems();
+        comboGrupoBusqueda.removeAllItems();
         for (int i = 0; i < grupos.size(); i++)
         {
-            jCGrupofiltro.addItem(((Grupo) grupos.get(i)).getNombreGrupo());
+            comboGrupoBusqueda.addItem(((Grupo) grupos.get(i)).getNombreGrupo());
         }
     }
 
     private void llenaMaterias() {
-        JCMateria.removeAllItems();
+        comboMateria.removeAllItems();
         for (int i = 0; i < materias.size(); i++)
         {
-            JCMateria.addItem(((Materia) materias.get(i)).getUnidadAprendizaje());
+            comboMateria.addItem(((Materia) materias.get(i)).getUnidadAprendizaje());
         }
     }
 
     private void llenaDocentes() {
-        JCDocente.removeAllItems();
+        comboDocente.removeAllItems();
         for (int i = 0; i < profesores.size(); i++)
         {
-            JCDocente.addItem(((Profesor) profesores.get(i)).getNombres() + " " + ((Profesor) profesores.get(i)).getApellidoP() + " " + ((Profesor) profesores.get(i)).getApellidoM());
+            comboDocente.addItem(((Profesor) profesores.get(i)).getNombres() + " " + ((Profesor) profesores.get(i)).getApellidoP() + " " + ((Profesor) profesores.get(i)).getApellidoM());
         }
     }
 
@@ -2155,10 +2155,10 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
     }
 
     private void llenaPlan() {
-        jCPlanEstudios.removeAllItems();
+        comboPlanes.removeAllItems();
         for (int i = 0; i < plans.size(); i++)
         {
-            jCPlanEstudios.addItem(((PlanEstudios) plans.get(i)).getPlanEstudios());
+            comboPlanes.addItem(((PlanEstudios) plans.get(i)).getPlanEstudios());
         }
     }
 
@@ -2294,11 +2294,11 @@ public class VentanaHorariosCoordinador extends javax.swing.JFrame {
 
     private void cancelar() {
         edicion();
-        CtrlInterfaz.limpia(jTIdhorario, jTEntrada, jTSalida);
-        CtrlInterfaz.habilita(false, jTIdhorario, jCPeriodo, jCPlanEstudios, JCGrupo, JCMateria, JCDocente, jCDia, jTEntrada, jTSalida, jBCancelar);
-        CtrlInterfaz.habilita(true, jBAceptar1, jBModificar, jBeliminar, btnExportar);
-        jBAceptar1.setText("Nuevo");
-        jBModificar.setText("Modificar");
+        CtrlInterfaz.limpia(txtMatricula, txtHoraEntrada, txtHoraSalida);
+        CtrlInterfaz.habilita(false, txtMatricula, comboPeriodo, comboPlanes, comboGrupo, comboMateria, comboDocente, comboDia, txtHoraEntrada, txtHoraSalida, btnCancelar);
+        CtrlInterfaz.habilita(true, btnNuevo, btnModificar, btnEliminar, btnExportar);
+        btnNuevo.setText("Nuevo");
+        btnModificar.setText("Modificar");
     }
 
     private boolean insertaEnBaseUnicoHorario(PeriodoHorarios horario) {
