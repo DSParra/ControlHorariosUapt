@@ -53,7 +53,7 @@ public class VistaExcel extends javax.swing.JFrame {
     };
     String cabecerasHorario[] =
     {
-        "clave materia", "unidad de aprendizaje", "rfc", "profesor", "grupo", "periodo", "dia", "entrada", "salida"
+        "clave materia","unidad de aprendizaje", "rfc", "profesor", "grupo","periodo","dia","entrada","salida"
     };
     ArrayList<Profesor> profes;
     ArrayList<Materia> materias;
@@ -409,14 +409,14 @@ public class VistaExcel extends javax.swing.JFrame {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
+                .addComponent(jScrollPane3)
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -432,14 +432,14 @@ public class VistaExcel extends javax.swing.JFrame {
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
+                .addComponent(jScrollPane4)
                 .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -455,14 +455,14 @@ public class VistaExcel extends javax.swing.JFrame {
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
+                .addComponent(jScrollPane5)
                 .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -478,7 +478,7 @@ public class VistaExcel extends javax.swing.JFrame {
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
+                .addComponent(jScrollPane2)
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
