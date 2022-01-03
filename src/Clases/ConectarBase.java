@@ -26,18 +26,18 @@ public class ConectarBase {
                 instancia = con.Conecta("31.170.161.64:3306", "u791379416_horariosUAPT", "u791379416_UAPT", "HeUAPT01.", 2);
                 //instancia = con.Conecta("localhost:3306", "horariosUAPT", "root", "", 2);
                 System.out.println("Conectado");
-                Mensaje.exito(jf, "Conectado a la base de datos");
+                //Mensaje.exito(jf, "Conectado a la base de datos");
             } else
             {
                 System.out.println("Ya existe la conexion");
-                Mensaje.error(jf, "ELSE: No se ha conectado a la base de datos");
+                //Mensaje.error(jf, "ELSE: No se ha conectado a la base de datos");
             }
             
         } catch (Exception e)
         {
             System.out.println(e.toString());
-            Mensaje.error(jf, "ERROR: Exception");
-            Mensaje.error(jf, e.toString());
+            //Mensaje.error(jf, "ERROR: Exception");
+            //Mensaje.error(jf, e.toString());
         }
         return instancia;
     }

@@ -607,10 +607,8 @@ public class VistaExcel extends javax.swing.JFrame {
                 jCheckExcel.setSelected(comparaMateriasExcel());
                 if (jCheckLllaves.isSelected())
                 {
-
                     jCheckProfesores.setSelected(evaluaProfesores());
                     jCheckMateriasBD.setSelected(evaluaGruposBD());
-
                 }
 
                 if (jCheckExcel.isSelected() && jCheckProfesores.isSelected() && jCheckMateriasBD.isSelected() && jCheckLllaves.isSelected())
