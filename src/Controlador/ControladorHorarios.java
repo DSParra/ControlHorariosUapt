@@ -31,7 +31,7 @@ public class ControladorHorarios {
         if (dia.equals("Lunes") || dia.equals("lunes") || dia.equals("lun") || dia.equals("LUNES") || dia.equals("L") || dia.equals("l"))
         {
             return 1;
-        } else if (dia.equals("Martes") || dia.equals("martes") || dia.equals("mar") || dia.equals("MARTES") || dia.equals("M") || dia.equals("m"))
+        } else if (dia.equals("Martes") || dia.equals("martes") || dia.equals("mar") || dia.equals("MARTES") || dia.equals("M") || dia.equals("m") || dia.equals("Ma"))
         {
             return 2;
         } else if (dia.equals("Miercoles") || dia.equals("miercoles") || dia.equals("mie") || dia.equals("MIERCOLES") || dia.equals("MI") || dia.equals("mi") || dia.equals("Mi"))

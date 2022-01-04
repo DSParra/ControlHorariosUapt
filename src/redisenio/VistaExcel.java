@@ -601,16 +601,62 @@ public class VistaExcel extends javax.swing.JFrame {
             {
                 Mensaje.error(this, "Hay un error con los datos, guarda excel en null");
             } else
-            {
+            {  
                 System.out.println("");
-                jCheckLllaves.setSelected(validaExcel());
-                jCheckExcel.setSelected(comparaMateriasExcel());
+                jCheckLllaves.setSelected(validaLlaves());   
+                if (jCheckLllaves.isSelected()){
+                    jCheckExcel.setSelected(comparaMateriasExcel());
+                    /**
+                     * validaciones excel
+
+                       llaves -> mostrar clave y nombre del elemento 
+
+                       conversion en dias -> no funciona con Ma
+                     */
+                    if(jCheckExcel.isSelected()){
+                        jCheckProfesores.setSelected(evaluaProfesores());
+                        if(jCheckProfesores.isSelected()){
+                            jCheckMateriasBD.setSelected(evaluaGruposBD());
+                            if(jCheckMateriasBD.isSelected()){
+                               btnCarga.setEnabled(true);
+                                Mensaje.exito(this, "Se han pasado todas las pruebas");
+                            }else{
+                                Mensaje.error(this, "Error en Materias BD");
+                            }
+                        }else{
+                            Mensaje.error(this, "Error en Profesores");
+                        }
+                    }else{
+                        Mensaje.error(this, "Error en Excel");
+                    }
+                }else{
+                    Mensaje.error(this, "Error en Llaves");
+                }
+                
+                /**
+                System.out.println("");
+                jCheckLllaves.setSelected(validaExcel());   
                 if (jCheckLllaves.isSelected())
                 {
+                    jCheckExcel.setSelected(comparaMateriasExcel());
+                } else if (jCheckExcel.isSelected()){
                     jCheckProfesores.setSelected(evaluaProfesores());
+                } else if (jCheckProfesores.isSelected()){
                     jCheckMateriasBD.setSelected(evaluaGruposBD());
+                } else if(jCheckMateriasBD.isSelected()){
+                    btnCarga.setEnabled(true);
+                    Mensaje.exito(this, "Se han pasado todas las pruebas");
+                }else{
+                    btnCarga.setEnabled(false);
+                    Mensaje.error(this, "Alguna prueba no ha sido superada");
                 }
+                * **/
 
+                
+                
+                
+                
+                
                 if (jCheckExcel.isSelected() && jCheckProfesores.isSelected() && jCheckMateriasBD.isSelected() && jCheckLllaves.isSelected())
                 {
                     btnCarga.setEnabled(true);
@@ -825,7 +871,7 @@ public class VistaExcel extends javax.swing.JFrame {
     public void transforma() {
 
     }
-
+    //validacion de materias en excel
     public boolean comparaMateriasExcel() {
         boolean prueba = true;
         double entrada1, salida1, entrada2, salida2;
@@ -851,7 +897,6 @@ public class VistaExcel extends javax.swing.JFrame {
                         salida2 = Double.parseDouble(horarios.get(j).getSalida().substring(0, 2) + "." + horarios.get(j).getSalida().substring(3, 5));
                         if (entrada2 >= entrada1 && entrada2 < salida1)
                         {
-
                             prueba = false;
                             mensaje += "Cruze de Profesor\n"
                                     + "Materia: " + String.valueOf(jTDatosExcel.getValueAt(i, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 1)) + "\n"
@@ -896,7 +941,6 @@ public class VistaExcel extends javax.swing.JFrame {
                             // + String.valueOf(jTDatosExcel.getValueAt(j, 1)) + " -> " + String.valueOf(jTDatosExcel.getValueAt(j, 4)) + " " +String.valueOf(jTDatosExcel.getValueAt(i, 3))+ String.valueOf(jTDatosExcel.getValueAt(j, 7)) + " " + String.valueOf(jTDatosExcel.getValueAt(j, 8)) + "\n\n";
                             //System.out.println("horarios cruzados");
                         }
-
                     }
                 }
             }
@@ -1004,7 +1048,8 @@ public class VistaExcel extends javax.swing.JFrame {
         return prueba;
     }
 
-    public boolean validaExcel() {
+    //Validacion de llaves en bajadas de bd 
+    public boolean validaLlaves() {
         boolean prueba = true;
         double entrada1, entrada2, salida1, salida2;
         String mensaje = "";
