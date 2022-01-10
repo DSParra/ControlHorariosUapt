@@ -61,6 +61,12 @@ public class Conexion {
             {
                 // Ocurrió un error con la conexi¢n 
                 System.out.println("Error con la conexi¢n a la base de datos:");
+                System.out.println(sqle);
+                System.out.println("Codigo de error:");
+                System.out.println(sqle.getErrorCode());
+                System.out.println(sqle.getSQLState());
+                
+                
                 Mensaje.error(null, "SE PERDIO LA CONEXION, POR FAVOR CIERRE Y ABRA NUEVAMENTE EL PROGRAMA");
             }
         } else
