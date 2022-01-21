@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Librerias">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/Librerias/mysql-connector-java-8.0.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/Librerias/mysql-connector-java-5.0.8-bin-g.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/Librerias/cjbCtrlInterfaz.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

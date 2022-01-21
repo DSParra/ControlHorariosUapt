@@ -6,8 +6,6 @@
 package Clases;
 
 import cjb.ci.Mensaje;
-import com.mysql.cj.protocol.Resultset;
-import com.mysql.cj.xdevapi.Statement;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
